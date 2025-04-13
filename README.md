@@ -84,11 +84,9 @@ This work will be archived on Zenodo upon stable releases. Once the first versio
 
 **DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 
-*(**Note to User:** After your first Zenodo release, find the DOI badge snippet on the Zenodo record page and paste it here, replacing `your-zenodo-doi-number`)*
-
 ## Citation
 
 If you use or refer to this work, please cite the specific version you used via its Zenodo DOI. A general citation format is:
 
-van Hoek, A. J., ChatGPT, & Gemini. (2025). *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind* (Version 0.88). Zenodo. [https://doi.org/your-zenodo-doi-number](https://doi.org/your-zenodo-doi-number)
+van Hoek, A. J., ChatGPT, & Gemini. (2025). *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind* (Version 0.88). Zenodo. [https://doi.org/your-zenodo-doi-number](https://doi.org/10.5281/zenodo.15207807)
 
