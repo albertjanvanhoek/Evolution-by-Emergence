@@ -80,7 +80,7 @@ If you wish to compile the book from the LaTeX source code:
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/) (CC BY-NC-ND 4.0).
 
-This work will be archived on Zenodo upon stable releases. Once the first version is archived, the DOI will be displayed here:
+This work will be archived on Zenodo.
 
 **DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 
