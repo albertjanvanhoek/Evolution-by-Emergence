@@ -52,28 +52,6 @@ Please feel free to:
 * Open an [**Issue**]([https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues)) on this GitHub repository to provide detailed feedback or suggest specific changes/additions. 
 We are open to discussion and appreciate engagement with the ideas presented in this ongoing project. Potential collaboration inquiries based on shared research interests are also welcome.
 
-
-## Building the PDF from Source
-
-If you wish to compile the book from the LaTeX source code:
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-    cd your-repo-name
-    ```
-    *(**Note to User:** Replace `your-username/your-repo-name`)*
-2.  **Ensure LaTeX Distribution:** You need a comprehensive LaTeX distribution installed (e.g., TeX Live, MiKTeX, MacTeX).
-3.  **Required Packages:** The necessary LaTeX packages are listed in the preamble of the main `.tex` file. Your LaTeX distribution should handle installing them automatically or prompt you. Key packages include `amsmath`, `amssymb`, `graphicx`, `tikz`, `hyperref`, `geometry`, `fancyhdr`, `amsthm`, `microtype`, `epigraph`, `natbib`.
-4.  **Compilation Sequence:** Due to table of contents, citations, and cross-references, multiple compilation runs are necessary. Using `natbib` typically requires `bibtex`.
-    ```bash
-    pdflatex book.tex  # Or your main file name
-    bibtex book       # Or your main file name (without .tex)
-    pdflatex book.tex
-    pdflatex book.tex
-    ```
-    The final PDF will be generated (e.g., `book.pdf`).
-
 ## DOI (Digital Object Identifier)
 
 ## License
