@@ -82,7 +82,7 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDeri
 
 This work will be archived on Zenodo upon stable releases. Once the first version is archived, the DOI will be displayed here:
 
-**DOI:** [![DOI](https://zenodo.org/badge/DOI/your-zenodo-doi-number.svg)](https://doi.org/your-zenodo-doi-number)
+**DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 
 *(**Note to User:** After your first Zenodo release, find the DOI badge snippet on the Zenodo record page and paste it here, replacing `your-zenodo-doi-number`)*
 
