@@ -76,6 +76,10 @@ If you wish to compile the book from the LaTeX source code:
 
 ## DOI (Digital Object Identifier)
 
+## License
+
+This work is licensed under a [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nc-nd/4.0/) (CC BY-NC-ND 4.0).
+
 This work will be archived on Zenodo upon stable releases. Once the first version is archived, the DOI will be displayed here:
 
 **DOI:** [![DOI](https://zenodo.org/badge/DOI/your-zenodo-doi-number.svg)](https://doi.org/your-zenodo-doi-number)
@@ -88,18 +92,3 @@ If you use or refer to this work, please cite the specific version you used via 
 
 van Hoek, A. J., ChatGPT, & Gemini. (2025). *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind* (Version 0.88). Zenodo. [https://doi.org/your-zenodo-doi-number](https://doi.org/your-zenodo-doi-number)
 
-
-
-## License
-
-Please choose a license that suits your needs for a public book repository. Creative Commons licenses are common for written works. For example:
-
-This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/) (CC BY 4.0).
-
-*(**Note to User:** Choose a license! CC BY 4.0 is a good default for allowing sharing and adaptation with attribution. You can also choose others like CC BY-NC (non-commercial) or CC BY-ND (no derivatives). Add a `LICENSE` file to your repository containing the full license text.)*
-
-## Acknowledgments
-
-Full acknowledgments are included in the "Acknowledgments" section of the book.
-
----
