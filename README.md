@@ -49,7 +49,7 @@ This repository contains the full LaTeX source code for the book, including:
 Constructive feedback is highly valuable to us during this development phase. We welcome suggestions for improvement, identification of errors or inconsistencies, pointers to relevant research we may have missed, or general thoughts on the concepts presented.
 
 Please feel free to:
-* Open an [**Issue**](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues) on this GitHub repository to provide detailed feedback or suggest specific changes/additions. 
+* Open an [**Issue**]([https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues)) on this GitHub repository to provide detailed feedback or suggest specific changes/additions. 
 We are open to discussion and appreciate engagement with the ideas presented in this ongoing project. Potential collaboration inquiries based on shared research interests are also welcome.
 
 
