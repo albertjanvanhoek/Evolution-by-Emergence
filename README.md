@@ -3,7 +3,7 @@
 **Authors:** Albert Jan van Hoek & ChatGPT & Gemini
 **Version:** 0.88 (As of April 13, 2025)
 **Status:** Actively Developed Draft (Work in Progress)
-
+**PDF:** The latest PDF-version is available in the release (but again, Work in Progress!)
 ---
 
 ## Abstract / Overview
