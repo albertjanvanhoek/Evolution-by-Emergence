@@ -52,6 +52,9 @@ Please feel free to:
 * Open an [**Issue**]([https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues)) on this GitHub repository to provide detailed feedback or suggest specific changes/additions. 
 We are open to discussion and appreciate engagement with the ideas presented in this ongoing project. Potential collaboration inquiries based on shared research interests are also welcome.
 
+## Music version of the book
+When working on this book I had a strong urge to develop some music. You can listen to it [here](https://soundcloud.com/emergence-223803727/sets/seedlings-for-a-revolution).
+
 ## DOI (Digital Object Identifier)
 
 ## License
