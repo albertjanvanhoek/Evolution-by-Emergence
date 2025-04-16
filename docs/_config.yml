@@ -20,7 +20,16 @@ navigation:
     items:
       - title: Chapter 1
         url: Chapters/Chapter_1.md
-      # …and so on
+      - title: Chapter 2
+        url: Chapters/Chapter_2.md
+      - title: Chapter 3
+        url: Chapters/Chapter_3.md
+      - title: Chapter 4
+        url: Chapters/Chapter_4.md
+
+
+
+        
   - title: Back Matter
     items:
       - title: Epilogue
