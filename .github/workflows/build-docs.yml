@@ -15,18 +15,27 @@ jobs:
     - name: Install Pandoc
       run: sudo apt-get update && sudo apt-get install -y pandoc
 
-    - name: Convert LaTeX chapters to Markdown
+    - name: Convert all LaTeX to Markdown
       run: |
-        mkdir -p docs
-        for tex in chapters/chapter*.tex; do
-          md="docs/$(basename "${tex%.tex}.md")"
-          pandoc "$tex" \
-            --from=latex \
-            --to=gfm \
-            --standalone \
-            --mathjax \
-            -o "$md"
+        # make matching docs folders
+        mkdir -p docs/Frontmatter docs/Chapters docs/Backmatter
+
+        # for each folder with .tex files, convert to Markdown
+        for dir in Frontmatter Chapters Backmatter; do
+          for tex in $dir/*.tex; do
+            # derive output path, e.g. docs/Chapters/Chapter_1.md
+            md="docs/$dir/$(basename "${tex%.tex}.md")"
+            pandoc "$tex" \
+              --from=latex \
+              --to=gfm \
+              --standalone \
+              --mathjax \
+              -o "$md"
+          done
         done
+
+
+
 
     - name: Commit and push generated docs
       run: |
