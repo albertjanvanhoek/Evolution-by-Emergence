@@ -1,6 +1,27 @@
-# docs/_config.yml
+# Disable Minima
+theme: null
+
+# Use the remote Just the Docs theme
+remote_theme: pmarsceill/just-the-docs
+
 title: Evolution by Emergence
-description: A universal theory of networks, life, and mind
-theme: minima       # simple, built‑in theme
-markdown: kramdown  # default GitHub parser
-permalink: /:path/  # clean URLs
+logo: assets/images/logo.png  # optional
+search: true
+
+# Sidebar structure
+navigation:
+  - title: Front Matter
+    items:
+      - title: Preface
+        url: Frontmatter/Preface.md
+      - title: Writing Process
+        url: Frontmatter/Writing_process.md
+  - title: Chapters
+    items:
+      - title: Chapter 1
+        url: Chapters/Chapter_1.md
+      # …and so on
+  - title: Back Matter
+    items:
+      - title: Epilogue
+        url: Backmatter/Epilogue.md
