@@ -1,0 +1,39 @@
+site_name: Evolution by Emergence
+site_description: A Universal Theory of Networks, Life, and Mind
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: light blue
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.share
+
+nav:
+  - Home: index.md
+  - Front Matter:
+    - Preface: Frontmatter/Preface.md
+    - Writing Process: Frontmatter/Writing_process.md
+    - Introduction: Frontmatter/Introduction.md
+    - How to Compile: Frontmatter/Instructions_to_compile_the_book.md
+  - Chapters:
+    - Chapter 1: Chapters/Chapter_1.md
+    - Chapter 2: Chapters/Chapter_2.md
+    - Chapter 3: Chapters/Chapter_3.md
+    - Chapter 4: Chapters/Chapter_4.md
+    - Chapter 5: Chapters/Chapter_5.md
+    - Chapter 6: Chapters/Chapter_6.md
+    - Chapter 7: Chapters/Chapter_7.md
+    - Chapter 8: Chapters/Chapter_8.md
+    - Chapter 9: Chapters/Chapter_9.md
+    - Chapter 10: Chapters/Chapter_10.md
+    - Chapter 11: Chapters/Chapter_11.md
+    - Chapter 12: Chapters/Chapter_12.md
+    - Chapter 13: Chapters/Chapter_13.md
+  - Back Matter:
+    - Epilogue: Backmatter/Epilogue.md
+    - Appendix: Backmatter/Appendix.md
+    - Literature: Backmatter/Literature.md
