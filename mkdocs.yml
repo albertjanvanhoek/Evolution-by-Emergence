@@ -19,8 +19,7 @@ nav:
   - Front Matter:
     - Preface: Frontmatter/Preface.md
     - Writing Process: Frontmatter/Writing_process.md
-    - Introduction: Frontmatter/Introduction.md
-    - How to Compile: Frontmatter/Instructions_to_compile_the_book.md
+
   - Chapters:
     - Chapter 1: Chapters/Chapter_1.md
     - Chapter 2: Chapters/Chapter_2.md
