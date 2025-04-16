@@ -1,0 +1,6 @@
+# docs/_config.yml
+title: Evolution by Emergence
+description: A universal theory of networks, life, and mind
+theme: minima       # simple, built‑in theme
+markdown: kramdown  # default GitHub parser
+permalink: /:path/  # clean URLs
