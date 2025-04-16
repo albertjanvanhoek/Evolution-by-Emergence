@@ -55,3 +55,12 @@ navigation:
         url: Backmatter/Appendix.md
       - title: Literature
         url: Backmatter/Literature.md
+      - title: Bibliography
+        url: Backmatter/Bibliography.md
+
+      - title: Cover
+        url: Frontmatter/Cover.md 
+      - title: Introduction
+        url: Frontmatter/Introduction.md       # explicitly list it
+      - title: How to Compile
+        url: Frontmatter/Instructions_to_compile_the_book.md
