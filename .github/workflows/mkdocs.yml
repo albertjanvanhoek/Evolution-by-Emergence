@@ -1,25 +1,35 @@
-name: Deploy MkDocs
+name: Deploy MkDocs site
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # 1) Check out your code
       - uses: actions/checkout@v3
+
+      # 2) Set up Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          pip install mkdocs-material
-      - name: Build site
-        run: mkdocs build --site-dir docs
+
+      # 3) Install MkDocs and the Material theme
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+
+      # 4) Build the site (reads from docs/, writes to site/)
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      # 5) Deploy the built site to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          publish_dir: docs
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
