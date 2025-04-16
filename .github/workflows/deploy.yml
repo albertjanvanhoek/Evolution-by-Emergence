@@ -1,10 +1,9 @@
 name: Build & Deploy Site
 
-# Grant the minimum permissions needed
 permissions:
-  contents: read    # for reading your source files
-  pages:    write   # to publish to GitHub Pages
-  id-token: write   # required by configure-pages
+  contents: read
+  pages:    write
+  id-token: write
 
 on:
   push:
@@ -15,27 +14,27 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
 
+    # ← Add this to specify the Pages environment
+    environment:
+      name: github-pages
+
     steps:
-      # 1) Checkout your repo (and persist credentials so we can call configure-pages)
       - name: Checkout
         uses: actions/checkout@v3
         with:
           persist-credentials: true
           fetch-depth: 0
 
-      # 2) Set up Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # 3) Install Pandoc & MkDocs
       - name: Install dependencies
         run: |
           sudo apt-get update && sudo apt-get install -y pandoc
           pip install mkdocs-material
 
-      # 4) Convert LaTeX → Markdown
       - name: Convert LaTeX to Markdown
         shell: bash
         run: |
@@ -58,20 +57,16 @@ jobs:
               -o "$out"
           done
 
-      # 5) Build the MkDocs site into site/
       - name: Build site
         run: mkdocs build --strict
 
-      # 6) Configure GitHub Pages
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
-      # 7) Upload the built site as a Pages artifact (v3 is required) :contentReference[oaicite:0]{index=0}
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
-      # 8) Deploy to GitHub Pages (v4 is required) 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
