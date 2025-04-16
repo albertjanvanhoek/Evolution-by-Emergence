@@ -1,0 +1,70 @@
+name: Build & Deploy Site
+
+# Grant just the permissions we need
+permissions:
+  contents: read    # for reading your repo files
+  pages:    write   # to publish to GitHub Pages
+  id-token: write   # required by configure‑pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) Check out the repo (with credentials to read/write back)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      # 2) Set up Python
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # 3) Install MkDocs + Material theme
+      - name: Install dependencies
+        run: pip install mkdocs-material
+
+      # 4) Convert LaTeX → Markdown (exactly as before)
+      - name: Convert LaTeX to Markdown
+        shell: bash
+        run: |
+          set -euxo pipefail
+          find . \
+            -type f \
+            -name '*.tex' \
+            ! -name 'main.tex' \
+            ! -path './.github/*' \
+            ! -path './.git/*' \
+            -print | while read -r tex; do
+            rel="${tex#./}"
+            out="docs/${rel%.tex}.md"
+            mkdir -p "$(dirname "$out")"
+            pandoc "$tex" --from=latex --to=gfm --standalone --mathjax -o "$out"
+          done
+
+      # 5) Build the site into `site/`
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      # 6) Prepare Pages deployment
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      # 7) Upload the generated site
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: site
+
+      # 8) Deploy to GitHub Pages
+      - name: Publish to GitHub Pages
+        uses: actions/deploy-pages@v1
