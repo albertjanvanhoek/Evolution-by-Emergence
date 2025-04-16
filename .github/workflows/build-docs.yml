@@ -1,3 +1,5 @@
+# .github/workflows/build-docs.yml
+
 name: Build Docs
 
 on:
@@ -9,40 +11,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      # 1) Checkout _and_ keep credentials so we can push back
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true   # ← add this line
+          fetch-depth: 0              # optional, but good if you ever need history
 
-    - name: Install Pandoc
-      run: sudo apt-get update && sudo apt-get install -y pandoc
+      # 2) Install Pandoc
+      - name: Install pandoc
+        run: sudo apt-get update && sudo apt-get install -y pandoc
 
-    - name: Convert all LaTeX to Markdown
-      run: |
-        # make matching docs folders
-        mkdir -p docs/Frontmatter docs/Chapters docs/Backmatter
-
-        # for each folder with .tex files, convert to Markdown
-        for dir in Frontmatter Chapters Backmatter; do
-          for tex in $dir/*.tex; do
-            # derive output path, e.g. docs/Chapters/Chapter_1.md
-            md="docs/$dir/$(basename "${tex%.tex}.md")"
-            pandoc "$tex" \
-              --from=latex \
-              --to=gfm \
-              --standalone \
-              --mathjax \
-              -o "$md"
+      # 3) Convert LaTeX → Markdown
+      - name: Convert all LaTeX to Markdown
+        run: |
+          mkdir -p docs/Frontmatter docs/Chapters docs/Backmatter
+          for dir in Frontmatter Chapters Backmatter; do
+            for tex in $dir/*.tex; do
+              md="docs/$dir/$(basename "${tex%.tex}.md")"
+              pandoc "$tex" \
+                --from=latex --to=gfm --standalone --mathjax \
+                -o "$md"
+            done
           done
-        done
 
-
-
-
-    - name: Commit and push generated docs
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git add docs/
-        git diff --quiet || git commit -m "Rebuild docs from LaTeX" 
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # 4) Commit & push back to the repo
+      - name: Commit and push generated docs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --quiet || git commit -m "Rebuild docs from LaTeX"
+          git push
