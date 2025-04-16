@@ -1,14 +1,15 @@
-# Disable Minima
+# Disable the default Minima theme
 theme: null
 
-# Use the remote Just the Docs theme
+# Use the Just the Docs theme from its GitHub repository
 remote_theme: pmarsceill/just-the-docs
 
+# Site settings
 title: Evolution by Emergence
-logo: assets/images/logo.png  # optional
+logo: assets/images/logo.png  # remove or adjust if you don’t have a logo
 search: true
 
-# Sidebar structure
+# Manually define the sidebar in the exact order you want
 navigation:
   - title: Front Matter
     items:
@@ -54,4 +55,3 @@ navigation:
         url: Backmatter/Appendix.md
       - title: Literature
         url: Backmatter/Literature.md
-
