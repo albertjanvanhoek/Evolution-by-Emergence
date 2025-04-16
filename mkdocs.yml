@@ -1,5 +1,6 @@
 site_name: Evolution by Emergence
-site_description: A Universal Theory of Networks, Life, and Mind
+docs_dir: docs      # your Markdown lives here
+site_dir: site      # MkDocs will write HTML here
 
 theme:
   name: material
@@ -13,21 +14,17 @@ theme:
     - search.highlight
     - search.share
 
-# _do not_ point site_dir at docs/, let it default to 'site'
-# docs_dir defaults to 'docs'—that’s where your .md files already are
-
 nav:
   - Home: index.md
   - Front Matter:
-    - Preface: Frontmatter/Preface.md
-    - Writing Process: Frontmatter/Writing_process.md
-    - Introduction: Frontmatter/Introduction.md
-    - How to Compile: Frontmatter/Instructions_to_compile_the_book.md
+      - Preface: Frontmatter/Preface.md
+      - Writing Process: Frontmatter/Writing_process.md
+      - Introduction: Frontmatter/Introduction.md
+      - How to Compile: Frontmatter/Instructions_to_compile_the_book.md
   - Chapters:
-    - Chapter 1: Chapters/Chapter_1.md
-    - Chapter 2: Chapters/Chapter_2.md
-    # …through Chapter 13
+      - Chapter 1: Chapters/Chapter_1.md
+      # … through Chapter 13
   - Back Matter:
-    - Epilogue: Backmatter/Epilogue.md
-    - Appendix: Backmatter/Appendix.md
-    - Literature: Backmatter/Literature.md
+      - Epilogue: Backmatter/Epilogue.md
+      - Appendix: Backmatter/Appendix.md
+      - Literature: Backmatter/Literature.md
