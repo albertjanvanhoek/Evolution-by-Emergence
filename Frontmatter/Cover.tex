@@ -1,0 +1,34 @@
+% --- Title Page ---
+\thispagestyle{empty} % No page numbering on title page
+\begin{tikzpicture}[remember picture, overlay, every node/.style={anchor=center}]
+    % Background covering the entire page with a blue-to-white gradient
+    \shade[bottom color=blue!20, top color=white] (current page.south west) rectangle (current page.north east);
+    
+    % Define the center of the page
+    \coordinate (center) at (current page.center);
+    
+    % Draw multiple concentric circles (default unit is cm)
+    \foreach \rad in {2,4,6,8,10,12,14,16} {
+        \draw[thin, gray] (center) circle (\rad);
+    }
+    
+    % Draw radial lines from the center at 20° intervals (0° to 360°)
+    \foreach \angle in {0,20,...,360} {
+        \draw[thin, gray] (center) -- ($(center)+({16*cos(\angle)}, {16*sin(\angle)})$);
+    }
+    
+    % Place small nodes at every intersection of the radial lines and circles
+    \foreach \rad in {2,4,6,8,10,12,14,16} {
+        \foreach \angle in {0,20,...,360} {
+            \node[circle, fill=yellow!70, inner sep=1pt] at ($(center)+({\rad*cos(\angle)}, {\rad*sin(\angle)})$) {};
+        }
+    }
+    
+    % Place the book title near the center (shifted upward) - Uses the new title
+    \node[align=center, font=\Huge\bfseries, text=black] at ($(center)+(0,3)$) {Evolution by Emergence:\\[0.5em] A Universal Theory of Networks, Life, and Mind};
+    
+    % Author names centered at the page center
+    \node[align=center, font=\large, text=black] at ($(center)+(0,-3)$) {Albert Jan van Hoek \& ChatGPT \& Gemini};
+    
+\end{tikzpicture}
+\cleardoublepage % End Title Page Section
