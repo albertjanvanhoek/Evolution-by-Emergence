@@ -1,38 +1,74 @@
+name: Build Docs
+
+# 1) Allow the GITHUB_TOKEN to push changes back
 permissions:
   contents: write
 
-on: [push]
+# 2) Trigger on every push to main
+on:
+  push:
+    branches: [ main ]
 
 jobs:
-  tex2md:
+  build-docs:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
+      # 3) Checkout your repo and persist the token so we can push
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           persist-credentials: true
           fetch-depth: 0
 
+      # 4) Install pandoc for conversion
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
-      - name: Convert all LaTeX to Markdown
+      # 5) Convert every .tex (except main.tex) into Markdown under docs/
+      - name: Convert LaTeX files to Markdown
+        shell: bash
         run: |
           set -euxo pipefail
-          mkdir -p docs/Frontmatter docs/Chapters docs/Backmatter
-          shopt -s nullglob
-          for dir in Frontmatter Chapters Backmatter; do
-            for tex in "$dir"/*.tex; do
-              out="docs/$dir/$(basename "${tex%.tex}.md")"
-              pandoc "$tex" --from=latex --to=gfm --standalone --mathjax -o "$out"
-            done
+          
+          # Find all .tex files except main.tex and workflow files
+          find . \
+            -type f \
+            -name '*.tex' \
+            ! -name 'main.tex' \
+            ! -path './.github/*' \
+            ! -path './.git/*' \
+            -print | while read -r tex; do
+
+            # Compute relative path and output path
+            rel="${tex#./}"
+            out="docs/${rel%.tex}.md"
+
+            echo "Converting $rel → ${out#docs/}"
+            mkdir -p "$(dirname "$out")"
+            pandoc "$tex" \
+              --from=latex \
+              --to=gfm \
+              --standalone \
+              --mathjax \
+              -o "$out"
           done
 
+      # 6) Commit & push the generated docs back to main
       - name: Commit and push generated docs
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Rebase on latest remote to avoid conflicts
           git pull --rebase origin main
+
+          # Stage any new/changed Markdown
           git add docs/
+
+          # Only commit if there are changes
           git diff --quiet || git commit -m "Rebuild docs from LaTeX"
+
+          # Push back to main
           git push origin main
