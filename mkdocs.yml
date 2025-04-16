@@ -15,6 +15,7 @@ theme:
     - search.share
 
 nav:
+  - Home: index.md
   - Front Matter:
     - Preface: Frontmatter/Preface.md
     - Writing Process: Frontmatter/Writing_process.md
