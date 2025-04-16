@@ -1,47 +1,38 @@
-name: Build Docs
-
-# 1) Grant the GITHUB_TOKEN write permissions on repo contents
 permissions:
   contents: write
 
-on:
-  push:
-    branches: [ main ]
+on: [push]
 
 jobs:
   tex2md:
     runs-on: ubuntu-latest
-
     steps:
-      # 2) Checkout and persist the token so we can push back
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
-          persist-credentials: true  # <-- important!
+          persist-credentials: true
           fetch-depth: 0
 
-      # 3) Install pandoc
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
-      # 4) Convert LaTeX → Markdown
       - name: Convert all LaTeX to Markdown
         run: |
+          set -euxo pipefail
           mkdir -p docs/Frontmatter docs/Chapters docs/Backmatter
+          shopt -s nullglob
           for dir in Frontmatter Chapters Backmatter; do
-            for tex in $dir/*.tex; do
-              md="docs/$dir/$(basename "${tex%.tex}.md")"
-              pandoc "$tex" \
-                --from=latex --to=gfm --standalone --mathjax \
-                -o "$md"
+            for tex in "$dir"/*.tex; do
+              out="docs/$dir/$(basename "${tex%.tex}.md")"
+              pandoc "$tex" --from=latex --to=gfm --standalone --mathjax -o "$out"
             done
           done
 
-      # 5) Commit & push generated docs
       - name: Commit and push generated docs
+        shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin main
           git add docs/
           git diff --quiet || git commit -m "Rebuild docs from LaTeX"
-          git push
+          git push origin main
