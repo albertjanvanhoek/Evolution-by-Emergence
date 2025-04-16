@@ -1,0 +1,77 @@
+\documentclass[12pt,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,tikz}
+\usepackage{hyperref}
+\usepackage{lipsum} % Keep lipsum in case needed later, though not currently used
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsthm}
+\usepackage{microtype}
+\usepackage{epigraph}
+\usepackage{tikz}
+\usepackage{natbib}    % For \citet command
+
+\usetikzlibrary{calc}
+
+% Ensure hyperref is loaded last for compatibility with most other packages
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,  
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={Evolution by Emergence: A Universal Theory of Networks, Life, and Mind}, % Updated PDF Title
+    pdfpagemode=FullScreen,
+    }
+
+\pagestyle{plain} % Use plain page style (page number at bottom center)
+\usetikzlibrary{arrows.meta, positioning}
+\sloppy % Helps with line breaking, especially with long URLs or complex words
+\let\cleardoublepage\clearpage % Avoid blank pages between chapters in `openany` mode
+\newtheorem{theorem}{Theorem}[chapter] % Theorem numbering per chapter
+
+
+\title{Evolution by Emergence:\\ A Universal Theory of Networks, Life, and Mind} % Updated Title
+\author{[Albert Jan van Hoek \& ChatGPT \& Gemini]}
+\date{April 13, 2025\\ Version 0.88} % Updated Date and Version
+
+
+\begin{document}
+\include{Frontmatter/Cover}
+\include{Frontmatter/Copyright}
+\include{Frontmatter/Start_page}
+
+% --- Front Matter ---
+\frontmatter % Roman numeral page numbering
+\maketitle % Uses the new title defined above
+\tableofcontents
+\cleardoublepage
+
+\include{Frontmatter/Writing_process}
+\include{Frontmatter/Preface}
+
+% --- Main Matter ---
+\mainmatter % Arabic numeral page numbering begins here
+
+\include{Chapters/Chapter_1}
+\include{Chapters/Chapter_2}
+\include{Chapters/Chapter_3}
+\include{Chapters/Chapter_4}
+\include{Chapters/Chapter_5}
+\include{Chapters/Chapter_6}
+\include{Chapters/Chapter_7}
+\include{Chapters/Chapter_8}
+\include{Chapters/Chapter_9}
+\include{Chapters/Chapter_10}
+\include{Chapters/Chapter_11}
+\include{Chapters/Chapter_12}
+\include{Chapters/Chapter_13}
+
+\include{Backmatter/Epilogue}
+\include{Backmatter/Acknowledgments}
+\include{Backmatter/Appendix}
+\include{Backmatter/Literature}
+\include{Backmatter/Bibliography}
+
+\end{document}
