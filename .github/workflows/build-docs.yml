@@ -14,12 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 3) Checkout your repo and persist the token so we can push
+      # 3) Checkout your repo on the 'main' branch and keep the token
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          persist-credentials: true
-          fetch-depth: 0
+          ref: main                   # explicitly check out main
+          persist-credentials: true   # keep GITHUB_TOKEN for pushes
+          fetch-depth: 0              # fetch full history
 
       # 4) Install pandoc for conversion
       - name: Install pandoc
@@ -30,8 +31,8 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
-          
-          # Find all .tex files except main.tex and workflow files
+
+          # Find all .tex except your root and any CI files
           find . \
             -type f \
             -name '*.tex' \
@@ -47,8 +48,7 @@ jobs:
             echo "Converting $rel → ${out#docs/}"
             mkdir -p "$(dirname "$out")"
             pandoc "$tex" \
-              --from=latex \
-              --to=gfm \
+              --from=latex --to=gfm \
               --standalone \
               --mathjax \
               -o "$out"
@@ -61,13 +61,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Rebase on latest remote to avoid conflicts
+          # Ensure we’re on a local branch named 'main'
+          git checkout -B main
+
+          # Fetch any new remote commits and rebase
           git pull --rebase origin main
 
-          # Stage any new/changed Markdown
+          # Stage only the docs folder
           git add docs/
 
-          # Only commit if there are changes
+          # Commit only if there are changes
           git diff --quiet || git commit -m "Rebuild docs from LaTeX"
 
           # Push back to main
