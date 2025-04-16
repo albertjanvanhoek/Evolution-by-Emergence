@@ -1,6 +1,9 @@
 site_name: Evolution by Emergence
+site_url: https://albertjanvanhoek.github.io/Evolution-by-Emergence/
+use_directory_urls: true
 docs_dir: docs
 site_dir: site
+
 
 theme:
   name: material
