@@ -72,4 +72,4 @@ If you use or refer to this work, please cite the specific version you used via 
 
 van Hoek, A. J., ChatGPT, & Gemini. (2025). *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind* (Version 0.88). Zenodo. [https://doi.org/your-zenodo-doi-number](https://doi.org/10.5281/zenodo.15207807)
 
-test
+
