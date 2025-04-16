@@ -61,17 +61,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Ensure we’re on a local branch named 'main'
+          # Make sure we're on main
           git checkout -B main
 
-          # Fetch any new remote commits and rebase
+          # Pull/rebase any remote commits
           git pull --rebase origin main
 
-          # Stage only the docs folder
+          # Stage the entire docs/ folder
           git add docs/
 
-          # Commit only if there are changes
-          git diff --quiet || git commit -m "Rebuild docs from LaTeX"
+          # Only commit if there are staged changes
+          git diff --cached --quiet || git commit -m "Rebuild docs from LaTeX"
 
-          # Push back to main
+          # Push your new docs back up
           git push origin main
