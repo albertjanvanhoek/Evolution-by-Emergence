@@ -15,8 +15,7 @@ theme:
     - search.share
 
 nav:
-  - Home: index.md
-  - Front Matter:
+  - Introduction:
     - Preface: Frontmatter/Preface.md
     - Writing Process: Frontmatter/Writing_process.md
 
@@ -34,7 +33,8 @@ nav:
     - Chapter 11: Chapters/Chapter_11.md
     - Chapter 12: Chapters/Chapter_12.md
     - Chapter 13: Chapters/Chapter_13.md
-  - Back Matter:
+    
+  - Epilogue and appendix:
     - Epilogue: Backmatter/Epilogue.md
     - Appendix: Backmatter/Appendix.md
     - Literature: Backmatter/Literature.md
