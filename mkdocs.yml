@@ -1,6 +1,6 @@
 site_name: Evolution by Emergence
-docs_dir: docs        # where your Markdown lives
-site_dir: site        # where MkDocs will write the HTML
+docs_dir: docs
+site_dir: site
 
 theme:
   name: material
@@ -15,26 +15,26 @@ theme:
     - search.share
 
 nav:
-  - Introduction:
-    - Preface: Frontmatter/Preface.md
-    - Writing Process: Frontmatter/Writing_process.md
+  - Front Matter:
+      - Preface: Frontmatter/Preface.md
+      - Writing Process: Frontmatter/Writing_process.md
 
   - Chapters:
-    - Chapter 1: Chapters/Chapter_1.md
-    - Chapter 2: Chapters/Chapter_2.md
-    - Chapter 3: Chapters/Chapter_3.md
-    - Chapter 4: Chapters/Chapter_4.md
-    - Chapter 5: Chapters/Chapter_5.md
-    - Chapter 6: Chapters/Chapter_6.md
-    - Chapter 7: Chapters/Chapter_7.md
-    - Chapter 8: Chapters/Chapter_8.md
-    - Chapter 9: Chapters/Chapter_9.md
-    - Chapter 10: Chapters/Chapter_10.md
-    - Chapter 11: Chapters/Chapter_11.md
-    - Chapter 12: Chapters/Chapter_12.md
-    - Chapter 13: Chapters/Chapter_13.md
-    
-  - Epilogue and appendix:
-    - Epilogue: Backmatter/Epilogue.md
-    - Appendix: Backmatter/Appendix.md
-    - Literature: Backmatter/Literature.md
+      - Chapter 1: Chapters/Chapter_1.md
+      - Chapter 2: Chapters/Chapter_2.md
+      - Chapter 3: Chapters/Chapter_3.md
+      - Chapter 4: Chapters/Chapter_4.md
+      - Chapter 5: Chapters/Chapter_5.md
+      - Chapter 6: Chapters/Chapter_6.md
+      - Chapter 7: Chapters/Chapter_7.md
+      - Chapter 8: Chapters/Chapter_8.md
+      - Chapter 9: Chapters/Chapter_9.md
+      - Chapter 10: Chapters/Chapter_10.md
+      - Chapter 11: Chapters/Chapter_11.md
+      - Chapter 12: Chapters/Chapter_12.md
+      - Chapter 13: Chapters/Chapter_13.md
+
+  - Epilogue & Appendix:
+      - Epilogue: Backmatter/Epilogue.md
+      - Appendix: Backmatter/Appendix.md
+      - Literature: Backmatter/Literature.md
