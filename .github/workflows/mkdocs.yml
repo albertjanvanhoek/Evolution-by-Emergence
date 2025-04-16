@@ -1,10 +1,11 @@
 name: Deploy MkDocs site
 
-# give the GITHUB_TOKEN permission to push and update Pages
+# 1) Grant the GITHUB_TOKEN rights to update Pages
 permissions:
-  contents: read        # read your source files
-  pages: write          # allow Pages deployment
+  contents: read   # read your repo’s Markdown
+  pages: write     # allow publishing to GitHub Pages
 
+# 2) Trigger on pushes to main
 on:
   push:
     branches:
@@ -15,19 +16,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 3) Check out your repo
       - uses: actions/checkout@v3
 
+      # 4) Set up Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 5) Install MkDocs + Material theme
       - name: Install MkDocs
         run: pip install mkdocs-material
 
+      # 6) Build the static site (reads from docs/, writes to site/)
       - name: Build site
-        run: mkdocs build    # writes into ./site/
+        run: mkdocs build
 
+      # 7) Deploy the generated site to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
