@@ -16,6 +16,7 @@ navigation:
         url: Frontmatter/Preface.md
       - title: Writing Process
         url: Frontmatter/Writing_process.md
+
   - title: Chapters
     items:
       - title: Chapter 1
@@ -26,11 +27,31 @@ navigation:
         url: Chapters/Chapter_3.md
       - title: Chapter 4
         url: Chapters/Chapter_4.md
+      - title: Chapter 5
+        url: Chapters/Chapter_5.md
+      - title: Chapter 6
+        url: Chapters/Chapter_6.md
+      - title: Chapter 7
+        url: Chapters/Chapter_7.md
+      - title: Chapter 8
+        url: Chapters/Chapter_8.md
+      - title: Chapter 9
+        url: Chapters/Chapter_9.md
+      - title: Chapter 10
+        url: Chapters/Chapter_10.md
+      - title: Chapter 11
+        url: Chapters/Chapter_11.md
+      - title: Chapter 12
+        url: Chapters/Chapter_12.md
+      - title: Chapter 13
+        url: Chapters/Chapter_13.md
 
-
-
-        
   - title: Back Matter
     items:
       - title: Epilogue
         url: Backmatter/Epilogue.md
+      - title: Appendix
+        url: Backmatter/Appendix.md
+      - title: Literature
+        url: Backmatter/Literature.md
+
