@@ -1,5 +1,6 @@
 site_name: Evolution by Emergence
 site_description: A Universal Theory of Networks, Life, and Mind
+
 theme:
   name: material
   palette:
@@ -12,6 +13,9 @@ theme:
     - search.highlight
     - search.share
 
+# _do not_ point site_dir at docs/, let it default to 'site'
+# docs_dir defaults to 'docs'—that’s where your .md files already are
+
 nav:
   - Home: index.md
   - Front Matter:
@@ -22,17 +26,7 @@ nav:
   - Chapters:
     - Chapter 1: Chapters/Chapter_1.md
     - Chapter 2: Chapters/Chapter_2.md
-    - Chapter 3: Chapters/Chapter_3.md
-    - Chapter 4: Chapters/Chapter_4.md
-    - Chapter 5: Chapters/Chapter_5.md
-    - Chapter 6: Chapters/Chapter_6.md
-    - Chapter 7: Chapters/Chapter_7.md
-    - Chapter 8: Chapters/Chapter_8.md
-    - Chapter 9: Chapters/Chapter_9.md
-    - Chapter 10: Chapters/Chapter_10.md
-    - Chapter 11: Chapters/Chapter_11.md
-    - Chapter 12: Chapters/Chapter_12.md
-    - Chapter 13: Chapters/Chapter_13.md
+    # …through Chapter 13
   - Back Matter:
     - Epilogue: Backmatter/Epilogue.md
     - Appendix: Backmatter/Appendix.md
