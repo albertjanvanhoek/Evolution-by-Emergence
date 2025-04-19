@@ -73,11 +73,11 @@ jobs:
           )
 
       # --- Upload Markdown source (debug) ------------------------------
-      - name: Upload source markdown (debug)
-        uses: actions/upload-artifact@v4
-        with:
-          name: md-src
-          path: docs/Chapters/*.md     # <– alle .md-bestanden
+      #- name: Upload source markdown (debug)
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: md-src
+      #    path: docs/Chapters/*.md     # <– alle .md-bestanden
 
       # --- MkDocs build ----------------------------------------------
       - name: Build site
