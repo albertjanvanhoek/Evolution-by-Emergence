@@ -1,0 +1,42 @@
+# ─── Evolution‑by‑Emergence ─ CITATION.cff ────────────────────────────────
+cff-version: 1.2.0
+message: "If you use or build upon *Evolution‑by‑Emergence*, please cite it:"
+
+# ——— Basic work metadata ———
+title: "Evolution by Emergence"
+version: "0.88"
+date-released: 2025-04-19
+
+# ——— Authors ———
+authors:
+  - family-names: van Hoek
+    given-names: Albert Jan
+    orcid: "0000-0002-9244-0489"
+
+# ——— Identifiers & links ———
+repository-code: "https://github.com/albertjanvanhoek/Evolution-by-Emergence"
+url: "https://albertjanvanhoek.github.io/Evolution-by-Emergence/"
+affiliation: "Public Health / Complexity Science / Evolution"
+doi: 10.5281/zenodo.15209136
+
+# ——— Licence ———
+license: "CC-BY-4.0"
+
+# ——— Keywords ———
+keywords:
+  - complexity
+  - emergence
+  - network-science
+  - open-textbook
+
+# ——— Preferred citation (book) ———
+preferred-citation:
+  type: book
+  title: "Evolution by Emergence"
+  authors:
+    - family-names: van Hoek
+      given-names: Albert Jan
+  publisher: "Self‑published"
+  year: 2025
+  url: "https://albertjanvanhoek.github.io/Evolution-by-Emergence/"
+# ──────────────────────────────────────────────────────────────────────────
