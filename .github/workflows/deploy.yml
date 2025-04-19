@@ -1,3 +1,11 @@
+# GitHub Pages build & deploy — LaTeX ➜ Markdown *with* Lua‑front‑matter
+# ===================================================================
+# • Trigger: push to main
+# • Reads version from last Git tag → $BOOK_VERSION
+# • Converts every src/chapters/*.tex (excl. main.tex) to docs/Chapters/*.md
+#   using filters/add_yaml.lua to inject YAML front‑matter (id, title, version…)
+# • Builds MkDocs site and deploys to GitHub Pages
+
 name: Build & Deploy Site
 
 permissions:
@@ -7,63 +15,62 @@ permissions:
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-
-    # ← Add this to specify the Pages environment
-    environment:
-      name: github-pages
+    environment: github-pages
 
     steps:
+      # --- Checkout ----------------------------------------------------
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          persist-credentials: true
-          fetch-depth: 0
+          fetch-depth: 0            # we need tags for version extraction
 
+      # --- Toolchain ---------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Install pandoc & MkDocs‑Material
         run: |
           sudo apt-get update && sudo apt-get install -y pandoc
           pip install mkdocs-material
 
-      - name: Convert LaTeX to Markdown
+      # --- Version info ------------------------------------------------
+      - name: Compute version from last tag
+        run: |
+          echo "BOOK_VERSION=$(git describe --tags --abbrev=0 || echo 0.0-dev)" >> $GITHUB_ENV
+          echo "Version for build: $BOOK_VERSION"
+
+      # --- LaTeX ➜ Markdown (Lua filter) -------------------------------
+      - name: Convert LaTeX to Markdown with YAML front‑matter
         shell: bash
         run: |
           set -euxo pipefail
-          find . \
-            -type f \
-            -name '*.tex' \
-            ! -name 'main.tex' \
-            ! -path './.github/*' \
-            ! -path './.git/*' \
-            -print | while read -r tex; do
-            rel="${tex#./}"
-            out="docs/${rel%.tex}.md"
+          while IFS= read -r -d '' tex; do
+            rel="${tex#src/chapters/}"
+            out="docs/Chapters/${rel%.tex}.md"
             mkdir -p "$(dirname "$out")"
             pandoc "$tex" \
-              --from=latex \
-              --to=gfm \
-              --standalone \
-              --mathjax \
+              --from=latex --to=gfm \
+              --standalone --mathjax --wrap=none \
+              --lua-filter=filters/add_yaml.lua \
               -o "$out"
-          done
+          done < <(find src/chapters -type f -name '*.tex' ! -name 'main.tex' -print0)
 
+      # --- MkDocs build ----------------------------------------------
       - name: Build site
         run: mkdocs build --strict
 
+      # --- GitHub Pages publish --------------------------------------
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload Pages Artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
