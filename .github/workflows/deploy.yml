@@ -51,16 +51,26 @@ jobs:
         shell: bash
         run: |
           set -euxo pipefail
+          # Vind álle .tex (behalve main.tex) in de hele repo
           while IFS= read -r -d '' tex; do
-            rel="${tex#src/chapters/}"
-            out="docs/Chapters/${rel%.tex}.md"
+            # strip leading "./"
+            rel="${tex#./}"
+            # output path onder docs/
+            out="docs/${rel%.tex}.md"
             mkdir -p "$(dirname "$out")"
             pandoc "$tex" \
               --from=latex --to=gfm \
               --standalone --mathjax --wrap=none \
               --lua-filter=filters/add_yaml.lua \
               -o "$out"
-          done < <(find src/chapters -type f -name '*.tex' ! -name 'main.tex' -print0)
+          done < <(
+            find . \
+              -type f -name '*.tex' \
+              ! -name 'main.tex' \
+              ! -path './.github/*' \
+              ! -path './.git/*' \
+              -print0
+          )
 
       # --- Upload Markdown source (debug) ------------------------------
       - name: Upload source markdown (debug)
