@@ -62,6 +62,13 @@ jobs:
               -o "$out"
           done < <(find src/chapters -type f -name '*.tex' ! -name 'main.tex' -print0)
 
+      # --- Upload Markdown source (debug) ------------------------------
+      - name: Upload source markdown (debug)
+        uses: actions/upload-artifact@v4
+        with:
+          name: md-src
+          path: docs/Chapters/*.md     # <– alle .md-bestanden
+
       # --- MkDocs build ----------------------------------------------
       - name: Build site
         run: mkdocs build --strict
