@@ -1,0 +1,229 @@
+% ------------------------------------------------------------------
+%  Appendix I+ – SCAP Implementation Notes
+%  (To be \input{} into the main Overleaf project: no standalone preamble.)
+% ------------------------------------------------------------------
+
+\chapter{Appendix I$^{+}$\\Implementation Notes for the Sustainable Collaborative Alignment Protocol (SCAP)}\label{appendix:scap}
+
+% Register in global TOC (assuming \tableofcontents lives upstream)
+\addcontentsline{toc}{chapter}{Appendix I$^{+}$ — SCAP Implementation Notes}
+
+% =======================================================
+\section*{Preface}
+\addcontentsline{toc}{section}{Preface}
+\paragraph{Purpose.}\ This appendix complements Appendix~I (\emph{A Sustainable Collaborative Alignment Protocol}) by providing concise implementation notes—templates, algorithms, and metrics—for practitioners who wish to experiment with SCAP in real projects.
+
+\paragraph{Structure.}\ Each section maps to one or more of the nine SCAP building blocks (A–I) and follows a fixed rhythm:
+\begin{itemize}
+  \item \textbf{Essence}: one‑sentence distilled idea.
+  \item \textbf{Rationale}: why it matters for network resilience.
+  \item \textbf{Implementation Notes}: checklists, policy handles, or algorithms.
+  \item \textbf{References \& Templates}: where to dive deeper.
+\end{itemize}
+Fork, remix, and contribute back via the project repository.
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Owner–Steward Duality (Blocks A \& G)}
+\subsection*{Essence}
+\emph{"It’s mine \emph{and} ours." Ownership grants control; stewardship guards continuity.}
+
+\subsection*{Rationale}
+Markets reward decisive owners, yet complex systems persist only when the commons is actively tended.  A dual legal wrapper—`owner \emph{plus} steward'—reconciles both incentives.
+
+\subsection*{Implementation Notes}
+\begin{itemize}
+  \item Declare a measurable \textbf{stewardship objective} (soil carbon \%, uptime, etc.).
+  \item Link voting or profit rights to \emph{ongoing} compliance with that objective.
+  \item Nominate an \textbf{emergency trustee} empowered to claw back assets on gross breach.
+  \item Publish an annual \textbf{impact audit} signed by an independent reviewer.
+\end{itemize}
+
+\subsection*{Minimum‑Viable Clause}
+\begin{quote}\itshape
+Rights to use, transfer, or profit from this asset are conditional on maintaining (or improving) its health, measured against the shared metrics in Section~\ref{sec:metrics}.  Failing that, control reverts to the commons trustee.
+\end{quote}
+
+\subsection*{References \& Templates}
+\begin{itemize}
+  \item Purpose Foundation \texttt{Steward‑Ownership} clauses.
+  \item UK \texttt{Community‑Interest Company} model (dividend cap 35\%).
+  \item ICA \texttt{Worker/User Co‑operative} bylaws.
+\end{itemize}
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Commons Protocol Engineering (Blocks B, C \& I)}\label{sec:protocol}
+\subsection*{Essence}
+\emph{Rough consensus \& running code.} Governance evolves like software: version, test, iterate.
+
+\subsection*{Rationale}
+Open standards lower coordination costs across a network. Clear versioning and conformance testing prevent fragmentation while permitting innovation.
+
+\subsection*{Implementation Notes}
+\begin{enumerate}
+  \item \textbf{Draft v0.x}: open work‑group; public issue tracker.
+  \item \textbf{Pilots}: at least two interoperable reference implementations.
+  \item \textbf{Release v1.0}: governance vote with super‑majority.
+  \item \textbf{SemVer upgrades}: backward‑compatible minors (\texttt{1.x}); breaking changes major (\texttt{2.0}).
+\end{enumerate}
+
+\subsection*{Examples}
+\begin{itemize}
+  \item \textbf{Road‑lane grammar}: ISO 3864 symbols + regional profiles.
+  \item \textbf{Health‑data grammar}: HL7 FHIR R5 (2023).
+  \item \textbf{OpenAg Warehousing}: ERC‑20 + GS1 DID proof‑of‑origin.
+\end{itemize}
+
+\subsection*{References}
+RFC 7282 (rough consensus); \href{https://hl7.org/fhir}{FHIR R5}; ISO 3864.
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Economic Surplus Without Rent (Blocks D \& E)}
+\subsection*{Essence}
+\emph{Surplus funds resilience; rent feeds entropy.}
+
+\subsection*{Rationale}
+Margin keeps the lights on; surplus renews the asset; rent—windfall unearned by value creation—must cycle back to the commons or it ossifies the network.
+
+\subsection*{Implementation Notes}
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Vehicle} & \textbf{Cap Rule} & \textbf{Typical Surplus Use} \\
+\midrule
+Steward‑ownership & 0\,\% external dividend & Re‑invest / donate \\
+CIC (UK) & 35\,\% dividend cap & Community grants \\
+Co‑operative & Patronage refund & Member equity, rebates \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{References}
+Elinor Ostrom, \emph{Governing the Commons}; Purpose Foundation toolbox.
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Digital Senescence \& Hardware Rotation (Block F)}
+\subsection*{Essence}
+\emph{Old nodes retire so the network stays young.}
+
+\subsection*{Rationale}
+Scheduled churn prevents stagnation, encourages newcomers, and aligns hardware lifecycles with ecological limits.
+
+\subsection*{Implementation Notes — Churn Algorithm}
+Stake collateral $S$ decays at rate $\lambda$. If performance $<P_{\min}$ or stake $<S_{\min}$:
+\begin{enumerate}
+  \item Node publishes encrypted state snapshot.
+  \item Stake reclaimed minus exit audit fee.
+  \item Scheduler on‑boards the highest‑rank newcomer.
+\end{enumerate}
+
+\subsection*{Analogy}
+Apoptosis prunes damaged cells; digital senescence prunes stale hardware.
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Luxury as Conspicuous Stewardship (Block H)}
+\subsection*{Essence}
+\emph{Signal status by funding the commons, not by externalising costs.}
+
+\subsection*{Rationale}
+When prestige spending internalises ecological impact, high‑consumption lifestyles can become net contributors to public goods.
+
+\subsection*{Implementation Notes — Stewardship Points (SP)}
+\begin{itemize}
+  \item $1$ SP = 1 verified hour of commons service \textit{or} removal of 10 kg CO$_2$.
+  \item SPs decay 3\,\% per year to discourage hoarding.
+  \item Registering a car emitting $>$200 g km$^{-1}$ costs 10 000 SP.
+  \item Essential goods (basic mobility, data, healthcare) carry zero SP‑burn.
+\end{itemize}
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section{Longevity, Fertility \& Lifetime Eco‑Budgets}
+\subsection*{Essence}
+\emph{More years need fewer tonnes.}
+
+\subsection*{Rationale}
+Demographic shifts and life‑extension therapies alter per‑capita resource trajectories. Lifetime eco‑budgets cap total externalities rather than annual flow.
+
+\subsection*{Numbers to Watch}
+\begin{itemize}
+  \item Global fertility 2024: 2.2; peak population ≈ 2060–65 (UN WPP 2024).
+  \item Escape‑velocity therapies in trial (Altos Labs 2024; Calico 2023).
+\end{itemize}
+
+\subsection*{Implementation Notes — Policy Handles}
+\begin{enumerate}[label=\alph*)]
+  \item Lifetime \textbf{ecological budget} per citizen (CO$_2$e, land, phosphorous).
+  \item \textbf{Role rotation}: authority seats auto‑expire every $N$ years.
+  \item \textbf{Longevity royalty}: levy on patents/services extending lifespan $>$120 yr, earmarked for ecosystem restoration.
+\end{enumerate}
+
+\bigskip\hrule\bigskip
+
+
+% =======================================================
+\section{Metrics \& Dashboards}
+\label{sec:metrics}
+\subsection*{Essence}
+\emph{What gets openly measured can be collectively improved.}
+
+\subsection*{Key Indicators}
+\begin{itemize}
+  \item \textbf{Soil health}: percentage organic matter, infiltration rate (mm·h$^{-1}$).
+  \item \textbf{Surface-water quality}: nitrate ($\le$10 mg·L$^{-1}$) and phosphate ($\le$0.1 mg·L$^{-1}$).
+  \item \textbf{Biodiversity index}: Shannon diversity $H'$ on sentinel plots.
+  \item \textbf{Compute uptime}: rolling SLA $\ge$ 99.9 \% (monthly).
+  \item \textbf{Energy mix}: share of renewables $\ge$ 70 \% (annual).
+  \item \textbf{Stewardship‑Point ledger}: on‑chain explorer with zk‑proof privacy layer.
+\end{itemize}
+
+\subsection*{Open‑Source Tooling}
+\begin{description}[style=nextline]
+  \item[Grafana + Prometheus] for real‑time metrics and alerting.
+  \item[OpenEO] for satellite‑derived soil & biomass monitoring.
+  \item[Hyperledger Besu] for SP‑ledger smart contracts (PoS).
+  \item[Superset] for public dashboards embedding SQL views.
+\end{description}
+
+\subsection*{Implementation Notes}
+\begin{enumerate}
+  \item Define one canonical JSON‑schema per indicator; validate at ingestion.
+  \item Store raw observations; derive indicators via version‑controlled notebooks.
+  \item Publish dashboards under CC‑BY with query links for reproducibility.
+  \item Run quarterly audits; sign digests on the SP‑ledger.
+\end{enumerate}
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section*{Glossary (Abridged)}
+\begin{description}[style=nextline]
+  \item[SCAP] Sustainable Collaborative Alignment Protocol.
+  \item[Stake] Collateral posted to signal commitment; can be slashed on breach.
+  \item[Surplus] Earnings above required margin, earmarked for resilience.
+  \item[Rent] Windfall captured through scarcity/monopoly; recycled to commons.
+  \item[Stewardship Point (SP)] Scarcity‑backed credit pricing luxury by ecological shadow.
+\end{description}
+
+\bigskip\hrule\bigskip
+
+% =======================================================
+\section*{References (Selected)}
+\addcontentsline{toc}{section}{References (Selected)}
+\begin{enumerate}[label=\arabic*.]
+  \item UN DESA. \emph{World Population Prospects 2024}.
+  \item HL7 International. \emph{FHIR R5 Specification}, 2023.
+  \item ISO 3864. \emph{Safety Colours and Safety Signs}, 2019.
+  \item Purpose Foundation. “Steward‑Ownership Legal Toolbox,” 2023.
+  \item Grafana Labs. \emph{Grafana OSS 10.0 Documentation}, 2024.
+\end{enumerate}
