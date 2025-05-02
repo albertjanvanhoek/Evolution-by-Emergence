@@ -9,7 +9,7 @@ title: Home
 
 Welcome to the online edition of *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind*.  
 
-[![GitHub Repository](https://img.shields.io/badge/GitHub-Repo-Evolution--by--Emergence-181717?logo=github)](https://github.com/albertjanvanhoek/Evolution-by-Emergence)
+[**This webpage is automatically compiled from the LaTeX code for the book**](https://github.com/albertjanvanhoek/Evolution-by-Emergence)
 
 Use the navigation on the left to explore:
 
