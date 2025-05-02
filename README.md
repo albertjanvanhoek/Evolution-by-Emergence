@@ -6,6 +6,9 @@
 ---
 
 ## PDF: The latest PDF-version is available in the release (but again, Work in Progress!)
+## Podcast: NotebookLM generated [podcast on the book](https://soundcloud.com/emergence-223803727/podcast-on-evolution-by-emergence)
+##          NotebookLM generated [podcast on the SCAP-prorocol and appendices](https://soundcloud.com/emergence-223803727/podcast-on-scap-the-appendices-of-evolution-by-emergence)
+
 
 ## Abstract / Overview
 
