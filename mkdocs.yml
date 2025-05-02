@@ -21,6 +21,7 @@ repo_name: GitHub
 
 nav:
   - Front Matter:
+      - Index: index.md  
       - Preface: Frontmatter/Preface.md
       - Writing Process: Frontmatter/Writing_process.md
 
