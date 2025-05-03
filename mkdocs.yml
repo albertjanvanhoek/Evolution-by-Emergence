@@ -19,6 +19,22 @@ theme:
 repo_url: https://github.com/albertjanvanhoek/Evolution-by-Emergence
 repo_name: GitHub
 
+
+# —————————————  HIER BEGINNEN DE MATH‑SECTIES  —————————————
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true          # laat $…$ ongemoeid
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
+
+extra_javascript:
+  - javascripts/katex.js     # zelf aanmaken in docs/javascripts/
+  - https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0/dist/contrib/auto-render.min.js
+# ————————————————————————————————————————————————
+
+
 nav:
   - Front Matter:
       - Index: index.md  
