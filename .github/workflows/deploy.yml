@@ -79,7 +79,7 @@ jobs:
             out="docs/${rel%.tex}.md"
             mkdir -p "$(dirname "$out")"
             pandoc "$tex" \
-              --from=latex --to=markdown+fenced_divs \
+              --from=latex --to=gfm+attributes \
               --standalone --mathjax --wrap=none \
               --lua-filter=filters/pdf2svg.lua \
               --lua-filter=filters/add_yaml.lua \
