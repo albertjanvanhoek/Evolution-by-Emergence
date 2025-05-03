@@ -1,0 +1,5 @@
+/* Verberg de raw Markdown-fences ::: center / ::: */
+p:where(:first-child):has(+ img),
+p:where(:last-child):has(+ img) {
+  display: none;
+}
