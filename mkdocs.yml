@@ -22,6 +22,7 @@ repo_name: GitHub
 
 # —————————————  HIER BEGINNEN DE MATH‑SECTIES  —————————————
 markdown_extensions:
+  - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true          # laat $…$ ongemoeid
 
