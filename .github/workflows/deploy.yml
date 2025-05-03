@@ -88,6 +88,7 @@ jobs:
             find . \
               -type f -name '*.tex' \
               ! -name 'main.tex' \
+              ! -path './docs/figures/*' \
               ! -path './.github/*' \
               ! -path './.git/*' \
               -print0
