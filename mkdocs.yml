@@ -22,11 +22,6 @@ repo_name: GitHub
 
 # —————————————  HIER BEGINNEN DE MATH‑SECTIES  —————————————
 markdown_extensions:
-  - pymdownx.fenced_divs:
-      custom_fences:
-        - name: center
-          class: center
-
   - pymdownx.arithmatex:
       generic: true
 
