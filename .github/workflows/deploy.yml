@@ -81,6 +81,7 @@ jobs:
             pandoc "$tex" \
               --from=latex --to=gfm \
               --standalone --mathjax --wrap=none \
+              --lua-filter=filters/pdf2svg.lua \ 
               --lua-filter=filters/add_yaml.lua \
               -o "$out"
           done < <(
