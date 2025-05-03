@@ -27,6 +27,7 @@ markdown_extensions:
 
 extra_css:
   - https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
+  - styles/figures.css
 
 extra_javascript:
   - javascripts/katex.js     # zelf aanmaken in docs/javascripts/
