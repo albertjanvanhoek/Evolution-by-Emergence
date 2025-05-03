@@ -1,14 +1,11 @@
--- Vervang .pdf door .svg én corrigeer het pad
+-- filters/pdf2svg.lua
 function Image (img)
   local p = img.src
   if p:match("%.pdf$") then
-    -- 1)  .pdf  → .svg
+    -- extensie
     p = p:gsub("%.pdf$", ".svg")
-    -- 2)  strip leading "docs/"
-    p = p:gsub("^docs/", "")
-    -- 3)  maak het pad site‑root‑relatief (../../figures/… werkt
-    --     vanuit iedere pagina in /Chapters/, /Frontmatter/, /Backmatter/)
-    p = "../../" .. p
+    -- docs/figures/...  →  ../figures/...
+    p = p:gsub("^docs/", "../")
     img.src = p
   end
   return img
