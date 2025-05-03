@@ -88,6 +88,7 @@ jobs:
             find . \
               -type f -name '*.tex' \
               ! -name 'main.tex' \
+              ! -name 'Instructions_to_complile_the_book.tex' \
               ! -path './docs/figures/*' \
               ! -path './.github/*' \
               ! -path './.git/*' \
