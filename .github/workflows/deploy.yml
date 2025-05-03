@@ -40,25 +40,25 @@ jobs:
           sudo apt-get update && sudo apt-get install -y pandoc
           pip install mkdocs-material
 
-     # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
-     - name: Setup Tectonic (LaTeX engine)
-       uses: WtfJoke/setup-tectonic@v3          # één binary, geen TeX Live
+      # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
+      - name: Setup Tectonic (LaTeX engine)
+        uses: WtfJoke/setup-tectonic@v3          # één binary, geen TeX Live
 
-     - name: Render standalone TikZ files to PDF & SVG
-       run: |
-         sudo apt-get install -y pdf2svg        # piepklein CLI
-         # Zoek alle docs/figures/*.tex bestanden en zet ze om
-         for tex in $(find docs/figures -name '*.tex'); do
-           base="${tex%.tex}"
-           tectonic -Z shell-escape "$tex"      # → layers.pdf
-           pdf2svg "${base}.pdf" "${base}.svg" # → layers.svg
-         done
+      - name: Render standalone TikZ files to PDF & SVG
+        run: |
+          sudo apt-get install -y pdf2svg        # piepklein CLI
+          # Zoek alle docs/figures/*.tex bestanden en zet ze om
+          for tex in $(find docs/figures -name '*.tex'); do
+            base="${tex%.tex}"
+            tectonic -Z shell-escape "$tex"      # → layers.pdf
+            pdf2svg "${base}.pdf" "${base}.svg"  # → layers.svg
+          done
 
-     # (optioneel) commit nieuwe/gewijzigde figuren terug
-     - uses: EndBug/add-and-commit@v9
-       with:
-         add: 'docs/figures/*.pdf docs/figures/*.svg'
-         message: 'ci: auto‑update figures'
+      # (optioneel) commit nieuwe/gewijzigde figuren terug
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs/figures/*.pdf docs/figures/*.svg'
+          message: 'ci: auto‑update figures'
 
       # --- Version info ------------------------------------------------
       - name: Compute version from last tag
@@ -91,13 +91,6 @@ jobs:
               ! -path './.git/*' \
               -print0
           )
-
-      # --- Upload Markdown source (debug) ------------------------------
-      #- name: Upload source markdown (debug)
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: md-src
-      #    path: docs/Chapters/*.md     # <– alle .md-bestanden
 
       # --- MkDocs build ----------------------------------------------
       - name: Build site
