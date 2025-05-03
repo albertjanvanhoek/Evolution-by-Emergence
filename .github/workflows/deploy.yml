@@ -44,8 +44,10 @@ jobs:
       - name: Check Pandoc version
         run: pandoc --version    
 
-      - name: Install MkDocs‑Material
-        run: pip install mkdocs-material
+      - name: Install MkDocs‑Material + newest pymdown‑extensions
+        run: |
+          pip install mkdocs-material
+          pip install --upgrade "pymdown-extensions>=10.5"
 
       # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
       - name: Setup Tectonic (LaTeX engine)
