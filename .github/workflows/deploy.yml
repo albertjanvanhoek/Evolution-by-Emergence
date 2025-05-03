@@ -53,7 +53,8 @@ jobs:
 
       - name: Render standalone TikZ files to PDF & SVG
         run: |
-          sudo apt-get install -y pdf2svg        # piepklein CLI
+          sudo apt-get update      
+          sudo apt-get install -y --no-install-recommends pdf2svg     # piepklein CLI
           # Zoek alle docs/figures/*.tex bestanden en zet ze om
           for tex in $(find docs/figures -name '*.tex'); do
             base="${tex%.tex}"
