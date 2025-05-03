@@ -41,6 +41,9 @@ jobs:
         with:
           pandoc-version: '3.1.11'               # of 'latest'
 
+      - name: Check Pandoc version
+        run: pandoc --version    
+
       - name: Install MkDocs‑Material
         run: pip install mkdocs-material
 

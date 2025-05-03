@@ -25,6 +25,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true          # laat $…$ ongemoeid
+  - attr_list
 
 extra_css:
   - https://cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
