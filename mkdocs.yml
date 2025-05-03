@@ -22,9 +22,13 @@ repo_name: GitHub
 
 # —————————————  HIER BEGINNEN DE MATH‑SECTIES  —————————————
 markdown_extensions:
-  - pymdownx.superfences
+  - pymdownx.superfences:          # ← bestaat al
+      custom_fences:               # ↓ voeg dit in
+        - name: center             # herken  ::: center … :::
+          class: center            # wordt <div class="center">
+          format: !!python/name:pymdownx.superfences.fence_div_format
   - pymdownx.arithmatex:
-      generic: true          # laat $…$ ongemoeid
+      generic: true
   - attr_list
 
 extra_css:
