@@ -37,9 +37,9 @@ jobs:
 
 
       - name: Set up Pandoc (3.x)
-        uses: pandoc/setup-pandoc@v1         # ↞ download & cache een recente versie
+        uses: r-lib/actions/setup-pandoc@v2       # of  nikeee/setup-pandoc@v1
         with:
-          version: '3.1'                     # of laat weg voor laatste release
+          pandoc-version: '3.1.11'               # of 'latest'
 
       - name: Install MkDocs‑Material
         run: pip install mkdocs-material
