@@ -1,0 +1,6 @@
+img.center {
+  display: block;
+  margin: 0 auto;       /* midden */
+  max-width: 500px;     /* of 60%, of 100% */
+  width: 100%;
+}
