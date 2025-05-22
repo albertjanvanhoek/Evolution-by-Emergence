@@ -1,7 +1,7 @@
 # Evolution by Emergence: A Universal Theory of Networks, Life, and Mind
 
 **Authors:** Albert Jan van Hoek & ChatGPT & Gemini
-**Version:** 0.89 (As of April 19, 2025)
+**Version:** 0.895 (As of May 22 2025)
 **Status:** Actively Developed Draft (Work in Progress)
 ---
 
