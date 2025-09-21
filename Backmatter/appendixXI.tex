@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc} % safe for pdflatex
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black,
+  pdfauthor={},
+  pdftitle={Consciousness as a Checking Loop: Theory and Implications}
+}
+\usepackage{enumitem}
+\setlist{itemsep=4pt,topsep=4pt}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,shapes.misc}
+
+% ---------- Title ----------
+\title{\textbf{Consciousness as a Checking Loop:\\ Theory, Stress Effects, and a Meta-Model Solution}}
+\author{}
+\date{\today}
+
+% ---------- Document ----------
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\begin{abstract}
+This paper models consciousness as a closed feedback loop that checks and updates automatically labelled sensory input within a world model that constrains all decisions. Under stress, rapid, unconscious labelling (``System~1'') dominates, conscious checking (``System~2'') weakens, and poorly validated updates contaminate the world model (``mud formation''). A meta-model that explicitly represents this loop can detect stress contexts, slow or gate updating, and trigger protective behaviours, thereby preserving model integrity.
+\end{abstract}
+
+\section{The Core Loop}
+Consciousness is framed as a recurrent cycle linking perception, cognition, and action:
+\begin{enumerate}[label=\textbf{\arabic*.}]
+  \item \textbf{Sensory input.} External signals are received through the senses.
+  \item \textbf{Autonomous labelling (System~1).} Fast, unconscious processes label/structure input.
+  \item \textbf{Conscious checking (System~2).} Labelled input is compared against the agent's \emph{world model}---an internal representation of reality constructed over time.
+  \item \textbf{World model updating.} If judged reliable, input is integrated; the model is reinforced or revised.
+  \item \textbf{Decision and action.} All decisions are made strictly within the bounds of the current world model. Actions may be automatic (System~1) or deliberate (System~2).
+  \item \textbf{Feedback.} Actions affect the environment, generating new input; the loop repeats.
+\end{enumerate}
+\noindent
+\textbf{Key claim.} Consciousness is not passive experience, but the \emph{integrity-preserving checking and updating} of automatically labelled input within a world model that constrains all decisions.
+
+\section{Stress and ``Mud'': How Models Degrade}
+Under stress, the balance between Systems~1 and~2 is disrupted:
+\begin{itemize}
+  \item \textbf{System~1 dominance:} labelling accelerates and bypasses conscious scrutiny.
+  \item \textbf{Reduced System~2 checking:} stress down-regulates prefrontal control; fewer labels are validated.
+  \item \textbf{Muddied updates:} poorly checked/bias-laden labels enter the world model, accumulating as \emph{mud}.
+  \item \textbf{Consequences:} decisions and behaviours computed from a muddied model are distorted, often maladaptive, and can amplify stress, creating a vicious cycle.
+\end{itemize}
+
+\section{Meta-Model Solution: Cognitive Hygiene}
+A world model that explicitly represents the loop gains resilience:
+\begin{itemize}
+  \item \textbf{Meta-awareness:} recognition that ``under stress, labels are noisier'' triggers slower updating or stricter validation.
+  \item \textbf{Protective strategies:} pausing, re-checking evidence, seeking external input, and reframing before model integration.
+  \item \textbf{Cognitive hygiene:} prevents mud from entering; preserves model integrity even under stress.
+\end{itemize}
+This functions as an \emph{immune system for cognition}: a higher-order process that maintains the quality of the world model by filtering stress-contaminated updates.
+
+\section{Scientific Resonance}
+The framework coheres with multiple literatures:
+\begin{itemize}
+  \item \textbf{Predictive processing:} perception as interaction of priors and error-correction; stress disrupts error integration, locking rigid priors.
+  \item \textbf{Global workspace theory:} consciousness as selective checking and broadcasting of labelled content.
+  \item \textbf{Dual-process psychology:} System~1/2 dynamics, stress-induced biases, and metacognition.
+  \item \textbf{Clinical practice:} mechanistic account of why mindfulness, CBT, and metacognitive training reduce stress-induced distortions.
+\end{itemize}
+
+\section{Testable Hypotheses}
+Let ``mud'' denote contamination of the world model by poorly validated updates; let ``loop-awareness'' denote an explicit meta-representation of the loop.
+
+\begin{description}[style=nextline]
+  \item[H1 (Stress--Checking).] Acute stress reduces the accuracy and latency of System~2 checking of System~1 labels.
+  \item[H2 (Mud Accumulation).] Repeated stress exposure increases mud, measurable as systematic misclassification, overconfident priors, or reduced error-correction.
+  \item[H3 (Decision Degradation).] Decisions made from muddied models exhibit higher error rates and lower adaptability, even when deliberative time is available.
+  \item[H4 (Meta-Model Protection).] Training in loop-awareness reduces stress-induced mud and improves decision quality under stress relative to controls.
+  \item[H5 (Gating Mechanism).] Under detected stress, loop-aware agents adopt conservative update rules (e.g., higher evidence thresholds), preserving model integrity.
+\end{description}
+
+\section{Implications}
+\textbf{Theoretical:} Consciousness is best modelled as an integrity-preserving check on automatic processes.\\
+\textbf{Practical:} Train humans (and design AIs) to \emph{encode the loop} and \emph{gate updates} under stress.\\
+\textbf{Safety:} Meta-model hygiene is a stabilizer for cognition and behaviour in volatile environments.
+
+\section{Diagram of the Loop}
+\begin{figure}[ht]
+  \centering
+  \tikzset{
+    box/.style={draw, rounded corners, align=center, inner sep=6pt, minimum width=2.6cm},
+    small/.style={draw, rounded corners, align=center, inner sep=4pt, font=\footnotesize},
+    arrow/.style={-{Latex}, thick},
+  }
+  \begin{tikzpicture}[node distance=1.6cm and 1.2cm]
+    % Core chain
+    \node[box] (input) {Sensory\\Input};
+    \node[box, right=of input] (label) {Autonomous\\Labelling\\(System 1)};
+    \node[box, right=of label] (check) {Conscious\\Checking\\(System 2)};
+    \node[box, right=of check] (update) {World Model\\Updating};
+    \node[box, right=of update] (decide) {Decisions};
+    \node[box, right=of decide] (act) {Actions};
+    \node[box, below=of decide] (env) {Environment};
+
+    % Arrows along the loop
+    \draw[arrow] (input) -- (label);
+    \draw[arrow] (label) -- (check);
+    \draw[arrow] (check) -- (update);
+    \draw[arrow] (update) -- (decide);
+    \draw[arrow] (decide) -- (act);
+    \draw[arrow] (act) |- (env);
+    \draw[arrow] (env) -| (input);
+
+    % Stress node and effects
+    \node[small, above=1.1cm of check, fill=red!6, draw=red!60] (stress) {Stress Context};
+    \draw[arrow, red!70] (stress) -> node[midway, left, xshift=-2pt, font=\scriptsize, text=red!70] {weakened check} (check);
+
+    \node[small, below=1.1cm of update, fill=orange!10, draw=orange!70] (mud) {``Mud'':\\Contaminated Updates};
+    \draw[arrow, orange!80] (check) -- node[midway, right, font=\scriptsize, text=orange!80] {sloppy labels} (mud);
+    \draw[arrow, orange!80] (mud) -- (update);
+
+    % Meta-model hygiene
+    \node[small, above=1.1cm of update, fill=blue!6, draw=blue!60] (meta) {Meta-Model Hygiene:\\gate/slow updates};
+    \draw[arrow, blue!70] (meta) -- node[midway, right, font=\scriptsize, text=blue!70] {stricter thresholds} (update);
+    \draw[arrow, blue!70] (stress) to[bend left=15] node[midway, above, font=\scriptsize, text=blue!70] {trigger} (meta);
+  \end{tikzpicture}
+  \caption{The consciousness loop: automatic labelling (System~1), conscious checking (System~2), model updating, decisions, actions, and environmental feedback. Stress weakens checking and induces ``mud'' (contaminated updates). A meta-model can gate/slow updates to preserve integrity.}
+  \label{fig:loop}
+\end{figure}
+
+\section{Summary}
+Consciousness is the ongoing process of checking and updating automatically labelled input within a world model. Stress weakens this checking, causing ``mud'' and degraded behaviour. A meta-model that understands and monitors the loop functions as cognitive hygiene, protecting model integrity and stabilizing decisions under stress.
+
+\vfill
+\noindent\textit{Preregistration-ready version:} add operational definitions for ``mud,'' specify stress induction (e.g., time pressure, cognitive load), define dependent measures (checking latency/accuracy, update conservatism), and analysis plans for H1--H5.
+
+\end{document}

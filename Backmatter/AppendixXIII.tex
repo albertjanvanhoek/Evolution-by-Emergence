@@ -1,0 +1,172 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,amssymb}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black,
+  pdftitle={Edge-Centric Decentralized Society: EbE + Collective Checking Loops},
+  pdfauthor={}
+}
+\usepackage{enumitem}
+\setlist{itemsep=4pt,topsep=4pt}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,shapes.misc}
+
+% ---------- Title ----------
+\title{\textbf{Edge-Centric Decentralized Society:\\
+Integrating Evolution by Emergence (EbE) with Collective Checking Loops}}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+\onehalfspacing
+
+\begin{abstract}
+This paper proposes a concrete societal architecture that integrates (i) an individual and collective theory of consciousness as checking loops and (ii) \emph{Evolution by Emergence} (EbE). The result is an \emph{edge-centric, decentralized society}: locally autonomous yet globally coherent through shared protocols. Communities with dense, diverse, and well-maintained edges adopt loop-awareness and cognitive hygiene to minimize ``mud'' (contaminated updates) while EbE provides viability-first orientation and adaptive growth. We outline design principles, governance patterns, operational metrics, and an implementation roadmap.
+\end{abstract}
+
+\section{Vision}
+We aim for a networked society where small, local communities (\emph{cells}) are primary units of agency. Each cell maintains:
+\begin{itemize}
+  \item \textbf{Edge health:} high-quality relationships (reciprocity, trust, repair).
+  \item \textbf{Loop-awareness:} explicit protocols for labelling, checking, updating, deciding, acting, and feedback under stress.
+  \item \textbf{EbE orientation:} \emph{keep alive what keeps us alive}---viability-first, adaptive emergence, diversity and redundancy.
+\end{itemize}
+Local autonomy is preserved; global coherence arises from interoperable protocols rather than central command.
+
+\section{Design Principles (Edge-Centric)}
+\begin{enumerate}[label=\textbf{P\arabic*.}]
+  \item \textbf{Edges first.} Prioritize the quality, redundancy, and diversity of connections over node centrality.
+  \item \textbf{Local autonomy, global interoperability.} Decisions at the lowest viable level; common protocols for inter-cell coordination.
+  \item \textbf{Cognitive hygiene by default.} Encode stress detection, slower updates, and independent checks into routines.
+  \item \textbf{Polycentric governance.} Multiple overlapping centers of decision-making; no single point of failure.
+  \item \textbf{Transparent provenance.} Traceable information, open data by default, explainable decisions.
+  \item \textbf{Deliberation buffers.} Cooling-off periods and citizens' assemblies for high-stakes updates.
+  \item \textbf{Repair over punishment.} Fast edge-repair, forgiveness policies, translation fidelity across cultures/disciplines.
+  \item \textbf{Diversity and redundancy.} Encourage heterogeneity of edges (skills, perspectives, resources) and backup pathways.
+\end{enumerate}
+
+\section{Network Topology Requirements}
+Desired properties:
+\begin{itemize}
+  \item \textbf{High average degree} with bounded variance (avoid fragile super-hubs).
+  \item \textbf{High clustering} (trust circles) with \textbf{bridges} across clusters (translation edges).
+  \item \textbf{Moderate assortativity} (like-with-like learning) balanced by cross-type edges (innovation).
+  \item \textbf{Path redundancy} (alternative routes) and \textbf{low edge repair latency}.
+\end{itemize}
+
+\section{Operational Protocols (SCAP-style)}
+\textbf{Perception \& Information:} provenance tags, versioning, community fact-checks, stress flags.\\
+\textbf{Decision Hygiene:} evidence thresholds scale with detected stress; publish reasons/uncertainty.\\
+\textbf{Action \& Feedback:} small reversible bets, monitors, rapid post-decision reviews.\\
+\textbf{Edge Maintenance:} reciprocity tracking, repair rituals, mediation, translation exchanges.\\
+\textbf{Education:} loop-awareness curricula, bias literacy, deliberation skills.
+
+\section{Metrics (Viability Dashboard)}
+Let $C$ be a community/cell and $\mathcal{N}$ the federation.
+\begin{itemize}
+  \item \textbf{Edge Health (EH)}: reciprocity rate, trust index, repair latency (lower is better), translation fidelity score.
+  \item \textbf{Emergent Effectiveness (EE)}: value created per unit resource via collaborations (emergent output vs. sum of parts).
+  \item \textbf{Mud Load (ML)}: prevalence of unverified claims in decision inputs; retraction/correction latency.
+  \item \textbf{Checking Throughput (CT)}: proportion of proposals that undergo independent review; average depth/time.
+  \item \textbf{Redundancy (R)}: alternative path count between critical roles/resources.
+  \item \textbf{Diversity (D)}: entropy over skills, demographics, epistemic styles across edges.
+  \item \textbf{Update Gating Ratio (UGR)}: fraction of stress-flagged updates that were slowed/strengthened and later validated.
+  \item \textbf{Viability Index (VI)}: composite of EH, R, D, low ML, and positive EE growth.
+\end{itemize}
+
+\section{Governance Patterns}
+\textbf{Polycentric councils}: domain councils (health, education, environment) at cell and federation levels.\\
+\textbf{Subsidiarity with accountability}: decisions local unless cross-cell externalities; publish impact justifications.\\
+\textbf{Sortition-based assemblies}: randomly selected citizens for high-stakes deliberation.\\
+\textbf{Commons stewardship}: shared resources with usage caps, contribution credits, and transparent ledgers.
+
+\section{Economic and Information Layers}
+\textbf{Economic:} local credit/ledger systems for contribution and care; pricing externalities; mutual-aid buffers.\\
+\textbf{Information:} open standards, content provenance/watermarking, audit trails, public reasoning repositories.
+
+\section{Implementation Roadmap}
+\begin{enumerate}[label=\textbf{R\arabic*.}]
+  \item \textbf{Pilot cells} (50--150 people) adopt protocols, dashboards, and loop-awareness training.
+  \item \textbf{Federation primitives}: interop standards, dispute resolution, translation guilds.
+  \item \textbf{Policy sandboxes}: reversible trials with pre-registered metrics (ML, EH, VI).
+  \item \textbf{Scale-out}: replicate cells; stress-test bridges; rotate cross-cell assemblies.
+  \item \textbf{Long-horizon learning}: annual viability reviews; publish failures and repairs.
+\end{enumerate}
+
+\section{Hypotheses (Societal EbE)}
+\begin{description}[style=nextline]
+  \item[H1 (Edge Density $\rightarrow$ EE).] Communities with higher healthy edge density yield higher emergent effectiveness, controlling for size/resources.
+  \item[H2 (Hygiene $\rightarrow$ Lower ML).] Loop-aware cells exhibit lower mud load and faster correction latency under stress.
+  \item[H3 (Redundancy $\rightarrow$ Resilience).] Path redundancy predicts continuity of service under shocks.
+  \item[H4 (Diversity $\rightarrow$ Innovation).] Higher edge diversity correlates with novel solution rate and cross-domain transfer.
+  \item[H5 (Federation $\rightarrow$ Stability).] Polycentric federations maintain performance despite local failures (no systemic cascade).
+\end{description}
+
+\section{Diagram: Edge-Centric Federation}
+\begin{figure}[ht]
+  \centering
+  \tikzset{
+    n/.style={circle, draw, minimum size=6mm, inner sep=0pt},
+    bridge/.style={-{Latex}, thick},
+    soft/.style={-{Latex}, dashed},
+    hull/.style={draw, rounded corners, inner sep=6pt},
+  }
+  % Cluster A
+  \begin{tikzpicture}[node distance=9mm]
+    \node[n,label=left:{Cell A}] (a1) {};
+    \node[n,above right=of a1] (a2) {};
+    \node[n,below right=of a2] (a3) {};
+    \node[n,below left=of a3] (a4) {};
+    \draw (a1)--(a2)--(a3)--(a4)--(a1) (a1)--(a3);
+    \node[hull,fit=(a1)(a2)(a3)(a4)] (Ahull) {};
+
+    % Cluster B
+    \node[n,right=4.5cm of a2,label=right:{Cell B}] (b1) {};
+    \node[n,below right=of b1] (b2) {};
+    \node[n,below left=of b2] (b3) {};
+    \draw (b1)--(b2)--(b3)--(b1);
+    \node[hull,fit=(b1)(b2)(b3)] (Bhull) {};
+
+    % Cluster C
+    \node[n,below=3.8cm of a3,label=left:{Cell C}] (c1) {};
+    \node[n,below right=of c1] (c2) {};
+    \node[n,above right=of c2] (c3) {};
+    \node[n,above left=of c2] (c4) {};
+    \draw (c1)--(c2)--(c3)--(c4)--(c1) (c1)--(c3);
+    \node[hull,fit=(c1)(c2)(c3)(c4)] (Chull) {};
+
+    % Bridges (translation edges with hygiene gates)
+    \draw[bridge] (a2) -- node[above, font=\scriptsize]{translation} (b3);
+    \draw[bridge] (a4) -- node[left, font=\scriptsize]{audit} (c3);
+    \draw[soft]   (b2) -- node[right, font=\scriptsize]{deliberation} (c1);
+
+    % Legend
+    \node[anchor=west] at ($(Bhull.east)+(1.1,0.8)$) {\footnotesize \textbf{Legend:}};
+    \node[anchor=west] at ($(Bhull.east)+(1.1,0.45)$) {\footnotesize solid edge = standard link};
+    \node[anchor=west] at ($(Bhull.east)+(1.1,0.1)$) {\footnotesize \textcolor{black}{\protect\tikz \draw[bridge] (0,0)--(0.9,0);} = bridge (translation/audit)};
+    \node[anchor=west] at ($(Bhull.east)+(1.1,-0.25)$) {\footnotesize \textcolor{black}{\protect\tikz \draw[soft] (0,0)--(0.9,0);} = deliberative link};
+  \end{tikzpicture}
+  \caption{Edge-centric federation: dense local cells with high clustering; bridges for translation/audit; deliberative links for slow, high-stakes coordination.}
+  \label{fig:edge-federation}
+\end{figure}
+
+\section{Summary}
+An edge-centric decentralized society integrates loop-awareness (to prevent mud) with EbE's viability-first emergence. Communities maximize healthy edges, practice cognitive hygiene, and federate via interoperable protocols. The result is local autonomy, global coherence, and resilience under stress.
+
+\vfill
+\noindent\textit{Repository note:} Link this chapter to prior files on the individual and democratic loops; reuse the metrics and hypotheses naming to enable cross-document references.
+\end{document}
