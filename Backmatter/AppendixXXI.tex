@@ -1,0 +1,83 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,graphicx,bm}
+
+\title{The Principle of Emergent Cycles:\\
+An Axiom for the Organization of Entropy Production}
+\author{Albert Jan van Hoek, et al.}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We propose the \emph{Principle of Emergent Cycles (PEC)}:
+In open, driven, non--equilibrium systems, entropy production is increasingly carried by recurrent (cyclic) processes. Under sustained driving and feedback, such cycles proliferate, structuring dissipation pathways, stabilizing low--entropy macrostates locally, and often extending gradient lifetimes. Formally, in Markovian or coarse--grained descriptions the stationary total entropy production $\dot S_{\mathrm{tot}}$ admits a cycle decomposition $\dot S_{\mathrm{tot}} = \sum_{\alpha} J_\alpha A_\alpha$ (Schnakenberg). PEC asserts that (i) the fraction $\phi$ of $\dot S_{\mathrm{tot}}$ carried by non--trivial cycles grows with system complexity, and (ii) richer cycle networks correlate with increased local stability and temporally extended dissipation of available exergy. We outline measurable predictions and an empirical program across chemical, biological, ecological and engineered systems.
+\end{abstract}
+
+\section{Motivation and Scope}
+Thermodynamic laws constrain what matter and energy may do, yet they are silent on \emph{how} dissipation organizes into the diverse structures we observe. Non--equilibrium statistical mechanics offers tools (network thermodynamics, fluctuation theorems), but a concise, cross--domain principle for the \emph{organization of dissipation} remains useful. The Principle of Emergent Cycles (PEC) aims to fill this gap without contradicting the Second Law: global entropy still increases, while local order is sustained by exporting entropy to the environment.
+
+\textbf{Scope.} PEC addresses open, driven systems that admit a (possibly coarse--grained) Markov jump or continuous--time network description with well--defined steady states and finite entropy production.
+
+\section{Formal Framework and Definitions}
+Consider a finite state space $\mathcal{X}$ with transitions $i \to j$ and stationary probabilities $\pi_i$. Let $k_{ij}$ be transition rates and $J_{ij} = \pi_i k_{ij} - \pi_j k_{ji}$ the stationary probability currents. Following network thermodynamics:
+
+\begin{itemize}
+\item \textbf{Edge affinity:} $A_{ij} = \ln \frac{\pi_i k_{ij}}{\pi_j k_{ji}}$.
+\item \textbf{Total entropy production:}
+\[
+\dot S_{\mathrm{tot}} = \tfrac{1}{2} \sum_{i,j} J_{ij} A_{ij} \ge 0.
+\]
+\item Choose a \textbf{cycle basis} $\{\mathcal{C}_\alpha\}$ of independent directed cycles with corresponding \textbf{cycle currents} $J_\alpha$ and \textbf{cycle affinities} $A_\alpha$. Then
+\[
+\dot S_{\mathrm{tot}} = \sum_{\alpha} J_\alpha A_\alpha.
+\]
+\end{itemize}
+
+We call a cycle \emph{non--trivial} if $J_\alpha A_\alpha > 0$ at stationarity. Define the \emph{cycle--carried fraction of dissipation}
+\[
+\phi := \frac{\sum_{\alpha \in \mathrm{nontriv}} J_\alpha A_\alpha}{\dot S_{\mathrm{tot}}}, \qquad \phi \in [0,1].
+\]
+
+Let \emph{cycle richness} $\mathcal{R}$ be any monotone metric capturing the abundance/strength/topological redundancy of non--trivial cycles (e.g., sum of non--zero $J_\alpha$, rank of cycle space, feedback depth).
+
+\section{Principle of Emergent Cycles}
+\textbf{PEC (informal).} In driven non--equilibrium systems with feedback and nonlinearity, dissipation organizes into recurrent processes. As driving persists, more of the entropy production is carried by non--trivial cycles; networks of such cycles stabilize local order and temporally structure environmental dissipation.
+
+\textbf{PEC (formal).} For an open, driven system admitting a steady Markov network representation, there exists a monotone complexity proxy $C$ such that, under sustained driving and admissible feedback:
+\begin{enumerate}
+\item \textbf{Cycle--throughput relation:} $\partial \phi / \partial C \ge 0$, with strict increase on intervals where new non--trivial cycles are activated ($J_\alpha A_\alpha > 0$).
+\item \textbf{Stability/extension relation:} In matched inflow conditions, higher cycle richness $\mathcal{R}$ correlates with (a) increased local stability (longer return times after perturbation) and/or (b) extended gradient lifetime $\int \mathcal{E}(t)\,dt$, holding total exergy destroyed constant or increased.
+\item \textbf{Second--Law consistency:} $\dot S_{\mathrm{tot}} \ge 0$ always; PEC concerns the \emph{decomposition} of $\dot S_{\mathrm{tot}}$ into cyclic pathways, not its sign.
+\end{enumerate}
+
+\section{Predictions and Corollaries}
+\begin{itemize}
+\item \textbf{P1 (Cycle scaling):} Along controlled complexity ramps (e.g., added feedback loops/catalysts), $\phi$ increases and exhibits activation steps when new cycles close.
+\item \textbf{P2 (Stability vs. redundancy):} For fixed throughput, greater cycle redundancy reduces sensitivity to edge removal (graceful degradation).
+\item \textbf{P3 (Temporal extension):} Given equal integrated exergy input, systems with richer cycle networks dissipate energy over longer horizons (lower peak, longer tail).
+\item \textbf{P4 (Cross--domain universality):} The $\phi(C)$ trend appears in chemical reaction networks, microbial metabolisms, ecological microcosms, and engineered feedback systems.
+\end{itemize}
+
+\section{Empirical Program}
+\begin{itemize}
+\item \textbf{Chemical kinetics.} Microfluidic BZ--type oscillators and autocatalytic sets; infer fluxes, compute $J_\alpha, A_\alpha, \phi$; vary catalysts/feedback.
+\item \textbf{Microbial chemostats.} Tune nutrient drives; quantify metabolic cycles via $^{13}$C MFA; estimate environmental entropy production; test P1--P3.
+\item \textbf{Ecosystem microcosms.} Controlled food webs with adjustable recycling; measure energy/matter loop closure vs stability and dissipation profiles.
+\item \textbf{Engineered control.} Electronic/robotic feedback networks under thermostatted conditions; measure heat dissipation as loop depth/feedback gain increases.
+\end{itemize}
+
+\section{Positioning and Related Work}
+PEC synthesizes strands from dissipative structures (Prigogine), network thermodynamics (Schnakenberg), fluctuation theorems, information--thermodynamics (Landauer), and recent proposals on adaptation to driving in matter. The novelty is a cross--domain organizing principle with explicit, testable cycle--throughput predictions.
+
+\section{Limitations and Open Questions}
+\begin{itemize}
+\item Defining a universal complexity proxy $C$ remains open; multiple surrogates may be needed.
+\item Coarse--graining can create spurious cycles; robustness to partition choice must be established.
+\item PEC is agnostic about extremal principles (e.g.\ MaxEP); it concerns \emph{pathway organization}, not optimization.
+\end{itemize}
+
+\section*{Human--facing Précis}
+\emph{Entropy always increases. In driven systems it learns to do so through loops. The more the drive and the feedback, the more those loops weave into a fabric---our name for that fabric is complexity.}
+
+\end{document}
