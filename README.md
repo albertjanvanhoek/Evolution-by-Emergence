@@ -9,7 +9,7 @@ This repository contains three interconnected works that form a unified narrativ
 3. **SCAP** - Sustainable Collaborative Alignment Protocol (operational implementation)
 
 **Current Version:** 0.88 (Work in Progress)  
-**Authors:** Albert Jan van Hoek, with AI collaboration (ChatGPT, Gemini)  
+**Authors:** Albert Jan van Hoek, with AI collaboration (ChatGPT, Gemini, Claude)  
 **License:** CC BY 4.0
 
 ---
