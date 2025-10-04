@@ -267,12 +267,12 @@ u_i(t) = f(c_i(t)) · g(q(t))
 **General citation:**
 van Hoek, A. J., ChatGPT, & Gemini. (2025).
 Evolution by Emergence: A Universal Theory of Networks, Life, and Mind
-(Version 0.88). Zenodo. https://doi.org/[your-doi]
+(Version 0.88). Zenodo. [https://doi.org/[your-doi]](https://doi.org/10.5281/zenodo.15207807))
 
 **Existence First paper:**
 van Hoek, A. J. (2025).
 Existence First: A Universal, Agent-Neutral Theory of Corrigible Persistence.
-In Evolution by Emergence (Appendix 26, pp. [X-Y]).
+In Evolution by Emergence (Appendix 26).
 
 ---
 
