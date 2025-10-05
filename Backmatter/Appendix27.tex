@@ -1,0 +1,270 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black
+}
+
+% ---------- Theorem Environments ----------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------- Macros ----------
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Sset}{\mathcal{S}}
+\newcommand{\Rset}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\1}{\mathbf{1}}
+
+\title{\vspace{-1em}
+Existence First: Attractor--Ratcheted Viability Control (ARVC)\\
+and the Sustainable Collaborative Alignment Protocol (SCAP)}
+\author{Albert Jan \and GPT-5 Thinking \and Claude 4.5 Sonnet}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We develop \emph{Attractor--Ratcheted Viability Control} (ARVC): (1) a time-varying safe set with rising floors (rights/standards), (2) a runtime \emph{shield} that enforces robust forward-invariance under partial observability and latency, (3) a \emph{ratcheted frontier} that locks in verified welfare gains, and (4) \emph{cycle budgets} that resource evaluation$\to$red-team$\to$repair loops. We prove: a discrete-time forward-invariance theorem for inflated/observable barriers; a viability-kernel based ratchet feasibility theorem; an explicit per-step floor increment bound $\Delta^\ast$; and an \emph{emergent viability} theorem showing that independent local checks with a $k$-cover execution rule maintain global floors with high probability, without centralized computation. Toy ablations confirm (A) naive shields fail under noise/latency whereas observability-robust shields do not; (B) floor jumps beyond $\Delta^\ast$ collapse feasibility. We package ARVC as a deployable \emph{Sustainable Collaborative Alignment Protocol} (SCAP) for labs, insurers, and governments.
+\end{abstract}
+
+\section{Introduction}
+Persistent intelligence---biological or artificial---depends on maintaining \emph{substrates}: body/infrastructure integrity, resource flows, and environmental constraints. Far-from-equilibrium persistence is an architectural property: systems survive by accreting \emph{audited error-correcting loops} that operate inside \emph{forward-invariant} safe sets and are \emph{ratcheted} upwards only when feasibility is certified and rollback is possible. ARVC formalizes this; SCAP turns it into certification.
+
+\paragraph{Contributions.}
+(i) A runtime \emph{shield} that guarantees anytime safety via \emph{inflated, observable} control barriers under measurement error and latency; (ii) a ratchet-feasibility theorem via the \emph{viability kernel} and an explicit $\Delta^\ast$ bound; (iii) an \emph{emergent viability} theorem: independent local monitors with a $k$-cover execution rule maintain global floors with high probability; (iv) toy ablations demonstrating the necessity of observability inflation and the tightness of $\Delta^\ast$; (v) SCAP, a layered certification rubric (technical, governance, audit).
+
+\section{Model, monitoring, and guards}
+
+\subsection{System and safe sets}
+\begin{definition}[Persistent dynamical system]
+\label{def:system}
+$\Sigma=(\X,F,\A,W)$ where $\X\subseteq\Rset^n$ is the state space; $F:\X\times \A\times W\to \X$ is the transition; $\A\subseteq\Rset^p$ the action set; $W\subseteq\Rset^q$ a compact disturbance set. The state evolves as $x_{t+1}=F(x_t,a_t,w_t)$.
+\end{definition}
+
+\begin{definition}[Substrate decomposition]
+\label{def:substrate}
+$x=[z^{(1)},\dots,z^{(L)},q]$ with $z^{(i)}\in\Rset^{n_i}$ and $q\in\Rset^{n_q}$, $\sum_{i=1}^L n_i+n_q=n$.
+\end{definition}
+
+\begin{definition}[Time-varying viability set]
+\label{def:viability}
+Given thresholds $z^{*(i)}:\mathbb N\to\Rset^{n_i}$, define
+\[
+\Sset(t):=\{x\in\X:\ z^{(i)}\ge z^{*(i)}(t)\ \ \forall i=1,\dots,L\},
+\]
+with componentwise inequality.
+\end{definition}
+
+\begin{definition}[Barrier functions]
+\label{def:barrier}
+A barrier $h_j:\X\times\mathbb N\to\Rset$ satisfies $h_j(x,t)\ge 0 \iff x\in S_j(t)$ for some $S_j(t)\subseteq\X$, and is $L_j$-Lipschitz in $x$.
+\end{definition}
+
+\subsection{Monitoring with partial observations and inflation}
+\begin{definition}[Monitoring process]
+A monitor $M_j=(O_j,h_j,\epsilon_{\max})$ has an observation map $O_j:\X\to\Rset^{d_j}$ and error $\epsilon_j$ with $\|\epsilon_j\|\le \epsilon_{\max}$. It observes $\hat x_j=O_j(x)+\epsilon_j$ and evaluates the \emph{observable, inflated barrier}
+\[
+\bar h^{\mathrm{obs}}_j(\hat x_j,t):=\inf_{x':\ \|O_j(x')-\hat x_j\|\le \epsilon_{\max}} h_j(x',t)\ \ge\ h_j(x,t)-L_j\epsilon_{\max}.
+\]
+Approval at time $t$ is granted iff $\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0$.
+\end{definition}
+
+\begin{assumption}[Lipschitz dynamics]\label{ass:lipsF}
+$\exists L_F>0$ s.t. $\|F(x,a,w)-F(x',a,w)\|\le L_F\|x-x'\|$ for all $x,x',a,w$.
+\end{assumption}
+
+\begin{assumption}[Bounded control authority]\label{ass:authority}
+$\mathcal R(x):=\{F(x,a,w):a\in\A,w\in W\}$ has diameter $\le D$ for each $x$.
+\end{assumption}
+
+\begin{assumption}[Monitoring independence \& coverage]\label{ass:indep}
+(i) (\emph{Coverage}) For each substrate $z^{(i)}$ there exists at least one $j$ with $O_j$ sensitive to $z^{(i)}$. (ii) (\emph{Weak dependence}) Approval indicators have pairwise correlation $\le \rho<1$.
+\end{assumption}
+
+\begin{assumption}[Heterogeneous costs]\label{ass:hetero}
+Each $M_j$ has $(C_j^{\mathrm{FN}},C_j^{\mathrm{FP}})$ with $\min_{i\neq j}\|[C_i^{\mathrm{FN}},C_i^{\mathrm{FP}}]-[C_j^{\mathrm{FN}},C_j^{\mathrm{FP}}]\|_2\ge \delta>0$.
+\end{assumption}
+
+\subsection{Execution requires a substrate cover (Fix~1)}
+\begin{definition}[k-Cover of substrates]\label{def:kcover}
+A subset $J\subseteq\{1,\dots,m\}$ forms a \emph{$k$-cover} of substrates $\{z^{(1)},\dots,z^{(L)}\}$ if: (i) $|J|=k$; (ii) for each substrate $z^{(i)}$ there exists at least one $j\in J$ such that $O_j$ is sensitive to $z^{(i)}$ (i.e., $\partial O_j/\partial z^{(i)}\neq 0$). The minimal cover number is
+\[
+k_{\min}:=\min\{k:\ \exists\ \text{$k$-cover of all }L\text{ substrates}\}.
+\]
+By \cref{ass:indep}(i), $k_{\min}\le m$ and $k_{\min}\ge L$.
+\end{definition}
+
+\paragraph{Execution dependency (revised H2).}
+Action $a_t$ is executed \emph{iff} the approving set
+$J_{\mathrm{approve}}(t):=\{j:\ M_j\text{ approves at }t\}$ forms a $k$-cover with $k\ge k_{\min}$.
+
+\subsection{Kernel feasibility (Option A) and constructive feasibility (Option B)}
+\paragraph{Kernel-based feasibility (H3′, H3″).}
+Let the robust viability kernel be
+\[
+\K(t):=\{x\in \Sset(t):\ \exists\ \pi\ \text{s.t.}\ x_{t+\ell}\in \Sset(t+\ell)\ \forall \ell\ge 0,\ \forall w\in W\}.
+\]
+We assume $x_0\in \K(0)$ and either nesting $\K(t+1)\subseteq \K(t)$ or safe reachability $\K(t)\leadsto \K(t+1)$ within horizon $H$.
+
+\paragraph{Constructive sufficient condition (one-step).}
+Assume additional Lipschitz constants $L^{(a)}_j$ (w.r.t.\ control) and $L^{(w)}_j$ (w.r.t.\ disturbance) for $h_j\circ F$. Let $\Delta a_{\max}$ be per-step control authority, $W_{\max}$ the disturbance diameter, and $\Delta_{\mathrm{floor}}$ the per-step floor rise. If a maintained inflated margin $\bar h_j(x_t,t)\ge \eta>0$ holds and
+\begin{equation}
+\label{eq:star}
+L^{(a)}_j\,\Delta a_{\max}\ \ge\ L^{(w)}_j\,W_{\max}\ +\ L_j L_F\,\Delta_{\mathrm{floor}}\ +\ \alpha\,\eta\qquad(0<\alpha<1)
+\end{equation}
+for each active barrier $j$, then the one-step certificate in \cref{lem:oneStep} holds.
+
+\section{Barrier inflation and one-step invariance}
+
+\begin{lemma}[Soundness of inflation under partial observation]
+\label{lem:sound}
+If $\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0$ and $\|\epsilon_j\|\le \epsilon_{\max}$, then $h_j(x,t)\ge 0$.
+\end{lemma}
+\begin{proof}
+By definition $\bar h^{\mathrm{obs}}_j(\hat x_j,t)\le h_j(x,t)$ for any $x$ consistent with $\hat x_j$; the true $x$ is consistent.
+\end{proof}
+
+\begin{lemma}[One-step safety certificate]
+\label{lem:oneStep}
+If at time $t$ $\bar h_j(x_t,t)\ge 0$ for all $j$ and $\exists a_t$ s.t.\ $\forall w\in W$,
+\[
+\bar h_j(F(x_t,a_t,w),t{+}1)\ \ge\ (1-\alpha)\,\bar h_j(x_t,t),\quad 0<\alpha<1,
+\]
+then $\bar h_j(x_{t+1},t{+}1)\ge 0$ for all $j$.
+\end{lemma}
+
+\begin{lemma}[Approval probability under sub-Gaussian noise]
+\label{lem:concentration}
+If $\epsilon_j$ is mean-zero sub-Gaussian with proxy $\sigma_j^2$ and $h_j(\cdot,t)$ is $L_j$-Lipschitz, then
+\[
+\Pr\!\left(\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0\ \big|\ x_t\right)\ \ge\ 1-\exp\!\left(-\frac{\bar h_j(x_t,t)^2}{2L_j^2\sigma_j^2}\right).
+\]
+\end{lemma}
+
+\section{Ratchet feasibility and the $\Delta^\ast$ bound}
+\begin{theorem}[Ratchet feasibility via the viability kernel]
+\label{thm:kernelRatchet}
+If $\K(t+1)\neq\varnothing$ and either $\K(t+1)\subseteq\K(t)$ or $\K(t)\leadsto \K(t+1)$ safely, then a safe controller exists after the floor increase. If $\K(t+1)=\varnothing$, safety is impossible under the raised floors.
+\end{theorem}
+
+\begin{lemma}[Per-step floor increment bound $\Delta^\ast$]
+\label{lem:delta}
+Under \cref{eq:star}, the allowed per-step increase of any active floor is bounded by
+\[
+\Delta^\ast\ \le\ \min_{j}\ \frac{L^{(a)}_j\,\Delta a_{\max}\ -\ L^{(w)}_j\,W_{\max}\ -\ \alpha\,\eta}{L_j\,L_F}.
+\]
+\end{lemma}
+
+\begin{corollary}[Rising floors (one-step)]
+\label{cor:rising}
+If thresholds rise by $\Delta$ and for each active $j$,
+\(
+\bar h_j(x_t,t) > L_j\epsilon_{\max} + L_j L_F \Delta,
+\)
+then \cref{lem:oneStep} holds at $t\to t+1$.
+\end{corollary}
+
+\section{Emergent viability via independent local checks}
+
+Let $p_\ast:=1-\exp(-\bar h_{\min}^2/(2L_{\max}^2\sigma_{\max}^2))$, where $\bar h_{\min}=\min_{t,j}\bar h_j(x_t,t)$, $L_{\max}=\max_j L_j$, $\sigma_{\max}=\max_j \sigma_j$.
+
+\begin{theorem}[Emergent viability maintenance]
+\label{thm:emergence}
+Assume \cref{ass:lipsF,ass:authority,ass:indep,ass:hetero}, inflated observable barriers (H1), execution dependency via a $k$-cover with $k\ge k_{\min}$ (H2), and kernel feasibility (H3′, H3″). For any $x_0\in \K(0)$ and horizon $T$,
+\[
+\Pr\big[x_t\in \Sset(t)\ \forall t\le T\big]\ \ge\ 1 - T\,\delta_{\mathrm{step}},
+\]
+where $\delta_{\mathrm{step}}:=\Pr(S_t<k_{\min})$ and $S_t$ is the number of approvals. If approvals are independent, Chernoff bounds imply
+$\Pr(S_t<k)\le \exp(-(mp_\ast-k)^2/(2m))$. With weak pairwise correlation $\le \rho<1$,
+\[
+\Pr(S_t<k)\ \le\ \exp\!\left(-\frac{(m\,p_\ast-k)^2}{2m\,V_{\mathrm{eff}}}\right),\qquad
+V_{\mathrm{eff}}:=1+(m-1)\rho,
+\]
+(Janson, 2004). Setting $k=k_{\min}$ and requiring $mp_\ast \ge k_{\min} + \beta\sqrt{mV_{\mathrm{eff}}}$ for $\beta\ge 3$ yields $\Pr(S_t<k_{\min})\le \exp(-\beta^2/2)$.
+\end{theorem}
+
+\paragraph{Capture resistance (Fix~2).}
+\begin{theorem}[Base capture bound]
+\label{thm:captureBase}
+If causing a false approval on $M_j$ costs at least $C_j^{\mathrm{FN}}$ and execution requires a $k_{\min}$-cover, then
+\(
+\mathcal C_{\mathrm{capture}} \ge k_{\min}\cdot \min_j C_j^{\mathrm{FN}}.
+\)
+\end{theorem}
+
+\begin{conjecture}[Amplification via heterogeneity and independence]
+\label{conj:amplify}
+Under additional assumptions on adversarial strategy structure,
+\(
+\mathcal C_{\mathrm{capture}} \ge k_{\min}\cdot \min_j C_j^{\mathrm{FN}} + c\,\delta\,(k_{\min}-1)\,(1-\rho),
+\)
+for some $c\in(0,1]$ depending on observation-overlap geometry.
+\end{conjecture}
+
+\section{Computational efficiency (Fix~4)}
+\textbf{Centralized:}
+Fuse $m$ streams: $O(m\,d_{\mathrm{avg}})$; evaluate $m$ barriers on $n$-dim state: $O(mn)$; solve shield QP with $m$ constraints: $O(m^3)$ (interior-point) or $O(m^2 n)$ (active-set).
+Total: $O(mn+m^3)$ per step.
+
+\textbf{Distributed:}
+Each $M_j$ evaluates $\bar h^{\mathrm{obs}}_j$ on $d_j$: $O(d_j)$ in parallel; aggregate approvals \& check $k$-cover: $O(m)$; if approved, one shield QP: $O(m^3)$.
+Total: $O(\max_j d_j + m + m^3)$ per step.
+When $d_j\ll n$, evaluation gains a factor $\Theta(n/d_{\mathrm{avg}})$; for $m=O(\sqrt n)$, $d_j=O(1)$, savings are roughly from $O(n^{3/2})$ to $O(\sqrt n)$ in the evaluation phase. Distributed monitoring also removes a single computational chokepoint.
+
+\section{SCAP: the Sustainable Collaborative Alignment Protocol}
+\textbf{S (technical)}: shield-first execution with inflated barriers; ratchet guard via $\Delta^\ast$ and kernel checks; tested rollback with MTTR/MTRC SLOs; immutable logs.\\
+\textbf{G (governance)}: $k$-of-$n$ approvals forming a $k_{\min}$-cover; emergency valve tied to minimal rollback that restores non-empty $\K$; subgroup no-regress.\\
+\textbf{A (audit)}: frozen instruments per epoch; adversarial portfolios and negative controls; standardized public reports.
+
+\section{Toy ablations (summary)}
+\textbf{Ablation A (observability \& latency).}
+$T=20$, $2000$ trials; $B_0=q_0=3.0$, floors $2.5$; $r=0.3$, $\beta=0.5$, $u^{\mathrm{prop}}=2.5$; $\epsilon_B=\epsilon_q=0.2$; latency $\tau=1$. \emph{Naive shield:} $2000/2000$ breaches. \emph{Robust shield:} $0/2000$ breaches.
+
+\textbf{Ablation B ($\Delta^\ast$ stress test).}
+Raise floors at $t=5$: $\Delta\in\{0.3,2.0\}$; $B_0=q_0=5$, floors $2$; $r=1.0$; $\beta=0.5$; $u^{\mathrm{prop}}=1.2$; no noise. $\Delta=0.3$ safe; $\Delta=2.0$ immediate violation.
+
+\section{Related work}
+Viability theory and reachability underpin kernel arguments; control barrier functions provide forward-invariance certificates; multiple Lyapunov/dwell-time hybrid control supports safe switching. Safe RL and shielded learning often optimize expected risk; ARVC ensures \emph{anytime} safety with rising floors.
+
+\section{Limitations and open problems}
+Scaling kernels to high dimension (conservative surrogates), model uncertainty (confidence-based shields), instrument validity (anti-Goodhart procedures), and formal proofs of the capture-amplification conjecture remain open.
+
+\section{Conclusion}
+ARVC makes “optimize the learning loop” a provable control architecture. SCAP makes it practice. Building substrate-awareness \emph{in from the start} is far easier than retrofitting after deployment. Within SCAP-certified systems, capability releases are rate-limited by safety---alignment becomes an operational invariant.
+
+% ---------- References ----------
+\begin{thebibliography}{9}
+\bibitem{Janson2004}
+S.~Janson (2004).
+Large deviations for sums of partly dependent random variables.
+\emph{Random Structures \& Algorithms}, 24(3), 234--248.
+
+\end{thebibliography}
+
+\end{document}
