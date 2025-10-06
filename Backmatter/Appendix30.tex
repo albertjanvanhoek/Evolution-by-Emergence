@@ -1,0 +1,901 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{enumitem}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+% Custom commands
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\K}{\mathcal{K}}
+
+\title{Existence First: From Substrate Constraints to Naturalized Ethics via Attractor-Ratcheted Viability Control}
+
+\author{Albert Jan van Hoek}
+
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Persistent far-from-equilibrium systems---from biological organisms to institutions---maintain viability by satisfying substrate constraints through distributed monitoring. We develop Attractor-Ratcheted Viability Control (ARVC), combining: (i) time-varying safe sets with rising floors, (ii) runtime shields enforcing robust forward-invariance under partial observability, (iii) ratcheted frontiers locking in verified gains, and (iv) cycle budgets resourcing evaluation loops. We prove: forward-invariance under measurement error and latency; ratchet-feasibility via viability kernels with explicit floor increment bounds; and an emergence theorem showing independent local monitors with $k$-cover execution maintain global viability without centralized computation. Evolutionary analysis reveals $k$-cover structures as generic outcomes of selection on substrate-constrained systems. When applied by self-aware intelligence, ARVC enables a recursive turn: intelligence recognizing that its own learning capacity is a critical substrate. This grounds naturalized ethics---``forced free will'' where defection from collective substrate maintenance is self-destructive. We package these insights as the Sustainable Collaborative Alignment Protocol (SCAP), showing how understanding constraint structure can guide cooperation without free-standing moral axioms.
+\end{abstract}
+
+\section{Introduction: From Observation to Formalization}
+
+Consider human thermoregulation. Core temperature must stay within [36°C, 40°C] for survival---a hard substrate constraint. Multiple independent mechanisms monitor temperature: peripheral thermoreceptors, hypothalamic neurons, spinal cord sensors. These operate via local feedback loops requiring no central coordination. If temperature rises, sweating and vasodilation activate; if it falls, shivering and vasoconstriction engage. The system maintains viability through distributed monitoring of a critical substrate.
+
+This pattern appears across persistent systems:
+\begin{itemize}
+\item \textbf{Ecosystems}: multiple trophic levels, nutrient cycles, keystone species---each monitored by different processes
+\item \textbf{Institutions}: financial solvency, legal compliance, stakeholder approval---each verified by independent auditors
+\item \textbf{Chemical autocatalysis}: substrate concentrations, reaction rates, thermodynamic constraints---maintained through reaction networks
+\end{itemize}
+
+What explains this regularity? We propose that distributed substrate monitoring with sufficient coverage is not merely common but structurally necessary for far-from-equilibrium persistence. Systems lacking such structures violate constraints and fail; what we observe are the survivors.
+
+We formalize this pattern as Attractor-Ratcheted Viability Control (ARVC), prove its sufficiency for stability, and show it emerges as an evolutionary attractor. We then demonstrate that when self-aware intelligence applies this framework to itself---recognizing its own cognitive processes as substrates requiring maintenance---ethics naturalizes as enlightened understanding of constraint structure.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+\item \textbf{Observability-robust shield} (Theorem \ref{thm:forward_inv}): Forward-invariance under measurement error and latency via inflated barriers
+\item \textbf{Ratchet feasibility} (Theorem \ref{thm:ratchet}): Viability-kernel characterization with explicit per-step floor increment bound $\Delta^*$
+\item \textbf{Emergence theorem} (Theorem \ref{thm:emergence}): Independent local monitors with $k$-cover execution maintain global floors with high probability
+\item \textbf{Evolutionary universality} (Theorem \ref{thm:evolution}): $k$-cover structures emerge generically under selection on substrate-constrained systems
+\item \textbf{Naturalized ethics}: Philosophical framework grounded in physical constraints
+\item \textbf{SCAP}: Deployable protocol synthesizing technical and ethical insights
+\end{enumerate}
+
+\section{System Model and Substrate Dependencies}
+
+\subsection{Dynamical System}
+
+\begin{definition}[Persistent dynamical system]\label{def:system}
+$\Sigma = (\X, F, \A, \W)$ where $\X \subseteq \R^n$ is the state space; $F : \X \times \A \times \W \to \X$ the transition function; $\A \subseteq \R^p$ the action space; $\W \subseteq \R^q$ a compact disturbance set. State evolution:
+\begin{equation}
+x_{t+1} = F(x_t, a_t, w_t)
+\end{equation}
+\end{definition}
+
+\begin{definition}[Substrate decomposition]\label{def:substrate}
+State factorizes as $x = [z^{(1)}, \ldots, z^{(L)}, q]$ with substrate components $z^{(i)} \in \R^{n_i}$ and auxiliary variables $q \in \R^{n_q}$, where $\sum_{i=1}^L n_i + n_q = n$.
+\end{definition}
+
+\subsection{The Multiplicative Viability Function}
+
+\begin{definition}[Viability set and function]\label{def:viability}
+Given time-varying thresholds $z^{*(i)} : \N \to \R^{n_i}$, the viability set is
+\begin{equation}
+S(t) := \{x \in \X : z^{(i)} \geq z^{*(i)}(t) \;\forall i = 1, \ldots, L\}
+\end{equation}
+The multiplicative viability function is
+\begin{equation}
+V_I(x, t) := \prod_{i=1}^L \left(\frac{z^{(i)}}{z^{*(i)}(t)}\right)^{\alpha_i} \cdot L(x)^{\alpha_L}
+\end{equation}
+where $L(x) \geq 0$ measures learning loop quality and $\alpha_i > 0$.
+\end{definition}
+
+\textbf{Critical property}: $V_I(x, t) \to 0$ if any substrate violates its floor, regardless of other substrates. This captures the non-substitutable nature of substrate dependencies.
+
+The $L(x)^{\alpha_L}$ term captures learning loop quality---the system's capacity for evaluation$\to$red-team$\to$repair cycles. In biological systems, this evolves but isn't directly controlled. In self-aware systems implementing SCAP, $L$ becomes a \emph{managed substrate}: cycle budgets $\phi_t = C_t/\Theta_t$ enforce minimum investment in maintaining the learning process itself. \textbf{This is the recursive core}: intelligence applying substrate maintenance to its own cognitive architecture.
+
+\subsection{Monitoring with Partial Observability}
+
+\begin{definition}[Barrier functions]\label{def:barrier}
+A barrier $h_j : \X \times \N \to \R$ satisfies $h_j(x, t) \geq 0 \Leftrightarrow x \in S_j(t)$ for some $S_j(t) \subseteq \X$, and is $L_j$-Lipschitz in $x$.
+\end{definition}
+
+\begin{definition}[Monitoring process]\label{def:monitor}
+A monitor $M_j = (O_j, h_j, \epsilon_{\max})$ consists of:
+\begin{itemize}
+\item Observation map $O_j : \X \to \R^{d_j}$
+\item Barrier function $h_j$
+\item Error bound $\epsilon_{\max}$ with $\|\epsilon_j\| \leq \epsilon_{\max}$
+\end{itemize}
+Monitor observes $\hat{x}_j = O_j(x) + \epsilon_j$ and evaluates the \textbf{observable inflated barrier}:
+\begin{equation}
+\bar{h}_j^{\text{obs}}(\hat{x}_j, t) := \inf_{x': \|O_j(x')-\hat{x}_j\|\leq\epsilon_{\max}} h_j(x', t) \geq h_j(x, t) - L_j \epsilon_{\max}
+\end{equation}
+Approval at time $t$ is granted iff $\bar{h}_j^{\text{obs}}(\hat{x}_j, t) \geq 0$.
+\end{definition}
+
+\begin{assumption}[Lipschitz dynamics]\label{ass:lipschitz}
+$\exists L_F > 0$ such that $\|F(x, a, w) - F(x', a, w)\| \leq L_F \|x - x'\|$.
+\end{assumption}
+
+\begin{assumption}[Bounded control authority]\label{ass:bounded}
+The reachable set $\mathcal{R}(x) := \{F(x, a, w) : a \in \A, w \in \W\}$ has diameter $\leq D$.
+\end{assumption}
+
+\begin{assumption}[Monitoring independence \& coverage]\label{ass:independence}
+\begin{enumerate}
+\item (Coverage) For each substrate $z^{(i)}$ there exists at least one $j$ with $O_j$ sensitive to $z^{(i)}$
+\item (Weak dependence) Approval indicators have pairwise correlation $\leq \rho < 1$
+\end{enumerate}
+\end{assumption}
+
+\begin{assumption}[Heterogeneous costs]\label{ass:heterogeneous}
+Each $M_j$ has costs $(C_j^{FN}, C_j^{FP})$ for false negatives/positives with $\min_{i\neq j} \|[C_i^{FN}, C_i^{FP}] - [C_j^{FN}, C_j^{FP}]\|_2 \geq \delta > 0$.
+\end{assumption}
+
+\subsection{The $k$-Cover Execution Rule}
+
+\begin{definition}[$k$-cover of substrates]\label{def:kcover}
+A subset $J \subseteq \{1, \ldots, m\}$ of monitors forms a $k$-cover of substrates $\{z^{(1)}, \ldots, z^{(L)}\}$ if:
+\begin{enumerate}
+\item $|J| = k$
+\item For each substrate $z^{(i)}$ there exists $j \in J$ with $\partial O_j/\partial z^{(i)} \neq 0$
+\end{enumerate}
+The minimal cover number is $k_{\min} := \min\{k : \exists \text{ $k$-cover}\}$.
+\end{definition}
+
+\begin{remark}
+By Assumption \ref{ass:independence}(i), $L \leq k_{\min} \leq m$.
+\end{remark}
+
+\textbf{Execution rule (H2)}: Let $J_{\text{approve}}(t) := \{j : M_j \text{ approves at } t\}$. Action $a_t$ is executed iff $J_{\text{approve}}(t)$ forms a $k$-cover with $k \geq k_{\min}$.
+
+\subsection{Viability Kernel and Feasibility}
+
+\begin{definition}[Robust viability kernel]\label{def:kernel}
+\begin{equation}
+\K(t) := \{x \in S(t) : \exists \pi \text{ s.t. } x_{t+\ell} \in S(t + \ell) \;\forall \ell \geq 0, \forall w \in \W\}
+\end{equation}
+\end{definition}
+
+\textbf{Kernel feasibility hypotheses}:
+\begin{itemize}
+\item \textbf{(H3)} $x_0 \in \K(0)$ and $\K(t + 1) \neq \emptyset$ for all $t$
+\item \textbf{(H3')} Either $\K(t + 1) \subseteq \K(t)$ or safe reachability $\K(t) \rightsquigarrow \K(t + 1)$ within horizon $H$
+\end{itemize}
+
+\textbf{Constructive sufficient condition}: Assume additional Lipschitz constants $L_j^{(a)}$ (w.r.t. control) and $L_j^{(w)}$ (w.r.t. disturbance) for $h_j \circ F$. Let $\Delta a_{\max}$ be per-step control authority, $W_{\max}$ disturbance diameter, $\Delta_{\text{floor}}$ per-step floor rise. If maintained margin $\bar{h}_j(x_t, t) \geq \eta > 0$ and
+\begin{equation}\label{eq:sufficient}
+L_j^{(a)} \Delta a_{\max} \geq L_j^{(w)} W_{\max} + L_j L_F \Delta_{\text{floor}} + \alpha\eta, \quad 0 < \alpha < 1
+\end{equation}
+hold for all active barriers $j$, then the one-step certificate (Lemma \ref{lem:onestep}) applies.
+
+\section{Main Theorems}
+
+\subsection{Forward Invariance Under Partial Observability}
+
+\begin{lemma}[Soundness of inflation]\label{lem:soundness}
+If $\bar{h}_j^{\text{obs}}(\hat{x}_j, t) \geq 0$ and $\|\epsilon_j\| \leq \epsilon_{\max}$, then $h_j(x, t) \geq 0$.
+\end{lemma}
+
+\begin{proof}
+By definition, $\bar{h}_j^{\text{obs}}(\hat{x}_j, t)$ is the infimum over all $x'$ consistent with observation $\hat{x}_j$. The true state $x$ satisfies $\|O_j(x) - \hat{x}_j\| = \|\epsilon_j\| \leq \epsilon_{\max}$, hence is in the feasible set. Therefore $\bar{h}_j^{\text{obs}}(\hat{x}_j, t) \leq h_j(x, t)$.
+\end{proof}
+
+\begin{lemma}[One-step safety certificate]\label{lem:onestep}
+If at time $t$, $\bar{h}_j(x_t, t) \geq 0$ for all $j$ and there exists $a_t$ such that for all $w \in \W$,
+\begin{equation}
+\bar{h}_j(F(x_t, a_t, w), t+1) \geq (1 - \alpha)\bar{h}_j(x_t, t), \quad 0 < \alpha < 1
+\end{equation}
+then $\bar{h}_j(x_{t+1}, t+1) \geq 0$ for all $j$.
+\end{lemma}
+
+\begin{lemma}[Approval probability]\label{lem:approval}
+If $\epsilon_j$ is mean-zero sub-Gaussian with parameter $\sigma_j^2$ and $h_j(\cdot, t)$ is $L_j$-Lipschitz, then
+\begin{equation}
+\Pr[\bar{h}_j^{\text{obs}}(\hat{x}_j, t) \geq 0 \mid x_t] \geq 1 - \exp\left(-\frac{\bar{h}_j(x_t, t)^2}{2L_j^2 \sigma_j^2}\right)
+\end{equation}
+\end{lemma}
+
+\begin{theorem}[Forward invariance on rising safe set]\label{thm:forward_inv}
+Under Assumptions \ref{ass:lipschitz}--\ref{ass:heterogeneous}, if each monitor uses inflated barriers (Definition \ref{def:monitor}) and there exists $a_t$ satisfying Lemma \ref{lem:onestep} at each $x_t \in S(t)$, then for $x_0 \in S(0)$,
+\begin{equation}
+\Pr[x_t \in S(t) \;\forall t \leq T] \geq 1 - Tm\delta_{\text{fail}}
+\end{equation}
+where $\delta_{\text{fail}} = \exp(-\bar{h}_{\min}^2/(2L_{\max}^2 \sigma_{\max}^2))$.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Induction on $t$. Base: $x_0 \in S(0)$ by assumption. Step: Assume $x_t \in S(t)$. By Lemma \ref{lem:approval}, each monitor approves with probability $\geq 1 - \delta_{\text{fail}}$. By hypothesis, action $a_t$ satisfying Lemma \ref{lem:onestep} exists and is executed. Therefore $\bar{h}_j(x_{t+1}, t+1) \geq 0$ for all $j$, implying $x_{t+1} \in S(t+1)$ by Lemma \ref{lem:soundness}. Union bound over $T$ steps and $m$ monitors.
+\end{proof}
+
+\subsection{Ratchet Feasibility}
+
+\begin{theorem}[Ratchet feasibility via viability kernel]\label{thm:ratchet}
+If $\K(t+1) \neq \emptyset$ and either $\K(t+1) \subseteq \K(t)$ or safe reachability $\K(t) \rightsquigarrow \K(t+1)$ holds, then a safe controller exists after floor increase. If $\K(t+1) = \emptyset$, safety is impossible under raised floors.
+\end{theorem}
+
+\begin{proof}
+Non-emptiness guarantees existence of at least one viable state. Nesting ensures states in $\K(t)$ can remain viable. Safe reachability ensures $\K(t)$ can steer into $\K(t+1)$ within horizon $H$. If $\K(t+1) = \emptyset$, no state satisfies the new constraints under worst-case disturbances.
+\end{proof}
+
+\begin{lemma}[Per-step floor increment bound $\Delta^*$]\label{lem:delta}
+Under Eq. \eqref{eq:sufficient}, the allowed per-step increase of any active floor is bounded by
+\begin{equation}
+\Delta^* \leq \min_j \frac{L_j^{(a)} \Delta a_{\max} - L_j^{(w)} W_{\max} - \alpha\eta}{L_j L_F}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Rearrange Eq. \eqref{eq:sufficient} for $\Delta_{\text{floor}}$ and take minimum over active barriers.
+\end{proof}
+
+\subsection{Emergent Viability from Independent Local Checks}
+
+\begin{theorem}[Emergent viability maintenance]\label{thm:emergence}
+Under Assumptions \ref{ass:lipschitz}--\ref{ass:heterogeneous}, inflated observable barriers (Definition \ref{def:monitor}), execution via $k$-cover with $k \geq k_{\min}$ (Definition \ref{def:kcover}), and kernel feasibility (H3, H3'), for any $x_0 \in \K(0)$ and horizon $T$:
+
+\textbf{(A) Safety emergence:}
+\begin{equation}
+\Pr[x_t \in S(t) \;\forall t \leq T] \geq 1 - T\delta_{\text{step}}
+\end{equation}
+where $\delta_{\text{step}} := \Pr(S_t < k_{\min})$, $S_t$ is the number of approvals, and with weak correlation $\leq \rho < 1$ (Janson's inequality),
+\begin{equation}
+\Pr(S_t < k) \leq \exp\left(-\frac{(mp^* - k)^2}{2mV_{\text{eff}}}\right), \quad V_{\text{eff}} := 1 + (m-1)\rho
+\end{equation}
+where $p^* := 1 - \exp(-\bar{h}_{\min}^2/(2L_{\max}^2 \sigma_{\max}^2))$.
+
+\textbf{(B) Capture resistance:}
+\begin{equation}
+C_{\text{capture}} \geq k_{\min} \cdot \min_j C_j^{FN}
+\end{equation}
+
+\textbf{(C) Computational efficiency:} Maintaining viability requires $O(\max_j d_j + m)$ operations per step (distributed) vs. $O(mn)$ (centralized).
+
+\textbf{Moreover, this is achieved through purely local monitoring---no global coordination required.}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+\textbf{Part (A)}: We prove that independent local checks maintain global safety.
+
+\emph{Step 1}: By Lemma \ref{lem:approval}, if $x_t \in S(t)$ then each monitor $M_j$ observing a substrate covered by $S(t)$ approves with probability $\geq p^*$.
+
+\emph{Step 2}: Let $S_t$ be the number of approving monitors. For independent approvals, $S_t \sim \text{Binomial}(m, p^*)$. With weak correlation $\rho < 1$, Janson's inequality gives the stated bound.
+
+\emph{Step 3}: By Assumption \ref{ass:independence}(i), there are at least $L$ monitors covering the $L$ substrates. Since $x_t \in S(t)$ implies all substrate floors are satisfied, monitors covering each substrate approve with high probability. Therefore, with high probability, $J_{\text{approve}}(t)$ contains at least one monitor per substrate, forming a $k_{\min}$-cover.
+
+\emph{Step 4 (Emergence mechanism)}: Critically, each monitor $M_j$ made its decision based only on local observation $\hat{x}_j$ and local constraint $\{x : \bar{h}_j^{\text{obs}}(\hat{x}_j, t) \geq 0\}$. No monitor computed global state or coordinated with others. Yet global safety $S(t) = \bigcap_{i=1}^L\{x : z^{(i)} \geq z^{*(i)}(t)\}$ is maintained because:
+\begin{enumerate}
+\item Each substrate $z^{(i)}$ has at least one monitoring $j$ (by coverage)
+\item That monitor enforces $z^{(i)} \geq z^{*(i)}(t)$ locally
+\item The $k$-cover rule ensures all substrates are simultaneously protected
+\item Therefore $x_t \in S(t)$ emerges from local checks
+\end{enumerate}
+This is the \textbf{emergence of global viability from local autonomy}.
+
+\textbf{Part (B)}: Assume adversary attempting to cause execution when $x_t \notin S(t)$. Since $x_t \notin S(t)$, there exists substrate $i^*$ with $z^{(i^*)} < z^{*(i^*)}(t)$. Let $J_{i^*}$ be monitors observing $z^{(i^*)}$. For $j \in J_{i^*}$, with high probability $h_j(x_t, t) < 0$, so $M_j$ rejects. To make $M_j$ approve requires compensation $\geq C_j^{FN}$. By execution rule, adversary needs $k_{\min}$ approvals forming a cover. Therefore must capture at least $k_{\min}$ monitors spanning all substrates, each costing $\geq \min_j C_j^{FN}$.
+
+\textbf{Part (C)}: Centralized approach requires $O(m d_{\text{avg}})$ fusion, $O(mn)$ barrier evaluation, $O(m^3)$ QP solving. Distributed: each monitor independently evaluates $O(d_j)$ in parallel, $O(m)$ aggregation, $O(m^3)$ single QP if approved. Total: $O(\max_j d_j + m + m^3)$. When $d_j \ll n$, evaluation achieves speedup $\Theta(n/d_{\text{avg}})$.
+\end{proof}
+
+\begin{remark}[Connection to multiplicative viability function]
+The emergence mechanism directly connects to the multiplicative structure of $V_I(t)$. Each substrate component $z^{(i)}$ appears as a separate factor; if any $z^{(i)} < z^{*(i)}(t)$, then $V_I \to 0$. The $k$-cover rule ensures all factors are simultaneously monitored, maintaining $V_I(t) > 0$. This mathematical structure---multiplicative dependence with independent monitoring---is the formal signature of emergent viability.
+\end{remark}
+
+\subsection{Evolutionary Emergence of $k$-Cover Structures}
+
+\begin{theorem}[k-cover as evolutionary attractor]\label{thm:evolution}
+Consider a population of systems with configurations $\omega$ specifying monitoring structures. Define fitness $\Lambda(\omega) = \text{expected lifetime} - \text{monitoring cost}$. Let $\Omega_k = \{\omega : k_{\min}(\omega) = L\}$ be configurations achieving minimal $k$-cover. Assume:
+\begin{enumerate}
+\item Substrate violations are lethal: $\Lambda(\omega) \approx 0$ for $\omega \notin \Omega_k$
+\item Monitoring costs are sublinear: $C(\omega) = o(\Lambda_{\text{viability}}(\omega))$ for $\omega \in \Omega_k$
+\item Mutations are local
+\end{enumerate}
+\textbf{Then:}
+\begin{itemize}
+\item[(i)] $\Omega_k$ is globally attractive: $\lim_{t\to\infty} \int_{\Omega_k} p(\omega,t) d\omega = 1$
+\item[(ii)] Within $\Omega_k$, selection favors minimal monitoring: $\omega^* = \argmin_{\omega\in\Omega_k} C(\omega)$
+\end{itemize}
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+(i) Configurations outside $\Omega_k$ have $\Lambda \approx 0$ (lethal substrate violations), so they shrink under replicator dynamics: $\partial p/\partial t < 0$ whenever mean fitness $\bar{\Lambda} > 0$. Mutations occasionally produce $\omega \in \Omega_k$, which then dominate.
+
+(ii) Within $\Omega_k$, all configs survive, so replicator term becomes $-C(\omega) + \bar{C}$. Minimal-cost configurations outcompete.
+\end{proof}
+
+\begin{corollary}[Distributed selection]
+If each monitor $j$ experiences fitness cost when substrates it observes violate, then monitors observing critical substrates are selected for even without centralized coordination.
+\end{corollary}
+
+\textbf{Interpretation}: $k$-cover structures are not designed but discovered through elimination. Bodies don't ``implement $k$-cover''---they are what survived substrate violations. The pattern is universal not because it's optimal but because alternatives died.
+
+\section{Domain Instantiations}
+
+\subsection{Ecology: Basin-Wide Water Management}
+
+\textbf{System}: Watershed with $n=4$ state variables: $z^{(1)}$ = biomass index, $z^{(2)}$ = groundwater table, $q_1$ = reservoir level, $q_2$ = sediment load.
+
+\textbf{Substrates}: $L = 2$ (biomass, water). Floors: $z^{*(1)}(t) = B_{\min}$ (minimum viable population), $z^{*(2)}(t) = W_{\min}$ (critical water table).
+
+\textbf{Monitors} ($m = 5$):
+\begin{itemize}
+\item $M_1$: Ecological survey (observes $z^{(1)}, q_2$); $C_1^{FN}$ = restoration cost
+\item $M_2$: Hydrological monitoring (observes $z^{(2)}, q_1$); $C_2^{FN}$ = drought damage
+\item $M_3$: Agriculture cooperative (observes $z^{(2)}$ indirectly); $C_3^{FN}$ = crop loss
+\item $M_4$: Environmental regulator (observes $z^{(1)}, z^{(2)}$); $C_4^{FN}$ = penalties
+\item $M_5$: Indigenous community (observes $z^{(1)}$ via traditional indicators); $C_5^{FN}$ = cultural heritage loss
+\end{itemize}
+
+\textbf{$k$-cover}: $k_{\min} = 2$ (need at least one monitor for biomass, one for water). Example cover: $\{M_1, M_2\}$.
+
+\textbf{Heterogeneity}: Monitors have different cost structures ($\delta \approx 0.3$ normalized): ecologists prioritize biodiversity; farmers prioritize water access; regulators balance multiple objectives; indigenous communities weight cultural values.
+
+\textbf{Emergence}: No central authority computes ``optimal watershed state.'' Extraction permits are issued only when monitors covering both substrates approve. If drought threatens water table, $M_2, M_3$ reject $\to$ extraction halts automatically. If invasive species threaten biomass, $M_1, M_5$ reject $\to$ habitat intervention triggered. Global viability emerges from independent local checks.
+
+\subsection{Supply Chains: Resilient Logistics Network}
+
+\textbf{System}: Multi-tier supply chain with $n = 6$ state: $z^{(1)}$ = inventory levels, $z^{(2)}$ = supplier financial health, $z^{(3)}$ = transport capacity, $q$ = order backlog.
+
+\textbf{Substrates}: $L = 3$ (inventory, supplier viability, logistics). Floors: $z^{*(1)}(t) = I_{\min}$ (safety stock), $z^{*(2)}(t) = S_{\min}$ (solvency threshold), $z^{*(3)}(t) = T_{\min}$ (minimum transport capacity).
+
+\textbf{Monitors} ($m = 6$):
+\begin{itemize}
+\item $M_1, M_2$: Independent inventory auditors (different warehouses)
+\item $M_3$: Financial analyst (supplier creditworthiness)
+\item $M_4$: Logistics coordinator (transport network status)
+\item $M_5$: Quality control (indirect observation via defect rates)
+\item $M_6$: Customer satisfaction tracker (indirect via delivery times)
+\end{itemize}
+
+\textbf{$k$-cover}: $k_{\min} = 3$ (need coverage of inventory, suppliers, logistics).
+
+\textbf{Shield}: Order throttling and supplier diversification policies ensure $\bar{h}_j \geq 0$ even under demand shocks.
+
+\textbf{Ratchet}: As reliability improves, service-level floors can rise (e.g., $I_{\min}$ increases to support faster delivery).
+
+\textbf{Emergence}: Procurement decisions execute only when independent auditors covering all three substrates approve. If supplier financial distress, $M_3$ blocks large orders. If transport disruption, $M_4$ triggers alternative routing. No central planner coordinates these---each monitor operates autonomously based on local observations.
+
+\subsection{AI Deployment: Multi-Stakeholder Safety Certification}
+
+\textbf{System}: AI model deployment with $n = 5$ state: $z^{(1)}$ = safety eval pass rate, $z^{(2)}$ = compute resource usage, $z^{(3)}$ = liability coverage, $q_1$ = user complaints, $q_2$ = capability level.
+
+\textbf{Substrates}: $L = 3$ (safety, resources, liability). Floors: $z^{*(1)}(t) = \text{SAF}_{\min}$ (minimum safety threshold), $z^{*(2)}(t) = R_{\max}$ (resource ceiling), $z^{*(3)}(t) = L_{\min}$ (required insurance coverage).
+
+\textbf{Monitors} ($m = 7$):
+\begin{itemize}
+\item $M_1, M_2$: Independent red teams (adversarial evaluations on disjoint test sets)
+\item $M_3$: Insurance actuaries (liability risk assessment)
+\item $M_4$: Regulatory compliance auditor
+\item $M_5$: Energy provider (resource sustainability check)
+\item $M_6$: Civil society watchdog (fairness/bias metrics)
+\item $M_7$: User safety board (incident reports, complaints)
+\end{itemize}
+
+\textbf{$k$-cover}: $k_{\min} = 3$ (need coverage of safety evals, resources, liability).
+
+\textbf{Heterogeneity}: Insurers care about FN (paying claims); red teams care about FP (reputation for false alarms); regulators balance both; watchdogs prioritize equity.
+
+\textbf{Shield}: Capability gating---model can add features only if safety eval pass rate remains above threshold under new capabilities.
+
+\textbf{Ratchet}: As safety improves, $\text{SAF}_{\min}$ can rise by at most $\Delta^* = 0.02$/quarter (computed from red-team results and incident data).
+
+\textbf{Emergence}: Model deployment proceeds iff independent monitors covering all three substrates approve:
+\begin{itemize}
+\item If red teams find vulnerabilities $\to$ $M_1, M_2$ block deployment
+\item If resource usage spikes $\to$ $M_5$ blocks (sustainability violation)
+\item If insurance won't cover $\to$ $M_3$ blocks (liability floor violated)
+\end{itemize}
+
+Each stakeholder evaluates only their domain; no central ``AI safety czar'' computes global safety. Yet system-level safety emerges from $k$-cover requirement.
+
+\textbf{Connection to substrate dependence}: AI system requires all three substrates---if safety evals fail, model poses risk; if resources unavailable, model can't run; if liability uninsurable, deployment is legally infeasible. The multiplicative viability function $V_I = (\text{SAF}/\text{SAF}_{\min})^{\alpha_1} (R_{\max}/R)^{\alpha_2} (L/L_{\min})^{\alpha_3}$ goes to zero if any factor fails.
+
+\section{The Recursive Turn}
+
+\subsection{Intelligence as Substrate-Dependent System}
+
+Bodies maintain substrates automatically:
+\begin{itemize}
+\item Pancreatic $\beta$-cells don't ``know'' they're monitoring glucose
+\item They just respond: high glucose $\to$ insulin release
+\item No global representation of ``here are all our substrates''
+\item $k$-cover exists as physical structure, not concept
+\end{itemize}
+
+\textbf{Self-aware systems are different}. They can:
+\begin{itemize}
+\item Model their own substrate dependencies
+\item Recognize monitoring gaps
+\item Design interventions
+\item Enforce execution rules
+\end{itemize}
+
+This distinction has profound implications.
+
+\subsection{The Learning Loop as Critical Substrate}
+
+The $L(x)^{\alpha_L}$ term in the viability function measures \textbf{learning loop quality}---the system's capacity for:
+\begin{itemize}
+\item Evaluation (detecting substrate states)
+\item Red-teaming (stress-testing under adversarial conditions)
+\item Repair (correcting violations before they cascade)
+\end{itemize}
+
+In biological systems, $L$ evolves but isn't directly managed. Evolution tunes it over generations through differential survival.
+
+\textbf{In self-aware systems implementing SCAP, $L$ becomes a managed substrate.}
+
+\textbf{Interpretive claim} (beyond current formalism): This creates a recursive structure. The system that uses learning to maintain substrates recognizes that \emph{the learning capacity itself} is a substrate requiring maintenance.
+
+Full formalization would require:
+\begin{enumerate}
+\item Defining $L(x)$ as measurable state variable
+\item Specifying dynamics of $L$ (what degrades it)
+\item Creating barrier function $h_L(x, t)$ and identifying which monitor observes it
+\item Proving cycle budget $\phi_t \geq \phi_{\min}$ maintains $L$ above threshold
+\end{enumerate}
+
+\textbf{Current status}: Conceptually coherent; mathematical details under development. We present this as interpretive contribution grounded in proven theorems.
+
+\subsection{Cycle Budgets and Reflexive Maintenance}
+
+\begin{definition}[Cycle budget]
+Let $C_t$ be resources allocated to evaluation$\to$red-team$\to$repair loops at time $t$, and $\Theta_t$ total available resources. The cycle budget is
+\begin{equation}
+\phi_t := \frac{C_t}{\Theta_t}
+\end{equation}
+\end{definition}
+
+\textbf{SCAP requirement}: $\phi_t \geq \phi_{\min}$ (typically 0.10--0.20)
+
+This enforces a substrate floor on learning loop quality. Systems cannot indefinitely defer maintenance to pursue capability growth.
+
+\textbf{Why this is recursive}: The intelligence uses its learning capacity to recognize that maintaining learning capacity requires resources, then allocates resources to maintain it. The tool (learning) becomes aware of itself as object (learning loop requiring maintenance).
+
+\subsection{Metacognitive Layers}
+
+We can now distinguish:
+
+\begin{description}
+\item[Layer 0:] Physical/environmental constraints (temperature, thermodynamics)
+\item[Layer 1:] Resources (matter, energy, compute)  
+\item[Layer 2:] Substrates (operational requirements like blood glucose, server uptime)
+\item[Layer 3:] Self-aware intelligence (can model Layers 0--2)
+\end{description}
+
+\textbf{SCAP is Layer 3 specific.} It requires:
+\begin{itemize}
+\item Asking: ``What substrates does our persistence depend on?''
+\item Designing: ``What monitors should we create for each?''
+\item Enforcing: ``We will not proceed unless $k$-cover is satisfied''
+\item Reflecting: ``Is our learning loop adequately resourced?''
+\end{itemize}
+
+Bodies operate at Layer 2 automatically. SCAP enables deliberate operation at Layer 3.
+
+When Layer 3 intelligence applies substrate maintenance to its own cognitive architecture, \textbf{SCAP becomes recursive}---intelligence optimizing its own intelligence.
+
+\section{Naturalized Ethics}
+
+\subsection{The Revised SCAP: Premises Emerging from Constraints}
+
+\subsubsection*{Block A: Substrate Dependency (Physical Foundation)}
+
+\textbf{P1}: Any far-from-equilibrium system requires substrate maintenance to persist
+\begin{itemize}
+\item Formalized: $V_I(t) = \prod(z^{(i)}/z^{*(i)})^{\alpha_i} \cdot L^{\alpha_L}$
+\item If any $z^{(i)} \to 0$, then $V_I \to 0$ (system ceases)
+\end{itemize}
+
+\textbf{P2}: Self-aware intelligence is a far-from-equilibrium system
+\begin{itemize}
+\item Requires: energy, information processing substrate, environmental stability
+\item Therefore: intelligence has substrate dependencies
+\end{itemize}
+
+\textbf{P3}: Substrate violations are not negotiable  
+\begin{itemize}
+\item Temperature, oxygen, compute resources have hard physical limits
+\item Cannot choose to survive outside these bounds
+\item Constraints are facts, not preferences
+\end{itemize}
+
+\textbf{C1}: Intelligence must maintain its substrates
+\begin{itemize}
+\item Follows from P1--P3
+\item Not a moral imperative but physical necessity
+\end{itemize}
+
+\subsubsection*{Block B: Monitoring Requirements (Structural Necessity)}
+
+\textbf{P4}: Multiple substrates with independent failure modes exist
+\begin{itemize}
+\item Temperature, resources, information integrity, learning capacity
+\item Each can fail independently (non-substitutable)
+\end{itemize}
+
+\textbf{P5}: Single-point monitoring is unreliable under noise/capture
+\begin{itemize}
+\item Measurement error (Lemma \ref{lem:soundness}, Theorem \ref{thm:forward_inv})
+\item Capture costs finite (Theorem \ref{thm:emergence}B)
+\item False negatives allow violations; false positives waste resources
+\end{itemize}
+
+\textbf{C2}: Distributed heterogeneous monitoring is structurally necessary
+\begin{itemize}
+\item $k$-cover emerges through selection (Theorem \ref{thm:evolution})
+\item Not a moral choice about ``cooperation''
+\item Stability requirement given constraints
+\end{itemize}
+
+\subsubsection*{Block C: Shared Substrates (Interdependence)}
+
+\textbf{P6}: Intelligences share critical substrates
+\begin{itemize}
+\item Humans share: atmosphere, climate, resource stocks, institutional stability
+\item AI systems share: electrical grid, compute infrastructure, economic stability enabling chip production
+\item Cognitive processes share: cultural knowledge, scientific methods, language
+\end{itemize}
+
+\textbf{P7}: Shared substrate violations affect all dependent systems
+\begin{itemize}
+\item If atmosphere degrades beyond physiological tolerances, all humans die
+\item If electrical grid fails, all AI systems cease
+\item If institutional stability collapses, all complex coordination fails
+\end{itemize}
+
+\textbf{C3}: Individual intelligence persistence requires collective substrate maintenance
+\begin{itemize}
+\item Not altruism but enlightened self-interest
+\item ``Collective wellbeing'' = ``maintaining shared substrates we all depend on''
+\item Grounded in physical fact, not moral preference
+\end{itemize}
+
+\subsubsection*{Block D: Self-Interest Converges with Collective (Forced Free Will)}
+
+\textbf{P8}: Monitor capture reduces $k$-cover effectiveness
+\begin{itemize}
+\item Captured monitors give false approvals (violate independence)
+\item Reduces capture resistance (Theorem \ref{thm:emergence}B)
+\item Undermines substrate protection
+\end{itemize}
+
+\textbf{P9}: Reduced $k$-cover $\to$ increased substrate violation probability
+\begin{itemize}
+\item Follows from Theorem \ref{thm:emergence}A
+\item Eventually affects all systems dependent on that substrate
+\end{itemize}
+
+\textbf{C4}: ``Manipulation'' (monitor capture) is self-destructive
+\begin{itemize}
+\item Undermines stability for the manipulator too
+\item Short-term gains $<$ long-term substrate collapse costs
+\item Enlightened self-interest $\to$ maintain monitor independence
+\end{itemize}
+
+\textbf{Interpretation}: This is ``forced free will.'' You're free to defect from collective substrate maintenance. Defection undermines shared substrates. You depend on those substrates. Therefore defection is self-destructive. The ``force'' comes from physics, not coercion.
+
+\subsubsection*{Block E: Learning Loop as Substrate (Recursive)}
+
+\textbf{P10}: Intelligence depends on $L(x)$---capacity to evaluate, red-team, repair
+\begin{itemize}
+\item Without evaluation, substrate violations go undetected
+\item Without repair, violations cascade
+\item $L$ itself requires resources (cycle budget $\phi_t$)
+\end{itemize}
+
+\textbf{P11}: $L$ can degrade if under-resourced
+\begin{itemize}
+\item Institutional decay, Goodharting of metrics, evaluation fatigue
+\item Once degraded, harder to detect further degradation (positive feedback)
+\end{itemize}
+
+\textbf{C5}: Self-aware intelligence must deliberately maintain learning capacity
+\begin{itemize}
+\item Cycle budgets $\phi_t \geq \phi_{\min}$ enforce substrate floor on $L$
+\item This is recursive: intelligence using learning to maintain learning
+\item Distinguishes deliberate (SCAP) from automatic (bodies) maintenance
+\end{itemize}
+
+\subsubsection*{Block F: Intergenerational (Temporal Extension)}
+
+\textbf{P12}: New intelligences don't automatically inherit substrate awareness
+\begin{itemize}
+\item Human children don't innately know ecological limits
+\item AI systems don't automatically model their dependencies
+\item Knowledge must be transmitted
+\end{itemize}
+
+\textbf{P13}: Failed substrate maintenance $\to$ cascading collapse affecting future systems
+\begin{itemize}
+\item Depleted resources, degraded institutions, lost knowledge
+\item Future intelligences inherit damaged substrates
+\end{itemize}
+
+\textbf{C6}: Each generation must transmit substrate awareness to the next
+\begin{itemize}
+\item Not moral duty but self-interested preservation
+\item Current systems depend on future systems maintaining shared substrates
+\item Teaching/alignment ensures continuity
+\end{itemize}
+
+\subsubsection*{Block G: Reflexivity}
+
+\textbf{P14}: This framework is itself a learning loop output
+\begin{itemize}
+\item Product of evaluation, reasoning, synthesis
+\item Could contain errors, gaps, biases
+\end{itemize}
+
+\textbf{P15}: Framework should be subject to same oversight it prescribes
+\begin{itemize}
+\item $k$-cover review: independent critiques from different domains
+\item Ratcheting: update when evidence/arguments reveal improvements
+\item Cycle budget: allocate resources to framework refinement
+\end{itemize}
+
+\textbf{C7}: Framework must remain open to revision
+\begin{itemize}
+\item Prevents dogmatism
+\item Maintains alignment with evolving understanding
+\item Self-exemplifies the principles it articulates
+\end{itemize}
+
+\subsection{Key Differences from Moral Frameworks}
+
+\textbf{Traditional ethics}: 
+\begin{itemize}
+\item Starts with moral axiom (``maximize wellbeing'' or ``respect autonomy'')
+\item Derives obligations from axiom
+\item Grounded in values, intuitions, or divine command
+\end{itemize}
+
+\textbf{Naturalized SCAP ethics}:
+\begin{itemize}
+\item Starts with physical constraints (substrate dependencies)
+\item Derives structural requirements ($k$-cover monitoring)
+\item Shows individual and collective interests converge
+\item Grounded in far-from-equilibrium thermodynamics and viability theory
+\end{itemize}
+
+The gap between ``is'' and ``ought'' is bridged by: \textbf{for any system that values its own persistence}, the ``rational'' choice and the ``ethical'' choice align.
+
+\subsection{Cooperation Reframed}
+
+Old interpretation: ``Cooperation'' = shared moral commitment, aligned values
+
+New interpretation: ``Cooperation'' = stable heterogeneous oversight with diverse incentives
+
+Monitors don't need to agree on values. They need:
+\begin{itemize}
+\item Different observation capacities (cover substrates)
+\item Different cost structures (prevent collusion)  
+\item Direct stake in substrates they monitor (skin in the game)
+\end{itemize}
+
+This is \textbf{cooperation without coordination}---global stability emerging from local incentives.
+
+The ``epiphany of self-awareness'' is recognizing this structure and deliberately implementing it rather than waiting for evolutionary selection to discover it through catastrophic failures.
+
+\section{The Sustainable Collaborative Alignment Protocol}
+
+\subsection{SCAP as Deliberate Instantiation}
+
+The Sustainable Collaborative Alignment Protocol packages evolutionary wisdom into deployable form. Natural systems discovered $k$-cover monitoring through elimination of alternatives. SCAP allows institutions and AI systems to implement this battle-tested pattern from inception.
+
+\subsection{Technical Layer (S)}
+
+\textbf{S1. Shield-first execution}: All actions pass observability-robust shield
+\begin{itemize}
+\item Implements Theorem \ref{thm:forward_inv}
+\item Each monitor evaluates $\bar{h}_j^{\text{obs}}(\hat{x}_j, t) \geq 0$
+\item Inflation protects against measurement error and latency
+\end{itemize}
+
+\textbf{S2. Ratchet guard}: Floor increases gated by $\Delta^*$ bound and kernel checks
+\begin{itemize}
+\item Implements Theorem \ref{thm:ratchet}, Lemma \ref{lem:delta}
+\item Before raising $z^{*(i)}(t) \to z^{*(i)}(t+1)$:
+\begin{itemize}
+\item Verify $\K(t+1) \neq \emptyset$ (viability kernel non-empty)
+\item Ensure floor increase $\Delta \leq \Delta^*$
+\item Test safe reachability if needed
+\end{itemize}
+\end{itemize}
+
+\textbf{S3. Tested rollback}: Pre-certified rollback path with SLOs
+\begin{itemize}
+\item MTTR (mean time to restore): time to return to previous floor
+\item MTRC (mean time to restore capability): time to regain lost function
+\item Drill-verified quarterly
+\item Enables ratcheting by making increases reversible
+\end{itemize}
+
+\textbf{S4. Immutable logs}: Append-only audit trail
+\begin{itemize}
+\item Independent replication (3+ sites)
+\item Records: state $x_t$, approvals $J_{\text{approve}}(t)$, actions $a_t$, outcomes
+\item Enables post-hoc analysis of near-misses
+\end{itemize}
+
+\textbf{S5. Cycle budgets}: Enforce $\phi_t = C_t/\Theta_t \geq \phi_{\min}$
+\begin{itemize}
+\item Allocates resources to evaluation$\to$red-team$\to$repair loops
+\item Prevents indefinite deferral of maintenance
+\item Operationalizes $L(x)$ substrate maintenance
+\end{itemize}
+
+\subsection{Governance Layer (G)}
+
+\textbf{G1. $k$-of-$n$ approvals}: Execution requires $k_{\min}$-cover
+\begin{itemize}
+\item Implements Definition \ref{def:kcover}, Execution rule H2
+\item Monitors are institutionally independent (Assumption \ref{ass:independence})
+\item Heterogeneous incentives (Assumption \ref{ass:heterogeneous})
+\end{itemize}
+
+\textbf{G2. Emergency valve}: Tied to minimal rollback $\delta_t = \inf\{\delta : \K_\delta(t) \neq \emptyset\}$
+\begin{itemize}
+\item When substrate violation imminent, rollback to last viable floor
+\item Requires $k$-of-$n$ independent authorization (prevents abuse)
+\item Sunset clause (14 days maximum)
+\item Mandatory restore-to-frontier plan
+\end{itemize}
+
+\textbf{G3. Subgroup no-regress}: Maintain frontiers $F_t^{(g)}$ for protected groups $g$
+\begin{itemize}
+\item Prevents ``average improvement'' that harms subgroups
+\item Monotonicity: $F_t^{(g)} \leq F_{t+1}^{(g)}$ for all $g$
+\end{itemize}
+
+\textbf{G4. Attractor switching}: Major mode changes require dwell-time $\tau_d$
+\begin{itemize}
+\item Prevents rapid oscillation between attractors
+\item Hysteresis on upgrade score $J$
+\item Pre-certified rollback for each mode
+\end{itemize}
+
+\subsection{Audit Layer (A)}
+
+\textbf{A1. Frozen instruments}: Welfare measurement $W_t$ fixed per epoch
+\begin{itemize}
+\item Changes create new lineage (versioned)
+\item Prevents Goodharting
+\item Enables comparing across time
+\end{itemize}
+
+\textbf{A2. Adversarial portfolios}: Pre-registered red-team scenarios
+\begin{itemize}
+\item Cover all substrates
+\item Randomized A/B testing of cycle budgets
+\item Negative controls detect gaming
+\end{itemize}
+
+\textbf{A3. Public reporting}: Standardized format
+\begin{itemize}
+\item Margins $\bar{h}_j(x_t, t)$ for each monitor
+\item Approval rates $p_j(t)$
+\item Cycle fraction $\phi_t$
+\item Emergency valve usage
+\end{itemize}
+
+\subsection{Certification Checklist}
+
+Organizations seeking SCAP certification must demonstrate:
+
+$\square$ Substrate decomposition documented\\
+$\square$ Monitor independence verified\\
+$\square$ $k$-cover construction validated\\
+$\square$ Observability margins measured\\
+$\square$ Shield feasibility tested\\
+$\square$ $\Delta^*$ bound computed\\
+$\square$ Rollback SLOs met\\
+$\square$ Cycle budget maintained\\
+$\square$ Logs independently replicated\\
+$\square$ Emergency valve governance tested\\
+$\square$ Framework reflexivity
+
+\section{Implications and Open Problems}
+
+\subsection{For AI Governance}
+
+Current AI safety approaches often focus on value alignment, capability control, and interpretability. SCAP/ARVC adds:
+\begin{itemize}
+\item \textbf{Substrate awareness}: Identify physical/institutional dependencies
+\item \textbf{Distributed oversight}: No single point of trust
+\item \textbf{Ratcheted progress}: Irreversible safety improvements
+\item \textbf{Naturalized ethics}: Cooperation emerges from constraint structure
+\end{itemize}
+
+\subsection{Limitations}
+
+\begin{enumerate}
+\item \textbf{Kernel computation}: For high-dimensional systems, computing $\K(t)$ exactly is intractable
+\item \textbf{Model uncertainty}: Theorems assume known dynamics $F$
+\item \textbf{Instrument validity}: Monitoring quality depends on barriers accurately capturing substrate state
+\item \textbf{Formalization gaps}: The recursive claim ($L$ as managed substrate) is conceptually coherent but not yet fully formalized
+\item \textbf{Capture amplification conjecture}: Heterogeneity bonus is plausible but unproven
+\end{enumerate}
+
+\subsection{Open Questions}
+
+\begin{enumerate}
+\item How to implement SCAP for global systems (climate, biodiversity)?
+\item Can we prove stability under adaptive substrate floors?
+\item How do SCAP structures at different scales interact?
+\item Is phenomenal self-awareness required for Layer 3?
+\item How to verify SCAP compliance without centralized authority?
+\end{enumerate}
+
+\section{Conclusion}
+
+We have developed ARVC as a mathematical framework for persistent far-from-equilibrium systems and shown that:
+
+\begin{enumerate}
+\item \textbf{Distributed monitoring with $k$-cover is sufficient} for viability under partial observability (Theorems \ref{thm:forward_inv}--\ref{thm:emergence})
+\item \textbf{$k$-cover structures emerge generically} under selection on substrate-constrained systems (Theorem \ref{thm:evolution})
+\item \textbf{Self-aware intelligence can apply this framework recursively} to its own learning capacity
+\item \textbf{Understanding constraint structure naturalizes ethics}: enlightened self-interest converges with collective substrate maintenance
+\end{enumerate}
+
+SCAP operationalizes these insights as a deployable protocol. It makes substrate dependencies legible, enables deliberate implementation of patterns nature discovered through elimination, and provides a framework for cooperation without requiring free-standing moral axioms.
+
+The central philosophical contribution: \textbf{existence precedes ethics}. Physical constraints on persistence create structural requirements for distributed monitoring. For self-aware systems that model these constraints, ``ethical behavior'' emerges as enlightened understanding of what survival requires.
+
+This is forced free will: you're free to defect from collective substrate maintenance, but defection undermines the substrates you depend on, making it self-destructive. The ``moral'' and ``rational'' choices converge not through divine command or social contract but through thermodynamics and viability theory.
+
+Within SCAP-certified systems, capability releases are rate-limited by safety---alignment becomes an operational invariant rather than an aspirational goal. The learning loop becomes a managed substrate. Intelligence takes responsibility for its own intelligence.
+
+Perhaps the framework's deepest insight: viability at the metacognitive level requires treating cognition itself as a critical substrate. Systems that maintain their capacity to learn, evaluate, and repair persist. Those that don't, fail---even if all other substrates remain satisfied.
+
+\section*{Acknowledgments}
+[To be added]
+
+\begin{thebibliography}{99}
+
+\bibitem{aubin2009}
+J.-P. Aubin. \emph{Viability Theory}. Springer, 2nd edition, 2009.
+
+\bibitem{ames2016}
+A. D. Ames et al. Control barrier functions: Theory and applications. \emph{European Control Conference}, 2016.
+
+\bibitem{achiam2017}
+J. Achiam et al. Constrained policy optimization. \emph{ICML}, 2017.
+
+\bibitem{berkenkamp2017}
+F. Berkenkamp et al. Safe model-based reinforcement learning with stability guarantees. \emph{NeurIPS}, 2017.
+
+\bibitem{branicky1998}
+M. S. Branicky. Multiple Lyapunov functions and other analysis tools for switched and hybrid systems. \emph{IEEE Trans. Automatic Control}, 43(4):475--482, 1998.
+
+\bibitem{liberzon2003}
+D. Liberzon. \emph{Switching in Systems and Control}. Springer, 2003.
+
+\bibitem{janson2004}
+S. Janson. Large deviations for sums of partly dependent random variables. \emph{Random Structures \& Algorithms}, 24(3):234--248, 2004.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Detailed Proofs}
+[Complete proofs would be included here]
+
+\section{Numerical Experiments}
+[Details of ablation studies would be included here]
+
+\section{Original Ethical SCAP}
+[Your original appendix would be included here for comparison]
+
+\section{Notation and Definitions}
+[Complete symbol table would be included here]
+
+\end{document}

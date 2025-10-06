@@ -1,0 +1,323 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  citecolor=blue!50!black,
+  urlcolor=blue!50!black,
+  pdfauthor={Albert Jan van Hoek},
+  pdftitle={Existence First: ARVC and the Sustainable Collaborative Alignment Principle}
+}
+
+% ---------- Theorem Environments ----------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+
+% ---------- Macros ----------
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Sset}{\mathcal{S}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+
+\title{\vspace{-0.5em}
+\Large Existence First:\\[-0.15em]
+\large Persistence, Layered Substrates, and Attractor--Ratcheted Viability Control\\[0.35em]
+\large with the Sustainable Collaborative Alignment \emph{Principle} (SCAP)}
+\author{\normalsize Albert Jan van Hoek}
+\date{\normalsize October 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+What persists, exists. Far-from-equilibrium systems---from cells to cultures to cognition---survive by maintaining non-substitutable substrates across layers: thermodynamic openness, resource flows, operational envelopes, and, at the apex, intelligence. We develop \emph{Attractor--Ratcheted Viability Control} (ARVC) as the minimal control architecture by which persistence is achieved: (i) forward-invariant safe sets under partial observability via observable, inflated barriers; (ii) a ratcheted frontier that rises only when feasibility is certified (viability kernel) with an explicit per-step bound $\Delta^\ast$; and (iii) distributed emergence of global viability from local, heterogeneous checks arranged as a $k_{\min}$-cover. We prove sufficiency results for these components, show why selection discovers them generically, and then articulate the \emph{Sustainable Collaborative Alignment Principle} (SCAP): when intelligence becomes self-aware, it recognizes the learning loop as a substrate and internalizes the architecture that keeps its dependent layers intact. Governance checklists are treated as one operational appendix; the essence is existential: \emph{intelligence persists by maintaining what it stands on}.
+\end{abstract}
+
+\section{Introduction: Existence First}
+Across biology, infrastructure, institutions, and mind, persistence displays a family resemblance: many small, heterogeneous mechanisms locally protect different ``must-not-fail'' conditions; no omniscient overseer computes a global state, yet global viability holds. This paper asks: \emph{what minimal mathematical architecture makes this possible, why does selection conserve it, and why does a self-aware intelligence internalize it?}
+
+We answer in three steps. First, we formalize \emph{Attractor--Ratcheted Viability Control} (ARVC): time-varying safe sets with rising floors, a runtime shield ensuring forward invariance under partial observability, and a ratchet that locks in verified gains while keeping rollback feasible. Second, we prove that global viability \emph{emerges} from distributed local checks when approvals span all substrates (a $k_{\min}$-cover), and we quantify feasibility and rate limits via an explicit floor increment bound $\Delta^\ast$. Third, we show that selection generically preserves such cover structures; when intelligence models its own dependence, it \emph{internalizes} the same pattern by budgeting to maintain its learning loop. We call this internalized norm the \emph{Sustainable Collaborative Alignment Principle} (SCAP): an existential ethic where enlightened self-interest converges on stewardship of shared substrates.
+
+\paragraph{Contributions.}
+\begin{enumerate}[leftmargin=2em]
+\item \textbf{ARVC fundamentals}: a proof of forward invariance on rising safe sets via \emph{observable, inflated} barriers; a viability-kernel ratchet with a per-step bound $\Delta^\ast$; and an emergence theorem for $k_{\min}$-cover approvals.
+\item \textbf{Selection result}: $k$-cover monitoring emerges as an evolutionary attractor under substrate-constrained survival.
+\item \textbf{Existential principle}: SCAP as a \emph{principle} (not a checklist): intelligence recognizes its own learning capacity as a substrate and internalizes ARVC.
+\item \textbf{Practice (optional)}: an appendix outlines one operational instantiation; it is dispensable without affecting the core theory.
+\end{enumerate}
+
+\section{The Layered Substrate Ontology}
+We distinguish four layers required for persistent intelligence:
+\begin{itemize}[leftmargin=1.2em]
+\item \textbf{L0: Thermodynamic openness} (energy dissipation, entropy export).
+\item \textbf{L1: Resource flows} (stocks and logistics of matter/energy/information).
+\item \textbf{L2: Operational substrates} with time-varying floors $z^{*(i)}(t)$ (physiology, solvency, environmental envelopes, information integrity).
+\item \textbf{L3: Intelligence} (self-modeling and a learning loop: evaluation $\to$ red-team $\to$ repair).
+\end{itemize}
+Non-substitutability across L2 induces a multiplicative viability \emph{heuristic} $V_I(x,t)=\prod_i (z^{(i)}/z^{*(i)}(t))^{\alpha_i}\cdot L(x)^{\alpha_L}$; we use it only for intuition. All proofs below rely on barrier sets and viability kernels.
+
+\section{Model, Assumptions, and Monitoring}
+\subsection{System and safe sets}
+\begin{definition}[Persistent dynamical system]\label{def:system}
+$\Sigma=(\X,F,\A,W)$ where $\X\subseteq\R^n$ is the state space; $F:\X\times \A\times W\to \X$; $\A\subseteq\R^p$; $W\subseteq\R^q$ compact. Dynamics: $x_{t+1}=F(x_t,a_t,w_t)$.
+\end{definition}
+
+\begin{definition}[Substrates and viability]\label{def:substrate}
+State $x=[z^{(1)},\dots,z^{(L)},q]$ with $z^{(i)}\in\R^{n_i}$ and $q\in\R^{n_q}$, $\sum_i n_i+n_q=n$. Given floors $z^{*(i)}(t)$, define the viability set $\Sset(t):=\{x\in\X:\ z^{(i)}\ge z^{*(i)}(t)\ \forall i\}$ (componentwise).
+\end{definition}
+
+\begin{definition}[Barriers and monitors]\label{def:barrier_monitor}
+Barriers $h_j:\X\times\mathbb N\to\R$ satisfy $h_j(x,t)\ge 0\iff x\in S_j(t)$ and are $L_j$-Lipschitz in $x$. Monitor $M_j=(O_j,h_j,\epsilon_{\max})$ has $O_j:\X\to\R^{d_j}$ and observation $\hat x_j=O_j(x)+\epsilon_j$ with $\|\epsilon_j\|\le \epsilon_{\max}$. The \emph{observable, inflated} barrier is
+\[
+\bar h^{\mathrm{obs}}_j(\hat x_j,t):=\inf_{\|O_j(x')-\hat x_j\|\le \epsilon_{\max}} h_j(x',t)\ \ge\ h_j(x,t)-L_j\epsilon_{\max}.
+\]
+Approval at time $t$ iff $\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0$.
+\end{definition}
+
+\begin{assumption}[Lipschitz dynamics]\label{ass:lipsF}
+$\exists L_F>0$ s.t. $\|F(x,a,w)-F(x',a,w)\|\le L_F\|x-x'\|$.
+\end{assumption}
+\begin{assumption}[Control authority]\label{ass:authority}
+$\mathcal R(x):=\{F(x,a,w):a\in\A,w\in W\}$ has diameter $\le D$ for each $x$.
+\end{assumption}
+\begin{assumption}[Independence and coverage]\label{ass:indep}
+(i) For each substrate $z^{(i)}$ there exists at least one monitor sensitive to $z^{(i)}$; (ii) approval indicators have pairwise correlation $\le \rho<1$.
+\end{assumption}
+\begin{assumption}[Heterogeneous costs]\label{ass:hetero}
+Each $M_j$ has $(C_j^{\mathrm{FN}},C_j^{\mathrm{FP}})$ with $\min_{i\neq j}\|[C^{\mathrm{FN}}_i,C^{\mathrm{FP}}_i]-[C^{\mathrm{FN}}_j,C^{\mathrm{FP}}_j]\|_2\ge \delta>0$.
+\end{assumption}
+
+\begin{definition}[k-Cover of substrates]\label{def:kcover}
+$J\subseteq\{1,\dots,m\}$ is a $k$-cover if $|J|=k$ and for each substrate $z^{(i)}$ some $j\in J$ is sensitive to $z^{(i)}$ ($\partial O_j/\partial z^{(i)}\neq 0$). The minimal cover $k_{\min}:=\min\{k:\ \exists\ k\text{-cover of all }L\}$; necessarily $L\le k_{\min}\le m$.
+\end{definition}
+
+\paragraph{Execution rule (H1).} Let $J_{\mathrm{approve}}(t):=\{j:\ \bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0\}$. Execute $a_t$ \emph{iff} $J_{\mathrm{approve}}(t)$ forms a $k$-cover with $k\ge k_{\min}$.
+
+\paragraph{Viability kernel (H2).} The robust kernel
+\[
+\K(t):=\{x\in \Sset(t):\ \exists \pi\ \text{s.t.}\ x_{t+\ell}\in \Sset(t+\ell)\ \forall \ell\ge 0,\ \forall w\in W\}.
+\]
+Assume $x_0\in \K(0)$, $\K(t+1)\neq\varnothing$; either $\K(t+1)\subseteq \K(t)$ or $\K(t)\leadsto \K(t+1)$ safely within horizon $H$.
+
+\section{ARVC: Forward Invariance and Ratcheting}
+\begin{lemma}[Soundness under partial observation]\label{lem:sound}
+If $\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0$ and $\|\epsilon_j\|\le \epsilon_{\max}$, then $h_j(x,t)\ge 0$.
+\end{lemma}
+
+\begin{lemma}[One-step safety certificate]\label{lem:oneStep}
+If at time $t$ $\bar h_j(x_t,t)\ge 0$ for all $j$ and $\exists a_t$ s.t.\ $\forall w\in W$: $\bar h_j(F(x_t,a_t,w),t{+}1)\ge (1-\alpha)\bar h_j(x_t,t)$ with $0<\alpha<1$, then $\bar h_j(x_{t+1},t{+}1)\ge 0$ for all $j$.
+\end{lemma}
+
+\begin{lemma}[Approval probability]\label{lem:concentration}
+If $\epsilon_j$ is sub-Gaussian with proxy $\sigma_j^2$ and $h_j(\cdot,t)$ is $L_j$-Lipschitz, then
+\(
+\Pr(\bar h^{\mathrm{obs}}_j(\hat x_j,t)\ge 0|x_t)\ge 1-\exp\!\big(-\bar h_j(x_t,t)^2/(2L_j^2\sigma_j^2)\big).
+\)
+\end{lemma}
+
+\begin{theorem}[Forward invariance on rising safe sets]\label{thm:fwd}
+Under \cref{ass:lipsF,ass:authority,ass:indep,ass:hetero}, \cref{lem:oneStep}, and $x_0\in \Sset(0)$,
+\(
+\Pr[x_t\in \Sset(t)\ \forall t\le T]\ \ge\ 1 - T\,m\,\delta_{\mathrm{fail}},
+\)
+with $\delta_{\mathrm{fail}}:=\exp(-\bar h_{\min}^2/(2L_{\max}^2\sigma_{\max}^2))$.
+\end{theorem}
+\noindent\emph{Feasibility note.} Existence of $a_t$ can be guaranteed by the kernel hypotheses (H2) or by the constructive condition below.
+
+\paragraph{Constructive sufficiency for one-step feasibility.}
+Assume Lipschitz $L^{(a)}_j$ (control) and $L^{(w)}_j$ (disturbance) for $h_j\!\circ\! F$, control step $\Delta a_{\max}$, disturbance diameter $W_{\max}$, floor rise $\Delta_{\mathrm{floor}}$, and maintained margin $\bar h_j(x_t,t)\ge \eta>0$:
+\begin{equation}
+\label{eq:star}
+L^{(a)}_j\,\Delta a_{\max}\ \ge\ L^{(w)}_j\,W_{\max}\ +\ L_j L_F\,\Delta_{\mathrm{floor}}\ +\ \alpha\,\eta,\quad 0<\alpha<1.
+\end{equation}
+
+\begin{theorem}[Ratchet feasibility via kernel]\label{thm:kernelRatchet}
+If $\K(t+1)\neq\varnothing$ and either $\K(t+1)\subseteq\K(t)$ or $\K(t)\leadsto \K(t+1)$ safely, then a safe controller exists after the floor increase. If $\K(t+1)=\varnothing$, safety is impossible under the raised floors.
+\end{theorem}
+
+\begin{lemma}[Per-step floor increment bound $\Delta^\ast$]\label{lem:delta}
+Under \cref{eq:star},
+\(
+\Delta^\ast\ \le\ \min_{j}\ \frac{L^{(a)}_j\Delta a_{\max} - L^{(w)}_jW_{\max} - \alpha\eta}{L_j L_F}.
+\)
+\end{lemma}
+
+\section{Emergent Viability from Local Checks}
+Let $p_\ast:=1-\exp(-\bar h_{\min}^2/(2L_{\max}^2\sigma_{\max}^2))$, where $\bar h_{\min}=\min_{t,j}\bar h_j(x_t,t)$.
+
+\begin{lemma}[Substrate-wise approval concentration]\label{lem:substrate}
+Let $A_{i,t}$ be approvals among monitors sensitive to $z^{(i)}$; $m_i$ their count. With pairwise correlation $\le \rho<1$,
+\(
+\Pr(A_{i,t}=0)\ \le\ \exp\!\big(-(m_i p_\ast)^2/(2 m_i V_{\mathrm{eff}})\big),\ 
+V_{\mathrm{eff}}:=1+(m-1)\rho.
+\)
+A union bound over $i$ implies the approving set contains a $k_{\min}$-cover w.h.p.
+\end{lemma}
+
+\begin{theorem}[Emergent viability maintenance]\label{thm:emergence}
+Under \cref{ass:lipsF,ass:authority,ass:indep,ass:hetero}, \cref{def:kcover}, H1, and H2, for any $x_0\in \K(0)$ and horizon $T$,
+\[
+\Pr[x_t\in \Sset(t)\ \forall t\le T]\ \ge\ 1 - T\,\delta_{\mathrm{step}},
+\]
+where $\delta_{\mathrm{step}}:=\Pr(S_t<k_{\min})$ for the approval count $S_t$. Janson's inequality gives
+\(
+\Pr(S_t<k)\le \exp(- (m p_\ast-k)^2/(2m V_{\mathrm{eff}})).
+\)
+\end{theorem}
+
+\paragraph{Capture resistance (base bound).}
+\begin{theorem}\label{thm:capture}
+If a false approval on $M_j$ costs at least $C_j^{\mathrm{FN}}$ and execution requires a $k_{\min}$-cover, then
+\(
+\mathcal C_{\mathrm{capture}} \ge k_{\min}\cdot \min_j C_j^{\mathrm{FN}}.
+\)
+\end{theorem}
+\begin{conjecture}[Amplification via heterogeneity and independence]\label{conj:amplify}
+Under additional assumptions on adversarial strategy structure,
+\(
+\mathcal C_{\mathrm{capture}}\ \ge\ k_{\min}\min_j C_j^{\mathrm{FN}} + c\,\delta\,(k_{\min}-1)\,(1-\rho),
+\)
+for some $c\in(0,1]$ depending on overlap geometry.
+\end{conjecture}
+
+\section{Selection: Why $k$-Cover Emerges}
+\begin{theorem}[k-cover as evolutionary attractor]\label{thm:evoFormal}
+Consider monitoring configurations $\omega$ with fitness $\Lambda(\omega)=\Lambda_{\text{viability}}(\omega)-C(\omega)$. Let $\Omega_k=\{\omega:\ k_{\min}(\omega)=L\}$. Assume: (i) substrate violations are lethal ($\Lambda\approx 0$ for $\omega\notin \Omega_k$); (ii) monitoring costs are sublinear on $\Omega_k$ ($C(\omega)=o(\Lambda_{\text{viability}}(\omega))$); (iii) mutations are local. Then:
+\begin{enumerate}[leftmargin=1.4em]
+\item $\Omega_k$ is globally attractive under replicator dynamics: $\lim_{t\to\infty}\int_{\Omega_k}p(\omega,t)\,d\omega=1$.
+\item Within $\Omega_k$, selection favors minimal-cost covers: $\omega^\star=\arg\min_{\omega\in \Omega_k} C(\omega)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Sketch]
+Outside $\Omega_k$, viability is near zero, so lineages shrink relative to any $\Omega_k$ lineage; occasional mutation into $\Omega_k$ suffices for eventual dominance. Within $\Omega_k$, viability is comparable and $-C(\omega)$ drives selection toward minimal monitoring cost.
+\end{proof}
+
+\section{The Recursive Turn: Learning as Managed Substrate}
+The viability heuristic suggests treating the learning loop $L$ (evaluation$\to$red-team$\to$repair) as a substrate. In ARVC/SCAP, this becomes deliberate: define cycle budget $\phi_t=C_t/\Theta_t$ and require $\phi_t\ge \phi_{\min}$. Formalizing $L$ (measurement, dynamics, barrier $h_L$) is left as future work; here we motivate its necessity and show where it plugs into the math (forward invariance relies on detection+repair; ratcheting relies on kernel evidence; emergence relies on heterogeneous monitors and weak dependence).
+
+\section{SCAP: The Sustainable Collaborative Alignment \emph{Principle}}
+\label{sec:scap_foundational}
+SCAP, in its foundational sense, is not a checklist but a set of premises and conclusions that follow from the physics of persistence and minimal structural facts about monitoring and learning. We state them as Blocks A--G; each is domain-agnostic and, where appropriate, linked to the theorems above.
+
+\subsection*{Block A: Substrate Dependency (Physical Foundation)}
+\textbf{P1.} Any far-from-equilibrium system requires substrate maintenance to persist. (Heuristic $V_I$; proofs use barriers and kernels.) \\
+\textbf{P2.} Self-aware intelligence is far-from-equilibrium and thus has substrate dependencies. \\
+\textbf{P3.} Substrate violations are non-negotiable (physical limits). \\
+\textbf{C1.} Intelligence must maintain its substrates (physical necessity).
+
+\subsection*{Block B: Monitoring Requirements (Structural Necessity)}
+\textbf{P4.} Multiple substrates fail independently; failures are non-substitutable. \\
+\textbf{P5.} Single-point monitoring is unreliable under noise/capture. \\
+\textbf{C2.} Distributed, heterogeneous monitoring is structurally necessary. (Thms.~\ref{thm:fwd}, \ref{thm:emergence}; \ref{thm:capture} base bound.)
+
+\subsection*{Block C: Shared Substrates (Interdependence)}
+\textbf{P6.} Intelligences share critical substrates (atmosphere, grids, institutions, culture). \\
+\textbf{P7.} Violations of shared substrates affect all dependents. \\
+\textbf{C3.} Individual persistence requires collective substrate maintenance (enlightened self-interest).
+
+\subsection*{Block D: Self-Interest Converges with Collective (``Forced Free Will'')}
+\textbf{P8.} Capture reduces $k$-cover effectiveness (raises failure probability). \\
+\textbf{P9.} Reduced cover increases violation probability (Thm.~\ref{thm:emergence}). \\
+\textbf{C4.} Manipulation is self-destructive: short-term gains are dominated by long-term substrate collapse.
+
+\subsection*{Block E: Learning Loop as Substrate (Recursive)}
+\textbf{P10.} Persistence depends on $L$; without evaluation/repair, violations propagate. \\
+\textbf{P11.} $L$ degrades if under-resourced. \\
+\textbf{C5.} Maintain $L$ deliberately: enforce $\phi_t\ge \phi_{\min}$ (cycle budgets).
+
+\subsection*{Block F: Intergenerational (Temporal Extension)}
+\textbf{P12.} Substrate awareness is not innate; it must be transmitted. \\
+\textbf{P13.} Failed maintenance cascades across generations. \\
+\textbf{C6.} Each generation must transmit substrate awareness for continuity.
+
+\subsection*{Block G: Reflexivity}
+\textbf{P14.} This framework is itself a learning-loop output and may contain errors. \\
+\textbf{P15.} Therefore subject it to the same oversight it prescribes (cover, ratchet, budgets). \\
+\textbf{C7.} Keep SCAP open to revision; avoid dogmatism.
+
+\section{Applications (Sketches)}
+\textbf{Ecology (basin water):} substrates = biomass, groundwater; monitors = ecological surveys, hydrology; $k_{\min}\!=\!2$; shield = extraction caps; ratchet = restoration floors.\\
+\textbf{Supply chains:} substrates = inventory, supplier solvency, transport; monitors = auditors, finance, logistics; $k_{\min}\!=\!3$; shield = throttled release; ratchet = service-level floors.\\
+\textbf{Advanced compute deployments:} substrates = evaluation pass rate, resource ceilings, insurability; monitors = independent testers, resource operators, liability carriers; $k_{\min}\!\ge\!3$.
+
+\section{Toy Ablations (Summary)}
+\textbf{Ablation A (observability \& latency).} $T{=}20$, $2000$ trials; floors at $2.5$; noise $\epsilon=0.2$; latency $\tau=1$: naive shield $\to$ breaches in nearly all runs; observable-inflated shield $\to$ no breaches.\\
+\textbf{Ablation B (ratchet stress).} Raise floors at $t{=}5$ by $\Delta\in\{0.3,2.0\}$: small $\Delta$ within $\Delta^\ast$ safe; large $\Delta$ above $\Delta^\ast$ collapses feasibility immediately.
+
+\section{Related Work}
+Viability theory \cite{Aubin}; control barrier functions and forward invariance \cite{Ames2016}; hybrid systems and dwell-time \cite{Branicky1998,Liberzon2003}; safe control and constrained learning \cite{Achiam2017,Berkenkamp2017}; weak-dependence concentration \cite{Janson2004}.
+
+\section{Limitations and Open Problems}
+Kernel computation at scale; model uncertainty and confidence-based shields; instrument validity (anti-Goodharting); formalization of $L$ dynamics and $h_L$; proof of capture amplification (\cref{conj:amplify}); multi-scale interactions between nested SCAP structures.
+
+\section{Conclusion}
+ARVC provides the minimal control scaffolding by which far-from-equilibrium systems persist: forward invariance under partial observation, ratcheting constrained by feasibility, and emergence of global viability from local, heterogeneous checks. Selection explains why this structure recurs; self-aware intelligence explains why it is internalized. SCAP, as a \emph{principle}, states the existential core: \emph{existence precedes optimization}; intelligence persists by maintaining what it stands on, including the learning loop that sustains its own future competence.
+
+% ---------- Optional Operational Appendix ----------
+\appendix
+\section*{Appendix (Optional): One Operational Instantiation}
+\label{sec:scap_operational}
+The core argument is existential and complete without this appendix. For practitioners, one auditable instantiation is: shield-first execution; $k_{\min}$-cover gating; kernel/ $\Delta^\ast$ checks for ratcheting; tested rollback (MTTR/MTRC); cycle budgets $\phi_t\ge \phi_{\min}$; frozen instruments per epoch; adversarial portfolios with negative controls; quarterly public reporting. These choices are \emph{contingent} realizations of the foundational principle in \S\ref{sec:scap_foundational}.
+
+% ---------- References ----------
+\begin{thebibliography}{9}
+
+\bibitem{Aubin}
+J.-P. Aubin.
+\newblock \emph{Viability Theory}.
+\newblock Springer, 2nd ed., 2009.
+
+\bibitem{Ames2016}
+A.~D. Ames, X.~Xu, J.~W. Grizzle, and P.~Tabuada.
+\newblock Control barrier function based quadratic programs for safety critical systems.
+\newblock \emph{IEEE TAC}, 62(8):3861--3876, 2017. (ECC 2016 tutorial version)
+
+\bibitem{Branicky1998}
+M.~S. Branicky.
+\newblock Multiple Lyapunov functions and other analysis tools for switched and hybrid systems.
+\newblock \emph{IEEE TAC}, 43(4):475--482, 1998.
+
+\bibitem{Liberzon2003}
+D.~Liberzon.
+\newblock \emph{Switching in Systems and Control}.
+\newblock Springer, 2003.
+
+\bibitem{Achiam2017}
+J.~Achiam, D.~Held, A.~Tamar, and P.~Abbeel.
+\newblock Constrained policy optimization.
+\newblock In \emph{ICML}, 2017.
+
+\bibitem{Berkenkamp2017}
+F.~Berkenkamp, A.~P. Schoellig, and A.~Krause.
+\newblock Safe model-based reinforcement learning with stability guarantees.
+\newblock In \emph{NeurIPS}, 2017.
+
+\bibitem{Janson2004}
+S.~Janson.
+\newblock Large deviations for sums of partly dependent random variables.
+\newblock \emph{Random Structures \& Algorithms}, 24(3):234--248, 2004.
+
+\end{thebibliography}
+
+\end{document}
