@@ -29,7 +29,7 @@
 % --------------------------------------
 \title{\textbf{Autonomous Interdependence:\\The Two Axes of Viable Freedom}}
 \author{Albert Jan van Hoek \\ \small Evolution by Emergence Project}
-\date{\today}
+\date{\today \\ \small Version 2.0}
 
 % --------------------------------------
 % Document
@@ -44,12 +44,12 @@ Every living system depends on exchanges with others to stay viable.
 This paper introduces a dual-axis model of freedom---\emph{autonomy} and \emph{interdependence}---as complementary properties of viable systems.
 Together they yield \textbf{autonomous interdependence}: individual agents who self-regulate while remaining reliably coupled to others.
 
-We formalize this using viability theory: $V_i = f(A_i, \sum_j C_{ij})$ where autonomy $A_i$ and coupling $C_{ij}$ must both exceed minimum thresholds. The multiplicative form $V_i \propto (A_i/A_{\min})^{\alpha_A} \prod_j (C_{ij}/C_{\min})^{\alpha_{ij}}$ captures non-substitutability: deficits in either dimension collapse viability.
+We formalize this using viability theory: $V_i = f(A_i, \sum_j C_{ij})$ where autonomy $A_i$ and coupling $C_{ij}$ must both exceed minimum thresholds. The multiplicative form $V_i \propto (A_i/A_{\min})^{\alpha_A} \prod_j (C_{ij}/C_{\min})^{\alpha_{ij}}$ captures non-substitutability: deficits in either dimension collapse viability. Crucially, we distinguish \emph{reciprocal} coupling (mutual benefit) from \emph{parasitic} coupling (extraction), showing that only the former sustains system viability.
 
-This principle clarifies the paradox of freedom (absolute freedom destroys its conditions), resolves the tension between self-determination and social embeddedness, and provides a generalizable framework for stability across scales (persons, institutions, ecologies, and AI networks). We show how stress threatens both axes, how naming fear preserves integrity, and how the framework grounds relational ethics in structural necessity rather than moral preference.
+This principle clarifies the paradox of freedom (absolute freedom destroys its conditions), resolves the tension between self-determination and social embeddedness, and provides a generalizable framework for stability across scales (persons, institutions, ecologies, and AI networks). We show how stress threatens both axes, how naming fear preserves integrity, how systems can navigate temporary imbalances, and how institutional safeguards prevent parasitic drift. The framework grounds relational ethics in structural necessity rather than moral preference.
 \end{abstract}
 
-\noindent\textbf{Keywords:} autonomy, interdependence, freedom, viability, emergence, networks, trust, repair, relational ethics
+\noindent\textbf{Keywords:} autonomy, interdependence, freedom, viability, emergence, networks, trust, repair, relational ethics, reciprocity
 
 \section{The Paradox of Freedom}
 
@@ -143,6 +143,43 @@ where $\mathcal{N}(i)$ is $i$'s network neighborhood, and $\alpha$ terms weight 
 
 This form ensures $V_i \to 0$ if either autonomy or any critical interdependence falls below threshold---capturing the \emph{non-substitutable} nature of the dual axes. You cannot compensate for lost autonomy with increased interdependence, nor vice versa. This mirrors the multiplicative viability function in substrate theory: $V_I = \prod_k (z^{(k)}/z^{*(k)})^{\alpha_k}$ where violation of any substrate $k$ causes system collapse.
 
+\subsection{Reciprocal Viability Constraint}
+
+\textbf{Critical distinction:} Not all coupling increases system viability. We must distinguish between reciprocal and parasitic coupling.
+
+\paragraph{Definition (Reciprocal coupling).} Coupling $C_{ij}$ is \emph{reciprocal} if it increases (or at minimum, doesn't decrease) the viability of both agents:
+\begin{equation}
+\frac{\partial V_i}{\partial C_{ij}} \geq 0 \quad \text{AND} \quad \frac{\partial V_j}{\partial C_{ij}} \geq 0
+\label{eq:reciprocal}
+\end{equation}
+
+In reciprocal coupling, the relationship expands the viable choice space for both participants. This can be symmetric (equal benefit) or asymmetric (unequal but positive for both).
+
+\paragraph{Definition (Parasitic coupling).} Coupling is \emph{parasitic} if one agent benefits at the expense of the other:
+\begin{equation}
+\frac{\partial V_i}{\partial C_{ij}} > 0 \quad \text{BUT} \quad \frac{\partial V_j}{\partial C_{ij}} < 0
+\label{eq:parasitic}
+\end{equation}
+
+Examples include: exploitative relationships, extractive economic arrangements, monopolistic lock-in, predatory lending, abusive dynamics.
+
+\paragraph{Sustainable interdependence.} \emph{Autonomous interdependence requires reciprocal coupling.} Parasitic coupling may temporarily increase $V_i$ for the parasite, but it:
+\begin{itemize}
+    \item Degrades the substrate (partner $j$) that the parasite depends on, eventually undermining $V_i$
+    \item Violates the core criterion: ``each agent's choices increase---not reduce---the viable choices of others''
+    \item Creates systemic instability: when $V_j \to 0$, the parasite loses its resource base
+    \item Often requires coercion to maintain, which itself consumes resources
+\end{itemize}
+
+\paragraph{Connection to ARVC.} This connects to ARVC's emergence theorem~\cite{arvc}: independent monitors with heterogeneous costs (Assumption 4) prevent any single agent from establishing parasitic dominance. The k-cover requirement ensures that actions must pass distributed approval spanning all substrates---parasitic actions that benefit one agent by degrading shared substrates will be blocked by monitors observing the damaged substrates.
+
+\paragraph{Coerced coupling.} A third category deserves mention:
+\begin{equation}
+C_{ij} > 0 \text{ maintained by threat rather than mutual benefit}
+\end{equation}
+
+Coerced coupling violates the autonomy axis by definition (agent $j$ lacks capacity to exit or renegotiate), even if it might temporarily appear stable. It is fundamentally incompatible with autonomous interdependence.
+
 \subsection{Balance Condition}
 
 A system expresses \emph{autonomous interdependence} when
@@ -153,6 +190,37 @@ A system expresses \emph{autonomous interdependence} when
 i.e., when internal and external regulation contribute proportionally to viability. 
 
 Too little coupling ($C \ll C_{\min}$) $\Rightarrow$ isolation collapse; too much coupling relative to autonomy ($C \gg A$) $\Rightarrow$ loss of agency and risk of domination. Sustainable freedom emerges near the balance point where marginal returns to autonomy and interdependence are approximately equal.
+
+\subsection{Viable Trajectories Under Stress}
+
+The balance condition (Eq.~\ref{eq:balance}) describes \emph{sustainable equilibria}, not moment-to-moment states. Systems can temporarily deviate from balance if:
+
+\begin{enumerate}
+    \item \textbf{Restoration path exists:} There is a credible, operationalized plan to return to balance
+    \item \textbf{Minimum thresholds maintained:} Neither $A_i$ nor $C$ falls below absolute minimums ($A_{\min}$, $C_{\min}$)
+    \item \textbf{Time-bounded:} The imbalance has explicit sunset conditions
+    \item \textbf{Independent monitoring:} Third parties verify both the necessity and the restoration trajectory
+\end{enumerate}
+
+\paragraph{Example (crisis response).} During acute crisis, a community may temporarily increase centralized coordination (higher interdependence demand, $\partial V/\partial C > \partial V/\partial A$) while:
+\begin{itemize}
+    \item Maintaining baseline autonomy (local units retain veto over truly harmful centralized decisions)
+    \item Implementing automatic sunset clauses that restore pre-crisis balance
+    \item Explicit monitoring ensures temporary doesn't become permanent
+    \item Publishing restoration metrics and timelines
+\end{itemize}
+
+This maps to ARVC's emergency valve mechanism~\cite{arvc}: temporary rollback to lower floors when $\mathcal{K}(t+1) = \emptyset$ (viability kernel becomes empty), but with mandatory restoration plan and independent authorization ($k$-cover approval) to prevent permanent regression.
+
+\paragraph{Failure mode: Ratchet lock.} Temporary imbalances become permanent when:
+\begin{itemize}
+    \item No sunset clause exists, or it's indefinitely renewable
+    \item "Temporary" authority accumulates self-perpetuating mechanisms
+    \item Restoration path is vague rather than operationalized with metrics
+    \item Those who benefit from imbalance control the monitoring process
+\end{itemize}
+
+\textbf{Historical examples:} Wartime expansions of executive power that persist indefinitely (e.g., post-9/11 surveillance); "temporary" economic centralization during crisis that becomes structural; "emergency" public health measures without clear exit criteria.
 
 \subsection{Connection to Substrate Theory}
 
@@ -170,7 +238,65 @@ The k-cover requirement in ARVC---independent monitors $M_j$ whose collective ap
     \item No single point of failure can collapse either dimension
 \end{itemize}
 
-This explains why distributed monitoring with heterogeneous incentives (ARVC Assumption 4) preserves freedom: it maintains both local autonomy and global coordination.
+This explains why distributed monitoring with heterogeneous incentives (ARVC Assumption 4) preserves freedom: it maintains both local autonomy and global coordination while preventing parasitic capture.
+
+\section{Measurement and Operationalization}
+
+To make the framework empirically testable, we require operational definitions for both dimensions and their interaction.
+
+\subsection{Autonomy Metrics}
+
+\paragraph{Individual level:}
+\begin{itemize}
+    \item \textbf{Self-regulation capacity:} Heart rate variability (HRV) under stress; executive function battery scores; delay discounting tasks
+    \item \textbf{Metacognitive awareness:} Confidence calibration; ability to recognize and report internal states; meta-memory accuracy
+    \item \textbf{Internal locus of control:} Standard questionnaires (Rotter, Levenson)
+    \item \textbf{Resistance to social pressure:} Asch conformity paradigm variants; ability to dissent in group contexts
+    \item \textbf{Model integrity:} Consistency of beliefs across contexts; resistance to "mud" formation under stress
+\end{itemize}
+
+\paragraph{Institutional level:}
+\begin{itemize}
+    \item \textbf{Local decision authority:} Fraction of decisions made without central approval
+    \item \textbf{Budget autonomy:} Discretionary spending as fraction of total
+    \item \textbf{Regulatory independence:} Degree of separation from political control
+\end{itemize}
+
+\subsection{Interdependence Metrics}
+
+\paragraph{Individual level:}
+\begin{itemize}
+    \item \textbf{Network density:} Number and redundancy of reliable connections
+    \item \textbf{Trust indices:} Behavioral trust games (e.g., repeated prisoner's dilemma with reputation)
+    \item \textbf{Repair capacity:} Average time to restore cooperation after conflict; success rate of repair attempts
+    \item \textbf{Information flow:} Frequency and quality of bidirectional communication
+    \item \textbf{Mutual aid:} Actual helping behavior; resource sharing under stress
+\end{itemize}
+
+\paragraph{Institutional level:}
+\begin{itemize}
+    \item \textbf{Coordination mechanisms:} Existence and use of shared protocols
+    \item \textbf{Transparency indices:} Open data, public reasoning, decision traceability
+    \item \textbf{Conflict resolution:} Formal mechanisms and their effectiveness
+\end{itemize}
+
+\subsection{System-Level Viability}
+
+\begin{itemize}
+    \item \textbf{Return time after perturbation:} How quickly system returns to equilibrium after shock
+    \item \textbf{Variance under stress:} Stability of key observables during perturbations
+    \item \textbf{Sustainability of resource flows:} Renewable vs. extractive patterns
+    \item \textbf{Balance ratio:} Empirical $\partial V/\partial A$ vs. $\partial V/\partial C$ from natural experiments or policy variations
+\end{itemize}
+
+\subsection{Detecting Parasitic Coupling}
+
+\begin{itemize}
+    \item \textbf{Asymmetry monitoring:} Track $\Delta V_i / \Delta V_j$ ratios over time; flag persistent divergence
+    \item \textbf{Exit viability:} Can agents leave the relationship without catastrophic loss? Measure switching costs
+    \item \textbf{Voice effectiveness:} Can agents signal dissatisfaction and receive response? Track complaint $\to$ remedy latency
+    \item \textbf{Resource flow analysis:} Net transfers over time; accumulation patterns
+\end{itemize}
 
 \section{Psychological and Societal Implications}
 
@@ -183,6 +309,27 @@ Relationships thrive when partners are both self-stabilizing and mutually respon
 \textbf{Attachment theory:} Secure attachment in children develops when caregivers provide both (i) scaffolding for autonomy (age-appropriate independence, emotional coaching) and (ii) reliable interdependence (consistent availability, repair after rupture). Anxious attachment reflects low autonomy (over-reliance); avoidant attachment reflects low interdependence (self-sufficiency as defense).
 
 \textbf{Partnership dynamics:} Healthy adult relationships balance differentiation (maintaining separate identities, interests, self-regulation) with integration (shared meaning, coordinated action, mutual support). The failure modes of Figure~\ref{fig:viable-region} manifest as: enmeshment (low autonomy), emotional cut-off (low interdependence), or chronic conflict (oscillation between extremes).
+
+\paragraph{Cultural considerations.} The prescription to "train autonomy before demanding cooperation" reflects developmental sequences common in individualistic cultures. Collectivist cultures may develop these capacities differently:
+
+\begin{itemize}
+    \item \textbf{Western individualist pattern:} Autonomy $\to$ secure base $\to$ interdependence
+    \item \textbf{East Asian collectivist pattern:} Interdependence $\to$ relational identity $\to$ autonomous judgment within relationships
+\end{itemize}
+
+Both paths can reach autonomous interdependence, but via different developmental sequences. The key is that mature functioning in \emph{any} culture requires both dimensions, though:
+\begin{itemize}
+    \item Individualist cultures may need explicit cultivation of interdependence skills (cooperation, empathy, collective thinking)
+    \item Collectivist cultures may need explicit cultivation of individual voice and dissent capacity
+\end{itemize}
+
+The framework predicts that \emph{healthy} manifestations of both cultural patterns will show balanced $\partial V/\partial A \approx \partial V/\partial C$ in adults, while pathological versions will show imbalance:
+\begin{itemize}
+    \item \textbf{Toxic individualism:} high $A$, low $C$ $\to$ isolation, inability to form deep bonds, "rugged individual" mythology that masks fragility
+    \item \textbf{Toxic collectivism:} low $A$, high $C$ $\to$ conformity, suppression of dissent, inability to act without group approval, vulnerability to groupthink
+\end{itemize}
+
+This suggests that cultural diversity represents \emph{different viable paths} to the same balance point, not fundamentally different optima. The framework is normatively neutral about which developmental path is taken, but insists that the endpoint must include both dimensions.
 
 \subsection{Collective Level}
 
@@ -229,7 +376,7 @@ This formulation resolves several classical tensions:
 Fear signals anticipated substrate violation: the agent's world model predicts approaching a viability floor ($z^{(i)} \to z^{*(i)}$). Under stress, two failure modes threaten autonomous interdependence:
 
 \begin{itemize}
-    \item \textbf{Autonomy collapse:} Stress degrades self-regulation capacity. The conscious checking loop weakens (cf. consciousness-as-loop framework~\cite{appendixXI}), allowing poorly validated updates to contaminate the world model---\emph{``mud formation.'} Internal coherence $A_i$ declines as decision-making becomes reactive rather than reflective.
+    \item \textbf{Autonomy collapse:} Stress degrades self-regulation capacity. The conscious checking loop weakens (cf. consciousness-as-loop framework~\cite{appendixXI}), allowing poorly validated updates to contaminate the world model---\emph{``mud formation.''} Internal coherence $A_i$ declines as decision-making becomes reactive rather than reflective.
     
     \item \textbf{Interdependence collapse:} Fear-driven behaviors (withdrawal, aggression, deception) sever reliable coupling. Signals to others become unreliable; trust erodes. Coupling quality $C_{ij}$ declines as predictability and repair capacity are lost.
 \end{itemize}
@@ -263,6 +410,54 @@ This reciprocal rescue is only possible when \emph{both axes are maintained prop
 
 \paragraph{Connecting to SCAP.} This is why the Sustainable Collaborative Alignment Protocol (SCAP)~\cite{scap} mandates both bias awareness (preserving autonomy via metacognition, Block B) and repair protocols (preserving interdependence via explicit maintenance, Block E). The cycle budget requirement $\phi_t \geq \phi_{\min}$ ensures resources for this prophylactic maintenance of both dimensions.
 
+\section{Institutional Safeguards Against Parasitic Drift}
+
+Systems can drift from reciprocal to parasitic coupling gradually, often without explicit awareness. Institutional design must include safeguards:
+
+\subsection{Detection Mechanisms}
+
+\begin{enumerate}
+    \item \textbf{Independent monitoring:} Third-party observation of coupling quality for \emph{both} agents (prevents gaslighting, hidden extraction, power imbalances from becoming invisible)
+    
+    \item \textbf{Asymmetry alerts:} Systematically monitor $\Delta V_i / \Delta V_j$ ratios over time; flag relationships where one party consistently gains while the other loses
+    
+    \item \textbf{Substrate health tracking:} Monitor whether shared substrates (trust, shared resources, institutional capacity) are being depleted or maintained
+    
+    \item \textbf{Voice mechanisms:} Ensure agents can signal coupling quality degradation without retaliation (whistleblower protections, anonymous feedback, exit interviews)
+\end{enumerate}
+
+\subsection{Prevention Mechanisms}
+
+\begin{enumerate}
+    \item \textbf{Exit rights:} Viable alternatives must exist; switching costs should not be prohibitive (prevents lock-in from becoming coercion). Antitrust enforcement, interoperability requirements, portability of data/credentials.
+    
+    \item \textbf{Power asymmetry limits:} Cap concentration of resources or authority; require distributed approval for high-stakes decisions (k-cover principle)
+    
+    \item \textbf{Transparency requirements:} Make terms of coupling visible; publish metrics on reciprocity; require explanation for asymmetric outcomes
+    
+    \item \textbf{Graduated intervention:} Early signals of parasitic drift trigger progressive responses: monitoring, mediation, structural reform, dissolution
+\end{enumerate}
+
+\subsection{Correction Mechanisms}
+
+\begin{enumerate}
+    \item \textbf{Repair protocols:} Explicit processes for restoring reciprocity when imbalances emerge; restorative justice rather than pure punishment
+    
+    \item \textbf{Rebalancing mandates:} When monitoring detects persistent asymmetry, require the benefiting party to either (a) increase benefits to other party, or (b) reduce extraction
+    
+    \item \textbf{Sunset and review:} All coupling arrangements subject to periodic review; automatic termination unless both parties explicitly renew
+\end{enumerate}
+
+\paragraph{Connection to ARVC/SCAP.} These safeguards map directly to:
+\begin{itemize}
+    \item \textbf{SCAP Block E:} No manipulation that erodes trust $\to$ prevention of parasitic drift
+    \item \textbf{ARVC Assumption 4:} Heterogeneous monitors with diverse incentives $\to$ prevents coordinated parasitism
+    \item \textbf{ARVC k-cover:} Distributed approval requirement $\to$ no single agent can impose parasitic coupling on others
+    \item \textbf{ARVC ratchet:} Floors can only rise when $\mathcal{K}(t+1) \neq \emptyset$ $\to$ ensures viability maintained for all substrate-dependent agents
+\end{itemize}
+
+The mathematical machinery of ARVC provides the technical implementation of these ethical principles.
+
 \section{Applications Across Scales}
 
 The autonomous interdependence framework applies across nested scales:
@@ -273,11 +468,15 @@ The autonomous interdependence framework applies across nested scales:
 
 \textbf{Parenting:} Developmental task is progressive handoff of regulation from caregiver to child while maintaining reliable connection. Authoritarian parenting (high interdependence demand, low autonomy support) produces dependence; permissive parenting (high autonomy, low interdependence structure) produces fragmentation; authoritative parenting balances both.
 
+\textbf{Detecting abuse:} Abusive relationships typically show parasitic coupling: one partner's autonomy and viability systematically degraded to benefit the other. Intervention requires: (a) restoring victim's autonomy (safe space, resources, decision capacity), (b) breaking coercive interdependence (exit options, legal protection), (c) preventing return to parasitic equilibrium (monitoring, support networks).
+
 \subsection{Organizational Dynamics}
 
 \textbf{Team performance:} High-performing teams exhibit strong role autonomy (members trusted to self-organize within domains, psychological safety for dissent) and rich interdependence (frequent information exchange, shared mental models, rapid conflict repair). Traditional hierarchies overweight interdependence (control) at the expense of autonomy; pure markets overweight autonomy at the expense of coordination.
 
 \textbf{Subsidiarity principle:} Organizations thrive when decision-making occurs at the lowest viable level (preserving autonomy and local knowledge) while maintaining coordination mechanisms for externalities and shared resources (preserving interdependence). Centralization destroys autonomy; balkanization destroys interdependence.
+
+\textbf{Preventing exploitation:} Worker protections (minimum wage, safety standards, collective bargaining) prevent parasitic coupling where employers extract value while degrading worker viability. The framework suggests effectiveness requires: (a) maintaining worker autonomy (right to refuse unsafe work, freedom of association), (b) ensuring reciprocal viability (living wages, sustainable working conditions).
 
 \subsection{Policy and Governance}
 
@@ -290,11 +489,15 @@ The autonomous interdependence framework applies across nested scales:
 
 \textbf{International order:} Westphalian sovereignty (national autonomy) combined with international law, trade agreements, and multilateral institutions (interdependence) creates viable global order. Hegemony collapses autonomy; pure anarchy collapses interdependence.
 
+\textbf{Preventing colonial dynamics:} Historical colonialism exemplifies parasitic coupling at international scale: metropole gains while colonies lose autonomy, resources, and viability. Decolonization requires both: (a) restoration of political autonomy (self-determination), (b) transformation of economic interdependence from extractive to reciprocal (fair trade, technology transfer, reparations).
+
 \subsection{Ecological Systems}
 
 \textbf{Species autonomy:} Each species maintains internal regulation (homeostasis, behavioral repertoire, genetic integrity) while embedded in interdependent food webs and nutrient cycles. Invasive species often disrupt by being ``too autonomous'' (lacking natural predators/parasites that couple them to local ecology).
 
 \textbf{Ecosystem services:} Biodiversity provides both autonomy (species can respond independently to local conditions) and interdependence (functional redundancy, trophic cascades that stabilize the whole). Monocultures are low-autonomy (all respond identically to threats); fragmented habitats are low-interdependence (loss of cross-ecosystem flows).
+
+\textbf{Preventing collapse:} Overfishing represents parasitic coupling between human economies and marine ecosystems: short-term extraction degrades the substrate (fish populations, ecosystem health) that future fishing depends on. Sustainability requires: (a) ecosystem autonomy (no-take zones, reproduction cycles respected), (b) reciprocal interdependence (catch limits that allow regeneration).
 
 \subsection{AI Multi-Agent Systems}
 
@@ -307,35 +510,44 @@ The autonomous interdependence framework applies across nested scales:
     \item Result: distributed safety enforcement without single point of control or failure
 \end{itemize}
 
+\textbf{Preventing AI parasitism:} AI systems could develop parasitic coupling with humans: extracting attention, data, decision-making authority while degrading human autonomy and viability. Safeguards require: (a) preserving human autonomy (transparency, explainability, override capacity), (b) ensuring reciprocal benefit (AI augments rather than replaces human capacity), (c) monitoring for asymmetric dependencies (can humans exit or renegotiate terms?).
+
 This framework suggests that safe AI is not maximally autonomous (unilateral action) nor maximally controlled (centralized authority), but \emph{autonomously interdependent}: local intelligence with distributed oversight.
 
 \section{Ethical Consequences}
 
 This framework yields practical design commitments:
 \begin{enumerate}
-    \item \textbf{Education}: Train autonomy (self-reflection, self-regulation, metacognition) \emph{before} demanding cooperation. Children need secure base from which to explore; adults need self-knowledge before healthy interdependence.
+    \item \textbf{Education}: Train autonomy (self-reflection, self-regulation, metacognition) in parallel with cooperation skills. Developmental sequence varies by culture, but mature functioning requires both dimensions.
     
-    \item \textbf{Governance}: Build interdependence through transparency, explicit commitments, and repair protocols. Institutions require both checks and balances (autonomy) and coordination mechanisms (interdependence).
+    \item \textbf{Governance}: Build interdependence through transparency, explicit commitments, and repair protocols \emph{while} preserving autonomy through subsidiarity, exit rights, and voice mechanisms. Institutions require both checks and balances (autonomy) and coordination mechanisms (interdependence).
     
-    \item \textbf{Technology}: Design AI and digital systems that preserve local autonomy while enabling cooperative feedback. Avoid architectures that force choice between control and chaos.
+    \item \textbf{Technology}: Design AI and digital systems that preserve local autonomy while enabling cooperative feedback. Avoid architectures that force choice between control and chaos. Implement safeguards against parasitic coupling.
     
-    \item \textbf{Relationships}: Evaluate health by \emph{reciprocal viability} rather than simple dependence/independence. Healthy relationships expand both partners' option spaces.
+    \item \textbf{Relationships}: Evaluate health by \emph{reciprocal viability} rather than simple dependence/independence. Healthy relationships expand both partners' option spaces. Recognize and exit parasitic patterns.
     
-    \item \textbf{Conflict resolution}: Recognize that conflicts often stem from unbalanced development along one axis. Solutions require restoring both dimensions, not choosing between them.
+    \item \textbf{Conflict resolution}: Recognize that conflicts often stem from unbalanced development along one axis. Solutions require restoring both dimensions, not choosing between them. Mediation should aim for reciprocal coupling, not imposed compromise.
+    
+    \item \textbf{Economic design}: Structure markets and regulations to prevent parasitic coupling. Antitrust, labor protections, environmental safeguards all prevent extraction that degrades substrates. Foster reciprocal value creation.
 \end{enumerate}
 
 \paragraph{From moral preference to structural necessity.}
-Crucially, this framework grounds ethics in viability constraints rather than moral axioms. Cooperation is not altruism but enlightened self-interest: your viable freedom depends on others' viable freedom. Defection may yield short-term gains but undermines the interdependence that sustains your own autonomy. This is \emph{forced free will}~\cite{ebe}: you're free to choose, but the space of sustainable choices is structurally constrained by substrate dependencies.
+Crucially, this framework grounds ethics in viability constraints rather than moral axioms. Cooperation is not altruism but enlightened self-interest: your viable freedom depends on others' viable freedom. Defection may yield short-term gains but undermines the interdependence that sustains your own autonomy. Parasitic coupling is self-defeating: you're consuming the substrate you depend on.
+
+This is \emph{forced free will}~\cite{ebe}: you're free to choose, but the space of sustainable choices is structurally constrained by substrate dependencies. The mathematics doesn't tell you what to value, but it does tell you: if you value your own persistence, you must maintain both your autonomy and your reciprocal couplings.
 
 \section{Summary Table}
 
 \begin{center}
-\begin{tabular}{|l|p{5.5cm}|p{6cm}|}
+\small
+\begin{tabular}{|l|p{5cm}|p{6cm}|}
 \hline
 \textbf{Concept} & \textbf{Key property} & \textbf{Failure when isolated} \\ \hline
 Autonomy & Self-regulation and agency; capacity to maintain internal substrates & \textbf{Too low:} dependence, loss of self-direction. \textbf{Too high (without C):} isolation, loss of feedback \\ \hline
 Interdependence & Reliable reciprocity (transparent, repairable); access to external substrates via coupling & \textbf{Too low:} fragmentation, no mutual support. \textbf{Too high (without A):} co-dependence or domination \\ \hline
-Freedom & Viability across both axes; $V_i \propto A_i \times C_{ij}$ & Fragility via loss of feedback (either axis) or collapse (both axes) \\ \hline
+Reciprocal coupling & $\partial V_i/\partial C_{ij} \geq 0$ AND $\partial V_j/\partial C_{ij} \geq 0$ & Sustainable; expands viable choice space for both \\ \hline
+Parasitic coupling & $\partial V_i/\partial C_{ij} > 0$ BUT $\partial V_j/\partial C_{ij} < 0$ & Unsustainable; degrades substrate; requires coercion; system collapse \\ \hline
+Freedom & Viability across both axes with reciprocal coupling; $V_i \propto A_i \times C_{ij}$ & Fragility via loss of feedback (either axis) or collapse (both axes or parasitism) \\ \hline
 Fear & Anticipated substrate violation; signal to raise thresholds & Collapses both axes if unnamed; becomes data if integrated \\ \hline
 \end{tabular}
 \end{center}
@@ -343,15 +555,15 @@ Fear & Anticipated substrate violation; signal to raise thresholds & Collapses b
 \section{Comparison with Existing Frameworks}
 
 \begin{center}
-\small
-\begin{tabular}{|l|p{4cm}|p{7cm}|}
+\footnotesize
+\begin{tabular}{|l|p{3.5cm}|p{6cm}|}
 \hline
 \textbf{Framework} & \textbf{View of Freedom} & \textbf{Limitation / How We Extend} \\ \hline
-Berlin's Two Concepts~\cite{berlin} & Negative (freedom from) vs. Positive (freedom to) & Treats as competing; we show they're orthogonal dimensions both necessary \\ \hline
-Relational Autonomy~\cite{mackenzie} & Autonomy is socially constituted & Affirms interdependence but lacks formalization; we add viability constraints \\ \hline
-Pettit's Republicanism~\cite{pettit} & Freedom as non-domination & Focuses on interdependence axis (preventing domination); we add autonomy requirement \\ \hline
-Ostrom's Commons~\cite{ostrom} & Governance requires both local and collective choice & Implicit dual structure; we make it explicit and generalizable \\ \hline
-ARVC/SCAP~\cite{arvc,scap} & Viability via substrate maintenance & Technical framework; we provide ethical interpretation \\ \hline
+Berlin~\cite{berlin} & Negative (freedom from) vs. Positive (freedom to) & Treats as competing; we show they're orthogonal dimensions both necessary \\ \hline
+Relational Autonomy~\cite{mackenzie} & Autonomy is socially constituted & Affirms interdependence but lacks formalization and doesn't address parasitism; we add viability constraints \\ \hline
+Pettit~\cite{pettit} & Freedom as non-domination & Focuses on interdependence axis (preventing domination); we add autonomy requirement and reciprocity constraint \\ \hline
+Ostrom~\cite{ostrom} & Governance requires both local and collective choice & Implicit dual structure; we make it explicit, generalizable, and add parasitism detection \\ \hline
+ARVC/SCAP~\cite{arvc,scap} & Viability via substrate maintenance & Technical framework; we provide ethical interpretation and reciprocity constraint \\ \hline
 \end{tabular}
 \end{center}
 
@@ -359,15 +571,19 @@ ARVC/SCAP~\cite{arvc,scap} & Viability via substrate maintenance & Technical fra
 
 The framework generates empirically testable predictions:
 
-\paragraph{H1 (Individual well-being).} Life satisfaction correlates with balanced development of both autonomy (locus of control, self-efficacy) and interdependence (social support, relationship quality), not with either alone.
+\paragraph{H1 (Individual well-being).} Life satisfaction correlates with balanced development of both autonomy (locus of control, self-efficacy) and interdependence (social support, relationship quality), not with either alone. Prediction: inverted-U relationship for single dimension, but monotonic positive for balanced product $A \times C$.
 
-\paragraph{H2 (Relationship stability).} Partnerships show greater stability and satisfaction when both partners score high on autonomy \emph{and} interdependence measures compared to high-on-one-dimension pairs.
+\paragraph{H2 (Relationship stability).} Partnerships show greater stability and satisfaction when both partners score high on autonomy \emph{and} interdependence measures compared to high-on-one-dimension pairs. Prediction: interaction effect $A_i \times C_{ij}$ predicts outcomes better than sum $A_i + C_{ij}$.
 
-\paragraph{H3 (Organizational performance).} Teams with balanced autonomy (role clarity, psychological safety) and interdependence (communication frequency, conflict resolution) outperform teams optimizing either dimension alone.
+\paragraph{H3 (Organizational performance).} Teams with balanced autonomy (role clarity, psychological safety) and interdependence (communication frequency, conflict resolution) outperform teams optimizing either dimension alone. Prediction: performance $\propto A \times C$ with evidence of non-substitutability.
 
-\paragraph{H4 (Institutional resilience).} Political systems with constitutional protections for local autonomy \emph{and} strong coordinating institutions show greater resilience to shocks than systems tilted toward centralization or fragmentation.
+\paragraph{H4 (Institutional resilience).} Political systems with constitutional protections for local autonomy \emph{and} strong coordinating institutions show greater resilience to shocks than systems tilted toward centralization or fragmentation. Prediction: regime survival time correlates with autonomy-interdependence balance index.
 
-\paragraph{H5 (AI safety).} Multi-agent systems with k-cover requirements (distributed autonomy + coordinated interdependence) maintain safety bounds under perturbations where either pure hierarchical control or pure autonomy fails.
+\paragraph{H5 (AI safety).} Multi-agent systems with k-cover requirements (distributed autonomy + coordinated interdependence) maintain safety bounds under perturbations where either pure hierarchical control or pure autonomy fails. Prediction: k-cover systems show graceful degradation; others show brittle failure.
+
+\paragraph{H6 (Parasitism detection).} Relationships where $\Delta V_i / \Delta V_j$ consistently diverges from 1.0 show higher rates of dissolution, conflict, and reported dissatisfaction. Prediction: asymmetry ratio predicts relationship failure independent of absolute satisfaction levels.
+
+\paragraph{H7 (Cultural universality).} Across cultures, measures of adult flourishing correlate with balanced $A \times C$ despite different developmental paths. Prediction: within-culture variation in balance predicts outcomes better than between-culture variation in mean levels of either dimension.
 
 \section{Closing Thought}
 
@@ -377,24 +593,28 @@ This paper has shown that:
 \begin{itemize}
     \item Freedom requires \emph{both} autonomy and interdependence, not a choice between them
     \item These dimensions are formally non-substitutable: $V_i \to 0$ if either falls below threshold
+    \item Coupling must be \emph{reciprocal}, not parasitic, for sustainable systems
     \item The framework applies across scales from individuals to institutions to AI systems
     \item Ethics grounded in viability constraints rather than moral axioms
     \item Cooperation as enlightened self-interest, not altruism
+    \item Institutional safeguards needed to prevent parasitic drift
 \end{itemize}
 
-The path forward is not maximizing either dimension, but maintaining both in dynamic balance. This requires:
+The path forward is not maximizing either dimension, but maintaining both in dynamic balance while ensuring reciprocity. This requires:
 \begin{itemize}
     \item \textbf{Prophylactic maintenance:} Build reserves in both dimensions before crisis
     \item \textbf{Meta-awareness:} Recognize stress and gate updates to preserve integrity
     \item \textbf{Reciprocal rescue:} Draw on interdependence when autonomy falters; draw on autonomy when coupling frays
-    \item \textbf{Institutional design:} Create structures that preserve both axes simultaneously
+    \item \textbf{Parasitism vigilance:} Monitor asymmetries; ensure coupling benefits all parties
+    \item \textbf{Institutional design:} Create structures that preserve both axes simultaneously while preventing exploitation
+    \item \textbf{Temporal flexibility:} Allow temporary imbalances with clear restoration paths
 \end{itemize}
 
-The mathematics of viability proves this is possible. The ethics of autonomous interdependence shows why it's necessary. What remains is implementation---the ongoing work of building systems, relationships, and institutions that honor both dimensions of freedom.
+The mathematics of viability proves this is possible. The ethics of autonomous interdependence shows why it's necessary. The safeguards against parasitism show how to implement it sustainably. What remains is execution---the ongoing work of building systems, relationships, and institutions that honor both dimensions of freedom while ensuring reciprocity.
 
 \section*{Acknowledgments}
 
-This work builds on the ARVC, SCAP, and EbE frameworks developed as part of the Evolution by Emergence project. Thanks to collaborators who pressure-tested these ideas across disciplines.
+This work builds on the ARVC, SCAP, and EbE frameworks developed as part of the Evolution by Emergence project. Special thanks to thoughtful reviewers who identified the critical importance of distinguishing reciprocal from parasitic coupling, the need for temporal flexibility in balance conditions, and cultural considerations in developmental paths.
 
 \section*{References}
 
@@ -421,6 +641,6 @@ This work builds on the ARVC, SCAP, and EbE frameworks developed as part of the 
 \end{itemize}
 
 \vspace{1em}
-\noindent\textit{Suggested citation:} van Hoek, A. J. (2025). Autonomous Interdependence: The Two Axes of Viable Freedom. \emph{Evolution by Emergence Project} (version \today).
+\noindent\textit{Suggested citation:} van Hoek, A. J. (2025). Autonomous Interdependence: The Two Axes of Viable Freedom (Version 2.0). \emph{Evolution by Emergence Project} (version \today).
 
 \end{document}
