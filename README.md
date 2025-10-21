@@ -12,6 +12,8 @@ This repository contains three interconnected works that form a unified narrativ
 **Authors:** Albert Jan van Hoek, with AI collaboration (ChatGPT, Gemini, Claude)  
 **License:** CC BY 4.0
 
+An integral part of this project is a repository of songs, which can be found here: https://soundcloud.com/emergence-223803727
+
 ---
 
 ## The Unified Narrative
