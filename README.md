@@ -1,5 +1,7 @@
 # Evolution by Emergence: A Universal Theory of Networks, Life, and Mind
 
+Quick start: all content is also available as pdf's in the folder "pdf's of content"
+
 ## Repository Overview
 
 This repository contains three interconnected works that form a unified narrative about universal evolutionary principles and their implications for intelligence, cooperation, and alignment:
