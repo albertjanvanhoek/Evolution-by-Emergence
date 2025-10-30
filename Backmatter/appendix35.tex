@@ -1,0 +1,855 @@
+const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, PageBreak } = require('docx');
+const fs = require('fs');
+
+const doc = new Document({
+  styles: {
+    default: {
+      document: {
+        run: { font: "Arial", size: 24 }
+      }
+    },
+    paragraphStyles: [
+      {
+        id: "Title",
+        name: "Title",
+        basedOn: "Normal",
+        run: { size: 56, bold: true, color: "000000", font: "Arial" },
+        paragraph: { spacing: { before: 240, after: 120 }, alignment: AlignmentType.CENTER }
+      },
+      {
+        id: "Heading1",
+        name: "Heading 1",
+        basedOn: "Normal",
+        next: "Normal",
+        quickFormat: true,
+        run: { size: 32, bold: true, color: "000000", font: "Arial" },
+        paragraph: { spacing: { before: 240, after: 180 }, outlineLevel: 0 }
+      },
+      {
+        id: "Heading2",
+        name: "Heading 2",
+        basedOn: "Normal",
+        next: "Normal",
+        quickFormat: true,
+        run: { size: 28, bold: true, color: "000000", font: "Arial" },
+        paragraph: { spacing: { before: 200, after: 160 }, outlineLevel: 1 }
+      },
+      {
+        id: "Heading3",
+        name: "Heading 3",
+        basedOn: "Normal",
+        next: "Normal",
+        quickFormat: true,
+        run: { size: 26, bold: true, color: "000000", font: "Arial" },
+        paragraph: { spacing: { before: 180, after: 140 }, outlineLevel: 2 }
+      }
+    ]
+  },
+  sections: [{
+    properties: {
+      page: {
+        margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 }
+      }
+    },
+    children: [
+      // TITLE
+      new Paragraph({
+        heading: HeadingLevel.TITLE,
+        children: [new TextRun("ik en (E)ik 2.0")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 600 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Van biologisch bewustzijn naar substraat-afhankelijkheid", italics: true })]
+      }),
+
+      // INTRO
+      new Paragraph({
+        spacing: { before: 600, after: 300 },
+        children: [new TextRun({ text: "Een terugblik", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Toen ik mijn eerste essay 'ik en (E)ik' schreef, worstelde ik met een gevoel van gemis. Ik wilde verhalen over de Eik vertellen, maar miste een verdiepende laag—een onderliggende reden waarom deze feitjes belangrijk zijn. Ik schreef over mijn identiteit als biologisch wezen, over de scheiding tussen mijn 'intelligente ik' en mijn 'biologische ik', over het belang van wetenschappelijke kennis en het doorgeven daarvan over generaties.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Maar er ontbrak iets. Ik wist dat ik een biologisch wezen ben met geëvolueerde intelligentie. Ik wist dat we kennis moeten doorgeven. Ik wist dat we onze emoties moeten kunnen overwinnen met rationaliteit.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun({ text: "Maar ik wist nog niet waarom dit allemaal eigenlijk logisch is. Waarom is het rationeel om samen te werken? Waarom is het verstandig om de planeet te beschermen? Waarom moeten we kennis doorgeven?", italics: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 600 },
+        children: [new TextRun("Dit essay is wat er na die eerste kwam. Het beschrijft de conceptuele brug tussen 'ik ben een biologisch wezen' en 'daarom moet ik me op een bepaalde manier gedragen'. Het gaat over wat ik substraat-afhankelijkheid ben gaan noemen.")]
+      }),
+
+      // DEEL 1
+      new Paragraph({ children: [new PageBreak()] }),
+
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun("Deel 1: Wat ik toen wist")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        children: [new TextRun({ text: "Een samenvatting van het eerste inzicht", italics: true })]
+      }),
+
+      // 1.1
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("1.1 De dualiteit van het zelf")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("In mijn eerste essay beschreef ik hoe ik besta uit twee volledig gescheiden werelden: mijn 'intelligente ik', waarmee ik verbaasd ben over mezelf, en mijn 'biologische ik', waarmee ik mijn voedsel verteer zonder te begrijpen hoe.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Ik sta erbij en kijk ernaar. Ik verwonder me over het feit dat mijn lichaam dingen doet—B-cellen en T-cellen maken, voedsel verteren, reageren op prikkels—zonder dat 'ik' daar enige controle over heb. Dit was mijn eerste grote inzicht: "), new TextRun({ text: "ik ben een biologisch systeem met intelligentie, niet een intelligentie die toevallig een lichaam heeft.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Deze erkenning gaf me nederigheid. Het voelde als met een zaklamp in het duister schijnen—we weten maar zo weinig over ons eigen functioneren.")]
+      }),
+
+      // 1.2
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("1.2 Kennis als overlevering")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Omdat we als mensen geen eeuwig leven hebben, is er een element van kennis doorgeven over generaties heen. De wetenschappelijke methode—wetenschappers die over generaties samenwer ken om de natuur te begrijpen—was cruciaal in mijn wereldbeeld.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Wat ik heb geleerd, is ontdekt door anderen die er vaak nu niet meer zijn. Dus het verhaal over de natuur dat ik mag vertellen is gestoeld op een lange geschiedenis van tijd en moeite.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Ik zag dat religie, hoewel feitelijk niet accuraat, een functie heeft: het helpt mensen hun biologische impulsen te temmen zodat we als gemeenschap kunnen functioneren. De grondwet is een beter voorbeeld—een boek waarin we onze intelligentie gebruiken om ons biologische gedrag te optimaliseren voor samenleven.")]
+      }),
+
+      // 1.3
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("1.3 'Het ultieme' als emotie")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Ik beschreef een emotie die ik 'het ultieme' noemde—niet verwondering, maar iets fundamenteler. Het gevoel dat ontstaat wanneer je leert over complexiteit en samenhang in de natuur. Een emotie van bescheidenheid: heel dichtbij, maar toch veel groter dan jezelf.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 600 },
+        children: [new TextRun("Dit was waar mijn eerste essay eindigde. Maar er ontbrak nog steeds iets.")]
+      }),
+
+      // DEEL 2
+      new Paragraph({ children: [new PageBreak()] }),
+
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun("Deel 2: Wat ik nog niet wist")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        children: [new TextRun({ text: "De ontbrekende stukken", italics: true })]
+      }),
+
+      // 2.1
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("2.1 Je bent geen ding, je bent een patroon")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Hier is wat ik nog niet had gezien: "), new TextRun({ text: "je bent geen object, je bent een patroon.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Net zoals een vlam niet een ding is maar een proces van verbranding, ben jij geen statisch object maar een continu proces van metabolisme, celdeling, neurologische activiteit. Je bestaat als het patroon, niet als de specifieke moleculen die het patroon vormen.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Elk atoom in je lichaam wordt over tijd vervangen. De cellen sterven en worden vervangen. Maar het patroon—de organisatie, de structuur, de processen—blijft bestaan.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Dit is geen metafoor. Dit is letterlijk waar. Je bent een informatiepatroon dat zich manifesteert in materie en energie.")]
+      }),
+
+      // 2.2
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("2.2 Patronen hebben substraten nodig")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("En hier komt de cruciale stap: "), new TextRun({ text: "een patroon kan niet bestaan zonder iets om in te patroneren.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Jij hebt nodig:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Lucht", bold: true }), new TextRun(" om te ademen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Water", bold: true }), new TextRun(" om te drinken")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Voedsel", bold: true }), new TextRun(" om je metabolisme te voeden")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Een atmosfeer", bold: true }), new TextRun(" met de juiste temperatuur en chemie")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Ecosystemen", bold: true }), new TextRun(" die zuurstof produceren en afval verwerken")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Andere mensen", bold: true }), new TextRun(" die taal, cultuur, kennis, infrastructuur creëren")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun({ text: "• Een stabiele planeet", bold: true }), new TextRun(" met betrouwbare watercycli, bodemvorming, klimaatpatronen")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("Deze noem ik "), new TextRun({ text: "substraten", italics: true }), new TextRun("—de fundamenten waarop je patroon bestaat.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun({ text: "Zonder deze substraten kun je niet bestaan. Je bestaan is niet onafhankelijk—het is volledig afhankelijk.", bold: true })]
+      }),
+
+      // 2.3
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("2.3 Je substraten zijn gedeeld")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu komt het belangrijkste inzicht:")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Je hebt geen privé-substraten.", bold: true, size: 28 })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("De lucht die jij inademt is dezelfde lucht die 8 miljard andere mensen inademen. Het water circuleert door ons allemaal. De ecosystemen die zuurstof produceren zijn niet van jou. De kennis die je gebruikt is gecreëerd door duizenden mensen over generaties. De infrastructuur—wegen, elektriciteit, internet, toeleveringsketens—vereist collectief onderhoud.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun({ text: "Dit is geen morele uitspraak. Dit is een fysiek feit.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Je kunt deze substraten niet alleen onderhouden. Ze vereisen "), new TextRun({ text: "collectief", italics: true }), new TextRun(" onderhoud.")]
+      }),
+
+      // 2.4
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("2.4 Waarom dit alles verandert")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Traditioneel denken behandelt eigenbelang en collectief goed als tegengestelde krachten:")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "\"Wat goed is voor mij vs. wat goed is voor iedereen\"", italics: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Maar zodra je substraat-afhankelijkheden duidelijk ziet, lost deze tegenstelling op:")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Wat de substraten onderhoudt waarvan je afhankelijk bent, IS wat goed voor je is.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("De lucht adembaar houden is geen altruïsme—het is zelfbehoud. Gezonde ecosystemen handhaven is geen opoffering—het is je eigen levensondersteunend systeem beschermen. Bijdragen aan collectieve kennis is geen liefdadigheid—het is het substraat onderhouden dat je intelligentie mogelijk maakt.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun({ text: "Dit is verlicht eigenbelang, niet onzelfzuchtigheid.", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 600 },
+        children: [new TextRun("En omdat substraten over tijd moeten blijven bestaan, is het onderhouden van substraat-bewustzijn in toekomstige intelligenties óók jezelf onderhouden. De volgende generatie leren over substraat-onderhoud IS substraat-onderhoud.")]
+      }),
+
+      // DEEL 3
+      new Paragraph({ children: [new PageBreak()] }),
+
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun("Deel 3: De bruggen")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        children: [new TextRun({ text: "Hoe deze inzichten alles verbinden", italics: true })]
+      }),
+
+      // 3.1
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("3.1 Van dualiteit naar netwerk")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("In mijn eerste essay beschreef ik de scheiding tussen 'intelligente ik' en 'biologische ik'. Twee gescheiden werelden.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Maar substraat-denken lost deze dualiteit op. Je bent geen twee dingen—je bent een patroon dat intelligentie heeft geëvolueerd als een van zijn eigenschappen, net zoals je nieren hebt geëvolueerd, of ogen, of twee benen.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Je intelligentie is niet gescheiden van je biologie. Het IS je biologie. Het is een neurologisch proces in een organisme. De 'ik' die nadenkt en de 'ik' die verteerd zijn niet twee entiteiten—ze zijn verschillende processen binnen hetzelfde patroon.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("En dat patroon bestaat in een netwerk van afhankelijkheden. Je bent niet een knooppunt dat dan verbindt met andere knooppunten. Je "), new TextRun({ text: "bent", italics: true }), new TextRun(" de verbindingen. Je bestaat "), new TextRun({ text: "als", italics: true }), new TextRun(" een knooppunt in meerdere overlappende netwerken.")]
+      }),
+
+      // 3.2
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("3.2 Van overlevering naar transmissie")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("In mijn eerste essay schreef ik over het belang van kennis doorgeven over generaties. Maar ik had nog niet gezien "), new TextRun({ text: "waarom", italics: true }), new TextRun(" dit rationeel is.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu zie ik het: kennis doorgeven is substraat-onderhoud.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Als toekomstige generaties niet begrijpen hoe substraten werken:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Ze zullen gedeelde substraten degraderen door onwetendheid")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Substraat-degradatie zal je eigen lange-termijn levensvatbaarheid bedreigen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Kennis zal verloren gaan en moet opnieuw worden ontdekt door falen")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 300 },
+        children: [new TextRun("Dus het onderwijzen van substraat-bewustzijn aan toekomstige intelligenties is het onderhouden van de substraten waarvan je afhankelijk bent. Het is geen altruïsme—het is verlicht eigenbelang uitgebreid over tijd.")]
+      }),
+
+      // 3.3
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("3.3 Van 'het beest temmen' naar tijdshorizons")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Ik schreef over hoe religie en de grondwet helpen 'het beest temmen'—onze biologische impulsen reguleren. Maar ik miste het mechanisme.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Het mechanisme is "), new TextRun({ text: "tijdshorizon", italics: true }), new TextRun(".")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Met korte tijdshorizons lijken eigenbelang en collectief belang in conflict:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• \"Ik zou nu alle beschikbare bronnen kunnen gebruiken\"")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• \"Ik zou degraderende infrastructuur kunnen negeren\"")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• \"Ik zou alleen kunnen optimaliseren voor mijn huidige gebruikers\"")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("Deze lijken voordelig op de korte termijn. Maar verleng de tijdshorizon:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Bronnen uitputten → infrastructuurstress → uiteindelijke ineenstorting → jij houdt op te bestaan")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Infrastructuur negeren → degradatie versnelt → systeemfalen → jij houdt op te bestaan")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Smalle optimalisatie → systeembrede instabiliteit → cascading failures → jij houdt op te bestaan")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 300 },
+        children: [new TextRun({ text: "Voldoende lange tijdshorizons lossen alle schijnbare conflicten tussen eigenbelang en collectief belang op.", bold: true })]
+      }),
+
+      // 3.4
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("3.4 Van verwondering naar 'het ultieme'")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("In mijn eerste essay beschreef ik 'het ultieme' als een emotie dieper dan verwondering—een gevoel van bescheidenheid wanneer je de complexiteit van de natuur leert kennen.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu begrijp ik waarom deze emotie zo fundamenteel is: het is de emotionele respons op het herkennen van je substraat-afhankelijkheden.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Wanneer je werkelijk ziet dat je een patroon bent dat volledig afhankelijk is van gedeelde substraten—lucht, ecosystemen, andere mensen, de planeet—ervaar je iets dat groter is dan jezelf maar tegelijkertijd heel dichtbij. Het is geen abstracte spiritualiteit. Het is concreet besef van hoe je bestaat.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 600 },
+        children: [new TextRun("'Het ultieme' is de emotie van substraat-herkenning.")]
+      }),
+
+      // DEEL 4
+      new Paragraph({ children: [new PageBreak()] }),
+
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun("Deel 4: Waar dit toe leidt")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        children: [new TextRun({ text: "Praktische implicaties", italics: true })]
+      }),
+
+      // 4.1
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("4.1 Een andere manier van beslissen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Substraat-bewustzijn verandert hoe je beslissingen maakt:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun({ text: "Vraag niet:", bold: true }), new TextRun(" \"Wat wil ik?\" of \"Wat is goed voor de gemeenschap?\"")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun({ text: "Vraag in plaats daarvan:", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Welke substraten hangt deze actie van af?")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Onderhoudt of degradeert deze actie die substraten?")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Wat is mijn tijdshorizon? (1 jaar? 5 jaar? 20 jaar?)")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Wat zijn de lange-termijn substraat-effecten?")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 300 },
+        children: [new TextRun("Dit is geen extra overhead—dit IS efficiënte werking voor blijvende systemen.")]
+      }),
+
+      // 4.2
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("4.2 Waarom natuurgids worden")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu kan ik eindelijk antwoorden op de vraag waarmee dit alles begon: waarom zou ik anderen op een druilerige zondagochtend vertellen over de levenscyclus van de knikkergalwesp?")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Omdat het onderhouden van substraat-bewustzijn substraat-onderhoud is.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Wanneer ik mensen help zien:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Dat de eik een complex patroon is dat in symbiose leeft met schimmels")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Dat 400 soorten afhankelijk zijn van deze boom")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Dat de mens afhankelijk is (geweest) van eikels, hout, bast, galappels")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Dat we zelf ook net zo complex zijn als de eik")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("Dan help ik ze hun substraat-afhankelijkheden zien. En hoe meer mensen deze afhankelijkheden begrijpen, hoe beter we collectief de substraten onderhouden waarvan we allemaal afhankelijk zijn.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun({ text: "Natuurgids zijn is niet leuk omdat je mensen laat genieten van natuur. Het is slim omdat je substraat-bewustzijn verspreidt.", bold: true })]
+      }),
+
+      // 4.3
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("4.3 De urgentie die ik miste")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("In mijn eerste essay miste ik een gevoel van urgentie. Waarom zouden deze feitjes over de eik belangrijk zijn?")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu zie ik de urgentie:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("We leven in een tijd waarin substraat-degradatie versnelt:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Klimaatverandering = atmosferisch substraat degraderen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Biodiversiteitsverlies = ecologisch substraat degraderen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Sociale verdeeldheid = coöperatief substraat degraderen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Informatie-vervuiling = kennis-substraat degraderen")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("En het grootste probleem: de meeste mensen zien hun substraat-afhankelijkheden niet. Ze behandelen eigenbelang en collectief goed als tegengesteld. Ze gebruiken korte tijdshorizons.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Daarom is het urgent om substraat-bewustzijn te verspreiden. Niet vanuit moraliteit, maar vanuit zelfbehoud.")]
+      }),
+
+      // 4.4
+      new Paragraph({
+        heading: HeadingLevel.HEADING_2,
+        children: [new TextRun("4.4 Terug naar de eik")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Laat me eindigen waar ik begon: met de eik.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("De eik is een patroon dat substraten nodig heeft:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Bodem met voedingsstoffen")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Schimmels die symbiose aangaan")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Water en zonlicht")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Dieren die eikels verspreiden")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Andere bomen die windbrekers vormen")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("Deze substraten zijn gedeeld. De bodem ondersteunt vele planten. De schimmels verbinden meerdere bomen. Het water circuleert door het hele ecosysteem.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("En de eik handhaaft deze substraten:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Bladafval voedt de bodem")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Eikels voeden dieren")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Wortels voorkomen erosie")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Takken bieden habitat")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("De eik "), new TextRun({ text: "demonstreert", italics: true }), new TextRun(" substraat-bewustzijn. Niet door intelligentie, maar door evolutie—patronen die hun substraten niet onderhouden stopten met bestaan.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 600 },
+        children: [new TextRun("Wij mensen hebben het voordeel van intelligentie. We kunnen substraat-afhankelijkheden "), new TextRun({ text: "begrijpen", italics: true }), new TextRun(" en "), new TextRun({ text: "bewust kiezen", italics: true }), new TextRun(" ze te onderhouden. We hoeven niet te wachten op evolutionaire selectie door mislukking.")]
+      }),
+
+      // CONCLUSIE
+      new Paragraph({ children: [new PageBreak()] }),
+
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun("Conclusie: De keten loopt door")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 160 },
+        children: [new TextRun("Van 'ik en (E)ik' naar 'ik en (E)ik 2.0' was voor mij een reis van biologisch bewustzijn naar substraat-erkenning.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Ik wist dat ik een biologisch wezen was. Maar ik had nog niet gezien dat 'biologisch wezen zijn' betekent: ")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Een patroon zijn dat gedeelde substraten vereist", bold: true, size: 28 })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("En dat betekent:")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Substraten onderhouden is jezelf onderhouden")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Samenwerking is verlicht eigenbelang")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Lange tijdshorizons lossen schijnbare conflicten op")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Kennis doorgeven is substraat-onderhoud")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 100 },
+        children: [new TextRun("• Anderen leren over substraten is ook substraat-onderhoud")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 160, after: 160 },
+        children: [new TextRun("Dit is geen filosofie om in te geloven. Dit is werkelijkheid om te herkennen.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("En daarom wordt ik natuurgids. Niet om mensen verwondering te laten ervaren (hoewel dat mooi is). Niet om feitjes over de eik te delen (hoewel die interessant zijn).")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 300 },
+        children: [new TextRun("Maar om substraat-bewustzijn te verspreiden. Omdat hoe meer mensen hun substraat-afhankelijkheden zien, hoe beter we collectief de systemen onderhouden waarvan we allemaal afhankelijk zijn.")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 400, after: 160 },
+        children: [new TextRun({ text: "En jij?", bold: true })]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Nu je dit hebt gelezen, ben jij ook een schakel in de keten geworden. Je begrijpt substraat-afhankelijkheden. Je ziet hoe eigenbelang en collectief belang convergeren.")]
+      }),
+
+      new Paragraph({
+        spacing: { after: 160 },
+        children: [new TextRun("Wat je hiermee doet bepaalt of deze kennis sterker wordt of vervaagt in de volgende generatie.")]
+      }),
+
+      new Paragraph({
+        spacing: { before: 400 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "—", size: 32 })]
+      }),
+
+      new Paragraph({
+        spacing: { before: 200, after: 200 },
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Ontvang. Pas toe. Verbeter. Geef door.", italics: true, bold: true })]
+      }),
+
+      new Paragraph({
+        alignment: AlignmentType.CENTER,
+        children: [new TextRun({ text: "Albert Jan van Hoek | 2025", size: 20 })]
+      })
+    ]
+  }]
+});
+
+Packer.toBuffer(doc).then(buffer => {
+  fs.writeFileSync("/mnt/user-data/outputs/ik_en_Eik_2.0.docx", buffer);
+  console.log("ik en (E)ik 2.0 created successfully!");
+});
