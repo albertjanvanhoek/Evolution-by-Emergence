@@ -14,7 +14,10 @@ This repository contains three interconnected works that form a unified narrativ
 **Authors:** Albert Jan van Hoek, with AI collaboration (ChatGPT, Gemini, Claude)  
 **License:** CC BY 4.0
 
-An integral part of this project is a repository of songs, which can be found here: https://soundcloud.com/emergence-223803727
+An integral part of this project is a repository of podcasts & songs, which can be found here: https://soundcloud.com/emergence-223803727
+
+In addition to the soundcloud there is also a youtube playlist/channel: https://www.youtube.com/playlist?list=PLKIpe5gGP7m4k-jsj2zXA8QnP6S46Bl94
+
 
 ---
 
