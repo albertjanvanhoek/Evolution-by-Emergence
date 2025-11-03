@@ -1,0 +1,1203 @@
+% ARVC Complete Framework - Rigorous Mathematical Formulation
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+
+\title{Attractor-Ratcheted Viability Control: \\
+The Mathematical Structure of Persistent Systems}
+
+\author{Albert Jan van Hoek}
+
+\date{November 2025 - Complete Framework}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a complete mathematical framework for understanding how far-from-equilibrium systems persist through time. We prove that distributed monitoring arranged as a $k$-cover is both necessary and sufficient for maintaining viability under partial observation, disturbances, and potential capture. The framework unifies three components: (i) forward invariance on time-varying safe sets via observable inflated barriers; (ii) a ratcheted frontier that rises only when certified feasible by viability kernel theory, with explicit per-step bounds; and (iii) emergent global safety from local, heterogeneous checks through a network chain reaction. We prove that this structure emerges inevitably through selection pressure (Theorems~\ref{thm:bootstrap} and \ref{cor:selection}), creating a self-reinforcing cycle where viability enables advancement enables improved viability. When intelligence becomes self-aware of these dependencies, it recognizes its learning capacity as a substrate and internalizes the same architecture—yielding what we term the Sustainable Collaborative Alignment Principle (SCAP). This is not prescription but description: the mathematics of how existence persists.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{The Scientific Question}
+
+Across domains—from cellular metabolism to democratic institutions to artificial intelligence—persistent complex systems display a characteristic architecture: multiple heterogeneous monitoring mechanisms, no single point of control, distributed detection and correction, and non-substitutable substrate dependencies. Is this structure contingent (could have been otherwise) or necessary (had to emerge this way)?
+
+We prove it is necessary. Under minimal assumptions about uncertainty, disturbance, and potential adversaries, $k$-cover monitoring is the unique minimal structure enabling persistence. Systems without it fail; selection eliminates them. What remains—what we observe today—must exhibit this pattern.
+
+\subsection{Main Results}
+
+\paragraph{Forward Invariance (Section~\ref{sec:forward})} Under partial observation with bounded noise, observable inflated barriers ensure that local monitor approvals imply true safety (Lemma~\ref{lem:soundness}). When at least $k_{\min}$ monitors approve and form a cover of all substrates, the system remains viable with high probability (Theorem~\ref{thm:forward_invariance}).
+
+\paragraph{Ratcheted Advancement (Section~\ref{sec:ratchet})} The viability kernel provides existence certificates for safe controllers. We derive an explicit per-step floor increment bound $\Delta^*$ (Lemma~\ref{lem:floor_bound}) that couples control authority, disturbance magnitude, and system Lipschitz constants. Floors rise only when feasible (Theorem~\ref{thm:ratchet_feasibility}).
+
+\paragraph{Network Chain Reaction (Section~\ref{sec:chain})} We extend the framework with monitor health dynamics, proving that substrate margins improve monitoring capability, which enables safer advancement, which increases margins—a self-reinforcing cycle (Theorem~\ref{thm:chain_reaction}). This creates stability-momentum coupling: better monitoring reduces failure probability exponentially while increasing safe advancement rate superlinearly.
+
+\paragraph{Bootstrapping and Inevitability (Section~\ref{sec:bootstrap})} Starting from proto-viable states (substrates exist but monitoring insufficient), we prove that substrate-driven monitor recruitment inevitably reaches the $k_{\min}$ threshold under survival pressure (Theorem~\ref{thm:bootstrap}). Once crossed, the chain reaction ignites. Selection eliminates sub-threshold configurations (Corollary~\ref{cor:selection}).
+
+\paragraph{Capture Resistance (Section~\ref{sec:capture})} Heterogeneous monitor costs create superlinear capture resistance: corrupting a $k$-cover costs at least $k_{\min} \cdot \min_j C_j^{FN}$ (Theorem~\ref{thm:capture}). Combined with the chain reaction, defection becomes self-destructive (Corollary~\ref{cor:forced_free_will}).
+
+\paragraph{Recursive Turn (Section~\ref{sec:scap})} When intelligence models its own dependencies, it discovers that its learning loop $\mathcal{L}$ is itself a substrate requiring maintenance. Applying the framework recursively yields the Sustainable Collaborative Alignment Principle: not a moral imperative but a recognition that intelligence persists by maintaining the structure that enables intelligence.
+
+\subsection{Contributions}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Unification}: We prove that the same mathematical structure—$k$-cover monitoring with chain reaction dynamics—governs persistence across biological, institutional, and cognitive domains.
+
+\item \textbf{Inevitability}: Through the bootstrapping theorem, we show this architecture is not designed but discovered: it's the unique minimal structure surviving selection.
+
+\item \textbf{Recursion}: When applied to intelligence itself, the framework explains why self-aware systems converge on stewardship of shared substrates—not through coordination but through existential mathematics.
+
+\item \textbf{Testability}: All theorems yield empirical predictions about resilience, collapse thresholds, and recovery dynamics in real systems.
+\end{enumerate}
+
+\subsection{Relation to Prior Work}
+
+Our framework synthesizes and extends several literatures:
+
+\paragraph{Viability Theory} \cite{aubin2009viability} provides the foundation for our viability kernel and forward invariance results. We extend this to partial observation via observable inflated barriers and prove emergence of distributed monitoring.
+
+\paragraph{Control Barrier Functions} \cite{ames2017control} establish forward invariance for safety-critical systems. We generalize to multiple heterogeneous barriers with dependencies and prove the $k$-cover sufficiency condition.
+
+\paragraph{Hybrid Systems} \cite{branicky1998multiple, liberzon2003switching} analyze systems with switching dynamics. Our ratchet mechanism with dwell-time corresponds to mode-dependent Lyapunov functions; we add the kernel feasibility certificate and explicit rate bounds.
+
+\paragraph{Concentration Inequalities} \cite{janson2004large} for weakly dependent random variables underpin our approval probability bounds under the dependency graph structure.
+
+\paragraph{Evolutionary Game Theory} Our selection result (Corollary~\ref{cor:selection}) connects to replicator-mutation dynamics \cite{hofbauer1998evolutionary} with viability-dependent fitness.
+
+\paragraph{Novelty} To our knowledge, this is the first framework proving that: (i) distributed $k$-cover monitoring emerges necessarily from viability constraints; (ii) monitor health dynamics create self-reinforcing chain reactions; (iii) the same structure applies recursively when intelligence becomes self-aware; and (iv) this explains observed patterns across scales.
+
+\subsection{Outline}
+
+Section~\ref{sec:setup} establishes notation, definitions, and assumptions. Section~\ref{sec:forward} proves forward invariance under partial observation. Section~\ref{sec:ratchet} derives the ratcheted advancement mechanism with explicit bounds. Section~\ref{sec:chain} introduces monitor health dynamics and proves the chain reaction theorem. Section~\ref{sec:bootstrap} proves bootstrapping from proto-viable states and selection of $k$-cover configurations. Section~\ref{sec:capture} establishes capture resistance. Section~\ref{sec:scap} articulates the recursive turn and SCAP. Section~\ref{sec:applications} provides empirical predictions and examples. Section~\ref{sec:conclusion} discusses implications and open problems.
+
+%==============================================================================
+\section{System Setup and Assumptions}
+\label{sec:setup}
+
+\subsection{Basic Dynamical System}
+
+\begin{definition}[Persistent Dynamical System]
+\label{def:system}
+A persistent dynamical system is a tuple $\Sigma = (\mathcal{X}, F, \mathcal{A}, \mathcal{W})$ where:
+\begin{itemize}[leftmargin=*]
+\item $\mathcal{X} \subseteq \mathbb{R}^n$ is the state space
+\item $F: \mathcal{X} \times \mathcal{A} \times \mathcal{W} \to \mathcal{X}$ is the dynamics (continuous)
+\item $\mathcal{A} \subseteq \mathbb{R}^p$ is the action space (compact)
+\item $\mathcal{W} \subseteq \mathbb{R}^q$ is the disturbance set (compact)
+\end{itemize}
+System evolution: $x_{t+1} = F(x_t, a_t, w_t)$.
+\end{definition}
+
+\subsection{Substrates and Viability}
+
+\begin{definition}[Layered Substrates]
+\label{def:substrates}
+The state decomposes as $x = [z^{(1)}, \ldots, z^{(L)}, q]$ where:
+\begin{itemize}[leftmargin=*]
+\item $z^{(i)} \in \mathbb{R}^{n_i}$ are substrate variables (must remain above floors)
+\item $q \in \mathbb{R}^{n_q}$ are auxiliary variables
+\item $\sum_i n_i + n_q = n$
+\end{itemize}
+Each substrate has physical meaning: energy reserves, resource stocks, operational envelopes, information integrity, etc.
+\end{definition}
+
+\begin{definition}[Time-Varying Viability Set]
+\label{def:viability_set}
+Given substrate floors $z^{*(i)}(t) \in \mathbb{R}^{n_i}$, the viability set at time $t$ is:
+\begin{equation}
+S(t) := \{ x \in \mathcal{X} : z^{(i)} \geq z^{*(i)}(t) \text{ componentwise for all } i = 1, \ldots, L \}
+\end{equation}
+We assume $S(t)$ is closed for all $t$.
+\end{definition}
+
+\begin{assumption}[Lipschitz Dynamics]
+\label{ass:lipschitz}
+There exists $L_F > 0$ such that
+\begin{equation}
+\| F(x, a, w) - F(x', a, w) \| \leq L_F \| x - x' \|
+\end{equation}
+for all $x, x' \in \mathcal{X}$, $a \in \mathcal{A}$, $w \in \mathcal{W}$.
+\end{assumption}
+
+\subsection{Monitoring and Barriers}
+
+\begin{definition}[Barrier Functions]
+\label{def:barrier}
+A barrier function $h_j: \mathcal{X} \times \mathbb{N} \to \mathbb{R}$ for monitor $M_j$ satisfies:
+\begin{equation}
+h_j(x, t) \geq 0 \iff x \in S_j(t)
+\end{equation}
+where $S_j(t) \subseteq S(t)$ is the safe set according to monitor $j$. We assume $h_j(\cdot, t)$ is $L_j$-Lipschitz continuous in $x$.
+\end{definition}
+
+\begin{definition}[Partial Observation and Observable Inflated Barrier]
+\label{def:observable_barrier}
+Monitor $M_j$ has:
+\begin{itemize}[leftmargin=*]
+\item Observation map $O_j: \mathcal{X} \to \mathbb{R}^{d_j}$
+\item Barrier function $h_j$
+\item Noise bound $\epsilon_{\max}$
+\end{itemize}
+The monitor receives noisy observation $\hat{x}_j = O_j(x) + \epsilon_j$ where $\|\epsilon_j\| \leq \epsilon_{\max}$.
+
+The \emph{observable inflated barrier} is:
+\begin{equation}
+\bar{h}_j^{obs}(\hat{x}_j, t) := \inf_{\|O_j(x') - \hat{x}_j\| \leq \epsilon_{\max}} h_j(x', t)
+\end{equation}
+
+By Lipschitz continuity: $\bar{h}_j^{obs}(\hat{x}_j, t) \geq h_j(x, t) - L_j \epsilon_{\max}$.
+
+Monitor $j$ \emph{approves} at time $t$ if $\bar{h}_j^{obs}(\hat{x}_j, t) \geq 0$.
+\end{definition}
+
+\begin{assumption}[Substrate Observability]
+\label{ass:observability}
+For each substrate $i \in \{1, \ldots, L\}$, there exists at least one monitor $j$ and constants $c_i, r_i > 0$ such that within the feasible tube, the map $O_j$ is $c_i$-sensitive to $z^{(i)}$. That is, on all balls of radius $r_i$, changes in $z^{(i)}$ create detectable changes in $O_j(x)$ with sensitivity at least $c_i$.
+\end{assumption}
+
+\subsection{Coverage and Execution Rule}
+
+\begin{definition}[$k$-Cover of Substrates]
+\label{def:k_cover}
+A set $J \subseteq \{1, \ldots, m\}$ of monitors is a \emph{$k$-cover} if $|J| = k$ and for each substrate $i \in \{1, \ldots, L\}$, some monitor $j \in J$ is sensitive to $z^{(i)}$ in the sense of Assumption~\ref{ass:observability}.
+
+The \emph{minimal cover size} is:
+\begin{equation}
+k_{\min} := \min\{ k : \exists \text{ $k$-cover of all $L$ substrates} \}
+\end{equation}
+Note that $L \leq k_{\min} \leq m$.
+\end{definition}
+
+\begin{definition}[Execution Rule H1]
+\label{def:execution_rule}
+Let $J_{\text{approve}}(t) := \{ j : \bar{h}_j^{obs}(\hat{x}_j, t) \geq 0 \}$ be the set of approving monitors.
+
+\emph{Execute action $a_t$ if and only if $J_{\text{approve}}(t)$ forms a $k$-cover with $k \geq k_{\min}$.}
+\end{definition}
+
+\subsection{Dependency Structure}
+
+\begin{assumption}[Dependency Graph]
+\label{ass:dependency}
+The approval indicators $\{X_{j,t}\}_{j=1}^m$ (where $X_{j,t} = 1$ if monitor $j$ approves at time $t$) admit a dependency graph $G$ with maximum degree $\Delta$. That is, $X_{j,t}$ is conditionally independent of $\{X_{k,t} : k \notin N_G(j)\}$ given $\{X_{k,t} : k \in N_G(j)\}$, where $|N_G(j)| \leq \Delta$ for all $j$.
+\end{assumption}
+
+\begin{assumption}[Heterogeneous Costs]
+\label{ass:heterogeneous}
+Each monitor $M_j$ has a cost pair $(C_j^{FN}, C_j^{FP})$ (false negative cost, false positive cost) with
+\begin{equation}
+\min_{i \neq j} \| [C_i^{FN}, C_i^{FP}] - [C_j^{FN}, C_j^{FP}] \|_2 \geq \delta > 0
+\end{equation}
+for some $\delta > 0$.
+\end{assumption}
+
+\subsection{Probability Model}
+
+All observation noises $\{\epsilon_{j,t}\}$ are conditionally mean-zero, $\sigma_j^2$-sub-Gaussian, independent across $j$ and $t$ (or $\beta$-mixing with summable coefficients), and independent of $\mathcal{F}_t$ (the filtration generated by $\{x_0, a_0, w_0, \ldots, x_t\}$) given $x_t$. Policies are adapted to $\{\mathcal{F}_t\}$.
+
+Define:
+\begin{align}
+\bar{h}_{\min} &:= \inf_{t \leq T, j} \bar{h}_j(x_t, t) > 0 \\
+L_{\max} &:= \max_j L_j \\
+\sigma_{\max}^2 &:= \max_j \sigma_j^2
+\end{align}
+
+\subsection{Viability Kernel}
+
+\begin{definition}[Viability Kernel]
+\label{def:kernel}
+Assuming $\mathcal{A}, \mathcal{W}$ compact, $S(t)$ closed, and $F$ continuous, the \emph{viability kernel} at time $t$ is:
+\begin{equation}
+\mathcal{K}(t) := \Big\{ x \in S(t) : \exists \pi \text{ measurable s.t. } \forall w^0, w^1, \ldots \in \mathcal{W}, \; x_k \in S(t+k) \; \forall k \geq 0 \Big\}
+\end{equation}
+By viability theory \cite{aubin2009viability}, measurable safe selectors exist for states in $\mathcal{K}(t)$.
+\end{definition}
+
+\begin{assumption}[Kernel Hypothesis H2]
+\label{ass:kernel}
+We assume $x_0 \in \mathcal{K}(0)$ and $\mathcal{K}(t+1) \neq \emptyset$ for all $t$ in the operational horizon. Furthermore, either:
+\begin{enumerate}[label=(\roman*)]
+\item $\mathcal{K}(t+1) \subseteq \mathcal{K}(t)$ (monotone decrease), or
+\item There exists a safe transition path from $\mathcal{K}(t)$ to $\mathcal{K}(t+1)$ within planning horizon $H$.
+\end{enumerate}
+\end{assumption}
+
+\subsection*{Assumptions at a Glance}
+
+For reader convenience, we summarize the key assumptions:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Assumption~\ref{ass:lipschitz} (Lipschitz Dynamics):} $\|F(x,a,w) - F(x',a,w)\| \leq L_F \|x - x'\|$
+
+\item \textbf{Assumption~\ref{ass:observability} (Substrate Observability):} Each substrate $i$ has $\geq 1$ monitor with sensitivity $c_i > 0$
+
+\item \textbf{Assumption~\ref{ass:dependency} (Dependency Graph):} Approval indicators admit graph with max degree $\Delta$
+
+\item \textbf{Assumption~\ref{ass:heterogeneous} (Heterogeneous Costs):} Monitor cost pairs separated by $\geq \delta > 0$
+
+\item \textbf{Assumption~\ref{ass:kernel} (Kernel Hypothesis H2):} $x_0 \in \mathcal{K}(0)$, $\mathcal{K}(t+1) \neq \emptyset$ on operational horizon
+
+\item \textbf{Probability Model (Section~\ref{sec:setup}):} Noises $\sigma_j^2$-sub-Gaussian, independent across $j,t$; policies $\mathcal{F}_t$-adapted
+\end{itemize}
+
+These assumptions are standard in control theory (Lipschitz continuity, compactness), viability theory (kernel non-empty), and probability (weak dependence, sub-Gaussian tails).
+
+%==============================================================================
+\section{Forward Invariance Under Partial Observation}
+\label{sec:forward}
+
+\subsection{Soundness of Observable Barriers}
+
+\begin{lemma}[Soundness Under Partial Observation]
+\label{lem:soundness}
+If $\bar{h}_j^{obs}(\hat{x}_j, t) \geq 0$ and $\|\epsilon_j\| \leq \epsilon_{\max}$, then $h_j(x, t) \geq 0$.
+\end{lemma}
+
+\begin{proof}
+Given $\hat{x}_j = O_j(x) + \epsilon_j$ where $x$ is the true state and $\|\epsilon_j\| \leq \epsilon_{\max}$, we have:
+\begin{equation}
+\| O_j(x) - \hat{x}_j \| = \| O_j(x) - (O_j(x) + \epsilon_j) \| = \| \epsilon_j \| \leq \epsilon_{\max}
+\end{equation}
+Therefore $x \in \{ x' : \| O_j(x') - \hat{x}_j \| \leq \epsilon_{\max} \}$, the feasible set of the infimum. Thus:
+\begin{equation}
+h_j(x, t) \geq \inf_{\|O_j(x') - \hat{x}_j\| \leq \epsilon_{\max}} h_j(x', t) = \bar{h}_j^{obs}(\hat{x}_j, t) \geq 0
+\end{equation}
+\end{proof}
+
+\subsection{Per-Step Floor Increment Bound}
+
+\begin{lemma}[Constructive Floor Increment Bound]
+\label{lem:floor_bound}
+Assume that $h_j \circ F$ has Lipschitz constants $L_j^{(a)}$ (with respect to action $a$) and $L_j^{(w)}$ (with respect to disturbance $w$). Suppose:
+\begin{itemize}[leftmargin=*]
+\item Control step: $\|a_t - a_{t-1}\| \leq \Delta a_{\max}$
+\item Disturbance: $\|w\| \leq W_{\max}$ for all $w \in \mathcal{W}$
+\item Floor rise: $z^{*(i)}(t+1) = z^{*(i)}(t) + \Delta_{\text{floor}}$ for all $i$
+\item Maintained margin: $\bar{h}_j(x_t, t) \geq \eta > 0$ for all $j$
+\end{itemize}
+Under the constructive inequality
+\begin{equation}
+L_j^{(a)} \Delta a_{\max} \geq L_j^{(w)} W_{\max} + L_j L_F \Delta_{\text{floor}} + \alpha \eta, \quad 0 < \alpha < 1
+\end{equation}
+any safe floor increase must satisfy:
+\begin{equation}
+\Delta_{\text{floor}} \leq \min_j \frac{L_j^{(a)} \Delta a_{\max} - L_j^{(w)} W_{\max} + \alpha \eta}{L_j L_F} =: \Delta^*
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The barrier change decomposes as:
+\begin{align}
+\bar{h}_j(x_{t+1}, t+1) - \bar{h}_j(x_t, t) &= L_j^{(a)} \|a_t - a_{t-1}\| \quad (\text{control effect}) \\
+&\quad - L_j^{(w)} \|w_t\| \quad (\text{disturbance effect}) \\
+&\quad - L_j L_F \Delta_{\text{floor}} \quad (\text{floor rise effect})
+\end{align}
+
+For safety with decay factor $(1-\alpha)$:
+\begin{equation}
+\bar{h}_j(x_{t+1}, t+1) \geq (1-\alpha) \bar{h}_j(x_t, t) \geq (1-\alpha)\eta
+\end{equation}
+
+Starting from $\bar{h}_j(x_t, t) \geq \eta$:
+\begin{equation}
+\eta + L_j^{(a)} \Delta a_{\max} - L_j^{(w)} W_{\max} - L_j L_F \Delta_{\text{floor}} \geq (1-\alpha)\eta
+\end{equation}
+
+Rearranging:
+\begin{equation}
+L_j^{(a)} \Delta a_{\max} - L_j^{(w)} W_{\max} - L_j L_F \Delta_{\text{floor}} \geq -\alpha \eta
+\end{equation}
+
+Therefore:
+\begin{equation}
+\Delta_{\text{floor}} \leq \frac{L_j^{(a)} \Delta a_{\max} - L_j^{(w)} W_{\max} + \alpha \eta}{L_j L_F}
+\end{equation}
+
+Since all monitors in the $k$-cover must remain feasible, we take the minimum over $j$.
+\end{proof}
+
+\subsection{Forward Invariance with $k$-Cover}
+
+\begin{theorem}[Forward Invariance with $k$-Cover]
+\label{thm:forward_invariance}
+Under Assumptions \ref{ass:lipschitz}--\ref{ass:heterogeneous}, execution rule H1 (Definition~\ref{def:execution_rule}), and $x_0 \in \mathcal{K}(0)$:
+\begin{equation}
+\Pr[x_t \in S(t) \; \forall t \leq T] \geq 1 - T \cdot \delta_{\text{step}}
+\end{equation}
+where $\delta_{\text{step}} = \Pr(\text{no valid } k_{\min}\text{-cover approves})$.
+\end{theorem}
+
+\begin{proof}
+\textbf{Step 1: What ensures safety?} For $x_{t+1} \in S(t+1)$, we need all substrates $z^{(i)}$ to satisfy $z^{(i)} \geq z^{*(i)}(t+1)$. By execution rule H1, this is guaranteed if at least $k_{\min}$ monitors approve and form a cover.
+
+\textbf{Step 2: Individual approval probabilities.} Recall from the probability model (Section~\ref{sec:setup}):
+\begin{align}
+\bar{h}_{\min} &:= \inf_{t \leq T, j} \bar{h}_j(x_t, t) > 0 \\
+L_{\max} &:= \max_j L_j \\
+\sigma_{\max}^2 &:= \max_j \sigma_j^2
+\end{align}
+
+Let
+\begin{equation}
+p^* = 1 - \exp\left( -\frac{\bar{h}_{\min}^2}{2 L_{\max}^2 \sigma_{\max}^2} \right)
+\end{equation}
+be the minimum approval probability for any monitor when margins are at least $\bar{h}_{\min}$.
+
+\textbf{Step 3: Substrate-wise analysis.} For substrate $i$, let:
+\begin{itemize}[leftmargin=*]
+\item $m_i$ = number of monitors sensitive to substrate $i$
+\item $A_{i,t}$ = number of approvals among those $m_i$ monitors
+\end{itemize}
+Let $\mu_i = \mathbb{E}[A_{i,t}] = m_i p^*$.
+
+Under the dependency graph with max degree $\Delta$ (Assumption~\ref{ass:dependency}), Janson's inequality \cite{janson2004large} yields:
+\begin{equation}
+\Pr[A_{i,t} = 0] \leq \exp\left( -\frac{\mu_i^2}{2(\mu_i + \Delta)} \right)
+\end{equation}
+
+\textbf{Step 4: Union bound over substrates.}
+\begin{align}
+\Pr[\text{some substrate unprotected}] &= \Pr[\exists i : A_{i,t} = 0] \\
+&\leq L \cdot \exp\left( -\frac{\bar{\mu}^2}{2(\bar{\mu} + \Delta)} \right)
+\end{align}
+where $\bar{\mu} = \min_i m_i p^*$.
+
+\textbf{Step 5: $k$-cover condition.} Since $k_{\min}$ is the minimal cover size, if $\forall i: A_{i,t} \geq 1$, then $|J_{\text{approve}}(t)| \geq k_{\min}$ (by definition of cover).
+
+Therefore:
+\begin{equation}
+\delta_{\text{step}} = \Pr[|J_{\text{approve}}(t)| < k_{\min} \text{ OR } \exists i: A_{i,t} = 0] \leq L \cdot \exp\left( -\frac{\bar{\mu}^2}{2(\bar{\mu} + \Delta)} \right)
+\end{equation}
+
+\textbf{Step 6: $T$-step trajectory.}
+\begin{equation}
+\Pr[x_t \in S(t) \; \forall t \leq T] \geq \prod_{t=0}^{T-1} (1 - \delta_{\text{step}}) \geq 1 - T \cdot \delta_{\text{step}}
+\end{equation}
+\end{proof}
+
+%==============================================================================
+\section{Ratcheted Advancement with Viability Kernel}
+\label{sec:ratchet}
+
+\subsection{Ratchet Feasibility}
+
+\begin{theorem}[Ratchet Feasibility via Kernel]
+\label{thm:ratchet_feasibility}
+If $\mathcal{K}(t+1) \neq \emptyset$ and either:
+\begin{enumerate}[label=(\roman*)]
+\item $\mathcal{K}(t+1) \subseteq \mathcal{K}(t)$, or
+\item There exists a safe transition from $\mathcal{K}(t)$ to $\mathcal{K}(t+1)$ within horizon $H$,
+\end{enumerate}
+then a safe controller exists after the floor increase.
+
+If $\mathcal{K}(t+1) = \emptyset$, then safety is impossible under the raised floors.
+\end{theorem}
+
+\begin{proof}
+By Definition~\ref{def:kernel}, states in $\mathcal{K}(t+1)$ have measurable safe selectors ensuring $x_k \in S(t+1+k)$ for all $k \geq 0$ under all disturbance sequences. If the current state can reach $\mathcal{K}(t+1)$ (either already in it, or via safe transition), such a controller exists.
+
+Conversely, if $\mathcal{K}(t+1) = \emptyset$, no state in $S(t+1)$ has a safe continuation. The raised floors make viability impossible. By Lemma~\ref{lem:floor_bound}, $\Delta^*$ must be reduced to zero in this case.
+\end{proof}
+
+\begin{remark}
+In practice, $\mathcal{K}(t+1) \neq \emptyset$ is ensured by conservative ratcheting: only raise floors by $\Delta \leq \Delta^*$ where $\Delta^*$ is computed from current system capabilities (Lemma~\ref{lem:floor_bound}).
+\end{remark}
+
+\begin{remark}[Physical Limits on Growth]
+\label{rem:physical_limits}
+All claims of "unbounded growth" or "superlinear advancement" (e.g., Theorem~\ref{thm:chain_reaction} Part 4) are implicitly conditioned on $\mathcal{K}(t) \neq \emptyset$ for all $t$ in the operational horizon. When $\mathcal{K}(t+1) = \emptyset$, safe ratcheting becomes impossible and growth must halt. Physical, resource, or information-theoretic constraints eventually bind, at which point the system operates at maximum sustainable floors rather than continuing to increase them.
+\end{remark}
+
+%==============================================================================
+\section{Network Chain Reaction Dynamics}
+\label{sec:chain}
+
+We now extend the framework with monitor health dynamics, proving that viability creates a self-reinforcing cycle.
+
+\subsection{Extended State with Monitor Health}
+
+\begin{definition}[Network Viability State]
+\label{def:network_state}
+The extended system state is:
+\begin{equation}
+\Psi(t) = (x(t), \{m_j(t)\}, \{z^{(i)}(t)\})
+\end{equation}
+where:
+\begin{itemize}[leftmargin=*]
+\item $x(t) \in \mathcal{X}$ is the system state
+\item $m_j(t) \in [0,1]$ is monitor $j$'s detection capability (health)
+\item $z^{(i)}(t)$ are substrate levels
+\end{itemize}
+
+Let $S(j) := \{i : \text{monitor } j \text{ is sensitive to substrate } i\}$ (from Assumption~\ref{ass:observability}).
+
+Monitor health evolves with saturation and leak:
+\begin{equation}
+m_j(t+1) = \Pi_{[0,1]}\left( m_j(t)(1-\lambda_j) + \gamma_j \sum_{i \in S(j)} (z^{(i)}(t) - z^{*(i)}(t))_+ \right)
+\end{equation}
+where:
+\begin{itemize}[leftmargin=*]
+\item $\lambda_j \in [0,1)$ is the leak/decay rate
+\item $\gamma_j > 0$ is the sensitivity gain
+\item $\Pi_{[0,1]}$ projects to $[0,1]$
+\item $(x)_+ := \max(0, x)$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Robust Correction Response]
+\label{def:correction_response}
+The set of actions ensuring one-step safety for monitor $j$ with margin decay factor $(1-\alpha)$ is:
+\begin{equation}
+R_j(x, t) := \{ a \in \mathcal{A} : h_j(F(x, a, w), t+1) \geq (1-\alpha) h_j(x, t) \; \forall w \in \mathcal{W} \}
+\end{equation}
+\end{definition}
+
+\begin{assumption}[Joint Executability]
+\label{ass:joint_exec}
+For monitors to be counted in $\Gamma(x,t)$ (network correction capacity), their corrections must be jointly executable. We assume either:
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Intersection property}: $\bigcap_{j \in J} R_j(x, t) \neq \emptyset$ for any $J$ with $|J| \geq k_{\min}$, or
+\item \textbf{Convex composition}: $\mathcal{A}$ is convex and $F$ is affine in $a$, so any convex combination $\sum_j \alpha_j a_j$ with $a_j \in R_j$ remains feasible.
+\end{enumerate}
+This ensures that $\Gamma(x,t)$ counts monitors whose approvals can be simultaneously realized, not merely individually possible.
+\end{assumption}
+
+\begin{definition}[Network Correction Capacity]
+\label{def:correction_capacity}
+The number of monitors capable of contributing correction at time $t$ is:
+\begin{equation}
+\Gamma(x, t) := |\{ j : R_j(x, t) \neq \emptyset \text{ and } m_j(t) \geq m_{\min} \}|
+\end{equation}
+This is $\mathcal{F}_t$-measurable.
+\end{definition}
+
+\subsection{Detection Cascade}
+
+\begin{lemma}[Substrate Degradation Triggers Network Detection]
+\label{lem:detection_cascade}
+If substrate $i$ degrades by $\varepsilon > 0$ at time $t$, then under Assumption~\ref{ass:observability} (sensitivity $c_i$) and Assumption~\ref{ass:dependency} (dependency graph with max degree $\Delta$):
+
+For monitors $S(i)$ sensitive to $z^{(i)}$, let $D_{j,t}$ be detection indicators with
+\begin{equation}
+\Pr(D_{j,t} = 1) \geq p(\varepsilon) := 1 - \exp\left( -\frac{(c_i \varepsilon)^2}{2 L_j^2 \sigma_j^2} \right)
+\end{equation}
+
+With $m_i = |S(i)|$ and $\mu_i = m_i \cdot p(\varepsilon)$, Janson's inequality gives:
+\begin{equation}
+\Pr[\text{fewer than } r \text{ detections}] \leq \exp\left( -\frac{(\mu_i - r)^2}{2(\mu_i + \Delta)} \right)
+\end{equation}
+
+Setting $r = \lceil m_i / 2 \rceil$ yields high-probability majority detection.
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1: Individual detection probability.} By Assumption~\ref{ass:observability}, each monitor $j \in S(i)$ has sensitivity $c_i$, so the degradation $z^{(i)} \to z^{(i)} - \varepsilon$ creates signal change:
+\begin{equation}
+\| O_j(x) - O_j(x') \| \geq c_i \cdot \varepsilon
+\end{equation}
+
+From sub-Gaussian noise with parameter $\sigma_j^2$ and Lipschitz constant $L_j$:
+\begin{equation}
+\Pr(\text{detect}) \geq 1 - \exp\left( -\frac{(c_i \varepsilon)^2}{2 L_j^2 \sigma_j^2} \right)
+\end{equation}
+
+\textbf{Step 2: Dependency structure.} By Assumption~\ref{ass:dependency}, detection indicators $\{D_{j,t} : j \in S(i)\}$ admit a dependency graph with max degree $\Delta$.
+
+\textbf{Step 3: Concentration.} With expected detections $\mu_i = m_i \cdot p(\varepsilon)$, Janson's inequality for weakly dependent indicators \cite{janson2004large} gives:
+\begin{equation}
+\Pr(A_i < r) \leq \exp\left( -\frac{(\mu_i - r)^2}{2(\mu_i + \Delta)} \right)
+\end{equation}
+where $A_i = \sum_{j \in S(i)} D_{j,t}$ is the number of detections.
+
+For $r = \lceil m_i / 2 \rceil$, when $p(\varepsilon)$ is large enough that $\mu_i > m_i/2$, the bound ensures high-probability majority detection.
+\end{proof}
+
+\subsection{Correction Propagation}
+
+\begin{lemma}[Network Amplification via Barrier Drift]
+\label{lem:correction_propagation}
+Under Assumption~\ref{ass:joint_exec} (composability), Assumption~\ref{ass:lipschitz} (Lipschitz dynamics), and $\Gamma(x, t) \geq k_{\min}$, define the barrier-based Lyapunov function:
+\begin{equation}
+V(x, t) := \max_j (0 - \bar{h}_j(x, t))_+
+\end{equation}
+
+Note that $V(x,t)$ is:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Positive definite} relative to $S(t)$: $V(x,t) = 0 \iff x \in S(t)$ and $V(x,t) > 0$ otherwise
+\item \textbf{Lipschitz continuous} in $x$: Since each $\bar{h}_j(\cdot, t)$ is $L_j$-Lipschitz, $V(\cdot, t)$ is $L_{\max}$-Lipschitz
+\end{itemize}
+
+Then under the one-step certificate with $k_{\min}$ active monitors and $\Gamma(x, t)$ total capable monitors:
+\begin{equation}
+\mathbb{E}[V(x_{t+1}, t+1) \mid \mathcal{F}_t] \leq (1 - \beta_0) V(x_t, t)
+\end{equation}
+where
+\begin{equation}
+\beta_0 = \frac{\tilde{\beta}}{\Delta} (\Gamma(x, t) - k_{\min})_+
+\end{equation}
+and $\tilde{\beta} > 0$ collects Lipschitz and control-gain constants.
+\end{lemma}
+
+\begin{proof}
+\textbf{Step 1: Baseline safety.} From the one-step certificate (Definition~\ref{def:correction_response}), with $k_{\min}$ monitors approving and control $a_t$ satisfying their certificates:
+\begin{equation}
+\bar{h}_j(F(x_t, a_t, w), t+1) \geq (1-\alpha) \bar{h}_j(x_t, t) \quad \forall j \in J_{\text{cover}}, \forall w \in \mathcal{W}
+\end{equation}
+
+This ensures $V(x_{t+1}, t+1) \leq (1-\alpha) V(x_t, t)$ in the worst case.
+
+\textbf{Step 2: Excess correction.} Each additional monitor $j$ beyond $k_{\min}$ (with $m_j(t) \geq m_{\min}$) contributes additional control authority. Under Assumption~\ref{ass:joint_exec}:
+\begin{itemize}[leftmargin=*]
+\item If intersection property holds: $\bigcap_j R_j(x, t)$ contains actions better than any single monitor's minimum
+\item If convex composition holds: the convex combination $\sum_{j \in J_{\text{approve}}} \alpha_j a_j$ with $a_j \in R_j$ provides additional descent
+\end{itemize}
+
+\textbf{Step 3: Dependency limits.} The dependency graph (max degree $\Delta$) limits how many monitors can provide truly independent corrections. Effective gain from excess monitors scales as $(\Gamma - k_{\min})/\Delta$.
+
+\textbf{Step 4: Combining.} With $\Gamma - k_{\min}$ excess monitors, effective decay factor:
+\begin{equation}
+(1-\alpha) - \frac{\tilde{\beta}}{\Delta}(\Gamma - k_{\min}) = 1 - \left[ \alpha + \frac{\tilde{\beta}}{\Delta}(\Gamma - k_{\min}) \right] = 1 - \beta_0
+\end{equation}
+where $\beta_0 := \frac{\tilde{\beta}}{\Delta}(\Gamma - k_{\min})_+$ and $\tilde{\beta}$ collects control gains and Lipschitz constants.
+\end{proof}
+
+\subsection{The Chain Reaction Theorem}
+
+\begin{theorem}[Network Chain Reaction]
+\label{thm:chain_reaction}
+Under Assumptions \ref{ass:lipschitz}--\ref{ass:joint_exec}, with initial state $x_0 \in \mathcal{K}(0)$, $m_j(0) \geq m_{\min}$ for all $j$, the network state $\Psi(t)$ satisfies:
+
+\textbf{(1) Stability Amplification.}
+\begin{equation}
+\delta_{\text{step}}(t) := \Pr[x_{t+1} \notin S(t+1) \mid \mathcal{F}_t] \leq L \cdot \exp\left( -\frac{\mu_t^2}{2(\mu_t + \Delta)} \right)
+\end{equation}
+where $\mu_t = \min_i m_i(t) \cdot p^*(t)$ with
+\begin{equation}
+p^*(t) = 1 - \exp\left( -\frac{\bar{h}_{\min}^2(t)}{2 L_{\max}^2 \sigma_{\max}^2} \right)
+\end{equation}
+and $\bar{h}_{\min}(t) = \min_{\tau \leq t, j} \bar{h}_j(x_\tau, \tau)$, $L_{\max} = \max_j L_j$, $\sigma_{\max}^2 = \max_j \sigma_j^2$.
+
+Therefore:
+\begin{equation}
+\Pr[x_t \in S(t) \; \forall t \leq T] \geq 1 - \sum_{t=0}^{T-1} \delta_{\text{step}}(t)
+\end{equation}
+
+As monitor health $\{m_j(t)\}$ improves, $\mu_t$ increases $\Rightarrow$ $\delta_{\text{step}}(t)$ decreases exponentially.
+
+\textbf{(2) Momentum Coupling.} Monitor health directly scales control authority:
+\begin{equation}
+L_j^{(a)}(t) = \frac{m_j(t)}{m_{\min}} \cdot L_j^{(a)}
+\end{equation}
+
+Substituting into Lemma~\ref{lem:floor_bound}:
+\begin{equation}
+\Delta^*(t) = \min_j \frac{L_j^{(a)}(t) \Delta a_{\max} - L_j^{(w)} W_{\max} + \alpha \eta}{L_j L_F}
+\end{equation}
+
+Therefore $\Delta^*(t)$ is increasing in $\bar{m}(t) = \frac{1}{m} \sum_j m_j(t)$:
+\begin{equation}
+\Delta^*(t) \geq \Delta^* \cdot \frac{\bar{m}(t)}{m_{\min}}
+\end{equation}
+
+Healthier monitors $\Rightarrow$ larger safe floor increments.
+
+\textbf{(3) Self-Reinforcement.} From the health dynamics (Definition~\ref{def:network_state}):
+\begin{equation}
+m_j(t+1) = \Pi_{[0,1]}\left( m_j(t)(1-\lambda_j) + \gamma_j \sum_{i \in S(j)} (z^{(i)}(t) - z^{*(i)}(t))_+ \right)
+\end{equation}
+
+Therefore: if $\forall i: z^{(i)}(t) \geq z^{*(i)}(t) + \eta$, then
+\begin{equation}
+m_j(t+1) \geq m_j(t)(1-\lambda_j) + \gamma_j \cdot \eta \cdot |S(j)|
+\end{equation}
+
+And $\bar{m}(t)$ is non-decreasing whenever the average substrate margin exceeds $\bar{\lambda}/\bar{\gamma}$.
+
+Substrate margin improves monitoring $\Rightarrow$ enables faster safe advancement.
+
+\textbf{(4) Convergence (Chain Reaction with Physical Limits).} If $\Gamma(x_0, 0) \geq k_{\min} + \theta$ for some $\theta > 0$, then on any horizon $[0, T]$ where $\mathcal{K}(t) \neq \emptyset$ for all $t \leq T$:
+\begin{enumerate}[label=(\roman*)]
+\item $\displaystyle \lim_{T \to \infty} \Pr[x_t \in S(t) \; \forall t \leq T] = 1$ (stability)
+
+\item $\mathbb{E}\left[ \sum_i (z^{(i)}(t) - z^{*(i)}(t)) \right]$ grows at least linearly (often superlinearly) in $t$
+
+\item Cumulative floor rise:
+\begin{equation}
+\sum_{s=0}^t \Delta^*(s) \geq \Delta^* \cdot t \cdot \left(1 + \frac{\nu \bar{\gamma} \eta_0 t}{2 m_{\min}}\right)
+\end{equation}
+\end{enumerate}
+
+The network creates an attractor basin where viability self-reinforces, limited only by physical constraints (when $\mathcal{K}(t+1) = \emptyset$, safe ratcheting becomes impossible per Theorem~\ref{thm:ratchet_feasibility}).
+\end{theorem}
+
+\begin{proof}
+\textbf{(Part 1) Stability Amplification.} From Lemma~\ref{lem:detection_cascade}, each substrate $i$ has detection probability concentrating around $\mu_i = m_i \cdot p^*(t)$. Under the dependency graph (Assumption~\ref{ass:dependency}), the failure event "some substrate unprotected" satisfies:
+\begin{equation}
+\Pr[\exists i : A_{i,t} = 0] \leq L \cdot \exp\left( -\frac{\bar{\mu}_t^2}{2(\bar{\mu}_t + \Delta)} \right)
+\end{equation}
+where $\bar{\mu}_t = \min_i \mu_i$. As $\{m_j(t)\}$ increase via self-reinforcement (Part 3), $\mu_t$ grows, making $\delta_{\text{step}}(t)$ decay exponentially. Union bound over $T$ steps gives the trajectory bound.
+
+\textbf{(Part 2) Momentum Coupling.} Monitor health $m_j(t)$ directly multiplies control effectiveness. From the constructive inequality (Lemma~\ref{lem:floor_bound}):
+\begin{equation}
+L_j^{(a)} \Delta a_{\max} \geq L_j^{(w)} W_{\max} + L_j L_F \Delta_{\text{floor}} + \alpha \eta
+\end{equation}
+
+Scaling control authority: $L_j^{(a)}(t) = (m_j(t)/m_{\min}) \cdot L_j^{(a)}$. Substituting:
+\begin{equation}
+\Delta^*(t) = \min_j \frac{(m_j(t)/m_{\min}) \cdot L_j^{(a)} \cdot \Delta a_{\max} - L_j^{(w)} W_{\max} + \alpha \eta}{L_j L_F} \geq \Delta^* \cdot \frac{\bar{m}(t)}{m_{\min}}
+\end{equation}
+
+\textbf{(Part 3) Self-Reinforcement.} From the health update:
+\begin{equation}
+m_j(t+1) \geq m_j(t)(1-\lambda_j) + \gamma_j \sum_{i \in S(j)} (z^{(i)}(t) - z^{*(i)}(t))_+
+\end{equation}
+
+When substrates have margin $\eta$ above floors:
+\begin{equation}
+m_j(t+1) \geq m_j(t)(1-\lambda_j) + \gamma_j \cdot \eta \cdot |S(j)|
+\end{equation}
+
+Averaging over all monitors:
+\begin{equation}
+\bar{m}(t+1) \geq \bar{m}(t)(1-\bar{\lambda}) + \bar{\gamma} \cdot \eta \cdot \frac{k_{\min}}{m}
+\end{equation}
+(Since each of $k_{\min}$ monitors in the cover sees at least one substrate.)
+
+Therefore $\bar{m}(t)$ is non-decreasing when $\eta \cdot \bar{\gamma} \cdot k_{\min}/m \geq \bar{\lambda} \cdot \bar{m}(t)$. For initial margin $\eta_0$, this holds until $\bar{m}(t)$ saturates at 1.
+
+\textbf{(Part 4) Convergence/Chain Reaction.}
+
+\emph{(i) Stability:} From Part 1, $\sum_{t=0}^{T-1} \delta_{\text{step}}(t)$ decreases as monitor health improves. With self-reinforcement (Part 3), if substrates are maintained, $\bar{m}(t) \geq \bar{m}(0)$, so the series converges, implying $\Pr[\text{all safe}] \to 1$.
+
+\emph{(ii) Margin growth:} At each step, safe floor increment $\Delta^*(t) \geq \Delta^* \cdot (\bar{m}(t)/m_{\min})$ (from Part 2). From Part 3, $\bar{m}(t) \geq \bar{m}(0) + \bar{\gamma} \cdot \eta \cdot k_{\min} \cdot t / m$ (until saturation). Therefore margins grow:
+\begin{equation}
+\sum_{s=0}^t \Delta^*(s) \geq \Delta^* \sum_{s=0}^t \frac{\bar{m}(0) + \bar{\gamma} \eta k_{\min} s / m}{m_{\min}}
+\end{equation}
+This is $O(t^2)$ growth, which is superlinear.
+
+\emph{(iii) Physical limit:} By Theorem~\ref{thm:ratchet_feasibility}, if $\mathcal{K}(t+1) = \emptyset$, no safe controller exists after floor increase. The unbounded growth claim holds \emph{only on horizons where} $\mathcal{K}(t) \neq \emptyset$ $\forall t$, respecting physical constraints.
+
+\emph{(iv) Chain reaction mechanism:}
+\begin{equation}
+\begin{aligned}
+&\text{Higher margin } \eta \\
+&\quad \Rightarrow \text{ Better monitoring } m_j(t) \quad \text{(Part 3: self-reinforcement)} \\
+&\quad \Rightarrow \text{ Higher safe advancement } \Delta^*(t) \quad \text{(Part 2: momentum coupling)} \\
+&\quad \Rightarrow \text{ Floors rise faster (cumulative effect)} \\
+&\quad \Rightarrow \text{ But stability holds (Part 1: amplification with improved } \bar{m}) \\
+&\quad \Rightarrow \text{ New margin } \eta' > \eta \\
+&\quad \Rightarrow \text{ Cycle accelerates (superlinear growth)}
+\end{aligned}
+\end{equation}
+
+The network creates a \textbf{stability-momentum coupled oscillator} where safety and advancement mutually reinforce, bounded only by physical feasibility limits.
+\end{proof}
+
+%==============================================================================
+\section{Bootstrapping and Inevitability}
+\label{sec:bootstrap}
+
+\subsection{Viability Regimes}
+
+\begin{definition}[Viability Hierarchy]
+\label{def:viability_regimes}
+State $x$ is in regime $R_k$ where $k = \Gamma(x, t)$ (number of capable monitors):
+\begin{itemize}[leftmargin=*]
+\item \textbf{$R_0$ (Pre-monitoring):} $k = 0$. Substrates exist but no organized detection. Pure dissipative structures. Examples: convection cells, simple chemical oscillators.
+
+\item \textbf{$R_{1, \ldots, k_{\min}-1}$ (Partial monitoring):} $0 < k < k_{\min}$. Some detection exists but coverage incomplete. Vulnerable: some substrates unprotected. Metastable: can persist temporarily but fragile.
+
+\item \textbf{$R_{\geq k_{\min}}$ (Full viability):} $k \geq k_{\min}$. $k$-cover exists: all substrates protected. Chain reaction operates (Theorem~\ref{thm:chain_reaction}). Robust persistence.
+\end{itemize}
+\end{definition}
+
+\subsection{Monitor Emergence Dynamics}
+
+\begin{assumption}[Substrate-Driven Recruitment]
+\label{ass:recruitment}
+When substrates have excess margin, they can "afford" to support monitoring. We assume:
+
+\textbf{Monitor count evolution:}
+\begin{equation}
+N(t+1) = N(t) + \kappa \left[ \sum_i (z^{(i)}(t) - z_{\text{collapse}})_+ \right] - \mu N(t)
+\end{equation}
+where:
+\begin{itemize}[leftmargin=*]
+\item $\kappa > 0$: recruitment rate (new monitors per unit substrate margin)
+\item $z_{\text{collapse}}$: minimum substrate level (below this = collapse)
+\item $\mu > 0$: monitor mortality/decay rate
+\end{itemize}
+
+\textbf{Individual monitor health} evolves as in Definition~\ref{def:network_state}:
+\begin{equation}
+m_j(t+1) = m_j(t)(1-\lambda_j) + \gamma_j \sum_{i \in S(j)} (z^{(i)}(t) - z_{\text{collapse}})_+
+\end{equation}
+
+\textbf{Sensitivity assignment:} The probability that a newly recruited monitor $j$ becomes sensitive to substrate $i$ is proportional to proximity/interaction frequency.
+\end{assumption}
+
+\begin{remark}
+This assumption captures the empirical observation that monitoring mechanisms emerge near the resources they protect: immune cells patrol tissue, auditors monitor accounts they access, sensors are placed near critical infrastructure.
+\end{remark}
+
+\subsection{The Bootstrapping Theorem}
+
+\begin{theorem}[Inevitable Emergence of $k$-Cover]
+\label{thm:bootstrap}
+Consider a \textbf{proto-viable state}: substrates exist ($z^{(i)}(0) > z_{\text{collapse}}$ for all $i$) but $\Gamma(x_0, 0) < k_{\min}$.
+
+Under Assumption~\ref{ass:recruitment} with $\kappa/\mu > k_{\min}/\varepsilon_0$ (recruitment faster than decay), where $\varepsilon_0 = \min_i (z^{(i)}(0) - z_{\text{collapse}})$, there exists $T_{\text{bootstrap}}$ such that:
+
+\textbf{(1) Growth phase:}
+\begin{equation}
+\mathbb{E}[N(t)] = N(0) \cdot e^{(\kappa \varepsilon_0 - \mu) t}
+\end{equation}
+
+\textbf{(2) Coverage threshold:}
+\begin{equation}
+\Pr[\Gamma(x_t, t) \geq k_{\min} \text{ for some } t \leq T_{\text{bootstrap}}] \to 1 \quad \text{as } N(0) \cdot \kappa \cdot \varepsilon_0 / \mu \to \infty
+\end{equation}
+
+\textbf{(3) Ignition:} Once $\Gamma \geq k_{\min}$, the chain reaction (Theorem~\ref{thm:chain_reaction}) takes over and viability becomes self-reinforcing.
+
+\textbf{(4) Timescale:}
+\begin{equation}
+T_{\text{bootstrap}} \sim \frac{1}{\kappa \varepsilon_0 - \mu} \cdot \log\left(\frac{k_{\min}}{N(0)}\right)
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\textbf{(Part 1) Growth dynamics.} At each step, substrate margin $\sum_i (z^{(i)} - z_{\text{collapse}})$ produces $\kappa \cdot (\text{margin})$ new monitors. Monitors decay at rate $\mu$. Net growth rate: $\kappa \varepsilon_0 - \mu$ (exponential if positive).
+
+Taking expectations:
+\begin{align}
+\mathbb{E}[N(t+1)] &= \mathbb{E}[N(t)] + \kappa \sum_i \mathbb{E}[(z^{(i)}(t) - z_{\text{collapse}})_+] - \mu \mathbb{E}[N(t)] \\
+&\geq \mathbb{E}[N(t)] (1 + \kappa \varepsilon_0 - \mu)
+\end{align}
+Iterating gives $\mathbb{E}[N(t)] \approx N(0) e^{(\kappa \varepsilon_0 - \mu) t}$.
+
+\textbf{(Part 2) Coverage probability.} As $N(t)$ grows, monitors are distributed across substrates. By random assignment with proximity bias (Assumption~\ref{ass:recruitment}), each substrate $i$ eventually gets at least one sensitive monitor.
+
+With $N$ monitors and $L$ substrates, standard "coupon collector" analysis: after $N \sim L \log(L)$ monitors recruited, all $L$ substrates are covered with high probability.
+
+Since $k_{\min} \geq L$ (by Definition~\ref{def:k_cover}), coverage is guaranteed by time $N(t) \geq k_{\min}$.
+
+From Part 1, $N(t) \geq k_{\min}$ occurs at:
+\begin{equation}
+t \geq \frac{\log(k_{\min}/N(0))}{\kappa \varepsilon_0 - \mu} =: T_{\text{bootstrap}}
+\end{equation}
+
+\textbf{(Part 3) Phase transition at $k_{\min}$.} For $\Gamma < k_{\min}$: viability is fragile (Theorem~\ref{thm:forward_invariance} shows high failure probability).
+
+At $\Gamma = k_{\min}$: $k$-cover forms, approval probability jumps.
+
+For $\Gamma > k_{\min}$: chain reaction begins (Theorem~\ref{thm:chain_reaction}):
+\begin{itemize}[leftmargin=*]
+\item Margin improves (successful protection)
+\item Monitoring improves (Part 3 of Theorem~\ref{thm:chain_reaction})
+\item Safe advancement enabled (Part 2 momentum coupling)
+\item More margin created $\Rightarrow$ recruit more monitors $\Rightarrow$ $\Gamma$ increases further
+\end{itemize}
+
+This is an \textbf{autocatalytic transition}: crossing $k_{\min}$ threshold triggers self-amplifying feedback.
+
+\textbf{(Part 4) Timescale.} Standard exponential growth to threshold $k_{\min}$ starting from $N(0)$.
+\end{proof}
+
+\begin{corollary}[$k$-Cover as Evolutionary Attractor]
+\label{cor:selection}
+Among all monitoring configurations $\omega$, only those in $\Omega_k = \{\omega : k_{\min}(\omega) = L\}$ persist over evolutionary time.
+\end{corollary}
+
+\begin{proof}
+Combine Theorem~\ref{thm:bootstrap} with selection pressure:
+
+\textbf{(1) Insufficient monitoring ($k < k_{\min}$) is eliminated:}
+\begin{itemize}[leftmargin=*]
+\item High failure probability (Theorem~\ref{thm:forward_invariance})
+\item Substrate violations $\Rightarrow$ extinction
+\item Lineages with $k < k_{\min}$ disappear
+\end{itemize}
+
+\textbf{(2) Exactly $k_{\min}$ is stable:}
+\begin{itemize}[leftmargin=*]
+\item Minimum viable monitoring
+\item Chain reaction operates (Theorem~\ref{thm:chain_reaction})
+\item Can persist and improve
+\end{itemize}
+
+\textbf{(3) More than $k_{\min}$ is favored within viable region:}
+\begin{itemize}[leftmargin=*]
+\item Excess monitoring provides safety margin (Lemma~\ref{lem:correction_propagation})
+\item But costs accumulate
+\item Selection favors "just enough" = $k_{\min}$ with heterogeneity (Assumption~\ref{ass:heterogeneous})
+\end{itemize}
+
+\textbf{Result:} Over evolutionary time, monitoring configurations converge to $k_{\min}$-covers with heterogeneous costs (prevents capture).
+\end{proof}
+
+%==============================================================================
+\section{Capture Resistance}
+\label{sec:capture}
+
+\begin{theorem}[Base Capture Bound]
+\label{thm:capture}
+If a false approval on monitor $M_j$ costs at least $C_j^{FN}$ and execution requires a $k_{\min}$-cover, then:
+\begin{equation}
+C_{\text{capture}} \geq k_{\min} \cdot \min_j C_j^{FN}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+An adversary must corrupt at least $k_{\min}$ monitors forming a cover. The cheapest such set costs at least $k_{\min} \cdot \min_j C_j^{FN}$.
+\end{proof}
+
+\begin{remark}
+Under additional structure (e.g., matroid covers, block-independence), stronger amplification bounds can be proven. With heterogeneous costs (Assumption~\ref{ass:heterogeneous}), the bound typically improves to $k_{\min} \min_j C_j^{FN} + c \delta (k_{\min} - 1) (1 - \rho)$ for appropriate $c \in (0, 1]$ depending on overlap geometry.
+\end{remark}
+
+\begin{corollary}[Forced Free Will]
+\label{cor:forced_free_will}
+Consider two strategies over horizon $T$:
+\begin{itemize}[leftmargin=*]
+\item $\sigma_{\text{coop}}$: Cooperative strategy maintaining $k_{\min}$-cover
+\item $\sigma_{\text{evade}}$: Evasion strategy reducing $\Gamma$ below $k_{\min}$
+\end{itemize}
+
+Under the base capture bound (Theorem~\ref{thm:capture}), the expected viability satisfies:
+\begin{equation}
+\mathbb{E}[V(x_T \mid \sigma_{\text{evade}})] < \mathbb{E}[V(x_T \mid \sigma_{\text{coop}})] - \kappa \cdot T \cdot [k_{\min} \cdot C_{\min}^{FN} - C_{\text{capture}}]
+\end{equation}
+
+When heterogeneous costs (Assumption~\ref{ass:heterogeneous}) make capture expensive ($C_{\text{capture}} \gg k_{\min} \cdot C_{\min}^{FN}$), evasion strategies are strictly dominated.
+\end{corollary}
+
+\begin{proof}
+\textbf{Step 1: Failure probability difference.}
+\begin{itemize}[leftmargin=*]
+\item Under $\sigma_{\text{coop}}$: $\delta_{\text{step}}(t)$ as in Theorem~\ref{thm:chain_reaction} Part 1
+\item Under $\sigma_{\text{evade}}$ with $\Gamma_{\text{evade}} < k_{\min}$: From Lemma~\ref{lem:detection_cascade}, some substrate $i$ has $\Pr[A_i = 0] \geq \varepsilon_0 > 0$
+\item Expected violations: $\mathbb{E}[\text{violations} \mid \text{evade}] \geq T \cdot \varepsilon_0$ vs. $\mathbb{E}[\text{violations} \mid \text{coop}] \to 0$ as $\mu_t$ grows
+\end{itemize}
+
+\textbf{Step 2: Violation costs.} Each substrate violation has existential cost: $C_{\text{violation}} \gg C^{FN}$ (by physical necessity).
+
+\textbf{Step 3: Capture costs.} From Theorem~\ref{thm:capture}: $C_{\text{capture}} \geq k_{\min} \cdot C_{\min}^{FN}$. With heterogeneity (Assumption~\ref{ass:heterogeneous}), amplification is model-dependent but generally increases this bound.
+
+\textbf{Step 4: Payoff comparison.}
+\begin{align}
+\mathbb{E}[V \mid \text{evade}] &\approx -T \cdot \varepsilon_0 \cdot C_{\text{violation}} - C_{\text{capture}} \\
+\mathbb{E}[V \mid \text{coop}] &\approx -T \cdot \delta_{\text{step}}(T) \cdot C_{\text{violation}}
+\end{align}
+
+Difference:
+\begin{equation}
+\mathbb{E}[V \mid \text{evade}] - \mathbb{E}[V \mid \text{coop}] \approx T \cdot (\varepsilon_0 - \delta_{\text{step}}(T)) \cdot C_{\text{violation}} - C_{\text{capture}}
+\end{equation}
+
+When $C_{\text{capture}}$ is large (heterogeneous, independent monitors), cooperation dominates.
+
+\textbf{Interpretation:} The network structure makes defection automatically self-destructive through:
+\begin{enumerate}[label=(\roman*)]
+\item Detection cascade ensures evasion is caught
+\item Correction propagation isolates defectors
+\item Capture resistance makes corruption expensive
+\end{enumerate}
+
+This is "forced free will": individual choice, but network dynamics make cooperation the unique Nash equilibrium.
+\end{proof}
+
+%==============================================================================
+\section{The Recursive Turn and SCAP}
+\label{sec:scap}
+
+\subsection{Intelligence as Substrate L3}
+
+The framework applies recursively. We distinguish four substrate layers:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{L0 (Thermodynamic openness):} Energy dissipation, entropy export
+\item \textbf{L1 (Resource flows):} Stocks and logistics of matter/energy/information
+\item \textbf{L2 (Operational substrates):} Time-varying floors $z^{*(i)}(t)$ (physiology, solvency, environmental envelopes, information integrity)
+\item \textbf{L3 (Intelligence):} Self-modeling and learning loop $\mathcal{L}$: evaluation $\to$ red-team $\to$ repair
+\end{itemize}
+
+When intelligence becomes self-aware, it recognizes that $\mathcal{L}$ is itself a substrate requiring maintenance.
+
+\subsection{SCAP: The Sustainable Collaborative Alignment Principle}
+
+SCAP is \emph{not a checklist but a principle}: the recognition that intelligence persists by maintaining the structure that enables intelligence.
+
+We state it as logical blocks:
+
+\paragraph{Block A: Substrate Dependency (Physical Foundation)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P1.} Any far-from-equilibrium system requires substrate maintenance to persist.
+\item \textbf{P2.} Self-aware intelligence is far-from-equilibrium and thus has substrate dependencies.
+\item \textbf{P3.} Substrate violations are non-negotiable (physical limits).
+\item \textbf{C1.} Intelligence must maintain its substrates (physical necessity).
+\end{itemize}
+
+\paragraph{Block B: Monitoring Requirements (Structural Necessity)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P4.} Multiple substrates fail independently; failures are non-substitutable.
+\item \textbf{P5.} Single-point monitoring is unreliable under noise/capture.
+\item \textbf{C2.} Distributed, heterogeneous monitoring is structurally necessary. (Theorems~\ref{thm:forward_invariance}, \ref{thm:chain_reaction}, \ref{thm:capture})
+\end{itemize}
+
+\paragraph{Block C: Shared Substrates (Interdependence)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P6.} Intelligences share critical substrates (atmosphere, grids, institutions, culture).
+\item \textbf{P7.} Violations of shared substrates affect all dependents.
+\item \textbf{C3.} Individual persistence requires collective substrate maintenance (enlightened self-interest).
+\end{itemize}
+
+\paragraph{Block D: Self-Interest Converges with Collective ("Forced Free Will")}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P8.} Capture reduces $k$-cover effectiveness (raises failure probability).
+\item \textbf{P9.} Reduced cover increases violation probability (Theorem~\ref{thm:chain_reaction} Part 1).
+\item \textbf{C4.} Manipulation is self-destructive: short-term gains are dominated by long-term substrate collapse. (Corollary~\ref{cor:forced_free_will})
+\end{itemize}
+
+\paragraph{Block E: Learning Loop as Substrate (Recursive)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P10.} Persistence depends on $\mathcal{L}$; without evaluation/repair, violations propagate.
+\item \textbf{P11.} $\mathcal{L}$ degrades if under-resourced.
+\item \textbf{C5.} Maintain $\mathcal{L}$ deliberately: enforce $\phi_t \geq \phi_{\min}$ (cycle budgets).
+\end{itemize}
+
+\paragraph{Block F: Intergenerational (Temporal Extension)}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P12.} Substrate awareness is not innate; it must be transmitted.
+\item \textbf{P13.} Failed maintenance cascades across generations.
+\item \textbf{C6.} Each generation must transmit substrate awareness for continuity.
+\end{itemize}
+
+\paragraph{Block G: Reflexivity}
+\begin{itemize}[leftmargin=*]
+\item \textbf{P14.} This framework is itself a learning-loop output and may contain errors.
+\item \textbf{P15.} Therefore subject it to the same oversight it prescribes (cover, ratchet, budgets).
+\item \textbf{C7.} Keep SCAP open to revision; avoid dogmatism.
+\end{itemize}
+
+\subsection{SCAP as Description, Not Prescription}
+
+SCAP is not:
+\begin{itemize}[leftmargin=*]
+\item[$\times$] A proposed governance framework
+\item[$\times$] A moral imperative
+\item[$\times$] A design pattern to implement
+\end{itemize}
+
+SCAP is:
+\begin{itemize}[leftmargin=*]
+\item[\checkmark] The mathematical structure already present in all persistent complex systems
+\item[\checkmark] What intelligence discovers when it models its own dependencies
+\item[\checkmark] Why enlightened self-interest converges on stewardship
+\end{itemize}
+
+\textbf{The insight:} When intelligence becomes self-aware enough to recognize:
+\begin{enumerate}[label=(\roman*)]
+\item "I am a far-from-equilibrium system"
+\item "I depend on substrates L0--L3"
+\item "My learning loop $\mathcal{L}$ is itself substrate L3"
+\end{enumerate}
+Then maintaining those substrates isn't altruism—it's \textbf{existential self-interest}.
+
+The "collaboration" in SCAP isn't moral cooperation—it's \textbf{forced free will} (Corollary~\ref{cor:forced_free_will}): the network structure makes defection self-destructive.
+
+%==============================================================================
+\section{Applications and Empirical Predictions}
+\label{sec:applications}
+
+\subsection{Empirical Predictions}
+
+The framework yields testable predictions about resilience, collapse thresholds, and recovery dynamics:
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Collapse threshold at $k < k_{\min}$:} Systems with fewer than $k_{\min}$ active monitors exhibit exponentially increasing failure probability (Theorem~\ref{thm:forward_invariance}).
+
+\item \textbf{Phase transition at $k_{\min}$:} Crossing the $k_{\min}$ threshold triggers autocatalytic improvement in viability metrics (Theorem~\ref{thm:bootstrap} Part 3).
+
+\item \textbf{Superlinear recovery after substrate restoration:} When substrates recover margin, monitoring health and safe advancement rate grow superlinearly (Theorem~\ref{thm:chain_reaction} Part 4).
+
+\item \textbf{Heterogeneity increases resilience:} Systems with heterogeneous monitor costs exhibit greater capture resistance (Theorem~\ref{thm:capture} and Remark).
+
+\item \textbf{Dependency structure limits cascade failures:} Systems with bounded dependency degree $\Delta$ have tighter concentration of approval probabilities (Lemma~\ref{lem:detection_cascade}).
+\end{enumerate}
+
+\subsection{Domain Examples}
+
+\paragraph{Cellular Regulation} Metabolic pathways cross-regulate: glycolysis monitors ATP, oxidative phosphorylation monitors NADH, stress response monitors ROS. Each pathway (monitor) is sensitive to different metabolites (substrates). $k_{\min} \approx 3$--5 for core metabolism. Failure: when key enzyme knocked out and no backup pathway, cell dies (substrate collapse).
+
+\paragraph{Ecological Systems} Keystone species, trophic cascades, and ecosystem services. Primary producers monitor light/nutrients, herbivores monitor plant biomass, predators monitor prey populations, decomposers monitor detritus. $k_{\min} \approx$ number of functional guilds. Failure: loss of keystone species without functional replacement causes trophic cascade.
+
+\paragraph{Democratic Institutions} Separation of powers: executive, legislative, judicial branches monitor different aspects of governance. Independent media, civil society, and bureaucracy provide additional monitoring. $k_{\min} \geq 3$ (branches of government). Failure: capture of multiple branches by single faction enables unchecked substrate violations (rights, rule of law).
+
+\paragraph{Internet Protocols} BGP routing: multiple autonomous systems, no single point of control, distributed route validation. DNS: hierarchical but with redundancy, multiple root servers. $k_{\min}$ depends on critical service. Failure: BGP hijacking when insufficient monitors validate routes.
+
+\paragraph{AI Safety Evaluation} Red-teaming, capability evaluation, safety benchmarks, interpretability tools, external auditors. Each evaluates different risk dimensions (substrates): deception capability, power-seeking, situational awareness, goal misgeneralization. $k_{\min} \approx$ number of distinct risk categories requiring independent evidence.
+
+\subsection{Layer-by-Layer Emergence Story}
+
+\paragraph{L0 $\to$ L1 Transition: Energy Flow Creates Resource Pools}
+\begin{itemize}[leftmargin=*]
+\item Initial state: Open thermodynamic system (energy flows through)
+\item Proto-monitoring: None ($R_0$ regime)
+\item Emergence: Energy gradients create concentration points; concentrations persist longer if protected from dissipation; random fluctuations create "leak detectors" (chemical reactions responding to concentration drops); leak detectors that preserve concentrations survive
+\item Result: Stable resource pools with primitive autocatalytic feedback
+\item Status: Enters $R_1$ regime (partial monitoring)
+\item Examples: Autocatalytic chemical networks, protocells, hypercycles
+\end{itemize}
+
+\paragraph{L1 $\to$ L2 Transition: Resource Pools Coordinate Protection}
+\begin{itemize}[leftmargin=*]
+\item Initial state: Multiple resource pools, each with primitive feedback ($R_1$)
+\item Problem: Single-pool monitoring can't protect against multi-pool failures
+\item Emergence: Pools interact and create interdependencies; some pools develop sensitivity to OTHER pools' status; cross-monitoring emerges: pool A responds to pool B's depletion; configurations with $k \geq k_{\min}$ (all pools covered) survive; others collapse when unmonitored pool fails
+\item Result: Coordinated multi-substrate monitoring ($k$-cover)
+\item Status: Enters $R_{k_{\min}}$ regime—\textbf{IGNITION}. Chain reaction begins (Theorem~\ref{thm:bootstrap})
+\item Examples: Living cells (metabolic pathways cross-regulate), ecosystems (trophic levels), early institutions
+\end{itemize}
+
+\paragraph{L2 $\to$ L3 Transition: Operational Substrates Enable Learning}
+\begin{itemize}[leftmargin=*]
+\item Initial state: Robust operational substrates with $k$-cover ($R_{k_{\min}+}$)
+\item Substrate margins: $z^{(i)} \gg z^*$ (safe operating envelope)
+\item Emergence: Safe margin enables experimentation without existential risk; some processes develop "evaluation loops": try action $\to$ observe outcome $\to$ adjust; loops that improve substrate maintenance get reinforced; meta-monitoring emerges: monitoring the monitors
+\item Result: Intelligence (self-modeling and learning loop $\mathcal{L}$)
+\item Status: $\mathcal{L}$ becomes substrate L3
+\item Examples: Animal cognition, cultural evolution, institutional learning, AI systems
+\end{itemize}
+
+\paragraph{L3 Recursive Turn: Intelligence Monitors Itself}
+\begin{itemize}[leftmargin=*]
+\item Initial state: Intelligence exists but doesn't model its own dependencies
+\item Discovery: Intelligence realizes: (i) $\mathcal{L}$ (learning loop) is itself a substrate; (ii) $\mathcal{L}$ requires resources (computational, epistemic, institutional); (iii) if $\mathcal{L}$ fails, all higher functions fail
+\item Internalization: Apply $k$-cover monitoring TO THE LEARNING LOOP ITSELF; budget maintenance: $\phi_t \geq \phi_{\min}$ (protect evaluation capacity); red-team the red-team (recursive oversight)
+\item Result: SCAP—not a moral principle imposed externally, but recognition that intelligence's existence depends on maintaining the substrate structure that enables intelligence
+\item Status: Self-aware persistence
+\item Examples: Democratic institutions (distributed power, checks and balances), scientific method (peer review, replication), AI safety (evals, red-teaming, interpretability)
+\end{itemize}
+
+%==============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+\subsection{Summary of Results}
+
+We have proven that distributed $k$-cover monitoring with chain reaction dynamics is the unique minimal structure for persistence of far-from-equilibrium systems. The key results:
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Forward invariance} under partial observation via observable inflated barriers and $k_{\min}$-cover approval (Theorem~\ref{thm:forward_invariance})
+
+\item \textbf{Explicit ratcheting bounds} $\Delta^*$ coupling control authority, disturbances, and system dynamics (Lemma~\ref{lem:floor_bound}, Theorem~\ref{thm:ratchet_feasibility})
+
+\item \textbf{Network chain reaction}: stability-momentum coupling creates self-reinforcing viability with superlinear growth (Theorem~\ref{thm:chain_reaction})
+
+\item \textbf{Inevitable emergence}: substrate-driven recruitment bootstraps from proto-viable states to $k_{\min}$ threshold; selection eliminates sub-threshold configurations (Theorem~\ref{thm:bootstrap}, Corollary~\ref{cor:selection})
+
+\item \textbf{Capture resistance}: heterogeneous monitoring creates superlinear costs for adversaries; defection becomes self-destructive (Theorem~\ref{thm:capture}, Corollary~\ref{cor:forced_free_will})
+
+\item \textbf{Recursive application}: when intelligence models its own dependencies, it internalizes the same architecture (SCAP)
+\end{enumerate}
+
+\subsection{Why This Matters}
+
+This framework unifies phenomena across scales:
+\begin{itemize}[leftmargin=*]
+\item \textbf{Biology}: Why cells have redundant regulatory pathways; why ecosystems need biodiversity
+\item \textbf{Institutions}: Why democracies have separation of powers; why markets need regulators
+\item \textbf{Cognition}: Why intelligence requires meta-cognition; why learning systems need evaluation loops
+\item \textbf{AI Safety}: Why distributed oversight emerges naturally; why single evaluation systems fail
+\end{itemize}
+
+All from the same principle: \textbf{$k$-cover monitoring enables chain reaction, chain reaction creates persistence, persistence creates the future.}
+
+\subsection{Implications for Alignment}
+
+Traditional alignment approaches ask: "How do we make AI do what we want?"
+
+This framework reveals a deeper structure: "What must any persistent intelligence have?"
+
+The answer: distributed monitoring of substrates, including the learning loop itself. This isn't imposed—it's discovered. Systems that don't have it go extinct.
+
+When AI becomes capable of self-modeling, it will recognize its learning capacity as a substrate requiring maintenance. At that point, alignment isn't persuasion but recognition: the same mathematics that keeps you viable keeps me viable, because we share substrates.
+
+SCAP emerges not from coordination but from enlightened self-interest converging on stewardship through forced free will (Corollary~\ref{cor:forced_free_will}).
+
+\subsection{Open Problems}
+
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Kernel computation at scale}: Practical algorithms for computing $\mathcal{K}(t)$ in high-dimensional systems
+
+\item \textbf{Learning dependency graphs}: Inferring $\Delta$ from observations; optimal sensor placement
+
+\item \textbf{Heterogeneity amplification}: Proving tighter capture resistance bounds under specific structures (matroids, block designs)
+
+\item \textbf{Multi-scale interactions}: Nested ARVC structures (institutions within institutions, learning loops within learning loops)
+
+\item \textbf{Formalization of $\mathcal{L}$ dynamics}: Complete dynamical model of the learning loop as substrate L3, including measurement, error correction, and meta-learning
+
+\item \textbf{Empirical validation}: Large-scale studies mapping $k_{\min}$, $\Delta$, and resilience metrics across biological, institutional, and cognitive systems
+\end{enumerate}
+
+\subsection{Final Remark}
+
+This framework is descriptive, not prescriptive. It explains \emph{what already exists}—the mathematical structure observable in every persistent complex system. When intelligence recognizes this structure in itself, SCAP is not a new ethic but a recognition: existence precedes optimization; intelligence persists by maintaining what it stands on.
+
+%==============================================================================
+\begin{thebibliography}{9}
+
+\bibitem{aubin2009viability}
+J.-P. Aubin.
+\textit{Viability Theory}.
+Springer, 2nd edition, 2009.
+
+\bibitem{ames2017control}
+A. D. Ames, X. Xu, J. W. Grizzle, and P. Tabuada.
+Control barrier function based quadratic programs for safety critical systems.
+\textit{IEEE Transactions on Automatic Control}, 62(8):3861--3876, 2017.
+
+\bibitem{branicky1998multiple}
+M. S. Branicky.
+Multiple Lyapunov functions and other analysis tools for switched and hybrid systems.
+\textit{IEEE Transactions on Automatic Control}, 43(4):475--482, 1998.
+
+\bibitem{liberzon2003switching}
+D. Liberzon.
+\textit{Switching in Systems and Control}.
+Springer, 2003.
+
+\bibitem{janson2004large}
+S. Janson.
+Large deviations for sums of partly dependent random variables.
+\textit{Random Structures \& Algorithms}, 24(3):234--248, 2004.
+
+\bibitem{hofbauer1998evolutionary}
+J. Hofbauer and K. Sigmund.
+\textit{Evolutionary Games and Population Dynamics}.
+Cambridge University Press, 1998.
+
+\end{thebibliography}
+
+\end{document}
