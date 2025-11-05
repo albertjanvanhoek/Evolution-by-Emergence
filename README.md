@@ -1,6 +1,7 @@
 # Evolution by Emergence: A Universal Theory of Networks, Life, and Mind
 
 Quick start: all content is also available as pdf in the folder "pdf of content"
+But the easiest is to just watch this video: https://www.youtube.com/watch?v=tc5NgvssQPI
 
 ## Repository Overview
 
