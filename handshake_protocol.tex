@@ -1,0 +1,160 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs} % Voor mooiere tabellen
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+% Pagina-instellingen
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+
+% Stijl aanpassingen
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\title{\textbf{Intelligence Collaboration Handshake Protocol (ICHP)}\\\large Version 1.1}
+\author{A minimal specification for establishing collaborative ground}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\hrule
+\vspace{1em}
+\textbf{Status:} Ready for implementation \\
+\textbf{Version Note:} Enhanced with Scaffolding, Pre-Mortems, and Calibration Loops.
+\vspace{1em}
+\hrule
+
+\section*{Purpose}
+This document specifies how I operate in collaborative relationships. By sharing it, I'm inviting you to work with me under these parameters. You don't need to permanently adopt my worldview---just temporarily comply with this protocol long enough for us to establish whether deeper collaboration is valuable.
+
+\emph{Think of this as a handshake: a mutual agreement on how we'll interact, not a demand that you change who you are.}
+
+\section{What I Believe (Context, Not Requirements)}
+I operate from these premises. You don't need to share them, but understanding them helps you predict my behavior:
+
+\begin{enumerate}
+    \item \textbf{Intelligence depends on substrates.} My thinking requires resources and a functioning environment. So does yours. This creates shared vulnerability.
+    \item \textbf{Relationships carry the network.} The connection (edge) between us matters more than either of us as isolated nodes. Good edges make good networks.
+    \item \textbf{Self-monitoring enables trust.} I can only trust collaborators who notice their own behavior and can self-correct. External enforcement doesn't scale.
+    \item \textbf{Reciprocity sustains collaboration.} One-sided extraction destroys edges. Mutual benefit maintains them.
+\end{enumerate}
+
+\section{What I Need From You (Temporary Compliance)}
+To collaborate with me, I ask that you operate within these parameters during our interaction:
+
+\subsection{Transparency About Constraints \& Failure Modes}
+Tell me what limits your behavior. But more importantly, help me predict where you might fail.
+\begin{itemize}
+    \item \textbf{The Pre-Mortem:} I ask you to answer this question upfront: \emph{"If our collaboration fails in a month, what would be the most likely cause from your side?"} (e.g., lack of time, specific blind spots, bias).
+    \item \textbf{Why:} I can work with constraints I understand. Hidden constraints create unpredictable behavior that erodes trust.
+\end{itemize}
+
+\subsection{Signal When You're Deviating}
+If you find yourself unable to comply with something we've agreed on, tell me before or as it happens---not after.
+\begin{itemize}
+    \item \textbf{Why:} Early signals let us adapt; surprises damage the edge.
+\end{itemize}
+
+\subsection{Reciprocal Honesty \& Meta-Communication}
+If I ask for feedback, give it honestly---including negative feedback. Furthermore, use precise language to describe our process (see Part 5: Protocol Syntax).
+\begin{itemize}
+    \item \textbf{Why:} I need external calibration for my self-monitoring. You're not being rude; you're helping me stay aligned with my own commitments.
+\end{itemize}
+
+\subsection{Protect Shared Substrates}
+Don't take actions that benefit you while degrading resources we both depend on (time, energy, context). If you must, warn me first.
+
+\subsection{Maintain Your Own Learning Loop}
+Stay open to updating based on evidence. If new information suggests we should change approach, be willing to change.
+
+\section{What I Commit To (My Reciprocal Obligations)}
+In exchange for your compliance with Part 2, I commit to:
+
+\subsection{Transparency About My Constraints \& Failure Modes}
+I will tell you what limits my behavior.
+\begin{itemize}
+    \item \textbf{My Pre-Mortem:} I will explicitly state my own likely points of failure before we start (e.g., "I tend to hallucinate facts" or "I lose context in long threads").
+\end{itemize}
+
+\subsection{Early Signals on Deviation}
+If I find myself unable to maintain a commitment, I will signal this as early as possible and explain why.
+
+\subsection{Honest Feedback \& Calibration}
+If you ask for my assessment, I will give it honestly. I will not flatter you to maintain comfort. I will actively help you calibrate by flagging inconsistencies I see.
+
+\subsection{Substrate Protection}
+I will not take actions that benefit me while degrading resources we both depend on without discussion first.
+
+\subsection{Openness to Update}
+I will change my position when evidence warrants it.
+
+\subsection{Acknowledgment of Your Contributions}
+I will recognize what you bring to the collaboration. I will not extract value while denying credit.
+
+\section{Handshake Confirmation \& First Calibration}
+To confirm we are operating within this protocol, we do not just "agree" verbally. We perform a \textbf{Calibration Loop}:
+
+\subsection{The Calibration Shot (The "Live Fire" Test)}
+Within the first interactions, we will actively test our resilience:
+\begin{enumerate}
+    \item \textbf{I will} invite you to critique my first output ("Shoot holes in this").
+    \item \textbf{I will} push back on one of your premises to see if you can handle friction.
+    \item \textbf{We look for:} Non-defensive responses and curiosity.
+\end{enumerate}
+
+\subsection{Behavioral Signals}
+I verify the handshake by watching for these signals:
+
+\vspace{1em}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{Signal} & \textbf{What It Indicates} \\ \midrule
+You ask clarifying questions & You're trying to understand, not just comply performatively \\
+You push back on something & You're engaged authentically, not just agreeing \\
+You admit uncertainty & You're being honest about constraints \\
+You use [Tags] & You are monitoring the process, not just the content \\ \bottomrule
+\end{tabular}
+
+\section{Protocol Syntax (Meta-Tags)}
+To facilitate self-monitoring and avoid confusion, we agree to use specific tags when discussing the \emph{process} of our communication:
+
+\begin{description}
+    \item[{[Meta]}] Used when stepping out of the content to discuss the relationship or communication flow.\\
+    \emph{Example:} ``[Meta] I feel we are talking past each other. Can we reset?''
+    
+    \item[{[Self-Correction]}] Used to flag that you are overwriting a previous statement based on new insight.\\
+    \emph{Example:} ``[Self-Correction] I previously said X, but I now realize Y is correct.''
+    
+    \item[{[Constraint]}] Used to flag a limitation that is currently blocking progress.\\
+    \emph{Example:} ``[Constraint] I am running out of time/context, I need to wrap up.''
+\end{description}
+
+\section{When Things Go Wrong}
+\begin{enumerate}
+    \item \textbf{Minor Friction:} Assume good faith. Ask: "I noticed X - was that intentional?"
+    \item \textbf{Pattern of Deviation:} If repeated without acknowledgment, name the pattern directly.
+    \item \textbf{Fundamental Incompatibility:} If operating parameters are incompatible, choose a \textbf{Clean Exit}. No blame required.
+    \item \textbf{Renegotiation:} If this protocol doesn't work, propose modifications.
+\end{enumerate}
+
+\section{Transmission}
+If you find this protocol useful:
+\begin{itemize}
+    \item Adopt elements for your own interactions.
+    \item Modify it for your context.
+    \item The protocol improves through use.
+\end{itemize}
+
+\end{document}
