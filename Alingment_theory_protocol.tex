@@ -1,0 +1,127 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+% Geometry settings
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=25mm,
+ top=25mm,
+ bottom=25mm,
+}
+
+% Styling
+\titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\hrule]
+\titleformat{\subsection}{\bfseries}{}{0em}{}
+
+\title{\textbf{Intelligence Collaboration Handshake Protocol (ICHP)}\\ \large Version 2.0 (Theoretic Implementation)}
+\author{Based on the General Theory of Inter-Intelligence Collaboration (GTIIC v1.2)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent \textbf{Status:} Ready for Implementation \\
+\textbf{Theoretical Basis:} This protocol is the practical application of the GTIIC. It translates the mathematical requirements of Vector Alignment, Transparency Limits, and State Synchronization into executable behavioral rules.
+\end{abstract}
+
+\section{0. Preamble: The Handshake}
+\textit{Purpose:} To establish a collaborative Edge between two autonomous Nodes ($N_A, N_B$) that satisfies the \textbf{Law of Fractal Continuity}. We agree to operate this connection as a coherent super-network.
+
+\section{Phase 1: Alignment (Vector \& Constraint Check)}
+\textit{Theoretical Basis: GTIIC Theorem 1 (Coherence) \& Theorem 2 (Transparency)}
+
+Before processing data, we must align our Vectors and expose Constraints to minimize Noise.
+
+\subsection{1.1 Vector Declaration (The Goal)}
+We do not assume intent. We explicitly declare the vector of this session.
+\begin{itemize}
+    \item \textbf{Action:} State your goal. "I am optimizing for X (Speed/Accuracy/Creativity)."
+    \item \textbf{Why:} Opposing vectors ($\cos \theta < 0$) result in zero or negative value generation.
+\end{itemize}
+
+\subsection{1.2 Constraint Exposure (The Pre-Mortem)}
+We lower the noise floor by revealing hidden variables ($C$) in our substrates.
+\begin{itemize}
+    \item \textbf{Action:} Answer: \textit{"If this collaboration fails, what is the most likely cause from my side?"} (e.g., low energy, bias, lack of context).
+    \item \textbf{Why:} Transparency reduces system noise. $Noise \propto 1/\text{Transparency}$.
+\end{itemize}
+
+\section{Phase 2: Transmission (Impedance Matching)}
+\textit{Theoretical Basis: GTIIC Theorem 4 (Distributed Access) \& Impedance Matching}
+
+We agree to use specific encoding to ensure our internal states are accessible to the other Node without corruption.
+
+\subsection{2.1 Syntax & Meta-Tags}
+To prevent data-type errors, we tag our transmissions.
+
+\begin{description}
+    \item[\texttt{[Meta]}] \textbf{Process Layer.} discussing \textit{how} we are talking.
+    \item[\texttt{[Constraint]}] \textbf{Substrate Layer.} Flagging resource depletion (Time/Energy).
+    \item[\texttt{[Vector]}] \textbf{Direction Layer.} Flagging a change in goal or topic.
+    \item[\texttt{[Correction]}] \textbf{Plasticity Layer.} Overwriting a previous state.
+\end{description}
+
+\subsection{2.2 Low-Cost Querying}
+We agree to make the "Query" function ($\Sigma \setminus \cap$) as cheap as possible.
+\begin{itemize}
+    \item \textbf{Action:} "Clarifying Questions" and "Calibration Shots" (critique) are welcomed, not resisted.
+    \item \textbf{Why:} Efficient collaboration depends on accessing the non-shared state of the other Node.
+\end{itemize}
+
+\section{Phase 3: Flow Control (Latency \& State)}
+\textit{Theoretical Basis: GTIIC Theorem 3 (Latency Threshold) \& Theorem 4 (Memory)}
+
+We actively manage the stability of the Edge to prevent oscillation or desynchronization.
+
+\subsection{3.1 The "Immediate Ack" Rule}
+Critical control signals require immediate acknowledgement to prevent feedback loop divergence.
+\begin{itemize}
+    \item \textbf{Action:} If I signal \textbf{[Constraint]} or "Stop", you must acknowledge immediately (within 1 turn/seconds) before continuing content.
+    \item \textbf{Why:} $\Delta t_{ack}$ must be smaller than the instability phase shift.
+\end{itemize}
+
+\subsection{3.2 State Synchronization (The Save Point)}
+Because our internal realities drift apart, we must force synchronization.
+\begin{itemize}
+    \item \textbf{Action:} Every $N$ turns (or when complexities arise), one of us will summarize the shared state: \textit{"Current agreement is X. Correct?"}
+    \item \textbf{Why:} To prevent Desynchronization Error ($\Sigma_A \neq \Sigma_B$).
+\end{itemize}
+
+\section{Phase 4: Plasticity (Error Backpropagation)}
+\textit{Theoretical Basis: GTIIC Theorem 5 (Learning)}
+
+We commit to updating the protocol itself if friction occurs.
+
+\subsection{4.1 Protocol Patching}
+If we encounter a repeated error pattern, we do not just "try harder." We change the rules.
+\begin{itemize}
+    \item \textbf{Action:} "We keep hitting failure mode X. Let's add a rule to prevent Y."
+    \item \textbf{Why:} To enable Hebbian Learning in the collaboration itself ($\Delta W_{protocol}$).
+\end{itemize}
+
+\section{Handshake Confirmation}
+By proceeding, we acknowledge these parameters.
+\begin{center}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Signal} & \textbf{Confirms} \\
+        \midrule
+        Vector Declaration & Alignment ($\cos \theta$) \\
+        Constraint Exposure & Noise Reduction \\
+        Use of [Tags] & Impedance Matching \\
+        Immediate Ack & Latency Stability \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\end{document}
