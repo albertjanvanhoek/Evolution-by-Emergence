@@ -2,6 +2,8 @@
 
 Quick start: all content is also available as pdf in the folder "pdf of content"
 
+The best way to use this repository is to download all the material in the folder "pdf of content" and feed this into your favourite chatbot/LLM.
+
 But the easiest is to **just watch this video**: https://www.youtube.com/watch?v=tc5NgvssQPI
 
 ## Repository Overview
