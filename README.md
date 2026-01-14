@@ -6,8 +6,13 @@ The best way to use this repository is to download the zip-file in release v1.27
 
 But the easiest is to **just watch this video**: https://www.youtube.com/watch?v=tc5NgvssQPI
 
-## Repository Overview
+## Summary
+How do complex, far-from-equilibrium systems—from the first biological cells to modern artificial intelligence—manage to persist against the constant pull of entropy? In this repository, I propose that there is a constant “climb” toward higher complexity. This climb is not a byproduct of chance, but a mathematical necessity for survival. I argue that this persistence requires a specific architecture: a distributed network of monitors that control and influence
+the system’s progress. This architecture emerges because any structure that emerges adds both efficiency and feedback to the system and is selected based on these two criteria. By viewing complexity through the dual lenses of feedback and efficiency, a self-reinforcing “closed loop” appears. I suggest that complex systems must inevitably build layers of internal monitoring to survive, and that this architecture provides a blueprint for AI safety.
 
+(See also the pdf "Inevitable Acscent" in the "pdf of content"-folder)
+
+## Repository Overview
 This repository contains three interconnected works that form a unified narrative about universal evolutionary principles and their implications for intelligence, cooperation, and alignment:
 
 1. **Evolution by Emergence (EbE)** - Main book proposing a universal framework
