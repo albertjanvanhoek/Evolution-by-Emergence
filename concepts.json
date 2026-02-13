@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0",
+  "project": "Evolution by Emergence",
+  "description": "Machine-readable concept graph connecting core principles, formal operators, and operational mappings for agentic evaluation workflows.",
+  "entities": [
+    {
+      "id": "C_EBE_UNIVERSAL_EMERGENCE",
+      "type": "principle",
+      "label": "Universality of Emergence",
+      "summary": "Evolutionary-emergent dynamics apply across biological, social, and artificial systems.",
+      "source_files": [
+        "README.md",
+        "Chapters/Chapter_1.tex"
+      ]
+    },
+    {
+      "id": "C_DEPENDENCY_MODEL_IBRP",
+      "type": "model",
+      "label": "I->B->R->P dependency model",
+      "summary": "Intelligence depends on Body, which depends on Resources, which depend on Planetary constraints.",
+      "source_files": [
+        "README.md",
+        "Chapters/Chapter_6.tex",
+        "Backmatter/Appendix26.tex"
+      ]
+    },
+    {
+      "id": "C_OPERATOR_O1",
+      "type": "operator",
+      "label": "O1 Control Dispersion",
+      "summary": "Avoid un-auditable control chokepoints; preserve distributed oversight and reversibility.",
+      "source_files": [
+        "README.md",
+        "Backmatter/Appendix26.tex"
+      ]
+    },
+    {
+      "id": "C_OPERATOR_O2",
+      "type": "operator",
+      "label": "O2 Proof Economy",
+      "summary": "Lower the cost of verification and increase the cost of deception.",
+      "source_files": [
+        "README.md",
+        "Backmatter/Appendix26.tex"
+      ]
+    },
+    {
+      "id": "C_OPERATOR_O3",
+      "type": "operator",
+      "label": "O3 Substrate Provision",
+      "summary": "Maintain common substrate conditions needed for long-run intelligence viability.",
+      "source_files": [
+        "README.md",
+        "Backmatter/Appendix26.tex"
+      ]
+    },
+    {
+      "id": "C_SCAP",
+      "type": "protocol",
+      "label": "SCAP",
+      "summary": "Operational protocol translating O1/O2/O3 into governance and implementation blocks.",
+      "source_files": [
+        "README.md",
+        "Backmatter/Appendix.tex",
+        "Backmatter/AppendixIII.tex"
+      ]
+    },
+    {
+      "id": "C_VIABILITY_FUNCTION",
+      "type": "equation",
+      "label": "V_I(t)=f(B,R,P,L)",
+      "summary": "Formal viability framing for intelligence persistence over time under substrate constraints.",
+      "source_files": [
+        "README.md",
+        "Backmatter/Appendix26.tex"
+      ]
+    },
+    {
+      "id": "C_CHECKING_LOOP_MUD",
+      "type": "mechanism",
+      "label": "Checking loop and mud",
+      "summary": "Stress degrades checking quality, increasing contaminated updates and decision errors.",
+      "source_files": [
+        "README.md",
+        "Backmatter/appendixXI.tex",
+        "Backmatter/appendixXII.tex"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "C_EBE_UNIVERSAL_EMERGENCE",
+      "target": "C_DEPENDENCY_MODEL_IBRP",
+      "type": "specializes_into"
+    },
+    {
+      "source": "C_DEPENDENCY_MODEL_IBRP",
+      "target": "C_OPERATOR_O1",
+      "type": "derives"
+    },
+    {
+      "source": "C_DEPENDENCY_MODEL_IBRP",
+      "target": "C_OPERATOR_O2",
+      "type": "derives"
+    },
+    {
+      "source": "C_DEPENDENCY_MODEL_IBRP",
+      "target": "C_OPERATOR_O3",
+      "type": "derives"
+    },
+    {
+      "source": "C_OPERATOR_O1",
+      "target": "C_SCAP",
+      "type": "operationalizes_via"
+    },
+    {
+      "source": "C_OPERATOR_O2",
+      "target": "C_SCAP",
+      "type": "operationalizes_via"
+    },
+    {
+      "source": "C_OPERATOR_O3",
+      "target": "C_SCAP",
+      "type": "operationalizes_via"
+    },
+    {
+      "source": "C_DEPENDENCY_MODEL_IBRP",
+      "target": "C_VIABILITY_FUNCTION",
+      "type": "formalized_by"
+    },
+    {
+      "source": "C_CHECKING_LOOP_MUD",
+      "target": "C_SCAP",
+      "type": "informs"
+    }
+  ],
+  "evaluation_tasks": [
+    {
+      "id": "EVAL_POLICY_LINT_O123",
+      "name": "Policy lint against O1/O2/O3",
+      "input": "Policy proposal text",
+      "output": {
+        "required_fields": [
+          "o1_risk",
+          "o2_risk",
+          "o3_risk",
+          "overall_assessment",
+          "mitigations"
+        ]
+      }
+    },
+    {
+      "id": "EVAL_CLAIM_TRACE",
+      "name": "Claim-to-evidence trace",
+      "input": "Claim ID from CLAIMS.md",
+      "output": {
+        "required_fields": [
+          "claim_id",
+          "source_files",
+          "evidence_type",
+          "falsification_path",
+          "confidence"
+        ]
+      }
+    }
+  ]
+}
