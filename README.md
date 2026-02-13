@@ -51,7 +51,9 @@ This repository presents three connected works:
 **License:** CC BY 4.0 (see `citation.cff`)  
 **Website:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/
 
----
+Evolutionary persistence in far-from-equilibrium systems drives the emergence of layered feedback structures. Intelligence is substrate-dependent:
+
+`INTELLIGENCE (I) -> BODY (B) -> RESOURCES (R) -> PLANET (P)`
 
 ## Core thesis in one paragraph
 
