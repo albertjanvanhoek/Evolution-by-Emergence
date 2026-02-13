@@ -119,6 +119,9 @@ Across biology, society, and artificial systems, persistence under entropy press
 ### 4) SCAP as operations layer
 SCAP maps these operators into practical governance, audit, and educational blocks.
 
+### 5) Unity of aim, plurality of methods
+EbE treats methodological diversity as a **functional requirement for long-horizon viability**, not as optional tolerance. In complex systems, diversity expands search across possible solutions, provides overlapping capabilities (redundancy), and increases opportunities for novel recombination and emergence. In this sense, plurality is part of unity: we keep a shared aim (persistent, corrigible intelligence) by maintaining many partially independent paths for learning and adaptation.
+
 ---
 
 ## Suggested use cases for agentic agents
