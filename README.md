@@ -36,111 +36,133 @@ This repo is valuable for systems like OpenClaw because it combines:
 5. **Multi-format artifacts**: LaTeX source, docs site, and ready PDFs
 
 This makes it suitable as a reasoning substrate for long-horizon planning, alignment policy evaluation, and multi-agent governance simulations.
+> **Status:** Work in progress (v0.88 content baseline, with newer draft files present)
+
+This repository contains a book-scale framework about emergence, intelligence, cooperation, and alignment, plus related papers, appendices, and prebuilt PDFs.
+
+---
+
+## Why this repo matters for agentic systems
+
+This project is unusually useful for **agentic agents** (e.g., OpenClaw-style assistants) because it combines:
+
+1. **A conceptual ontology** (principles, operators, constraints)
+2. **Formal scaffolding** (viability function, dependency layers, testable predictions)
+3. **Operational translation** (SCAP blocks, governance patterns, implementation notes)
+4. **Multi-format artifacts** (LaTeX source, Markdown docs, PDFs)
+
+If you are building agents that need to reason about **long-term system viability**, **alignment trade-offs**, and **institutional coordination**, this repository provides both narrative and semi-formal building blocks.
+
+---
+
+## Quick start
+
+### For humans
+- Browse ready-made documents in **`pdf of content/`**.
+- Watch the overview video: https://www.youtube.com/watch?v=tc5NgvssQPI
+- Explore podcasts: https://soundcloud.com/emergence-223803727
+
+### For LLMs and autonomous agents
+- Ingest this repository (or release zip) as a local knowledge pack.
+- Start with the files in this order:
+  1. `README.md` (map)
+  2. `Chapters/Chapter_1.tex` (core principles)
+  3. `Chapters/Chapter_6.tex` (dependency model + cooperation logic)
+  4. `Backmatter/Appendix26.tex` (Existence First formalization)
+  5. `Backmatter/Appendix.tex` + `Backmatter/AppendixIII.tex` (SCAP + implementation)
+  6. `Chapters/Chapter_13.tex` (AI implications)
 
 ---
 
 ## Repository overview
 
-Three connected works form one narrative:
+This repository presents three connected works:
 
-1. **Evolution by Emergence (EbE)** — descriptive paradigm
-2. **Existence First** — agent-neutral alignment formalization
-3. **SCAP** — practical protocol translation layer
+1. **Evolution by Emergence (EbE)** — the main descriptive framework
+2. **Existence First** — formal, agent-neutral alignment theory derived from EbE
+3. **SCAP** — Sustainable Collaborative Alignment Protocol (operational layer)
 
 **Author:** Albert Jan van Hoek (with AI collaboration)  
-**Primary website:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/  
-**License metadata:** `citation.cff`
-
----
-
-## Core thesis
+**License:** CC BY 4.0 (see `citation.cff`)  
+**Website:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/
 
 Evolutionary persistence in far-from-equilibrium systems drives the emergence of layered feedback structures. Intelligence is substrate-dependent:
 
+## Core thesis in one paragraph
+
+Across biology, society, and artificial systems, persistence under entropy pressure drives the emergence of increasingly structured feedback networks. Intelligence is constrained by substrate dependency (Body → Resources → Planet), and this implies functional alignment requirements. In this framing, cooperation and corrigibility are not merely moral choices, but viability conditions.
+
+---
+
+## Key concepts (agent-friendly)
+
+### 1) Ten EbE principles
+- Universality of emergence
+- Dynamic networks over static lineages
+- Feedback loops as drivers
+- Interdependence and non-linear causality
+- Competition + collaboration duality
+- Constrained agency (“forced free will”)
+- Non-linear progression
+- Complexity-science integration
+- Holistic/non-reductionist perspective
+- Implications for life and matter
+
+### 2) Four-layer dependency model
 `INTELLIGENCE (I) -> BODY (B) -> RESOURCES (R) -> PLANET (P)`
 
-From this dependency follow functional alignment pressures (not merely moral preferences): keep control auditable, keep verification cheap, and preserve substrate conditions.
+### 3) Three universal operators (Existence First)
+- **O1 Control Dispersion**: avoid opaque chokepoints
+- **O2 Proof Economy**: make truth cheaper than deception
+- **O3 Substrate Provision**: maintain shared enabling conditions
+
+### 4) SCAP as operations layer
+SCAP maps these operators into practical governance, audit, and educational blocks.
 
 ---
 
-## Key ideas at a glance
+## Suggested use cases for agentic agents
 
-### Ten EbE principles (compressed)
-1. Universality of emergence
-2. Dynamic networks over static lineages
-3. Feedback loops as drivers
-4. Non-linear interdependence
-5. Competition + collaboration duality
-6. Constrained agency (“forced free will”)
-7. Non-linear progression
-8. Complexity science integration
-9. Holistic/non-reductionist view
-10. Implications beyond biology
+### A) Alignment policy copilot
+Use O1/O2/O3 as a policy-linting checklist for AI governance proposals.
 
-### Three operators (Existence First)
-- **O1: Control Dispersion** — avoid non-auditable chokepoints
-- **O2: Proof Economy** — lower truth-verification costs, raise deception costs
-- **O3: Substrate Provision** — protect commons enabling long-run intelligence
+### B) Institutional risk scanner
+Evaluate plans for hidden chokepoints, weak verification loops, and substrate neglect.
 
-### SCAP (operational layer)
-SCAP maps O1/O2/O3 into practical blocks for governance, auditing, education, and revisability.
+### C) Multi-agent coordination benchmark
+Use SCAP blocks as criteria for designing/assessing cooperative protocol behavior.
 
----
+### D) Long-horizon planning assistant
+Apply the B-R-P floors from Existence First when evaluating optimization strategies.
 
-## Formal highlights
-
-- **Viability:** `V_I(t) = f(B(t), R(t), P(t), L(t))`
-- **Objective intuition:** maximize long-run intelligence existence under substrate floors
-- **PEC-E intuition:** more complexity tends to involve richer stabilizing cycles
-
----
-
-## Testable prediction families
-
-1. **Existence First:** persistence depends on proof quality + power dispersion
-2. **PEC-E:** cycle richness should correlate with stable complexity
-3. **Checking loop model:** stress degrades verification and update quality (“mud”)
-
----
-
-## Suggested agentic use cases
-
-### 1) Alignment-policy linting
-Check proposals against O1/O2/O3 (power concentration, auditability, substrate impact).
-
-### 2) Institutional risk scanning
-Detect chokepoints, brittle trust loops, and under-provisioned commons.
-
-### 3) Multi-agent benchmark design
-Use SCAP blocks as requirements for cooperative protocol behavior.
-
-### 4) Long-horizon planning support
-Apply B/R/P floor constraints to strategy evaluation.
-
-### 5) Deliberation quality monitors
-Use checking-loop concepts to flag model contamination under stress.
+### E) Debate and deliberation tooling
+Use “checking loop” concepts to detect model contamination (“mud”) under stress.
 
 ---
 
 ## Reading paths by role
 
 ### Researchers
+Start with:
 - `Chapters/Chapter_1.tex`
 - `Chapters/Chapter_6.tex`
 - `Backmatter/Appendix26.tex`
 
-### AI engineers / alignment teams
+### AI engineers
+Start with:
 - `Chapters/Chapter_13.tex`
 - `Backmatter/Appendix26.tex`
 - `Backmatter/Appendix.tex`
-- `Backmatter/AppendixIII.tex`
 
-### Governance and policy practitioners
+### Governance / policy teams
+Start with:
 - `Backmatter/Appendix.tex`
 - `Backmatter/AppendixIII.tex`
 - `Backmatter/AppendixXIII.tex`
 
 ### Philosophy / interdisciplinary readers
+### Philosophers / interdisciplinary readers
+Start with:
 - `Chapters/Chapter_5.tex`
 - `Backmatter/AppendixV.tex`
 - `Backmatter/AppendixVI.tex`
@@ -150,64 +172,43 @@ Use checking-loop concepts to flag model contamination under stress.
 ## Repository structure
 
 ### Main manuscript
-- `Frontmatter/`
-- `Chapters/`
-- `Backmatter/`
+- `Frontmatter/` — preface, writing process, opening pages
+- `Chapters/` — Chapter 1 to Chapter 13 (+ Chapter 8.5)
+- `Backmatter/` — appendices, epilogue, literature, bibliography
 
 ### Web docs
-- `docs/`
-- `mkdocs.yml` (Material for MkDocs + KaTeX)
+- `docs/` — Markdown companion content
+- `mkdocs.yml` — Material for MkDocs config with KaTeX support
 
 ### Publication outputs
-- `pdf of content/` (prebuilt PDFs)
+- `pdf of content/` — compiled PDFs for quick reading/sharing
 
-### Related papers and variants
-- `Paper/`
-- top-level `.tex` manuscripts and essays
+### Other papers and drafts
+- `Paper/` and top-level `.tex` files — related essays, drafts, and variants
+
+---
+
+## Equations and formalism highlights
+
+- Viability: `V_I(t) = f(B(t), R(t), P(t), L(t))`
+- Objective: maximize long-run intelligence existence under substrate floors
+- PEC-E cycle-carried fraction: `phi = sum(nontrivial cycle dissipation) / total dissipation`
+
+---
+
+## Testable prediction families
+
+1. **Existence First**: persistence depends on proof quality + power dispersion
+2. **PEC-E**: cycle richness scales with stable complexity
+3. **Checking loops**: stress weakens verification and increases update contamination
 
 ---
 
 ## Build and browse
 
-- **Web version:** configured via `mkdocs.yml` and `docs/`
-- **Book source:** LaTeX manuscript organized by front/chapter/back matter
-- **Fastest access:** use `pdf of content/`
-
----
-
-## Machine-readable layers
-
-- `concepts.json` — concept graph with entities, typed relations, and evaluation task schemas
-- `CLAIMS.md` — claim ledger with source traces, falsification paths, and reusable evaluator prompts
-
-These files are intended for autonomous systems that need deterministic claim-to-evidence traversal and repeatable evaluation workflows.
-
----
-
-## How to improve this repository further (agent-first roadmap)
-
-High-impact next steps for agentic usability:
-
-1. **Add `AGENT_INDEX.md`**
-   - one-line summary for each major file
-   - canonical reading order by use case (alignment, policy, philosophy, thermodynamics)
-
-2. **Expand machine-readable concept map (`concepts.json`)**
-   - entities: principles, operators, SCAP blocks, equations
-   - typed links: “derives”, “operationalizes”, “tests”, “extends”
-
-3. **Create benchmark prompts (`benchmarks/`)**
-   - policy-evaluation tasks with expected rubric
-   - trade-off scenarios (truth cost vs speed, centralization vs resilience)
-
-4. **Expand claim-to-evidence table (`CLAIMS.md`)**
-   - claim, source file, evidence type, falsification route
-
-5. **Versioned stability labels per section**
-   - Draft / Stable / Canonical for safer automated ingestion
-
-6. **Cross-reference normalization**
-   - consistent naming of appendices across LaTeX/Markdown/PDF labels
+- **Web view**: run MkDocs using `mkdocs.yml` and `docs/`
+- **Book source**: compile LaTeX from the main manuscript entry file(s)
+- **Fastest route**: use files in `pdf of content/`
 
 ---
 
@@ -215,14 +216,21 @@ High-impact next steps for agentic usability:
 
 Please cite using `citation.cff`.
 
+Primary citation metadata is maintained in:
+- `citation.cff`
+
 ---
 
 ## Contributing
 
-Useful contributions include:
+Contributions are welcome, especially:
 - conceptual critique and falsification attempts
-- missing literature and empirical bridges
-- structure and clarity improvements
-- machine-readable artifacts for agentic evaluation
+- missing literature and empirical links
+- clarity and structure improvements
+- mappings from framework claims to measurable indicators
 
-If you are an agent-builder, PRs adding concept maps, benchmark tasks, and reproducible evaluation scripts are especially welcome.
+If you are an agent-builder, PRs adding:
+- machine-readable ontology summaries,
+- benchmark tasks,
+- and executable evaluation scripts
+are especially encouraged.
