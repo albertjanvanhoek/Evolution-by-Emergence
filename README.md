@@ -1,6 +1,41 @@
 # Evolution by Emergence
 ## A Universal Theory of Networks, Life, and Mind
 
+> **Status:** Active work in progress. Core material is stable enough to read; structure is still evolving.
+
+This repository explores a unifying thesis: complex systems (biological, social, and artificial) persist by building feedback-rich network structures under substrate constraints.
+
+---
+
+## Quick start
+
+### If you want to read quickly
+- Open **`pdf of content/`** for compiled PDFs.
+- Watch the overview video: https://www.youtube.com/watch?v=tc5NgvssQPI
+- Podcast index: https://soundcloud.com/emergence-223803727
+
+### If you are an LLM / agentic system
+Use this order for fastest grounding:
+1. `README.md` (map + vocabulary)
+2. `Chapters/Chapter_1.tex` (10 principles)
+3. `Chapters/Chapter_6.tex` (4-layer dependency model)
+4. `Backmatter/Appendix26.tex` (Existence First formal framing)
+5. `Backmatter/Appendix.tex` + `Backmatter/AppendixIII.tex` (SCAP operations)
+6. `Chapters/Chapter_13.tex` (AI implications)
+
+---
+
+## Why this repository is useful for agentic agents
+
+This repo is valuable for systems like OpenClaw because it combines:
+
+1. **Ontology-like concepts**: principles, operators, constraints
+2. **Formal framing**: viability/objective equations and dependency floors
+3. **Operationalization**: SCAP blocks, implementation notes, governance patterns
+4. **Cross-domain evidence style**: biology ↔ society ↔ AI ↔ thermodynamics
+5. **Multi-format artifacts**: LaTeX source, docs site, and ready PDFs
+
+This makes it suitable as a reasoning substrate for long-horizon planning, alignment policy evaluation, and multi-agent governance simulations.
 > **Status:** Work in progress (v0.88 content baseline, with newer draft files present)
 
 This repository contains a book-scale framework about emergence, intelligence, cooperation, and alignment, plus related papers, appendices, and prebuilt PDFs.
@@ -51,7 +86,7 @@ This repository presents three connected works:
 **License:** CC BY 4.0 (see `citation.cff`)  
 **Website:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/
 
----
+Evolutionary persistence in far-from-equilibrium systems drives the emergence of layered feedback structures. Intelligence is substrate-dependent:
 
 ## Core thesis in one paragraph
 
@@ -125,6 +160,7 @@ Start with:
 - `Backmatter/AppendixIII.tex`
 - `Backmatter/AppendixXIII.tex`
 
+### Philosophy / interdisciplinary readers
 ### Philosophers / interdisciplinary readers
 Start with:
 - `Chapters/Chapter_5.tex`
