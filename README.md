@@ -1,18 +1,28 @@
-# Evolution by Emergence
-## A Universal Theory of Networks, Life, and Mind
+# Evolution by Emergence Repository
+## EbE + TLC: two connected frameworks
 
 > **Status:** Active work in progress. Core ideas are stable to read, while structure and drafts continue to evolve.
 
-This repository contains the source materials for *Evolution by Emergence* (EbE): a book-scale framework connecting emergence, intelligence, cooperation, governance, and long-horizon system viability across biological, social, and artificial systems.
+This repository now contains two main bodies of work that are tightly connected:
+
+1. **Evolution by Emergence (EbE)** — a systems-level framework on emergence, intelligence, alignment, and long-horizon viability.
+2. **Theory of Long-term Collaboration (TLC)** — a collaboration-centered framework focused on how learning networks sustain trust, correction, and cooperation over time.
+
+Together, EbE provides the broad explanatory architecture, while TLC zooms in on the interpersonal and institutional mechanics of durable collaboration.
 
 ---
 
 ## Quick start
 
 ### Read first (human-friendly)
-- Browse compiled files in **`pdf of content/`**.
+- Browse compiled files in **`pdf of content/`** for EbE papers, essays, and companion outputs.
 - Watch the overview video: https://www.youtube.com/watch?v=tc5NgvssQPI
 - Listen to companion podcasts: https://soundcloud.com/emergence-223803727
+
+### Repository orientation (EbE + TLC)
+- Start with this `README.md`.
+- For **EbE**, begin in `Chapters/` + `Backmatter/` and the compiled book PDF in `pdf of content/`.
+- For **TLC**, begin with `TLC.tex`, then `parent_child_learning_networks.tex`, followed by related essays such as `SharedFutureNarrative.tex` and `Daugthers_and_labels.tex`.
 
 ### Grounding order (LLMs / autonomous agents)
 1. `README.md` (map + vocabulary)
@@ -28,15 +38,17 @@ This repository contains the source materials for *Evolution by Emergence* (EbE)
 
 Across biology, society, and artificial systems, persistence under entropy pressure drives the emergence of increasingly structured feedback networks. Intelligence is substrate-constrained (Body → Resources → Planet), which creates alignment requirements. In this framing, cooperation and corrigibility are not just ethical preferences—they are viability conditions.
 
+In TLC terms, those same viability pressures appear inside collaboration itself: systems that cannot absorb error, update models, and preserve reciprocal learning eventually fragment.
+
 ---
 
 ## Repository overview
 
-This repository brings together three connected layers:
+This repository brings together two primary tracks and one operations layer:
 
-1. **Evolution by Emergence (EbE)** — descriptive framework
-2. **Existence First** — formal, agent-neutral alignment framing derived from EbE
-3. **SCAP** — Sustainable Collaborative Alignment Protocol (operational layer)
+1. **Evolution by Emergence (EbE)** — descriptive and integrative framework
+2. **Theory of Long-term Collaboration (TLC)** — durable collaboration framework for learning networks
+3. **Existence First + SCAP** — formal/operator and implementation layers derived from EbE
 
 **Author:** Albert Jan van Hoek (with AI collaboration)
 **Website:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/
@@ -69,9 +81,26 @@ This repository brings together three connected layers:
 ### 4) SCAP (operations layer)
 SCAP translates O1/O2/O3 into practical governance, audit, and educational implementation blocks.
 
+### 5) TLC (long-term collaboration layer)
+- Collaboration is interaction between **learning networks**, not fixed labels.
+- Durable collaboration depends on recursive feedback, error-correction, and mutual model updating.
+- Norms such as forgiveness, neutrality, and reciprocity can be treated as structural collaboration mechanisms.
+
 ---
 
 ## Recommended reading paths
+
+### EbE foundation path
+- `Chapters/Chapter_1.tex`
+- `Chapters/Chapter_6.tex`
+- `Chapters/Chapter_13.tex`
+- `Backmatter/Appendix26.tex`
+
+### TLC foundation path
+- `TLC.tex`
+- `parent_child_learning_networks.tex`
+- `SharedFutureNarrative.tex`
+- `Daugthers_and_labels.tex`
 
 ### Researchers
 - `Chapters/Chapter_1.tex`
@@ -104,6 +133,7 @@ SCAP translates O1/O2/O3 into practical governance, audit, and educational imple
 - `mkdocs.yml` — MkDocs Material configuration
 - `pdf of content/` — precompiled PDF outputs
 - `Paper/` + top-level `.tex` — related essays, variants, and drafts
+- `TLC.tex` + related top-level `.tex` essays — TLC-focused manuscripts and extensions
 
 ---
 
