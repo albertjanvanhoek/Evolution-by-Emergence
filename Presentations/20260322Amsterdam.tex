@@ -1,21 +1,20 @@
 %% ============================================================
-%%  Public Health and AI — Beamer presentation
+%%  Artificial Intelligence and Public Health
+%%  Rethinking Infectious Disease Surveillance
 %%  Albert Jan van Hoek
-%%  Compile with: pdflatex (twice) or xelatex on Overleaf
+%%  Version 3
 %% ============================================================
 
 \documentclass[aspectratio=169, 10pt]{beamer}
 
-% ── Theme ────────────────────────────────────────────────────
 \usetheme{Madrid}
 \usecolortheme{default}
 
-% ── Custom colour palette ────────────────────────────────────
-%  Deep teal primary, off-white background, warm amber accent
-\definecolor{primary}{HTML}{065A82}     % deep teal
-\definecolor{accent}{HTML}{F4A261}      % warm amber
-\definecolor{lightbg}{HTML}{F5F9FC}     % near-white
-\definecolor{darktext}{HTML}{1A1A2E}    % near-black
+% ── Colours ──────────────────────────────────────────────────
+\definecolor{primary}{HTML}{065A82}
+\definecolor{accent}{HTML}{F4A261}
+\definecolor{lightbg}{HTML}{F5F9FC}
+\definecolor{darktext}{HTML}{1A1A2E}
 
 \setbeamercolor{palette primary}{bg=primary, fg=white}
 \setbeamercolor{palette secondary}{bg=primary!80, fg=white}
@@ -29,52 +28,42 @@
 \setbeamercolor{block body}{bg=primary!8, fg=darktext}
 \setbeamercolor{alerted text}{fg=accent}
 
-% ── Fonts ─────────────────────────────────────────────────────
+\setbeamertemplate{navigation symbols}{}
+
+% ── Packages ─────────────────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-
-% ── Useful packages ───────────────────────────────────────────
 \usepackage{booktabs}
 \usepackage{microtype}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
 
-% ── Remove navigation symbols ─────────────────────────────────
-\setbeamertemplate{navigation symbols}{}
-
-% ── Footer ────────────────────────────────────────────────────
+% ── Footer ───────────────────────────────────────────────────
 \setbeamertemplate{footline}{%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=.5\paperwidth, ht=2.5ex, dp=1.5ex, left, leftskip=1em]
-      {palette primary}
+    \begin{beamercolorbox}[wd=.5\paperwidth, ht=2.5ex, dp=1.5ex,
+      left, leftskip=1em]{palette primary}
       \usebeamerfont{author in head/foot}Albert Jan van Hoek — RIVM
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.4\paperwidth, ht=2.5ex, dp=1.5ex, center]
-      {palette secondary}
+    \begin{beamercolorbox}[wd=.4\paperwidth, ht=2.5ex, dp=1.5ex,
+      center]{palette secondary}
       \usebeamerfont{title in head/foot}\insertshorttitle
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=.1\paperwidth, ht=2.5ex, dp=1.5ex, right, rightskip=1em]
-      {palette primary}
-      \usebeamerfont{date in head/foot}\insertframenumber/\inserttotalframenumber
+    \begin{beamercolorbox}[wd=.1\paperwidth, ht=2.5ex, dp=1.5ex,
+      right, rightskip=1em]{palette primary}
+      \insertframenumber/\inserttotalframenumber
     \end{beamercolorbox}%
   }%
 }
 
-% ── Title metadata ────────────────────────────────────────────
+% ── Title ────────────────────────────────────────────────────
 \title[AI \& Public Health]{Artificial Intelligence and Public Health}
 \subtitle{Rethinking Infectious Disease Surveillance}
 \author{Albert Jan van Hoek}
 \institute{RIVM — Dutch National Institute for Public Health and the Environment}
 \date{}
-
-% ── Custom command: highlight box ─────────────────────────────
-\newcommand{\highlight}[1]{%
-  \begin{beamercolorbox}[rounded=true, shadow=true, sep=4pt]{block title}
-    \centering\large\textbf{#1}
-  \end{beamercolorbox}%
-}
 
 % =============================================================
 \begin{document}
@@ -88,343 +77,476 @@
 % ── Who am I ─────────────────────────────────────────────────
 \begin{frame}{Who am I?}
   \begin{itemize}
-    \item Senior researcher at \textbf{RIVM} (Dutch National Institute for
-          Public Health and the Environment)
-    \item Principal Investigator, \textbf{Infectieradar} — participatory
-          surveillance, part of the European Influenzanet network
+    \item Senior researcher at \textbf{RIVM}
+    \item Principal Investigator, \textbf{Infectieradar} —
+          participatory surveillance, European Influenzanet network
     \item Health economist and infectious disease modeller
     \item Working on NLP, agentic AI, and transformer modelling
-    \item Field experience in \textit{Gambia, Kenya, and Sierra Leone}
+    \item Field experience in \textit{Gambia, Kenya, Sierra Leone}
     \item Background: \textbf{Economics / Biology / Philosophy}
   \end{itemize}
 \end{frame}
 
-% ── Section: Intelligence ─────────────────────────────────────
-\section{What is intelligence?}
+% =============================================================
+\section{The misconception}
 
-\begin{frame}{What is intelligence?}
-  \begin{center}
-    \large
-    \textit{``The faculty of understanding; intellect — a capacity to
-    understand.''}\\[0.5em]
-    — Oxford Dictionary
-  \end{center}
+\begin{frame}{How we think about AI}
+  \begin{block}{}
+    AI is a tool.\\[0.4em]
+    We deploy it. We control it. It executes tasks.
+  \end{block}
 
+  \pause
   \bigskip
+
+  This framing shapes how we build surveillance systems.\\
+  How we staff teams. How we evaluate risk.\\[0.5em]
+
   \begin{alertblock}{}
     \centering
-    But: a capacity that lives \textit{where}, exactly?
+    What if that framing is wrong — not just incomplete, but wrong?
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Capacity of what? What is ``Artificial''?}
-  \begin{columns}[T]
-    \column{0.55\textwidth}
-      \begin{block}{A shared structure}
-        Both biological and artificial systems are instances of a deeper
-        phenomenon:\\[0.5em]
-        \textbf{Systems that build expectations, meet reality, and adapt to
-        the mismatch.}
-      \end{block}
-
-    \column{0.4\textwidth}
-      % Placeholder for the image originally in the deck.
-      % Replace \fbox{...} with \includegraphics[width=\linewidth]{your_image}
-      \begin{center}
-        \fbox{\parbox[c][4cm][c]{0.9\linewidth}{%
-          \centering\small\color{gray}
-          [Insert illustration here]\\
-          \texttt{Picture5.jpg}}}
-      \end{center}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Does this sound familiar?}
-  \begin{columns}[T]
-    \column{0.48\textwidth}
-      \begin{block}{Virus}
-        A virus does not predict.  
-        But across its variants, it \textit{explores} possibilities — 
-        and reality selects what works.
-      \end{block}
-
-    \column{0.48\textwidth}
-      \begin{block}{My hypothesis}
-        Intelligence, learning, and evolution are not separate phenomena.\\[0.4em]
-        They are \textbf{the same loop}, expressed at different scales.
-      \end{block}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Neither is a thing}
+\begin{frame}{AI systems change as they are used}
   \begin{itemize}
-    \item A \textbf{virus} is not a thing.  
-          It is a \textit{process} — one that only exists within a network of
-          hosts.
-    \bigskip
-    \item \textbf{Intelligence} is not a thing.  
-          It is a \textit{process} — one that only exists within a network of
-          interactions.
+    \item They generate outputs.
+    \item Those outputs are evaluated.
+    \item The system is updated.
   \end{itemize}
 
   \bigskip
+
+  That is not execution. That is adaptation.\\[0.5em]
+
   \begin{alertblock}{}
     \centering
-    Strip away the metaphor, and the structure is identical.
+    The tool framing misses something structural.\\
+    Let's be precise about what.
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{No substrate, no process}
-  The substrate is not a container.  
-  \textit{It determines what is possible.}
+% =============================================================
+\section{The structure}
+
+\begin{frame}{A three-part loop}
+  \begin{center}
+  \begin{tikzpicture}[
+    node distance=3cm,
+    box/.style={rectangle, rounded corners=4pt, draw=primary, thick,
+                fill=primary!10, text width=2.8cm, align=center,
+                minimum height=1.1cm, font=\bfseries\small},
+    arr/.style={-{Stealth[scale=1.2]}, thick, color=primary}
+  ]
+    \node[box] (G) {Generate\\variation};
+    \node[box, right of=G] (T) {Test against\\reality};
+    \node[box, right of=T] (U) {Update\\structure};
+    \draw[arr] (G) -- (T);
+    \draw[arr] (T) -- (U);
+    \draw[arr] (U.south) -- ++(0,-0.7) -| (G.south);
+  \end{tikzpicture}
+  \end{center}
 
   \bigskip
-  \begin{tabular}{ll}
+  Three components. Specific relations between them. One feedback loop.\\[0.4em]
+  \textit{This is a functional definition, not a description.}
+\end{frame}
+
+\begin{frame}{When are two processes the same — not just similar?}
+  Analogy is cheap. Structural identity is not.\\[0.6em]
+
+  Two processes are \textbf{structurally identical} when they share:
+  \begin{enumerate}
+    \item the same functional components
+    \item in the same relations to each other
+    \item producing the same type of output
+  \end{enumerate}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    This is a testable criterion.\\
+    We will apply it to evolution and to AI.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Evolution — does it pass?}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+      \begin{tabular}{lll}
+        \toprule
+        Component & Required & In evolution \\
+        \midrule
+        Generate  & variation produced       & genetic / phenotypic \\
+        Test      & confronted with reality  & selection pressure \\
+        Update    & structure changes        & differential reproduction \\
+        \midrule
+        \multicolumn{2}{l}{Same relations?}  & \checkmark \\
+        \multicolumn{2}{l}{Same output type?} & \checkmark \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.38\textwidth}
+      \begin{alertblock}{\checkmark\ Passes}
+        Evolution instantiates\\
+        all three components\\
+        in the right relations.\\[0.3em]
+        Same process.\\
+        Different substrate.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{AI learning — does it pass?}
+  \begin{columns}[T]
+    \column{0.58\textwidth}
+      \begin{tabular}{lll}
+        \toprule
+        Component & Required & In AI training \\
+        \midrule
+        Generate  & variation produced       & outputs / weight space \\
+        Test      & confronted with reality  & loss on data \\
+        Update    & structure changes        & gradient descent \\
+        \midrule
+        \multicolumn{2}{l}{Same relations?}  & \checkmark \\
+        \multicolumn{2}{l}{Same output type?} & \checkmark \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.38\textwidth}
+      \begin{alertblock}{\checkmark\ Passes}
+        AI learning instantiates\\
+        all three components\\
+        in the right relations.\\[0.3em]
+        Same process.\\
+        Different substrate.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{The obvious objection}
+  \begin{block}{``At that level of abstraction, anything fits.
+                  Rivers flow. Markets clear.''}
+    Good objection. Let's apply the criterion strictly.
+  \end{block}
+
+  \bigskip
+  \begin{columns}[T]
+    \column{0.5\textwidth}
+      \begin{tabular}{lcc}
+        \toprule
+        System        & Internal model? & Updates structure? \\
+        \midrule
+        River         & \texttimes      & \texttimes \\
+        Thermostat    & \texttimes      & \texttimes \\
+        Market price  & \texttimes      & \texttimes \\
+        \midrule
+        Immune system & \checkmark      & \checkmark \\
+        Evolution     & \checkmark      & \checkmark \\
+        AI learning   & \checkmark      & \checkmark \\
+        \bottomrule
+      \end{tabular}
+
+    \column{0.46\textwidth}
+      A river has no internal model.\\
+      A thermostat has a fixed setpoint — it does not update.\\[0.5em]
+      \begin{alertblock}{}
+        The criterion is discriminating.\\
+        Most dynamic systems\\
+        do \textit{not} pass it.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% =============================================================
+\section{Recursion}
+
+\begin{frame}{One step further}
+  Some systems do more than adapt.\\[0.5em]
+  They change \textit{how} they adapt.
+
+  \bigskip
+  \begin{block}{Recursion: the loop operating on itself}
+    \begin{itemize}
+      \item Evolution: mutation rates are themselves under selection
+      \item Humans: we improve our methods, not just our answers
+      \item AI: fine-tuning, RLHF, emerging agentic architectures
+    \end{itemize}
+  \end{block}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    Learning improves learning.\\
+    That is not a metaphor either.
+  \end{alertblock}
+\end{frame}
+
+% =============================================================
+\section{Substrate}
+
+\begin{frame}{The loop needs something to run on}
+  The substrate is not a container.\\
+  It determines which components are possible.
+
+  \bigskip
+  \begin{tabular}{lll}
     \toprule
-    Change this\ldots & \ldots and this changes. \\
+    Substrate            & Makes possible            & Loop running on \\
     \midrule
-    Contact patterns    & The epidemic \\
-    Data flow           & AI behaviour \\
-    Collaboration patterns & Science \\
+    Host population      & replication \& selection  & viral evolution \\
+    Training data        & error signal \& update    & AI learning \\
+    Interaction network  & variation \& feedback     & collective intelligence \\
     \bottomrule
   \end{tabular}
 
   \bigskip
   \begin{alertblock}{}
     \centering
-    You don't need to change the elements.  
-    \textbf{You change the network.}
+    Change the substrate, and you change the loop.\\
+    \textbf{You do not need to change the elements.}
   \end{alertblock}
 \end{frame}
 
 \begin{frame}{The real question}
-  \begin{block}{The loop}
-    Generate → Test → Update\\[0.3em]
-    \ldots needs a substrate to run.  
-    \textbf{The network is that substrate.}
-  \end{block}
+  If the loop is real, and substrate-dependent, then the question changes.
 
   \bigskip
   \begin{columns}[c]
-    \column{0.45\textwidth}
-      \begin{center}
-        \large\color{gray}
-        \textit{``How powerful is the AI?''} {\small(wrong question)}
-      \end{center}
-
-    \column{0.5\textwidth}
-      \begin{alertblock}{}
-        \centering\large
-        \textbf{How well does your network learn?}
-      \end{alertblock}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Intelligence is a verb}
-  \begin{enumerate}
-    \item Elements interact.
-    \item Interactions create patterns.
-    \item Reality selects among those patterns.
-    \item The system changes.
-    \item \textit{And the cycle continues.}
-  \end{enumerate}
-
-  \bigskip
-  \begin{alertblock}{}
-    \centering
-    Intelligence is not a state — it is a \textbf{verb}.\\[0.3em]
-    New structure is not designed.  
-    It \textit{emerges}, is tested, and is reshaped.
-  \end{alertblock}
-\end{frame}
-
-% ── Section: Three Lessons ────────────────────────────────────
-\section{Three lessons}
-
-\begin{frame}{Lesson 1: AI is not a normal tool}
-  \begin{block}{The adaptive loop}
-    \centering
-    \textbf{Generate → Test → Update}\\[0.5em]
-    The same loop that drives learning and evolution — now operating at
-    \textit{digital speed and scale}.
-  \end{block}
-
-  \bigskip
-  \begin{alertblock}{}
-    \centering
-    This is the first tool that does not just \textit{execute}.  
-    \textbf{It adapts.}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Lesson 2: Surveillance must become adaptive}
-  \begin{columns}[T]
     \column{0.44\textwidth}
-      \begin{block}{Current model}
-        Data → Analysis → Decision\\[0.4em]
-        A pipeline. Linear. Slow.
+      \begin{block}{The wrong question}
+        \centering
+        How powerful is the AI?\\[0.3em]
+        \small Asks about one component in isolation.
       \end{block}
 
     \column{0.52\textwidth}
-      \begin{alertblock}{What we need}
-        Observe → Interpret → Act → Update → Repeat\\[0.4em]
-        This is not just about AI.  
-        It is about \textbf{how we organise ourselves}.
+      \begin{alertblock}{The right question}
+        \centering\large
+        \textbf{How well does your network learn?}\\[0.3em]
+        \normalsize
+        This is a precise, technical question.\\
+        And it applies to your AI,\\
+        your surveillance system,\\
+        and your organisation equally.
       \end{alertblock}
   \end{columns}
 \end{frame}
 
-\begin{frame}{Lesson 3: Collective capability is real}
+% =============================================================
+\section{Public health}
+
+\begin{frame}{An epidemic is already a learning system}
   \begin{itemize}
-    \item A virus cannot transmit by itself.  
-          An \textbf{epidemic} is a collective capability — of society and
-          pathogen together.
-    \item The same is true for an organisation, a surveillance network, a
-          public health system.
-    \bigskip
-    \item Learning as an \textit{individual} builds a \textbf{skillset}.
-    \item Learning as a \textit{collective} builds \textbf{capability} — and
-          that capability is \textit{non-linear}.
+    \item Pathogens generate variation continuously.
+    \item Populations and immune systems test those variants.
+    \item Both sides update — pathogen and host.
+  \end{itemize}
+
+  \bigskip
+  Transmission is not a property of the virus.\\
+  It is a property of the \textit{network}.
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    We are already inside a loop.\\
+    The question is whether our surveillance system is too.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Surveillance today}
+  \begin{block}{}
+    \centering
+    Data $\;\rightarrow\;$ Analysis $\;\rightarrow\;$ Decision
+  \end{block}
+
+  \bigskip
+  A pipeline. Linear. Slow.\\[0.5em]
+
+  The loop is broken at two points:
+  \begin{itemize}
+    \item no feedback from decision back to observation
+    \item no structural update — the system does not learn from its own output
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{What adaptive surveillance looks like}
+  \begin{alertblock}{}
+    \centering\large
+    Observe $\;\rightarrow\;$ Interpret $\;\rightarrow\;$ Act
+    $\;\rightarrow\;$ Update $\;\rightarrow\;$ Repeat
+  \end{alertblock}
+
+  \bigskip
+  The difference is not speed. It is structure.\\[0.5em]
+  A surveillance system that learns from what it detects\\
+  is not a faster pipeline — it is a different kind of system.
+\end{frame}
+
+% =============================================================
+\section{AI as amplifier}
+
+\begin{frame}{What AI adds to the loop}
+  \begin{itemize}
+    \item faster generation of hypotheses
+    \item large-scale testing against data
+    \item rapid structural updating
   \end{itemize}
 
   \bigskip
   \begin{alertblock}{}
     \centering
-    We can strengthen it. Or let it degrade.
+    AI does not replace the loop.\\
+    It runs the loop faster.
   \end{alertblock}
 \end{frame}
 
-% ── Section: Building at RIVM ─────────────────────────────────
-\section{Building a learning network}
+\begin{frame}{AI failures — read through the same lens}
+  \begin{tabular}{lll}
+    \toprule
+    Failure mode   & Loop component & What breaks \\
+    \midrule
+    Hallucination  & Test           & Reality check is weak or absent \\
+    Bias           & Generate       & Input variation is distorted \\
+    Drift          & Update         & Structural update becomes unstable \\
+    \bottomrule
+  \end{tabular}
 
-\begin{frame}{So what does it look like…}
-  \begin{center}
-    \Large\textit{…when you actually build a learning network?}
-  \end{center}
+  \bigskip
+  \begin{block}{}
+    The framework does not just explain what AI does well.\\
+    It localises exactly where it fails — and why.
+  \end{block}
 \end{frame}
+
+% =============================================================
+\section{Building the system}
 
 \begin{frame}{What I am building at RIVM}
   \begin{columns}[T]
     \column{0.48\textwidth}
-      \begin{block}{AI-driven}
+      \begin{block}{Faster generation}
         \begin{itemize}
-          \item NLP for questionnaire analysis \& data harmonisation
-          \item Agentic AI for quality assurance
-          \item Benchmarking methodology for AI outputs
-          \item Transformer modelling \& synthetic populations
-          \item Digital-twin architecture for longitudinal data
+          \item NLP for questionnaire analysis
+          \item Synthetic populations
+          \item Transformer modelling
+        \end{itemize}
+      \end{block}
+      \begin{block}{Better testing}
+        \begin{itemize}
+          \item Benchmarking AI outputs
+          \item Agentic quality control
         \end{itemize}
       \end{block}
 
     \column{0.48\textwidth}
-      \begin{block}{Human \& collective intelligence}
+      \begin{block}{Structural update}
         \begin{itemize}
-          \item FAIR and open data infrastructure
-          \item Expanded communication and outreach
-          \item Open source software
+          \item FAIR and open data
+          \item Digital longitudinal data
+          \item Open source infrastructure
         \end{itemize}
       \end{block}
-  \end{columns}
-
-  \bigskip
-  \begin{alertblock}{}
-    \centering
-    Everything on this list has one purpose: \textbf{make the loop run.}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Pandemic preparedness as a continuous loop}
-  \begin{block}{}
-    Preparedness is not a project. It is a \textbf{continuous mission}.
-  \end{block}
-
-  \bigskip
-  \begin{itemize}
-    \item The right frame: a never-ending loop of self-improvement, with
-          internal regulation of that improvement.
-    \item It is multidimensional — logistics, IT infrastructure, research
-          protocols, privacy, communication, contracts, training, and more.
-  \end{itemize}
-
-  \bigskip
-  \begin{alertblock}{}
-    \centering
-    \textbf{$k$-cover control:} ensuring the network is always covered,  
-    from every direction of failure.
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{How to strengthen the network}
-  \begin{columns}[T]
-    \column{0.44\textwidth}
-      \begin{block}{Structural level}
-        More interaction.\\
-        More collaboration.\\
-        More feedback.
-      \end{block}
-
-    \column{0.52\textwidth}
-      \begin{alertblock}{Personal level — a functional requirement}
-        Honesty. Repairing conflict. Patience.\\
-        Openness. Transparency. Reciprocity.\\[0.5em]
-        \small These are not virtues.  
-        They are the conditions under which\\
-        \textbf{feedback loops stay intact}.
+      \begin{alertblock}{}
+        Each project targets\\
+        one component of the loop.
       \end{alertblock}
   \end{columns}
 \end{frame}
 
-% ── Section: What you can do ──────────────────────────────────
-\section{What you can do}
+\begin{frame}{Pandemic preparedness is not a project}
+  It is a continuous mission.
 
-\begin{frame}{What you can do}
-  \begin{enumerate}
-    \item \textbf{Use AI.}  
-          Seriously, as much as you can. It extends your adaptive loop.
-    \bigskip
-    \item \textbf{Think at a higher level.}  
-          The work will change; the need for domain expertise will not.
-    \bigskip
-    \item \textbf{Pair your specialisation} with data literacy, quality
-          assurance, and interpretation.  
-          Infectious disease knowledge, built over years, cannot be
-          replicated quickly.
-    \bigskip
-    \item \textbf{Collaborate deliberately.}  
-          Collective capability is not automatic. It requires maintenance.
-  \end{enumerate}
-\end{frame}
+  \bigskip
+  The right frame: a loop that improves itself,\\
+  with internal regulation of that improvement.
 
-% ── Conclusion ────────────────────────────────────────────────
-\section{Conclusion}
-
-\begin{frame}{Conclusion}
+  \bigskip
   \begin{itemize}
-    \item Intelligence is a \textbf{verb}.
-    \item Intelligence is a \textbf{network phenomenon}.
-    \item We can optimise this verb — in our systems, our organisations,
-          ourselves.
+    \item logistics, IT, protocols, privacy, communication, training
   \end{itemize}
 
   \bigskip
-  \begin{block}{}
+  \begin{alertblock}{}
     \centering
-    Do not underestimate AI. \textbf{Interact with it.}\\[0.4em]
-    Think in networks: effects are non-linear, connections matter more than
-    nodes, and the loop never stops.
-  \end{block}
+    \textit{k}-cover: the network is covered from every direction of failure.\\
+    Not a state to reach. A property to maintain.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Maintaining the loop at the human level}
+  Feedback loops break when people stop giving honest signal.\\[0.5em]
+  That is not a values claim. It is a systems claim.
+
+  \bigskip
+  \begin{columns}[T]
+    \column{0.46\textwidth}
+      \begin{block}{Structurally}
+        More interaction.\\
+        More feedback.\\
+        More collaboration.
+      \end{block}
+
+    \column{0.50\textwidth}
+      \begin{alertblock}{Functionally required}
+        Honesty. Openness. Repair.\\[0.4em]
+        \small Not virtues bolted onto the system.\\
+        The conditions under which the\\
+        feedback loop stays intact.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% =============================================================
+\section{Conclusion}
+
+\begin{frame}{What you can do}
+  \begin{enumerate}
+    \item \textbf{Use AI — seriously.}
+          It extends the loop you already run.
+    \bigskip
+    \item \textbf{Think at the network level.}
+          Your node matters less than your connections.
+    \bigskip
+    \item \textbf{Protect your domain knowledge.}
+          Infectious disease expertise built over years\\
+          is not replicable quickly — pair it with data literacy.
+    \bigskip
+    \item \textbf{Collaborate deliberately.}
+          Collective capability is not automatic.\\
+          It degrades without maintenance.
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item The loop — generate, test, update — is a real structural criterion.
+    \item Evolution, learning, and AI instantiate it. Rivers do not.
+    \item The substrate determines what the loop can do.
+    \item AI accelerates the loop. It does not replace it.
+    \item Public health surveillance needs to \textit{become} the loop.
+  \end{itemize}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    We are not building tools.\\
+    \textbf{We are building systems that learn.}\\[0.3em]
+    The difference matters.
+  \end{alertblock}
 \end{frame}
 
 % ── Closing slide ─────────────────────────────────────────────
 \begin{frame}[plain]
   \begin{center}
-    \vspace{1cm}
+    \vspace{1.2cm}
     {\large\textit{Viral wisdom:}}\\[0.8em]
-    {\Large Keep alive what keeps you alive.}\\
-    {\large And improve it for the next generation.}\\[1.5em]
-    \rule{0.6\textwidth}{0.4pt}\\[1em]
+    {\Large Keep alive what keeps you alive.}\\[0.4em]
+    {\normalsize And improve it for the next generation.}\\[1.8em]
+    \rule{0.55\textwidth}{0.4pt}\\[1em]
     {\LARGE\textbf{\textit{Disco ergo sum.}}}\\[0.3em]
-    {\large I learn, therefore I am.}
+    {\normalsize I learn, therefore I am.}
   \end{center}
 \end{frame}
 
