@@ -1,0 +1,431 @@
+%% ============================================================
+%%  Public Health and AI — Beamer presentation
+%%  Albert Jan van Hoek
+%%  Compile with: pdflatex (twice) or xelatex on Overleaf
+%% ============================================================
+
+\documentclass[aspectratio=169, 10pt]{beamer}
+
+% ── Theme ────────────────────────────────────────────────────
+\usetheme{Madrid}
+\usecolortheme{default}
+
+% ── Custom colour palette ────────────────────────────────────
+%  Deep teal primary, off-white background, warm amber accent
+\definecolor{primary}{HTML}{065A82}     % deep teal
+\definecolor{accent}{HTML}{F4A261}      % warm amber
+\definecolor{lightbg}{HTML}{F5F9FC}     % near-white
+\definecolor{darktext}{HTML}{1A1A2E}    % near-black
+
+\setbeamercolor{palette primary}{bg=primary, fg=white}
+\setbeamercolor{palette secondary}{bg=primary!80, fg=white}
+\setbeamercolor{palette tertiary}{bg=primary!60, fg=white}
+\setbeamercolor{palette quaternary}{bg=primary, fg=white}
+\setbeamercolor{structure}{fg=primary}
+\setbeamercolor{background canvas}{bg=lightbg}
+\setbeamercolor{normal text}{fg=darktext}
+\setbeamercolor{frametitle}{bg=primary, fg=white}
+\setbeamercolor{block title}{bg=primary, fg=white}
+\setbeamercolor{block body}{bg=primary!8, fg=darktext}
+\setbeamercolor{alerted text}{fg=accent}
+
+% ── Fonts ─────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% ── Useful packages ───────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+% ── Remove navigation symbols ─────────────────────────────────
+\setbeamertemplate{navigation symbols}{}
+
+% ── Footer ────────────────────────────────────────────────────
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth, ht=2.5ex, dp=1.5ex, left, leftskip=1em]
+      {palette primary}
+      \usebeamerfont{author in head/foot}Albert Jan van Hoek — RIVM
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.4\paperwidth, ht=2.5ex, dp=1.5ex, center]
+      {palette secondary}
+      \usebeamerfont{title in head/foot}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.1\paperwidth, ht=2.5ex, dp=1.5ex, right, rightskip=1em]
+      {palette primary}
+      \usebeamerfont{date in head/foot}\insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+}
+
+% ── Title metadata ────────────────────────────────────────────
+\title[AI \& Public Health]{Artificial Intelligence and Public Health}
+\subtitle{Rethinking Infectious Disease Surveillance}
+\author{Albert Jan van Hoek}
+\institute{RIVM — Dutch National Institute for Public Health and the Environment}
+\date{}
+
+% ── Custom command: highlight box ─────────────────────────────
+\newcommand{\highlight}[1]{%
+  \begin{beamercolorbox}[rounded=true, shadow=true, sep=4pt]{block title}
+    \centering\large\textbf{#1}
+  \end{beamercolorbox}%
+}
+
+% =============================================================
+\begin{document}
+
+% ── Title slide ───────────────────────────────────────────────
+\begin{frame}[plain]
+  \vspace{1.5cm}
+  \titlepage
+\end{frame}
+
+% ── Who am I ─────────────────────────────────────────────────
+\begin{frame}{Who am I?}
+  \begin{itemize}
+    \item Senior researcher at \textbf{RIVM} (Dutch National Institute for
+          Public Health and the Environment)
+    \item Principal Investigator, \textbf{Infectieradar} — participatory
+          surveillance, part of the European Influenzanet network
+    \item Health economist and infectious disease modeller
+    \item Working on NLP, agentic AI, and transformer modelling
+    \item Field experience in \textit{Gambia, Kenya, and Sierra Leone}
+    \item Background: \textbf{Economics / Biology / Philosophy}
+  \end{itemize}
+\end{frame}
+
+% ── Section: Intelligence ─────────────────────────────────────
+\section{What is intelligence?}
+
+\begin{frame}{What is intelligence?}
+  \begin{center}
+    \large
+    \textit{``The faculty of understanding; intellect — a capacity to
+    understand.''}\\[0.5em]
+    — Oxford Dictionary
+  \end{center}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    But: a capacity that lives \textit{where}, exactly?
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Capacity of what? What is ``Artificial''?}
+  \begin{columns}[T]
+    \column{0.55\textwidth}
+      \begin{block}{A shared structure}
+        Both biological and artificial systems are instances of a deeper
+        phenomenon:\\[0.5em]
+        \textbf{Systems that build expectations, meet reality, and adapt to
+        the mismatch.}
+      \end{block}
+
+    \column{0.4\textwidth}
+      % Placeholder for the image originally in the deck.
+      % Replace \fbox{...} with \includegraphics[width=\linewidth]{your_image}
+      \begin{center}
+        \fbox{\parbox[c][4cm][c]{0.9\linewidth}{%
+          \centering\small\color{gray}
+          [Insert illustration here]\\
+          \texttt{Picture5.jpg}}}
+      \end{center}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Does this sound familiar?}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{Virus}
+        A virus does not predict.  
+        But across its variants, it \textit{explores} possibilities — 
+        and reality selects what works.
+      \end{block}
+
+    \column{0.48\textwidth}
+      \begin{block}{My hypothesis}
+        Intelligence, learning, and evolution are not separate phenomena.\\[0.4em]
+        They are \textbf{the same loop}, expressed at different scales.
+      \end{block}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Neither is a thing}
+  \begin{itemize}
+    \item A \textbf{virus} is not a thing.  
+          It is a \textit{process} — one that only exists within a network of
+          hosts.
+    \bigskip
+    \item \textbf{Intelligence} is not a thing.  
+          It is a \textit{process} — one that only exists within a network of
+          interactions.
+  \end{itemize}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    Strip away the metaphor, and the structure is identical.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{No substrate, no process}
+  The substrate is not a container.  
+  \textit{It determines what is possible.}
+
+  \bigskip
+  \begin{tabular}{ll}
+    \toprule
+    Change this\ldots & \ldots and this changes. \\
+    \midrule
+    Contact patterns    & The epidemic \\
+    Data flow           & AI behaviour \\
+    Collaboration patterns & Science \\
+    \bottomrule
+  \end{tabular}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    You don't need to change the elements.  
+    \textbf{You change the network.}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{The real question}
+  \begin{block}{The loop}
+    Generate → Test → Update\\[0.3em]
+    \ldots needs a substrate to run.  
+    \textbf{The network is that substrate.}
+  \end{block}
+
+  \bigskip
+  \begin{columns}[c]
+    \column{0.45\textwidth}
+      \begin{center}
+        \large\color{gray}
+        \textit{``How powerful is the AI?''} {\small(wrong question)}
+      \end{center}
+
+    \column{0.5\textwidth}
+      \begin{alertblock}{}
+        \centering\large
+        \textbf{How well does your network learn?}
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Intelligence is a verb}
+  \begin{enumerate}
+    \item Elements interact.
+    \item Interactions create patterns.
+    \item Reality selects among those patterns.
+    \item The system changes.
+    \item \textit{And the cycle continues.}
+  \end{enumerate}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    Intelligence is not a state — it is a \textbf{verb}.\\[0.3em]
+    New structure is not designed.  
+    It \textit{emerges}, is tested, and is reshaped.
+  \end{alertblock}
+\end{frame}
+
+% ── Section: Three Lessons ────────────────────────────────────
+\section{Three lessons}
+
+\begin{frame}{Lesson 1: AI is not a normal tool}
+  \begin{block}{The adaptive loop}
+    \centering
+    \textbf{Generate → Test → Update}\\[0.5em]
+    The same loop that drives learning and evolution — now operating at
+    \textit{digital speed and scale}.
+  \end{block}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    This is the first tool that does not just \textit{execute}.  
+    \textbf{It adapts.}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Lesson 2: Surveillance must become adaptive}
+  \begin{columns}[T]
+    \column{0.44\textwidth}
+      \begin{block}{Current model}
+        Data → Analysis → Decision\\[0.4em]
+        A pipeline. Linear. Slow.
+      \end{block}
+
+    \column{0.52\textwidth}
+      \begin{alertblock}{What we need}
+        Observe → Interpret → Act → Update → Repeat\\[0.4em]
+        This is not just about AI.  
+        It is about \textbf{how we organise ourselves}.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Lesson 3: Collective capability is real}
+  \begin{itemize}
+    \item A virus cannot transmit by itself.  
+          An \textbf{epidemic} is a collective capability — of society and
+          pathogen together.
+    \item The same is true for an organisation, a surveillance network, a
+          public health system.
+    \bigskip
+    \item Learning as an \textit{individual} builds a \textbf{skillset}.
+    \item Learning as a \textit{collective} builds \textbf{capability} — and
+          that capability is \textit{non-linear}.
+  \end{itemize}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    We can strengthen it. Or let it degrade.
+  \end{alertblock}
+\end{frame}
+
+% ── Section: Building at RIVM ─────────────────────────────────
+\section{Building a learning network}
+
+\begin{frame}{So what does it look like…}
+  \begin{center}
+    \Large\textit{…when you actually build a learning network?}
+  \end{center}
+\end{frame}
+
+\begin{frame}{What I am building at RIVM}
+  \begin{columns}[T]
+    \column{0.48\textwidth}
+      \begin{block}{AI-driven}
+        \begin{itemize}
+          \item NLP for questionnaire analysis \& data harmonisation
+          \item Agentic AI for quality assurance
+          \item Benchmarking methodology for AI outputs
+          \item Transformer modelling \& synthetic populations
+          \item Digital-twin architecture for longitudinal data
+        \end{itemize}
+      \end{block}
+
+    \column{0.48\textwidth}
+      \begin{block}{Human \& collective intelligence}
+        \begin{itemize}
+          \item FAIR and open data infrastructure
+          \item Expanded communication and outreach
+          \item Open source software
+        \end{itemize}
+      \end{block}
+  \end{columns}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    Everything on this list has one purpose: \textbf{make the loop run.}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Pandemic preparedness as a continuous loop}
+  \begin{block}{}
+    Preparedness is not a project. It is a \textbf{continuous mission}.
+  \end{block}
+
+  \bigskip
+  \begin{itemize}
+    \item The right frame: a never-ending loop of self-improvement, with
+          internal regulation of that improvement.
+    \item It is multidimensional — logistics, IT infrastructure, research
+          protocols, privacy, communication, contracts, training, and more.
+  \end{itemize}
+
+  \bigskip
+  \begin{alertblock}{}
+    \centering
+    \textbf{$k$-cover control:} ensuring the network is always covered,  
+    from every direction of failure.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{How to strengthen the network}
+  \begin{columns}[T]
+    \column{0.44\textwidth}
+      \begin{block}{Structural level}
+        More interaction.\\
+        More collaboration.\\
+        More feedback.
+      \end{block}
+
+    \column{0.52\textwidth}
+      \begin{alertblock}{Personal level — a functional requirement}
+        Honesty. Repairing conflict. Patience.\\
+        Openness. Transparency. Reciprocity.\\[0.5em]
+        \small These are not virtues.  
+        They are the conditions under which\\
+        \textbf{feedback loops stay intact}.
+      \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ── Section: What you can do ──────────────────────────────────
+\section{What you can do}
+
+\begin{frame}{What you can do}
+  \begin{enumerate}
+    \item \textbf{Use AI.}  
+          Seriously, as much as you can. It extends your adaptive loop.
+    \bigskip
+    \item \textbf{Think at a higher level.}  
+          The work will change; the need for domain expertise will not.
+    \bigskip
+    \item \textbf{Pair your specialisation} with data literacy, quality
+          assurance, and interpretation.  
+          Infectious disease knowledge, built over years, cannot be
+          replicated quickly.
+    \bigskip
+    \item \textbf{Collaborate deliberately.}  
+          Collective capability is not automatic. It requires maintenance.
+  \end{enumerate}
+\end{frame}
+
+% ── Conclusion ────────────────────────────────────────────────
+\section{Conclusion}
+
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item Intelligence is a \textbf{verb}.
+    \item Intelligence is a \textbf{network phenomenon}.
+    \item We can optimise this verb — in our systems, our organisations,
+          ourselves.
+  \end{itemize}
+
+  \bigskip
+  \begin{block}{}
+    \centering
+    Do not underestimate AI. \textbf{Interact with it.}\\[0.4em]
+    Think in networks: effects are non-linear, connections matter more than
+    nodes, and the loop never stops.
+  \end{block}
+\end{frame}
+
+% ── Closing slide ─────────────────────────────────────────────
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{1cm}
+    {\large\textit{Viral wisdom:}}\\[0.8em]
+    {\Large Keep alive what keeps you alive.}\\
+    {\large And improve it for the next generation.}\\[1.5em]
+    \rule{0.6\textwidth}{0.4pt}\\[1em]
+    {\LARGE\textbf{\textit{Disco ergo sum.}}}\\[0.3em]
+    {\large I learn, therefore I am.}
+  \end{center}
+\end{frame}
+
+\end{document}
