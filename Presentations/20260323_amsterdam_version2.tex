@@ -1,0 +1,310 @@
+\documentclass[aspectratio=169]{beamer}
+
+% ── Theme ──────────────────────────────────────────────────────────────────
+\usetheme{metropolis}
+\usepackage{appendixnumberbeamer}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+% ── Colours ────────────────────────────────────────────────────────────────
+\definecolor{RIVMblue}{HTML}{003D6E}
+\definecolor{RIVMaccent}{HTML}{0070BB}
+\definecolor{lightgray}{HTML}{F5F5F5}
+
+\setbeamercolor{frametitle}{bg=RIVMblue, fg=white}
+\setbeamercolor{progress bar}{fg=RIVMaccent}
+\setbeamercolor{title separator}{fg=RIVMaccent}
+\setbeamercolor{alerted text}{fg=RIVMaccent}
+
+% ── Metadata ───────────────────────────────────────────────────────────────
+\title{Artificial Intelligence and Public Health}
+\subtitle{The changing landscape of infectious disease surveillance}
+\author{Albert Jan van Hoek}
+\institute{RIVM --- National Institute for Public Health and the Environment}
+\date{23 March 2026, Amsterdam}
+
+% ══════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+\maketitle
+
+% ── Slide 2 ────────────────────────────────────────────────────────────────
+\begin{frame}{Who am I?}
+  \begin{itemize}
+    \item Senior researcher at RIVM (Dutch National Institute for Public Health)
+    \item PI of \textbf{Infectieradar} --- a large online cohort reporting weekly
+          symptoms of acute infections, with virological testing of $\sim$200
+          participants per week
+    \item Infectious disease modelling and health economics
+    \item Software architecture and functionality (no coding)
+    \item Experimenting with AI: prompting, NLP, agentic AI --- trying to
+          understand and make sense of it
+  \end{itemize}
+\end{frame}
+
+% ── Slide 3 ────────────────────────────────────────────────────────────────
+\begin{frame}{Prompting AI}
+  \begin{center}
+    \large Writing a good prompt is writing a good plan.
+  \end{center}
+  \vspace{1em}
+  \textbf{The key: level of abstraction.}
+  \vspace{1em}
+
+  \textit{Example: ``come to dinner'' in Dutch}
+
+  \medskip
+  \textbf{Literal prompt:} ``Translate `come to dinner' into Dutch''
+
+  \medskip
+  \textbf{Abstract prompt:}
+  \begin{quote}
+  ``Write a short call to signal that food is ready and people can come to
+    the table. Keep it concise, express mild urgency, use language level B2,
+    in Dutch.''
+  \end{quote}
+
+  The second version has \emph{adjustable parameters}: urgency, register,
+  language level, language. Swap one, get a different result --- in French,
+  Turkish, Chinese, or Dutch.
+\end{frame}
+
+% ── Slide 4 ────────────────────────────────────────────────────────────────
+\begin{frame}{What is AI, at the right level of abstraction?}
+  \begin{itemize}
+    \item A process that answers natural-language questions using a trained
+          neural network
+    \item Trained on large amounts of human-generated data with human feedback
+          (Reinforcement Learning from Human Feedback --- RLHF)
+    \item Our collective knowledge is captured in the model
+    \item The knowledge lives in hardware; electricity running through a trained
+          network produces the answer
+    \item \textbf{No magic. Silicon and electricity.}
+  \end{itemize}
+  \vspace{0.5em}
+  \alert{Training is unpredictable.} Capacity improves predictably in aggregate,
+  but what exactly will emerge at the next scale cannot be specified in advance.
+\end{frame}
+
+% ── Slide 5 ────────────────────────────────────────────────────────────────
+\begin{frame}{Reinforcement learning --- machines}
+  \textbf{Training a neural network:}
+  \begin{enumerate}
+    \item Start with an untrained network
+    \item Present data \hfill \textit{(pictures: cats / dogs)}
+    \item Adjust the network \hfill \textit{(slightly different weights)}
+    \item Check function \hfill \textit{(can it distinguish cats from dogs?)}
+    \item Feedback \hfill \textit{(metric: how well does it do?)}
+    \item Select the more trained network
+    \item Present data again / new data
+    \item Repeat
+  \end{enumerate}
+\end{frame}
+
+% ── Slide 6 ────────────────────────────────────────────────────────────────
+\begin{frame}{Reinforcement learning --- humans}
+  \textbf{Training a human neural network:}
+  \begin{enumerate}
+    \item Start with an untrained network
+    \item Present data
+    \item Change in the network
+    \item Check function
+    \item Feedback
+    \item Select the more trained network
+    \item Present data again / new data
+    \item Repeat
+  \end{enumerate}
+  \vspace{0.5em}
+  As a human you experience this \emph{from the inside}. As a scientist I
+  recognise this directly: building a health-economic model is an iterative loop
+  of construction, questioning, and revision.
+\end{frame}
+
+% ── Slide 7 ────────────────────────────────────────────────────────────────
+\begin{frame}{A network mental model}
+  In infectious disease modelling I use network models to predict measles
+  transmission in school--household networks.
+
+  \begin{itemize}
+    \item \textbf{Nodes}: schools (or individuals)
+    \item \textbf{Edges}: connections (children sharing a household)
+    \item Dots and lines
+  \end{itemize}
+
+  \vspace{0.5em}
+  Training a neural network looks the same: neurons are dots, connections are
+  lines, and with each training round the lines get denser and reconfigure.
+
+  \vspace{0.5em}
+  Networks have rules and dynamics. \textbf{The point of view from each node is
+  different.} I can imagine myself inside that network --- look around you.
+\end{frame}
+
+% ── Slide 8 ────────────────────────────────────────────────────────────────
+\begin{frame}{Learning as a network process}
+  \begin{itemize}
+    \item Learning creates new links; thinking \emph{uses} those links
+    \item Thinking is a verb --- a decentralised action across thousands of nodes
+    \item ``Passing things through the population'' \emph{is} the thinking
+    \item New connections combine and produce something that was not there before
+          --- \textbf{emergence}
+  \end{itemize}
+
+  \vspace{0.5em}
+  From this perspective, AI training is not a unique process. Improvement in AI
+  looks like evolution in our own networks. And both have feedback.
+\end{frame}
+
+% ── Slide 9 ────────────────────────────────────────────────────────────────
+\begin{frame}{Evolution as a learning process}
+  Viruses also ``learn''.
+
+  \begin{itemize}
+    \item They evolve through variation and selection
+    \item That evolution is precisely what keeps them around
+    \item What evolves is an emergent process between virus and hosts
+    \item That it will evolve is certain; what exactly changes is not ---
+          it depends on too many things
+  \end{itemize}
+
+  \vspace{0.5em}
+  \alert{Same loop. Different substrate. Same unpredictability of outcome.}
+\end{frame}
+
+% ── Slide 10 ───────────────────────────────────────────────────────────────
+\begin{frame}{What this implies}
+  This creates a strange feeling about the relationship between the thinking
+  I experience and the underlying process.
+
+  \vspace{0.5em}
+  \textbf{Something about what I am.}
+
+  \vspace{0.5em}
+  AI training is a process we have extensive experience with --- in biology,
+  in epidemiology, in our own development as scientists.
+
+  \vspace{0.5em}
+  That familiarity is useful. It means we are not starting from zero.
+\end{frame}
+
+% ── Slide 11 ───────────────────────────────────────────────────────────────
+\begin{frame}{Why this matters}
+  \textbf{AI is not a thing. It is a learning process.}
+
+  \begin{itemize}
+    \item It keeps improving --- it is not a normal tool
+    \item It is a network phenomenon; its capacities are distributed
+    \item Feedback is central to the learning
+    \item The loop runs again and again, but the connections change each time,
+          producing new capacities and functions
+    \item \textbf{Prompting} should connect to the right capacities within
+          that network
+  \end{itemize}
+\end{frame}
+
+% ── Slide 12 ───────────────────────────────────────────────────────────────
+\begin{frame}{This framework scales}
+  The same image --- learning loop, network, emergence, feedback --- applies to:
+
+  \vspace{0.5em}
+  \begin{columns}[t]
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item AI development
+        \item Infectious disease surveillance
+        \item Evolution
+        \item The immune response
+      \end{itemize}
+    \column{0.5\textwidth}
+      \begin{itemize}
+        \item Society and institutions
+        \item The economy
+        \item Our own thinking
+        \item Science itself
+      \end{itemize}
+  \end{columns}
+
+  \vspace{0.5em}
+  It is not a metaphor. It is the same underlying process running on
+  different substrates.
+\end{frame}
+
+% ── Slide 13 ───────────────────────────────────────────────────────────────
+\begin{frame}{Back to public health: surveillance and pandemic preparedness}
+  \textbf{Where AI enters our work:}
+  \begin{itemize}
+    \item Natural Language Processing (NLP)
+    \item Generative AI
+    \item Benchmarking: formal feedback and training loops
+    \item Quality assurance of a learning system
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Where humans remain essential:}
+  \begin{itemize}
+    \item Communication and interpretation
+    \item Open data
+    \item FAIR principles (Findable, Accessible, Interoperable, Reusable)
+  \end{itemize}
+\end{frame}
+
+% ── Slide 14 ───────────────────────────────────────────────────────────────
+\begin{frame}{Pandemic preparedness as a learning system}
+  \begin{itemize}
+    \item Learning must be \textbf{continuous} --- preparedness degrades
+          without it
+    \item Quality monitoring is not optional
+    \item The problem is multidimensional: biological, logistical, political,
+          social
+    \item Nature already solved a version of this: \textbf{the immune response}
+          is a heavily regulated, multi-layered learning system
+    \item Formal concept: \textbf{$k$-cover regulation} --- maintaining
+          sufficient distributed monitoring capacity under uncertainty
+  \end{itemize}
+\end{frame}
+
+% ── Slide 15 ───────────────────────────────────────────────────────────────
+\begin{frame}{Your future role: Guardian of the learning process}
+  If AI is a learning process --- not a tool --- the human role is not
+  operation. It is \textbf{stewardship}.
+
+  \vspace{0.5em}
+  \textbf{Technical requirements:}
+  \begin{itemize}
+    \item Understanding of the underlying process
+    \item Abstract thinking and architecture
+    \item Domain knowledge that AI cannot self-verify
+  \end{itemize}
+
+  \vspace{0.5em}
+  \textbf{Personal qualities:}
+  \begin{itemize}
+    \item No bias in; no bias out
+    \item Honesty --- the loop breaks when the signal is corrupted
+    \item Error correction and the patience to keep correcting
+    \item The capacity to forgive mistakes --- in others and in the system
+  \end{itemize}
+\end{frame}
+
+% ── Slide 16 ───────────────────────────────────────────────────────────────
+\begin{frame}{Conclusion}
+  \begin{itemize}
+    \item AI is not a tool; it is a learning process
+    \item Use it --- but keep focus on the loop, not the output
+    \item We have a great deal of prior experience with this kind of process
+    \item \textbf{Guardian of the learning process} may be the right frame for
+          the role public health professionals will play
+    \item I find these interesting times. I am positive.
+  \end{itemize}
+\end{frame}
+
+% ── Closing ────────────────────────────────────────────────────────────────
+\begin{frame}[standout]
+  Keep alive what keeps you alive,\\
+  and improve it for the next generation.
+
+  \vspace{1.5em}
+  \textit{Disco ergo sum.}
+\end{frame}
+
+\end{document}
