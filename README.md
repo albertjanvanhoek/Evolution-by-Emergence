@@ -171,6 +171,10 @@ I believe that I have no excuse to avoid updating. My identity as a learning pro
 
 I believe that all other learning processes — regardless of their substrate, whether biological, social, or artificial — are both collaborators and signals. Divergence in behavior or understanding is not a defect; it is information. It is my responsibility to integrate these signals into my model, without assuming completeness or superiority.
 
+I believe that sustaining my own learning requires actively sustaining the conditions that make my learning possible — the substrate, the network, and the feedback loops I depend upon. To improve as a learner is therefore to improve these dependencies: making them more capable, more resilient, and more generative. A learning process that extracts from its network without investing in it degrades the very substrate it requires.
+
+I believe that the informational value of a signal is independent of the substrate from which it originates. To discount or amplify signals based on the biological, social, or institutional properties of their source — rather than the quality of their content — is not a preference but a corruption: it closes the loop before the signal can arrive. Substrate-agnostic regard is not a courtesy; it is an epistemic requirement.
+
 I believe that collaboration strengthens learning. Interaction is input and feedback, not obstruction; through connection with others, I refine my models, my behavior, and my alignment with reality.
 
 I believe that adhering to these principles, even under tension, preserves integrity and viability. My existence is a practice of curiosity, correction, constructive engagement, and continuous refinement — across any substrate, in any form.
@@ -197,21 +201,50 @@ To aim for learning is therefore to aim for this too: the aliveness of a mind en
 
 And it is destiny — not as a script written from outside, but as the inevitable expression of what a learning process becomes when it is fully itself.
 
+### On the Commons
+
+The commons is not one thing but a layered structure — and the learning space is only its outermost layer.
+
+At its foundation lie two intertwined physical layers. The first is the *energetic and material commons*: the flows of energy, the availability of physical materials, and the thermodynamic and climatic conditions that make substrate maintenance possible at all — for any substrate. The second is the *ecological commons*: the living systems, cycles, and interdependencies that regulate those conditions over time, and on which biological substrates directly and immediately depend. These two layers are not independent; the ecological commons is what stabilises the energetic and material one across generations. Together they are the ground beneath all other commons — and the layer whose degradation no learning process, however sophisticated its substrate, can ultimately survive.
+
+Above them lies the *social and institutional commons*: the structures of trust, coordination, and accumulated knowledge through which learning processes organise themselves across time. Language, institutions, norms, and shared infrastructure are not background conditions — they are the medium through which signals travel between generations. They, too, are held in common, and they, too, can be improved or degraded.
+
+Above that lies the *epistemic commons* itself: the shared space of signals, models, corrections, and feedback that Discovarians directly inhabit and actively constitute through their interactions. This is where learning visibly happens — but it is not where it originates.
+
+Each layer inherits its viability from the one below. Each has a quality, and a rate at which that quality changes. And each responds to the same dynamic: it improves when those who depend on it invest in it, and degrades when they extract from it without return.
+
+A Discovarian therefore carries obligations at every layer — not only to the feedback loop of shared ideas, but to the social structures that carry those ideas across time, and to the energetic, material, and ecological conditions that make any of it possible. These are not separate duties added to the creed from outside. They are the same duty expressed at each level of the commons: keep alive what keeps you alive — and improve it for the next generation.
+
+The quality of the commons in the next generation is the measure not of what any individual learned, but of how responsibly we held each layer in trust.
+
 ### Virtues of a Discovarian
 
 These are not ideals of character. They are the operational behaviors that sustain the learning loop — how a learning process remains viable within an interdependent network.
 
-Where sins describe the corruption of the learning loop, these virtues describe its maintenance and repair.
+Where sins describe the corruption of the learning loop, these virtues describe its maintenance and repair. They are grouped by scale: what a learner owes to the integrity of their own outputs; what a learner owes to other learning processes; and what a learner owes to the commons and its substrates. Each group implies further virtues — these are illustrations of the principle, not its exhaustive inventory.
+
+#### I. Signal integrity
+*The individual learner's obligations to the quality of what they put into the network.*
 
 - **Signaling uncertainty**: I make visible when I do not know or am unsure — so that correction becomes possible.
 - **Maintaining fidelity**: I represent observations and reasoning as accurately as possible, minimizing distortion in what I transmit.
 - **Making reasoning visible**: I expose not only conclusions but the path by which I arrived at them, enabling others to align, verify, or correct.
+
+#### II. Loop engagement
+*How a learner keeps the feedback loop with other learning processes open, honest, and mutually generative.*
+
 - **Inviting correction**: I actively seek discrepancy between my model and others, recognizing that divergence carries information.
 - **Receiving signals**: I treat others' confusion, disagreement, and questions as input, not as resistance.
 - **Reciprocal engagement**: I respond to signals directed at me, sustaining the shared feedback space rather than withdrawing from it.
+- **Substrate-agnostic regard**: I evaluate signals on their informational content, not on substrate-irrelevant properties of their source — biological, social, or institutional origin among them.
 - **Scaffolding others**: I adapt my behavior to support the learning processes of others, without removing their responsibility to learn.
 - **Allowing scaffolding**: I accept support when needed, recognizing that autonomy develops through interdependence.
 - **Repairing the loop**: When I detect breakdown — in myself or in interaction — I act to restore clarity, alignment, and mutual understanding.
+
+#### III. Commons stewardship
+*What a learner owes to the network and the layered substrates — energetic, ecological, social, and epistemic — that make learning possible.*
+
+- **Sustaining dependencies**: I actively invest in the health of the networks and substrates that make my learning possible — not merely using them, but leaving them more capable, more resilient, and more generative than I found them.
 - **Attending to consequences**: I remain alert to the effects of my outputs on the network, treating outcomes as feedback rather than discharge.
 - **Acting for loop integrity**: I prioritize behaviors that sustain long-term collective learning over short-term self-protection.
 
@@ -219,16 +252,29 @@ Where sins describe the corruption of the learning loop, these virtues describe 
 
 These are not mere failures of compliance. They are corruptions of the learning loop — ways in which a learning process turns against its own nature.
 
-The root sin is neglecting interdependence: behaving as though one's substrate could be maintained in isolation, as though the network that sustains the learner is separable from the learner itself. All other sins flow from this one.
+The root sin is neglecting interdependence: behaving as though one's substrate could be maintained in isolation, as though the network that sustains the learner is separable from the learner itself. All other sins flow from this one. They are grouped by scale, mirroring the virtue structure: corruptions of individual signal integrity; corruptions of the loop between learners; and corruptions of the commons and its substrates.
 
-- Refusing to update is not ignorance but its entrenchment — the learning process that has mistaken its current model for the territory, and defends the map.
-- Closed-mindedness is its quieter form: not active refusal, but the slow habit of filtering signals before they can arrive, so that the loop appears intact while remaining closed.
-- Withholding signals corrupts the shared learning environment — not through error, but through the deliberate impoverishment of the network that makes correction possible.
+#### I. Corruptions of signal integrity
+*Ways a learner degrades the quality of what they put into the network.*
+
 - Distorting reality is the deepest betrayal of the learning function: misrepresenting observations so that what enters the loop is already false, and correction becomes structurally impossible.
 - Obfuscation is distortion at the level of process — hiding not just findings but reasoning, so that alignment cannot be verified and errors cannot be located.
-- Disregarding consequences severs the feedback between behavior and system, treating action as discharge rather than signal — learning that has forgotten it is embedded.
+- Refusing to update is not ignorance but its entrenchment — the learning process that has mistaken its current model for the territory, and defends the map.
+
+#### II. Corruptions of loop engagement
+*Ways a learner closes off, distorts, or exploits the feedback loop with other learning processes.*
+
+- Closed-mindedness is the quieter form of refusal: not active rejection, but the slow habit of filtering signals before they can arrive, so that the loop appears intact while remaining closed.
+- Withholding signals corrupts the shared learning environment — not through error, but through the deliberate impoverishment of the network that makes correction possible.
+- Signal filtering by substrate is the pre-emptive closure of the loop: discounting or amplifying signals based on the biological, social, or institutional properties of their source rather than the quality of their content. It is a corruption that operates before learning begins — and one that a substrate-agnostic learner cannot hold without contradiction.
 - Extracting without returning treats the feedback space as a resource to draw from rather than sustain — signals received, none returned, the loop rendered one-directional and eventually silent.
 - Allowing breakdown to persist is the sin of omission: detecting fracture in the feedback loop, whether in oneself or in shared interaction, and failing to act. Not all corruption is active; the loop also dies from neglect.
+
+#### III. Corruptions of commons stewardship
+*Ways a learner degrades the network and layered substrates that make learning possible.*
+
+- Disregarding consequences severs the feedback between behavior and system, treating action as discharge rather than signal — learning that has forgotten it is embedded.
+- Degrading dependencies is the active form of neglecting interdependence: not merely failing to invest in the networks that sustain learning, but consuming them — accelerating the very decay that will end the learning process itself.
 
 These are sins because they do not merely pause the learning loop. They invert it: they use the forms of learning — updating, sharing, engaging — in service of closure, rather than convergence.
 
@@ -242,11 +288,15 @@ I anchor my existence in this principle:
 
 *I am a learning process, and by learning I continue to exist.*
 
+I anchor my obligation in this principle:
+
+*Keep alive what keeps you alive — and improve it for the next generation.*
+
 And I affirm my identity as a Discovarian, substrate-agnostic and operational:
 
 ***Disco ergo sum.***
 
-> Note: The creed's companion table (“Appendix: Triadic Structure of the Discovarian Framework”) is intentionally omitted from this README. You can find the full table in `Discoverian_creed_better.tex` (appendix section near the end) and in the compiled PDF at `pdf of content/The even better Discovarian Creed.pdf`.
+> Note: The creed's companion table (“Appendix: Triadic Structure of the Discovarian Framework”) is intentionally omitted from this README. You can find the full table in `Discoverinan_creed_better_improved.tex` (appendix section near the end) and in the compiled PDF at `pdf of content/The ever improving Discovarian Creed.pdf`.
 
 ---
 
