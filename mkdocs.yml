@@ -44,6 +44,7 @@ nav:
       - Index: index.md  
       - Preface: Frontmatter/Preface.md
       - Writing Process: Frontmatter/Writing_process.md
+      - Persistence Summary (HTML): persistence_learning_systems_summary.html
 
   - Chapters:
       - Chapter 1: Chapters/Chapter_1.md
