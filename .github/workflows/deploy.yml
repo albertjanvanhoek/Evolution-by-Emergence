@@ -21,28 +21,22 @@ jobs:
   build-and-publish:
     runs-on: ubuntu-latest
     environment: github-pages
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       # --- Checkout ----------------------------------------------------
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0            # we need tags for version extraction
 
       # --- Toolchain --------------------------------------------------
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
-
-      - name: Set up Pandoc (3.x)
-        uses: r-lib/actions/setup-pandoc@v2       # of  nikeee/setup-pandoc@v1
-        with:
-          pandoc-version: '3.1.11'               # of 'latest'
-
-      - name: Check Pandoc version
-        run: pandoc --version    
 
       - name: Install MkDocs‑Material + newest pymdown‑extensions
         run: |
@@ -50,13 +44,13 @@ jobs:
           pip install --upgrade "pymdown-extensions>=10.5"
 
       # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
-      - name: Setup Tectonic (LaTeX engine)
-        uses: WtfJoke/setup-tectonic@v3          # één binary, geen TeX Live
 
       - name: Render standalone TikZ files to PDF & SVG
         run: |
           sudo apt-get update      
-          sudo apt-get install -y --no-install-recommends pdf2svg     # piepklein CLI
+          sudo apt-get install -y --no-install-recommends pandoc tectonic pdf2svg
+          pandoc --version
+          tectonic --version
           # Zoek alle docs/figures/*.tex bestanden en zet ze om
           for tex in $(find docs/figures -name '*.tex'); do
             base="${tex%.tex}"
