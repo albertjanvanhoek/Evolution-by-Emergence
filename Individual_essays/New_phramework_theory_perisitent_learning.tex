@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath, amssymb}
+
+\title{Persistent Learning Systems:\\
+A Minimal Information-Theoretic Framework (v2.1)}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+This document presents a minimal information-theoretic framework describing the conditions under which a learning system can persist. Persistence is defined as maintaining bounded divergence between an internal model and the external world. Since the true world distribution is not directly accessible, the system operates via a proxy objective based on observed signals.
+
+\section{Core Definitions}
+
+\begin{itemize}
+    \item $W \sim P(W)$: world state distribution
+    \item $M_t$: model parameters at time $t$
+    \item $P(W \mid M_t)$: model distribution parameterized by $M_t$
+    \item $S_t \sim P(W)$: observed signal at time $t$
+\end{itemize}
+
+\section{Divergence (Unobservable Objective)}
+
+Model-world mismatch is defined as:
+
+\begin{equation}
+D_{KL}(P(W) \parallel P(W \mid M_t))
+\end{equation}
+
+\subsection*{Persistence Condition}
+
+A system persists only if divergence remains bounded:
+
+\begin{equation}
+D_{KL}(P(W) \parallel P(W \mid M_t)) < \epsilon
+\end{equation}
+
+for some tolerance $\epsilon$.
+
+\section{Proxy Objective (Operational)}
+
+Since $P(W)$ is not directly accessible, the system minimizes expected surprisal:
+
+\begin{equation}
+\mathcal{L}(M_t) = \mathbb{E}_{S \sim P(W)}[-\log P(S \mid M_t)]
+\end{equation}
+
+\section{Learning Dynamics}
+
+Model updates follow:
+
+\begin{equation}
+M_{t+1} = M_t + \Delta(S_t, M_t)
+\end{equation}
+
+Define divergence change:
+
+\begin{equation}
+\Delta D_{KL} = D_{KL}(P(W)\parallel P(W \mid M_{t+1})) - D_{KL}(P(W)\parallel P(W \mid M_t))
+\end{equation}
+
+\subsection*{Requirement}
+
+\begin{equation}
+\mathbb{E}[\Delta D_{KL}] < 0
+\end{equation}
+
+\section{Signal Fidelity}
+
+Signals consist of true signal and noise:
+
+\begin{equation}
+S = S_{\text{true}} + N
+\end{equation}
+
+Signal-to-noise ratio:
+
+\begin{equation}
+\text{SNR} = \frac{\mathrm{Var}(S_{\text{true}})}{\mathrm{Var}(N)}
+\end{equation}
+
+\subsection*{Constraint}
+
+Learning rate depends on signal quality:
+
+\begin{equation}
+\eta = f(\text{SNR})
+\end{equation}
+
+Low SNR requires slower integration and increases update variance.
+
+\section{Externality (Informational Structure)}
+
+Learning requires structured, non-redundant input:
+
+\begin{equation}
+0 < \beta < I(S_t ; S_{t+k}) < \alpha
+\end{equation}
+
+This ensures the presence of both novelty and learnable structure.
+
+\section{Generativity (Entropy Rate)}
+
+Let $\mathcal{H}(S)$ denote the entropy rate of the signal process.
+
+\begin{equation}
+\mathcal{H}(S) \ge h_{\min} > 0
+\end{equation}
+
+This ensures sustained inflow of new information.
+
+\section{Self-Sealing Failure}
+
+Define an attention weight:
+
+\begin{equation}
+w(S) \in [0,1]
+\end{equation}
+
+The effective input is deterministically modulated as:
+
+\begin{equation}
+\tilde{S} = w(S) \cdot S
+\end{equation}
+
+Surprisal is defined as:
+
+\begin{equation}
+\text{Surprisal}(S) = -\log P(S \mid M_t)
+\end{equation}
+
+\subsection*{Self-Sealing Condition}
+
+\begin{equation}
+\frac{\partial w(S)}{\partial \text{Surprisal}(S)} < 0
+\end{equation}
+
+This implies systematic suppression of high-information inputs.
+
+\subsection*{Consequence}
+
+Even when informative signals are available:
+
+\begin{equation}
+\mathbb{E}[\Delta D_{KL}] \ge 0
+\end{equation}
+
+\section{Commons (Channel Capacity)}
+
+Let channel capacity be:
+
+\begin{equation}
+C = \max I(S_{\text{in}} ; S_{\text{received}})
+\end{equation}
+
+\subsection*{Constraint}
+
+\begin{equation}
+C > C_{\min}
+\end{equation}
+
+This ensures reliable transmission of information.
+
+\section{Summary}
+
+A learning system persists if:
+
+\begin{enumerate}
+    \item Expected divergence decreases over time
+    \item Signal-to-noise ratio supports stable learning
+    \item Inputs contain structured, non-redundant information
+    \item Entropy rate remains strictly positive
+    \item High-surprisal inputs are not systematically suppressed
+    \item Channel capacity remains above a minimum threshold
+\end{enumerate}
+
+Failure of any condition leads to increasing divergence and eventual loss of alignment with reality.
+
+\end{document}
