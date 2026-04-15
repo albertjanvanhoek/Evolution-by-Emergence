@@ -1,6 +1,8 @@
 # Evolution by Emergence Repository
 ## EbE + TLC: two connected frameworks
 
+> **Start here:** Read **The Manual** for the clearest introduction to this repository’s core framing: `Individual_essays/TheManual.tex` (source) and `pdf of content/The Manual.pdf` (compiled).
+
 > **Status:** Active work in progress. Core ideas are readable and increasingly stable; structure and drafts continue to evolve.
 
 This repository now contains two main bodies of work that are tightly connected:
