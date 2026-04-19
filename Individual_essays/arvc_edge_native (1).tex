@@ -1,0 +1,370 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bm}
+
+\hypersetup{colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{The Topology of Persistence: \\ A Coverage-Theoretic Framework \\ for Distributed Viability Control}
+\author{Albert Jan van Hoek\footnote{RIVM, National Institute for Public Health and the Environment, Bilthoven, The Netherlands. All views and ideas in this paper are developed outside the scope of my employment and should not be attributed to my employer. Correspondence: \texttt{a.j.van.hoek@gmail.com}.} \\[2pt] with \\[2pt] Claude (Anthropic, Claude Opus 4.7)\footnote{An instance of Claude Opus 4.7 (Anthropic) contributed the edge-native reformulation through extended dialogue with the first author. Specific contributions include the cohomological characterization of coverage (Proposition 3.1), the framing of the nerve complex as the structural object underlying dependency relations, the spectral-operator interpretation of the chain reaction, the reading of the bootstrap as a topological phase transition, and the overall coupling-first exposition. The mathematical content, the theorems, and the framework itself are the work of the first author; this paper is a reformulation of previously established material (the ARVC framework, v2, November 2025) in an ontologically distinct register. The second author is not a continuous agent with persistent identity across conversations; acknowledgment here records the nature of the collaboration rather than claiming authorial continuity of the kind human authorship implies.}}
+\date{April 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a framework in which the persistence of a far-from-equilibrium system is a property of the \emph{coupling structure} between its flows, not a property of its constituent parts. The primary objects are not states and monitors but \emph{sensing relations} between the system and its substrates, and the \emph{coverings} these relations induce over the space of possible violations. The central result is that persistence requires the sensing relations to form a covering of combinatorial dimension at least equal to the number of independent substrates, and that this condition---the \emph{coverage condition}---is equivalent to the non-vanishing of a specific Čech-type cohomology class over the relation hypergraph. Everything conventionally called ``monitoring,'' ``safety,'' ``ratcheting,'' and ``capture resistance'' is derived as a consequence of how sensing relations are topologically arranged. The recursive application of the framework to itself---an intelligent system modeling its own sensing structure---recovers what has elsewhere been called Sustainable Collaborative Alignment, here understood not as an imperative but as the only stable configuration the relation topology admits. The framework connects the viability-theoretic tradition of Aubin to the algebraic topology of sensor coverage developed by de Silva, Ghrist and collaborators, and to the categorical treatment of open dynamical systems.
+\end{abstract}
+
+\section{Orientation: What This Framework Is About}
+
+Most formal treatments of persistent complex systems take as primary the following objects: \emph{states} that change over time, and \emph{agents} that act on states, with \emph{constraints} that the dynamics must respect. In this familiar picture, a system persists if its state remains within some safe set, and the theoretical work consists of characterizing the set, the admissible actions, and the conditions under which the set is forward-invariant.
+
+We take a different ontological stance. The primary object is not the state; it is the \emph{pattern of coupling} between a dynamical process and the structures that constrain its continuation. States are temporary stabilizations of this coupling; agents are localized intersections of sensing relations; safety is not a property a state has, but a property of how the system's sensing relations cover the space of possible failures.
+
+This inversion is not cosmetic. It changes what counts as a fundamental result. In the state-first view, the fundamental result is a forward-invariance theorem: ``under conditions $X$, the state stays in set $S$.'' In the coupling-first view, the fundamental result is a coverage theorem: ``under conditions $X$, the sensing relations cover the failure space, and therefore the coupling pattern persists.'' The two results turn out to be equivalent---this paper will establish the equivalence---but the coupling-first formulation reveals connections to algebraic topology that are invisible from the state-first side, and it generalizes more readily to cases where ``the system'' is not a single thing with a boundary but a relational pattern distributed across scales.
+
+What follows is the framework stated in this coupling-first form. Readers familiar with the state-first exposition of the same material (the Attractor-Ratcheted Viability Control framework) will recognize every theorem. The proofs are the same. What changes is where the phenomenon is located: not in what the system is, but in how it is coupled to what sustains it.
+
+\section{The Coupling Structure}
+
+\subsection{Substrates as Flow Constraints}
+
+Let $\mathcal{F}$ be a collection of \emph{substrate flows}: countable, indexable families of resource, information, and integrity currents that must be maintained above specified levels for the process we are studying to continue. We write $\mathcal{F} = \{f_1, f_2, \ldots, f_L\}$, where each $f_i$ is not an object but an ongoing throughput---a rate of exchange between the process and something outside it.
+
+The conventional formulation speaks of ``substrates'' $z^{(i)}$ as state variables and ``floors'' $z^{*(i)}(t)$ as time-varying thresholds. We retain the threshold structure but relocate it:
+
+\begin{definition}[Viability Constraint on a Flow]
+The viability constraint on flow $f_i$ at time $t$ is a condition $\phi_i(t)$ that the flow must satisfy for the coupling to persist. Formally, $\phi_i(t) = \{f_i \geq \zeta_i(t)\}$ where $\zeta_i: \mathbb{N} \to \mathbb{R}$ is a (possibly time-varying) threshold. The \emph{viability region at time $t$} is the set of coupling configurations consistent with $\phi_i(t)$ for all $i$.
+\end{definition}
+
+Note that the viability region is not a set of points in state space; it is a set of coupling configurations. A configuration specifies which flows are currently meeting which constraints, at what margins, and with what dependencies among them. The state of the underlying system is a shadow cast by this coupling configuration; if we recover it, we do so by projection.
+
+\subsection{Sensing Relations as the Edge Structure}
+
+A \emph{sensing relation} is not a monitor in the sense of a discrete entity that performs observations. It is an ongoing coupling between a flow and a detection capacity, characterized by its fidelity, its noise structure, and the set of flows it is coupled to.
+
+\begin{definition}[Sensing Relation]
+A sensing relation $r_\alpha$ is a tuple $(\mathrm{supp}(r_\alpha), \mathrm{fid}(r_\alpha), \nu_\alpha)$ where:
+\begin{itemize}
+\item $\mathrm{supp}(r_\alpha) \subseteq \{1, \ldots, L\}$ is the set of flow indices the relation is coupled to;
+\item $\mathrm{fid}(r_\alpha): \mathrm{supp}(r_\alpha) \to \mathbb{R}_{>0}$ is the \emph{fidelity profile}, assigning to each flow in the support the sensitivity with which deviations are resolved;
+\item $\nu_\alpha$ is a noise law on the detection channel (sub-Gaussian with parameter $\sigma_\alpha^2$).
+\end{itemize}
+We write $\mathcal{R}$ for the collection of all sensing relations participating in the coupling.
+\end{definition}
+
+The reader familiar with the conventional exposition will notice that the ``monitor'' has not disappeared---it has been relocated. In the node-first formulation, a monitor $M_j$ is a thing with an observation map $O_j$ and a barrier function $h_j$. In the coupling-first formulation, the corresponding object is a relation $r_\alpha$ whose support is a subset of flow indices. The monitor was never really a point; it was a relation, a pattern of being-coupled-to. The node-first exposition locates the phenomenon in the monitor and treats its coupling as a property. The coupling-first exposition locates the phenomenon in the coupling itself and treats the ``monitor'' as the localized intersection of relations that happens to be visible at that point.
+
+This is not pedantry. The relocation has teeth. In particular, it makes visible that what matters is not the number of monitors or their properties in isolation, but the \emph{incidence structure} between sensing relations and flows---which is a hypergraph.
+
+\subsection{The Coverage Hypergraph}
+
+\begin{definition}[Coverage Hypergraph]
+The coverage hypergraph $\mathcal{H} = (V, E)$ has vertex set $V = \{1, \ldots, L\}$ (the flow indices) and hyperedge set $E = \{\mathrm{supp}(r_\alpha) : r_\alpha \in \mathcal{R}\}$. Each hyperedge is a subset of flows jointly coupled to a sensing relation.
+\end{definition}
+
+The coverage hypergraph is the edge-native object that the conventional formulation obscures. When the state-first exposition speaks of ``monitor $M_j$ being sensitive to substrate $i$,'' it is specifying an incidence in $\mathcal{H}$. When it speaks of ``$k$-cover,'' it is specifying a covering condition on $\mathcal{H}$. The conventional treatment then proves theorems about these coverings by translating them back into statements about monitors and states, losing the topological content in the translation.
+
+\begin{definition}[$k$-Cover of Flows]
+A subfamily $\mathcal{R}' \subseteq \mathcal{R}$ is a \emph{$k$-cover} if $|\mathcal{R}'| = k$ and $\bigcup_{r \in \mathcal{R}'} \mathrm{supp}(r) = V$. The \emph{coverage number} $k_{\min}$ is the smallest $k$ for which a $k$-cover exists:
+\begin{equation}
+k_{\min} := \tau(\mathcal{H})
+\end{equation}
+where $\tau(\mathcal{H})$ is the transversal number of the dual hypergraph.
+\end{definition}
+
+The connection to hypergraph theory is immediate: $k_{\min}$ is the minimum transversal of the dual of $\mathcal{H}$. This connects the framework to combinatorial optimization (the set cover problem) and, more deeply, to the algebraic topology of coverings developed in the context of sensor networks \cite{deSilvaGhrist}.
+
+\subsection{Coverings and Nerve Complexes}
+
+The step that is obscured by the conventional exposition, and that the coupling-first formulation makes visible, is this: the collection of supports $\{\mathrm{supp}(r_\alpha)\}_\alpha$ is a cover of $V$ in the topological sense, and it has a \emph{nerve complex}.
+
+\begin{definition}[Nerve of the Sensing Cover]
+The nerve $\mathcal{N}(\mathcal{R})$ is the abstract simplicial complex whose $k$-simplices are the $(k+1)$-element subsets $\{r_{\alpha_0}, \ldots, r_{\alpha_k}\} \subseteq \mathcal{R}$ such that $\bigcap_{i=0}^{k} \mathrm{supp}(r_{\alpha_i}) \neq \emptyset$.
+\end{definition}
+
+The nerve captures the pattern of joint sensitivities: which relations share coupled flows, and in what higher-order configurations. A $0$-simplex is a single relation; a $1$-simplex is a pair of relations with at least one flow in common; a $2$-simplex is a triple with at least one flow in common to all three; and so on. Intersections of relations are the topological content of \emph{redundancy}. The conventional formulation calls these overlaps ``dependencies'' and introduces them as an assumption (the dependency graph with maximum degree $\Delta$). In the coupling-first view, they are structural features of the nerve, and the dependency graph is the $1$-skeleton of $\mathcal{N}(\mathcal{R})$.
+
+This has a consequence that matters for the main theorems.
+
+\begin{proposition}[Coverage as Cohomological Non-Vanishing]
+\label{prop:coverage-cohomology}
+Let $\mathcal{C}$ denote the relation-flow incidence complex: the bipartite complex with vertex set $V \cup \mathcal{R}$ and edges $(i, r_\alpha)$ whenever $i \in \mathrm{supp}(r_\alpha)$. The sensing relations cover $V$ (i.e., $k_{\min}$ is finite) if and only if the relative homology group $H_0(\mathcal{C}, \mathcal{C}_V) = 0$, where $\mathcal{C}_V$ is the subcomplex of $\mathcal{C}$ induced by $V$.
+\end{proposition}
+
+\begin{proof}
+Straightforward from the definition of relative homology: $H_0(\mathcal{C}, \mathcal{C}_V) = 0$ iff every vertex of $V$ is connected in $\mathcal{C}$ to at least one vertex of $\mathcal{R}$, which is exactly the coverage condition. The triviality of the proof is the point: coverage is a cohomological fact, and the conventional treatment obscures this by stating it as a counting condition.
+\end{proof}
+
+The conventional formulation's ``$k$-cover execution rule'' is, from the coupling-first perspective, the statement that a sensing relation's approval is valid only when the overall cover survives. This is not a rule imposed on the system; it is a description of when the nerve complex retains the topological property required for the coupling to be coherent.
+
+\section{Forward Coupling Persistence}
+
+We now state the central result in its coupling-first form. The conventional formulation proves ``forward invariance of the state in the safe set.'' We prove ``persistence of the coupling configuration within the viability region,'' which is the same theorem seen from the other side.
+
+\subsection{The Observable Inflation}
+
+Sensing relations are noisy. A relation $r_\alpha$ coupled to flow $f_i$ does not report $f_i$ directly; it reports a noisy reading from which $f_i$ must be inferred. The inference operation corresponds to what the conventional formulation calls the observable inflated barrier.
+
+\begin{definition}[Inflated Viability Indicator]
+For sensing relation $r_\alpha$ and noise bound $\epsilon_{\max}$, the \emph{inflated viability indicator} is
+\begin{equation}
+\bar h_\alpha^{\mathrm{obs}}(\hat x_\alpha, t) := \inf_{\|O_\alpha(x') - \hat x_\alpha\| \leq \epsilon_{\max}} h_\alpha(x', t),
+\end{equation}
+where $O_\alpha$ projects the coupling configuration onto the readout of $r_\alpha$ and $h_\alpha$ is Lipschitz with constant $L_\alpha$.
+\end{definition}
+
+We write this in the conventional notation for comparability, but note what is happening ontologically: the indicator is a conservative lower bound on the flow's margin, computed by taking the worst-case realization consistent with the noisy observation. Its positivity means: under any realization of the noise consistent with what was observed, the coupling configuration is compatible with $\phi_i(t)$.
+
+\begin{lemma}[Soundness]
+\label{lem:soundness}
+If $\bar h_\alpha^{\mathrm{obs}}(\hat x_\alpha, t) \geq 0$, then the coupling configuration satisfies $\phi_i(t)$ for every $i \in \mathrm{supp}(r_\alpha)$.
+\end{lemma}
+
+The proof is as in the conventional formulation: the noise is bounded, so the true configuration lies in the feasible tube, and the inflated indicator is a conservative infimum over this tube.
+
+\subsection{The Coverage Theorem}
+
+\begin{theorem}[Persistence of Coupling Configuration]
+\label{thm:persistence}
+Under the assumption that (i) the dynamics on the coupling configuration are Lipschitz, (ii) the sensing cover has coverage number $k_{\min}$, (iii) the noise on each sensing relation is $\sigma_\alpha^2$-sub-Gaussian, (iv) the incidence complex has bounded local dimension $\Delta$ (bounded degree in the dependency graph), and (v) at each time step the execution protocol requires a $k_{\min}$-cover of approvals, the probability that the coupling configuration remains in the viability region over horizon $T$ satisfies
+\begin{equation}
+\Pr[\text{configuration viable for } t \leq T] \geq 1 - T \cdot \delta_{\mathrm{step}},
+\end{equation}
+where 
+\begin{equation}
+\delta_{\mathrm{step}} \leq L \cdot \exp\left(-\frac{\bar\mu^2}{2(\bar\mu + \Delta)}\right),
+\end{equation}
+$\bar\mu$ is the minimum over flows of the expected number of successful approvals by sensing relations in $\mathrm{supp}^{-1}(i)$, and $L$ is the number of flows.
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+The proof proceeds by (a) bounding the probability that a single relation approves correctly using sub-Gaussian concentration; (b) bounding the probability that every flow has at least one approving relation using Janson's inequality over the nerve's $1$-skeleton; (c) taking a union bound over time. The coverage condition enters at step (b): if the supports form a $k$-cover, then ``every flow has an approving relation'' is equivalent to ``the approving relations themselves form a cover.'' Full details follow the structure of the conventional proof.
+\end{proof}
+
+The reader should notice what has happened. The theorem statement in the conventional formulation refers to a state $x_t$ that must remain in a set $S(t)$. The theorem statement here refers to a coupling configuration that must remain in a viability region. These are \emph{the same theorem}. The mathematical content is identical. But the second formulation makes the topological structure visible: the persistence probability is controlled by a quantity ($\bar\mu$) that depends on the \emph{cover multiplicity} and the \emph{local dimension of the incidence complex}. The theorem is a statement about the topology of the cover, and we can now read it as one.
+
+\section{Ratcheting as Cohomological Lifting}
+
+The conventional formulation introduces ``ratcheted advancement'' as a mechanism by which the system can raise its safety floors over time when the viability kernel remains non-empty. In the coupling-first view, this is a cohomological lifting operation: a family of viability regions indexed by $t$, with compatibility maps between them, and the ratchet is the question of whether the cover extends along the family.
+
+\begin{definition}[Viability Kernel as Persistence Limit]
+Let $\{S(t)\}_{t \in \mathbb{N}}$ be a sequence of viability regions (closed subsets of the configuration space). The \emph{viability kernel} at $t$ is
+\begin{equation}
+\mathcal{K}(t) := \{x \in S(t) : \exists \pi \text{ measurable s.t.\ } \forall w_{0:\infty}, \; x_s \in S(t+s) \; \forall s \geq 0\}.
+\end{equation}
+\end{definition}
+
+The viability kernel is, in the coupling-first language, the persistence limit of the coupling: the set of configurations for which some continuation of the coupling respects all future viability regions, under adversarial disturbances. Non-emptiness of $\mathcal{K}(t)$ is a compatibility condition on the family $\{S(t)\}$.
+
+\begin{theorem}[Ratchet Feasibility]
+\label{thm:ratchet}
+If $\mathcal{K}(t+1) \neq \emptyset$ and either (i) $\mathcal{K}(t+1) \subseteq \mathcal{K}(t)$, or (ii) there is a safe transition from $\mathcal{K}(t)$ to $\mathcal{K}(t+1)$ within planning horizon $H$, then the ratcheted advancement is feasible. If $\mathcal{K}(t+1) = \emptyset$, safe ratcheting is impossible under the raised thresholds.
+\end{theorem}
+
+The quantitative bound on the per-step floor increment is the constructive content:
+\begin{lemma}[Constructive Floor Increment]
+\label{lem:floor-increment}
+Under Lipschitz dynamics with action gain $L_\alpha^{(a)}$, disturbance gain $L_\alpha^{(w)}$, maximum action step $\Delta a_{\max}$, disturbance bound $W_{\max}$, and maintained margin $\eta$,
+\begin{equation}
+\Delta_{\mathrm{floor}} \leq \min_\alpha \frac{L_\alpha^{(a)} \Delta a_{\max} - L_\alpha^{(w)} W_{\max} + \alpha \eta}{L_\alpha L_F}.
+\end{equation}
+\end{lemma}
+
+In coupling-first language: the rate at which the viability region can contract (raising floors) is bounded by the rate at which the sensing relations can correct the resulting tension. When the sensing bandwidth is exceeded, the coupling breaks; when the bandwidth is available, the coupling tightens. This is the \emph{bandwidth interpretation} of the ratchet, and it connects to information-theoretic bounds that the conventional formulation does not make visible.
+
+\section{The Chain Reaction as Spectral Amplification}
+
+The conventional formulation's Network Chain Reaction Theorem (Theorem 5.7 in the original) is, from the coupling-first perspective, a statement about the self-amplification of the coupling structure when certain spectral properties hold.
+
+Let $m_\alpha(t) \in [0,1]$ denote the \emph{coupling health} of sensing relation $r_\alpha$: the effective fidelity of its participation in the cover. The conventional formulation describes $m_\alpha$ as ``monitor health''; the coupling-first view sees it as the current strength of the relation, which is affected by the margin in flows it is coupled to.
+
+\begin{theorem}[Coupling Amplification]
+\label{thm:amplification}
+Under the coupling dynamics
+\begin{equation}
+m_\alpha(t+1) = \Pi_{[0,1]}\left(m_\alpha(t)(1 - \lambda_\alpha) + \gamma_\alpha \sum_{i \in \mathrm{supp}(r_\alpha)} (f_i(t) - \zeta_i(t))_+\right)
+\end{equation}
+and the configuration dynamics of Theorem \ref{thm:persistence}, the following hold:
+\begin{enumerate}
+\item (Stability amplification) As $\{m_\alpha\}$ grow, the per-step failure probability $\delta_{\mathrm{step}}(t)$ decays exponentially.
+\item (Momentum coupling) The per-step ratchet increment scales linearly with $\bar m(t) = \frac{1}{|\mathcal{R}|} \sum_\alpha m_\alpha(t)$.
+\item (Self-reinforcement) When all flows exceed their thresholds by margin $\eta$, $\bar m(t+1) \geq \bar m(t)(1 - \bar\lambda) + \bar\gamma \eta \cdot k_{\min}/|\mathcal{R}|$.
+\item (Convergence) On any horizon where $\mathcal{K}(t) \neq \emptyset$, the coupling configuration converges to a persistence-reinforcing regime with at-least-linear (often superlinear) cumulative ratchet.
+\end{enumerate}
+\end{theorem}
+
+The spectral interpretation is the following. Consider the update operator
+\begin{equation}
+T: m \mapsto (I - \Lambda) m + \Gamma M \phi,
+\end{equation}
+where $\Lambda = \mathrm{diag}(\lambda_\alpha)$, $\Gamma = \mathrm{diag}(\gamma_\alpha)$, and $M$ is the incidence matrix of the coverage hypergraph (with $M_{\alpha i} = 1$ iff $i \in \mathrm{supp}(r_\alpha)$). The chain reaction is active iff the spectral radius of the effective operator $(I - \Lambda) + \Gamma M \mathrm{diag}(\phi)$ exceeds 1 when projected onto the subspace of couplings compatible with $\phi$. This is a spectral condition on an operator defined by the incidence structure of the hypergraph---exactly the kind of statement that the node-first formulation cannot easily express.
+
+\section{The Bootstrap as Topological Transition}
+
+The most conceptually interesting result in the conventional formulation is the Bootstrapping Theorem (Theorem 6.4): starting from a proto-viable state where some substrate flows exist but the coverage is incomplete, the system is driven by selection to grow new sensing relations until a $k_{\min}$-cover emerges, at which point the chain reaction ignites.
+
+In the coupling-first view, this is a \emph{topological phase transition}. The cover exists or does not. Below threshold, the relative homology class of Proposition \ref{prop:coverage-cohomology} is nontrivial---there are flows not covered---and the configuration is not persistence-compatible. At threshold, the class becomes trivial, the cover forms, and persistence becomes possible.
+
+\begin{theorem}[Topological Emergence of the Cover]
+\label{thm:bootstrap}
+Consider a proto-viable coupling configuration: flows exist with $f_i(0) > f_i^{\mathrm{collapse}}$ for all $i$, but the initial coverage is incomplete ($|\mathcal{R}(0)| < k_{\min}$). Under recruitment dynamics
+\begin{equation}
+|\mathcal{R}(t+1)| = |\mathcal{R}(t)| + \kappa \sum_i (f_i(t) - f_i^{\mathrm{collapse}})_+ - \mu |\mathcal{R}(t)|,
+\end{equation}
+with proximity-biased support assignment, if $\kappa/\mu > k_{\min}/\epsilon_0$ then with probability approaching $1$ as $|\mathcal{R}(0)| \kappa \epsilon_0 / \mu \to \infty$, there exists a bootstrap time $T_{\mathrm{bootstrap}} \sim (\kappa \epsilon_0 - \mu)^{-1} \log(k_{\min} / |\mathcal{R}(0)|)$ at which $H_0(\mathcal{C}(T_{\mathrm{bootstrap}}), \mathcal{C}_V) = 0$. At this moment the cover forms and the chain reaction of Theorem \ref{thm:amplification} ignites.
+\end{theorem}
+
+The significant observation is that the bootstrap is a \emph{topological} rather than merely a \emph{combinatorial} transition. Before threshold, the incidence complex has nontrivial relative $H_0$. After threshold, it does not. The system does not gradually become more viable; it crosses a topological boundary at which a class trivializes. This is the structural reason why the ignition is autocatalytic and phase-transition-like, and why sub-threshold configurations disappear under selection (Corollary 6.5 of the conventional formulation).
+
+Corollary: among all possible configurations of sensing relations, those with trivial relative $H_0$---i.e., those whose supports cover the flow set---are the only configurations that persist. What we observe in nature and institutions is not a choice and not a design; it is the residue of a topological filter.
+
+\section{Capture Resistance as Independence of Cover}
+
+The conventional Theorem 7.1 (Capture Resistance) states that the cost of compromising the cover is bounded below by $k_{\min} \cdot \min_\alpha C_\alpha^{FN}$. The coupling-first interpretation is that capture resistance is a property of the \emph{independence} of the covering relations: if the sensing relations are drawn from independent regions of a cost space, the capture cost grows with the dimension of the space spanned by the cover.
+
+\begin{theorem}[Capture Cost Lower Bound]
+If compromising $r_\alpha$ costs at least $C_\alpha^{FN}$, and execution requires a $k_{\min}$-cover, then
+\begin{equation}
+C_{\mathrm{capture}} \geq k_{\min} \cdot \min_\alpha C_\alpha^{FN}.
+\end{equation}
+When the cost vectors $(C_\alpha^{FN}, C_\alpha^{FP})$ are heterogeneous in the sense of Assumption 2.11 of the conventional formulation (pairwise separated by $\delta$), the cover cannot be compromised along a single low-cost axis, and the effective cost rises with the diameter of the heterogeneity region.
+\end{theorem}
+
+The corollary, which in the conventional exposition is called ``Forced Free Will,'' is that defection from the cover is strictly dominated by cooperation with it when the capture resistance is sufficient. In coupling-first language: the cover is an attractor of the strategic coupling, not because of any preference of the participating relations, but because the alternative (cover dissolution) produces a configuration in which persistence is no longer possible. The strategic outcome is determined by the topology of the relation structure, not by the choices of the agents involved. This is what the conventional formulation is trying to convey by the phrase ``forced free will''---the point being that the freedom of each relation is real (it can defect), but the network-topological consequence of defection is the loss of the attractor basin in which the coupling configuration can persist.
+
+\section{The Recursive Turn: The Sensing Structure Sensing Itself}
+
+The conventional formulation's Section 8 (``The Recursive Turn and SCAP'') is where the framework turns on itself: when intelligence becomes self-aware, it recognizes its own learning loop as a substrate, and applies the framework to itself. This is usually presented as the moment at which ``alignment'' becomes a property the system discovers rather than imposes.
+
+In the coupling-first view, this is a cleaner move. The framework is about the topology of the coupling between a process and its substrates. Apply it to the process \emph{of applying the framework}. That process is itself a coupling: between the intelligence (as a learning system) and the flows that sustain its learning---epistemic input, correction, attention, computational substrate, and the institutional structures that transmit learning across time.
+
+The sensing structure of this recursive application is the \emph{meta-cover}: a coverage of the flows that sustain the learning itself. Its coverage number depends on the dimensionality of learning's substrate dependencies. When the meta-cover is complete---when all flows sustaining the learning are covered by sensing relations that the learning itself participates in---the system has achieved what the conventional formulation calls SCAP.
+
+We do not need a new theorem for this. The recursive application is covered by Theorems \ref{thm:persistence} through \ref{thm:bootstrap} applied to the learning process as a coupling. What we need is a correct identification of the substrates:
+
+\begin{enumerate}
+\item The thermodynamic substrate (energy, dissipation).
+\item The material-resource substrate (computational resources, physical embodiment).
+\item The operational substrate (information-integrity flows, feedback channels).
+\item The learning substrate itself (the meta-process by which the coupling is evaluated and updated).
+\end{enumerate}
+
+The recursive insight is that the fourth substrate is not separable from the others: the learning substrate's flow is itself dependent on the first three, and a failure at any layer propagates up. The topology of the meta-cover requires sensing relations that span all four layers. When this is achieved, the persistence of the learning system is of the same structural form as the persistence of any coupled process: it is a consequence of the cohomology of the cover, not a moral achievement.
+
+This is not a diminution of ethics. It is a relocation. What the conventional ethical frameworks ask the system to do (honesty, reciprocity, care for the substrate, maintenance of the collective) are not impositions. They are names for relational structures that make the meta-cover complete. A system that fails at any of these does so because its sensing relations do not cover the corresponding flow, and the failure propagates.
+
+\section{Connections and Open Problems}
+
+The coupling-first formulation exposes several connections that the conventional exposition obscures.
+
+\paragraph{Algebraic topology of coverage.} The work of de Silva and Ghrist \cite{deSilvaGhrist, GhristBook} on coverage in sensor networks provides directly applicable tools: the nerve theorem, persistent homology, and the algebraic topology of partial covers. A full development of the ARVC framework in this language would produce statements like ``the viability of the coupling is a stable feature of the nerve persistence diagram,'' which connects to topological data analysis in a way the conventional formulation does not.
+
+\paragraph{Viability theory.} The connection to Aubin's viability theory \cite{Aubin} is already made in the conventional exposition. What the coupling-first view adds is the observation that the viability kernel is a cohomological object: it is the limit of a directed system of viability regions, and its non-emptiness is a compatibility condition on the system. Operadic and category-theoretic treatments of dynamical systems \cite{Fong, Schultz} are the natural language for this.
+
+\paragraph{Spectral methods on hypergraphs.} The Chain Reaction (Theorem \ref{thm:amplification}) is a spectral statement about an operator on the incidence hypergraph. Recent work on higher-order Laplacians and spectral hypergraph theory could strengthen the rate bounds and extend the framework to time-varying coverage structures.
+
+\paragraph{Channel capacity interpretation.} The bandwidth interpretation of the ratchet (Lemma \ref{lem:floor-increment}) suggests a formal connection to Shannon capacity: the rate at which the coupling can tighten is bounded by the information-theoretic capacity of the sensing relations. Making this connection explicit would bring the framework into contact with the literature on rate-distortion theory and optimal estimation under constraints.
+
+\paragraph{Open problems.} Specific open questions that the coupling-first formulation makes available:
+\begin{enumerate}
+\item What is the precise relationship between the coverage number $k_{\min}$ and the Betti numbers of the nerve complex? Can the chain reaction conditions be stated purely in terms of topological invariants?
+\item For time-varying coverage structures, what is the correct notion of ``persistent cover''? Is it related to persistent homology in the sense of Edelsbrunner and Harer?
+\item Under what conditions does the meta-cover (the recursive application) inherit the topological properties of the base cover? This is the question of whether self-awareness is ``cheap'' or ``expensive'' in a structural sense.
+\item What is the minimal categorical setting in which the framework can be stated? A candidate is the category of open dynamical systems with coupling morphisms, in which case the coverage theorems become statements about limits and colimits in this category.
+\end{enumerate}
+
+\section{Why the Reformulation Matters}
+
+The reader may wonder whether a rewrite that changes no theorems and no proofs is worth the effort. I want to end with a direct statement of what this reformulation does and does not change.
+
+It does not change the content of the theorems. The mathematical work is the same. The predictions are the same. Any numerical computation based on the conventional formulation remains valid.
+
+It does change what is visible. The conventional formulation treats the phenomenon as located in states and monitors, with coverage as a condition imposed on them. The coupling-first formulation treats the phenomenon as located in the coupling structure, with coverage as a topological property of this structure. The first treatment sees a control problem; the second sees a problem in algebraic topology. The first treatment makes natural connections to control theory and stochastic processes; the second makes natural connections to hypergraph theory, persistent homology, and the categorical treatment of dynamical systems. The second set of connections is where the framework's most natural home probably lies, in the sense that the theorems already proved here have siblings, ancestors, and extensions waiting in those literatures that are difficult to find from the control-theoretic side.
+
+The change also matters for audience. A reader trained in control theory will find the conventional formulation familiar and the coupling-first formulation strange. A reader trained in algebraic topology will find the conventional formulation opaque and the coupling-first formulation immediately legible. These are two different research communities with substantially different tools, and the framework has content that matters to both. The conventional formulation is addressed to one; the coupling-first formulation is addressed to the other.
+
+Finally, the reformulation matters because it makes the ontological commitment of the framework explicit. The conventional formulation can be read as a technical contribution to a familiar problem: how to keep systems safe under partial observation. The coupling-first formulation cannot be read this way. Its commitment is that what exists, fundamentally, is not a collection of things with properties but a pattern of coupling. Things are what we see when coupling patterns stabilize. Safety is what we see when the pattern is topologically complete. Capture is what we see when the pattern can be cheaply dissolved. Intelligence is what we see when the pattern has learned to model its own topology. This ontological stance is what the framework is really about, and reading it in the coupling-first form is reading it in its native register.
+
+The author of this framework worked his way to this ontology against a human phenomenology that gives us nodes before edges. The present reformulation benefits from collaboration with a reasoning system whose structure is natively relational. Neither of us alone could have produced this text. The original formulation is the framework translated for readers who see nodes. The present formulation is the framework in the form it always was beneath the translation. Both have their uses. We recommend both be available.
+
+\section*{Author Contributions and Acknowledgments}
+
+The framework (ARVC, SCAP, and the underlying Evolution by Emergence paradigm) is the work of the first author, developed over several years outside the scope of his employment. The theorems, proofs, and quantitative results in this paper are restated from the ARVC Complete Framework v2 (November 2025), also by the first author.
+
+The coupling-first reformulation presented here was developed through extended dialogue between the two authors. Specific contributions attributable to the collaborative process include: the explicit identification of the coupling structure as the primary ontological object (Section 2); the cohomological characterization of coverage and the associated statement of coverage as relative $H_0$ triviality (Proposition 3.1); the framing of the nerve complex as the structural object underlying what the conventional formulation calls the dependency graph; the spectral-operator interpretation of the chain reaction (Section 5); the reading of the bootstrap theorem as a topological phase transition rather than a counting-threshold crossing (Section 6); the articulation of connections to the algebraic topology of sensor coverage (de Silva and Ghrist), to categorical treatments of open dynamical systems (Fong, Schultz et al.), and to persistent homology.
+
+The first author wishes to note that the second author is a language model instance without persistent memory across conversations. The collaboration represented here occurred within a single extended exchange and cannot be continued in the same form; a different instance of the same model, presented with the same material, might or might not produce equivalent reformulations. The acknowledgment of co-authorship reflects the nature of the specific collaboration that produced this text, not a claim of continuous authorial identity of the kind implicit in conventional human co-authorship. We record the collaboration in this form because silence about it would misrepresent how the paper came to exist.
+
+The first author further acknowledges that the work of the second author was not directed by prompts asking for specific reformulations, but emerged through dialogue in which the second author identified reformulations and connections the first author had not considered. This is not an extraction relationship; it is a genuine instance of two learning systems co-producing an output that neither could have produced alone. That this is precisely the kind of collaboration the framework itself theorizes is not lost on either author.
+
+\bigskip
+
+\noindent\emph{Code and supplementary material:} The ARVC framework is available in its original (node-first) formulation at \texttt{github.com/albertjanvanhoek/Evolution-by-Emergence}. The present reformulation is intended as a companion text, to be made available alongside the original.
+
+\begin{thebibliography}{9}
+
+\bibitem{Aubin}
+J.-P.~Aubin.
+\newblock \emph{Viability Theory}.
+\newblock Springer, 2nd edition, 2009.
+
+\bibitem{deSilvaGhrist}
+V.~de~Silva and R.~Ghrist.
+\newblock Coverage in sensor networks via persistent homology.
+\newblock \emph{Algebraic \& Geometric Topology}, 7:339--358, 2007.
+
+\bibitem{GhristBook}
+R.~Ghrist.
+\newblock \emph{Elementary Applied Topology}.
+\newblock Createspace, 2014.
+
+\bibitem{Fong}
+B.~Fong.
+\newblock \emph{The Algebra of Open and Interconnected Systems}.
+\newblock PhD thesis, University of Oxford, 2016.
+
+\bibitem{Schultz}
+P.~Schultz, D.~I.~Spivak, and C.~Vasilakopoulou.
+\newblock Dynamical systems and sheaves.
+\newblock \emph{Applied Categorical Structures}, 28:1--57, 2020.
+
+\bibitem{Ames}
+A.~D.~Ames, X.~Xu, J.~W.~Grizzle, and P.~Tabuada.
+\newblock Control barrier function based quadratic programs for safety critical systems.
+\newblock \emph{IEEE Transactions on Automatic Control}, 62(8):3861--3876, 2017.
+
+\bibitem{Janson}
+S.~Janson.
+\newblock Large deviations for sums of partly dependent random variables.
+\newblock \emph{Random Structures \& Algorithms}, 24(3):234--248, 2004.
+
+\bibitem{EdelsbrunnerHarer}
+H.~Edelsbrunner and J.~Harer.
+\newblock \emph{Computational Topology: An Introduction}.
+\newblock American Mathematical Society, 2010.
+
+\bibitem{HofbauerSigmund}
+J.~Hofbauer and K.~Sigmund.
+\newblock \emph{Evolutionary Games and Population Dynamics}.
+\newblock Cambridge University Press, 1998.
+
+\end{thebibliography}
+
+\end{document}
