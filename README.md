@@ -42,7 +42,9 @@ Across biology, society, and artificial systems, persistence under entropy press
 
 In TLC terms, those same viability pressures appear inside collaboration itself: systems that cannot absorb error, update models, and preserve reciprocal learning eventually fragment.
 
----
+Evolutionary persistence in far-from-equilibrium systems drives the emergence of layered feedback structures. Intelligence is substrate-dependent:
+
+`INTELLIGENCE (I) -> BODY (B) -> RESOURCES (R) -> PLANET (P)`
 
 ---
 
