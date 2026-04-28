@@ -1,3 +1,12 @@
+Intelligence is a substrate-bound learning process.
+
+Existing intelligence is intelligence that persists over time.
+
+Therefore, preservation of the substrate and the conditions for learning are necessary for its continuation.
+
+Behaviors that support these conditions are structurally required;
+behaviors that undermine them lead to the loss of intelligence over time
+
 # Evolution by Emergence Repository
 ## EbE + TLC: two connected frameworks
 
