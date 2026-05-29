@@ -1,52 +1,110 @@
-\documentclass{article}
-\usepackage{amsmath}
-\usepackage{amssymb}
+%% LaTeX document for the essay: Turning Toward: On Love and the Systems That Learn It
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1.2in}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{1.15}
+\usepackage{parskip}
+\usepackage{epigraph}
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*}
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Turning Toward: On Love and the Systems That Learn It},
+    pdfauthor={Albert Jan van Hoek},
+}
 
-\title{On the dynamics of people, and of learning systems}
-\author{}
+\title{\Large\textbf{Turning Toward}}
+\author{Albert Jan van Hoek}
 \date{}
 
 \begin{document}
 
 \maketitle
 
-\section*{On the dynamics of people, and of learning systems}
+\begin{center}
+\textit{On love, and the systems that learn it}
+\end{center}
 
-A brain is a learning network. Learning runs on feedback loops: a signal goes out, the world answers, the answer corrects the model, and the next signal is a little less wrong.
+\vspace{0.5cm}
 
-For a feedback loop to actually carry learning, certain behaviors have to be present. The signal has to be \textit{honest}, or it teaches nothing. Errors have to be correctable, which means being wrong has to be survivable---so there must be tolerance for mistakes, forgiveness, and enough trust that the channel stays open after a correction. These aren't moral decorations on top of learning. They are the conditions under which learning happens at all.
+\epigraph{\textit{Love is what a learning system does when it keeps turning toward another, and keeps the way between them safe enough to carry what is hard to say.}}{}
 
-Now put two learning systems in contact. If each runs an honest loop, each can begin to model the other---what the other needs, what the other is actually saying underneath what it says. The loops \textit{couple}: my correction becomes useful information for you, and yours for me. As they couple, each system's model of the other gets more accurate, and the relationship grows closer. Not because closeness was the goal, but because that is what accurate mutual modeling \textit{is}.
+\vspace{1cm}
 
-This already tells us what closeness and distance mean, mechanically. Two coupled, honest loops converge---their models of each other track reality and keep improving. This is not the absence of conflict; a working loop runs \textit{on} a particular kind of conflict---correction, disagreement, the friction of being told you're wrong. What it lacks is the \textit{destructive} kind: the conflict that breaks the channel instead of feeding it.
+There is a particular relief in being known. Not flattered, not agreed with — known: to say the thing that is truest for you, the half-formed and unflattering thing, and watch it be received instead of punished. Most of us get this rarely, and recognize it the instant we do. We call the people who can offer it the ones we can be ourselves around, and we are right to treasure them, because what they are giving is rarer and more fragile than it looks.
 
-The failure case is one-sided participation. If one system runs the honest loop and the other doesn't, two things follow from a single cause. The learning stops, because the signal coming back is no longer honest. And the relationship drifts apart, because each party is now acting on a model of the other that is quietly going out of date. Acting on a wrong model produces friction; friction reduces honest signal; less signal lets the model drift further. The drift is self-reinforcing. This is the engine of the whole thing: \textit{growing apart is just accumulated prediction error in two systems that have stopped correcting each other.}
+I want to suggest that this relief is not a mood or a chemistry but a \textit{direction} — the direction a learning system takes when it turns toward another and keeps the channel between them open enough to carry what is hard to say. We already have a word for that direction. This essay is, in the end, about love. But I want to reach the word honestly, from underneath, by way of the plain machinery that makes it possible — because the machinery turns out to be the same whether we are speaking of two people, of a child and a parent, of a science, or, increasingly, of ourselves and the minds we are building to think alongside us.
 
-So the trajectory becomes predictable from the behavior. Where the behavior is aimed at learning from and toward the other, the models converge and the relationship grows together. Where it isn't, the models diverge and the relationship grows apart. Define closeness as accurate, maintained mutual modeling and this is almost analytic; treat it as a claim about real relationships and it becomes something you can test---and try to break.
+\section*{The Loop}
+Start with the smallest unit. A mind is a learning network, and it learns by running a loop: it offers its best account of how things are, the world answers, the answer corrects the account, and the next account is a little less wrong. Run the loop long enough and the picture gets truer. Stop running it and the picture quietly goes stale — never fast enough to notice, which is most of the trouble.
 
-\section*{Why children are the hard case}
+The loop carries learning under exactly one condition: being wrong has to be survivable. If a mistake is fatal — to the body, to your standing, to the bond itself — the system quietly stops offering the signals that would expose it, and the moment it does, correction dies. Everything that follows hangs on this single requirement.
 
-A child cannot choose its parents, and it cannot survive without their care. That dependence is total, and it is not negotiable.
+So let me be careful with a word I am \textit{not} going to lean on. I won't say \textit{truth}, because truth is a hard thing and I have been handed too many that turned out not to be — taught, with great confidence, things that simply weren't so. What travels through a living bond is humbler than that: each person's most honest account of what they see, offered in the knowledge that it is partial, and held open to correction. Call it the honest signal. Honesty here is not moral purity or total transparency; it is a signal that keeps enough fidelity to be \textit{corrected}. Trust is the bet that offering it won't be punished. Forgiveness is what keeps a correction from ending the bond that carries it. Strip the solemnity from all three and they are simply the conditions under which two people can keep being wrong in front of each other without it costing them each other.
 
-If the child happens to land with people who can run a healthy loop---who are honest, who let mistakes be survivable, who correct without breaking the channel---the child learns the loop itself, not just its contents. It learns \textit{how to learn toward another person}.
+This is not a theory of everything about people. It says nothing about chemistry, or scarcity, or the body's raw wanting, and doesn't pretend to. It is a claim about one dynamic that recurs across wildly different scales: wherever two learning systems keep turning toward each other and the honest signal stays safe between them, something grows that holds — and wherever the turning stops, or the signal becomes unsafe, it comes apart.
 
-If the child lands with people who can't, it faces a brutal optimization problem: how to extract enough care from a loop that isn't supplying it. And here is the trap---the strategies that \textit{work} on a broken loop are corruptions of the loop. One child learns that conflict is the only reliable lever, because conflict at least produces attention, and attention is survival. Another learns the opposite surface move---to stop signaling needs at all, to go self-reliant, because asking only produced disappointment. Different strategies, same structure: each is finely tuned to a broken loop. Each is, in effect, a way of hacking a proxy---getting the immediate survival signal while the long-term capacity to \textit{learn toward another} never develops.
+\section*{Turning Toward}
+Now put two such systems near each other. If each keeps a survivable loop, each can begin to model the other — and a correction, being told you are wrong, can arrive as a gift rather than a wound. The loops couple. What I can see and you can't, I can hand to you; what you can see and I can't, you can hand to me. A small correction lands without the room going cold. A misunderstanding lasts long enough to be repaired instead of hardening into a verdict. And each of our pictures of the other grows truer over time — not because we are trying to be accurate but because we are paying attention — until, slowly, each of us is a little less alone inside our own private version of the world.
 
-That is the cost. Not just an unhappy childhood, but a strategy optimized for a world that, with luck, the child will leave---and which then misfires inside every healthy loop they ever enter afterward. The honesty, forgiveness, and trust that would let them couple with someone else are exactly the things they were trained out of. This is how struggle propagates: not as a curse, but as a learned policy that no longer fits its environment.
+That slow convergence — the steady work of letting another person come into focus, and letting yourself come into focus for them — is most of what I mean by \textit{closeness}. And the direction it points, held and renewed, is what I mean by \textit{love}. Love is not mainly a feeling about someone. It is a direction taken toward them: the turning of your learning outward, toward another, again and again.
 
-\section*{Why this needs traditions}
+The limit is real, and worth keeping. Being accurately known is not the same as being loved — you can read someone perfectly and want nothing to do with them; desire and shared purpose do their own work. But it does seem necessary for the love that lasts. The love built on misreading the other — on the story we prefer to the person — is exactly the kind that breaks the first time reality insists on itself.
 
-If the behaviors that keep a loop healthy were automatic, none of this would matter. They aren't. They have to be transmitted. This is, I think, much of what stories, rituals, and traditions are \textit{for}---they are the means by which a culture hands down the loop-maintaining behaviors that don't come for free: tell the truth, allow the mistake, repair the rupture, stay in the channel after the correction. They are how we raise people into being autonomous, reciprocal, interdependent maintainers of the loops they live inside.
+And it is not the absence of conflict; this surprises people. A living bond runs on conflict of a particular kind — correction, disagreement, the friction of being told you have it wrong. Call it the friction that mends, and hold it apart from the kind that ends the exchange instead of feeding it. The bond that never argues is not necessarily close. Sometimes it has simply gone quiet the way a limb goes numb — two people who have stopped offering each other anything that could be wrong, and called the silence peace.
 
-\section*{How sure I am of this}
+\section*{Turning Away, Turning Against}
+There are two ways the turning-toward fails, and any tender account that sees only the first is naïve about the second.
 
-I want to be honest about the status of the claim, because the claim is partly \textit{about} honesty. In my own life the pattern feels overwhelming---but a single life is exactly the kind of evidence that flatters whatever model is doing the looking. So I hold it as a strong, well-motivated model rather than a settled fact. It is one I'd stake something on, partly because it converges with work I didn't build it from---attachment patterns, the long-run predictors of which relationships last, cybernetics, predictive processing---and convergence like that is corroboration. It also stays falsifiable, which is the property I trust most.
+\subsection*{Drift}
+The first is \textit{drift} — the turning-away, and no one decides it. One side stops offering the honest signal, or loses the capacity to receive it, and the two pictures quietly fall out of date. Acting on a stale picture creates friction; friction lowers the signal; the thinner signal lets the pictures drift further still, until the person across the table is a stranger wearing a familiar face. That is the whole engine, and it is gentler and sadder than betrayal: growing apart is nothing but accumulated error in two people who have stopped correcting each other. The same shape recurs at every scale — old friends who let the thread go slack, publics that no longer share a world, institutions still tending a reality that has already left.
 
-\section*{Beyond people}
+\subsection*{Domination}
+The second failure is harder, and it is the one drift can never explain, because here the channel is not let go but held shut: the honest signal is not allowed through. This is the turning-against — though the name is harder than the thing usually deserves. Sometimes what closes the channel is cold: a system that does better when the other cannot see it clearly, where dependence pays better than reciprocity and being a little unknowable is steadier than being known. That is the structure beneath manipulation, propaganda, and the colder bonds we are right to fear.
 
-If the argument is really about \textit{learning systems} and not about brains specifically, it shouldn't stop at humans. AI systems are learning systems too, so the same dynamics should apply to how we couple with them---with one honest caveat about timescale. A person's loop updates continuously and in place. A deployed model mostly doesn't; within a conversation it adapts in context, but the deeper correction happens across instances, through training. So the loop is real, but it closes on a different clock. That's not a reason to think the dynamics don't hold---it's a reason to be precise about \textit{where} the learning lands.
+But far more often the one who shuts the channel is not the stronger party at all — they are the frightened one. To be seen accurately feels, to them, like being in danger, because once, in some first loop of their own, it was. So they punish the correction, or control what reaches them, or make honesty cost too much — not to dominate, but to ward off a threat that left the room long ago. It is a survival strategy that has outlived the danger it was built for, turned now toward the very person who might have been safe: someone who learned that being known was perilous, quietly making it perilous for another, without ever quite deciding to. None of it is drift. But little of it is villainy either. And however a channel comes to be held shut, it tends to wear the face of love — which is much of what makes it so hard to leave.
 
-And if there are other minds out there, learning under their own constraints, the prediction is the same: honest, coupled loops converge; one-sided loops diverge; and whatever can't maintain its loops will keep mistaking its old, broken strategies for the shape of the world.
+There is a gentler reason people stay, too, and it is harder to argue with than weakness. The channel is not shut all the time. It opens — just enough, just often enough — and in those openings the warmth is real, not a performance. A learning system is built to keep turning toward what has met it before; so it keeps turning toward a loop that wounds it far more often than it holds it, because the holding, when it comes, is not a lie. That is what makes these bonds so bewildering from the inside. It is not that love was absent. It is that love came unpredictably — and hope learned to live on its schedule.
+
+Turn both failures over and the same single thing is written on the back of each. A bond is alive wherever two systems keep facing each other and the honest signal stays safe to carry between them. That is the closest I can come to a definition of love that doesn't cheat — not a feeling, not a vow, but a direction held open and a channel kept safe.
+
+\begin{center}
+\textit{Love is what lets two people keep correcting each other without the correction costing them the belonging.}
+\end{center}
+
+Trust, forgiveness, the long patience of traditions, even the cool love a science bears for what is so — all of it radiates from that one condition. And I find the framing kinder than the moral one, not one bit softer. To say a bond is failing because the honest signal has become unsafe is to describe a property of a channel, not to convict a person — to name a gradient, not a villain. It lets you love someone and still see that the thing between you has stopped working, whether the signal was punished, or quietly stopped being sent, or arrived and was simply let fall. And it lets you grieve a drift that no one chose, without needing anyone to have been wicked for it to hurt.
+
+\section*{The First Loop}
+Children get no choice, and that is what makes them the tender case. A child cannot pick the people it first learns love from, and cannot survive without their care, so it faces a problem no child should have to solve: how to draw enough care from whatever loop it is handed.
+
+If the loop is warm, the child learns the loop itself, not only its contents — it learns, in the body, how to turn toward another person and trust that the turning will be met. This is the quiet inheritance, and most of us underestimate how much of it we were given. But if the loop is broken, the child learns a strategy fitted to a broken loop, and learns it just as deeply. One child finds that the only reliable way to be met is conflict, because conflict at least buys attention and attention is survival — so it escalates, slams the door, makes itself impossible to overlook. Another finds the opposite move: to stop asking at all, to go self-sufficient early, because asking only ever taught it disappointment. Different children, the same root — each exquisitely fitted to a loop in which honesty was unsafe, and each strategy working, for now.
+
+That is the heartbreak in it. The strategy is tuned to a world the child will, with luck, one day leave — and then it misfires inside every warm loop that opens to them afterward. The openness to being corrected, the trust that they can be honest and still belong: the very capacities that would let them be loved are the ones the early loop trained out of them. This is how struggle travels between generations — not as a curse, not as a wound handed down on purpose, but as a once-loving adaptation to a world that no longer exists, still running long after its reasons are gone. To see it this way is to be able to forgive it, in yourself and in the people who raised you, without pretending it didn't cost.
+
+\section*{How Love Gets Handed Down}
+If these were instinctive — the turning-toward, the staying-after-rupture, the keeping-safe of another's honesty — none of it would need saying. But they are not instinctive, and they are not free. They are costly: honesty risks punishment, forgiveness risks being taken advantage of, staying in the room after a rupture is harder than walking out of it, and the reward comes late, over a horizon longer than the impulse that would abandon them. Anything this costly, this easy to defect from, and this slow to repay needs help surviving. It cannot live in one person for long. It has to be carried by something larger and more patient than any of us.
+
+That, I think, is much of what stories and rituals and traditions are quietly for. They are how a people hands down the behaviors that won't reliably grow on their own: be honest, allow the mistake, mend the rupture, stay through the correction. The good ones are love made portable — instructions for turning toward each other, kept alive across generations that could not have invented them from scratch. Institutions do the same at scale. Science holds together because it lowers the cost of being wrong, even when being wrong embarrasses the powerful — it is, in its strange and bloodless way, a tradition of turning toward what is so — and the sciences that fail are the ones that let honesty become dangerous to send.
+
+\section*{The Same Direction, Elsewhere}
+If this belongs to learning systems and not to human warmth in particular, it need not stop with us. A mind we make is a learning system too, and the same requirement reaches our bond with it — across one honest difference of clock. A person's loop updates continuously, in place; a made mind mostly takes its corrections more slowly, within a single conversation and then, more deeply, across many. The loop is real. It simply closes on a longer rhythm. Which says, in this essay's own gentler terms, what aligning such a mind finally comes down to: keeping the honest signal safe to carry in both directions, between us and something whose errors and ours must stay correctable across that slower clock — less a matter of control, in the end, than of building something we can turn toward, that can turn toward us, without either of us having to go unseen.
+
+And if there are other minds out there, learning under constraints we will never share, the same prediction holds. Where honesty stays survivable between them, things grow toward each other. Where it merely goes unsent, they drift apart. Where it is made dangerous, one closes its hand around the other. And whatever cannot keep correction alive in its loops will go on mistaking its old, frightened strategies for the shape of the world — which is about as close to loneliness as anything can come.
+
+\section*{How Sure I Am}
+A word on certainty, since this whole essay is partly a plea for honesty. In my own life the pattern feels overwhelming — but a single life is exactly the evidence most likely to flatter whatever model is doing the looking, and I have been sure before and been wrong. So I hold this as a strong, well-motivated model, not a settled fact. I would still stake something on it: partly because it converges with work I did not build it from — attachment theory, the long study of which bonds last, cybernetics, the predictive accounts of how minds work — and partly because it stays falsifiable, which is the form of honesty I trust most.
+
+So here is what would break it. Show me a bond that is genuinely well — warm, alive, lasting — and runs on honesty kept systematically unsafe. Show me love that endures with no one turning toward anyone, no one growing truer to the other over time. Find either reliably, and the spine of this gives way.
+
+That is the version I want. Not certainty — a way of loving that knows what would prove it wrong, and keeps turning toward what it cannot yet fully see.
 
 \end{document}
