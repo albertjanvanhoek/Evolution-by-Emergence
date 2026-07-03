@@ -1,0 +1,183 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epigraph}
+\usepackage{setspace}
+\usepackage{parskip}
+
+\title{The Arithmetic of Staying Alive}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{quote}
+\emph{A thought experiment strips a living thing down to a single rule --- harvest enough energy to rebuild yourself, or vanish --- and finds, folded inside it, the reasons life grows complex, learns to cooperate, and never lasts forever.}
+\end{quote}
+
+\section*{Strip a living thing of everything that makes it interesting}
+
+Strip a living thing of everything that makes it interesting, and ask what is the last thing you can take away before it stops being alive.
+
+Take away sex, and plenty of organisms carry on. Take away DNA, and you can still imagine a chemistry that copies itself some other way. Take away the cell, the species, the ecosystem, the long story of ancestry --- keep going, remove everything you can name --- and eventually you arrive at a single stubborn requirement that refuses to be removed. A living thing must keep making itself. The moment it stops, it is no longer a living thing; it is a corpse, then dust.
+
+This is not a poetic flourish. It is the one property that survives the stripping. And it turns out that if you build the simplest possible toy around it --- a toy far too bare to be any real creature --- that single requirement quietly implies a surprising amount: why life tends to grow more complicated over time, why cooperation can arise among things that care only about themselves, why organisms are mortal in the first place, and why nothing complex lasts forever. All of it falls out of arithmetic a child could follow.
+
+Let me build the toy.
+
+\section*{A machine made of rebuilding}
+
+Think of a candle flame. A flame looks like an object, but it is really a process wearing the mask of an object. It exists only while it is consuming wax. Pinch off the fuel and the flame does not shrink into a small dormant flame, waiting for better times. It is simply gone, at once, because the flame \emph{was} the burning and the burning has stopped.
+
+Now imagine a machine with that same character, but far more capable. It reaches into its surroundings, gathers energy, and each cycle uses that energy to rebuild itself, part by part. It is not a fixed device that happens to need power. It is more like the flame: an ongoing act of self-construction that has no existence apart from the constructing. Philosophers have a word for systems of this kind --- \emph{autopoietic}, from the Greek for ``self-making'' --- but the word matters less than the consequence. Call the machine a robot if you like. It harvests energy and spends that energy remaking itself, and it can also build fresh copies that outlast the copy that made them.
+
+Here is the first thing the toy tells us, and it is already strange.
+
+Because the robot is nothing but its own rebuilding, it cannot coast. There is no durable core hiding underneath, no reserve of self that persists while the machine idles. Suppose that in a given cycle it collects less energy than it costs to rebuild itself. It does not carry on in a weakened state. It does not go quiet and resume later. There is nothing left over to persist, so it stops --- instantly, completely, the way the flame vanishes when the wax runs out.
+
+Mortality, in other words, is not a flaw that crept into this design. It is built into what the design \emph{is}. A thing that exists only by remaking itself is a thing that ends the first time it cannot pay. We did not add death to the toy. Death was there from the moment we insisted the robot make itself.
+
+\section*{The floor}
+
+Let us make the accounting exact, because everything downstream depends on it.
+
+Call our robot \textbf{A}. Each cycle it burns a certain amount of energy to rebuild itself --- call that its \emph{rebuild cost}, \( C_A \). Then the rule of survival is brutally simple: \textbf{A} lives through a cycle if, and only if, the energy it harvests, \( H_A \), satisfies:
+\[
+H_A \geq C_A
+\]
+Harvest a little more, and \textbf{A} rebuilds itself with something to spare. Harvest a little less, even once, and the line goes dead.
+
+That ``something to spare'' --- the harvest above the rebuild cost --- is the quantity to watch. Think of it as \textbf{A}'s \emph{slack}, \( S_A \):
+\[
+S_A = H_A - C_A
+\]
+the way a household's income above its bills is the money it can actually do anything with. Slack is the only free energy in the system. Hold on to that idea. Almost everything interesting that follows is a story about slack: who makes it, who spends it, and what it can buy.
+
+For now, one robot alone, its slack going nowhere. Time to give it company.
+
+\section*{The passenger}
+
+Introduce a second robot, \textbf{B}, descended from the first. \textbf{B} can rebuild itself, just as \textbf{A} does. But \textbf{B} has lost the one talent that keeps \textbf{A} alive: \textbf{B} cannot harvest energy at all.
+
+So \textbf{B} does not, and cannot, read its environment. It reads \textbf{A}. Its survival has nothing to do with whether there is energy in the world and everything to do with whether there is slack in \textbf{A} --- surplus above what \textbf{A} needs for itself. \textbf{B} lives, entirely and only, in the margin that \textbf{A} does not spend.
+
+This is a real bargain, with real costs on both sides. By giving up harvesting, \textbf{B} is spared the hardest and least reliable job there is. In good times it rides comfortably on \textbf{A}'s surplus, buffered from the ups and downs of the environment that \textbf{A} must face directly. But \textbf{B} has bought that comfort by tying its fate to a single thread. If \textbf{A} fails, \textbf{B} fails with it, the very next cycle --- even if the environment turns generous again immediately afterward. \textbf{B} has staked everything on one partner.
+
+And notice the shape of that stake, because it changes later and the change is the whole point. Right now the dependence runs \emph{one way}. \textbf{B}'s life hangs on \textbf{A}. \textbf{A}'s life does not hang on \textbf{B}. Cut the thread and only \textbf{B} dies; \textbf{A}, relieved of a mouth to feed, is if anything a little better off. At this stage the two robots are not a single system. They are a host and a passenger.
+
+\section*{The winter, and an ethics with no ethicist}
+
+The revealing moment is the hard cycle --- specifically, a cycle where the harvest is enough to rebuild \textbf{A} alone, but not enough to rebuild both. Something has to give. \emph{What} gives depends on one detail the toy leaves open, and that detail decides the entire character of the relationship.
+
+Suppose \textbf{A} always feeds itself first, and \textbf{B} gets only what is left. Then when the surplus dips below what \textbf{B} needs, \textbf{B} quietly winks out, and \textbf{A} carries on unharmed. \textbf{B} is a fair-weather passenger: it dies in the lean season, but it never drags \textbf{A} down with it.
+
+Now suppose the opposite --- that \textbf{B} takes its share off the top, before \textbf{A} is made whole. Then a shortfall eats into what \textbf{A} needs, pushes \textbf{A} below its floor, and kills the host. And of course \textbf{B}, having destroyed the only thing keeping it alive, dies the following cycle anyway. Biology has a name for this second arrangement: \emph{virulence}. A passenger that consumes its host to death is a parasite that has fatally misjudged its own situation.
+
+Here the toy delivers something quietly profound. In a closed world --- just these two robots, nowhere else for \textbf{B} to go --- the second arrangement has no future. A version of \textbf{B} that starves its host is a version of \textbf{B} that dies with it. The only kind of passenger that persists is a gentle one. Restraint is not imposed by any rule, any referee, any moral sense. It falls straight out of the arithmetic:
+\[
+\text{\textbf{B} cannot afford to kill \textbf{A}, because \textbf{A}'s death is \textbf{B}'s death.}
+\]
+A dependent that shares your fate is a dependent that must handle you with care, whether or not it has the faintest wish to.
+
+This is worth sitting with, because it resolves a puzzle that ordinarily seems to need machinery. In an open world, a cheater prospers by draining a common pool that others refill, or by leaping to a fresh victim before the bill comes due. Our \textbf{B} can do neither. It has nowhere to run and no one else to live on. So the worst form of cheating --- the kind that kills what sustains it --- is ruled out for free, by the geometry of the situation rather than by any enforcement bolted on top. Shared fate does the policing. An ethics appears with no ethicist behind it.
+
+\section*{The uncomfortable truth about freeloaders}
+
+But shared fate, for all its elegance, does not protect against a subtler harm --- and the toy is honest enough to show it.
+
+Look at what \textbf{B} has done to the pair's resilience. On its own, \textbf{A} dies whenever the harvest falls below its rebuild cost, \( C_A \). The pair dies whenever the harvest falls below the \emph{combined} cost of rebuilding both, \( C_A + C_B \). Since \textbf{B} brings no harvesting of its own, it has raised the bar for survival while contributing nothing toward clearing it. A wider band of bad conditions now kills everything.
+
+So a pure passenger, however gentle, makes the whole system \emph{more fragile}, not less. Over a long stretch of variable seasons, the pair is a worse bet for survival than the lone robot ever was: there are winters the pair cannot survive that \textbf{A}, unburdened, would have walked straight through. Given enough time, the freeloader is undone by exactly the fragility it introduced.
+
+Which leaves a dependent only two ways to last. It can \textbf{give something back} --- perform some function that raises \textbf{A}'s harvest or lowers \textbf{A}'s chance of dying, by more than it costs to run. Or it can \textbf{spread} --- jump across many hosts fast enough that, while it remains pure cost to each one, it survives at the level of the crowd. The second route is what a virus does. But we built a \emph{closed} world, and closure slams that door: there are no other hosts to leap to. The same closure that produced the gentle ethics also removes the parasite's escape hatch.
+
+In this world, then, only the first route remains open. A pure freeloader is not a long-term strategy. To persist, the dependent must earn its keep --- it must fold itself back into the business of energy.
+
+\section*{Cooperation, worked out in numbers}
+
+Now the toy begins to build rather than merely survive, and the key is a distinction that is easy to miss.
+
+The cost of being \textbf{A} never changes. Nothing \textbf{B} does alters what it costs \textbf{A} to rebuild its own body. But the \emph{pair's} survival threshold is not that fixed cost. It is the fixed cost \emph{minus whatever \textbf{B} contributes back} to \textbf{A}'s harvest or reliability. The individual cost is rigid; the shared threshold can slide. That is precisely what makes cooperation worth anything: it cannot lower the floor, but it can move the whole system's point of death below what the floor alone would suggest.
+
+Watch it happen with real numbers. Say \textbf{A} harvests 10 units of energy each cycle and costs 6 to rebuild. Its slack is 4:
+\[
+S_A = 10 - 6 = 4
+\]
+
+\textbf{Add a lazy \textbf{B}} that costs 2 and gives nothing back. Now 8 units are committed and only 2 of slack remain. Fine while the harvest holds at 10. But let a bad cycle knock the harvest down to 7, and the commitment of 8 sits above it --- both die. The lone robot, needing only 6, would have survived. The lazy passenger has not merely failed to help; it has pushed the system's point of death up from 6 to 8.
+
+\textbf{Now instead add a supportive \textbf{B}} --- one that also costs 2, but earns its place, say by gathering raw material so that \textbf{A}'s own rebuild cost drops from 6 to 3. The pair now commits 3 plus 2, which is 5. It survives all the way down to a harvest of 5 --- \emph{below the lone robot's floor of 6}. Two machines, doing more between them, are now harder to kill than the single machine was. And here is the part that changes everything: back at a harvest of 10, the pair's slack is now 5, where the lone robot's was 4. The supportive partner did not spend the surplus. \textbf{It grew it.}
+
+The line between these two outcomes is exact, and it is the whole difference between a helper and a parasite dressed as one:
+\[
+\text{\textbf{Support enlarges the slack only when what \textbf{B} saves \textbf{A} is more than what \textbf{B} costs to run.}}
+\]
+Save three units at a cost of two, and the surplus grows by one. Save only one unit at a cost of two, and you have built a mild parasite in a helpful costume. Help has to out-earn its own upkeep. There is no credit for good intentions in this ledger --- only the net.
+
+(A word on the language of ``adding'' a helpful versus lazy partner: in a single closed pair there is nothing to choose between, no population sorting winners from losers. What I really mean is that if many such pairings were tried across many worlds, only the ones whose partners out-earn their keep would still be running after a long time. The toy borrows that selective logic from outside itself --- a point I will return to when we tally its limitations.)
+
+\section*{Why the world grows complicated}
+
+And now the result the whole exercise has been walking toward --- an account of \emph{why complexity tends to increase}, with no goal, no drive, and nothing anywhere wishing to become more elaborate.
+
+Begin with a fact already in hand: in this world, nothing runs for free. Every part --- \textbf{A}'s body, \textbf{B}'s body, any part we might add later --- has to be rebuilt each cycle, which means every part is a standing cost that recurs forever. So ``complexity'' is simply \emph{how many maintained parts a system has}, and every unit of complexity is a unit of perpetual upkeep.
+
+Where does upkeep come from? Only from slack --- harvest above what is already committed. There is no other source. So slack is the \emph{budget} for complexity. It sets a hard ceiling on how much structure a system can keep alive at once.
+
+Here is the pivot the numbers just demonstrated: a consuming part \emph{spends} slack, while a supportive part \emph{makes} it. Picture two ways of building. A system that only ever bolts on consumers reaches its ceiling fast --- each new part shrinks the room for the next, and the accumulation stalls. It is self-limiting, subtractive, doomed to stay small. But a system that adds \emph{supportive} parts enlarges its budget with every addition, and a larger budget can fund still more parts, some of which enlarge it further. That process does not stall. It compounds.
+
+So the ``urge'' toward complexity is no urge at all. It is only this: in a world where every added part must be paid for out of surplus, the parts that can keep piling up without stalling the system are exactly the ones that generate more surplus than they cost. Mutual support is precisely that kind of part. Over long stretches of time, then, the systems that climb to real complexity are not the ones that \emph{wanted} to. They are the only ones that \emph{could} --- because generating surplus is the only thing that pays for the next rung of the ladder. Complexity and cooperation are not two separate phenomena that happen to travel together.
+\[
+\text{\textbf{The cooperation is how the complexity gets paid for.}}
+\]
+
+There is even a ratchet on top of this. Once \textbf{A} leans on \textbf{B} for material, \textbf{A} no longer has to spend on doing that job itself --- and the effort \textbf{A} saves is \emph{itself} fresh slack, available to fund the next layer. Every task handed off returns capacity that buys the next specialization. This is the division of labor, and it is why the climb keeps going instead of bumping once and stopping. Each specialization pays a dividend that purchases the one after it.
+
+\section*{The bill comes due}
+
+But the same ratchet that lifts the system is also its bill --- and paying it turns the passenger into something new.
+
+Remember that the dependence began one-directional: cut \textbf{B} and \textbf{A} rolled on. That changes the instant \textbf{A} comes to \emph{rely} on \textbf{B} --- once \textbf{B} is gathering the material \textbf{A} needs, and \textbf{A} has stopped doing that job at all. Now cut \textbf{B}, and \textbf{A} dies too, because \textbf{A} gave that function away. The fate that ran one way now runs both. And a pair whose survival flows in both directions is no longer a host and a passenger. It is closer to a single organism.
+
+We see this everywhere in our own bodies. Your heart cannot digest a meal; your gut cannot pump blood; your neurons cannot fight infection; and not one of them can survive on its own for long. Each has surrendered the ability to go it alone in exchange for doing one thing superbly while the others cover the rest. That is a spectacular bargain --- it is the reason a human can do what no single cell could dream of. But the price of the bargain is precisely that a single failure can bring down the whole. Stop the heart and every brilliant, specialized cell dies together.
+
+So there is no free ascent to unlimited complexity. There is a sweet spot --- a point where the surplus a further specialization would earn is just balanced by the fragility it adds. The most \emph{persistent} systems settle near that point, not at the summit of complexity. Push past it and you have built something that can do more but now dies whole to one broken part. The candle we started with has grown into a cathedral of interdependent flames, magnificent and quick --- and a single failed buttress can bring the roof down on all of them at once.
+
+And that ceiling is not some new principle we had to import. It is the same rigid floor from the very first robot, wearing different clothes. The elaborate pair, for all its powers, still dies the moment its combined harvest falls below its combined cost. Everything the cooperation built was built inside that constraint, and the constraint always has the last word.
+
+\section*{What the toy is trying to tell us}
+
+Step back, and look at how much has emerged from a machine defined by a single sentence. It is worth naming the implications plainly, because each one follows from the logic rather than being smuggled in.
+
+\begin{itemize}
+    \item \textbf{Mortality is structural, not accidental.} A thing that exists only by remaking itself must end the first time it cannot pay. Death is not a defect in such systems; it is the flip side of being alive at all.
+    \item \textbf{Complexity can rise without anyone steering it.} This speaks to a genuine and unsettled argument in biology. The paleontologist Stephen Jay Gould insisted there is no inbuilt drive toward complexity --- that life merely diffuses away from the simplest possible starting point, with the \emph{most} complex organisms getting more complex only because there is nowhere else to go. The toy offers a friendly amendment. It supplies a concrete mechanism by which complexity does not merely wander upward but is actively \emph{funded}: surplus pays for structure, and cooperative structure makes surplus, so the systems that can afford to grow are exactly the cooperative ones. Whether that counts as a genuine ``drive'' or just a bias in what can be paid for is a fair debate --- but the accounting is real.
+    \item \textbf{Cooperation need not be moral to arise.} Nothing in the toy wants to be good. Yet supportive partnerships out-persist selfish ones, and dependents that share your fate are forced into restraint. Both cooperation and a crude proto-ethic emerge from pure energy bookkeeping, before anyone is around to approve of them. Kindness, at its root, may be a kind of accounting that pays.
+    \item \textbf{Individuality has an origin.} The moment two things come to depend on each other for survival, they begin to fuse into one thing. This is not a metaphor. It echoes what biologists call the major transitions in evolution --- free-living cells becoming the mitochondria inside our own, separate cells becoming multicellular bodies, individuals becoming societies. Each time, formerly independent units surrendered their independence to become parts of a larger whole. The toy shows the engine: deep mutual reliance quietly manufactures a new individual out of old ones.
+    \item \textbf{The same intimacy that empowers also imperils.} Every gain in capability is bought by a gain in interdependence, and interdependence is fragility. There is no version of the bargain that grants the power without the exposure.
+\end{itemize}
+
+And here the toy reaches, gently, toward us. Human civilization is the same story told at a larger scale. For most of our history, nearly everyone had to harvest food; the slack was thin, and almost no one could be spared for anything else. Then we found new energy sources --- first the surplus of agriculture, later the buried sunlight of fossil fuels --- and the slack widened enormously. That surplus is what funds everyone who does not grow food: the scholars, the artists, the engineers, the physicians, the officials, the whole magnificent apparatus of a complex society, none of which harvests a single calorie. Our civilization is structure built on slack, exactly as the toy predicts. And exactly as the toy warns, structure built on slack is exposed the moment the slack contracts. A complex society is a marvel and a hostage at once, and the arithmetic that explains the marvel also names the danger.
+
+\section*{What the toy leaves out}
+
+A thought experiment earns its keep by being honest about what it is not, and this one leaves out a great deal on purpose. To mistake the cartoon for the creature would be to draw more from it than it can bear.
+
+\begin{itemize}
+    \item It treats energy as a single, fungible currency. Real living systems juggle many currencies at once --- energy, yes, but also specific materials, information, timing, and above all \emph{space}. Where things are matters enormously. Much of the fidelity that keeps real cooperation honest comes from partners being physically stuck near each other, a fact the toy waves away.
+    \item It fixes the rebuild cost as a single unchanging number. Real costs rise and fall with age, damage, growth, and circumstance; a real organism does not have one tidy price of admission per cycle.
+    \item It is deterministic where life is stochastic. Real survival is a matter of probabilities and noise, not a clean line crossed or not crossed. The toy trades that away for the clarity of an exact threshold.
+    \item Most importantly, a single closed pair of robots is not really an \emph{evolving} system at all. Evolution needs a population --- many variants, competing, with the successful ones leaving more descendants. Our two-robot world has no population and no reproduction of variants to sort. When I spoke of selection favoring the supportive partner, I was quietly importing that logic from the outside, imagining many worlds rather than reasoning within one. The toy illustrates an \emph{accounting} --- what makes a configuration viable --- far more than it demonstrates a \emph{dynamics} of how such configurations would actually arise and spread. Those are different claims, and only the first is truly earned here.
+\end{itemize}
+
+And the toy says nothing at all about the hardest question of the lot: where the first harvester came from. It hands us a machine that already exists and already works. The origin of the very first thing that could make itself --- the deepest problem in the science of life's beginnings --- is precisely the thing the toy assumes rather than explains.
+
+\section*{The single thread}
+
+What remains, after all the caveats, is a single thread running through everything the toy touches. There is one quantity that governs it all: the surplus a system holds above the cost of remaking itself. Staying alive lives in that surplus. Complexity is funded out of it. Cooperation is the craft of generating more of it. And the ceiling on all three is set by the same unforgiving floor that governed a lone machine in an empty world --- harvest enough to remake yourself, or be gone.
+
+It is a small marvel that a machine defined by a single sentence should hold so much: a reason that things grow complicated, a reason they cooperate, a reason they become individuals, and a reason none of it lasts forever. The cartoon is not the creature. But strip a living thing down until only one requirement is left, follow that requirement honestly wherever the arithmetic leads, and you find, waiting at the bottom, a surprising share of the shape of life itself.
+
+\end{document}
