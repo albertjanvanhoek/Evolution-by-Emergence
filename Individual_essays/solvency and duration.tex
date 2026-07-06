@@ -1,0 +1,337 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+\setlist{itemsep=2pt,topsep=4pt}
+
+\theoremstyle{plain}
+\newtheorem{claim}{Claim}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{remark}{Remark}
+
+\newcommand{\slack}{S}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+
+\title{\textbf{Solvency and Duration}\\[4pt]
+\large A forward-time account of when constraint turns\\ extraction into reciprocity --- and when it does not}
+
+\author{Albert Jan van Hoek\thanks{Correspondence: \texttt{albertjanvanhoek@\,---}. This paper formalises one strand of a broader programme, \emph{Evolution by Emergence} (van Hoek, Zenodo, \href{https://doi.org/10.5281/zenodo.15209136}{10.5281/zenodo.15209136}). It is a theoretical/conceptual contribution: it proposes a unifying formal structure with testable consequences, not an established empirical result. Affiliation given for identification only; the speculative cross-domain claims are the author's own and are not institutional positions.}}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent Positive-feedback processes --- replication, compounding, autocatalysis --- grow until they meet a constraint. A recurring intuition holds that constraint then turns extraction into reciprocity. Stated as a law this is false: constrained systems also collapse, oscillate, or settle into stable low-level exploitation. We argue the intuition survives in a different and testable form. First, in an \emph{autopoietic} system --- one that exists only by continually rebuilding itself from harvested energy --- the sole invariant of the deterministic problem is \emph{slack}, the harvest above rebuild cost, because slack equals the distance to the death threshold. Second, once noise is admitted, slack splits into a mean (drift) and a variance (temperature), and the invariant of \emph{persistence} is no longer slack but \emph{mean solvent lifetime} --- the expected time before cumulative solvency first fails --- whose logarithm is the depth of a quasipotential well and whose drift term is slack. Because a system that exists only by burning meters its own time in energy, a lifetime is integrated solvency; storage and consolidation are the operation of trading mean slack for reduced variance, deepening the well. Third, we place interaction structure on this landscape. A binding constraint does not \emph{create} reciprocity; it \emph{degrades the extractive fixed point}, leaving four fates --- reciprocal coexistence, stable low-substrate exploitation, extractive cycles, and extinction --- of which only extinction is downhill and only reciprocity lies far from the absorbing boundary. Persistence is therefore a \emph{race} between nucleating a reciprocal, fate-coupled structure and draining to the floor; the barrier is set by the continuation probability of the coupling \emph{edge} (equivalently, by escapability) and, spatially, by the algebraic connectivity that decides whether a supercritical cooperative cluster holds its boundary. We state the resulting persistence claim in its only defensible form --- quasi-stationary concentration on the deepest well, not a directional law --- and give falsifiers, including a differential test that holds constraint fixed and varies escapability, for which transmission-mode variation in pathogen virulence is a natural experiment already present in the literature. The account claims universality of the \emph{setup} and conditionality of the \emph{outcome}; its invariant is monotone-selected, not conserved; and its one undischarged assumption is isolated to a single named quantity: the component of environmental noise the system cannot buffer.
+\end{abstract}
+
+\tableofcontents
+
+\section{The problem with ``sometimes''}
+
+Across biology, economics, and technology a single structural motif recurs. Some processes are positive-feedback loops: they amplify themselves as they run. Viral replication, capital compounding, energy-driven efficiency gains, scale-driven market dynamics --- each converts its own output back into input. Left unconstrained, such a process grows until it meets a hard limit: depletion, collapse, fragmentation, or shock. The interesting behaviour is not the growth. It is what happens when growth meets constraint.
+
+A familiar hypothesis holds that persistent constraint induces regime shifts in interaction structure, sometimes carrying a system from extractive dynamics toward reciprocal or regulated equilibria. As usually stated the hypothesis permits reciprocity, collapse, suppression, and no change, with no rule for which one occurs. That is not yet a hypothesis; it is a list of outcomes together with the observation that all of them happen. Any case confirms it. The word \emph{sometimes} does the work that a mechanism should do.
+
+The diagnosis sharpens when we ask what sets the direction. Host--microbe evolution is the standard illustration, and it cuts \emph{against} the naive reading: immune or transmission pressure can attenuate virulence \emph{or} raise it, depending on how the pathogen is transmitted \cite{ewald1994,frank1996,andersonmay1991}. If the same constraint can move the system either way, then constraint is not the selector. Something else sets the sign. This paper identifies that something, gives it a forward-time dynamical home, and states what would falsify the result.
+
+The thesis, in one line: \emph{a binding constraint does not select reciprocity; it destabilises extraction, leaving a small number of fates, and which one is reached is decided by a nucleation race whose barrier is the fate-coupling of the interaction edge.} The scalar that every part of the story turns out to be about is not size, not speed, and not slack, but \emph{mean solvent lifetime} --- the expected duration a self-rebuilding system stays above its own floor.
+
+We build this in two halves, which we call the two vertebrae of the spine. \textbf{Solvency} (Sections~\ref{sec:solvency}--\ref{sec:fates}) is the statics: the deterministic accounting of what makes a configuration viable, in which slack is the whole invariant. \textbf{Duration} (Sections~\ref{sec:duration}--\ref{sec:nucleation}) is the dynamics: the stochastic, forward-time process in which the invariant becomes lifetime, and rarity, direction, and the transition path all live. The division is not cosmetic. It is exactly the boundary between what an accounting can earn and what a dynamics must earn, and keeping it visible is what protects the argument from the ``sometimes'' trap it is trying to escape.
+
+\section{Solvency: the arithmetic of a self-rebuilding thing}
+\label{sec:solvency}
+
+\subsection{The floor}
+
+Strip a living thing of everything nameable --- sex, DNA, the cell, the species, ancestry --- and one requirement refuses to be removed: it must keep making itself. The moment it stops, it is a corpse, then dust. Systems of this kind are \emph{autopoietic} \cite{maturana1980}: they have no existence apart from their own continual self-construction, in the way a candle flame is not an object that happens to burn but a burning that wears the mask of an object.
+
+Consider such a machine, $A$. Each cycle it harvests energy $H_A$ from its surroundings and spends $C_A$ rebuilding itself. Because it is nothing but its own rebuilding, it cannot coast: there is no durable core to persist while it idles. The survival rule is therefore a hard threshold,
+\begin{equation}
+H_A \;\ge\; C_A ,
+\label{eq:floor}
+\end{equation}
+and the quantity that governs everything downstream is the harvest above the rebuild cost --- the \emph{slack},
+\begin{equation}
+\slack_A \;=\; H_A - C_A .
+\label{eq:slack}
+\end{equation}
+Slack is the only free energy in the system. Two consequences follow immediately and structurally, not as add-ons. \emph{Mortality is not a defect}: a thing that exists only by remaking itself ends the first time it cannot pay; death is the flip side of \eqref{eq:floor}. And \emph{slack is the budget for everything else}: every maintained part is a recurring cost, so the number of parts a system can keep alive is capped by the surplus available to pay for them.
+
+\subsection{Passengers, virulence, and an ethics with no ethicist}
+\label{sec:passenger}
+
+Introduce a second machine $B$, descended from $A$ but unable to harvest. $B$ does not read the environment; it reads $A$. It lives entirely in the margin $A$ does not spend. The dependence is, at first, one-directional: cut the thread and only $B$ dies; $A$, relieved of a mouth to feed, is if anything better off. This is a host and a passenger, not yet one system.
+
+The revealing moment is a cycle whose harvest suffices to rebuild $A$ alone but not both. One detail, left open by the toy, decides the entire character of the relationship. If $A$ feeds itself first, $B$ winks out in lean seasons and $A$ continues: a fair-weather passenger. If $B$ takes its share off the top, a shortfall pushes $A$ below its floor and kills the host --- and $B$, having destroyed what sustains it, dies the next cycle. Biology names the second arrangement \emph{virulence}.
+
+In a \emph{closed} world --- these two, nowhere else for $B$ to go --- the virulent arrangement has no future: a $B$ that starves its host is a $B$ that dies with it. The only passenger that persists is a gentle one, and restraint is imposed by no referee. It falls out of the arithmetic:
+\[
+B \text{ cannot afford to kill } A,\ \text{because } A\text{'s death is } B\text{'s death.}
+\]
+This resolves, for free, a puzzle that ordinarily needs enforcement machinery. In an \emph{open} world a cheater prospers by draining a common pool others refill, or by leaping to a fresh victim before the bill comes due. Closure removes both escape hatches. \emph{Shared fate does the policing; an ethics appears with no ethicist behind it.} We flag this now because the whole of the dynamical theory below is the study of one quantity implicit here --- the degree to which two fates are bound --- and of what happens when the escape hatches are only partly closed.
+
+\subsection{Cooperation is the net, and complexity is what the net buys}
+
+Shared fate does not protect against a subtler harm. A pure passenger, however gentle, raises the pair's survival threshold from $C_A$ to $C_A + C_B$ while contributing nothing to clearing it. Over variable seasons the pair is a \emph{worse} bet than the lone machine: there are winters the pair cannot survive that $A$ alone would have walked through. A freeloader is undone by exactly the fragility it introduces. To last, a dependent has only two routes: give something back, or spread across many hosts faster than it kills each. Closure shuts the second. Only the first remains: fold back into the business of energy.
+
+The accounting that makes ``giving back'' precise turns on a distinction easy to miss. The \emph{individual} cost $C_A$ is rigid --- nothing $B$ does changes what it costs $A$ to rebuild its own body. But the pair's \emph{survival threshold} is $C_A$ minus whatever $B$ returns to $A$'s harvest or reliability, and that can slide. Cooperation cannot lower the floor; it can move the system's point of death below what the floor alone would suggest. With numbers: let $A$ harvest $10$ and cost $6$, so $\slack_A = 4$. A lazy $B$ costing $2$ and returning nothing commits $8$; a harvest dip to $7$ now kills both, though the lone machine (needing $6$) would have survived --- the passenger has pushed the point of death \emph{up}, from $6$ to $8$. A supportive $B$ costing $2$ but cutting $A$'s rebuild cost from $6$ to $3$ commits $5$, survives down to a harvest of $5$ --- below the lone floor of $6$ --- and at harvest $10$ leaves slack $5 > 4$. The supportive partner did not spend the surplus. \emph{It grew it.} The dividing line is exact:
+\begin{equation}
+\text{Support enlarges slack} \iff \text{what } B \text{ saves } A \;>\; \text{what } B \text{ costs to run.}
+\label{eq:net}
+\end{equation}
+There is no credit for good intentions in this ledger, only the net.
+
+From \eqref{eq:net} the growth of complexity follows with no drive and nothing wishing to elaborate. Complexity is maintained parts; every part is perpetual upkeep; upkeep comes only from slack. A consuming part \emph{spends} slack; a supportive part \emph{makes} it. A system that only bolts on consumers reaches its ceiling and stalls --- subtractive, doomed to stay small. A system that adds supportive parts enlarges its own budget with every addition, and a larger budget funds still more parts, some of which enlarge it further. That process compounds. So the ``urge'' toward complexity is only this: in a world where every part must be paid for out of surplus, the parts that can keep accumulating are exactly the ones that generate more surplus than they cost. \emph{Cooperation is how complexity gets paid for} --- an active funding mechanism that amends Gould's diffusion-from-a-wall picture of complexity \cite{gould1996} with a concrete account of what pays for the upward moves.
+
+\subsection{The bill: interdependence is fragility, and the floor has the last word}
+\label{sec:bill}
+
+The same ratchet is also the bill. Once $A$ relies on $B$ for a function and stops performing it, cutting $B$ kills $A$ too. The fate that ran one way now runs both, and a pair whose survival flows in both directions is no longer host and passenger but close to a single organism. This is the engine under the major transitions in evolution \cite{maynardsmith1995}: free-living cells becoming organelles, cells becoming bodies, individuals becoming societies --- each time, deep mutual reliance manufacturing a new individual from old ones. But the price is exact: every gain in capability is bought by a gain in interdependence, and interdependence is exposure. Stop the heart and every specialised cell dies together. There is a sweet spot --- where the surplus a further specialisation would earn is balanced by the fragility it adds --- and the most persistent systems settle near it, not at the summit. And the ceiling is no new principle: it is the floor \eqref{eq:floor} in different clothes. The elaborate pair still dies the instant its combined harvest falls below its combined cost. Everything cooperation built was built inside that constraint, and the constraint has the last word.
+
+\subsection{What the statics earns --- and what it cannot}
+\label{sec:statics-limit}
+
+Two claims are genuinely earned here, and one is not. Earned: mortality is structural, and cooperation \emph{as a viable configuration} is favoured because supportive parts out-earn their upkeep. Not earned: any \emph{dynamics} of how such configurations arise and spread. A single closed pair is not an evolving system --- there is no population, no reproduction of variants to sort. When we spoke of ``selection favouring'' the supportive partner we imported that logic from outside, imagining many worlds. The toy demonstrates an accounting, not a dynamics; only the first is earned. Note the honest register of the earned part:
+\begin{claim}[Deterministic invariant]
+\label{claim:static}
+In the deterministic autopoietic problem, slack is the entire invariant of viability, because a configuration's operating slack \eqref{eq:slack} equals its distance to the death threshold \eqref{eq:floor}. ``Maximise slack'' and ``sit furthest from death'' are, deterministically, one statement.
+\end{claim}
+\noindent Claim~\ref{claim:static} is exactly as strong as the toy is deterministic --- and no stronger. The rest of the paper is what happens to it when we admit that life is stochastic, which the toy's own list of omissions names as its most important simplification. That admission is not a caveat. It is the hinge on which slack becomes \emph{duration}.
+
+\section{Ecology under constraint: the four fates}
+\label{sec:fates}
+
+We now let the accounting run as a dynamics, on the fast timescale of ecology, holding interaction structure fixed for the moment. Let $x$ be the amplifier (biomass, load, capital), $s$ the substrate it runs on, and introduce an order parameter $\phi \in [0,1]$ for the \emph{coupling of the edge} between them: $\phi = 0$ fully extractive (the amplifier's fitness decoupled from the substrate's persistence), $\phi = 1$ fully reciprocal (fates bound). With $\phi$ fixed,
+\begin{align}
+\dot x &= x\big[\,\varepsilon\,\beta(\phi)\,s \;-\; m\,\big], \label{eq:xdot}\\[2pt]
+\dot s &= \underbrace{g\,s\!\left(1-\tfrac{s}{K}\right)}_{\text{finite renewal}} \;-\; \underbrace{\beta(\phi)\,x\,s}_{\text{uptake}} \;+\; \underbrace{\rho(\phi)\,x\,s}_{\text{return}}, \label{eq:sdot}
+\end{align}
+with uptake decreasing and return increasing in coupling, $\beta'(\phi) < 0$, $\rho'(\phi) > 0$, and (to forbid an unbounded ``orgy of mutual benefit'' \cite{may1974mutualism}) the return saturating so that $\beta(\phi) > \rho(\phi)$ on the relevant range. The temptation to extract is built in: low-$\phi$ strategies carry high $\beta$ and so grow faster per unit substrate.
+
+\paragraph{Constraint is the domain, not a defect.} A reader may object that the transition below is driven by the finite $K$, so that we have really proved ``finite resources favour reciprocity,'' a narrower claim. The objection inverts the logic. Bistability of interaction structure is \emph{impossible} without saturation: an amplifier facing no binding limit anywhere does not choose between extraction and reciprocity --- it simply grows, there is no second state, and nothing to explain. Cooperation is not a live question until growth meets a limit that makes the choice matter. Asking the theory to fire where nothing is limiting is asking the ice/steam boundary to appear where temperature is irrelevant: the boundary \emph{is} the varied quantity. And the domain so defined is not narrow but \emph{universal among real systems}, because unconstrained positive feedback does not exist in a finite world --- every real amplifier eventually meets free-energy throughput, waste, crowding, or an imposed limit. The generalisation the objection correctly points to is of the constraint's \emph{type}, not its necessity. Replace depletion \eqref{eq:sdot} with waste,
+\begin{equation}
+\dot w = \alpha\,x - \kappa\,w, \qquad m \;\to\; m + \gamma\,w,
+\label{eq:waste}
+\end{equation}
+and the amplifier poisons a variable its own fitness depends on, with no resource cap at all; crowding, channel-capacity limits, and a re-coupling levy --- one that forces an amplifier's payoff back onto the persistence of its substrate, as a wealth tax rebinds compounding capital to the society it draws on --- are further instances. The general binding condition is one line: \emph{the amplifier degrades a variable its fitness depends on and cannot decouple from it.} That is the setup whose universality we claim.
+
+\subsection{Four stationary fates, not two}
+\label{sec:fourfates}
+
+It is tempting --- and we have elsewhere been too quick --- to say the constrained landscape has two wells, reciprocity and death. It has at least four fates, and the correction matters because the naive version is false.
+
+\begin{enumerate}[label=(\roman*)]
+\item \textbf{Reciprocal coexistence.} With $\rho(\phi) > 0$ the return term raises standing substrate; a stable interior equilibrium sits at \emph{high} $s^\ast$, both fitnesses served. The good well.
+\item \textbf{Stable low-substrate exploitation.} With $\rho = 0$ and large $\beta_0$, the interior equilibrium of \eqref{eq:xdot}--\eqref{eq:sdot} is $s^\ast = m/(\varepsilon\beta_0)$, $x^\ast = (g/\beta_0)\,(1 - s^\ast/K)$, and for a Type-I (mass-action) uptake this equilibrium is locally asymptotically stable whenever it exists ($s^\ast < K$). The predator farms its prey at \emph{suppressed} density --- persistent, and purely extractive.
+\item \textbf{Extractive cycles.} With a saturating (Type-II) functional response, enrichment destabilises (ii) through a Hopf bifurcation into a limit cycle --- the paradox of enrichment \cite{rosenzweig1971}. Quasi-persistent: every trough gambles against the boundary.
+\item \textbf{Extinction.} The origin $(x,s) = (0,0)$ is absorbing. Death is extremely stable; extinction does not return.
+\end{enumerate}
+
+The immediate lesson is that \emph{a binding constraint does not, by itself, destroy the extractive fixed point.} Under mass action it leaves a stable low-substrate focus (ii); under saturation it can leave a limit cycle (iii). What the constraint does is \emph{degrade} extraction --- it drives $s^\ast$ toward the floor and removes the slack that made coupling irrelevant --- so that the extractive states now sit close to the absorbing boundary. That proximity, not any deterministic instability, is what will do the work once noise is admitted. The deterministic picture cannot rank (i) against (ii): both are stable equilibria. The ranking is a fact about \emph{durations}, and durations require the stochastic layer.
+
+\section{The edge, and where the future actually lives}
+\label{sec:edge}
+
+Now let interaction structure evolve, on a slow timescale. Adiabatically eliminating the fast ecology ($s = s^\ast(\phi)$; standard singular perturbation \cite{kuehn2015}), write $\phi$ as a stochastic replicator,
+\begin{equation}
+d\phi \;=\; \phi(1-\phi)\,\Delta\pi\!\big(\phi,\, s^\ast(\phi);\,\delta\big)\,dt \;+\; \sqrt{2D}\,\,dW,
+\label{eq:replicator}
+\end{equation}
+where $\Delta\pi = \pi_{M} - \pi_{E}$ is the fitness gap between the coupled and decoupled strategies and $D$ is strategy noise --- mutation, exploration, migration, demographic stochasticity --- the temperature that lets barriers be crossed.
+
+\subsection{$\delta$ is an edge property, and it is not the future reaching back}
+
+The object that sets the sign is $\delta$, the \emph{continuation probability of the edge}: the probability this particular relationship persists to the next interaction. It is manifestly \emph{present} --- a transition rate on an edge, not knowledge of the future. Repeated-interaction payoffs fold it in: a coupled pair collects $\pi_{M} = (1-\delta)^{-1}\,\sigma_{\text{coop}}$ from a per-round mutual surplus $\sigma_{\text{coop}}$, while a defector takes a one-shot windfall $T$ and must then re-find substrate. The threshold at which the reciprocal strategy becomes viable is the folk-theorem condition \cite{axelrod1984,nowak2006},
+\begin{equation}
+\delta^\ast \;=\; \frac{T}{\,T + \sigma_{\text{coop}}\,}
+\;=\; \frac{\text{temptation gap}}{\text{temptation gap} + \text{cooperation surplus}} ,
+\label{eq:folk}
+\end{equation}
+below which only the extractive root is stable and above which the reciprocal root opens. Two readings of $\delta$ are worth stating because they reconcile two vocabularies. From the amplifier's (node's) side, $1 - \delta$ is \emph{escapability} --- the ease of externalising cost, exiting, or switching substrate. From the relationship's (edge's) side, $\delta$ is how tightly two fates are bound. These are one quantity read from the two ends of an edge; ``can the exploiter escape?'' and ``is the bond fate-coupling?'' are the same question. We take the edge as primary. The reason is not taste but generality: the discount factor / shadow of the future is precisely an \emph{edge} property \cite{axelrod1984}, and locating the moderator there is what lets ``it is about the relation'' be an exact statement rather than a softening of ``it is about escape.''
+
+\begin{remark}[The collapse of $\phi$ and $\delta$]
+On the slow manifold, $\phi$ (ecological coupling) and $\delta$ (strategic continuation probability) are not independent inputs but functionally locked, $\delta = \delta(\phi)$: an edge persists exactly when the flow across it returns enough that its substrate survives, i.e.\ when $s^\ast(\phi) > 0$ and sits far enough above the floor. Edge persistence is thus a \emph{consequence} of coupling, not a second assumption, and $\beta(\phi),\rho(\phi)$ cease to be two free functions and become the \emph{definition} of what coupling means, whose central corollary (persistence) is derived. Two phenomenological inputs reduce to one, and that one is tied to a measurable.
+\end{remark}
+
+\subsection{Operationalising the order parameter}
+
+Claim~\ref{claim:static} and equation \eqref{eq:replicator} rest on $\phi$, which we introduced by fiat --- $\beta$ falls and $\rho$ rises with it because we defined them to. This is the framework's most phenomenological joint, and honesty requires naming the standard it should meet. Order parameters are almost never \emph{derived from below}: magnetisation is not derived from the electron but \emph{identified} as the relevant collective coordinate, after which one writes a free energy in it. The correct target is therefore not derivation but \emph{operational measurability}. On real edges, candidate measured definitions of $\phi$ include: the symmetrised flux across the edge (the smaller directional flow over the larger); the mutual information between the endpoints' states; or the fraction of the amplifier's throughput contingent on the partner's persistence --- ``shared fate,'' made computable. With any of these, the monotonicities $\beta'(\phi) < 0$, $\rho'(\phi) > 0$ stop being assumptions and become \emph{hypotheses}: one measures how flow rates covary with measured coupling across real edges. That is the empirical hook, and Section~\ref{sec:limits} records the residue it does not remove.
+
+\section{Duration: from slack to lifetime}
+\label{sec:duration}
+
+Here the two vertebrae join. We now show that once noise is admitted, the deterministic invariant of Claim~\ref{claim:static} is no longer the right invariant, and the object that replaces it is a \emph{time}.
+
+\subsection{Noise splits slack into drift and temperature}
+
+Restore stochasticity to the accounting of Section~\ref{sec:solvency}, as the toy's own list of omissions demands. Slack was doing two jobs at once, and noise separates them. Its \emph{mean} is a drift --- how far, on average, the system sits above its floor. Its \emph{variance} is a temperature --- how hard the harvest shakes it toward the floor. Two systems with \emph{identical mean slack} can now have wildly different lifetimes, because the volatile one reaches zero sooner. Mean slack no longer determines persistence. What determines it is how far slack sits above zero \emph{relative to how much it fluctuates}, and that ratio, in the long-time limit, is the depth of a quasipotential well whose exponential is the mean lifetime:
+\begin{equation}
+\tau \;\sim\; C\,\exp\!\left(\frac{\Delta V_{\text{floor}}}{D}\right), \qquad
+\Delta V_{\text{floor}} \;\longleftarrow\; \text{mean slack}, \quad
+D \;\longleftarrow\; \text{slack variance.}
+\label{eq:kramers}
+\end{equation}
+So slack is not the invariant of \emph{lasting}. Slack is the \emph{drift term} of it. The invariant is what that drift, run against noise, buys: expected time to first insolvency.
+
+\subsection{A lifetime is integrated solvency}
+
+Why should the invariant of a theory about staying alive be a time rather than an energy? Because for a thing that exists only by burning --- no durable core, paying every cycle --- \emph{time is metered in energy}. Each cycle of existence costs a rebuild. A lifetime is therefore not a different currency from energy; it is cumulative solvency: the length of the longest run of cycles paid for without once going negative. This is the precise sense in which ``the answer is in the energy state.'' The energy state enters not as a \emph{level} of slack but as a \emph{lifetime} --- the integral of solvency under a no-bankruptcy constraint. Slack is the numerator; lifetime is the quotient.
+
+\begin{remark}[Consolidation is duration-banking]
+\label{rem:consolidation}
+Storage now has an exact meaning on the landscape. To hold a buffer is to spend \emph{mean} slack in order to reduce \emph{variance}: it smooths the shakes without raising the average. In \eqref{eq:kramers} that is ``lower $D$ at fixed $\Delta V$'' --- more lifetime at fixed mean solvency. Fat, the granary, the capital reserve, the redundant organ are one move: energy-flow traded for a lower temperature, temperature traded for time. Consolidation is not \emph{like} duration-banking; it \emph{is} the conversion of flow-solvency into well-depth.
+\end{remark}
+
+\subsection{One landscape, and what every earlier quantity was a facet of}
+
+With \eqref{eq:kramers} the whole conversation collapses onto a single object: the shape of the solvency landscape. Mean slack is its drift; variance is its temperature; edge-coupling $\phi$ is the barrier between the amplifier's \emph{own} well and the \emph{joint} well of amplifier-plus-substrate; escapability $1-\delta$, the folk threshold, the four fates, and the nucleation race below are all descriptions of the geometry of the surface whose height is solvency and whose absorbing floor is bankruptcy. None of these was a rival candidate for the fundamental quantity. They are coordinates on one surface. This also disciplines the motto that motivates the programme: \emph{keep alive what keeps you alive} is not a sentiment but an instruction --- maximise the edge's \emph{joint} solvent lifetime, deepen the well of the pair, not of the node. It is why a partner that grows your slack but could still defect does not count: defection is a low barrier \emph{out} of the joint well, so the joint lifetime stays short even while the instantaneous slack looks healthy. Parasitism is a deep own-well hard against the cliff; reciprocity is a deep joint-well far from it. The same energy bookkeeping, read on the edge instead of the node.
+
+\subsection{The invariant is monotone, not conserved}
+\label{sec:invariant}
+
+Successful theories have a central scalar, but the four canonical examples are four \emph{kinds} of object and must not be conflated. Entropy is monotone (a second law); fitness has a rate theorem \cite{fisher1930,price1972}; the spacetime interval is \emph{conserved}; the partition function is generating. Persistence is a dissipative, far-from-equilibrium phenomenon, so a \emph{conservation} law would be the wrong shape of object entirely, and claiming one is a characteristic way for unification attempts to discredit themselves. The scalar we actually have is the quasipotential depth to the absorbing boundary, $\Delta V_{\text{floor}}$, whose exponential is the mean persistence time \eqref{eq:kramers}. It is domain-general (every noisy dynamical system with an absorbing set has one), it is monotone-\emph{selected} (Section~\ref{sec:theorem}: the long-lived quasi-stationary weight concentrates on its maximum), and it is emphatically not conserved --- a large-deviation / Lyapunov object, the non-equilibrium generalisation of free energy. We therefore claim an entropy-like invariant, not an interval-like one, and we explicitly decline to found the theory on extremal entropy-production principles, which hold only in restricted regimes; the quasipotential is the safer foundation. The closure worth stating: the invariant of a theory of staying alive is a \emph{lifetime}, whose logarithm is a barrier depth. That is where a duration-centred framing was always pointing. ``Keep alive what keeps you alive'' formalises, without remainder, as \emph{occupy the state of maximum $\Delta V_{\text{floor}}$}: maximise distance, in the viability landscape, from the boundary where the edge dies.
+
+\section{The transition path and the nucleation race}
+\label{sec:nucleation}
+
+We can now state the object the no-teleology demand was really asking for: not merely that a reciprocal state exists, but a forward-time, present-gradient process that carries the system into it. The demand is satisfied by construction, because the two-timescale split made $\delta$ a present edge property and made the barrier a present feature of a landscape. Nothing anywhere references the future.
+
+\subsection{The quasipotential as the free energy that far-from-equilibrium systems lack}
+
+Far from equilibrium there is no free energy, but there is its rightful surrogate. For the slow dynamics \eqref{eq:replicator}, in one dimension any drift is a gradient, $\phi(1-\phi)\Delta\pi = -V'(\phi)$, so
+\begin{equation}
+V(\phi) \;=\; -\!\int^{\phi}\!\!\phi'(1-\phi')\,\Delta\pi\,\,d\phi'
+\label{eq:1dpot}
+\end{equation}
+is a double well: a basin at $\phi = 0$ (extractive, co-located with depletion), a basin at $\phi = 1$ (reciprocal), a barrier at $\phi_c(\delta)$ whose location is set by \eqref{eq:folk}. Keeping the full $(x,s,\phi)$ system the dynamics is genuinely non-gradient, and the correct object is the Freidlin--Wentzell \emph{quasipotential} $V(\mathbf z)$, solving the stationary Hamilton--Jacobi (eikonal) equation $H(\mathbf z, \nabla V) = 0$ with $H$ the Freidlin--Wentzell Hamiltonian of the rate functional \cite{freidlinwentzell,kramers1940}. This is a non-equilibrium free energy \emph{defined entirely from the forward generator} --- no time reversal, no future invoked. The most-probable transition path from extraction to reciprocity is the minimiser of the action
+\begin{equation}
+S_T[\phi] \;=\; \frac{1}{4D}\int_0^T \big(\dot\phi - A(\phi)\big)^2\,dt, \qquad A = -\nabla V,
+\label{eq:action}
+\end{equation}
+the instanton --- a real, forward-time, computable trajectory --- and the expected time to nucleate reciprocity is the Kramers rate \eqref{eq:kramers} with $\Delta V = V(\phi_c) - V(0)$. ``The energy-stable solution predicts a pathway'' is thus theorem-shaped: whenever the reciprocal well exists, the reactive flux into it is nonzero and its most-probable path is characterisable, and the barrier height is a function of $\delta$ --- of escapability. That is the bridge from the statics to the dynamics, made explicit.
+
+\subsection{Extraction is a slope, and the two destinations are asymmetric}
+
+The sharper content is not ``a path exists'' but \emph{what kind of object extraction is}. With unbounded substrate the extractive state is a fixed point: grow forever. The instant the constraint binds, extraction depletes its own substrate and ceases to be stationary --- it becomes a slope. So the constraint's real job is to \emph{destroy the extractive fixed point} in the relevant regime, leaving the reciprocal well or depletion as the stationary destinations. And the two are not symmetric. Depletion is \emph{downhill}: it is the direction the gradient already points, reached by simply continuing, no barrier. Reciprocity is \emph{uphill}: it requires a fluctuation that seeds a coupled cluster and carries it past a critical size before it dissolves. That asymmetry --- \emph{death is downhill, reciprocity is uphill} --- is the whole reason collapse is common and mutualism comparatively rare, and it is usually missing from discussions of the origin of cooperation.
+
+\subsection{The spatial picture: nucleation, fronts, and $\lambda_2$}
+
+Well-mixed dynamics is a caricature; the true process is spatial. Promote $\phi$ to a field $\phi_i(t)$ on the interaction network, with a local double well $U(\phi)$ and Laplacian coupling,
+\begin{equation}
+\partial_t \phi_i \;=\; -D_s\!\sum_j L_{ij}\,\phi_j \;-\; U'(\phi_i) \;+\; \sqrt{2D}\,\,\eta_i(t),
+\label{eq:field}
+\end{equation}
+$L$ the graph Laplacian. Reciprocity now invades by \emph{nucleation and front propagation}: a droplet of the $\phi \approx 1$ phase in a $\phi \approx 0$ sea grows only past a critical size. Classical nucleation theory \cite{kelton2010} balances a bulk gain $\propto \Delta f\,R^d$ against an interfacial cost $\propto \sigma R^{d-1}$, giving
+\begin{equation}
+R_c \;=\; \frac{(d-1)\,\sigma}{\Delta f}, \qquad
+\Delta F^\ast \;\sim\; \frac{\sigma^{\,d}}{\Delta f^{\,d-1}} \quad (\text{the cube law at } d=3),
+\label{eq:cubelaw}
+\end{equation}
+where $\sigma$ is the cost of a cooperator bordering extractors (boundary tension) and $\Delta f = V(0) - V(1)$ is how much deeper the reciprocal well sits --- increasing with $\delta$ and with substrate scarcity. The algebraic connectivity $\lambda_2$ (the second-smallest Laplacian eigenvalue) decides whether a supercritical cluster's boundary \emph{holds} or \emph{leaks}: high $\lambda_2$ means a defecting fringe cannot be cheaply isolated (Cheeger's inequality \cite{chung1997}), so the nucleus coheres; low $\lambda_2$ --- bottlenecks --- lets the boundary defect back before the front propagates. Thus $\lambda_2$ enters the effective $\sigma$ and the Kramers prefactor. This is exactly the ``does the nucleus keep its neighbours coupled or let them defect'' question, made formal, and it is the point at which the present construction meets the algebraic-connectivity viability signal of the wider programme.
+
+\subsection{Persistence is the inequality between two escape times}
+
+Two times now compete, and their asymmetry is the content:
+\begin{equation}
+\tau_{\text{nucleate}} \;\sim\; \exp\!\left(\frac{\Delta F^\ast(\delta,\lambda_2)}{D}\right)
+\qquad \text{versus} \qquad
+\tau_{\text{deplete}} \;\sim\; \text{(algebraic; downhill, no barrier).}
+\label{eq:race}
+\end{equation}
+Death is downhill, so $\tau_{\text{deplete}}$ is fast and roughly algebraic. Reciprocity is uphill, so $\tau_{\text{nucleate}}$ is exponential in the barrier. \emph{Long-term existence is the inequality} $\tau_{\text{nucleate}} < \tau_{\text{deplete}}$. Because one side is exponential in the barrier and the other is algebraic, the boundary is sharp: a small change in $\delta$ or $\lambda_2$ sits inside an exponential and flips persistence. That is why reciprocity is rare and precious, and why the moderators matter out of all proportion to their size.
+
+\section{The persistence claim, stated in its only defensible form}
+\label{sec:theorem}
+
+The programme's deepest intuition is stronger than ``a barrier crossing exists.'' It is something like \emph{persistence itself selects for reciprocal structure}. That statement is worth wanting, but it is either false or vacuous unless two guardrails are installed, and the value of the machinery above is that it lets us state the surviving form precisely.
+
+\paragraph{Why the naive version fails.} \emph{False:} ``persistence $\Rightarrow$ reciprocity'' is contradicted by fate (ii), the stable low-substrate focus, and fate (iii), the extractive cycle --- both persist while extracting. \emph{Vacuous:} if ``reciprocal'' is \emph{defined} as ``the coupling that permits persistence,'' then ``persistent things are reciprocal'' is true by construction and empty --- the ``sometimes'' trap one level up, with ``good'' fixed after the fact. Guardrail one: \emph{``reciprocal'' must have content independent of ``viable,''} fixed here to \emph{high substrate retention / large distance from the extinction boundary / genuine mutual benefit} $(\rho > 0)$, never ``whatever survives.'' Guardrail two: the claim must be \emph{stochastic and comparative}, about durations, since deterministically (i) and (ii) are both stable and cannot be ranked.
+
+\paragraph{The absorbing boundary forbids a naive stationary measure.} Because extinction is absorbing, the process has no nontrivial stationary distribution --- everything eventually absorbs. The right object is the \emph{quasi-stationary distribution} (QSD) and the associated \emph{mean time to extinction} from each metastable state, which in the weak-noise (WKB / large-deviation) limit scales as $\exp(\mathcal S/D)$ with $\mathcal S$ the action of the optimal path to the boundary \cite{ovaskainen2010,assaf2017}. This is the same object that governs fade-out and critical community size in stochastic epidemic models, and we use it in that precise sense.
+
+\begin{claim}[Persistence concentration; informal]
+\label{claim:persistence}
+Consider the model class \eqref{eq:xdot}--\eqref{eq:sdot}, \eqref{eq:replicator} under a binding constraint (Section~\ref{sec:fates}), with weak noise $D$ and ``reciprocal'' fixed as distance from the absorbing boundary (Guardrail one). Among the competing metastable structures, the mean time to extinction is maximised at the state with the largest quasipotential barrier to the absorbing set --- the deepest well, furthest from the cliff --- which under binding constraint is the reciprocal coexistence state (i), because its high $s^\ast$ places it far from extinction. The extractive structures (ii)--(iii) sit in shallower wells nearer the boundary and are therefore only \emph{quasi}-persistent. Consequently the quasi-stationary weight, in the long-lived regime and as $D \to 0$, concentrates on (i).
+\end{claim}
+
+\begin{remark}[Status of Claim~\ref{claim:persistence}]
+This is a structured claim about the model class, supported by the large-deviation scaling $\tau \sim e^{\mathcal S/D}$ and by the geometric fact that binding constraint drives $s^\ast$ of the extractive states toward the floor while the reciprocal state's $s^\ast$ stays high. It is not a proved theorem in full generality. A proof would require, for the specific process, (a) construction of the QSD and verification of a spectral gap, and (b) a demonstration that the reciprocal well's extinction action strictly exceeds those of (ii)--(iii) throughout the binding-constraint regime. We state it as the honest ceiling of what the present argument earns: a claim about \emph{durations and quasi-stationary concentration}, not the false directional law ``constraint $\Rightarrow$ reciprocity.''
+\end{remark}
+
+\noindent Two features make Claim~\ref{claim:persistence} non-vacuous and testable rather than definitional. It \emph{does not} say extraction fails to persist --- it says extraction persists \emph{less}, in shallower wells. And it \emph{predicts its own exceptions}: standing extractive systems should be found precisely in the low-substrate-focus or fast-cycling regimes (chronic parasites keeping hosts ill-but-alive; specialists farming fast-breeding prey), living nearer the cliff than mutualists, with correspondingly \emph{shorter} expected lineage lifetimes. That is a comparative empirical prediction: mutualist lineages should, other things equal, be older and more persistent than chronic-extractive ones.
+
+\section{Falsifiers}
+\label{sec:falsifiers}
+
+The value of the formulation is that it now forbids specific observations. The following would count against it.
+
+\begin{enumerate}[label=\textbf{F\arabic*.}]
+\item \textbf{No standing population of stable extractive-decoupled systems.} Under binding constraint, the fully decoupled high-extraction configuration is a transient slope, not a rest state. Finding a \emph{population} of long-lived, extractive, fitness-decoupled systems --- not chronic low-level exploiters near the cliff (ii)--(iii), but genuinely decoupled amplifiers persisting indefinitely --- breaks the framework.
+\item \textbf{Directional early warning, with a seed.} A reciprocal transition should show critical slowing-down, rising variance and spatial autocorrelation \cite{scheffer2009}, \emph{and} a local supercritical cluster preceding the global flip --- nucleation, not smooth global drift, and pointed at the \emph{reciprocal} direction, not only at collapse. Reciprocity arriving discontinuously from nowhere, with no nucleus, falsifies the mechanism.
+\item \textbf{The $\delta$-differential (the clean cross-domain test).} Hold constraint intensity fixed and vary escapability alone; the model predicts opposite outcomes, or a shift of $\tau_{\text{nucleate}}$ across $\tau_{\text{deplete}}$ \eqref{eq:race}. \emph{Conversely}, if varying constraint intensity alone at fixed $\delta$ flips the sign between extraction and reciprocity, then constraint is the driver after all and the edge-coupling reframing is wrong.
+\item \textbf{Comparative statics on persistence.} Near-boundary systems should be rescued by raising $D$ (strategy diversity / exploration) or lowering the barrier (raising $\delta$ or $\lambda_2$), and pushed to collapse by the reverse (Remark~\ref{rem:consolidation} and \eqref{eq:race}). Systematic failure of these comparative statics counts against the account.
+\end{enumerate}
+
+Note what these repair relative to the original hypothesis. The first three ``failure cases'' one is tempted to offer --- constraint yields only collapse, mutualism never emerges, constraint increases extraction --- are all \emph{outcomes the naive hypothesis already licenses} and therefore cannot falsify it. F1--F4 are framed so that the theory can actually lose.
+
+\section{A candidate natural experiment: transmission mode and virulence}
+\label{sec:ewald}
+
+Adding domains to a pattern held together by shared vocabulary makes it look more impressive without making it more true; that is precisely the mechanism by which one fools oneself. The productive next step is not a further domain but contact with one number, via a \emph{differential} test (F3) inside a single well-understood system. Virulence evolution supplies one that already exists in the literature.
+
+Cast virulence as the slow variable on fast susceptible--infected--recovered dynamics, with the absorbing boundary being pathogen fade-out or host-population collapse. The continuation probability of the pathogen--host edge is set by the \emph{transmission mode}: directly transmitted pathogens need the host alive and mobile, binding the pathogen's fitness to host welfare (high $\delta$), whereas waterborne, vector-borne, and high-density transmission decouple fitness from host welfare (low $\delta$), letting the pathogen burn the host and find another \cite{ewald1994,frank1996}. The prediction of \eqref{eq:folk}--\eqref{eq:race} and Claim~\ref{claim:persistence} is then sharp and \emph{holds constraint (immune pressure) fixed while varying escapability}: the virulence-maximising state should sit \emph{near} the extinction boundary for low-$\delta$ transmission and \emph{far} from it for high-$\delta$ transmission, so that attenuation is the durable, quasi-stationary outcome specifically where transmission requires host persistence. Ewald's comparison of waterborne and vector-borne against directly-transmitted pathogens is close to a natural experiment for exactly this contrast. The worthwhile empirical question is whether it holds up as cleanly as the co-dependence model wants --- and, crucially, whether it survives the converse arm of F3: whether varying immune pressure at fixed transmission mode fails to flip the sign, as the model requires. Myxoma in Australian rabbits is the cautionary companion case: virulence stabilised at \emph{intermediate} levels for transmission reasons, not at the ``reciprocity'' extreme, which is exactly the kind of quantitative texture the framework must reproduce rather than paper over.
+
+\section{Scope, limitations, and the residual debt}
+\label{sec:limits}
+
+Resolving the hard questions above required not more machinery but more precision, and one honest correction (two fates became four). The limitations are correspondingly specific rather than diffuse.
+
+\paragraph{What the account claims, and what it must not.} It claims universality of the \emph{setup} --- all real amplifiers eventually meet a binding constraint, and binding degrades the extractive fixed point --- and \emph{conditionality} of the outcome: a race \eqref{eq:race} between nucleating reciprocity and falling to the floor. It claims a persistence result only in its stochastic, comparative form (Claim~\ref{claim:persistence}): quasi-stationary concentration on the deepest well, with extractive states quasi-persistent. It claims an invariant that is monotone-selected, not conserved (Section~\ref{sec:invariant}). It must \emph{not} be read as asserting ``constraint $\Rightarrow$ reciprocity'' as a law, a conserved invariant, or universality of \emph{outcome}. It is also not a theory of all cooperation: cooperation under abundance, kin selection, and cheap signalling lie outside the explanandum, which is the bistability of interaction structure under a binding constraint.
+
+\paragraph{Timescale separation is the load-bearing assumption.} The clean well-picture and the elimination $s = s^\ast(\phi)$ depend on ecology being fast and strategy slow. Where the two co-vary on one clock, the problem is genuinely multidimensional and non-gradient, and can support limit cycles --- Red Queen dynamics --- rather than simple basins. This is the main mathematical place the construction can crack, and whether a given domain actually separates is an empirical question, not a modelling convenience.
+
+\paragraph{The order parameter still carries load.} Section~\ref{sec:edge} reduces two phenomenological inputs to one and ties it to candidate measurables, but $\phi$ and the labels extractive/reciprocal still require a domain-common measurement that we have not supplied. $\delta$ has a rigorous general definition (continuation probability); $\phi$ does not yet. The debt did not vanish; it shrank onto one function and one order parameter.
+
+\paragraph{The residual, isolated to a single named quantity.} The invariant is \emph{mostly} an energy-state object: the drift $\Delta V_{\text{floor}}$ is pure solvency, and storage buys down part of the variance (Remark~\ref{rem:consolidation}). But the temperature $D$ is only partly under energetic control. The irreducible fluctuation of the environment --- the noise the system cannot buffer --- is domain-specific and is \emph{not} an energy quantity the system owns. This is the one undischarged assumption, and its virtue is that it now sits on a single named quantity rather than smeared across the word ``reciprocity.'' That is progress, not closure.
+
+\paragraph{This is a model in a class, not the model.} What survives is the structure: binding constraint degrades the extractive fixed point; a small number of fates remain with asymmetric access; persistence is a nucleation race whose barrier is edge-coupling and algebraic connectivity; the invariant is mean solvent lifetime. The specific $\beta,\rho,\pi$ are illustrative scaffolding, to be swapped per domain and not mistaken for the skeleton.
+
+\section{Coda}
+
+The two questions that opened this --- does the phase change exist, and is it universal? --- resolve, but into different halves of one object. \textbf{Solvency} is the statics: viability is the energy state, and in the deterministic limit slack is the entire invariant (Claim~\ref{claim:static}). \textbf{Duration} is the dynamics: under noise the invariant becomes mean solvent lifetime --- integrated solvency, the depth of a quasipotential well (Section~\ref{sec:invariant}) --- and rarity, the race, and the failure to nucleate all live there. These are the two claims the source essay itself named: an accounting of what makes a configuration viable, and a dynamics of how such configurations arise, of which only the first is earned by a statics and only the second by a stochastic process. The single scalar every domain is constrained by is mean solvent lifetime, and its drift term is slack. So the intuition that ``the answer is in the energy state'' is correct --- provided the energy state is read as a \emph{lifetime}, the integral of solvency, and not as a \emph{level} of slack. That one reframe is what turns ``reciprocity is the good configuration'' (which a statics can earn) into ``reciprocity is the far-from-the-floor well a system must nucleate into before it drains'' (which the dynamics earns). One is the number. The other is how long the number lasts.
+
+\begin{thebibliography}{99}
+
+\bibitem{ewald1994} Ewald, P.\,W. (1994). \emph{Evolution of Infectious Disease.} Oxford University Press.
+\bibitem{frank1996} Frank, S.\,A. (1996). Models of parasite virulence. \emph{Quarterly Review of Biology} 71(1): 37--78.
+\bibitem{andersonmay1991} Anderson, R.\,M. \& May, R.\,M. (1991). \emph{Infectious Diseases of Humans: Dynamics and Control.} Oxford University Press.
+\bibitem{maturana1980} Maturana, H.\,R. \& Varela, F.\,J. (1980). \emph{Autopoiesis and Cognition: The Realization of the Living.} Reidel.
+\bibitem{gould1996} Gould, S.\,J. (1996). \emph{Full House: The Spread of Excellence from Plato to Darwin.} Harmony Books.
+\bibitem{maynardsmith1995} Maynard Smith, J. \& Szathm\'ary, E. (1995). \emph{The Major Transitions in Evolution.} Oxford University Press.
+\bibitem{axelrod1984} Axelrod, R. (1984). \emph{The Evolution of Cooperation.} Basic Books.
+\bibitem{nowak2006} Nowak, M.\,A. (2006). \emph{Evolutionary Dynamics: Exploring the Equations of Life.} Harvard University Press.
+\bibitem{fisher1930} Fisher, R.\,A. (1930). \emph{The Genetical Theory of Natural Selection.} Clarendon Press.
+\bibitem{price1972} Price, G.\,R. (1972). Fisher's ``fundamental theorem'' made clear. \emph{Annals of Human Genetics} 36(2): 129--140.
+\bibitem{rosenzweig1971} Rosenzweig, M.\,L. (1971). Paradox of enrichment. \emph{Science} 171(3969): 385--387.
+\bibitem{may1974mutualism} May, R.\,M. (1976). Models for two interacting populations. In \emph{Theoretical Ecology: Principles and Applications.} Blackwell.
+\bibitem{kuehn2015} Kuehn, C. (2015). \emph{Multiple Time Scale Dynamics.} Springer.
+\bibitem{freidlinwentzell} Freidlin, M.\,I. \& Wentzell, A.\,D. (2012). \emph{Random Perturbations of Dynamical Systems}, 3rd ed. Springer.
+\bibitem{kramers1940} Kramers, H.\,A. (1940). Brownian motion in a field of force and the diffusion model of chemical reactions. \emph{Physica} 7(4): 284--304.
+\bibitem{kelton2010} Kelton, K.\,F. \& Greer, A.\,L. (2010). \emph{Nucleation in Condensed Matter: Applications in Materials and Biology.} Pergamon.
+\bibitem{chung1997} Chung, F.\,R.\,K. (1997). \emph{Spectral Graph Theory.} American Mathematical Society.
+\bibitem{ovaskainen2010} Ovaskainen, O. \& Meerson, B. (2010). Stochastic models of population extinction. \emph{Trends in Ecology \& Evolution} 25(11): 643--652.
+\bibitem{assaf2017} Assaf, M. \& Meerson, B. (2017). WKB theory of large deviations in stochastic populations. \emph{Journal of Physics A} 50(26): 263001.
+\bibitem{scheffer2009} Scheffer, M. et al. (2009). Early-warning signals for critical transitions. \emph{Nature} 461: 53--59.
+
+\end{thebibliography}
+
+\end{document}
