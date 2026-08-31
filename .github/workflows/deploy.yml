@@ -45,10 +45,16 @@ jobs:
 
       # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
 
+      # Tectonic is not packaged by Ubuntu 24.04 (the ubuntu-latest image).
+      - name: Setup Tectonic
+        uses: wtfjoke/setup-tectonic@v3
+        with:
+          tectonic-version: 0.15.0
+
       - name: Render standalone TikZ files to PDF & SVG
         run: |
-          sudo apt-get update      
-          sudo apt-get install -y --no-install-recommends pandoc tectonic pdf2svg
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends pandoc pdf2svg
           pandoc --version
           tectonic --version
           # Zoek alle docs/figures/*.tex bestanden en zet ze om
