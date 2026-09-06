@@ -1,0 +1,268 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\usepackage{parskip}
+
+\setstretch{1.05}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.6em}
+\setlist[enumerate]{leftmargin=1.8em}
+
+\title{\textbf{Historical Accessibility in the Long-Term Evolution Experiment}\\[0.4em]
+\large A Retrospective Test of the Organizational Accessibility Criterion}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\emph{Editorial accompanying ``Organizational Accessibility: From Self-Maintenance to Evolvability''}
+\end{center}
+
+\begin{abstract}
+The organizational accessibility framework asks how realized organization becomes part of the causal conditions determining which persistent successor organizations can subsequently be reached. It proposes an interventional criterion for cumulative organizational contribution: structure acquired earlier must be retained through an intermediate organization and causally improve access to a prespecified later target that was absent at a designated baseline. It further distinguishes the \emph{total historical contribution} of retained structure from a \emph{controlled-opportunity comparison} in which candidate-generation opportunities are prescribed.
+
+The framework itself develops these quantities formally but does not present a complete multi-stage empirical demonstration. Here we ask whether an unusually well-characterized historical case already approximates the proposed test: the evolution of aerobic citrate utilization, Cit$^{+}$, in Richard Lenski's long-term evolution experiment with \emph{Escherichia coli}. The LTEE's frozen fossil record allowed evolution to be replayed from different historical states, revealing that later genetic backgrounds had substantially greater access to Cit$^{+}$ than the ancestor and early backgrounds. Subsequent genetic reconstruction then introduced the same actualizing citrate-use mutation into different historical backgrounds, separating differences in candidate supply from differences in what a fixed candidate could accomplish. Together, these experiments closely parallel the framework's total-effect and controlled-opportunity questions.
+
+The case most directly supports inherited adaptive extension and the framework's interventional account of historical accessibility. It does not demonstrate hysteretic retention, selection on evolvability, or compositional accessibility. Later LTEE work further shows that accessibility to Cit$^{+}$ could narrow as well as widen, illustrating the framework's explicitly non-monotonic interpretation of organizational history.
+\end{abstract}
+
+\section{Why use the LTEE as a retrospective test?}
+
+The organizational accessibility framework is deliberately more modest than a universal theory of cumulative evolution. Its central claim is not that history always expands possibility, nor that a transition kernel is itself a novel concept. Rather, it provides a common causal language for asking which features of realized organization affect what can be reached next.
+
+Its proposed empirical criterion is correspondingly demanding. A claim of cumulative organizational contribution requires more than observing that one state follows another. A structure $h$ must have been acquired earlier, retained through an intermediate organization, and shown to contribute causally to access to a later target $U$ that was absent from a specified historical baseline.
+
+The framework distinguishes two causal questions. The first concerns the \textbf{total historical contribution} of retained structure,
+\[
+\Delta_{\tau}^{\mathrm{total}}(U;h\mid B),
+\]
+where downstream differences in survival, abundance, candidate exposure, environment, and other consequences of $h$ are allowed to occur. The second asks a narrower question under a prescribed candidate-generation protocol $P$,
+\[
+\Delta_{\tau,P}^{\mathrm{opp}}(U;h\mid B),
+\]
+which asks whether retained history changes what can be reached when the number or timing of relevant candidate opportunities is externally controlled. These are different estimands, not alternative ways of estimating the same quantity.
+
+The framework also emphasizes that defining such an estimand is not the same as identifying it empirically. In many historical systems the relevant past cannot be replayed, and causal interpretation requires reconstruction, comparison, or additional modelling assumptions.
+
+The LTEE is unusual because its experimental design makes precisely this kind of historical intervention unusually tractable. Frozen samples permit ancestral states to be revived and evolutionary histories to be restarted from different points in the same lineage. The system therefore provides something close to a natural stress test of the framework: experiments designed decades before the accessibility formulation nevertheless ask closely related causal questions.
+
+\section{The target: aerobic citrate utilization}
+
+The LTEE began in 1988 with twelve initially identical populations of \emph{Escherichia coli}. They have since evolved for tens of thousands of generations in a defined medium containing glucose as the limiting carbon source and citrate as a medium component \cite{Blount2008}.
+
+Under the experimental conditions, ancestral \emph{E. coli} could not exploit citrate aerobically. For more than 30,000 generations none of the twelve populations evolved that phenotype. Then, in one population, a lineage capable of aerobic citrate utilization -- Cit$^{+}$ -- appeared at approximately generation 31,500 and subsequently expanded \cite{Blount2008}.
+
+For the accessibility analysis, let
+\[
+U=\{\text{architectures capable of aerobic citrate utilization}\}.
+\]
+The designated historical baseline is the common LTEE ancestor, in which the Cit$^{+}$ phenotype was absent. The relevant historical state $\theta_t$ is the inherited genomic background at generation $t$. The experiment's medium supplies a highly standardized external environment $E$, although ecological interactions within evolving populations remain part of the realized biological state.
+
+The important question is therefore not merely ``Why did the Cit$^{+}$ mutation occur?'' It is:
+
+\begin{quote}
+\textbf{Did the population's previously accumulated history alter its accessibility to Cit$^{+}$?}
+\end{quote}
+
+\section{Replay experiments: historical state changes accessibility}
+
+Blount, Borland, and Lenski used the LTEE's frozen fossil record to test the role of historical contingency \cite{Blount2008}. Clones sampled from different generations of the Cit+-evolving population were revived, and evolution was replayed independently from those historical states under the same experimental conditions.
+
+The result was a strong generation-dependent asymmetry. Cit$^{+}$ was not observed among very large numbers of cells descended from the ancestor or early historical clones, whereas descendants of later clones produced Cit$^{+}$ more readily. The original analysis therefore inferred that some potentiating historical change had arisen well before the actual Cit$^{+}$ phenotype appeared.
+
+In accessibility language, the experiment compares approximately
+\[
+H_{\tau}(U\mid\theta_{\mathrm{early}},E)
+\qquad\text{with}\qquad
+H_{\tau}(U\mid\theta_{\mathrm{later}},E).
+\]
+The external protocol is held broadly constant, but the inherited starting architecture differs.
+
+This is not yet a selective intervention on one identified structure $h$. The later clone differs from the earlier clone across its entire accumulated genomic history. The replay therefore establishes the broader result first:
+\[
+\boxed{\text{different inherited histories produced different accessibility to the same target}.}
+\]
+
+That distinction matters. The replay experiment demonstrates \emph{historical accessibility}, but by itself does not identify which retained component of the later genomic background caused the difference.
+
+In the language of the framework's total-effect estimand, the replay is therefore best understood as a close experimental analogue rather than a literal implementation of a single-component $\operatorname{do}(I_h)$ intervention. Once the later historical state is chosen as the starting point, its effects on reproduction, abundance, ecological interactions, standing variation, and subsequent candidate generation are allowed to unfold naturally. That is precisely why the experiment addresses the total historical question rather than a controlled-opportunity question.
+
+\section{Genetic reconstruction: holding the candidate fixed}
+
+Later genetic work makes the mapping considerably sharper \cite{Blount2012}. The actualizing event underlying early Cit$^{+}$ evolution involved a tandem duplication that placed the citrate transporter gene \emph{citT} under an aerobically active promoter. The crucial experimental move was then to introduce the same actualizing genetic construct into different historical genomic backgrounds.
+
+This permits a different question from replay. Let
+\[
+h=\text{the relevant retained potentiated historical background},
+\]
+while
+\[
+P=\text{experimental delivery of the same actualizing \emph{citT} construct}.
+\]
+The candidate opportunity is therefore prescribed rather than left to occur spontaneously.
+
+The question becomes
+\[
+\Pr(U\mid h,P)
+\qquad\text{versus}\qquad
+\Pr(U\mid \neg h,P).
+\]
+Does the same candidate innovation have different consequences depending on what history has already built?
+
+The answer was yes: introducing the actualizing module into potentiated historical backgrounds produced substantially greater citrate-use performance than introducing it into non-potentiated backgrounds \cite{Blount2012}. This closely parallels the organizational accessibility framework's controlled-opportunity comparison,
+\[
+\Delta_{\tau,P}^{\mathrm{opp}}(U;h\mid B).
+\]
+
+The importance of the experiment is not merely that epistasis exists. It is that one can experimentally separate two components of accessibility:
+\[
+\text{how often a candidate appears}
+\qquad\text{from}\qquad
+\text{what that candidate can do once it appears}.
+\]
+The first depends on candidate-generation history. The second depends on the architecture into which the candidate arrives.
+
+Further genetic dissection subsequently identified particular mutations contributing to the potentiated state. For example, changes involving citrate synthase, \emph{gltA}, altered the physiological background in ways that permitted the later \emph{citT} actualization to become beneficial rather than strongly deleterious \cite{Quandt2015}.
+
+The experimental progression therefore mirrors a useful hierarchy:
+\begin{center}
+\fbox{\begin{minipage}{0.90\linewidth}
+\centering
+history matters $\longrightarrow$ a fixed candidate behaves differently across histories\\[0.35em]
+$\longrightarrow$ specific historical causes can be reconstructed
+\end{minipage}}
+\end{center}
+
+\section{Why this is inherited adaptive extension rather than hysteretic retention}
+
+The organizational accessibility framework distinguishes inherited adaptive extension from hysteretic retention. The citrate case provides particularly strong evidence for the former.
+
+Inherited adaptive extension concerns situations in which retained organizational structure changes the starting condition for successor generation and reproductive history changes the exposure available for generating candidates. The LTEE replay experiment fits the first component directly. Evolution does not restart from the ancestral genotype each generation. Later populations generate variants from the genetic architecture accumulated over tens of thousands of previous generations.
+
+In the framework's compact formulation,
+\[
+0\longrightarrow\theta
+\]
+is replaced, after inheritance, by
+\[
+\theta\longrightarrow\theta'.
+\]
+Successful previous organization becomes the starting point for the next search.
+
+The LTEE case also naturally occupies the realization-level layer of the framework. The resource-network model in the accompanying theory describes within-organization dynamics, whereas inherited adaptive extension concerns populations of realizations that produce successors with inherited architectures. The framework explicitly separates these scales rather than claiming that its reaction-network ODE itself reproduces whole architectures.
+
+The LTEE therefore illustrates the realization-level part of the framework rather than validating the toy reaction model.
+
+It does \textbf{not}, however, provide a demonstration of hysteretic retention. The hysteretic mechanism requires an establishment--maintenance asymmetry associated with alternative attractors under the same external parameter conditions. The LTEE citrate experiments do not establish such a bifurcation structure. Historical potentiation is not equivalent to hysteresis.
+
+\section{Accessibility can close as well as open}
+
+Perhaps the most revealing aspect of the LTEE case is that historical accessibility to Cit$^{+}$ did not simply increase monotonically. Later work showed that ecological and genetic history could also prevent citrate innovation \cite{Leon2018}.
+
+Early in the population's history, lineages possessing relevant precursors could be eliminated through clonal competition before citrate utilization became established. In accessibility terms, this is naturally interpreted as operating substantially through the \emph{establishment component} of accessibility: possessing a potentially useful candidate does not guarantee that its descendants survive long enough for the innovation to become realized.
+
+At other historical points, subsequent genetic evolution reduced or eliminated previously existing potentiation. Still later changes could again make citrate utilization accessible \cite{Leon2018}. The qualitative history is therefore not monotonic. Schematically,
+\[
+\mathcal A_{t_1}(U)
+<
+\mathcal A_{t_2}(U)
+>
+\mathcal A_{t_3}(U)
+<
+\mathcal A_{t_4}(U).
+\]
+
+That matters because one of the central cautions of organizational accessibility is that historical organization need not increase future possibility. It can widen, narrow, redirect, or eliminate accessibility. The LTEE therefore supplies an unusually concrete empirical counterpart to the framework's general statement:
+\[
+\boxed{\text{Existence changes what existence can follow.}}
+\]
+It does not imply that existence always makes more existence possible.
+
+\section{What the citrate case does not test}
+
+The correspondence should not be made broader than the evidence allows.
+
+\textbf{Hysteretic retention is not tested.} No establishment--maintenance fold comparable to the framework's nonlinear reaction model has been demonstrated here.
+
+\textbf{Selection on evolvability is not established.} The experiments show historical variation in access to an innovation. That is not equivalent to demonstrating that a heritable modifier of the variation-generating process was retained because of its effects on future variation.
+
+\textbf{Compositional accessibility is not the central mechanism.} The citrate lineage evolved through vertical descent rather than through horizontal acquisition from an external donor pool or symbiotic partner. The framework's compositional extension concerns reuse of organization accumulated elsewhere, through processes such as recombination, horizontal transfer, symbiosis, or cross-scale incorporation.
+
+The LTEE citrate case is therefore not an example that conveniently demonstrates every part of the framework. Its relevance is narrower and unusually clean:
+\[
+\boxed{\text{historical inheritance altered access to a later innovation}.}
+\]
+
+\section{Limits of the analogy}
+
+Three limitations deserve emphasis.
+
+First, the LTEE is a haploid, asexual laboratory system, and the analysis here focuses on one population within a twelve-population experiment. The relevant genomic architectures can be sequenced, frozen, revived, reconstructed, and experimentally transformed. Most systems to which organizational accessibility might eventually be applied -- ecological communities, institutions, technological systems, multi-level biological organizations -- do not offer such unusually powerful experimental control.
+
+Second, the LTEE's frozen fossil record gives the case unusual identifiability. The organizational accessibility framework explicitly distinguishes defining a causal estimand from identifying it empirically. In many natural historical systems, an earlier architecture cannot simply be thawed and replayed.
+
+Third, the LTEE experiments predate the organizational accessibility framework. They were not designed to implement its notation or satisfy its criteria formally. The correct claim is therefore not that Lenski and colleagues ``tested organizational accessibility'' in those terms. Rather:
+
+\begin{quote}
+\textbf{their experiments instantiate causal comparisons closely corresponding to those subsequently formalized by the framework.}
+\end{quote}
+
+That independence is evidentially useful because the design was not constructed to make the framework succeed. At the same time, a prospective experiment designed around the formal estimands could test them more directly.
+
+\section{Conclusion}
+
+The organizational accessibility framework proposes that cumulative emergence should be treated as a causal question rather than inferred merely from historical succession. A retained feature counts as cumulatively important only when its prior realization and retention contribute measurably to access to a later, prespecified novel target.
+
+The LTEE citrate innovation provides an unusually strong retrospective example of this logic. Replay experiments show that different inherited historical states possess different access to the same later innovation. Genetic reconstruction goes further: when the same actualizing candidate is supplied experimentally, its effect depends on the historical architecture into which it is introduced. Later work shows that accessibility itself can narrow and reopen rather than simply expand.
+
+Together these findings support a restricted but important conclusion:
+\[
+\boxed{\text{previously realized organization can causally alter which later innovations are accessible}.}
+\]
+
+They do not demonstrate every mechanism in the organizational accessibility framework, nor do they establish a universal tendency toward cumulative complexity. What they do show is more specific and, for the framework, more useful:
+
+\begin{quote}
+\textbf{Historical accessibility is not merely a definable theoretical quantity. In at least one exceptionally tractable evolutionary system, something very close to it has already been experimentally manipulated and measured.}
+\end{quote}
+
+\begin{thebibliography}{9}
+
+\bibitem{Blount2008}
+Blount, Z. D., Borland, C. Z., and Lenski, R. E. (2008).
+Historical contingency and the evolution of a key innovation in an experimental population of \emph{Escherichia coli}.
+\emph{Proceedings of the National Academy of Sciences}, 105(23), 7899--7906.
+\href{https://doi.org/10.1073/pnas.0803151105}{doi:10.1073/pnas.0803151105}.
+
+\bibitem{Blount2012}
+Blount, Z. D., Barrick, J. E., Davidson, C. J., and Lenski, R. E. (2012).
+Genomic analysis of a key innovation in an experimental \emph{Escherichia coli} population.
+\emph{Nature}, 489, 513--518.
+\href{https://doi.org/10.1038/nature11514}{doi:10.1038/nature11514}.
+
+\bibitem{Quandt2015}
+Quandt, E. M., Gollihar, J., Blount, Z. D., Ellington, A. D., Georgiou, G., and Barrick, J. E. (2015).
+Fine-tuning citrate synthase flux potentiates and refines metabolic innovation in the Lenski evolution experiment.
+\emph{eLife}, 4, e09696.
+\href{https://doi.org/10.7554/eLife.09696}{doi:10.7554/eLife.09696}.
+
+\bibitem{Leon2018}
+Leon, D., D'Alton, S., Quandt, E. M., and Barrick, J. E. (2018).
+Innovation in an \emph{E. coli} evolution experiment is contingent on maintaining adaptive potential until competition subsides.
+\emph{PLoS Genetics}, 14(4), e1007348.
+\href{https://doi.org/10.1371/journal.pgen.1007348}{doi:10.1371/journal.pgen.1007348}.
+
+\end{thebibliography}
+
+\end{document}
