@@ -1,0 +1,1423 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.7cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\setlist{nosep,leftmargin=*}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\title{\textbf{From Self-Maintenance to Evolvability:\\Organizational Accessibility and a Dynamical Ratchet for Cumulative Organization}}
+\author{}
+\date{Revised working paper --- 6 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Why can organization accumulate rather than repeatedly being
+rediscovered from scratch? We propose that the relevant object is not
+organization alone, but the \textbf{accessibility of future
+organization}: the probability that persistent successor organizations
+can be reached from what currently exists within a finite horizon.
+Realized organization can itself become a causal determinant of this
+accessibility --- not merely influence the next state, which any
+dynamical system does, but alter the transition structure through which
+viable successor states become reachable.
+
+We construct a minimal account in four steps. First, an open production
+network can collectively replace the processes that constitute it,
+yielding an organization reproduction number, \(R_{\rm org}\), formally
+identical to a next-generation-matrix threshold: below one, organization
+introduced at low abundance decays; above one, it can establish. Second,
+a seed-dependent feedback can make an expanded organization easier to
+maintain than to establish. In the worked model, a rare process \(C\)
+cannot invade the resident \(A\)--\(B\) organization below
+\(J_{\rm inv}=1.0667\), yet once established the expanded
+\(A\)--\(B\)--\(C\) organization persists down to
+\(J_{\rm fold}=0.5978\). This produces bistability and hysteresis: at
+the same external environment, accessibility depends on the realized
+state and its basin of attraction. Third, in reproducing systems,
+retained organization becomes the inherited starting point of subsequent
+variation. Descendants explore modifications of an already viable
+structure rather than reconstructing viability de novo. Near a
+persistence boundary such as \(R_{\rm org}=1\), comparatively small
+adaptive changes may restore positive growth while the declining lineage
+still generates a finite number of reproductive and exploratory trials.
+This connects cumulative organization to inheritance, evolutionary
+rescue, and eco-evolutionary feedback. Fourth, architectures may
+themselves alter the distribution from which future variants are
+generated. If such variation-generating mechanisms are heritable and
+remain coupled to persistence or reproduction, the search process itself
+can evolve --- an evolvability feedback, which existing theory shows to
+be possible but conditional, not automatic.
+
+We formalize the common object as a finite-horizon accessibility kernel
+\(\mathcal A_T(S\mid\theta,z,E,q)\): the probability that a persistent
+successor organization in a set \(S\) is realized within time \(T\),
+conditional on current organization \(\theta\), its realized dynamical
+state \(z\), external environment \(E\), and the variant-generating
+mechanism \(q\). The mechanisms are mathematically distinct but share
+one structure: realized organization changes this kernel. It can change
+\textbf{what can remain}, \textbf{where future search begins and how
+many exploratory trials occur}, and \textbf{how candidate successors are
+generated}. This does not imply a force toward complexity or
+monotonically increasing organization. Accessibility may narrow as well
+as expand, and retained structures may be maladaptive. The framework
+instead provides a non-teleological route by which previous viability
+can become historically consequential: previous solutions can become
+part of the conditions from which subsequent solutions are generated.
+The central claim is therefore not that existence makes every future
+existence easier, but that \textbf{existence changes what existence can
+follow}; cumulative organization is the special case in which enough
+previous viability is retained that subsequent viable states need not
+repeatedly be reconstructed from scratch.
+\end{abstract}
+
+\section{The problem: not survival of parts, but continuation of
+organization}
+Organized systems persist despite continuous turnover. Molecules decay,
+cells die, organisms replace cells, institutions replace members,
+machines replace components, and computational processes terminate and
+restart. Persistence therefore need not mean persistence of the same
+material parts. It can instead mean persistence of a causal
+organization: a network of processes whose activity repeatedly produces
+the processes required for the network to continue.
+
+This shifts the explanatory target. The question is not merely why a
+component survives, but how a collection of locally acting processes can
+collectively cause its own continuation. Everything that follows in this
+paper is an attempt to answer one more general question that sits behind
+that one, which we make the paper's central object rather than a
+conclusion reached late: not how the present state influences the next
+state --- every dynamical system does that --- but
+
+\begin{quote}
+\textbf{how realized organization can endogenously change the
+accessibility of its own successors.}
+\end{quote}
+
+The argument proceeds in four steps, corresponding to a reproduction
+threshold plus three distinct mechanisms by which realized organization
+changes what is accessible next. The first step is addressed by a
+reproduction threshold for organization, which sets up the ``remain or
+not'' question that the three mechanisms subsequently modify. The first
+mechanism, retention, is addressed by a seed-dependent nonlinear
+extension that produces bistability and hysteresis (Section 6). The
+second, inheritance, is addressed by a rescue-type argument transplanted
+from population biology into the same reproduction-number formalism
+(Section 7). The third, evolvability, is presented as an explicit
+extension of the variant-generating mechanism itself (Section 8) --- a
+hypothesis, not a result already proved by the first two.
+
+The construction sits near several established traditions.
+Autocatalytic-set theory studies networks in which reactions are
+collectively sustained by catalysts produced within the network (Hordijk
+et al., 2010, 2012). Jain and Krishna showed how autocatalytic structure
+can emerge and reorganize in evolving catalytic networks (Jain and
+Krishna, 1998, 2001). Peng, Linderoth and Baum formalized seed-dependent
+autocatalytic systems that can remain active after a transient seed and
+can form hierarchical structures (Peng et al., 2022).
+Evolutionary-rescue theory studies how populations facing environmental
+deterioration can avoid extinction through adaptation before decline is
+complete (Bell, 2017; Ferriere and Legendre, 2013), and
+pathogen-emergence theory has shown that a reproduction number near its
+threshold, rather than far below it, is precisely where transmission
+chains lengthen and the opportunity for adaptive mutation grows (Antia
+et al., 2003; Woolhouse et al., 2005). The present contribution is
+narrower: we use an explicit resource balance, derive a
+reproduction-number threshold, show how one added feedback generates a
+backward-bifurcation geometry, show that a second and independent
+mechanism operates near that same threshold without requiring the
+feedback loop at all, and then use both, plus a third hypothesized
+mechanism, to define what accessibility means for a self-maintaining
+organization.
+
+\subsection{Organizational
+accessibility}
+The common object underlying the mechanisms developed below is
+\textbf{organizational accessibility}. To keep architecture distinct
+from instantaneous state, let \(\theta\) denote organizational structure
+--- for example, which processes and interactions are available --- and
+let \(z\) denote the current dynamical realization of that structure,
+such as the abundance vector \((a,b,c,r)\). Let \(E\) denote the
+external environment (here including \(J,\ell,d\)), and let \(q\) denote
+the mechanism by which candidate successor organizations are generated.
+
+Rather than using ``accessibility'\,' interchangeably for probability,
+rate, cost, and difficulty, we define a finite-horizon transition
+kernel. For a set \(S\) of candidate successor organizations,
+
+\[
+\boxed{
+\mathcal A_T(S\mid\theta,z,E,q)
+=
+\Pr\!\left(\text{a persistent successor in }S\text{ is realized by time }T\mid\theta,z,E,q\right)
+}
+\tag{0}
+\]
+
+The kernel may of course be induced by underlying rates, energetic or
+material costs, mutation or recombination probabilities, developmental
+constraints, and basin geometry. Those quantities are mechanisms
+determining \(\mathcal A_T\); they are not alternative meanings of it.
+
+The central claim of this paper is not that organization necessarily
+increases, nor that successful systems anticipate useful futures. It is
+that \textbf{realized organization can itself become a causal
+determinant of the transition kernel over future viable organization}.
+The three mechanisms developed below modify that kernel through
+different causal channels:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Mechanism I --- retention} (Section 6). At identical external
+  conditions, different realized states can lie in different basins of
+  attraction. An established organization can therefore remain
+  accessible where the same organization could not be established from
+  rarity. Realization changes \textbf{what can remain}.
+\item
+  \textbf{Mechanism II --- inherited adaptive extension} (Section 7).
+  Reproduction with inheritance makes the current organization the base
+  point of future variation rather than the organization-free state.
+  Continued reproduction also supplies a finite number of exploratory
+  trials before extinction. Realization changes \textbf{where the next
+  search begins and how many attempts are available}.
+\item
+  \textbf{Mechanism III --- evolvability} (Section 8). Organization can
+  alter \(q\), the mechanism that generates, connects, tests, or
+  preserves candidate successors. Realization changes \textbf{how the
+  next search is performed}.
+\end{itemize}
+
+None of these mechanisms need favour greater complexity, adaptability,
+or persistence. They may preserve maladaptive states, constrain
+exploration, remove functions, or favour simplification. Their common
+feature is descriptive rather than normative:
+
+\[
+\boxed{\text{Realized organization transforms the accessibility of organization that can follow it.}}
+\]
+
+The transformation is recursive because a successor that persists
+becomes the current organization and state from which later
+accessibility is determined:
+
+\[
+(\theta_t,z_t)
+\longrightarrow
+\mathcal A_T(\cdot\mid\theta_t,z_t,E_t,q_t)
+\longrightarrow
+(\theta_{t+1},z_{t+1})
+\longrightarrow
+\mathcal A_T(\cdot\mid\theta_{t+1},z_{t+1},E_{t+1},q_{t+1})
+\longrightarrow\cdots.
+\]
+
+History therefore changes not merely the state of the system, but the
+transition structure available from that state. We define a
+\textbf{cumulative organizational ratchet} as a history-dependent
+transformation of this accessibility kernel in which enough previously
+achieved viability is retained that subsequent viable organization need
+not be rediscovered de novo.
+
+Sections 2--3 derive the reproduction threshold determining whether
+organization is realized at all. Sections 6--8 then develop three
+distinct mechanisms by which realized organization feeds back into
+future accessibility.
+
+\section{A resource-limited self-maintaining production
+network}
+Let \(x_i \geq 0\) denote the abundance of executing process type \(i\),
+and let \(r \geq 0\) denote activated substrate. The nonnegative matrix
+\(B\) contains local production relations: \(B_{ij}\) is the rate at
+which process \(j\) produces process \(i\) per unit substrate and
+producer abundance. Each new unit consumes one unit of substrate.
+Existing processes are lost at rate \(d > 0\). The environment supplies
+activated substrate at rate \(J\), while unused substrate is lost at
+rate \(\ell r\). The model is
+
+\[
+\dot{x} = rBx - dx, \tag{1}
+\] \[
+\dot{r} = J - \ell r - r\mathbf{1}^T Bx. \tag{2}
+\]
+
+The same production term enters positively in the process balance and
+negatively in the substrate balance. Hence this is a replacement model
+rather than a model in which producers are immortal. Defining
+
+\[
+T = r + \sum_i x_i,
+\]
+
+we obtain
+
+\[
+\dot{T} = J - \ell r - d\sum_i x_i \leq J - \min(\ell, d)T.
+\]
+
+Thus total activated material remains bounded, and when \(J = 0\) the
+active organization ultimately disappears. The organization is causally
+closed only in the limited sense that its processes can regenerate one
+another; energetically and materially it remains open.
+
+This distinction is important. The model is not a derivation from full
+chemical thermodynamics. A real molecular implementation would require
+stoichiometric, kinetic and free-energy constraints to be specified
+separately. Thermodynamic work on molecular replicators makes clear that
+replication and selection carry energetic requirements rather than
+escaping them (Kolchinsky, 2025).
+
+\section{A reproduction number for
+organization}
+With no active organization, the substrate converges to
+
+\[
+r_0 = \frac{J}{\ell}.
+\]
+
+Near this organization-free equilibrium, the process dynamics linearize
+to
+
+\[
+\dot{x} = (r_0 B - dI)x.
+\]
+
+Let \(\rho(B)\) denote the spectral radius of \(B\). The leading growth
+rate is
+
+\[
+s = r_0 \rho(B) - d,
+\]
+
+which motivates the dimensionless organization reproduction number
+
+\[
+R_{\rm org} = \frac{J\rho(B)}{\ell d}. \tag{3}
+\]
+
+If \(R_{\rm org} < 1\), sufficiently small organization decays. If
+\(R_{\rm org} > 1\), it can grow from low abundance. For irreducible
+\(B\), let \(p\) be the positive Perron eigenvector normalized by
+\(\mathbf{1}^T p = 1\) and let \(\lambda = \rho(B)\). The positive
+equilibrium is
+
+\[
+r^* = \frac{d}{\lambda}, \qquad x^* = Np, \qquad N = \frac{J - \ell d/\lambda}{d},
+\]
+
+which exists precisely when \(R_{\rm org} > 1\).
+
+The same calculation can be written in next-generation-matrix form (van
+den Driessche and Watmough, 2002). At the organization-free equilibrium,
+
+\[
+F = r_0 B, \qquad V = dI,
+\]
+
+so
+
+\[
+K = FV^{-1} = \frac{r_0}{d}B, \qquad \rho(K) = \frac{J\rho(B)}{\ell d} = R_{\rm org}.
+\]
+
+The vocabulary is borrowed from infectious-disease dynamics, but the
+interpretation is generic: \(R_{\rm org}\) asks whether one generation
+of executing processes collectively produces more than one replacement
+generation before being lost.
+
+For the two-process cycle
+
+\[
+B = \begin{pmatrix} 0 & \alpha \\ \beta & 0 \end{pmatrix},
+\]
+
+we have \(\rho(B) = \sqrt{\alpha\beta}\). Neither process need reproduce
+itself directly. A closed return path across multiple process types can
+be enough. If the return path is broken so that the matrix is acyclic,
+the spectral radius falls to zero. This isolates the causal object of
+interest: not activity alone, but a route from present activity back to
+renewed productive capacity.
+
+The positive equilibrium of the base model appears continuously at
+\(R_{\rm org} = 1\):
+
+\[
+N = \frac{J}{d}\left(1 - \frac{1}{R_{\rm org}}\right).
+\]
+
+This is the expected forward transcritical geometry. Establishment and
+loss occur at the same threshold in the base model. Section 6 shows how
+nonlinear feedback can separate establishment from maintenance; Section
+7 then shows a different effect, in which inheritance and continued
+reproduction alter successor accessibility even without bistability.
+
+\section{An innovation must pay its opportunity
+cost}
+A new process is not automatically an improvement. To make this
+explicit, begin with \(A \to B\) and \(B \to A\) at unit coefficient.
+Let \(A\) divert a fraction \(u\) of its production capacity from \(B\)
+to a new process \(C\), while \(C\) contributes back to production of
+\(A\) with coefficient \(v\):
+
+\[
+B(u,v) = \begin{pmatrix} 0 & 1 & v \\ 1-u & 0 & 0 \\ u & 0 & 0 \end{pmatrix}, \qquad 0 < u < 1,\ v \geq 0.
+\]
+
+The dominant eigenvalue is
+
+\[
+\lambda(u,v) = \sqrt{1-u+uv} = \sqrt{1+u(v-1)}.
+\]
+
+Hence the new process lowers the external supply required for
+maintenance only when \(v > 1\). If \(v < 1\), the diversion to \(C\)
+reduces collective replacement capacity. The model therefore contains no
+rule that rewards novelty, diversity, or complexity. An addition must
+causally return enough productive benefit to offset its cost.
+
+This distinction matters for the later argument. The ratchets identified
+below are not generated by a preference for larger networks. They are
+generated by a change in the dynamical conditions of persistence ---
+either because a new feedback loop closes (Sections 5--6), or because
+reproduction at scale changes the population of variants available for
+the \emph{existing} loop to be locally re-tuned (Section 7).
+
+\section{A seed-dependent extension: history enters the
+state}
+A fixed linear production matrix does not capture an innovation that
+becomes self-maintaining only after it is present. We therefore consider
+a nonlinear extension with reactions represented by
+
+\[
+R + B \to A + B, \qquad R + A \to A + B, \qquad R + A + C \to A + 2C, \qquad R + C \to A + C.
+\]
+
+The corresponding normalized equations are
+
+\[
+\dot a = rb + vrc - a, \tag{4}
+\] \[
+\dot b = ra - b, \tag{5}
+\] \[
+\dot c = urac - c, \tag{6}
+\] \[
+\dot r = J - r - (rb + vrc + ra + urac). \tag{7}
+\]
+
+All production consumes substrate, and \(\dot T = J - T\) for
+\(T = r+a+b+c\).
+
+The \(A\)--\(B\) subsystem can exist without \(C\). Process \(C\),
+however, reproduces only when both \(A\) and \(C\) are already present,
+while \(C\) contributes back to \(A\). A one-off seed can therefore
+activate a loop that was dynamically inaccessible from \(c=0\).
+
+For \(u=30\) and \(v=2\), numerical experiments give the following
+controlled comparison. Start the \(A\)--\(B\) system at its equilibrium
+with \(J=1.2\). At time \(t=50\), introduce \(10^{-4}\) of \(C\) while
+subtracting the same amount from resource. At \(t=150\), lower supply to
+\(J=0.9\). With the \(C \to A\) return path intact, \(A\), \(B\), and
+\(C\) approach a positive equilibrium. If \(C\) is never seeded, the
+organization disappears after the supply reduction. If \(C\) is seeded
+but its return effect on \(A\) is removed (\(v=0\)), the organization
+also disappears. Thus the persistent difference is carried by the newly
+established feedback architecture, not by continuing external supply of
+\(C\).
+
+The seed need not be deliberately introduced. One may add a rare local
+reaction \(R+A \to A+C\) and treat its occurrence stochastically. Once a
+rare event creates \(C\), the ordinary deterministic dynamics can
+amplify it. This does not explain why such a reaction must exist in
+nature; it shows only that an external evaluator that recognizes and
+installs the ``better'' organization is not logically required.
+
+\section{Mechanism I --- retention: the backward bifurcation and
+hysteretic
+accessibility}
+The key result is that the threshold for establishing \(C\) is not the
+same as the threshold for maintaining the \(C\)-containing state.
+
+For \(c>0\), the equilibrium conditions of Eq. (7) imply
+
+\[
+a = \frac{1}{ur}, \qquad b = \frac{1}{u}, \qquad c = \frac{1-r^2}{uvr^2}, \qquad 0<r<1.
+\]
+
+The associated resource supply is
+
+\[
+J(r) = r + \frac{1/r + 1 + (1/r^2-1)/v}{u}. \tag{8}
+\]
+
+The fold of this positive equilibrium branch satisfies
+
+\[
+\frac{dJ}{dr}=0 \iff ur^3 - r - \frac{2}{v} = 0.
+\]
+
+For \(u=30\) and \(v=2\),
+
+\[
+r_{\rm fold} \approx 0.356236, \qquad J_{\rm fold} \approx 0.597806.
+\]
+
+Now examine invasion from the resident \(A\)--\(B\) state. For \(J>1\),
+that equilibrium has
+
+\[
+r^*=1, \qquad a^*=b^*=\frac{J-1}{2}.
+\]
+
+At very small \(c\),
+
+\[
+\dot c \approx (ur^*a^*-1)c,
+\]
+
+so the type-reproduction number of \(C\) is
+
+\[
+R_C = ur^*a^* = u\frac{J-1}{2}.
+\]
+
+The invasion threshold \(R_C=1\) is therefore
+
+\[
+J_{\rm inv} = 1+\frac{2}{u} = 1.066667. \tag{9}
+\]
+
+This is the same logic used for type-specific invasion numbers in
+heterogeneous epidemic systems (Heesterbeek and Roberts, 2007).
+
+The striking fact is
+
+\[
+J_{\rm fold} < 1 < J_{\rm inv}.
+\]
+
+The positive \(C\)-containing equilibrium branch extends backward from
+the invasion point to much lower values of \(J\), turning at the fold.
+This is the characteristic geometry called a backward bifurcation in
+epidemiological models with sub-threshold endemic equilibria
+(Kribs-Zaleta and Velasco-Hernández, 2000; van den Driessche and
+Watmough, 2002).
+
+The stable states can be summarized as follows:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Supply range & Stable unexpanded state & Stable expanded state \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(J < J_{\rm fold}\) & organization-free & no \\
+\(J_{\rm fold} < J < 1\) & organization-free & \(A\)--\(B\)--\(C\) \\
+\(1 < J < J_{\rm inv}\) & \(A\)--\(B\) & \(A\)--\(B\)--\(C\) \\
+\(J > J_{\rm inv}\) & \(A\)--\(B\) unstable to rare \(C\) &
+\(A\)--\(B\)--\(C\) \\
+\end{longtable}
+
+Thus, at \(J=0.9\), an unexpanded system decays to the organization-free
+state while an already established \(A\)--\(B\)--\(C\) organization
+persists. At \(J=1.02\), a small \(C\) introduced into the \(A\)--\(B\)
+state cannot invade, but an already established \(A\)--\(B\)--\(C\)
+state can persist. In both cases the \textbf{external environment is
+identical}, yet the long-term outcome differs with realized state and
+history. This is hysteresis.
+
+\begin{quote}
+An organizational innovation exhibits \textbf{Mechanism I (retention)}
+when the conditions required to establish it are stricter than the
+conditions required to maintain it once established.
+\end{quote}
+
+In terms of the accessibility kernel, Mechanism I does \textbf{not} act
+by changing \(E\). Its scientific content is precisely that \(E\) may be
+held fixed while \(\mathcal A_T\) differs because the realized state
+\(z\) occupies a different basin. The backward bifurcation supplies one
+explicit geometry for this state-dependent accessibility. The new loop
+changes the persistence landscape; once the expanded state exists,
+reversing the environmental change that permitted establishment does not
+necessarily remove it. This is stronger than saying that positive
+feedback stabilizes a system. It is a claim that realized organization
+changes what remains accessible under the same external conditions.
+
+\section{Mechanism II --- inherited adaptive extension and rescue
+near
+threshold}
+Section 6 shows one route by which realized organization changes future
+accessibility: the same external environment can support different
+persistent outcomes because the realized state occupies a different
+basin. Mechanism II is different. It requires neither a backward
+bifurcation nor multiple attractors. It arises whenever organization is
+reproduced with inheritance and variation.
+
+Two contributions should be distinguished. \textbf{Inheritance changes
+the origin of search:} descendants are generated as modifications of an
+already viable organization rather than from the organization-free
+state. \textbf{Continued reproduction changes the amount of search:}
+while the lineage remains extant, it generates a finite number of trials
+from which a viable successor may appear. Near a persistence boundary,
+these effects combine with the fact that only a small adaptive
+displacement may be required to recover positive growth.
+
+\subsection{Establishment changes cumulative exploratory
+opportunity}
+Consider first a simple subcritical branching process with mean
+reproduction number \(R<1\), initiated by one founder. The expected
+\textbf{total cumulative progeny}, including the founder, is
+
+\[
+E[N_{\rm tot}] = \frac{1}{1-R}. \tag{10}
+\]
+
+At \(R=0.5\), \(E[N_{\rm tot}]=2\); at \(R=0.9\), it is \(10\); at
+\(R=0.99\), it is \(100\). As \(R\to1^-\), expected cumulative progeny
+per founder grows sharply. This does \textbf{not} imply that the
+standing population at a given moment is large, nor that standing
+variation itself scales as \(1/(1-R)\). It means that a lineage
+initiated near criticality is expected to generate more cumulative
+reproductive events before extinction than one far below threshold.
+
+This motivates a more general quantity. Let \(N(t)\) denote the
+abundance or number of active realizations of an organization, and let
+\(\nu(t)\) denote the rate per active realization at which relevant
+candidate variants are generated. Define the \textbf{exploratory
+opportunity} over horizon \(T\) as
+
+\[
+\boxed{
+\Omega_T = \int_0^T N(t)\,\nu(t)\,dt.
+}
+\tag{11}
+\]
+
+\(\Omega_T\) is not an independent argument that must be added to
+\(\mathcal A_T\); it is an intermediate quantity generated by
+\((\theta,z,E,q)\) and helps determine the kernel. In the simple
+branching-process case with approximately constant per-reproduction
+variant probability, Eq. (10) provides the corresponding scaling of
+cumulative opportunity near \(R=1\).
+
+This is the connection emphasized in pathogen-emergence theory: even
+while \(R_0<1\), transmission chains become longer on average as the
+threshold is approached, creating more opportunities for adaptive
+mutations to arise before extinction (Antia et al., 2003; Woolhouse et
+al., 2005). The same abstract logic applies to any reproducing
+organization for which repeated executions provide opportunities for
+inherited modification.
+
+\subsection{Deterioration from above: distance to positive
+growth}
+Now consider an organization that has already been established and whose
+environment deteriorates. Write the resident continuation number as
+
+\[
+R_{\rm res}=1-\varepsilon, \qquad 0<\varepsilon<1.
+\]
+
+A variant with multiplicative reproductive advantage \(s\) has
+approximately
+
+\[
+R_{\rm var}=(1-\varepsilon)(1+s).
+\]
+
+The variant restores positive growth when
+
+\[
+(1-\varepsilon)(1+s)>1
+\quad\Longleftrightarrow\quad
+s>\frac{\varepsilon}{1-\varepsilon}
+\approx \varepsilon
+\qquad(\varepsilon\ \text{small}).
+\tag{12}
+\]
+
+Thus a resident only slightly below its persistence boundary may require
+only a small accessible improvement to produce a growing successor,
+whereas a resident far below threshold requires a much larger change.
+This is a statement about distance to the growth boundary, not about
+purpose or effort.
+
+A more general local form makes the geometry explicit. Let
+\(R(\theta,E)\) denote continuation of organization \(\theta\) in
+environment \(E\), and suppose \(R(\theta,E)=1-\varepsilon\). For a
+nearby variant \(\theta'=\theta+\delta\theta\),
+
+\[
+R(\theta+\delta\theta,E)
+\approx
+1-\varepsilon
++
+\nabla_\theta R(\theta,E)\cdot\delta\theta.
+\]
+
+Whenever locally accessible variation includes a favourable direction,
+positive growth is restored if
+
+\[
+\nabla_\theta R(\theta,E)\cdot\delta\theta>\varepsilon.
+\tag{13}
+\]
+
+This identifies a geometric opportunity but not a guarantee. If
+accessible variants are constrained, the local gradient is negligible,
+adaptation requires crossing a fitness valley, or decline is too rapid,
+rescue may fail.
+
+The classical term for successful recovery of a declining lineage
+through adaptation before extinction is \textbf{evolutionary rescue}
+(Bell, 2017). Its probability depends jointly on initial abundance,
+standing variation, variant-generation rates, the distribution of
+effects, the size of the adaptive displacement required, and the time
+available before extinction. In the present language, the relevant point
+is that decline is not instantaneous disappearance: a finite
+\(\Omega_T\) remains during which \(\mathcal A_T\) may assign non-zero
+probability to a persistent successor.
+
+\subsection{Illustration: an eco-evolutionary feedback
+loop}
+A biological system that makes this feedback unusually visible is the
+emergence and subsequent evolution of a pathogen in an initially naive
+host population. Reviews of SARS-CoV-2 evolution describe how increasing
+population immunity changed the selective environment experienced by
+later lineages, making antigenic novelty and immune escape important
+components of relative fitness alongside intrinsic transmission-related
+traits (Carabelli et al., 2023). In the present terms, prior circulation
+altered the ecological environment; that environment changed the
+continuation number of resident lineages; the still-existing viral
+population generated further variation; and some descendants occupied
+regions of phenotype space with renewed positive growth. This is an
+eco-evolutionary feedback because consequences of reproduction alter the
+environment that subsequently filters descendants (Ferriere and
+Legendre, 2013). It is an illustration of the accessibility logic, not a
+claim that the toy reaction model of Sections 2--6 is a mechanistic
+model of SARS-CoV-2 evolution.
+
+\subsection{Inheritance changes the origin of
+search}
+The deeper asymmetry does not depend on rescue. A first viable
+organization may require a rare transition through a large configuration
+space. Once it exists and is faithfully enough inherited, descendants do
+not repeat that search from the organization-free state. They begin from
+the realized organization:
+
+\[
+\theta \longrightarrow \theta+\delta\theta
+\]
+
+rather than
+
+\[
+0 \longrightarrow \theta+\delta\theta.
+\]
+
+Previously solved viability constraints are therefore part of the
+initial condition of subsequent search unless later variation destroys
+them. This does not mean every successor is better or more complex. It
+means that successor generation is conditioned on what survived.
+
+\[
+\boxed{\text{Successful previous organization becomes the starting point for the next search.}}
+\]
+
+This is inheritance-mediated path dependence, not hysteresis in the
+strict dynamical-systems sense. Its consequence for accessibility is
+that the kernel is centred on an already realized organization and is
+supplied by a history-dependent amount of exploratory opportunity
+\(\Omega_T\).
+
+\subsection{One cumulative ratchet, two mechanisms so far, and one
+common
+object}
+Mechanisms I and II are not two unrelated ``ratchets.'\,' They are two
+mathematically distinct ways in which realized organization makes future
+accessibility history-dependent.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Mechanism
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What history changes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Accessibility effect
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Formal object
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+I --- retention & basin occupancy and persistence geometry at fixed
+\(E\) & what can remain & state \(z\) and basin structure \\
+II --- inherited adaptive extension & inherited base point and
+cumulative exploratory opportunity & where search begins and how many
+trials occur & \(\theta\) and \(\Omega_T\) \\
+III --- evolvability & generator of candidate successors & how search is
+performed & \(q(\theta'\mid\theta)\) \\
+\end{longtable}
+
+Mechanism I can retain an organization under conditions that would not
+establish it from rarity. Mechanism II can then allow that retained
+organization to generate local successors as conditions continue to
+change, without requiring another bistable branch. Their combination
+gives
+
+\[
+\begin{aligned}
+\text{establishment} &\to \text{retention} \to \text{reproduction} \to \text{exploratory opportunity} \\
+&\to \text{inherited variation} \to \text{successful successor} \to \text{renewed persistence} \to \cdots
+\end{aligned}
+\]
+
+Nothing in this sequence implies that the system senses its distance to
+a threshold or deliberately increases variation when threatened. The
+relevant quantities arise from ordinary reproduction, turnover,
+variation, and differential continuation. Near a persistence boundary,
+the \textbf{filter} on already generated variation changes because small
+positive differences in continuation become consequential. The kernel
+may widen, narrow, or collapse; the theory predicts historical
+dependence, not guaranteed improvement.
+
+\section{Mechanism III --- evolvability: from ratchets of
+organization to a ratchet of
+search}
+Mechanisms I and II modify future accessibility without changing the
+variant-generating mechanism itself: the first through state-dependent
+persistence, the second through inherited starting points and
+history-dependent exploratory opportunity. Neither establishes that the
+system will become progressively better at generating viable successors.
+That additional step requires the generator of candidate organizations
+itself to vary.
+
+That additional step requires variation in the innovation-generating
+architecture itself. Let \(\theta\) denote the current organization ---
+for example its production matrix, nonlinear interaction coefficients,
+modular structure, connection rules, or learning rules. Let \(m\) denote
+a modifier that changes how candidate variants \(\theta'\) are generated
+from \(\theta\), represented by a kernel
+
+\[
+q_m(\theta' \mid \theta).
+\]
+
+A modifier may change mutation rates, recombination, exploratory
+connectivity, modularity, the probability that new feedback paths are
+formed, the cost of testing variants, or the ability to preserve
+successful configurations. The generator \(q_m\) determines the
+distribution of candidate successors, but not by itself how many
+candidate-generating events occur. The realized history also determines
+\(N(t)\) and therefore the exploratory opportunity \(\Omega_T\) of Eq.
+(11). Evolvability can thus change accessibility by altering the
+distribution of candidate successors, while ecology and persistence
+determine how many draws from that distribution occur.
+
+Define a persistence-relevant quantity \(\Phi(\theta)\), such as the
+range of external conditions over which the organization remains stable,
+the expected duration of persistence under an environment distribution,
+or a multi-dimensional measure combining replacement capacity with
+resource cost. One possible local measure of innovation yield is
+
+\[
+E(m \mid \theta) = \int \left[\Phi(\theta') - \Phi(\theta)\right]_+ q_m(\theta' \mid \theta)\, d\theta' - c(m), \tag{14}
+\]
+
+where \(c(m)\) is the direct cost of the modifier. Equation (14) is not
+a new biological law; it is a bookkeeping device that separates three
+quantities that are otherwise easily conflated: the rate of variation,
+the probability that variation improves persistence, and the cost of
+generating or testing it.
+
+If a modifier that increases \(E\) is retained together with the
+successful organizations it helps generate, then a third feedback
+becomes possible:
+
+\[
+\begin{aligned}
+\text{innovation-generating architecture}
+&\to \text{more retainable innovations}\\
+&\to \text{greater persistence or reproduction}\\
+&\to \text{retention of the architecture.}
+\end{aligned}
+\]
+
+The system can then, in a precise sense, become better at becoming
+differently organized. This is closely related to the established
+concept of evolvability: the capacity to generate heritable, selectable
+phenotypic variation (Wagner and Altenberg, 1996; Gerhart and Kirschner,
+2007). Theory and experiments show that mutation rates, recombination,
+robustness, modularity, and genotype--phenotype structure can affect
+evolvability. Models have demonstrated conditions under which
+evolvability can itself be indirectly selected (Earl and Deem, 2004).
+
+However, this step must not be treated as automatic. Selection for
+future adaptive capacity is generally indirect and can be weaker or more
+restrictive than direct selection on present performance (Díaz Arenas
+and Cooper, 2013; Wagner, 2022). Recent reviews continue to distinguish
+clearly between a trait affecting evolvability and selection acting
+because of that effect (Pélabon et al., 2025).
+
+This caveat strengthens the present argument. We do not need to assert
+that ``systems seek complexity'' or that increased variation is
+intrinsically advantageous. More variation can be destructive. Excessive
+connectivity can propagate failure. Strong feedback can lock in
+maladaptive states. An effective ratchet --- of any of the three kinds
+identified above --- can preserve harmful organization as easily as
+beneficial organization relative to a chosen external criterion.
+
+Mechanism III is therefore more specific than ``systems get better at
+adapting'':
+
+\begin{quote}
+Self-maintaining systems can, under conditions that couple
+innovation-generating mechanisms to the persistence or reproduction of
+the organizations they help create, evolve mechanisms that increase the
+rate at which maintainable innovations are generated, tested,
+integrated, and retained.
+\end{quote}
+
+This gives a hierarchy of causal closure without invoking foresight, in
+which Mechanisms I, II, and III occupy successive levels:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Level 1:} processes produce processes.
+\item
+  \textbf{Level 2:} a network collectively maintains its organization
+  (\(R_{\rm org}\)).
+\item
+  \textbf{Level 3 --- Mechanism I:} new feedback changes the conditions
+  of its own persistence, i.e.~the dynamical basin (structural
+  hysteresis, Section 6).
+\item
+  \textbf{Level 4 --- Mechanism II:} reproduction with inheritance
+  changes the base point of successor search, while continued activity
+  determines the cumulative exploratory opportunity available before
+  extinction (inheritance-mediated path dependence coupled to
+  evolutionary rescue, Section 7).
+\item
+  \textbf{Level 5 --- Mechanism III:} the organization changes how new
+  variants are generated and retained --- the variation operator itself.
+\item
+  \textbf{Level 6:} those innovation-generating mechanisms themselves
+  vary and are retained differentially.
+\end{itemize}
+
+At Level 6, the system can strengthen the process by which it
+strengthens itself. Read down this list, each level changes the
+finite-horizon accessibility kernel through a different causal channel:
+whether organization persists at all; which basin is occupied at fixed
+environment; which inherited organization serves as the base point of
+variation and how much exploratory opportunity its history supplies; how
+candidate successors are generated; and finally how that generator
+itself changes. This is a plausible mechanism for cumulative
+organization, but the top of the hierarchy remains a hypothesis until
+the modifier dynamics are explicitly modelled and tested.
+
+\section{Early-warning signatures of the
+thresholds}
+The framework also makes dynamical predictions about loss of resilience.
+Near a stable equilibrium \(z^*\), add weak stochastic forcing and
+linearize:
+
+\[
+\dot{\delta z} = A(J)\delta z + \sigma \xi(t).
+\]
+
+Projecting onto the slow eigenmode with eigenvalue
+\(\lambda_{\rm slow}(J)<0\) yields an Ornstein--Uhlenbeck approximation.
+Under standard assumptions,
+
+\[
+{\rm Var}(\delta z) \propto \frac{1}{|\lambda_{\rm slow}|}, \qquad \rho(\Delta t) \approx 1 - |\lambda_{\rm slow}|\Delta t.
+\]
+
+Thus, as the dominant restoring eigenvalue approaches zero, recovery
+slows, variance increases, and lagged autocorrelation rises: the
+standard critical-slowing-down picture (Scheffer et al., 2009; Dakos et
+al., 2012).
+
+The two thresholds of Section 6 have different local scalings. For the
+base transcritical threshold,
+
+\[
+|\lambda_{\rm slow}| \propto |R_{\rm org}-1|, \qquad {\rm Var} \propto |R_{\rm org}-1|^{-1}.
+\]
+
+For the stable \(C\)-containing branch approaching the fold from above,
+
+\[
+|\lambda_{\rm slow}| \propto \sqrt{J - J_{\rm fold}}.
+\]
+
+Numerical evaluation of the stable branch gives a fitted exponent of
+approximately 0.515, consistent with the generic square-root scaling of
+a saddle-node. Hence
+
+\[
+{\rm Var} \propto (J-J_{\rm fold})^{-1/2}.
+\]
+
+Two corrections are worth making explicit. First, the stable branch must
+be used for the return-to-equilibrium interpretation; the opposite side
+of the fold is unstable. Second, \(1/\sqrt{\Delta J}\) diverges less
+strongly than \(1/\Delta J\) as \(\Delta J \to 0\). Therefore the fold
+does not imply a stronger variance divergence at the same numerical
+distance to threshold. What differs is the local scaling law and, more
+generally, the geometry of approach to the transition.
+
+Mechanism II adds a third, statistical rather than spectral, signature.
+Equation (10) predicts expected cumulative progeny in a simple
+subcritical branching process, not instantaneous standing population.
+More generally, Eq. (11) motivates measuring exploratory opportunity
+\(\Omega_T\): the cumulative number of relevant variant-generating
+trials available while the resident remains extant. All else equal,
+lineages nearer the persistence boundary can combine a larger expected
+cumulative reproductive opportunity per founder with a smaller adaptive
+displacement required for recovery. Empirical tests should therefore
+manipulate or estimate both threshold distance and \(\Omega_T\), rather
+than treating proximity to \(R=1\) as a proxy for population size.
+
+These predictions are falsifiable but should not be oversold. Empirical
+early-warning signals are sensitive to noise structure, sampling,
+nonstationarity, rates of parameter change, and the observability of the
+slow mode. The equations predict what this model would do; they do not
+establish that a real biological, social, technological, or AI system is
+governed by the same local normal form.
+
+\section{What the mechanism explains --- and what it does
+not}
+The construction supports six claims.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Collective self-maintenance is possible without a central
+  controller.} Local production processes can jointly replace the
+  processes that execute the network.
+\item
+  \textbf{Self-maintenance has a threshold.} The base model has a
+  reproduction number \(R_{\rm org}\) that separates decay from
+  establishment at low abundance.
+\item
+  \textbf{An innovation can alter its own persistence conditions.} A new
+  feedback loop can produce bistability and hysteresis, making the
+  innovation easier to maintain than to establish (structural
+  hysteresis).
+\item
+  \textbf{An established organization can have greater access to viable
+  successors than a de novo system, even without any new bistable
+  feedback loop.} Inheritance supplies an already-functional starting
+  point; continued reproduction supplies a finite exploratory
+  opportunity \(\Omega_T\); and proximity to the persistence boundary
+  can reduce the adaptive displacement needed to restore positive
+  growth.
+\item
+  \textbf{A temporary event can become embodied in persistent
+  organization.} The state of the network can therefore carry a minimal
+  form of history or memory.
+\item
+  \textbf{There is a logically coherent route to third-order
+  improvement.} If mechanisms that generate and retain variants
+  themselves vary and remain coupled to the persistence of their
+  descendants, evolvability can become part of the feedback structure.
+\end{enumerate}
+
+The construction does not show that:
+
+\begin{itemize}
+\tightlist
+\item
+  complexity must increase monotonically;
+\item
+  every added process is useful;
+\item
+  every persistent process is useful for the whole network;
+\item
+  more variation, connectivity, or feedback is always advantageous;
+\item
+  backward bifurcation is necessary for all evolutionary ratchets, or
+  that it is the only mechanism the term should be reserved for;
+\item
+  inherited adaptive extension or evolutionary rescue will succeed
+  whenever an organization approaches its threshold --- the opportunity
+  window can close before a sufficient successor is generated (Bell,
+  2017);
+\item
+  evolvability will always be directly or indirectly selected;
+\item
+  the present toy reactions are realized in any particular organism,
+  ecosystem, institution, robot, or AI system;
+\item
+  the number of process types is a sufficient measure of biological or
+  informational complexity.
+\end{itemize}
+
+Indeed, the same model class contains simplification: a sufficiently
+fast self-reproducing competitor can displace a multi-process network,
+and a resident pushed far below threshold before deterioration is caught
+will decay regardless of how large its standing population once was. The
+framework therefore supplies mechanisms for cumulative organization, not
+a theorem that cumulative organization is inevitable.
+
+\section{A research programme for cumulative
+organization}
+The argument becomes scientifically useful when translated into
+measurements. For a candidate real system, one should identify:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  the processes or process classes whose continuation is at stake;
+\item
+  the resources consumed in their replacement;
+\item
+  the directed causal effects by which one process increases the future
+  abundance or execution of another;
+\item
+  the replacement or invasion threshold for the existing organization;
+\item
+  a candidate innovation and its opportunity cost;
+\item
+  whether the innovation creates a return path into the organization
+  that produces or maintains it;
+\item
+  whether the threshold for invasion differs from the threshold for loss
+  once established (structural hysteresis);
+\item
+  whether current state depends on historical seeding or initial
+  conditions under identical external conditions;
+\item
+  how cumulative exploratory opportunity \(\Omega_T\) changes with
+  abundance, turnover, variant-generation rate, and distance from the
+  persistence boundary;
+\item
+  whether recovery from deterioration depends jointly on \(\Omega_T\),
+  inherited starting structure, and the adaptive displacement required
+  to regain positive growth;
+\item
+  whether variation-generating or connection-generating mechanisms
+  themselves differ between persistent lineages or organizations;
+\item
+  whether those mechanisms are retained because of the innovations they
+  make more likely, rather than because of an unrelated direct benefit.
+\end{enumerate}
+
+The decisive experiments separate the mechanisms. For retention,
+introduce the same candidate process in otherwise matched systems,
+preserve resource cost, and selectively break the proposed return path;
+if the persistence advantage remains, the loop was not causal. For
+inherited adaptive extension, manipulate independently (i) the inherited
+starting organization, (ii) distance from the persistence boundary, and
+(iii) cumulative exploratory opportunity \(\Omega_T\). This
+distinguishes a true history-dependent search advantage from a simple
+effect of current abundance. Likewise, for the third-order hypothesis,
+compare architectures that differ in their innovation operator while
+controlling direct present-day benefits. The central empirical object is
+not ``complexity'' in the abstract but the measurable causal
+architecture by which present consequences alter future production and
+future variation.
+
+\section{Discussion: from Darwinian selection to the persistence of
+organization}
+Darwinian natural selection explains differential propagation of
+heritable variation. The present framework addresses a complementary
+dynamical question, stated already in Section 1.1 and worth restating
+here as the paper's real subject: not how the present state influences
+the next state, which any dynamical system does, but \textbf{how
+realized organization can endogenously change the finite-horizon
+transition kernel over viable successor organizations}. Mechanisms I
+through III are three concrete, mechanistic answers rather than three
+unrelated case studies: state-dependent persistence changes what can
+remain; inheritance and continued reproduction change where successor
+search begins and how many trials occur; and evolvability changes the
+generator of candidate successors itself.
+
+The answer offered here does not require a force pulling matter toward
+complexity. Open systems receive resource and undergo local
+transformations. Some configurations fail to replace themselves. Others
+close productive return paths and persist. Some new processes impose
+costs and disappear. Others alter the network such that the expanded
+state becomes self-supporting across a wider region of parameter space
+--- Mechanism I. Independently of whether any such new loop has closed,
+an organization that has been reproducing above threshold for some time
+carries with it a population of reproducing realizations and any
+standing variation; if deterioration brings its own reproduction back
+toward --- rather than past --- its threshold, only a small correction,
+evaluated against its already-functional configuration rather than
+against the empty state, is needed to recover growth --- Mechanism II.
+Both mechanisms make history dynamically consequential, but through
+different causal channels in \(\mathcal A_T\): one changes persistence
+through state-dependent basin structure at fixed environment; the other
+changes the inherited origin of variation and the cumulative opportunity
+available to generate successors.
+
+This also clarifies why ``more feedback'' is not itself the objective,
+and why ``more reproduction'' is not either. What matters for Mechanism
+I is feedback that survives its costs and changes the continuation of
+the organization that generates it. What matters for Mechanism II is the
+conjunction of an inherited viable base point, a non-zero exploratory
+opportunity, and a selection filter under which small improvements can
+become decisive near a persistence boundary --- not a preference or
+incentive of the system itself. No system need represent a future goal
+for either mechanism to operate, and neither guarantees that
+\(\mathcal{A}\) widens: accessibility can just as easily narrow,
+trapping a lineage on whatever it has already found, as it can expand.
+
+If, in addition, architectures differ in the distribution of variants
+they generate, the same logic can recurse a further level: an
+architecture can be retained partly because it generates descendants or
+successor states that more often acquire maintainable improvements, or
+that more often survive threshold crossings via rescue --- Mechanism
+III, acting on \(q\) itself. This recursive step is where the argument
+intersects the literature on evolvability. Wagner and Altenberg
+emphasized that evolution depends not only on variation but on the
+structure mapping variation into phenotypic consequences, and
+highlighted modularity as one route by which evolvability may change
+(Wagner and Altenberg, 1996). Gerhart and Kirschner's
+facilitated-variation framework similarly emphasizes conserved core
+processes whose organization can make useful phenotypic change more
+accessible (Gerhart and Kirschner, 2007) --- a claim closely related to
+the inheritance argument of Section 7.4, in which conserved organization
+is precisely what makes the \emph{next} useful change a local rather
+than a global search. Earl and Deem demonstrated in explicit models that
+evolvability can be selected under changing environments (Earl and Deem,
+2004). At the same time, experimental and theoretical reviews warn that
+indirect selection for evolvability is conditional and can be confused
+with direct selection on traits that merely have evolvability as a side
+effect (Díaz Arenas and Cooper, 2013; Wagner, 2022; Pélabon et al.,
+2025).
+
+The proposed hierarchy therefore does not replace Darwinian selection.
+It extends the object to which selection and dynamical persistence can
+apply: not only traits, but the network architecture that generates
+traits; not only an organization, but its capacity to recover a viable
+form of itself, and beyond that, its capacity to produce and retain new
+organization altogether.
+
+A concise way to state the combined result is:
+
+\begin{quote}
+A self-maintaining network can retain a new organization when that
+organization contributes to the processes that reproduce it. Once
+established, inheritance makes that organization the base point for
+successor search, while continued reproduction supplies a finite
+exploratory opportunity from which locally viable successors may arise.
+If the retained organization also changes how future variants are
+generated, connected, tested, or preserved, then the search process
+itself can enter the same feedback loop.
+\end{quote}
+
+Underneath the three mechanisms is one abstract operation:
+
+\[
+\boxed{\text{Realized organization transforms the accessibility of organization that can follow it.}}
+\]
+
+This is deliberately narrower than saying that the present state
+influences the next state, a claim true of essentially every dynamical
+system. The scientific content is that realized organization changes the
+\textbf{transition structure over viable successors}. Mechanism I does
+so through basin occupancy and persistence geometry at fixed \(E\);
+Mechanism II through the inherited base point and the history-dependent
+exploratory opportunity \(\Omega_T\); Mechanism III through the
+generator \(q\) of candidate successors. None requires foresight.
+
+Because the operation is descriptive rather than normative, ``the
+ratchet'' in this paper does not mean a mechanism that only ever helps.
+It means: \textbf{a cumulative organizational ratchet exists when
+realized organization is retained in a way that changes the
+accessibility distribution of subsequent organization, so that
+previously achieved viability need not be rediscovered de novo} (Section
+1.1). That definition is silent on direction. Cumulative organization
+--- the case this paper is ultimately interested in --- is the special
+case in which the transformation happens to preserve enough previously
+viable organization that later search need not repeatedly start from
+zero. It is not the only possible outcome of the same operation.
+
+This is sufficient to make cumulative emergence possible. It is not
+sufficient to make it inevitable.
+
+\section{Conclusion}
+We have combined four layers of one argument around a single object: the
+finite-horizon accessibility kernel \(\mathcal A_T(S\mid\theta,z,E,q)\)
+over persistent successor organizations.
+
+First, an open network of local production processes can collectively
+cause its own continuation. Its establishment is governed by a
+reproduction threshold, \(R_{\rm org}\). This determines whether
+organization is realized at all.
+
+Second (\textbf{Mechanism I --- retention}), a seed-dependent innovation
+can create a feedback loop that separates establishment from
+maintenance. In the worked example, the innovation invades only above
+\(J_{\rm inv}=1.0667\) but persists once established down to
+\(J_{\rm fold}=0.5978\). The resulting backward bifurcation produces
+bistability and hysteresis. At identical external conditions, different
+realized states occupy different basins and therefore have different
+persistence accessibility. Realized organization changes \textbf{what
+can remain}.
+
+Third (\textbf{Mechanism II --- inherited adaptive extension}), no
+bistability is required. Reproduction with inheritance makes an already
+viable organization the base point of subsequent variation, while
+continued activity generates a cumulative exploratory opportunity
+\(\Omega_T\). For a simple subcritical branching process, expected total
+progeny per founder scales as \(1/(1-R)\) as \(R\to1^-\); this is a
+statement about cumulative reproductive opportunity, not instantaneous
+standing population. When a resident is only \(\varepsilon\) below its
+persistence boundary, a multiplicative advantage
+\(s>\varepsilon/(1-\varepsilon)\approx\varepsilon\) is sufficient to
+restore positive growth. Realized organization therefore changes
+\textbf{where search begins, how many trials can occur, and how far a
+locally accessible successor may need to move to recover viability}.
+
+Fourth (\textbf{Mechanism III --- evolvability}), the same logic can
+recurse to the generator of variation itself. If architectures differ in
+how they generate, connect, test, or preserve candidate successors, and
+those differences remain coupled to descendant persistence, selection
+can alter \(q\). Realized organization then changes \textbf{how the next
+search is performed}.
+
+The central claim is neither that nature seeks complexity nor that
+complexity must increase. Accessibility may widen, narrow, or collapse;
+inherited organization may preserve liabilities as readily as useful
+structure. The claim is more basic: realized organization can change the
+transition kernel over what can follow it. Cumulative organization is
+the special case in which those history-dependent transformations
+preserve enough earlier viability that subsequent viable organization
+need not repeatedly be reconstructed from scratch.
+
+\[
+\boxed{\text{Existence changes what existence can follow.}}
+\]
+
+Under conditions of retained viability, this yields the more specific
+cumulative principle:
+
+\[
+\boxed{\text{What persists becomes part of the starting conditions for what can persist next.}}
+\]
+
+\section{References}
+Antia, R., Regoes, R. R., Koella, J. C. and Bergstrom, C. T. (2003). The
+role of evolution in the emergence of infectious diseases.
+\emph{Nature}, 426, 658--661. \\url{https://doi.org/10.1038/nature02104}.
+
+Bell, G. (2017). Evolutionary rescue. \emph{Annual Review of Ecology,
+Evolution, and Systematics}, 48, 605--627.
+\\url{https://doi.org/10.1146/annurev-ecolsys-110316-023011}.
+
+Carabelli, A. M., Peacock, T. P., Thorne, L. G., Harvey, W. T., Hughes,
+J., COVID-19 Genomics UK Consortium et al.~(2023). SARS-CoV-2 variant
+biology: immune escape, transmission and fitness. \emph{Nature Reviews
+Microbiology}, 21, 162--177. \\url{https://doi.org/10.1038/s41579-022-00841-7}.
+
+Dakos, V., Carpenter, S. R., Brock, W. A., Ellison, A. M., Guttal, V.,
+Ives, A. R., Kéfi, S., Livina, V., Seekell, D. A., van Nes, E. H. and
+Scheffer, M. (2012). Methods for detecting early warnings of critical
+transitions in time series illustrated using simulated ecological data.
+\emph{PLoS ONE}, 7(7), e41010. \\url{https://doi.org/10.1371/journal.pone.0041010}.
+
+Díaz Arenas, C. and Cooper, T. F. (2013). Mechanisms and selection of
+evolvability: experimental evidence. \emph{FEMS Microbiology Reviews},
+37(4), 572--582. \\url{https://doi.org/10.1111/1574-6976.12008}.
+
+Earl, D. J. and Deem, M. W. (2004). Evolvability is a selectable trait.
+\emph{Proceedings of the National Academy of Sciences}, 101(32),
+11531--11536. \\url{https://doi.org/10.1073/pnas.0404656101}.
+
+Ferriere, R. and Legendre, S. (2013). Eco-evolutionary feedbacks,
+adaptive dynamics and evolutionary rescue theory. \emph{Philosophical
+Transactions of the Royal Society B}, 368(1610), 20120081.
+\\url{https://doi.org/10.1098/rstb.2012.0081}.
+
+Gerhart, J. and Kirschner, M. (2007). The theory of facilitated
+variation. \emph{Proceedings of the National Academy of Sciences},
+104(Suppl. 1), 8582--8589. \\url{https://doi.org/10.1073/pnas.0701035104}.
+
+Heesterbeek, J. A. P. and Roberts, M. G. (2007). The type-reproduction
+number \(T\) in models for infectious disease control.
+\emph{Mathematical Biosciences}, 206(1), 3--10.
+\\url{https://doi.org/10.1016/j.mbs.2004.10.013}.
+
+Hordijk, W., Hein, J. and Steel, M. (2010). Autocatalytic sets and the
+origin of life. \emph{Entropy}, 12(7), 1733--1742.
+\\url{https://doi.org/10.3390/e12071733}.
+
+Hordijk, W., Steel, M. and Kauffman, S. (2012). The structure of
+autocatalytic sets: evolvability, enablement, and emergence. \emph{Acta
+Biotheoretica}, 60(4), 379--392. \\url{https://doi.org/10.1007/s10441-012-9165-1}.
+
+Jain, S. and Krishna, S. (1998). Autocatalytic sets and the growth of
+complexity in an evolutionary model. \emph{Physical Review Letters}, 81,
+5684--5687. \\url{https://doi.org/10.1103/PhysRevLett.81.5684}.
+
+Jain, S. and Krishna, S. (2001). A model for the emergence of
+cooperation, interdependence, and structure in evolving networks.
+\emph{Proceedings of the National Academy of Sciences}, 98(2), 543--547.
+\\url{https://doi.org/10.1073/pnas.98.2.543}.
+
+Kolchinsky, A. (2025). Thermodynamics of Darwinian selection in
+molecular replicators. \emph{Philosophical Transactions of the Royal
+Society B}, 380(1936), 20240436. \\url{https://doi.org/10.1098/rstb.2024.0436}.
+
+Kribs-Zaleta, C. M. and Velasco-Hernández, J. X. (2000). A simple
+vaccination model with multiple endemic states. \emph{Mathematical
+Biosciences}, 164(2), 183--201. \\url{https://doi.org/10.1016/S0025-5564(00)00003-1}.
+
+Pélabon, C. et al.~(2025). Evolvability: progress and key questions.
+\emph{BioScience}, 75(12), 1042--1057. \\url{https://doi.org/10.1093/biosci/biaf111}.
+
+Peng, Z., Linderoth, J. and Baum, D. A. (2022). The hierarchical
+organization of autocatalytic reaction networks and its relevance to the
+origin of life. \emph{PLoS Computational Biology}, 18(9), e1010498.
+\\url{https://doi.org/10.1371/journal.pcbi.1010498}.
+
+Scheffer, M., Bascompte, J., Brock, W. A., Brovkin, V., Carpenter, S.
+R., Dakos, V., Held, H., van Nes, E. H., Rietkerk, M. and Sugihara, G.
+(2009). Early-warning signals for critical transitions. \emph{Nature},
+461, 53--59. \\url{https://doi.org/10.1038/nature08227}.
+
+van den Driessche, P. and Watmough, J. (2002). Reproduction numbers and
+sub-threshold endemic equilibria for compartmental models of disease
+transmission. \emph{Mathematical Biosciences}, 180, 29--48.
+\\url{https://doi.org/10.1016/S0025-5564(02)00108-6}.
+
+Wagner, A. (2022). Adaptive evolvability through direct selection
+instead of indirect, second-order selection. \emph{Journal of
+Experimental Zoology Part B: Molecular and Developmental Evolution},
+338, 395--404. \\url{https://doi.org/10.1002/jez.b.23071}.
+
+Wagner, G. P. and Altenberg, L. (1996). Complex adaptations and the
+evolution of evolvability. \emph{Evolution}, 50(3), 967--976.
+\\url{https://doi.org/10.1111/j.1558-5646.1996.tb02339.x}.
+
+Woolhouse, M. E. J., Haydon, D. T. and Antia, R. (2005). Emerging
+pathogens: the epidemiology and evolution of species jumps. \emph{Trends
+in Ecology \& Evolution}, 20(5), 238--244.
+\\url{https://doi.org/10.1016/j.tree.2005.02.009}.
+
+\end{document}
