@@ -38,9 +38,9 @@ jobs:
           python-version: '3.x'
 
 
-      - name: Install MkDocs‑Material + newest pymdown‑extensions
+      - name: Install documentation and scientific Python dependencies
         run: |
-          pip install mkdocs-material
+          pip install mkdocs-material numpy scipy matplotlib
           pip install --upgrade "pymdown-extensions>=10.5"
 
       # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
@@ -63,6 +63,9 @@ jobs:
             tectonic -Z shell-escape "$tex"      # → layers.pdf
             pdf2svg "${base}.pdf" "${base}.svg"  # → layers.svg
           done
+
+      - name: Generate organizational accessibility figures
+        run: python scripts/generate_organizational_accessibility_figures.py
 
       # (optioneel) commit nieuwe/gewijzigde figuren terug
       - uses: EndBug/add-and-commit@v9
