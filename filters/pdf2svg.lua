@@ -2,13 +2,18 @@
 function Image (img)
   local p = img.src
   if p:match("%.pdf$") then
-    p = p:gsub("%.pdf$", ".svg")   -- extensie .pdf → .svg
-    p = p:gsub("^docs/", "../")    -- ../figures/...   (géén leading “/”)
+    p = p:gsub("%.pdf$", ".svg")
+
+    -- LaTeX sources are converted to docs/<source-dir>/*.md, while shared
+    -- figures live in docs/figures. A source reference such as
+    -- figures/example.pdf therefore needs to move one level up in Markdown.
+    if p:match("^figures/") then
+      p = "../" .. p
+    else
+      p = p:gsub("^docs/", "../")
+    end
+
     img.src = p
-    -- eventueel centreren:
-    -- img.attributes = img.attributes or {}
-    -- img.attributes["class"] = "center"
   end
   return img
 end
-
