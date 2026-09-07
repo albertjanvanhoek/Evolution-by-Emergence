@@ -1,0 +1,1195 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Core typography and page layout ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.05}
+\emergencystretch=2em
+
+% ---------- Mathematics and figures ----------
+\usepackage{amsmath,amssymb,mathtools,amsthm}
+\usepackage{bm}
+\newtheorem{proposition}{Proposition}
+\usepackage{graphicx}
+
+% ---------- Tables and lists ----------
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ---------- Quotations and links ----------
+\usepackage{csquotes}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Organizational Accessibility: From Self-Maintenance to Evolvability},
+  pdfsubject={A Dynamical Framework for Cumulative Emergence}
+}
+
+% ---------- Bibliography ----------
+% Overleaf: compile with Biber.
+\usepackage[backend=biber,style=authoryear,natbib=true,doi=true,url=false,isbn=false,maxcitenames=2,maxbibnames=99,uniquelist=false,useprefix=true]{biblatex}
+\addbibresource{references.bib} % NOTE: bibliography supplied as organizational_accessibility_v7.bib; rename the file or this line so the two match.
+\DeclareFieldFormat{doi}{\mkbibacro{DOI}\addcolon\space\href{https://doi.org/#1}{\nolinkurl{#1}}}
+
+% ---------- Document metadata ----------
+\title{\textbf{Organizational Accessibility: From Self-Maintenance to Evolvability}\\[0.5em]
+\large A Dynamical Framework for Cumulative Emergence}
+\author{} % Add author details before external circulation.
+\date{Working paper --- 6 September 2026\\\small Scientific master v7}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+How can organization accumulate without being reconstructed from scratch at each step? We propose \textbf{organizational accessibility} as a framework for separating causal processes that determine which persistent successor organizations can be reached from what currently exists.
+
+We first analyse an open production network whose components collectively replace one another and derive an organization reproduction number, $R_{\rm org}$. A nonlinear extension yields \textbf{hysteretic retention}. For the normalized model we prove that the positive expanded branch has a unique interior fold if and only if $u>1+2/v$, and that, when the fold exists, $J_{\rm fold}<J_{\rm inv}$. For $u=30$, $v=2$, the expanded state persists down to $J_{\rm fold}\approx0.5978$ although invasion from rarity requires $J_{\rm inv}\approx1.0667$. A resource-consuming inert-product control supports the causal role of the productive return responsible for persistence.
+
+We then add an explicit realization-level inheritance layer. \textbf{Inherited adaptive extension} makes retained architecture the starting condition for subsequent variation, while reproductive history determines finite candidate-generation exposure. Expected exposure is kept distinct from rescue probability through an exact finite-generation branching calculation. \textbf{Evolvability} concerns retainable changes to the designated variation process. A proposed extension, \textbf{compositional accessibility}, represents reuse of organization realized elsewhere through recombination, horizontal transfer, symbiosis, or cross-scale incorporation.
+
+A finite-horizon accessibility kernel provides the common formal object. For cumulative emergence we propose an interventional criterion: structure acquired earlier must be retained through an intermediate organization and causally increase access to a prespecified later target absent at a designated baseline. We distinguish its total contribution from a controlled-opportunity assay. This framework-and-methods paper proves local results and defines causal tests; it does not demonstrate a complete multi-stage cumulative-emergence sequence in one system and does not imply increasing complexity.
+\end{abstract}
+
+\section{The problem: continuation, accessibility, and accumulation}
+
+Organized systems persist despite continuous turnover. Molecules decay, cells die, organisms replace cells, institutions replace members, machines replace components, and computational processes terminate and restart. Persistence therefore need not mean persistence of the same material parts. It can instead mean persistence of causal organization: a set of processes and relations whose activity repeatedly recreates conditions for continued activity.
+
+This shifts the explanatory target. One question is how locally acting processes can collectively cause their own continuation. A second, distinct question is what follows after such continuation becomes possible:
+
+\begin{quote}
+\textbf{How can realized organization become part of the causal conditions determining the accessibility of its successors?}
+\end{quote}
+
+The existence of a conditional transition kernel is not itself a new dynamical phenomenon. Any sufficiently specified dynamical system has state-dependent futures. The proposed contribution is a \textbf{causal decomposition}: mechanisms often discussed separately can be represented as distinguishable contributions to effective organizational accessibility. These include retention through basin occupancy, inheritance of an already viable starting architecture, finite exposure for generating candidates, access to organizational modules developed elsewhere, and changes to the process generating variation itself.
+
+The argument proceeds from a verified dynamical example to progressively more general assumptions. Sections 2--3 derive a baseline reproduction threshold for collective component replacement. Section 4 asks when adding a process improves that replacement network at all. Sections 5--6 demonstrate \textbf{Mechanism I --- hysteretic retention} in a fixed nonlinear reaction system. Section 7 then adds an explicit inheritance assumption: identifiable realizations reproduce or otherwise generate successor realizations that transmit organizational features with variation. That extension defines \textbf{Mechanism II --- inherited adaptive extension}, which links inherited starting structure, finite exploratory exposure, and evolutionary rescue. Section 8 develops \textbf{compositional accessibility}, a cross-cutting route through which recombination, horizontal transfer, symbiosis, or cross-scale incorporation can import previously realized organization from outside the focal lineage. Section 9 considers \textbf{Mechanism III --- evolvability}, in which the designated variation-generating process itself varies and is retained differentially.
+
+The construction overlaps with several established traditions and should be read as a synthesis rather than as a replacement for them. Autocatalytic-set theory studies collectively sustained reaction networks \citep{Hordijk2010,Hordijk2012}; \citet{Jain1998,Jain2001} analysed the emergence and reorganization of autocatalytic structure. Chemical Organisation Theory defines chemical organizations as closed, self-maintaining sets of components and relates reaction-network organization to dynamical states \citep{Dittrich2007}. \citet{Peng2022} developed seed-dependent autocatalytic systems in which transient seeds can activate self-maintaining subnetworks and higher-tier systems can become accessible only after lower tiers have been realized. That work is a particularly close antecedent for historical seeding and sequential organizational activation.
+
+Evolutionary-rescue theory studies adaptation before extinction under environmental deterioration \citep{Bell2017,Ferriere2013}, while pathogen-emergence theory connects subcritical reproduction near threshold with longer transmission chains and more opportunities for adaptive emergence \citep{Antia2003,Woolhouse2005}. Evolvability theory concerns variation in the ability to generate heritable selectable differences \citep{WagnerAltenberg1996,Gerhart2007}. Horizontal gene transfer provides a biological example in which useful organization can enter a lineage from an external donor pool rather than by vertical descent alone \citep{Soucy2015}; endosymbiosis provides a stronger form in which previously independent organizations become integrated into a new joint organization \citep{Archibald2015}. Such transitions are also central to the literature on major evolutionary transitions \citep{SzathmarySmith1995}.
+
+The narrower contribution proposed here is to place these processes in one accessibility framework and ask what becomes measurable once they are separated. The worked model supplies an explicit resource balance and an analytical separation between invasion and maintenance. The broader framework distinguishes retention, inherited starting conditions, exploratory exposure, compositional access, establishment, environment, and changes in the variation process. Its intended payoff is interventionally distinct questions rather than a claim that one universal equation derives all of these mechanisms: change basin occupancy while holding external parameters fixed; disrupt retained structure; prescribe candidate-generation opportunity; alter access to donor modules or partners; or intervene on the designated variation process. The framework makes those causal questions commensurable while preserving their mathematical differences.
+
+Accordingly, this paper should be read as a theoretical framework-and-methods paper. It proves results for a particular resource-limited nonlinear model, derives exact and approximate stochastic quantities under stated assumptions, and defines causal estimands for cumulative organizational contribution. It does not claim to demonstrate a complete multi-stage cumulative-emergence sequence in one empirical or simulated system; such an end-to-end application is a subsequent test of the framework.
+
+\subsection{Organizational accessibility}
+
+Let $\mathsf\Theta$ denote an architecture space and $\mathsf Z$ a dynamical-state space. We write
+
+\[
+\theta\in\mathsf\Theta \text{ for organizational architecture},
+\qquad
+z\in\mathsf Z \text{ for instantaneous dynamical state}.
+\]
+
+For example, $\theta$ may specify which process types and interactions are available, while $z$ contains current abundances and resource levels. Let $E$ denote the external environment. Let $Q$ denote a designated variation process; in a simple stationary representation, $Q=(q,\nu)$, where $q(d\theta'\mid\theta)$ is the conditional distribution of candidate successor architectures given a variation event and $\nu$ is the event rate per active realization per unit time. This separation between focal architecture and variation process is a modelling choice used to define interventions; in a more detailed state description, a modifier of $Q$ could itself be included inside an extended architecture.
+
+For a measurable region $S\subseteq\mathsf\Theta\times\mathsf Z$ and a finite horizon $\tau$, define the \textbf{organizational-accessibility kernel}
+
+\begin{equation}
+\boxed{
+\mathcal A_\tau(S\mid\theta,z,E,Q)
+=
+\Pr\!\left(
+(\Theta_{t+\tau},Z_{t+\tau})\in S
+\mid
+\Theta_t=\theta,Z_t=z,E,Q
+\right).
+}
+\label{eq:accessibility}
+\end{equation}
+
+For well-posed deterministic dynamics and a fully specified initial condition, Eq.~\eqref{eq:accessibility} is a point mass at the unique state reached after time $\tau$. In stochastic, evolutionary, or incompletely observed systems it may be non-trivial. If $E$ or $Q$ is endogenous, its dynamics should be included in the joint state or explicitly modelled; conditioning on a prescribed trajectory is not by itself a model of feedback.
+
+Many innovation questions concern whether a target is reached during the interval rather than the endpoint at $t+\tau$. For a target architecture set $U\subseteq\mathsf\Theta$, let $\mathcal H_\tau(U\mid\theta,z,E,Q)$ denote a finite-horizon hitting probability under a specified \textbf{establishment criterion}. An application must define the event operationally: for example, reaching an abundance threshold, entering a viable region, or persisting for a stated duration. If persistence for a duration is required, the definition must say whether that duration must be completed by $t+\tau$ or may extend beyond the candidate-generation horizon.
+
+For candidate generation, let $N_s$ be the number of active realizations at time $s$ and $\nu_s$ the candidate-generation rate per active realization per unit time. Define expected exploratory exposure
+
+\begin{equation}
+\boxed{
+\Omega_\tau
+=
+\mathbb E\!\left[
+\int_t^{t+\tau}N_s\nu_s\,ds
+\right].
+}
+\label{eq:omega}
+\end{equation}
+
+$\Omega_\tau$ is an expected opportunity count, not a standing population and not a rescue probability.
+
+A general time-dependent representation is needed when population size, environment, candidate distribution, or establishment conditions change during the horizon. For one focal resident architecture process, define the realized integrated expected number of newly generated candidate origins in $U$ that satisfy the establishment criterion as
+
+\begin{equation}
+\Xi_{\tau,\mathrm{new}}(U)
+=
+\int_t^{t+\tau}
+N_s\nu_s
+\int_U
+\pi_{\mathrm{est},s}(\theta';t+\tau)
+q_s(d\theta'\mid\Theta_s)
+\,ds.
+\label{eq:xi}
+\end{equation}
+
+Here $\pi_{\mathrm{est},s}$ is conditional on the resident state and environment at the candidate's origin and on the remaining horizon. If multiple resident architectures coexist, Eq.~\eqref{eq:xi} must be replaced by a sum over resident types or by a population-valued state with its corresponding candidate measure.
+
+Let $K_{\tau,\mathrm{new}}(U)$ count \emph{successful candidate-origin events}: each origin is counted once if its descendant trajectory satisfies the specified establishment criterion. Descendants belonging to the same establishing lineage are not counted as new independent origins unless that convention is explicitly chosen. The expected count is
+
+\begin{equation}
+\overline\Lambda_{\tau,\mathrm{new}}(U)
+=
+\mathbb E[K_{\tau,\mathrm{new}}(U)]
+=
+\mathbb E[\Xi_{\tau,\mathrm{new}}(U)]
+\label{eq:expected-success-count}
+\end{equation}
+
+under the event-intensity model of Eq.~\eqref{eq:xi}. A state-dependent intensity alone does not imply a Poisson process. If, additionally,
+
+\begin{equation}
+K_{\tau,\mathrm{new}}(U)\mid\Xi_{\tau,\mathrm{new}}(U)
+\sim
+\operatorname{Poisson}\!\left(\Xi_{\tau,\mathrm{new}}(U)\right),
+\label{eq:conditional-poisson}
+\end{equation}
+
+then
+
+\begin{equation}
+\Pr(K_{\tau,\mathrm{new}}(U)\ge1)
+=
+1-\mathbb E\!\left[e^{-\Xi_{\tau,\mathrm{new}}(U)}\right].
+\label{eq:success-probability}
+\end{equation}
+
+This conditional-Poisson assumption is the extra condition required for the Cox-process-style formula \citep{LastPenrose2017}. By Jensen's inequality,
+
+\begin{equation}
+1-\mathbb E[e^{-\Xi}]
+\le
+1-e^{-\mathbb E[\Xi]},
+\label{eq:jensen}
+\end{equation}
+
+so replacing a random integrated intensity with its mean never underestimates, and in general overestimates, the success probability. Other branching, first-passage, or dependent candidate models require their own success calculation.
+
+The compact factorization remains useful as a special case. If $q$, $\pi_{\rm est}$, and the relevant conditioning variables are approximately constant over the interval, then
+
+\begin{equation}
+\overline\Lambda_{\tau,\mathrm{new}}(U)
+\approx
+\Omega_\tau
+\int_U
+\pi_{\mathrm{est}}(\theta'\mid\theta,z,E)
+q(d\theta'\mid\theta).
+\label{eq:factorized-count}
+\end{equation}
+
+This has the interpretation
+
+\[
+\boxed{
+\text{expected successful origins}
+\sim
+\text{candidate exposure}
+\times
+\text{what is generated}
+\times
+\text{what establishes}.
+}
+\]
+
+Standing variation present at the beginning of the interval is a separate source of candidates. Its expected successful contribution will be denoted $\overline\Lambda_{\mathrm{standing},\tau}(U)$ and should not be double-counted in $\Omega_\tau$. Expected counts may be added; conversion of combined counts to a probability requires assumptions about dependence and event generation.
+
+The historical routes considered below enter this framework in different places. Mechanism I changes persistence accessibility through state and basin occupancy at fixed external parameters. Mechanism II changes the inherited starting architecture and history-dependent exposure. Compositional accessibility changes which already-realized external modules or partner organizations are available to candidate generation. Mechanism III changes the designated variation process $Q$ itself. Environmental feedback provides another route when realized organization changes future $E$. Figure~\ref{fig:accessibility-routes} shows these routes schematically.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.94\linewidth]{figures/accessibility_routes.pdf}
+\caption{Distinct routes by which realized organization can condition later accessibility. The separation is operational rather than ontologically unique: a sufficiently detailed state description can absorb some variables into architecture. Compositional accessibility is cross-cutting because imported modules can alter the inherited starting architecture, the candidate distribution, or both.}
+\label{fig:accessibility-routes}
+\end{figure}
+
+None of these routes necessarily increases accessibility. The general statement is descriptive:
+
+\[
+\boxed{\text{Existence changes what existence can follow.}}
+\]
+
+Table~\ref{tab:notation} collects the principal symbols used throughout.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.20\linewidth}>{\raggedright\arraybackslash}p{0.72\linewidth}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$\theta$, $z$, $E$ & architecture, instantaneous dynamical state, external environment \\
+$Q=(q,\nu)$ & designated variation process: candidate distribution and event rate \\
+$\mathcal A_\tau$, $\mathcal H_\tau$ & accessibility kernel; finite-horizon hitting probability for a target set $U$ \\
+$\Omega_\tau$, $\overline\Lambda_\tau$ & expected exploratory exposure; expected count of established candidate origins \\
+$h$, $\mathcal B$, $\mathcal P$ & retained structure; pre-intervention background and input protocol; prescribed candidate-generation protocol \\
+$x_i$, $r$, $J$, $\ell$, $d$ & component abundances, activated substrate, external supply, substrate loss, process loss (Sections 2--3) \\
+$B$, $\rho(B)$, $\lambda$, $X$ & production matrix, its spectral radius, its leading eigenvalue, total component abundance \\
+$R_{\rm org}$ & organization reproduction number \\
+$A$, $B$, $C$, $R$, $w$ & process types, resource species, and inert product in the worked example (Sections 4--6) \\
+$u$, $v$, $\eta$ & cooperative coefficient, productive return coefficient, return fraction \\
+$J_{\rm fold}$, $J_{\rm inv}$ & fold and invasion supply thresholds \\
+$N_s$, $\nu_s$, $\mu$, $\mathcal I_s$ & count, candidate rate, per-realization candidate events, index set of active realizations (Section 7) \\
+$R$, $L_G$, $p$ & branching reproduction number, cumulative lineage size, per-realization mark probability \\
+$M_t$, $m$ & accessible module or partner pool (Section 8); variation modifier (Section 9) \\
+\bottomrule
+\end{tabular}
+\caption{Principal symbols. A few letters carry more than one role and are disambiguated by typeface or context: $A$, $B$ and $C$ name process types in the worked example, whereas $\mathcal A_\tau$ is the accessibility kernel, $B$ the production matrix, $\mathcal B$ the pre-intervention background, and $\mathbf A(J)$ the Jacobian of Section 10.1; $R$ is the resource species in the reaction rules of Section 5 and a reproduction number from Section 7 onward; $\lambda$ always denotes a leading eigenvalue, of $B$ in Section 3 and of the Jacobian in Section 10.1 and Appendix A.}
+\label{tab:notation}
+\end{table}
+
+\subsection{An operational criterion for cumulative emergence}
+
+The phrase \emph{cumulative emergence} requires a historical target and an intervention. Let $h$ denote structure acquired at an earlier stage, retained through an intermediate organization, and hypothesized to contribute to access to a later target $U$. The target must be specified before the disruption comparison and represent organization or function not realized at a designated historical baseline; it must not be defined merely as ``having $h$ intact.'' Let $Y_\tau(U)$ indicate that the target satisfies the chosen establishment criterion by horizon $\tau$.
+
+Let $I_h=1$ denote a selective retention intervention and $I_h=0$ a disruption counterpart. Let $\mathcal B$ denote the common pre-intervention background and external-input protocol (calligraphic, to distinguish it from the production matrix $B$ of Section~\ref{a-resource-limited-self-maintaining-production-network}). The \textbf{total historical contribution} of retaining $h$ is
+
+\begin{equation}
+\boxed{
+\Delta_\tau^{\mathrm{total}}(U;h\mid\mathcal B)
+=
+\Pr\!\left(Y_\tau(U)=1\mid\operatorname{do}(I_h=1),\mathcal B\right)
+-
+\Pr\!\left(Y_\tau(U)=1\mid\operatorname{do}(I_h=0),\mathcal B\right).
+}
+\label{eq:historical-total}
+\end{equation}
+
+The $\operatorname{do}$ notation is shorthand for a defined intervention; an observational conditional difference is not automatically a causal contrast. In the total-effect comparison, abundance, survival time, candidate-generation exposure, an endogenous environment, and even $Q$ are allowed to respond to the intervention when those responses are downstream of $h$. This matters because one possible causal route is
+
+\[
+\begin{aligned}
+h&\to\text{greater persistence or abundance}\\
+ &\to\text{more candidate opportunities}\\
+ &\to\text{later establishment}.
+\end{aligned}
+\]
+
+For a different question, define a \textbf{controlled-opportunity assay} with a prescribed candidate-generation protocol $\mathcal P$ specifying the number and timing of opportunities. Then
+
+\begin{equation}
+\Delta_{\tau,\mathcal P}^{\mathrm{opp}}(U;h\mid\mathcal B)
+=
+\Pr\!\left(Y_\tau(U)=1\mid\operatorname{do}(I_h=1),\mathcal P,\mathcal B\right)
+-
+\Pr\!\left(Y_\tau(U)=1\mid\operatorname{do}(I_h=0),\mathcal P,\mathcal B\right).
+\label{eq:historical-controlled}
+\end{equation}
+
+This asks whether retained structure changes access under a prescribed set of candidate trials. It is not the same estimand as Eq.~\eqref{eq:historical-total}; simply matching on the observed post-intervention $\Omega$ does not define this experiment. The distinction is analogous to separating total effects from effects under controlled mediator protocols in causal inference \citep{VanderWeele2014}, although its application to organizational accessibility is proposed here.
+
+Equations~\eqref{eq:historical-total} and \eqref{eq:historical-controlled} define causal estimands; they do not by themselves specify how those estimands are identified in a particular system. The $\operatorname{do}(\cdot)$ notation states the causal contrast of interest and does not require that history literally be replayed. Direct experimental identification is most straightforward in manipulable systems---for example microbial populations, synthetic biological systems, digital evolution, and simulations---where $I_h$ can be set and the background protocol $\mathcal B$ held fixed across replicate runs. In historical biological, ecological, institutional, or technological cases, identification instead requires additional assumptions: a specified structural model connecting $h$ to $U$, comparative designs across independently evolved or founded systems, reconstructed ancestral states, or natural experiments in which the relevant structure was lost under conditions plausibly separable from the later target. We do not attempt a general identifiability theory for such non-manipulable cases here. The causal quantities remain defined; their empirical identification is a separate, system-specific problem.
+
+We use \textbf{cumulative organizational contribution} for a documented sequence in which structure acquired at an earlier stage is retained through an intermediate organization and causally improves access to a prespecified later target absent at the designated baseline. A positive interventional contrast supports that contribution under the tested conditions; it is not a universal test, and redundancy can make single-component deletion insensitive. Where redundancy is plausible, combined disruptions or alternative interventions may be required. A control that preserves comparable present function while varying the retained structure is especially informative when the claim concerns access to new organization rather than simple maintenance.
+
+The term \emph{ratchet} is used in two related but distinct senses. A \textbf{hysteretic ratchet} refers narrowly to Mechanism I: an establishment--maintenance asymmetry that survives reversal of the transient enabling condition over a parameter interval. A \textbf{cumulative organizational ratchet} refers more broadly to a historical sequence of retained causal contributions to later novel targets. It does not require every step to be hysteretic and does not imply absolute irreversibility; reversal, simplification, and loss remain possible.
+
+\section{A resource-limited self-maintaining production
+network}\label{a-resource-limited-self-maintaining-production-network}
+
+Let \(x_i \geq 0\) denote the abundance of executing process type \(i\),
+and let \(r \geq 0\) denote activated substrate. The nonnegative matrix
+\(B\) contains local production relations: \(B_{ij}\) is the rate at
+which process \(j\) produces process \(i\) per unit substrate and
+producer abundance. Each new unit consumes one unit of substrate.
+Existing processes are lost at rate \(d>0\). The environment supplies
+activated substrate at rate \(J\geq0\), while unused substrate is lost at
+rate \(\ell r\) with \(\ell>0\). The model is
+
+\begin{equation}
+\dot{x}=rBx-dx.
+\label{eq:base-x}
+\end{equation}
+\begin{equation}
+\dot r=J-\ell r-r\mathbf{1}^TBx.
+\label{eq:base-r}
+\end{equation}
+
+The same production term enters positively in the process balance and
+negatively in the substrate balance. Hence this is a replacement model
+rather than a model in which producers are immortal. Defining
+
+\[
+T = r + \sum_i x_i,
+\]
+
+we obtain
+
+\[
+\dot{T} = J - \ell r - d\sum_i x_i \leq J - \min(\ell, d)T.
+\]
+
+Thus total activated material remains bounded, and when \(J = 0\) the
+active organization ultimately disappears. The organization is causally
+closed only in the limited sense that its processes can regenerate one
+another; energetically and materially it remains open.
+
+This distinction is important. The model is not a derivation from full
+chemical thermodynamics. A real molecular implementation would require
+stoichiometric, kinetic, and free-energy constraints to be specified
+separately. Thermodynamic work on molecular replicators makes clear that
+replication and selection carry energetic requirements rather than
+escaping them \citep{Kolchinsky2025}.
+
+\section{A reproduction number for
+organization}\label{a-reproduction-number-for-organization}
+
+With no active organization, the substrate converges to
+
+\[
+r_0 = \frac{J}{\ell}.
+\]
+
+Near this organization-free equilibrium, the process dynamics linearize
+to
+
+\[
+\dot{x} = (r_0 B - dI)x.
+\]
+
+Let \(\rho(B)\) denote the spectral radius of \(B\). The leading growth
+rate is
+
+\[
+\sigma = r_0 \rho(B) - d,
+\]
+
+which motivates the dimensionless organization reproduction number
+
+\begin{equation}
+R_{\rm org}=\frac{J\rho(B)}{\ell d}.
+\label{eq:Rorg}
+\end{equation}
+
+If \(R_{\rm org} < 1\), sufficiently small organization decays. If
+\(R_{\rm org} > 1\), it can grow from low abundance. For irreducible
+\(B\), let \(\mathbf{p}\) be the positive Perron eigenvector normalized by
+\(\mathbf{1}^T \mathbf{p} = 1\) and let \(\lambda = \rho(B)\). The positive
+equilibrium is
+
+\[
+r^* = \frac{d}{\lambda}, \qquad x^* = X\mathbf{p}, \qquad X = \frac{J - \ell d/\lambda}{d},
+\]
+
+which exists precisely when \(R_{\rm org} > 1\). Here \(X = \mathbf{1}^T x^*\) is
+total component abundance; it is distinct from the count \(N\) of reproducing
+realizations used from Section 7 onward.
+
+The same calculation can be written in next-generation-matrix form following \citet{VandenDriessche2002}. At the organization-free equilibrium,
+
+\[
+F = r_0 B, \qquad V = dI,
+\]
+
+so
+
+\[
+K = FV^{-1} = \frac{r_0}{d}B, \qquad \rho(K) = \frac{J\rho(B)}{\ell d} = R_{\rm org}.
+\]
+
+The vocabulary is borrowed from infectious-disease dynamics, but the
+interpretation is generic: \(R_{\rm org}\) asks whether one generation
+of executing processes collectively produces more than one replacement
+generation before being lost.
+
+For the two-process cycle
+
+\[
+B = \begin{pmatrix} 0 & \alpha \\ \beta & 0 \end{pmatrix},
+\]
+
+we have \(\rho(B) = \sqrt{\alpha\beta}\). Neither process need reproduce
+itself directly. A closed return path across multiple process types can
+be enough. If the return path is broken so that the matrix is acyclic,
+the spectral radius falls to zero. This isolates the causal object of
+interest: not activity alone, but a route from present activity back to
+renewed productive capacity.
+
+The positive equilibrium of the base model appears continuously at
+\(R_{\rm org} = 1\):
+
+\[
+X = \frac{J}{d}\left(1 - \frac{1}{R_{\rm org}}\right).
+\]
+
+This is the expected forward transcritical geometry. In the base model,
+establishment from rarity and loss of the positive equilibrium meet at
+the same threshold. Section 6 shows how a seed-dependent feedback can
+separate establishment from maintenance and thereby create hysteresis.
+Section 7 asks a different question while retaining the same basic
+threshold: how much exploratory opportunity remains, and how large an
+adaptive change is required, when an established organization is driven
+back toward and below \(R_{\rm org}=1\).
+
+\section{An innovation must pay its opportunity cost}
+
+A new process is not automatically an improvement. To make this explicit, begin with $A\to B$ and $B\to A$ at unit coefficient. Let $A$ divert a fraction $f$ of its production capacity from $B$ to a new process $C$, while $C$ contributes back to production of $A$ with coefficient $v$:
+
+\[
+B(f,v)
+=
+\begin{pmatrix}
+0 & 1 & v\\
+1-f & 0 & 0\\
+f & 0 & 0
+\end{pmatrix},
+\qquad
+0<f<1,
+\quad
+v\geq0.
+\]
+
+The dominant eigenvalue is
+
+\[
+\lambda(f,v)
+=
+\sqrt{1-f+fv}
+=
+\sqrt{1+f(v-1)}.
+\]
+
+Hence the new process lowers the external supply required for maintenance only when $v>1$. If $v<1$, diversion to $C$ reduces collective replacement capacity. The model therefore contains no rule that rewards novelty, diversity, or complexity. An addition must causally return enough productive benefit to offset its opportunity cost.
+
+This section asks whether an addition improves the linear replacement network at all; the next introduces cooperative nonlinear feedback specifically to separate invasion from maintenance.
+
+\section{A seed-dependent nonlinear extension}
+
+To represent cooperative feedback that can separate invasion from maintenance, we introduce a nonlinear interaction involving $A$ and $C$. The available reaction rules are
+
+\[
+R+B\to A+B,
+\qquad
+R+A\to A+B,
+\qquad
+R+A+C\to A+2C,
+\qquad
+R+C\to A+C.
+\]
+
+For this worked example we assume equal loss rates for $A$, $B$, $C$, and unused resource, and equal unit coefficients in the baseline $A$--$B$ loop. Time and abundance units are then chosen so that the common loss rate and baseline coefficients are one. These are assumptions of the example; a change of units alone cannot make arbitrary unequal loss rates identical. The remaining parameters satisfy $J\ge0$, $u>0$, and $v\ge0$. The equations are
+
+\begin{align}
+\dot a &= rb+vrc-a, \label{eq:nonlinear-a}\\
+\dot b &= ra-b, \label{eq:nonlinear-b}\\
+\dot c &= urac-c, \label{eq:nonlinear-c}\\
+\dot r &= J-r-(rb+vrc+ra+urac). \label{eq:nonlinear-r}
+\end{align}
+
+All production consumes substrate, and $\dot T=J-T$ for $T=r+a+b+c$.
+
+The reaction rules and parameters are fixed before and after a seed is introduced. Seeding therefore does \emph{not} create a new vector field. It changes the dynamical state $z$ by making $c>0$, thereby activating reactions already available but dynamically inactive when $c=0$. It is useful to distinguish the fixed \emph{available reaction architecture} from the \emph{active organization}: the subset of processes maintained at nonzero abundance on the realized trajectory.
+
+For $u=30$, $v=2$, start the $A$--$B$ system at its equilibrium with $J=1.2$. At $t=50$, introduce $10^{-4}$ of $C$ while subtracting the same amount from resource. At $t=150$, lower supply to $J=0.9$. With productive return from $C$ to $A$, the system approaches a positive $A$--$B$--$C$ equilibrium; without a seed, active abundances decay after the supply reduction (Figure~\ref{fig:seeding-trajectories}).
+
+A stricter intervention asks whether the productive \emph{return} matters while preserving the resource-consuming reaction. Introduce an inert product $w$, lost at unit rate, and a return fraction $\eta$:
+
+\begin{align}
+\dot a &= rb+\eta vrc-a, \label{eq:control-a}\\
+\dot b &= ra-b, \\
+\dot c &= urac-c, \\
+\dot r &= J-r-(rb+vrc+ra+urac), \\
+\dot w &= (1-\eta)vrc-w. \label{eq:control-w}
+\end{align}
+
+The flux $vrc$ consumes the same amount of resource for $\eta=1$ and $\eta=0$; only its product is redirected. Total normalized material satisfies
+
+\[
+\frac{d}{dt}(r+a+b+c+w)=J-(r+a+b+c+w).
+\]
+
+With the same seeding schedule, numerical integration to $t=1000$ gives, for $\eta=1$ after the fall to $J=0.9$,
+
+\[
+(a,b,c,r)\approx(0.185854,0.033333,0.501460,0.179352),\qquad w=0,
+\]
+
+whereas for $\eta=0$ the active abundances tend to zero, $r\to0.9$, and $w\to0$. Thus the resource-consuming control supports the proposed role of productive return. It preserves the reaction's resource cost but does not force the two subsequently diverging trajectories to have identical realized cumulative resource consumption.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.96\linewidth]{figures/seeding_trajectories.pdf}
+\caption{Seeding comparison and resource-consuming return-path control for $u=30$, $v=2$. The system begins at the $A$--$B$ equilibrium for $J=1.2$; a $10^{-4}$ seed of $C$ is added at $t=50$ in the first and third panels, and supply falls to $J=0.9$ at $t=150$. With productive return ($\eta=1$), the expanded organization persists. Without a seed it decays. When the same $vrc$ flux consumes resource but is diverted to inert waste ($\eta=0$), active abundances again decay. Numerical integration uses adaptive RK45 with relative tolerance $10^{-10}$ and absolute tolerance $10^{-12}$.}
+\label{fig:seeding-trajectories}
+\end{figure}
+
+A seed need not be deliberately introduced. A rare local reaction such as $R+A\to A+C$ could be treated stochastically. Once $C$ is produced, the deterministic dynamics above can amplify it. This does not explain why such rare reactions must occur; it only shows that an external evaluator choosing a better organization is not required by the model.
+
+\section{Mechanism I --- hysteretic retention}
+
+The key result is that the threshold at which $C$ can invade from rarity need not equal the threshold at which an already established $C$-containing equilibrium is lost. The parameter family permits an exact statement.
+
+For $v>0$ and $c>0$, the equilibrium conditions of Eqs.~\eqref{eq:nonlinear-a}--\eqref{eq:nonlinear-r} imply
+
+\[
+a=\frac{1}{ur},
+\qquad
+b=\frac{1}{u},
+\qquad
+c=\frac{1-r^2}{uvr^2},
+\qquad
+0<r<1,
+\]
+
+with associated supply
+
+\begin{equation}
+J(r)
+=
+r+
+\frac{r^{-1}+1+(r^{-2}-1)/v}{u}.
+\label{eq:Jr}
+\end{equation}
+
+The boundary case $v=0$ is a separate model regime and is not described by formulas containing $1/v$.
+
+\begin{proposition}[Interior fold and local branch stability]
+For the normalized expanded branch with $u>0$ and $v>0$:
+\begin{enumerate}[label=(\roman*)]
+\item there is exactly one interior fold $r_{\rm fold}\in(0,1)$ if and only if
+\[
+\boxed{u>1+\frac{2}{v}};
+\]
+\item when the fold exists, its supply satisfies
+\[
+J_{\rm fold}<J(1)=1+\frac{2}{u}=J_{\rm inv};
+\]
+\item the expanded branch with $r<r_{\rm fold}$ is locally asymptotically stable, the branch with $r>r_{\rm fold}$ is unstable, and at the fold one eigenvalue is zero while the remaining eigenvalues have negative real parts.
+\end{enumerate}
+\label{prop:fold-stability}
+\end{proposition}
+
+For the fold, differentiate Eq.~\eqref{eq:Jr}:
+
+\[
+J'(r)=1-\frac{r^{-2}+2/(vr^3)}{u},
+\qquad
+J''(r)=\frac{2/r^3+6/(vr^4)}{u}>0.
+\]
+
+Thus $J'$ is strictly increasing and tends to $-\infty$ as $r\downarrow0$, while
+
+\[
+J'(1)=1-\frac{1+2/v}{u}.
+\]
+
+An interior zero of $J'$ therefore exists uniquely iff $u>1+2/v$, and it solves
+
+\begin{equation}
+ur_{\rm fold}^3-r_{\rm fold}-\frac{2}{v}=0.
+\label{eq:fold-general}
+\end{equation}
+
+Strict convexity makes the stationary point a minimum, so $J_{\rm fold}<J(1)$. The local stability calculation is given in Appendix~\ref{app:stability}.
+
+Now examine invasion from the resident $A$--$B$ state. For $J>1$,
+
+\[
+r^*=1,
+\qquad
+a^*=b^*=\frac{J-1}{2}.
+\]
+
+At very small $c$,
+
+\[
+\dot c\approx(ur^*a^*-1)c,
+\]
+
+so the type-reproduction number is $R_C=u(J-1)/2$. The invasion threshold is therefore
+
+\begin{equation}
+J_{\rm inv}=1+\frac{2}{u}.
+\label{eq:Jinv}
+\end{equation}
+
+This uses the same type-reproduction-number logic as heterogeneous epidemic models \citep{Heesterbeek2007}. Proposition~\ref{prop:fold-stability} therefore establishes a general invasion--maintenance separation whenever the interior fold exists. It does \emph{not} imply $J_{\rm fold}<1$. For example, $u=3$, $v=2$ gives $J_{\rm fold}\approx1.6395$ and $J_{\rm inv}\approx1.6667$. Persistence below the baseline $A$--$B$ threshold is an additional property of the worked regime $u=30$, $v=2$, for which
+
+\[
+r_{\rm fold}\approx0.356236,
+\qquad
+J_{\rm fold}\approx0.597806,
+\qquad
+J_{\rm inv}\approx1.066667,
+\]
+
+and hence
+
+\[
+\boxed{J_{\rm fold}<1<J_{\rm inv}.}
+\]
+
+The backward-bifurcation geometry is familiar from models with sub-threshold endemic equilibria \citep{KribsZaleta2000,VandenDriessche2002}. Table~\ref{tab:equilibria} summarizes the stable states and invasion status by supply range, and Figure~\ref{fig:bifurcation} shows the corresponding bifurcation structure.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lll}
+\toprule
+Supply range & Stable unexpanded state & Stable expanded state / invasion status \\
+\midrule
+$J<J_{\rm fold}$ & organization-free & none \\
+$J_{\rm fold}<J<1$ & organization-free & $A$--$B$--$C$ stable \\
+$1<J<J_{\rm inv}$ & $A$--$B$ & $A$--$B$--$C$ stable; rare $C$ cannot invade \\
+$J>J_{\rm inv}$ & none against rare $C$ & $A$--$B$--$C$ stable; rare $C$ invades $A$--$B$ \\
+\bottomrule
+\end{tabular}
+\caption{Stable states and invasion status for the worked example $u=30$, $v=2$. The unstable expanded branch is shown in Figure~\ref{fig:bifurcation}.}
+\label{tab:equilibria}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/bifurcation_diagram.pdf}
+\caption{Bifurcation structure for $u=30$, $v=2$, plotted as total active abundance $a+b+c$ against external supply $J$. Solid branches are stable and dashed branches unstable in the stated directions. The expanded branch persists below both the baseline threshold $J=1$ and the invasion threshold $J_{\rm inv}$, turning at $J_{\rm fold}$.}
+\label{fig:bifurcation}
+\end{figure}
+
+Thus, at $J=0.9$, an unexpanded state decays while a state already in the basin of the expanded equilibrium persists. At $J=1.02$, rare $C$ cannot invade the stable $A$--$B$ equilibrium, while the already established expanded equilibrium remains stable.
+
+The interpretation is precise. At supplies in the bistable range, the fixed vector field already has both attractors. Seeding changes the state and can move the trajectory into the basin of the expanded equilibrium; it does not create the basin geometry at the moment of seeding. History matters through the state it leaves behind. If $(\theta,z,E,Q)$ is a sufficient Markov description, two histories that arrive at identical values of those variables have identical future conditional distributions.
+
+\begin{quote}
+A realized organizational state exhibits \textbf{Mechanism I --- hysteretic retention} when establishment from rarity requires stricter conditions than maintenance once the expanded state has been reached.
+\end{quote}
+
+This is the paper's strict hysteretic ratchet. It is a retention asymmetry and does not by itself demonstrate cumulative emergence across multiple innovations.
+
+\section{Mechanism II --- inherited adaptive extension}
+
+\subsection{A two-scale bridge: from within-organization dynamics to realization-level search}
+
+Sections 2--6 describe \emph{within-organization} dynamics: component abundances evolve under an architecture and an external environment. Section 7 onward concerns \emph{between-realization} inheritance and search: a population of realizations, each carrying an architecture $\theta$, produces successor realizations and candidate variants. The worked $A$--$B$--$C$ system does not itself contain reproduction of whole architectures, so the two levels require an explicit bridge.
+
+Let realization $i$ carry architecture $\theta_i\in\mathsf\Theta$ and internal state $z_i(t)\in\mathsf Z$. For the worked nonlinear model, $z_i=(a_i,b_i,c_i,r_i)$ and its internal dynamics can be written schematically as
+
+\begin{equation}
+\dot z_i=F(z_i;\theta_i,E_t).
+\label{eq:two-scale-internal}
+\end{equation}
+
+A realization generates successor realizations at rate $b_{\rm R}(\theta_i,z_i,E_t)$ and is lost by extinction, dissolution, or absorption at rate $d_{\rm R}(\theta_i,z_i,E_t)$. Dependence of these rates on $z_i$ is the coupling between scales: internal dynamical condition can influence realization-level continuation, although a particular functional mapping from distance to an internal threshold to $b_{\rm R}$ or $d_{\rm R}$ must be specified for a concrete application. When a successor realization is produced, its architecture is inherited with variation according to
+
+\begin{equation}
+\theta'\sim Q_t(d\theta'\mid\theta_i,M_t),
+\label{eq:two-scale-inheritance}
+\end{equation}
+
+where $M_t$ denotes any accessible external module or partner pool; Section 8 makes that extension explicit. In a purely vertical model, $M_t$ can be omitted or treated as fixed.
+
+Writing $\mathcal I_s$ for the index set of extant realizations at time $s$, the candidate-generation exposure becomes
+
+\begin{equation}
+\boxed{
+\Omega_\tau
+=
+\mathbb E\!\left[
+\int_t^{t+\tau}
+\sum_{i\in\mathcal I_s}
+\nu(\theta_i,z_i,E_s)\,ds
+\right].
+}
+\label{eq:omega-two-scale}
+\end{equation}
+
+This reduces to Eq.~\eqref{eq:omega} when all counted realizations share the same effective candidate-event rate $\nu_s$, so that the sum is $N_s\nu_s$. The homogeneous branching process used below is a further special case in which the counted realizations can be treated as exchangeable over the relevant interval: they share the same effective offspring distribution and candidate-event expectation, for example because a single resident architecture dominates and internal states relax rapidly relative to realization-level reproduction.
+
+The dependency structure is therefore
+
+\begin{equation*}
+\boxed{
+\text{within-realization }F
+\;\longrightarrow\;
+(b_{\rm R},d_{\rm R})
+\;\longrightarrow\;
+N_t
+\;\xrightarrow{\;(Q_t,\nu)\;}\;
+(\Omega_\tau,\overline\Lambda_{\tau,\rm new},\mathcal H_\tau).
+}
+\end{equation*}
+
+This bridge makes Sections 2--6 an internal-dynamics layer beneath the realization-level accessibility framework. We do not carry the coupled two-scale system through another numerical example here; specifying and testing such a coupling is a natural next application rather than an additional result of the present ODE.
+
+\subsection{Inheritance extension and mechanism definition}
+
+The two-scale wrapper still requires an inheritance assumption. We assume identifiable active realizations that reproduce, replicate, or otherwise generate successor realizations while transmitting enough organizational structure to define a conditional variation process. What counts as one active realization is application-specific: it could be a compartment containing a reaction network, a cell, an organism, an infectious lineage unit, an institution, or a replicated computational/network instance. These interpretations are not interchangeable without specifying the corresponding reproduction and inheritance process. In the branching calculations below, $N$ counts these reproducing realizations, not the component abundances $a$, $b$, and $c$ of the worked ODE.
+
+Under this added assumption, Mechanism II has two separate components. \textbf{Inheritance changes the origin of search}: candidate successors are generated from an architecture that was viable before deterioration rather than from the organization-free state. \textbf{Continued reproduction changes the amount of search}: while a lineage remains extant it supplies a finite number of candidate-generation opportunities. Near a persistence boundary, these effects can combine with the geometric fact that only a small beneficial displacement may be needed to restore positive expected growth.
+
+\subsection{Finite and infinite-horizon exploratory opportunity}
+
+Consider a discrete-generation branching process with mean reproduction number $R<1$. Let $Z_g$ be the random number of active realizations in generation $g$, beginning with $N_0$ founders. Then
+
+\[
+\mathbb E[Z_g]=N_0R^g.
+\]
+
+For $G+1$ counted generations, including founders,
+
+\begin{equation}
+\mathbb E[L_G]
+=
+N_0\sum_{g=0}^{G}R^g
+=
+N_0\frac{1-R^{G+1}}{1-R}.
+\label{eq:finite-lineage}
+\end{equation}
+
+For an infinite horizon,
+
+\begin{equation}
+\mathbb E[L_\infty]
+=
+\frac{N_0}{1-R},
+\qquad R<1.
+\label{eq:infinite-lineage}
+\end{equation}
+
+Equation~\eqref{eq:infinite-lineage} describes cumulative lineage size, not instantaneous standing population. For one founder it gives $2$ at $R=0.5$, $10$ at $R=0.9$, and $100$ at $R=0.99$.
+
+The symbol $\nu$ in Eq.~\eqref{eq:omega} is a continuous-time rate. For this discrete-generation calculation, let $\mu$ denote a constant conditional expected number of relevant candidate-generation events contributed by each counted realization over its lifetime or generation. Then
+
+\begin{equation}
+\Omega_G
+=
+\mu\,\mathbb E[L_G]
+=
+\mu N_0\frac{1-R^{G+1}}{1-R},
+\label{eq:omegaG}
+\end{equation}
+
+and, for an effectively infinite horizon,
+
+\begin{equation}
+\Omega_\infty
+=
+\mu\frac{N_0}{1-R}.
+\label{eq:omegaInf}
+\end{equation}
+
+For fixed $G$, $\Omega_G\to\mu N_0(G+1)$ as $R\to1$. The divergence in Eq.~\eqref{eq:omegaInf} therefore belongs to the infinite-horizon idealization.
+
+An exact finite-generation diagnostic makes the difference between expected counts and success probabilities explicit. Suppose each realization has Poisson offspring with mean $R$ and independently carries a specified success mark with probability $p$. Let $f_G$ be the probability, from one founder, of no mark through generation $G$, including the founder. Then
+
+\begin{equation}
+f_0=1-p,
+\qquad
+f_G=(1-p)\exp\{R(f_{G-1}-1)\}.
+\label{eq:finite-mark-recursion}
+\end{equation}
+
+For $N_0$ independent founders,
+
+\begin{equation}
+\Pr(\text{at least one mark by generation }G)
+=1-f_G^{N_0}.
+\label{eq:finite-mark-prob}
+\end{equation}
+
+For $R=0.99$, $p=0.001$, $N_0=1$, the exact and mean-count Poisson values are compared in Table~\ref{tab:branching-marks}.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Last counted generation & Exact success probability & $1-e^{-\mathbb E[\text{marks}]}$ \\
+\midrule
+20 & 0.01778 & 0.01885 \\
+50 & 0.03032 & 0.03931 \\
+100 & 0.03496 & 0.06177 \\
+Infinite horizon & 0.03550 & 0.09516 \\
+\bottomrule
+\end{tabular}
+\caption{Exact independent-mark branching calculation versus a Poisson formula using the mean mark count. The discrepancy grows with horizon near criticality. This is a diagnostic for the specified model, not a general pathogen-rescue estimate.}
+\label{tab:branching-marks}
+\end{table}
+
+The distinction between original emergence and later deterioration can now be stated carefully. A first emergence event may begin with very small $N_0$. After a long period of supercritical reproduction, a later decline may begin from many inherited realizations. Even at the same subcritical $R$, post-establishment history can therefore provide much larger $\Omega$ because $N_0$ and standing diversity differ. This is a historical search advantage, not a property of $R$ alone.
+
+Standing variation present when deterioration starts is an additional source of candidates and must be kept separate from newly generated opportunity. In expected-count form,
+
+\begin{equation}
+\overline\Lambda_{\tau,\mathrm{total}}(U)
+=
+\overline\Lambda_{\mathrm{standing},\tau}(U)
++
+\overline\Lambda_{\tau,\mathrm{new}}(U).
+\label{eq:standing-plus-new}
+\end{equation}
+
+Combining these expected counts into a probability requires a specified dependence/event model.
+
+This logic is closely related to pathogen-emergence results: subcritical transmission chains lengthen as a reproduction number approaches one, thereby increasing cumulative opportunities for adaptive change before extinction \citep{Antia2003,Woolhouse2005}.
+
+\subsection{Distance to the positive-growth boundary}
+
+Now consider an established reproducing organization whose environment deteriorates. Write
+
+\[
+R_{\rm res}=1-\varepsilon,
+\qquad0<\varepsilon<1.
+\]
+
+Define $s$ as an exact multiplicative reproductive advantage, so
+
+\[
+R_{\rm var}=R_{\rm res}(1+s)=(1-\varepsilon)(1+s).
+\]
+
+The variant has positive expected growth when
+
+\begin{equation}
+s>\frac{\varepsilon}{1-\varepsilon}\approx\varepsilon
+\quad(\varepsilon\text{ small}).
+\label{eq:rescue-step}
+\end{equation}
+
+A local geometric version applies when architecture admits a differentiable parameterization. Let $R(\theta,E)=1-\varepsilon$ and $\theta'=\theta+\delta\theta$. Then
+
+\[
+R(\theta+\delta\theta,E)
+=
+1-\varepsilon+\nabla_\theta R(\theta,E)\cdot\delta\theta+o(\|\delta\theta\|).
+\]
+
+To first order, positive expected growth requires
+
+\begin{equation}
+\nabla_\theta R(\theta,E)\cdot\delta\theta>\varepsilon,
+\label{eq:gradient-rescue}
+\end{equation}
+
+subject to control of the remainder. This identifies a local opportunity, not a guarantee.
+
+Near threshold, two complementary effects can favour rescue under the stated assumptions: expected exploratory exposure can be larger because decline is slower, and the beneficial displacement required for positive expected growth can be smaller. Their combined consequence depends on the full candidate and establishment process. The classical term for successful recovery of a declining lineage through adaptation before extinction is \textbf{evolutionary rescue} \citep{Bell2017}. Rescue probability should be obtained from a specified branching, first-passage, or candidate-count model. Equation~\eqref{eq:success-probability} applies only when the stated conditional-Poisson assumption is justified.
+
+\subsection{Inheritance changes the origin of search}
+
+The deeper inheritance asymmetry does not depend on rescue. A first viable organization may require a rare sequence
+
+\[
+0\longrightarrow\theta.
+\]
+
+Once $\theta$ is inherited with sufficient fidelity, later candidate generation begins from the realized architecture,
+
+\[
+\theta\longrightarrow\theta',
+\]
+
+rather than repeating the transition from the organization-free state. Under sufficiently faithful inheritance, candidate variation is concentrated on transformations that retain relevant features of $\theta$. Calling this search \emph{local} requires an application-specific notion of distance; the general claim is only that successor generation is conditioned on retained structure.
+
+\[
+\boxed{\text{Successful previous organization becomes the starting point for the next search.}}
+\]
+
+If the variation process is architecture-relative, $q(\cdot\mid\theta_1)$ and $q(\cdot\mid\theta_0)$ can differ because the same designated variation rule is conditioned on different architectures; different architectures do not logically require different distributions in every model. Mechanism II concerns the inherited starting condition and exposure. Mechanism III designates an intervention on the variation process itself.
+
+The worked $A$--$B$--$C$ ODE does not contain reproduction of whole $A$--$B$--$C$ organizations. Statements about descendants inheriting that architecture therefore refer to an additional realization-level inheritance model, not to a result derived from Eqs.~\eqref{eq:nonlinear-a}--\eqref{eq:nonlinear-r}.
+
+\subsection{Eco-evolutionary feedback as an illustration}
+
+SARS-CoV-2 provides an illustration of inherited starting structure, exploratory exposure, and a changing environment. Prior circulation generated already human-adapted viral lineages and standing diversity, while infection- and vaccine-derived immunity altered the selective environment experienced by later lineages. Reviews describe antigenic novelty and immune escape as important components of later relative fitness alongside intrinsic transmission-related traits \citep{Carabelli2023}. In the present language, prior success can affect later accessibility through inherited architecture, continued replication, and environmental feedback. The toy reaction model is not a model of SARS-CoV-2 evolution, and explicit immune-environment dynamics would be required for a mechanistic application.
+
+\subsection{Mechanism II in the accessibility framework}
+
+\begin{quote}
+\textbf{Inherited adaptive extension} occurs when retained organizational structure changes the starting condition for successor generation, and reproductive history changes the finite exposure available for generating candidates.
+\end{quote}
+
+Its empirical content is interventional. Equation~\eqref{eq:historical-total} estimates the total contribution of retained structure, including pathways through survival and exposure. Equation~\eqref{eq:historical-controlled} answers a different question under a prescribed candidate-opportunity protocol.
+
+Mechanisms I and II are independent in logical requirement: inheritance-mediated adaptive extension does not require hysteresis, and hysteretic retention does not require reproduction of whole architectures. They may nevertheless compound in particular systems. Table~\ref{tab:mechanisms} summarizes the routes and the objects that represent them.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.25\linewidth}>{\raggedright\arraybackslash}p{0.24\linewidth}>{\raggedright\arraybackslash}p{0.18\linewidth}}
+\toprule
+Route & Historical variable or process & Accessibility effect & Representative object \\
+\midrule
+I --- hysteretic retention & state and basin occupancy at fixed rules & what can remain & $J_{\rm fold}<J_{\rm inv}$ \\
+II --- inherited adaptive extension & inherited $\theta$, initial abundance, standing variation, exposure & where lineage-local search begins and how much candidate generation occurs & $\mathcal H_\tau$, $\Omega$, $q(\cdot\mid\theta)$ \\
+Compositional accessibility & accessible modules, donors, partners, or cross-scale couplings & what already-realized organization can be imported or combined & $M_t$, $q(\cdot\mid\theta,M_t)$ \\
+III --- evolvability & designated variation process itself & how candidate successors are generated & $Q_m=(q_m,\nu_m)$ \\
+\bottomrule
+\end{tabular}
+\caption{Three primary mechanisms plus a cross-cutting compositional route to history-dependent effective organizational accessibility. The decomposition is operational and need not be unique under a different state representation.}
+\label{tab:mechanisms}
+\end{table}
+
+\section{Compositional accessibility: a proposed extension for recombination, transfer, symbiosis, and cross-scale incorporation}
+
+This section is a proposed extension of the formal framework of Section 1.1, not a mechanism demonstrated by the worked ODE of Sections 2--6. Its purpose is to show where non-vertical sources of already-realized organization enter the accessibility decomposition without treating familiar biological processes as new results of the present model.
+
+Inheritance is not the only way previous organization can become starting material for later organization. Let $M_t$ denote the pool of organizational modules, donor structures, partner systems, or interfaces accessible to a focal organization at time $t$. The candidate process may then depend on both the focal architecture and this external pool:
+
+\begin{equation}
+q_t(d\theta'\mid\theta,M_t).
+\label{eq:module-pool}
+\end{equation}
+
+One can make the source of candidate architecture explicit through schematic operators such as
+
+\begin{equation*}
+Q_{\rm vertical}(d\theta'\mid\theta),\qquad
+Q_{\rm recomb}(d\theta'\mid\theta_A,\theta_B),\qquad
+Q_{\rm HGT}(d\theta'\mid\theta,m),\qquad
+Q_{\rm sym}(d\theta'\mid\theta_A,\theta_B,C_{AB}),
+\end{equation*}
+
+for vertical variation, recombination between co-parent architectures, acquisition of an external module $m\in M_t$, and symbiotic union under a coupling $C_{AB}$, respectively. These expressions are bookkeeping devices for candidate origin, not derived submodels. Horizontal gene transfer and endosymbiosis are established biological examples of non-vertical acquisition and integration \citep{Soucy2015,Archibald2015}; major-transition theory likewise studies transitions in which previously separate units become components of a higher-level organization \citep{SzathmarySmith1995}.
+
+These routes are not a fourth mechanism parallel to Mechanisms I--III. They can be substituted into, or mixed within, the designated candidate process $Q_t=(q_t,\nu_t)$. Mechanism III then asks whether the designated process governing the rate or selectivity of such candidate generation itself varies and is retained differentially. The useful distinction is instead historical provenance:
+
+\begin{equation*}
+\boxed{
+\begin{aligned}
+\text{inheritance (Mechanism II)} &: \text{reuse of organization from the focal lineage's own history},\\
+\text{composition (this section)} &: \text{reuse of organization accumulated elsewhere}.
+\end{aligned}
+}
+\end{equation*}
+
+A \textbf{cross-scale organizational bridge} is the special case in which incorporation changes the effective organizational boundary. A lower-level organization may depend on a coupling $C_{s,s+1}$ to a higher-scale organization, for example
+
+\begin{equation*}
+R_{\rm eff}=R\!\left(\theta^{(s)},C_{s,s+1},\theta^{(s+1)},E\right).
+\end{equation*}
+
+At a coarser description, what was represented as external support $E$ or as a module in $M_t$ may become part of a jointly coupled architecture whose continuation is assessed across both former parts. This illustrates why the boundary between architecture, accessible module pool, and environment is scale-dependent.
+
+\begin{quote}
+\textbf{Organization need not be invented where it is used. Previously realized organization can become accessible through incorporation from elsewhere.}
+\end{quote}
+
+The extension therefore suggests a distinction between \textbf{lineage-local accumulation}, in which retained structure is carried vertically, and \textbf{network-distributed accumulation}, in which independently realized structures are later combined. If an imported structure $h$ is retained through an intermediate organization and causally improves access to a prespecified later target, the interventional criterion in Eq.~\eqref{eq:historical-total} applies regardless of provenance. Access to $M_t$ can enlarge, narrow, or otherwise reshape candidate space; incompatibility, parasitism, and destabilization remain possible.
+
+\section{Mechanism III --- evolvability: changing the variation process}
+
+Mechanisms I and II can change effective accessibility while a designated rule for generating variants remains fixed. A further recursion becomes possible when that \textbf{variation process itself varies}. Let $m$ denote a heritable or otherwise retainable modifier and write
+
+\[
+Q_m=(q_m,\nu_m),
+\]
+
+where $q_m$ describes the distribution of candidate architectures conditional on a variation event and $\nu_m$ its rate per active realization per unit time. A modifier may alter mutation, recombination, developmental variability, exploratory connectivity, modularity, robustness, genotype--phenotype mapping, or the ability to preserve useful substructure while other parts vary.
+
+The separation between $\theta$ and $Q_m$ is operational rather than invariant. A sufficiently detailed architecture state could include the modifier itself and leave a fixed extended transition rule. The distinction remains useful when a study design designates a focal architecture and a variation modifier separately and can intervene on them separately. Under that decomposition, Mechanism II asks what happens because the inherited starting architecture and exposure differ; Mechanism III asks what happens because the candidate-generating rule or rate differs.
+
+The expected count of established successors under modifier $m$ follows Eqs.~\eqref{eq:xi}--\eqref{eq:expected-success-count} with the modifier-specific carrier population $N_{m,s}$, rate $\nu_{m,s}$, distribution $q_{m,s}$, and, where appropriate, establishment probability $\pi_{\rm est,m,s}$. A modifier can affect immediate survival as well as future variation, so direct and indirect effects can coexist.
+
+Demonstrating selection on evolvability requires more than showing that a modifier changes $Q$. At minimum:
+
+\begin{enumerate}
+\item candidate distributions or event rates must differ measurably between modifier states;
+\item successful descendants must inherit the modifier with sufficient fidelity;
+\item modifier states must compete or be retained differentially;
+\item direct present-day effects must be distinguished from effects mediated through future variation.
+\end{enumerate}
+
+A modifier that affects evolvability need not have evolved \emph{because} it does so. Experimental and theoretical work emphasizes this distinction \citep{DiazArenas2013,Wagner2022,Pelabon2025}; explicit models nevertheless demonstrate conditions under which evolvability-related properties can respond to selection \citep{EarlDeem2004}.
+
+Under the additional inheritance and competition assumptions, a feedback is possible:
+
+\[
+\begin{aligned}
+\text{retainable variation modifier}
+&\to \text{changed candidate distribution or rate}\\
+&\to \text{changed descendant accessibility}\\
+&\to \text{differential persistence or reproduction}\\
+&\to \text{differential retention of the modifier}.
+\end{aligned}
+\]
+
+This is related to established concepts of evolvability: the capacity to generate heritable selectable variation and the organization of genotype--phenotype or developmental mappings that shape such variation \citep{WagnerAltenberg1996,Gerhart2007}.
+
+The primary mechanisms should not be treated as a required evolutionary staircase. Hysteresis is not a prerequisite for inheritance, inheritance-mediated rescue is not a prerequisite for a variation modifier, and compositional import can occur at multiple points. They are possible causal routes whose contributions depend on the chosen system and intervention.
+
+\section{Empirical tests and dynamical signatures}
+
+The framework is useful only if its mechanisms and cumulative claims can be distinguished empirically.
+
+\subsection{Mechanism I: fold geometry, retention, and return-path interventions}
+
+Proposition~\ref{prop:fold-stability} gives two parameter-level predictions for the normalized nonlinear model: an interior fold exists iff $u>1+2/v$, and when it exists $J_{\rm fold}<J_{\rm inv}$. The worked $u=30$, $v=2$ regime adds the stronger property $J_{\rm fold}<1$.
+
+The resource-consuming intervention in Eqs.~\eqref{eq:control-a}--\eqref{eq:control-w} provides a direct test of productive return. With $\eta=1$ the expanded state persists after $J$ falls to $0.9$; with $\eta=0$ the same return flux consumes resource but its product is diverted to waste, and active abundances collapse. Failure of this predicted effect in another system would not prove that no feedback pathway matters, but it would fail to support the proposed role of the tested loop under those conditions.
+
+Near a stable equilibrium $z^*$, let $\mathbf A(J)$ be the Jacobian and let $\psi$ be a left eigenvector associated with the slow eigenvalue $\lambda_{\rm slow}(J)<0$. For the projected scalar fluctuation $y=\psi^T\delta z$, weak additive noise with non-zero projection onto the mode gives, under an Ornstein--Uhlenbeck approximation,
+
+\[
+\operatorname{Var}(y)\propto\frac{1}{|\lambda_{\rm slow}|},
+\qquad
+\operatorname{Corr}(y_t,y_{t+\Delta t})\approx1-|\lambda_{\rm slow}|\Delta t
+\quad\text{for }|\lambda_{\rm slow}|\Delta t\ll1.
+\]
+
+At the baseline transcritical threshold, $|\lambda_{\rm slow}|\propto|R_{\rm org}-1|$. Near the saddle-node fold,
+
+\[
+|\lambda_{\rm slow}|\propto\sqrt{J-J_{\rm fold}},
+\qquad
+\operatorname{Var}(y)\propto(J-J_{\rm fold})^{-1/2}.
+\]
+
+These are local bifurcation signatures, not unique signatures of cumulative organization, and state-dependent demographic noise need not follow the same variance scaling as constant additive noise \citep{Scheffer2009,Dakos2012}.
+
+\subsection{Mechanism II and the cumulative contribution: distinguish causal estimands}
+
+A direct design should estimate separately: (i) distance below the persistence boundary; (ii) abundance or number of reproducing realizations at deterioration onset; (iii) standing variation; (iv) candidate-generation rate and distribution; and (v) inherited starting architecture. Eqs.~\eqref{eq:omegaG}--\eqref{eq:omegaInf} describe expected exposure in the branching special case, while Eq.~\eqref{eq:rescue-step} describes the multiplicative improvement needed for positive expected growth. Rescue probability must come from a specified stochastic model; the conditional-Poisson formula is only one justified special case.
+
+For a retained structure $h$ and prespecified novel target $U$, the primary experiment should estimate the \emph{total} historical contribution in Eq.~\eqref{eq:historical-total}: match the pre-intervention background and external-input protocol, intervene on $h$, and allow survival, abundance, candidate exposure, endogenous environment, and $Q$ to respond if they are downstream consequences. This captures the full route by which retained structure may alter later accessibility.
+
+A second experiment answers a narrower question. Under a prescribed candidate-generation protocol $\mathcal P$ with controlled numbers and timing of candidate opportunities, Eq.~\eqref{eq:historical-controlled} tests whether $h$ changes access to the same target under comparable trials. The two experiments should not be conflated, and matching on realized post-intervention $\Omega$ is not a substitute for defining the controlled protocol.
+
+To support a specifically cumulative interpretation rather than simple maintenance, the historical sequence should record when $h$ was acquired, what earlier function it supported, the intermediate organization that retained it, and the later target absent at the designated baseline. If disruption merely destroys present function, a supplementary control preserving comparable present performance while varying the retained structure can help isolate the contribution to later novelty. Redundant structures may require combined disruptions.
+
+\subsection{Compositional accessibility: manipulate the module and partner pool}
+
+Compositional accessibility is tested by intervening on $M_t$ or on coupling to donors/partners while holding the focal pre-intervention background and external-input protocol fixed. Examples include allowing or blocking horizontal transfer from a defined donor pool, permitting or preventing recombination with a specified module library, or selectively disrupting a symbiotic or cross-scale bridge.
+
+The total-effect question asks whether access to the external pool changes the probability or time to a prespecified target, allowing downstream abundance and exposure to respond. A complementary prescribed-import assay can deliver the same number and timing of candidate modules to compare compatibility or establishment under controlled opportunity. Provenance should be tracked: the claim of network-distributed accumulation is strongest when a module demonstrably realized in another historical lineage is incorporated and later contributes to a novel target in the recipient.
+
+\subsection{Mechanism III: manipulate the designated variation process}
+
+Compare otherwise matched organizations carrying modifiers $m_1$ and $m_2$ that differ in $Q_m=(q_m,\nu_m)$. Measure candidate distributions, event rates per carrier per unit time, modifier-specific establishment probabilities, direct present-day effects, modifier inheritance, and differential retention attributable to descendant consequences. The last two distinguish selection on variation-generating properties from a side effect of a directly selected trait.
+
+\subsection{Minimum measurement set for an application}
+
+An application should specify at least: (i) the unit counted as an active realization; (ii) architecture $\theta$ and state $z$; (iii) environment and whether it is exogenous or dynamic; (iv) a continuation criterion; (v) horizon $\tau$; (vi) candidate-generation rate and distribution; (vii) the event-counting convention and establishment event; (viii) any accessible external module/partner pool $M_t$; (ix) the historical baseline and prespecified novel target; and (x) the intervention defining the causal contrast. Without these definitions, terms such as accessibility, inheritance, compositional reuse, and cumulative remain descriptive rather than testable.
+
+\section{Scope, limitations, and relation to existing theory}
+
+The worked mathematical result is intentionally narrower than the general framework. The resource-limited model demonstrates collective component replacement and, for the normalized nonlinear family, Proposition~\ref{prop:fold-stability} establishes the parameter condition for an interior fold and the local stability structure of its branches. It does not by itself demonstrate reproduction of whole organizational architectures, cumulative inheritance across multiple innovations, compositional transfer, or selection on evolvability. Those claims require the additional assumptions and interventions made explicit later.
+
+The proposed contribution is therefore not a new theorem that state affects future state. It is a causal decomposition of historically conditioned organizational accessibility, together with explicit analytical and experimental objects for distinguishing its routes. Chemical Organisation Theory already links closed, self-maintaining reaction sets to dynamics \citep{Dittrich2007}. Seed-dependent autocatalytic systems already demonstrate historically contingent sequential activation \citep{Peng2022}. Evolutionary-rescue and pathogen-emergence theory already connect threshold proximity, decline, and adaptive opportunity \citep{Antia2003,Bell2017,Woolhouse2005}. Horizontal transfer, endosymbiosis, and major-transition theory already show that evolutionary history is not purely vertical and that higher-level organization can assemble previously separate systems \citep{Soucy2015,Archibald2015,SzathmarySmith1995}. Evolvability theory studies variation in the process generating heritable variation. The present synthesis asks how retention, inherited starting conditions, candidate exposure, compositional access, establishment, environment, and the designated variation process can be measured separately or in combination.
+
+Several limitations follow. Accessibility may narrow rather than widen. Hysteresis can preserve maladaptive states. Inheritance can retain liabilities. Imported modules can be incompatible or parasitic. Large expected exploratory exposure can coexist with low rescue probability. Evolution can simplify organization or end lineages. Variation modifiers can have direct fitness effects as well as effects on evolvability. Critical slowing down is a generic local property of bifurcations, not a unique signature of cumulative organization.
+
+The framework is scale-dependent. An active realization in a branching process must be defined independently of component abundances in an intracellular or chemical ODE unless a model connects those levels. Likewise, a cross-scale bridge changes the boundary of the focal organization: what appears as environment at one scale may become internal support at another. Such coarse-graining choices do not make the framework meaningless, but they must be stated because they determine what $\theta$, $z$, $N$, $Q$, $M$, and $E$ mean.
+
+The distinction between Mechanism II and Mechanism III is also operational rather than invariant under arbitrary reparameterization. A modifier can be absorbed into a sufficiently detailed architecture state. The distinction is scientifically useful when a study design can designate and intervene separately on inherited focal architecture and the variation-generating process.
+
+The interventional criterion of Section 1.2 is most directly testable in manipulable systems. For historical, non-repeatable systems it defines the target causal estimand without resolving empirical identification; case-specific structural assumptions, comparative designs, ancestral reconstruction, or natural experiments are then required. This limitation concerns identification of the proposed causal quantity, not its mathematical definition.
+
+The paper is intentionally a framework rather than an end-to-end case study. Its general contribution is to generate interventionally distinct questions across mechanisms that otherwise sit in separate literatures. The worked model, branching diagnostic, and causal estimands anchor that framework locally; a multi-stage application in which the same retained structure is shown to improve access to a later novel target is the next empirical or simulation-level test.
+
+Finally, this paper does not claim that the worked example demonstrates a multi-stage cumulative-emergence sequence. It demonstrates a retention mechanism and develops a criterion for cumulative organizational contribution. A multi-stage empirical or simulated example in which an earlier acquired structure remains relevant to a later prespecified novel target would be the next positive test of the broader cumulative claim.
+
+\section{Discussion}
+
+Darwinian natural selection explains differential propagation among heritable variants. The accessibility framework addresses a complementary question: \textbf{why are particular variants and persistent states available for selection and dynamics to act upon at a particular historical moment?}
+
+The answer is not that history rewrites a universal transition law after every step. If the conditioning variables are sufficient, identical current states have identical conditional futures. History matters because it can leave different causal conditions behind. A seed can place a fixed reaction system in another basin. Reproduction can transmit a previously viable architecture and alter candidate exposure. Ecological consequences can change future environment. Recombination, transfer, symbiosis, and cross-scale coupling can import organization realized elsewhere. Variation-generating mechanisms can themselves vary. These changes alter effective organizational accessibility without foresight.
+
+Mechanism I is the most explicit dynamical demonstration. Proposition~\ref{prop:fold-stability} shows when the expanded branch acquires an interior fold and establishes the local stable/unstable branch structure; the worked parameter regime additionally persists below the baseline threshold. Mechanism II is distinct: once reproducing realizations inherit organizational features, successor generation begins from retained architecture and occurs under history-dependent exposure. Near a persistence boundary, the expected number of candidate-generating opportunities and the distance to positive expected growth can both favour rescue, but probability depends on the stochastic candidate/establishment model. Mechanism III designates variation in the candidate-generating process itself and requires modifier inheritance and differential retention for a claim about selection on evolvability.
+
+Compositional accessibility adds another historical dimension. Cumulative organization need not be lineage-local. A module can be discovered in one lineage, transferred to another, combined by recombination, or incorporated through symbiosis. A lower-level organization can become viable because it is embedded in a higher-level support network. In these cases, later accessibility reflects a \emph{web of histories}. The important scientific question is not whether the imported structure is old or new to the universe, but whether its prior realization and current incorporation causally alter access to a prespecified later target.
+
+The cumulative claim is therefore more demanding than persistence or inheritance alone. The total-effect contrast in Eq.~\eqref{eq:historical-total} asks whether retaining an earlier structure changes later target accessibility through all downstream pathways. The controlled-opportunity contrast in Eq.~\eqref{eq:historical-controlled} asks a different question under prescribed candidate trials. Repeated positive contributions across a documented sequence provide evidence for a cumulative organizational ratchet in the broader sense used here.
+
+This also clarifies the relationship to selection:
+
+\begin{quote}
+\textbf{Selection acts on generated heritable variation and contributes to which variants establish and subsequently propagate, within an accessibility structure that previous organization may itself have helped create.}
+\end{quote}
+
+Previous organization may affect the inherited base point, standing variation, candidate exposure, available module pool, environment, establishment landscape, or the variation process itself. The framework separates these contributions rather than replacing selection.
+
+No direction toward complexity follows. The same routes can narrow accessibility, preserve traps, delete functions, or fail entirely. The general claim remains:
+
+\[
+\boxed{\text{Existence changes what existence can follow.}}
+\]
+
+The cumulative special case is narrower:
+
+\[
+\boxed{\text{Previous viability can become infrastructure for subsequent viability.}}
+\]
+
+The word \emph{previous} need not mean only the focal lineage's own previous state. Through compositional accessibility, it can also refer to organization achieved elsewhere and later incorporated.
+
+\section{Conclusion}
+
+This paper develops organizational accessibility as a framework for separating causal routes by which organizational history can influence later viable organization. The resource-limited production model first establishes collective component replacement and an organization reproduction number $R_{\rm org}$. For the nonlinear extension, an analytical proposition shows that an interior fold exists iff $u>1+2/v$, lies below the invasion threshold when it exists, and separates locally stable and unstable expanded branches. In the worked $u=30$, $v=2$ regime, this produces hysteretic retention across a wide supply interval. A resource-consuming inert-product intervention supports the causal role of productive return.
+
+The broader inheritance analysis is an explicit extension rather than a consequence of that ODE. Once identifiable realizations transmit organizational features with variation, retained architecture becomes the starting condition for successor generation and reproductive history determines finite candidate exposure. An exact finite-generation branching recursion illustrates why expected opportunity is not rescue probability. A further extension designates variation in $Q=(q,\nu)$ as an evolvability mechanism requiring modifier inheritance and differential retention.
+
+Compositional accessibility widens the historical picture: candidate successors can draw on a module or partner pool $M_t$, allowing recombination, horizontal transfer, symbiosis, and cross-scale incorporation to reuse organization realized outside the focal lineage. Cumulative emergence can therefore be lineage-local or network-distributed.
+
+The proposed criterion for cumulative organizational contribution is interventional. Structure acquired earlier must be retained through an intermediate organization and increase access to a prespecified later target absent at a designated baseline. The total contribution allows downstream survival, exposure, environment, and variation to respond; a separate prescribed-opportunity assay isolates a different causal question. This paper proposes and formalizes that criterion but does not claim that its worked ODE demonstrates a complete multi-stage cumulative sequence.
+
+The framework therefore does not state a law of increasing complexity. Its narrower proposal is that later accessibility can be decomposed into measurable historical causes: what can remain, what is inherited, how much candidate exposure occurs, what organization can be imported from elsewhere, what candidates are generated, and which establish. Under some conditions, what worked before --- here or elsewhere --- becomes part of what makes a later viable organization reachable.
+
+\appendix
+\section{Local stability of the expanded branch}
+\label{app:stability}
+
+At an expanded equilibrium with $u>0$, $v>0$, and $0<r<1$, write
+
+\[
+\hat a=\frac{1}{ur},
+\qquad
+\gamma=\frac{1-r^2}{vr^2}.
+\]
+
+Here $\hat a$ is the expanded-branch value of $a$, distinct from the $A$--$B$ resident
+value $a^*=(J-1)/2$ used in Section 6.
+
+The Jacobian of Eqs.~\eqref{eq:nonlinear-a}--\eqref{eq:nonlinear-r} has characteristic polynomial
+
+\begin{equation}
+(\lambda+1)\left(\lambda^3+c_1\lambda^2+c_2\lambda+c_3\right),
+\label{eq:charpoly}
+\end{equation}
+
+where
+
+\[
+c_1=2+\frac{\hat a}{r}+\hat a(1+\gamma),
+\]
+
+\[
+c_2=\hat a\left[\frac{(1+r)^2}{r}+\gamma(3+vr)\right],
+\]
+
+and
+
+\begin{equation}
+c_3=\gamma\left[\hat a(2+vr)-vr^2\right]
+=-(1-r^2)J'(r).
+\label{eq:c3}
+\end{equation}
+
+Here $c_1>2$ and $c_2>0$. Moreover,
+
+\[
+c_2-c_3
+=
+\hat a\frac{(1+r)^2}{r}+\gamma\hat a+\gamma vr^2>0.
+\]
+
+If $J'(r)<0$, then $c_3>0$. Since $c_2>c_3$ and $c_1>2$, we have $c_1c_2>c_3$. The Routh--Hurwitz conditions for the cubic are therefore satisfied, and together with the factor $\lambda+1$ all eigenvalues have negative real parts. Hence the branch is locally asymptotically stable.
+
+If $J'(r)>0$, then $c_3<0$. The cubic is negative at $\lambda=0$ and tends to $+\infty$ as $\lambda\to+\infty$, so it has a positive real root; the branch is unstable.
+
+At the interior fold, $J'(r)=0$ and therefore $c_3=0$. One eigenvalue is zero. The remaining quadratic $\lambda^2+c_1\lambda+c_2$ has roots with negative real parts because $c_1,c_2>0$, and the fourth eigenvalue is $-1$. This proves the local stability assignment in Proposition~\ref{prop:fold-stability}. It is not a global-convergence theorem.
+
+\printbibliography
+
+\end{document}

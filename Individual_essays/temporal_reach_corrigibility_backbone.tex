@@ -1,0 +1,337 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={Temporal Reach and the Corrigibility Constraint},
+  pdfauthor={Albert Jan van Hoek}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\setlist[itemize]{topsep=0.2em,itemsep=0.25em,parsep=0em}
+\setlist[enumerate]{topsep=0.2em,itemsep=0.25em,parsep=0em}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{hypothesis}{Hypothesis}
+
+\newcommand{\OA}{\mathcal{A}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\R}{\mathcal{R}}
+
+\title{\textbf{Temporal Reach and the Corrigibility Constraint}\\
+\large A conceptual backbone for \emph{Evolution by Emergence}}
+\author{Albert Jan van Hoek}
+\date{September 2026\\\small Working theoretical note for the Evolution by Emergence repository}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note states a proposed backbone connecting four ideas developed across \emph{The Room}, \emph{Evolution by Emergence}, and the organizational-accessibility framework: bounded models can be wrong without knowing that they are wrong; persistent intelligence therefore requires corrective information from outside its current model; corrective relations have physical costs and can also create resource savings or other returns; and retained organization changes the starting conditions from which later organization becomes accessible. The same logic can be walked in the opposite direction. Self-maintaining organization can retain consequences of its history, learning can make that history usable in the present, and prediction can make represented future consequences affect present action. This produces increasing temporal reach. The central claim is not that evolution inevitably produces intelligence, benevolence, or complexity. It is that any model-based intelligence that remains effective in a changing world containing task-relevant uncertainty faces a substrate-independent corrigibility constraint. This yields testable expectations for long-lived artificial intelligence and, more cautiously, for any technologically capable extraterrestrial intelligence.
+\end{abstract}
+
+\section{The thesis in one paragraph}
+
+A bounded intelligence is not reality itself. It acts through a model, representation, state estimate, learned policy, or other internal organization that contains only some of the information relevant to its world. If two possible realities are compatible with the same internal state but later require different actions, the intelligence cannot know which action is correct from that internal state alone. To remain effective, it must receive information causally connected to what lies outside its current model and must remain able to change because of that information. Correction is therefore relational. Relations cost resources, but they can also prevent error, reduce repeated search, enable specialization, transmit knowledge, coordinate action, and preserve capacities that would otherwise need to be rebuilt. When a relation returns more usable value than it costs, and some of that return supports the relation or the organization that carries it, organization can persist through turnover. Retained organization then becomes the starting condition for what can happen next. Repeated cycles of correction, return, retention, and altered accessibility constitute a possible route to cumulative emergence. Over evolutionary history, retained consequences can become memory; memory can support learning; learning can support prediction; and prediction allows represented future consequences to alter present action. Intelligence is thus one possible outcome of cumulative organization, while corrigibility remains a structural requirement for any such intelligence whose model is incomplete relative to a changing world.
+
+\section{From \emph{The Room} to a general constraint}
+
+The starting observation is simple. Different intelligent agents can experience deep certainty while holding mutually incompatible models. Therefore the felt coherence or certainty of a model cannot, by itself, certify correspondence with reality. The point is not specifically religious, psychological, or human. The general problem is that an internal state is evidence about the internal state, not an infallible certificate about everything outside it.
+
+\begin{definition}[Model-based intelligence]
+For the purpose of this note, an intelligence is a consequence-sensitive process that uses retained information to alter present action or organization in ways that affect its continued viability or performance under changing conditions. At time $t$, let $M_t$ denote the internal state used for action, $X_t$ the task-relevant state of the world, and $A_t$ the action selected by a policy $\pi$:
+\[
+A_t = \pi(M_t).
+\]
+The term \emph{model} is used broadly. $M_t$ need not be an explicit symbolic world model. It may be a learned representation, a distributed neural state, a belief distribution, a regulatory state, or any internal organization that carries information from past interaction into present action.
+\end{definition}
+
+\begin{definition}[Corrective information]
+Corrective information is information reaching the intelligence whose value is causally dependent on distinctions in the world that are not already fixed by the intelligence's current internal state, and which is permitted to alter future internal state or action.
+\end{definition}
+
+The source of correction need not be another intelligence. It may be direct measurement, physical resistance, prediction error, another organism, another model, an experiment, or a social institution. The common feature is causal openness to something not already determined by the current model.
+
+\section{The corrigibility constraint}
+
+\begin{proposition}[Corrigibility constraint]
+Suppose that at time $t_0$ there exist two possible world histories, $W$ and $W'$, that are compatible with the same internal state $M_{t_0}$ but that later require different actions for successful performance. If, after $t_0$, no information causally dependent on whether $W$ or $W'$ is the realized world can reach or alter the intelligence, then the intelligence cannot be guaranteed to remain successful in both worlds.
+\end{proposition}
+
+\textit{Proof sketch.} At $t_0$ the internal state is identical in $W$ and $W'$. By assumption, no later input distinguishes the two worlds. The future internal evolution of the intelligence is therefore the same in both worlds, as are its actions. At the point where successful action differs between $W$ and $W'$, the same action cannot be correct in both. Hence success across the class of possible worlds requires a discriminating information channel and the capacity to update because of it. $\square$
+
+This is the central universal claim of the note. It does not say that every intelligence must be socially cooperative, scientifically curious, or morally good. It says something narrower: whenever a system acts through an internal state that fails to distinguish task-relevant alternatives in a changing world, continued competence across those alternatives requires corrigibility in the functional sense above.
+
+\begin{corollary}[Recurring corrigibility]
+If task-relevant distinctions not contained in the current model repeatedly arise over time, correction cannot be a one-time event. A persistent intelligence must remain corrigible for as long as such distinctions continue to arise.
+\end{corollary}
+
+Emergence supplies one important route to this condition. If new states, relations, agents, technologies, or environmental configurations appear that were not fully encoded in the previous model, then a model that was once adequate can become inadequate without any internal warning that is guaranteed to identify the change correctly.
+
+\section{Temporal reach}
+
+The same framework can be walked in the opposite historical direction. A minimal self-maintaining process responds to immediate conditions. Retention makes consequences of the past available later. Memory makes selected past distinctions usable in the present. Learning changes present organization because of previous consequences. Prediction goes one step further: a representation of a possible future consequence changes present action before that consequence occurs.
+
+This motivates two dimensions of temporal reach.
+
+\begin{definition}[Historical and prospective depth]
+\emph{Historical depth} is the extent to which distinctions from the past remain causally usable in present organization or action. \emph{Prospective depth} is the horizon over which represented possible future consequences can alter present organization or action.
+\end{definition}
+
+For a coarse-grained discrete future trajectory
+\[
+F_{\tau} = (X_{t+1},X_{t+2},\ldots,X_{t+\tau}),
+\]
+conditional uncertainty over the path satisfies the chain rule
+\[
+H(F_{\tau+1}\mid M_t)
+=
+H(F_{\tau}\mid M_t)
++
+H(X_{t+\tau+1}\mid F_{\tau},M_t),
+\]
+and therefore
+\[
+H(F_{\tau+1}\mid M_t) \geq H(F_{\tau}\mid M_t).
+\]
+Thus extending the represented trajectory cannot reduce uncertainty about the \emph{whole path}; if additional steps contain residual uncertainty, path uncertainty grows. This does not imply that every longer-horizon decision is harder, or that uncertainty about a particular endpoint must increase monotonically. It does show why longer temporal reach creates more opportunities for a bounded model to diverge from the world it is trying to control.
+
+\begin{hypothesis}[Temporal-reach hypothesis]
+Holding task structure and model quality otherwise comparable, systems attempting effective control over longer and more open-ended horizons should place greater functional value on uncertainty representation, independent information channels, error detection, model revision, and recovery from failed predictions.
+\end{hypothesis}
+
+The hypothesis is conditional. A perfectly modeled deterministic world would not require continuing correction. The claim concerns worlds containing task-relevant distinctions that are not fully determined by the current model.
+
+\section{Why correction becomes relational organization}
+
+Correction is not free. Measurement, communication, checking, teaching, repair, memory, redundancy, and dispute resolution all consume physical resources. Yet they can also save resources. Let
+\begin{itemize}
+  \item $C_{\R}$ be the resource cost of maintaining a corrective or cooperative relation $\R$;
+  \item $L_0$ be the expected loss from error, duplication, conflict, or failure without the relation;
+  \item $L_{\R}$ be the corresponding expected loss with the relation; and
+  \item $G_{\R}$ be other gains generated through coordination, specialization, transmission, or joint action.
+\end{itemize}
+Define the net relational return
+\[
+S_{\R} = (L_0-L_{\R}) + G_{\R} - C_{\R}.
+\]
+When $S_{\R}>0$, the relation creates a positive resource surplus relative to its absence, within the chosen system boundary and time horizon. The surplus may be energy, time, material, computational capacity, risk reduction, attention, or another physically realized resource. These currencies should not be treated as identical, but all can alter which activities are affordable.
+
+A positive surplus is not enough for persistence. Some part of the return must enter a return path that supports the relation or the organization carrying it. If all benefits are exported while maintenance costs remain local, a useful relation can still disappear.
+
+\begin{definition}[Generative relation]
+A generative relation is a maintained relation whose consequences contribute to the continued availability of the relation or its supporting organization and that, under specified conditions, preserves or changes the capacity to generate later organization.
+\end{definition}
+
+This shifts the object of maintenance. A system need not preserve every item. It may instead preserve the relations and processes capable of reproducing, repairing, or replacing items. Science does not persist by preserving every claim; it persists by maintaining processes that can generate, test, reject, and transmit claims. A body does not preserve every molecule; it preserves organized processes through which molecules are replaced. A society does not preserve today's food; it preserves enough of the organization capable of producing tomorrow's food.
+
+\section{From surplus to organizational accessibility}
+
+Resource savings create \emph{possibility}, not automatic progress. If an existing function becomes cheaper to maintain, the released capacity may be dissipated, used to make more of the same thing, captured by one participant, or invested in a new function. The allocation and return mechanism determines the outcome.
+
+The organizational-accessibility framework provides the natural formal language for the next step. Let
+\[
+\OA_{\tau}(S\mid \theta,z,E,Q)
+\]
+denote the finite-horizon accessibility of a successor region $S$ given current architecture $\theta$, dynamical state $z$, environment $E$, and variation process $Q$. A retained relation or structure $h$ can change the current architecture, the dynamical basin, candidate exposure, access to external modules, establishment conditions, or the variation process itself. Retention therefore changes the starting point from which later organization is searched.
+
+The key historical statement is not
+\[
+\text{existence} \Rightarrow \text{more complexity}.
+\]
+It is
+\[
+\boxed{\text{Existence changes what existence can follow.}}
+\]
+Accessibility may widen, narrow, redirect, or collapse. Cumulative emergence is the special case in which retained historical organization repeatedly contributes to later capacities or functions under specified conditions.
+
+The energetic and historical pieces therefore connect as
+\[
+\boxed{
+\text{correction}
+\rightarrow
+\text{better relation}
+\rightarrow
+\text{return or saving}
+\rightarrow
+\text{maintenance}
+\rightarrow
+\text{retention}
+\rightarrow
+\text{new starting point}
+\rightarrow
+\text{changed accessibility}.
+}
+\]
+If the newly accessible organization itself creates a return path, the sequence can repeat. This is a conditional relational ratchet, not a universal force pulling systems toward complexity.
+
+\section{Walking the sequence in the other direction}
+
+The same backbone can be read historically from simple persistence toward intelligence:
+\[
+\boxed{
+\begin{aligned}
+\text{reaction}
+&\rightarrow \text{feedback}
+\rightarrow \text{self-maintenance}
+\rightarrow \text{retention}
+\rightarrow \text{inheritance}\\
+&\rightarrow \text{memory}
+\rightarrow \text{learning}
+\rightarrow \text{prediction}
+\rightarrow \text{planning}
+\rightarrow \text{collective correction}.
+\end{aligned}}
+\]
+
+At first, consequences matter only after they occur. With memory, selected past consequences become causally present. With prediction, possible future consequences become represented in the present and can alter action before they occur. In this precise sense, cumulative organization can increase temporal reach: more of history becomes usable now, and a longer represented future can influence current behavior.
+
+Intelligence is therefore not outside the history of cumulative emergence. It is one possible organization produced by it. Yet intelligence does not escape the framework. Because its model remains part of reality rather than identical to reality, it remains subject to the corrigibility constraint. The path closes recursively:
+\[
+\boxed{
+\text{organization}
+\rightarrow
+\text{retained history}
+\rightarrow
+\text{learning}
+\rightarrow
+\text{prediction}
+\rightarrow
+\text{intelligence}
+\rightarrow
+\text{correction}
+\rightarrow
+\text{better organization}.
+}
+\]
+
+\section{Predictions for artificial and extraterrestrial intelligence}
+
+The universal claim concerns function, not culture. It does not predict that advanced intelligences will resemble humans psychologically or socially. It predicts that persistent model-based intelligence in a changing world should require functional equivalents of correction.
+
+\subsection*{Artificial intelligence}
+For sufficiently autonomous systems operating across long horizons, the framework predicts pressure toward mechanisms such as:
+\begin{itemize}
+  \item uncertainty or confidence calibration;
+  \item continuing observation of the environment;
+  \item model updating after prediction error;
+  \item independent tests or external evaluators;
+  \item diversity of models or sensors where correlated error is costly;
+  \item memory of failures and successful corrections;
+  \item recovery procedures that preserve useful organization after error;
+  \item protection of channels through which disconfirming information can reach the decision process.
+\end{itemize}
+A system that systematically suppresses disconfirming input may still perform well in a stable or narrow environment. The prediction is that, as task-relevant novelty and temporal reach increase, such closure should become increasingly costly or brittle unless compensated by unusually complete prior modeling.
+
+\subsection*{Extraterrestrial intelligence}
+For extraterrestrial intelligence the prediction must be even more abstract. No claim follows about language, emotions, political systems, bodies, or moral intuitions. But any civilization capable of sustained long-horizon action in a changing environment should face the same distinction between model and world. We should therefore expect functional equivalents of measurement, memory, prediction, error detection, model revision, and preservation of reliable corrective channels. If large-scale cooperation is required for long-horizon projects, mechanisms for maintaining information quality and repairing coordination failures should also have instrumental value.
+
+The claim is one of convergent function, not convergent culture.
+
+\section{The ethical bridge: conditional, not automatic}
+
+The framework does not derive morality from physics. Persistence does not determine what deserves to persist, and an efficient organization can still produce suffering, domination, or injustice. Nevertheless, the resource logic helps explain why familiar moral practices can have recurrent functional value under repeated interdependence.
+
+\begin{center}
+\begin{tabular}{p{0.22\textwidth}p{0.68\textwidth}}
+\toprule
+\textbf{Practice} & \textbf{Possible relational function} \\
+\midrule
+Truthfulness & Reduces verification costs and improves the quality of model correction. \\
+Warranted trust & Reduces repeated checking and coordination overhead. \\
+Kindness and care & Help preserve participants whose continued capacity matters to the relation. \\
+Reciprocity & Distributes maintenance burdens and can reduce one-sided extraction. \\
+Teaching & Prevents repeated rediscovery and extends historical depth. \\
+Repair & Preserves accumulated coordination and knowledge after damage. \\
+Forgiveness after correction & Can avoid rebuilding a valuable relation from zero when reliable change is possible. \\
+Dissent and diversity & Can expose errors hidden by correlated models, when exchange remains informative. \\
+Boundaries and sanctions & Protect generative organization when a relation persistently exports costs or destroys corrective capacity. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These are conditional efficiencies, not commandments. Deception, coercion, extraction, or domination can win locally or for long periods when costs can be exported. The stronger prediction concerns systems with repeated interdependence, long horizons, and sufficiently internalized consequences. Under those conditions, destroying truthful feedback, independent correction, or the participants carrying them can consume the very organization on which future performance depends.
+
+A restrained naturalistic statement is therefore possible:
+
+\begin{quote}
+For finite agents in repeated interdependence, practices that maintain accurate information, preserve correctable participants, repair valuable coordination, and prevent destructive cost export can be resource-favorable ways of preserving the network's capacity to learn and act over longer horizons.
+\end{quote}
+
+This is not a complete definition of good and evil. It is a proposed physical and informational substrate for why some cooperative and corrective practices may repeatedly reappear in systems that must remain viable together.
+
+\section{What is universal, and what is not}
+
+The framework contains claims of different strength. Keeping them separate is essential.
+
+\begin{enumerate}
+  \item \textbf{Structural claim.} The corrigibility constraint follows for any model-based intelligence facing task-relevant alternatives that its current internal state does not distinguish.
+  \item \textbf{Information-theoretic claim.} For a coarse-grained future path, uncertainty over the whole path is non-decreasing with projection horizon; residual uncertainty accumulates when new uncertain steps are added.
+  \item \textbf{Organizational claim.} Corrective relations can create net resource returns, but whether they do so is empirical and boundary-dependent.
+  \item \textbf{Historical claim.} Retained organization changes future accessibility; whether accessibility widens, narrows, or redirects is system-specific.
+  \item \textbf{Evolutionary hypothesis.} Repeated return, retention, and reinvestment can produce cumulative emergence and increasing temporal reach, but no monotonic law of increasing complexity is assumed.
+  \item \textbf{AI/ET prediction.} Persistent long-horizon intelligence in changing worlds should exhibit functional equivalents of ongoing correction. The details of implementation are not predicted.
+  \item \textbf{Ethical hypothesis.} Under repeated interdependence and internalized future costs, truth-preserving, repair-capable, reciprocal organization may be systematically favored over arrangements that destroy their own corrective and productive substrate. This is not a deduction of morality from persistence alone.
+\end{enumerate}
+
+\section{A way of looking at existence}
+
+The resulting perspective treats existence not primarily as a collection of durable objects, but as historically conditioned organization. What persists may be a process that continually replaces its material parts. What matters causally may be a relation that makes capacities possible. A present organization is both an outcome of previous history and part of the machinery that generates its possible futures.
+
+Organizational accessibility supplies the general question:
+\begin{quote}
+Given what exists now, what can follow from here, under what conditions, and how would those possibilities change if some retained part of the present organization were different?
+\end{quote}
+
+For intelligence, an additional question becomes unavoidable:
+\begin{quote}
+Which channels allow reality to change the model when the model is wrong?
+\end{quote}
+
+The two questions join in a single recursive picture:
+\[
+\boxed{
+\text{existence}
+\rightarrow
+\text{relation}
+\rightarrow
+\text{return}
+\rightarrow
+\text{retention}
+\rightarrow
+\text{history}
+\rightarrow
+\text{accessibility}
+\rightarrow
+\text{learning}
+\rightarrow
+\text{temporal reach}
+\rightarrow
+\text{intelligence}
+\rightarrow
+\text{corrigible relation}.
+}
+\]
+
+The final step is not an escape from the sequence. It is its return to the beginning. Intelligence becomes capable of representing the network that made it possible, but because that representation is still not reality itself, it remains dependent on relations through which reality can answer back.
+
+\section*{Status of this note}
+
+This is a conceptual formalization intended to make the proposed backbone explicit and testable. The corrigibility proposition is a structural result under stated assumptions. The resource, evolutionary, AI/ET, and ethical extensions are hypotheses whose empirical scope must be established rather than assumed. The note is designed to sit alongside \emph{Evolution by Emergence} and \emph{Organizational Accessibility: From Self-Maintenance to Evolvability}; it does not replace the more detailed dynamical and causal analysis in those documents.
+
+\end{document}
