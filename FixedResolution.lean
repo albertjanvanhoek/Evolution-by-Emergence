@@ -221,4 +221,94 @@ theorem weighted_finite_action_bound
     exact hsq
   exact (sq_le_sq₀ hleft0 hright0).mp hsquares
 
+
+/-- Infinite weighted finite-action theorem. If the charged costs and durations
+are summable and each transition satisfies the weighted action law, then the
+weighted physical distances are summable with the manuscript bound. -/
+theorem weighted_finite_action_tsum
+    (eps tau c d : ℕ → ℝ)
+    (heps : ∀ n, 0 ≤ eps n)
+    (htau : ∀ n, 0 ≤ tau n)
+    (hc : ∀ n, 0 ≤ c n)
+    (hd : ∀ n, 0 ≤ d n)
+    (hE : Summable eps)
+    (hT : Summable tau)
+    (haction : ∀ n, c n * (d n) ^ 2 ≤ eps n * tau n) :
+    Summable (fun n => Real.sqrt (c n) * d n) ∧
+      (∑' n, Real.sqrt (c n) * d n) ≤
+        Real.sqrt ((∑' n, eps n) * (∑' n, tau n)) := by
+  let C : ℝ := Real.sqrt ((∑' n, eps n) * (∑' n, tau n))
+  have hnonneg : ∀ n, 0 ≤ Real.sqrt (c n) * d n :=
+    fun n => mul_nonneg (Real.sqrt_nonneg _) (hd n)
+  have hEtot0 : 0 ≤ ∑' n, eps n := tsum_nonneg heps
+  have hTtot0 : 0 ≤ ∑' n, tau n := tsum_nonneg htau
+  have hfin : ∀ u : Finset ℕ, ∑ n ∈ u, Real.sqrt (c n) * d n ≤ C := by
+    intro u
+    have hlocal :=
+      weighted_finite_action_bound u eps tau c d
+        (fun i _ => heps i) (fun i _ => htau i)
+        (fun i _ => hc i) (fun i _ => hd i)
+        (fun i _ => haction i)
+    have hEs : (∑ i ∈ u, eps i) ≤ ∑' i, eps i :=
+      hE.sum_le_tsum u (fun i _ => heps i)
+    have hTs : (∑ i ∈ u, tau i) ≤ ∑' i, tau i :=
+      hT.sum_le_tsum u (fun i _ => htau i)
+    have hEs0 : 0 ≤ ∑ i ∈ u, eps i := Finset.sum_nonneg (fun i _ => heps i)
+    have hTs0 : 0 ≤ ∑ i ∈ u, tau i := Finset.sum_nonneg (fun i _ => htau i)
+    have hprod :
+        (∑ i ∈ u, eps i) * (∑ i ∈ u, tau i) ≤
+          (∑' i, eps i) * (∑' i, tau i) :=
+      mul_le_mul hEs hTs hTs0 hEtot0
+    have hsqrt :
+        Real.sqrt ((∑ i ∈ u, eps i) * (∑ i ∈ u, tau i)) ≤ C := by
+      exact Real.sqrt_le_sqrt hprod
+    exact hlocal.trans hsqrt
+  constructor
+  · exact summable_of_sum_le hnonneg hfin
+  · exact Real.tsum_le_of_sum_le hnonneg hfin
+
+/-- Infinite uniform finite-action theorem in the notation used in the paper. -/
+theorem finite_action_tsum
+    (eps tau d : ℕ → ℝ) (c : ℝ)
+    (heps : ∀ n, 0 ≤ eps n)
+    (htau : ∀ n, 0 ≤ tau n)
+    (hd : ∀ n, 0 ≤ d n)
+    (hc : 0 < c)
+    (hE : Summable eps)
+    (hT : Summable tau)
+    (haction : ∀ n, c * (d n) ^ 2 ≤ eps n * tau n) :
+    Summable d ∧
+      (∑' n, d n) ≤
+        (1 / Real.sqrt c) *
+          Real.sqrt ((∑' n, eps n) * (∑' n, tau n)) := by
+  let C : ℝ :=
+    (1 / Real.sqrt c) *
+      Real.sqrt ((∑' n, eps n) * (∑' n, tau n))
+  have hEtot0 : 0 ≤ ∑' n, eps n := tsum_nonneg heps
+  have hfin : ∀ u : Finset ℕ, ∑ n ∈ u, d n ≤ C := by
+    intro u
+    have hlocal :=
+      finite_action_bound u eps tau d c
+        (fun i _ => heps i) (fun i _ => htau i)
+        (fun i _ => hd i) hc
+        (fun i _ => haction i)
+    have hEs : (∑ i ∈ u, eps i) ≤ ∑' i, eps i :=
+      hE.sum_le_tsum u (fun i _ => heps i)
+    have hTs : (∑ i ∈ u, tau i) ≤ ∑' i, tau i :=
+      hT.sum_le_tsum u (fun i _ => htau i)
+    have hTs0 : 0 ≤ ∑ i ∈ u, tau i := Finset.sum_nonneg (fun i _ => htau i)
+    have hprod :
+        (∑ i ∈ u, eps i) * (∑ i ∈ u, tau i) ≤
+          (∑' i, eps i) * (∑' i, tau i) :=
+      mul_le_mul hEs hTs hTs0 hEtot0
+    have hsqrt :
+        Real.sqrt ((∑ i ∈ u, eps i) * (∑ i ∈ u, tau i)) ≤
+          Real.sqrt ((∑' i, eps i) * (∑' i, tau i)) :=
+      Real.sqrt_le_sqrt hprod
+    have hfactor : 0 ≤ (1 / Real.sqrt c : ℝ) := by positivity
+    exact hlocal.trans (mul_le_mul_of_nonneg_left hsqrt hfactor)
+  constructor
+  · exact summable_of_sum_le hd hfin
+  · exact Real.tsum_le_of_sum_le hd hfin
+
 end FixedResolution
