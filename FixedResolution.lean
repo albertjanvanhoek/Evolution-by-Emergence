@@ -41,7 +41,7 @@ have a linear lower bound. This is the deterministic core of the C-route
 non-explosion argument. -/
 theorem reciprocal_partial_sum_lower_bound
     (lambda : ℕ → ℝ) (Lambda : ℝ)
-    (hLambda : 0 < Lambda)
+    (_hLambda : 0 < Lambda)
     (hlambda0 : ∀ n, 0 < lambda n)
     (hlambdab : ∀ n, lambda n ≤ Lambda)
     (k : ℕ) :
@@ -98,7 +98,7 @@ theorem finite_action_sq
     (s : Finset ι) (eps tau d : ι → ℝ) (c : ℝ)
     (heps : ∀ i ∈ s, 0 ≤ eps i)
     (htau : ∀ i ∈ s, 0 ≤ tau i)
-    (hd : ∀ i ∈ s, 0 ≤ d i)
+    (_hd : ∀ i ∈ s, 0 ≤ d i)
     (hc : 0 ≤ c)
     (haction : ∀ i ∈ s, c * (d i) ^ 2 ≤ eps i * tau i) :
     c * (∑ i ∈ s, d i) ^ 2 ≤
@@ -183,7 +183,7 @@ theorem fixed_resolution_count_bound
     (htau : ∀ i ∈ s, 0 ≤ tau i)
     (hd : ∀ i ∈ s, 0 ≤ d i)
     (hc : 0 < c)
-    (hdelta : 0 < delta)
+    (_hdelta : 0 < delta)
     (hresolved : ∀ i ∈ s, delta ≤ d i)
     (haction : ∀ i ∈ s, c * (d i) ^ 2 ≤ eps i * tau i) :
     ((s.card : ℕ) : ℝ) * delta ≤
