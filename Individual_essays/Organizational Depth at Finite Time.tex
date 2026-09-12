@@ -1,0 +1,1379 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\numberwithin{equation}{section}
+
+\title{Organizational Depth at Finite Time:\\
+A Fixed-Resolution No-Go Boundary}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+When does infinite organizational depth represent a physically meaningful
+finite-time escape rather than increasingly fine indexing of a finite
+transformation? We reformulate this question within Organizational
+Accessibility around three results. First, a sequential stochastic
+accessibility process with transition rate
+$\lambda_n=N_n\nu_np_n$ is non-explosive when total material is bounded,
+each independently counted realization requires a positive minimum
+material allocation, and candidate generation per realization is uniformly
+bounded. Second, a continuum cascade can retain bounded aggregate
+throughput while its specific turnover diverges, because the inventory
+assigned to successive levels tends to zero. This calculation identifies
+a shrinking-scale possibility but does not derive its accelerating
+kinetics physically.
+
+The central result is a conditional fixed-resolution no-go theorem.
+If transition costs and durations satisfy
+$\varepsilon_n\tau_n\ge c_n d_{\rm phys,n}^2$, finite total charged energy
+and time imply
+$\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty$.
+A uniform positive kinetic coefficient therefore bounds accumulated
+physical distance. If physical distance also uniformly controls
+operational distinguishability, only finitely many transitions at any
+fixed operational resolution can occur within finite time and energy.
+A constant-speed overdamped example saturates the bound while crossing
+infinitely many refinement labels before reaching an ordinary finite
+state.
+
+These are elementary mathematical results with conditional physical
+applications, not a universal prohibition of singular dynamics.
+The remaining question is whether an autonomous system can preserve
+operationally nontrivial retained transformations while its physical
+speed--distance cost scale collapses, without concealing an unbounded
+kinetic, control, memory, or measurement resource.
+\end{abstract}
+
+
+\section{Introduction: from singularity to physical distinguishability}
+
+Organizational Accessibility asks how currently realized organization
+changes which successor organizations can be generated, established,
+and retained \cite{OA8}. Its central historical claim is conditional:
+previously successful organization can become infrastructure for
+subsequent organization. This does not imply that organizational
+change accelerates indefinitely, or that increasing organizational
+depth corresponds to increasing physical change.
+
+A proposed finite-time hierarchy introduces a further question.
+Suppose retained states are labelled
+\[
+x_0,x_1,x_2,\ldots
+\]
+and their transition times accumulate before a finite deadline.
+What makes these labels represent distinct physical organizations?
+Without an answer, an infinite hierarchy may describe a finite
+trajectory divided into increasingly small pieces.
+
+The present paper therefore asks:
+\begin{quote}
+Under what conditions can infinite organizational depth remain
+physically meaningful at finite time, finite charged energy, and fixed
+operational resolution?
+\end{quote}
+
+The analysis separates three issues. A stochastic event model requires
+a sufficient rate of completed transitions. A continuum throughput model
+requires an interpretation of increasingly rapid turnover of shrinking
+quantities. An organizational interpretation additionally requires
+physically realizable distinctions between successive retained states.
+
+The resulting boundary is conditional. Finite time and energy exclude
+infinitely many fixed-resolution transitions when an appropriate
+speed--distance inequality holds uniformly and its physical metric
+controls operational distinguishability. Neither condition follows
+merely from assigning an increasing organizational level number.
+
+The generic mathematical ingredients are established: pure-birth
+non-explosion, energy accounting, Cauchy--Schwarz inequalities,
+thermodynamic speed limits, and metric convergence
+\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
+The proposed contribution is their application to the interpretation
+of organizational depth, including an explicit separation of kinetic
+degeneracy from degenerating physical resolution.
+
+
+\section{Organization as amount, configuration, and operational distinction}
+
+Three descriptions of organization must be distinguished.
+
+\emph{Organization as amount} is an extensive quantity whose increase
+requires an increase in a material or energetic stock. The component
+abundances in the resource-limited model of Organizational Accessibility
+have this interpretation.
+
+\emph{Organization as configuration or history} concerns arrangement,
+architecture, or retained causal structure. Such quantities need not
+increase in direct proportion to material stock. The same physical
+substrate may participate in many successive configurations.
+
+\emph{Organization as an operational distinction} concerns differences
+between retained states that can be resolved under a specified
+measurement standard. Different labels do not establish such a
+distinction.
+
+The physical state description must include the subsystems needed to
+implement the claimed transformation. These can include processors,
+catalysts, controllers, memory, interfaces, fuel stores, and retained
+records. Omitting them can turn a physical cost into an apparently
+cost-free external condition.
+
+\subsection*{Transitions and accounting}
+
+Set $t_0=0$ and write
+\[
+t_{n+1}=t_n+\tau_n,
+\qquad
+\tau_n>0.
+\]
+A finite-time sequential accumulation has
+\begin{equation}
+T_*=\sum_{n=0}^{\infty}\tau_n<\infty.
+\label{eq:time-sum}
+\end{equation}
+
+Let $\varepsilon_n\ge0$ be a \emph{charged energetic cost}. This means
+a nonnegative expenditure that can legitimately be counted against
+a cumulative budget:
+\begin{equation}
+\sum_{n:\,t_{n+1}\le T}\varepsilon_n
+\le B(T)<\infty
+\qquad\text{for every finite }T.
+\label{eq:budget}
+\end{equation}
+
+Raw signed work, heat, stored energy, and excess dissipation are not
+interchangeable choices for $\varepsilon_n$. The selected cost must
+match both the budget and the speed--distance inequality used below.
+
+For example, a model may justify
+\[
+B(T)=E_0+\int_0^T P_{\rm av}(t)\,dt
+\]
+after accounting for finite initial stores and the usable free-energy
+sources that pay the charges. Bounded incoming power alone does not
+bound gross internal processing power, nor does it justify charging
+the same recoverable energy repeatedly as if it were irreversibly
+consumed.
+
+The finite-action results below are statements about sequences
+satisfying explicit inequalities. They apply pathwise when their
+premises hold pathwise. They can also apply to prescribed sequences
+of thermodynamic protocols with deterministic durations and
+ensemble-mean costs, provided the same ensemble interpretation is
+used throughout. They do not convert an average thermodynamic
+inequality into an almost-sure event-cost bound.
+
+\subsection*{Material concentration is a separate question}
+
+The normalized finite-dimensional production model in
+Organizational Accessibility has a material balance of the form
+$\dot M=J-M$. Its abundance bounds concern organization as amount.
+Spatial extensions raise a different regularity question:
+control of integrated material does not automatically control
+pointwise concentration or stronger norms
+\cite{PierreSchmitt1997}.
+
+The present fixed-resolution results neither establish nor exclude
+all such spatial singularities. They concern specified sequences of
+retained transformations, their physical costs, and their operational
+interpretation.
+
+
+\section{Closure of stochastic route C}
+
+Consider a sequential pure-birth accessibility process
+\[
+O_0\longrightarrow O_1\longrightarrow O_2\longrightarrow\cdots.
+\]
+At level $n$, let
+\begin{equation}
+\lambda_n=N_n\nu_np_n,
+\label{eq:lambda}
+\end{equation}
+where $N_n$ is the number of active searching realizations,
+$\nu_n$ is their candidate-generation rate per realization, and
+$p_n$ is the probability that a candidate belongs to the specified
+successor class and establishes.
+
+Because $p_n$ is a probability,
+\[
+0\le p_n\le1.
+\]
+This bound is part of the model definition, not an additional
+empirical hypothesis.
+
+\begin{theorem}[Closure of stochastic accessibility]
+\label{thm:C}
+Suppose, at every reachable level,
+\[
+M_n\le M_*<\infty,
+\qquad
+M_n\ge m_{\min}N_n,
+\qquad
+m_{\min}>0,
+\]
+and
+\[
+0\le\nu_n\le\nu_{\max}<\infty.
+\]
+Then the pure-birth process with rates \eqref{eq:lambda} is
+non-explosive.
+\end{theorem}
+
+\begin{proof}
+The material inequalities give
+\[
+N_n\le\frac{M_n}{m_{\min}}
+\le\frac{M_*}{m_{\min}}.
+\]
+Therefore
+\begin{equation}
+\lambda_n\le
+\Lambda:=
+\frac{M_*}{m_{\min}}\nu_{\max}<\infty.
+\label{eq:lambda-bound}
+\end{equation}
+
+If $\Lambda=0$, no transition occurs. If a reachable
+$\lambda_n=0$, the sequential process stops there.
+
+Otherwise,
+\[
+\sum_{n=0}^{\infty}\frac1{\lambda_n}
+\ge
+\sum_{n=0}^{\infty}\frac1\Lambda
+=\infty.
+\]
+This meets the classical non-explosion criterion for the pure-birth
+model \cite{Feller1971}.
+
+A direct almost-sure argument is also available. Represent the
+independent holding times as
+\[
+X_n=\frac{E_n}{\lambda_n},
+\qquad
+E_n\overset{\rm iid}{\sim}{\rm Exp}(1).
+\]
+By \eqref{eq:lambda-bound},
+\[
+X_n\ge\frac{E_n}{\Lambda}.
+\]
+The strong law gives $\sum_nE_n=\infty$ almost surely, and hence
+\[
+\sum_nX_n=\infty
+\qquad\text{almost surely}.
+\]
+\end{proof}
+
+The additive processor inequality
+$M_n\ge m_{\min}N_n$ is substantive. It is not valid if several
+overlapping descriptions of the same physical machinery are counted
+as independent full-rate realizations.
+
+For the reciprocal-rate series to converge, it is necessary that
+$\lambda_n\to\infty$. Since $p_n\le1$, this requires
+$N_n\nu_n\to\infty$. Thus a C-type explosion must abandon at least
+one uniform bound or accounting assumption used in
+Theorem~\ref{thm:C}: bounded material, a positive minimum allocation
+per realization, bounded generation rate per realization, or additive
+processor accounting. In parameterized limits these failures may
+appear as
+\[
+M_*\to\infty,\qquad
+m_{\min}\downarrow0,\qquad
+\nu_{\max}\to\infty.
+\]
+Alternatively, a model may depart from the sequential one-step event
+description, for example by allowing an unbounded depth increment
+within one event.
+
+Failure of an assumption is not sufficient for explosion. Unbounded
+rates can still have a divergent reciprocal series.
+
+Endogenizing $N_n,\nu_n,p_n$ remains relevant to finite accessibility
+rates and probabilities. It is not an unresolved route to explosion
+while the bounds of Theorem~\ref{thm:C} are retained.
+
+
+\section{Why B survives bounded throughput:
+specific turnover and shrinking inventory}
+
+Consider the continuum cascade
+\begin{align}
+\Phi_n&=\kappa_ne_n^m,\qquad m>1, \label{eq:flux}\\
+\dot e_0&=J-\Phi_0,\\
+\dot e_n&=\eta\Phi_{n-1}-\Phi_n,\qquad n\ge1,
+\label{eq:cascade}
+\end{align}
+where $J>0$, $0<\eta\le1$, and $e_n$ is the resource inventory
+assigned to level $n$.
+
+For $e_n>0$, define specific turnover and inventory residence time:
+\begin{equation}
+\rho_n=\frac{\Phi_n}{e_n}
+=\kappa_ne_n^{m-1},
+\qquad
+\tau_n^{\rm res}=\frac1{\rho_n}.
+\label{eq:rho}
+\end{equation}
+
+The residence-time symbol is distinguished from the actual
+retained-transition duration $\tau_n$. Identifying the two requires
+a model of what constitutes completion of the transformation.
+
+\begin{theorem}[Bounded throughput and unbounded specific turnover]
+\label{thm:B}
+The following statements hold.
+
+\begin{enumerate}
+\item If $0<\rho_n\le\rho_{\max}<\infty$, then
+\[
+\sum_n\tau_n^{\rm res}=\infty.
+\]
+The same conclusion holds for actual durations satisfying
+$\tau_n\ge a/\rho_n$ with a constant $a>0$.
+
+\item For $\kappa_n=\kappa_0b^n$, with $\kappa_0,b>0$,
+the forced stationary profile is
+\[
+\Phi_n^*=J\eta^n,
+\qquad
+e_n^*=
+\left(\frac{J}{\kappa_0}\right)^{1/m}
+\left(\frac{\eta}{b}\right)^{n/m}.
+\]
+Its specific turnover is
+\begin{equation}
+\rho_n^*
+=
+\kappa_0^{1/m}J^{(m-1)/m}
+\left(b\eta^{m-1}\right)^{n/m}.
+\label{eq:rho-star}
+\end{equation}
+The stationary residence-time series converges exactly when
+\[
+b\eta^{m-1}>1.
+\]
+
+\item If $0<\eta<1$ and $b\eta^{m-1}>1$, both
+$\sum_ne_n^*$ and $\sum_n\Phi_n^*$ are finite, although
+$\rho_n^*\to\infty$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For the first statement,
+$\tau_n^{\rm res}\ge1/\rho_{\max}$.
+
+At stationarity, $\Phi_0^*=J$ and
+$\Phi_n^*=\eta\Phi_{n-1}^*$, giving $\Phi_n^*=J\eta^n$.
+Substituting this into \eqref{eq:flux} gives the inventory formula.
+Dividing throughput by inventory gives \eqref{eq:rho-star}.
+The residence times form a geometric series with ratio
+$(b\eta^{m-1})^{-1/m}$.
+
+Finally, for $0<\eta<1$,
+\[
+\sum_n\Phi_n^*=\frac{J}{1-\eta}<\infty.
+\]
+The supercritical specific-turnover condition implies
+$b>\eta^{1-m}>1>\eta$, so
+$(\eta/b)^{1/m}<1$ and the inventory series also converges.
+\end{proof}
+
+Thus
+\begin{equation}
+\boxed{
+\text{bounded aggregate throughput does not imply
+bounded specific turnover}.
+}
+\label{eq:throughput-distinction}
+\end{equation}
+
+The distinction is a shrinking denominator. The rate
+$\Phi_n/e_n$ can increase while the physical amount processed
+at each level decreases.
+
+For example, $m=2$, $\eta=1/2$, and $b=4$ give finite total
+stationary inventory and aggregate throughput, while
+$\rho_n^*$ grows proportionally to $(\sqrt2)^n$.
+If $e_n$ is an energy inventory and $1-\eta$ is the dissipated
+fraction per handoff, stationary dissipation is
+\[
+(1-\eta)\sum_n\Phi_n^*=J.
+\]
+This accounts for the resource transfers in the cascade.
+It does not account automatically for the apparatus needed to
+realize its increasingly large kinetic coefficients.
+
+A power bound likewise need not control the ratio. If processing
+requires work $w_0>0$ per unit throughput, then
+\[
+w_0\Phi_n\le P_{\max}
+\quad\Longrightarrow\quad
+\rho_n\le\frac{P_{\max}}{w_0e_n},
+\]
+which is not uniform when $e_n\to0$.
+
+Conversely, a model that establishes
+$\Phi_n\le k_{\max}C_n$ and
+$C_n/e_n\le\chi_{\max}$ obtains
+$\rho_n\le k_{\max}\chi_{\max}$.
+Here $C_n$ must measure physical processing capacity in compatible
+units. A global bound on $C_n$ alone does not bound its ratio to
+a vanishing inventory.
+
+Theorem~\ref{thm:B} is a stationary model calculation. It neither
+proves that a transient solution reaches infinite retained depth
+in finite time nor derives $\kappa_n$ from retained architecture.
+An infinite stationary profile already contains nonzero inventory
+at every level.
+
+The physical question is therefore:
+\begin{quote}
+What permits successive retained transformations to occur at
+increasing specific rate while the amount being transformed shrinks?
+\end{quote}
+The simple processor-count argument that closes C does not answer
+this continuum question. Neither does prescribing $\kappa_n$.
+
+
+\section{The finite-action theorem}
+
+Let the physical states belong to a metric space
+$(\mathsf X,d_{\rm phys})$, and write
+\[
+d_{\rm phys,n}=d_{\rm phys}(x_n,x_{n+1}).
+\]
+Suppose each transition obeys a speed--distance inequality
+\begin{equation}
+\varepsilon_n\tau_n
+\ge c_n d_{\rm phys,n}^2.
+\label{eq:action-law}
+\end{equation}
+
+The physical meaning of this inequality must be justified for the
+chosen class of dynamics. Its costs, metric, and coefficients must
+be specified together. The theorem below is an exact mathematical
+consequence of the inequality; its use as a physical no-go theorem
+is conditional on that justification.
+
+\begin{theorem}[Finite-action bound]
+\label{thm:action}
+Suppose \eqref{eq:action-law} holds with
+$c_n\ge c_*>0$, and
+\[
+\mathcal E:=\sum_n\varepsilon_n<\infty,
+\qquad
+\mathcal T:=\sum_n\tau_n<\infty.
+\]
+Then
+\begin{equation}
+\boxed{
+\sum_n d_{\rm phys,n}
+\le
+\frac1{\sqrt{c_*}}\sqrt{\mathcal E\mathcal T}
+<\infty.
+}
+\label{eq:finite-length}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For every finite $k$,
+\[
+\begin{aligned}
+\sum_{n<k}d_{\rm phys,n}
+&\le
+\frac1{\sqrt{c_*}}
+\sum_{n<k}\sqrt{\varepsilon_n\tau_n}\\
+&\le
+\frac1{\sqrt{c_*}}
+\sqrt{
+\left(\sum_{n<k}\varepsilon_n\right)
+\left(\sum_{n<k}\tau_n\right)
+}\\
+&\le
+\frac1{\sqrt{c_*}}\sqrt{\mathcal E\mathcal T}.
+\end{aligned}
+\]
+The second inequality is Cauchy--Schwarz. Taking the limit of the
+nondecreasing partial sums proves the result.
+\end{proof}
+
+Consequently,
+\[
+\text{finite charged energy}
++\text{finite time}
++\text{uniform speed--distance control}
+\]
+implies finite accumulated physical distance.
+
+No assumption of monotonic organizational improvement is used.
+The theorem applies equally to productive changes, reversals,
+oscillations, or unsuccessful transformations, provided the stated
+physical inequalities apply to the counted transitions.
+
+
+\section{The fixed-resolution no-go corollary}
+
+For $\delta>0$, let
+\[
+K_{\delta}^{\rm phys}(T)
+=
+\#\left\{
+n:t_{n+1}\le T,\;
+d_{\rm phys,n}\ge\delta
+\right\}.
+\]
+
+\begin{corollary}[Fixed physical resolution]
+\label{cor:physical}
+Under the uniform-coefficient assumptions of
+Theorem~\ref{thm:action} and the budget \eqref{eq:budget},
+\begin{equation}
+\boxed{
+K_{\delta}^{\rm phys}(T)
+\le
+\frac1\delta
+\sqrt{\frac{B(T)T}{c_*}}.
+}
+\label{eq:physical-count}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For any finite collection of qualifying completed transitions,
+their distances sum to at least their number times $\delta$.
+Their costs sum to at most $B(T)$, and their disjoint durations
+sum to at most $T$. The finite-prefix argument in
+Theorem~\ref{thm:action} therefore gives
+\[
+K\delta\le\sqrt{B(T)T/c_*}.
+\]
+The same bound for every finite collection excludes an infinite
+qualifying collection.
+\end{proof}
+
+For an organizational conclusion, introduce an operational distance
+$d_{\rm op}$ and assume a uniform comparison
+\begin{equation}
+d_{\rm phys}(x,y)\ge\alpha_*d_{\rm op}(x,y),
+\qquad \alpha_*>0.
+\label{eq:metric-comparison}
+\end{equation}
+This is an additional physical assumption.
+
+\begin{corollary}[Fixed operational resolution]
+\label{cor:operational}
+Under the assumptions of Corollary~\ref{cor:physical} and
+\eqref{eq:metric-comparison},
+\begin{equation}
+\boxed{
+K_{\delta}^{\rm op}(T)
+\le
+\frac1{\alpha_*\delta}
+\sqrt{\frac{B(T)T}{c_*}},
+}
+\label{eq:operational-count}
+\end{equation}
+where $K_{\delta}^{\rm op}(T)$ counts completed transitions with
+$d_{\rm op}(x_n,x_{n+1})\ge\delta$.
+\end{corollary}
+
+\begin{proof}
+Every counted transition has
+$d_{\rm phys,n}\ge\alpha_*\delta$.
+Apply Corollary~\ref{cor:physical}.
+\end{proof}
+
+Thus, at every fixed operational resolution, finite-time infinite
+organizational change is excluded under the stated energy, kinetic,
+and metric-comparison assumptions.
+
+The metric comparison cannot be omitted from this organizational
+interpretation. A speed limit in a transport or thermodynamic metric
+does not automatically constrain an abstract organizational label.
+
+The counting argument applies to any disjoint sequential partition
+for which the cost budget and speed--distance law hold. In the
+uniform-coefficient case, grouping adjacent transitions preserves
+the corresponding bound by the triangle inequality and
+Cauchy--Schwarz. Arbitrary subdivision therefore does not create
+an unlimited number of fixed-resolution changes.
+
+
+\section{Variable kinetic coefficients and the remaining boundary}
+
+The uniform lower bound on $c_n$ is not needed for a weighted result.
+
+\begin{corollary}[Weighted finite-action bound]
+\label{cor:weighted}
+If \eqref{eq:action-law} holds with $c_n\ge0$ and
+$\mathcal E,\mathcal T<\infty$, then
+\begin{equation}
+\boxed{
+\sum_n\sqrt{c_n}\,d_{\rm phys,n}
+\le\sqrt{\mathcal E\mathcal T}<\infty.
+}
+\label{eq:weighted-length}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For every finite $k$,
+\[
+\sum_{n<k}\sqrt{c_n}\,d_{\rm phys,n}
+\le
+\sum_{n<k}\sqrt{\varepsilon_n\tau_n}
+\le
+\sqrt{\mathcal E\mathcal T}.
+\]
+Take the limit.
+\end{proof}
+
+If $d_{\rm phys,n}\ge\delta>0$ for all counted transitions, then
+\begin{equation}
+\sum_n\sqrt{c_n}
+\le
+\frac1\delta\sqrt{\mathcal E\mathcal T}<\infty,
+\label{eq:coefficient-sum}
+\end{equation}
+and therefore $c_n\to0$.
+
+Conversely, if $c_n\ge c_*>0$, then
+$\sum_nd_{\rm phys,n}<\infty$ and hence
+$d_{\rm phys,n}\to0$.
+
+These two implications do not establish the unrestricted disjunction
+``$c_n\to0$ or $d_{\rm phys,n}\to0$.'' The factors can alternate.
+For normalized scalar sequences, take
+\[
+(c_n,d_n)=
+\begin{cases}
+(1,2^{-n}), & n\ \text{even},\\
+(4^{-n},1), & n\ \text{odd}.
+\end{cases}
+\]
+Then $\sqrt{c_n}d_n=2^{-n}$ is summable, while neither factor
+converges to zero. This is an algebraic counterexample to an
+overstrong limiting statement, not a physical escape mechanism.
+
+The exact general condition is \eqref{eq:weighted-length}.
+In particular, for any fixed positive $c_0,d_0$, only finitely many
+transitions can simultaneously satisfy
+$c_n\ge c_0$ and $d_{\rm phys,n}\ge d_0$.
+
+The interpretation of coefficient collapse is model-dependent.
+It can correspond, in an appropriate formulation, to increasing
+mobility or dynamical activity, decreasing friction, changing control
+constraints, or the failure of the assumed speed-limit description.
+These interpretations are not interchangeable.
+
+Nor is an arbitrarily weakened bound evidence of physical
+coefficient collapse. If a model admits a valid uniform positive
+coefficient, replacing it with smaller numbers does not remove the
+no-go result. A proposed escape must explain why no applicable
+uniform control survives under a fixed physical metric and
+consistent accounting.
+
+
+\section{Sharpness example:
+finite-time infinite refinement of a finite trajectory}
+
+\begin{example}[Bounded-power refinement]
+\label{ex:refinement}
+Consider the deterministic overdamped model
+\[
+\zeta\dot x=F,
+\qquad
+\zeta>0,\quad F>0,
+\]
+on an interval containing $[0,L]$. Its speed is
+$v=F/\zeta$ and its dissipative power is
+\[
+P=Fv=\zeta v^2.
+\]
+
+Define refinement labels
+\[
+x_n=L(1-2^{-n}).
+\]
+The dynamics contains no level-dependent acceleration coefficient.
+The physical increments, crossing durations, and dissipated costs are
+\[
+d_n=L2^{-(n+1)},
+\qquad
+\tau_n=\frac{d_n}{v},
+\qquad
+\varepsilon_n=Fd_n.
+\]
+Consequently,
+\[
+\sum_n\tau_n=\frac Lv,
+\qquad
+\sum_n\varepsilon_n=FL,
+\qquad
+\sum_nd_n=L,
+\]
+and
+\[
+\varepsilon_n\tau_n=\zeta d_n^2.
+\]
+The finite-action length bound is saturated.
+\end{example}
+
+The example produces infinitely many labelled transitions that are
+successively faster and cheaper at bounded power. It therefore
+shows why finite time and power cannot exclude infinite indexing.
+
+Nevertheless,
+\[
+x_n\to L,
+\]
+and the physical trajectory extends regularly through $x=L$.
+No state variable or physical velocity diverges.
+
+The choice of refinement labels is deliberate: an ordinary finite
+transformation has been partitioned into infinitely many increasingly
+small changes. Treating each label as a separately recorded event
+would add a controller or record-keeping problem not contained in
+the example.
+
+This is a continuum sharpness example, not a construction of
+infinitely many reliable organizational innovations. It shows that
+the fixed-resolution condition is essential, while making no claim
+that arbitrarily fine labels remain distinguishable under bounded
+measurement resources.
+
+
+\section{Operational distinguishability and measurement resolution}
+
+An operational distinction must specify the allowed observation.
+For a concrete classical readout, let retained states $x,y$
+produce probability distributions $p_x,p_y$. With equal priors,
+the optimal discrimination error is
+\begin{equation}
+P_{\rm err}
+=
+\frac{1-d_{\rm TV}(p_x,p_y)}{2},
+\qquad
+d_{\rm TV}(p,q)=\frac12\|p-q\|_1.
+\label{eq:discrimination}
+\end{equation}
+A requirement $P_{\rm err}\le\epsilon<1/2$ therefore implies
+\[
+d_{\rm TV}(p_x,p_y)\ge1-2\epsilon>0.
+\]
+
+More generally, fix a class $\mathcal M$ of admissible measurement
+protocols and define
+\[
+d_{\rm op}(x,y)
+=
+\sup_{M\in\mathcal M}
+d_{\rm TV}(p_x^M,p_y^M).
+\]
+This may be a pseudometric: physically different states can be
+indistinguishable to every permitted measurement. It becomes a
+metric after identifying operationally indistinguishable states.
+
+The class $\mathcal M$ must specify relevant bounds on observation
+time, apparatus, precision, repetitions, and error tolerance.
+A distinction that becomes accessible only by letting these
+resources diverge is not a distinction at fixed operational
+resolution.
+
+\begin{definition}[Resolution-robust organizational escape]
+A retained-transition sequence exhibits resolution-robust
+organizational escape if there exist $\delta>0$ and $T_*<\infty$
+such that infinitely many completed retained transitions before
+$T_*$ satisfy
+\[
+d_{\rm op}(x_n,x_{n+1})\ge\delta
+\]
+under one fixed admissible measurement standard.
+\end{definition}
+
+\begin{definition}[Vanishing-resolution infinite depth]
+An infinitely indexed retained-transition sequence has
+vanishing-resolution depth if
+\[
+d_{\rm op}(x_n,x_{n+1})\to0.
+\]
+\end{definition}
+
+Vanishing-resolution depth may describe refinement toward a finite
+state, as in Example~\ref{ex:refinement}. This is a possibility,
+not a universal conclusion about all infinite-dimensional systems.
+
+Operational distinguishability does not require every admissible
+test to be performed. If measurement, verification, or record
+updates are actually used to generate or retain the sequence,
+however, their costs and timing belong inside the physical model.
+
+
+\section{Physical versus organizational metrics}
+
+The physical metric in a speed limit and the operational metric
+of organizational distinction need not coincide.
+
+A uniform comparison
+$d_{\rm phys}\ge\alpha_*d_{\rm op}$
+transfers the physical no-go result immediately. One sufficient
+mechanism is bounded sensitivity of readout to physical changes.
+
+For example, suppose physical states are probability measures
+$\mu,\nu$ on a spatial metric space. For every admissible
+measurement $M$ and output event $A$, suppose the conditional
+readout probability
+\[
+g_{M,A}(x)=\Pr_M(A\mid x)
+\]
+has Lipschitz constant at most $L_{\rm readout}$, uniformly in
+$M,A$. A coupling argument gives
+\[
+d_{\rm op}(\mu,\nu)
+\le L_{\rm readout}W_1(\mu,\nu).
+\]
+For measures with finite second moments,
+$W_1\le W_2$, so a speed limit in $W_2$ supplies
+\[
+d_{\rm phys}=W_2
+\ge \frac1{L_{\rm readout}}d_{\rm op}.
+\]
+Uniform readout sensitivity is an explicit assumption here,
+not a consequence of the definition of organization.
+
+\subsection*{Metric decoupling}
+
+On transitions with $d_{\rm op,n}>0$, define
+\[
+\alpha_n=
+\frac{d_{\rm phys,n}}{d_{\rm op,n}}.
+\]
+If operationally significant differences remain bounded below
+while $\alpha_n\to0$, their physical separation collapses relative
+to their operational separation. We call this \emph{metric
+decoupling}.
+
+For a sequence with $d_{\rm op,n}\ge\delta>0$,
+Corollary~\ref{cor:weighted} implies
+\begin{equation}
+\boxed{
+\sum_n\sqrt{c_n}\,\alpha_n
+\le
+\frac1\delta\sqrt{\mathcal E\mathcal T}<\infty.
+}
+\label{eq:operational-weighted}
+\end{equation}
+
+Thus:
+\begin{itemize}
+\item a uniform lower bound on $\alpha_n$ forces
+      $\sum_n\sqrt{c_n}<\infty$;
+\item a uniform lower bound on $c_n$ forces
+      $\sum_n\alpha_n<\infty$;
+\item without either lower bound, only the joint weighted
+      condition follows.
+\end{itemize}
+
+Metric decoupling is a candidate way to evade the sufficient
+no-go assumptions, not an established mechanism.
+It may reflect genuine causal leverage, omitted downstream
+machinery, increasing measurement resources, an expanding state
+description, or a metric that loses sensitivity to the relevant
+physical differences.
+
+Changing coordinates or using level-dependent normalizations
+cannot establish an escape. Metrics, units, and coefficients must
+be transformed consistently. The meaningful object is the
+physical inequality, including its weighted distance, rather
+than one coefficient viewed in isolation.
+
+\subsection*{Weak convergence and stronger observables}
+
+Finite accumulated distance makes $(x_n)$ a Cauchy sequence.
+If the relevant physical metric space is complete, it converges
+to a limit in that space. This concerns the retained-state
+sequence; controlling every intermediate excursion requires an
+appropriate trajectory-length or regularity bound.
+
+Moreover, convergence in a weak metric does not imply boundedness
+of stronger observables. Let
+\[
+x^{(N)}
+=
+(2^{-1},2^{-2},\ldots,2^{-N},0,0,\ldots).
+\]
+Then
+\[
+\|x^{(N+1)}-x^{(N)}\|_{\ell^2}=2^{-(N+1)},
+\]
+so the accumulated $\ell^2$ distance is finite and
+$x^{(N)}$ converges in $\ell^2$. But
+\[
+Q(x^{(N)})
+=
+\sum_{j\ge1}4^j|x_j^{(N)}|^2
+=N\to\infty.
+\]
+The limit belongs to $\ell^2$ but not to the space where this
+weighted quadratic observable is finite.
+
+Such distinctions matter for PDEs and cascades
+\cite{PierreSchmitt1997,KatzPavlovic2005}.
+A limit may be regular in an ambient weak space and singular
+in a physically relevant stronger class.
+
+The appropriate question is therefore whether the stronger
+organizational observable is operationally meaningful and
+resolvable with bounded physical resources. Finite metric
+length alone does not answer it.
+
+
+\section{Landauer, reversible computation, and other special cases}
+
+The finite-action theorem does not assume that every
+organizational transformation erases information. Landauer's
+principle supplies one conditional energetic floor; it is not
+the foundation of the general no-go result.
+
+\subsection*{Landauer as a conditional floor}
+
+Under an appropriate isothermal erasure protocol, a net reduction
+of memory entropy by $I_n$ bits gives a work or heat bound of the
+form
+\[
+\langle W_n\rangle
+\ge k_BT_n\ln2\,I_n.
+\]
+Its interpretation requires the memory Hamiltonian, initial
+correlations, accessible side information, bath, and auxiliary
+records to be accounted for
+\cite{Landauer1961,ReebWolf2014}.
+
+For example, when endpoint internal energies agree and the
+controller is restored, the work and bath-heat bounds coincide.
+If additionally
+\[
+T_n\ge T_{\min}>0,\qquad I_n\ge I_{\min}>0,
+\]
+a positive mean erasure-work floor follows.
+
+Organizational change does not automatically satisfy the
+erasure premise. Reversible computation may preserve
+information in intermediate records and later remove those
+records through uncomputation \cite{Bennett1973,Bennett1989}.
+
+Landauer work or heat must also be distinguished from excess
+dissipation. For ideal isothermal erasure,
+\[
+\Delta F_n=k_BT_n\ln2\,I_n,
+\]
+while
+\[
+W_{\rm diss,n}
+=
+\langle W_n\rangle-\Delta F_n
+\]
+can approach zero in the reversible limit.
+
+Finally, an average erasure bound is not a fixed pathwise charge.
+To use it in a duration argument, one may consider prescribed
+protocols with deterministic durations and bounded gross mean
+power supplying their required work. To use it in a cumulative
+pathwise budget, an appropriate pathwise charged-cost premise
+must be justified separately.
+
+\subsection*{Classical stochastic speed limits}
+
+A concrete model-specific speed--distance inequality can be
+derived for Markov jump dynamics. For forward and reverse
+probability fluxes $a_{ij},b_{ij}$ on undirected edges, define
+\[
+A(t)=\sum_{i<j}(a_{ij}+b_{ij})
+\]
+and dimensionless entropy-production rate
+\[
+\sigma(t)=
+\sum_{i<j}(a_{ij}-b_{ij})
+\ln\frac{a_{ij}}{b_{ij}}.
+\]
+For positive fluxes, the elementary inequality
+\[
+(a-b)\ln(a/b)\ge\frac{2(a-b)^2}{a+b}
+\]
+gives
+\[
+\|\dot p(t)\|_1\le\sqrt{2A(t)\sigma(t)}.
+\]
+Integration and Cauchy--Schwarz yield
+\[
+d_{\rm TV}(p_0,p_\tau)^2
+\le
+\frac12
+\left(\int_0^\tau A(t)\,dt\right)
+\left(\int_0^\tau\sigma(t)\,dt\right).
+\]
+Consequently, if $A(t)\le A_{\max}$ and
+$\Sigma=\int_0^\tau\sigma(t)\,dt$,
+\[
+\Sigma\tau\ge
+\frac{2}{A_{\max}}d_{\rm TV}(p_0,p_\tau)^2.
+\]
+With an isothermal thermodynamic interpretation and
+$\varepsilon_{\rm diss}=k_BT\Sigma$,
+\[
+\varepsilon_{\rm diss}\tau
+\ge
+\frac{2k_BT}{A_{\max}}
+d_{\rm TV}(p_0,p_\tau)^2.
+\]
+
+This illustrates the stochastic speed-limit structure
+\cite{Shiraishi2018}. The coefficient depends on the activity
+bound and on the thermodynamic interpretation. Bounded
+incoming power alone does not bound dynamical activity.
+The energetic budget must apply to the same dissipative
+quantity used in the inequality.
+
+\subsection*{Overdamped transport and thermodynamic length}
+
+For an appropriate isothermal overdamped diffusion with constant
+friction $\zeta>0$, probability density $p$, and probability-current
+velocity $v$, the dissipative action has the form
+\[
+\varepsilon_{\rm diss}
+=
+\zeta\int_0^\tau\int p|v|^2\,dx\,dt.
+\]
+For admissible probability curves with finite second moments,
+the transport-action inequality gives
+\[
+\varepsilon_{\rm diss}\tau
+\ge
+\zeta W_2(p_0,p_\tau)^2.
+\]
+This connects finite-time thermodynamics with optimal transport
+\cite{Aurell2011}.
+
+The resulting physical metric is a transport metric.
+Its relation to operational distinguishability must still be
+established, as in the preceding section.
+
+Thermodynamic length provides related bounds in suitable
+slow-driving regimes
+\cite{Crooks2007,SivakCrooks2012}.
+Those approximations must not be extrapolated without
+justification into a proposed limit of vanishing transition times.
+Metric degeneracy or changing friction can also alter the
+uniformity assumptions.
+
+\subsection*{Reversible dynamics and quantum speed limits}
+
+Logical reversibility does not by itself imply arbitrarily
+fast computation. Conversely, zero thermodynamic entropy
+production does not imply zero physical motion.
+
+For example, isolated Hamiltonian evolution need not obey a
+positive dissipative inequality of the particular form
+\eqref{eq:action-law}. Quantum speed limits constrain evolution
+using quantities such as energy above a ground state or energy
+uncertainty under their respective assumptions
+\cite{MargolusLevitin1998}.
+
+Such stored dynamical resources are not automatically additive
+energetic costs consumed anew at every transition. They cannot
+be substituted for $\varepsilon_n$ without an accounting
+argument. Bounded generator strength or energy uncertainty
+can supply other metric-speed bounds, but these remain
+model-specific statements.
+
+The no-go boundary is therefore a family of conditional results,
+not a claim that one dissipation formula covers all physical
+implementations.
+
+
+\section{Implications for Organizational Accessibility}
+
+Organizational Accessibility separates retained architecture,
+candidate exposure, the variation process, establishment, and
+access to organization developed elsewhere \cite{OA8}.
+This decomposition remains useful, but its singularity
+interpretation must respect the bounds established here.
+
+In the sequential stochastic model,
+$\lambda_n=N_n\nu_np_n$ reveals precisely why the stated processor
+and rate bounds close C. Better establishment probability cannot
+grow without bound, and architectural improvements cannot restore
+explosion while all hypotheses of Theorem~\ref{thm:C} remain valid.
+
+In the continuum cascade, increasing specific turnover may
+result from shrinking transformed quantities. A proposed
+organizational interpretation must therefore identify the
+actual retained states, their transition durations, charged
+costs, physical distances, and operational distinctions.
+The stationary ratio $e_n/\Phi_n$ supplies none of these
+identifications automatically.
+
+Reuse, templating, catalytic machinery, recombination, and
+horizontal transfer can reduce the work that remains to be
+performed. They do not establish a fixed-resolution escape
+unless the resulting transformations satisfy the full physical
+accounting. Access, transport, integration, control, and
+retention can remain consequential even when reconstruction
+of prior structure is avoided.
+
+The ordinary cumulative claim is not threatened by this
+boundary. Retained structure can improve access to later
+targets without generating infinitely many targets in finite
+time. The interventional criterion for cumulative contribution
+in Organizational Accessibility remains a separate question
+from finite-time organizational escape.
+
+
+\section{Novelty boundary}
+
+None of the following is claimed as new generic mathematics:
+the pure-birth criterion, bounded-rate non-explosion,
+geometric-series tests for stationary cascades,
+Cauchy--Schwarz bounds, finite-length Cauchy convergence,
+thermodynamic speed limits, or Zeno accumulation
+\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
+Nor is finite material alongside stronger-norm divergence a new
+singularity mechanism \cite{KatzPavlovic2005}.
+
+The proposed contribution is an application and clarification:
+\begin{enumerate}
+\item the stated physical processor assumptions already close
+      the stochastic accessibility route;
+\item bounded throughput and bounded specific turnover answer
+      different questions;
+\item a physically meaningful organizational escape requires an
+      operational resolution standard;
+\item the physical no-go theorem transfers to organization only
+      through an explicit metric comparison;
+\item the remaining necessary condition concerns a weighted
+      physical cost scale, not an organizational index alone.
+\end{enumerate}
+
+Whether this combination constitutes a distinctive contribution
+relative to all existing literature requires a separate source
+audit. No priority claim is made here.
+
+
+\section{Open problem}
+
+The remaining question is narrower than whether a prescribed
+rate sequence can explode.
+
+\begin{quote}
+Can an autonomous organizational system generate successive
+retained transformations that remain operationally nontrivial,
+while their physical speed--distance cost scale collapses
+sufficiently fast for finite-time infinite depth?
+\end{quote}
+
+A candidate must realize actual dynamics and accounting with
+\[
+d_{\rm op,n}\ge\delta>0,
+\qquad
+\sum_n\tau_n<\infty,
+\qquad
+\sum_n\varepsilon_n<\infty,
+\]
+while necessarily satisfying
+\begin{equation}
+\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty.
+\label{eq:open-condition}
+\end{equation}
+It must do so without concealing an unbounded resource in
+mobility, activity, precision, control bandwidth, memory,
+measurement, or an omitted subsystem.
+
+Equation~\eqref{eq:open-condition} is a necessary feasibility
+condition, not an equivalent existence theorem. It does not
+supply the dynamics, retention, or budget required by a
+constructive answer.
+
+Under uniform kinetic control, the candidate must demonstrate
+the required physical--operational metric decoupling.
+Under uniform metric comparison, it must demonstrate the
+required kinetic-coefficient collapse. When both vary, the
+joint weighted condition is decisive.
+
+The present paper does not conjecture that such a system exists.
+A successful construction would have to identify its collapsing
+scale endogenously. An additional no-go theorem could instead
+derive a uniform bound from a more explicit class of physical
+implementations.
+
+
+\section{Conclusion}
+
+Infinite labelled depth does not establish infinite physical
+change. Infinite physical variation, when present, does not
+automatically establish infinitely many retained organizational
+distinctions at a fixed operational resolution.
+
+The stochastic accessibility route is closed under the stated
+material and per-realization rate bounds. The continuum cascade
+survives bounded aggregate throughput through a shrinking
+inventory and imposed increasing specific turnover, without
+thereby establishing a physical transient escape.
+
+The central conditional result is:
+\[
+\boxed{
+\begin{gathered}
+\text{finite time and finite charged energy}\\
++\ \text{uniform speed--distance control}\\
++\ \text{uniform physical--operational metric comparison}\\
+\Longrightarrow\\
+\text{finitely many fixed-resolution organizational transitions}.
+\end{gathered}
+}
+\]
+
+The bounded-power refinement example shows why the resolution
+condition is essential. The weak-versus-strong norm example
+shows why finite physical metric length must not be mistaken
+for a universal regularity theorem.
+
+A physically meaningful counterexample must therefore do more
+than assign an increasing level number or prescribe increasing
+rates. It must explain how retained organization maintains
+operationally significant distinctions while the relevant
+weighted physical cost scale collapses under complete resource
+accounting.
+
+
+\paragraph{Reference status.}
+The supplied Organizational Accessibility v8 manuscript is the
+source context for this paper. The external references below
+are a provisional primary-source bibliography carried forward
+from the existing reference inventory. They have not been
+freshly retrieved or independently audited for this revision.
+Their exact bibliographic details and the applicability of
+model-specific results require the separate literature audit.
+
+\begin{thebibliography}{99}
+
+\bibitem{OA8}
+\emph{Organizational Accessibility: From Self-Maintenance to
+Evolvability. A Dynamical Framework for Cumulative Emergence}.
+Scientific master v8, supplied working manuscript,
+12 September 2026.
+
+\bibitem{Feller1971}
+W. Feller.
+\emph{An Introduction to Probability Theory and Its Applications},
+Volume II, second edition.
+Wiley, 1971.
+
+\bibitem{Landauer1961}
+R. Landauer.
+Irreversibility and heat generation in the computing process.
+\emph{IBM Journal of Research and Development}
+5 (1961), 183--191.
+\url{https://doi.org/10.1147/rd.53.0183}
+
+\bibitem{Bennett1973}
+C. H. Bennett.
+Logical reversibility of computation.
+\emph{IBM Journal of Research and Development}
+17 (1973), 525--532.
+\url{https://doi.org/10.1147/rd.176.0525}
+
+\bibitem{Bennett1989}
+C. H. Bennett.
+Time/space trade-offs for reversible computation.
+\emph{SIAM Journal on Computing}
+18 (1989), 766--776.
+\url{https://doi.org/10.1137/0218053}
+
+\bibitem{ReebWolf2014}
+D. Reeb and M. M. Wolf.
+An improved Landauer principle with finite-size corrections.
+\emph{New Journal of Physics}
+16 (2014), 103011.
+\url{https://doi.org/10.1088/1367-2630/16/10/103011}
+
+\bibitem{Shiraishi2018}
+N. Shiraishi, K. Funo, and K. Saito.
+Speed limit for classical stochastic processes.
+\emph{Physical Review Letters}
+121 (2018), 070601.
+\url{https://doi.org/10.1103/PhysRevLett.121.070601}
+
+\bibitem{Aurell2011}
+E. Aurell, C. Mej\'ia-Monasterio, and
+P. Muratore-Ginanneschi.
+Optimal protocols and optimal transport in stochastic thermodynamics.
+\emph{Physical Review Letters}
+106 (2011), 250601.
+\url{https://doi.org/10.1103/PhysRevLett.106.250601}
+
+\bibitem{Crooks2007}
+G. E. Crooks.
+Measuring thermodynamic length.
+\emph{Physical Review Letters}
+99 (2007), 100602.
+\url{https://doi.org/10.1103/PhysRevLett.99.100602}
+
+\bibitem{SivakCrooks2012}
+D. A. Sivak and G. E. Crooks.
+Thermodynamic metrics and optimal paths.
+\emph{Physical Review Letters}
+108 (2012), 190602.
+\url{https://doi.org/10.1103/PhysRevLett.108.190602}
+
+\bibitem{MargolusLevitin1998}
+N. Margolus and L. B. Levitin.
+The maximum speed of dynamical evolution.
+\emph{Physica D}
+120 (1998), 188--195.
+\url{https://doi.org/10.1016/S0167-2789(98)00054-2}
+
+\bibitem{Zhang2001}
+J. Zhang, K. H. Johansson, J. Lygeros, and S. Sastry.
+Zeno hybrid systems.
+\emph{International Journal of Robust and Nonlinear Control}
+11 (2001), 435--451.
+\url{https://doi.org/10.1002/rnc.592}
+
+\bibitem{KatzPavlovic2005}
+N. H. Katz and N. Pavlovi\'c.
+Finite time blow-up for a dyadic model of the Euler equations.
+\emph{Transactions of the American Mathematical Society}
+357 (2005), 695--708.
+\url{https://doi.org/10.1090/S0002-9947-04-03532-9}
+
+\bibitem{PierreSchmitt1997}
+M. Pierre and D. Schmitt.
+Blowup in reaction--diffusion systems with dissipation of mass.
+\emph{SIAM Journal on Mathematical Analysis}
+28 (1997), 259--269.
+\url{https://doi.org/10.1137/S0036141095295437}
+
+\end{thebibliography}
+
+\end{document}
