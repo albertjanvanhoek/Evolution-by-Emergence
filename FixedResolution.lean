@@ -47,8 +47,8 @@ theorem reciprocal_partial_sum_lower_bound
     (k : ℕ) :
     (k : ℝ) / Lambda ≤ ∑ n ∈ Finset.range k, 1 / lambda n := by
   have hs :
-      ∑ n in Finset.range k, (1 / Lambda : ℝ) ≤
-        ∑ n in Finset.range k, 1 / lambda n := by
+      ∑ n ∈ Finset.range k, (1 / Lambda : ℝ) ≤
+        ∑ n ∈ Finset.range k, 1 / lambda n := by
     refine Finset.sum_le_sum ?_
     intro n hn
     exact one_div_le_one_div_of_le (hlambda0 n) (hlambdab n)
@@ -68,7 +68,7 @@ theorem reciprocal_not_summable
   have hpos : 0 < (1 / Lambda : ℝ) := one_div_pos.mpr hLambda
   have hev : ∀ᶠ n in Filter.atTop, 1 / lambda n < 1 / Lambda :=
     ((tendsto_order.1 hzero).2 _ hpos)
-  filter_upwards [hev] with n hn
+  obtain ⟨n, hn⟩ := Filter.Eventually.exists hev
   have hlo : 1 / Lambda ≤ 1 / lambda n :=
     one_div_le_one_div_of_le (hlambda0 n) (hlambdab n)
   linarith
@@ -142,8 +142,12 @@ theorem finite_action_bound
       Real.sqrt c * (∑ i ∈ s, d i) ≤
         Real.sqrt ((∑ i ∈ s, eps i) * (∑ i ∈ s, tau i)) :=
     (sq_le_sq₀ hleft0 hright0).mp hsquares
-  apply (le_div_iff₀ hcroot).2
-  simpa [div_eq_mul_inv, mul_comm, mul_left_comm, mul_assoc] using hlin
+  calc
+    (∑ i ∈ s, d i) ≤
+        Real.sqrt ((∑ i ∈ s, eps i) * (∑ i ∈ s, tau i)) / Real.sqrt c :=
+      (le_div_iff₀ hcroot).2 (by simpa [mul_comm] using hlin)
+    _ = (1 / Real.sqrt c) *
+        Real.sqrt ((∑ i ∈ s, eps i) * (∑ i ∈ s, tau i)) := by ring
 
 /-- Fixed-resolution counting in squared form. If every counted transition has
 physical distance at least `delta`, then its cardinality is controlled by the
