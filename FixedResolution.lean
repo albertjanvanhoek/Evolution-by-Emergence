@@ -45,7 +45,7 @@ theorem reciprocal_partial_sum_lower_bound
     (hlambda0 : ∀ n, 0 < lambda n)
     (hlambdab : ∀ n, lambda n ≤ Lambda)
     (k : ℕ) :
-    (k : ℝ) / Lambda ≤ ∑ n in Finset.range k, 1 / lambda n := by
+    (k : ℝ) / Lambda ≤ ∑ n ∈ Finset.range k, 1 / lambda n := by
   have hs :
       ∑ n in Finset.range k, (1 / Lambda : ℝ) ≤
         ∑ n in Finset.range k, 1 / lambda n := by
