@@ -1,0 +1,19 @@
+name: Lean fixed-resolution verification
+
+on:
+  push:
+    branches:
+      - lean-fixed-resolution-verification
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+        with:
+          build: true
+          test: false
+          lint: false
+          use-mathlib-cache: true
