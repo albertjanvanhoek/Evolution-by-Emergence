@@ -65,4 +65,4 @@ Pinned environment:
 - Lean `4.33.0` (`leanprover/lean4:v4.33.0`)
 - Mathlib commit `db584cd6d46c92f209a44c0f1c829460d327499d`
 
-A successful canonical CI run before repository reorganization was GitHub Actions run `34739508434`, project commit `52eae06e3a19af6f041c16ff00a98e165eeff3de`. The workflow in this repository re-runs the same checks from this directory on subsequent changes.
+The final proofread version was re-verified on `main` in GitHub Actions run `34742856500` at commit `318df0da76c2ae94fa33f7b74c806b8e8451e55d`. The workflow continues to re-run the same checks whenever this verification project changes.
