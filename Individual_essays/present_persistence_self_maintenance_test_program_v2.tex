@@ -1,0 +1,538 @@
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.7cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{\textbf{Present Persistence Does Not Prove Present Self-Maintenance}\\
+\large A Prospective Test Program for Evolution by Emergence}
+\author{Albert Jan van Hoek}
+\date{Working note --- September 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A system can remain present even after it has ceased to reproduce the conditions required for its own continuation. Current persistence may therefore be supported by organization accumulated earlier, by reserves, or by support supplied elsewhere. This note turns that distinction into a prospective test program.
+
+Let $B(t)$ denote a measurable continuation-relevant capacity, $P(t)$ the rate at which current organization regenerates it, and $R(t)$ the rate at which it is consumed, lost, or otherwise required. Define the instantaneous self-maintenance ratio
+\[
+M(t)=\frac{P(t)}{R(t)}.
+\]
+When $M(t)<1$, continued operation is maintenance-deficient even if no failure is yet visible. A second quantity measures whether depletion itself activates restorative processes. Let
+\[
+F(B,t)=P(B,t)-R(B,t),
+\]
+and define the local restorative gain
+\[
+G
+=
+-\left.
+\frac{\partial F}{\partial B}
+\right|_{B^\ast}.
+\]
+For a maintained operating point $B^\ast$, $G>0$ indicates a restoring return path, $G\approx0$ weak responsiveness, and $G<0$ amplification of deviations.
+
+The central empirical requirement is prospective and external: $P(t)$, $R(t)$, the continuation threshold, and any establishment function must be parameterised independently of the outcome used to test the prediction. The framework should then be judged against simpler predictors such as present state and empirical trend. Its distinctive question is not whether systems contain stocks and flows, but whether explicit return-path accounting improves prediction of future viability or accessibility.
+
+A measles example illustrates a strong test case because immunity generation, demographic turnover, and transmission thresholds can be parameterised independently of later outbreak occurrence. The broader research program is deliberately selective: only systems in which maintenance requirements and return paths can be independently identified provide strong tests.
+\end{abstract}
+
+\section{The central distinction}
+
+Persistence and self-maintenance are not the same observable.
+
+A system may currently exist, function, or remain apparently stable while the processes required to regenerate its continuation-relevant capacities are already insufficient. In that case, present persistence is being supported by organization accumulated earlier, by reserves, by redundancy, or by support supplied from outside the focal boundary.
+
+The central statement is therefore:
+
+\begin{quote}
+\textbf{Present persistence does not prove present self-maintenance.}
+\end{quote}
+
+This statement is scientifically useful only if it is treated prospectively. It must not be used retrospectively to explain away apparent counterexamples. The research question is whether maintenance deficiency can be measured \emph{before} overt failure and whether that measurement predicts later loss of viability or accessibility.
+
+\section{Independent identification is a hard requirement}
+
+The central quantities must not be fitted to the same failures they are supposed to predict.
+
+\begin{equation}
+\boxed{
+P(t),\quad R(t),\quad B_{\min},
+\quad\text{and any establishment function used in prediction}
+\quad
+\text{must be parameterised independently of the test outcome.}
+}
+\label{eq:independent-identification}
+\end{equation}
+
+Here $B_{\min}$ denotes the minimum continuation-relevant capacity compatible with the chosen viability criterion.
+
+If $R(t)$ or $B_{\min}$ is inferred retrospectively from observed failure times, then the test is circular. Domains in which these quantities cannot be independently identified can still motivate analogy or exploratory modelling, but they do not provide strong tests of the framework.
+
+The choice of system boundary is therefore load-bearing. The relevant organization is the one for which:
+\begin{enumerate}[nosep]
+    \item continuation can be operationally defined;
+    \item the required capacities can be identified;
+    \item production and loss processes can be measured in compatible units;
+    \item the continuation threshold is specified independently of the eventual outcome.
+\end{enumerate}
+
+\section{A minimal stock--flow formulation}
+
+Let $B(t)\ge0$ be the usable stock of a continuation-relevant capacity.
+
+Let
+\begin{itemize}[nosep]
+    \item $P(t)$ be the rate at which current organization produces or regenerates that capacity;
+    \item $R(t)$ be the rate at which continuation consumes, loses, depreciates, or otherwise requires it.
+\end{itemize}
+
+A minimal accounting equation is
+\begin{equation}
+\frac{dB}{dt}=P(t)-R(t).
+\label{eq:buffer}
+\end{equation}
+
+Define the \textbf{instantaneous self-maintenance ratio}
+\begin{equation}
+\boxed{
+M(t)=\frac{P(t)}{R(t)}
+}
+\label{eq:maintenance-ratio}
+\end{equation}
+for $R(t)>0$.
+
+Then:
+\begin{align*}
+M(t)>1 &\quad \text{capacity is being replenished faster than required},\\
+M(t)=1 &\quad \text{current production matches current requirement},\\
+M(t)<1 &\quad \text{the system is maintenance-deficient and must draw on a buffer or external support.}
+\end{align*}
+
+Crucially,
+\[
+\text{system persists at time }t
+\quad\not\Rightarrow\quad
+M(t)\ge1.
+\]
+
+A system with $M(t)<1$ may remain fully functional for a long time if $B(t)$ is sufficiently large.
+
+\section{Maintenance debt and predicted delay}
+
+Let $B_{\min}$ be the independently specified minimum usable stock compatible with the continuation criterion.
+
+If $P$ and $R$ are approximately constant over a relevant interval and $P<R$, then
+\begin{equation}
+\boxed{
+T_{\mathrm{fail}}
+=
+\frac{B_0-B_{\min}}{R-P}.
+}
+\label{eq:failure-time}
+\end{equation}
+
+Equation~\eqref{eq:failure-time} is a \emph{special case}, not a universal law. It is useful because it exposes the required accounting:
+\[
+R-P
+\]
+is the current maintenance deficit, while
+\[
+B_0-B_{\min}
+\]
+is the usable inherited buffer.
+
+This suggests the term \textbf{maintenance debt}: a system can continue operating while consuming organization that it is no longer regenerating.
+
+For time-varying systems,
+\begin{equation}
+B(t)
+=
+B(0)
++
+\int_0^t\left[P(s)-R(s)\right]ds,
+\label{eq:time-varying-buffer}
+\end{equation}
+and viability is lost when $B(t)$ crosses $B_{\min}$.
+
+The general test is therefore not whether Eq.~\eqref{eq:failure-time} holds exactly, but whether independently measured production, loss, and buffer trajectories prospectively predict approach to an independently defined viability boundary.
+
+\section{Return-path responsiveness}
+
+Stock--flow accounting alone is generic. The more specific question of Evolution by Emergence is whether the organization contains causal return paths that respond to deterioration in a condition required for continuation.
+
+Define the net maintenance flux
+\begin{equation}
+F(B,t)=P(B,t)-R(B,t).
+\label{eq:net-flux}
+\end{equation}
+
+At a maintained operating point $B^\ast$,
+\[
+F(B^\ast,t)=0.
+\]
+
+For local restorative feedback, a downward perturbation in $B$ should induce a positive net response. This is captured by
+\begin{equation}
+\boxed{
+G
+=
+-\left.
+\frac{\partial F}{\partial B}
+\right|_{B^\ast}.
+}
+\label{eq:restorative-gain}
+\end{equation}
+
+Then, locally:
+\begin{align*}
+G>0 &\quad \text{depletion evokes a restoring response},\\
+G\approx0 &\quad \text{net maintenance is weakly responsive to depletion},\\
+G<0 &\quad \text{deviation is amplified rather than corrected}.
+\end{align*}
+
+This quantity is not claimed to be novel as a mathematical object; related gains are standard in control theory, homeostasis, and resilience science. Its role here is diagnostic: it operationalises the return path that the framework treats as causally central.
+
+Three quantities therefore answer three different questions:
+\begin{align}
+B(t) &:\quad \text{how much usable inherited capacity remains?}\\
+M(t)=P(t)/R(t) &:\quad \text{is current activity replenishing what continuation requires?}\\
+G &:\quad \text{does deterioration causally activate processes that restore the required condition?}
+\end{align}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+State & Buffer $B$ & Balance $M$ & Restorative gain $G$ \\
+\midrule
+Maintained and corrective & adequate & $\ge1$ & $>0$ \\
+Recoverable maintenance debt & adequate & $<1$ & $>0$ \\
+Silent fragility & adequate & $\lesssim1$ & $\approx0$ \\
+Runaway deterioration & declining & $<1$ & $<0$ \\
+\bottomrule
+\end{tabular}
+\caption{Illustrative diagnostic states. Boundaries and units are application-specific.}
+\label{tab:diagnostic-states}
+\end{table}
+
+\section{The primary predictive comparison}
+
+The framework should not be credited merely because $B(t)$ predicts failure. A stock often predicts its own depletion, and a generic time-series model may capture the same information.
+
+The stronger test is whether explicit maintenance accounting improves prediction beyond present state and empirical trend.
+
+A prospective comparison should therefore pre-specify at least:
+\begin{align}
+\mathcal M_0 &: \quad B(t),\\
+\mathcal M_1 &: \quad B(t),\dot B(t),\\
+\mathcal M_2 &: \quad B(t),P(t),R(t),G(t),
+\quad\text{with independently identified return-path structure}.
+\end{align}
+
+The primary question is:
+\begin{equation}
+\boxed{
+\text{Does } \mathcal M_2
+\text{ improve prospective prediction beyond }
+\mathcal M_0
+\text{ and }
+\mathcal M_1?
+}
+\label{eq:primary-comparison}
+\end{equation}
+
+A null result is informative. If explicit return-path accounting adds no predictive information beyond state and trend, then the proposed framework has not demonstrated additional explanatory or predictive value in that domain.
+
+\section{Stochastic triggers and establishment}
+
+In many systems, depletion does not itself produce an immediately visible failure. It changes the probability that an external or stochastic trigger establishes a failure process.
+
+Let $X(t)$ be a maintenance-relevant state derived independently from the mechanistic model, and let $\lambda_{\mathrm{trig}}(t)$ be the rate of destabilizing triggers. Let
+\[
+p_{\mathrm{est}}\!\left(X(t)\right)
+\]
+be the probability that a trigger establishes a self-sustaining failure process.
+
+Then
+\begin{equation}
+h_{\mathrm{fail}}(t)
+=
+\lambda_{\mathrm{trig}}(t)
+p_{\mathrm{est}}\!\left(X(t)\right).
+\label{eq:hazard}
+\end{equation}
+
+To preserve falsifiability, $p_{\mathrm{est}}$ must be derived or parameterised independently of the failures used for testing. An unspecified free function does not constitute a prediction.
+
+Under standard hazard assumptions,
+\begin{equation}
+\Pr(T_{\mathrm{fail}}\le t)
+=
+1-
+\exp\left(
+-\int_0^t h_{\mathrm{fail}}(s)\,ds
+\right).
+\label{eq:failure-cdf}
+\end{equation}
+
+Thus a strong test need not predict an exact calendar date. It can prospectively predict how independently measured maintenance deficiency changes the distribution of time to failure.
+
+\section{Worked demonstration: measles susceptibility and outbreak accessibility}
+
+Measles provides a particularly strong test case because several components of the maintenance problem can be parameterised independently of the future outbreak outcome.
+
+A population may remain measles-free while the immunity-generating processes that previously sustained herd protection have already become insufficient. Older immune cohorts can temporarily preserve low susceptibility even while newer cohorts accumulate susceptibility.
+
+A natural mapping is:
+\begin{itemize}[nosep]
+    \item $B(t)$: the current distribution of immune protection across the epidemiologically relevant population;
+    \item $P(t)$: immunity added by vaccination and infection, adjusted for vaccine effectiveness;
+    \item $R(t)$: loss of effective protection through births, demographic turnover, waning where relevant, and changes in mixing structure;
+    \item $B_{\min}$: a transmission threshold derived independently from the next-generation structure of measles transmission;
+    \item importations: stochastic triggers;
+    \item establishment: sustained transmission following an importation.
+\end{itemize}
+
+In the simplest homogeneous approximation, the critical susceptible fraction satisfies
+\[
+s_c=\frac{1}{R_0},
+\]
+equivalently a critical immune fraction
+\[
+q_c=1-\frac{1}{R_0},
+\]
+with $R_0$ estimated independently from transmission data.
+
+For realistic populations, the national average is not the relevant boundary when susceptibility is clustered. Let $K(t)$ be an age-, spatial-, or otherwise structured next-generation matrix. The independently defined transmission boundary is then
+\begin{equation}
+\boxed{
+\rho(K(t))=1,
+}
+\label{eq:measles-threshold}
+\end{equation}
+where $\rho$ is the spectral radius.
+
+The relevant organization is therefore not necessarily ``the country.'' It is the epidemiologically interacting population or cluster for which transmission and immunity exchange are causally coupled.
+
+For a simple single-type branching approximation with effective reproduction number $R_{\mathrm{eff}}(t)$,
+\begin{equation}
+p_{\mathrm{est}}(t)
+\approx
+\begin{cases}
+0, & R_{\mathrm{eff}}(t)\le1,\\[4pt]
+1-\dfrac{1}{R_{\mathrm{eff}}(t)}, & R_{\mathrm{eff}}(t)>1.
+\end{cases}
+\label{eq:branching-establishment}
+\end{equation}
+
+More realistic multitype branching formulations can replace Eq.~\eqref{eq:branching-establishment}; the important requirement is that the establishment model is specified independently of the future outbreak being predicted.
+
+The primary predictive comparison should be pre-specified:
+\begin{enumerate}[nosep]
+    \item current immunity or susceptibility state alone;
+    \item current state plus empirical trend;
+    \item current state plus independently parameterised production, loss, and return-path response.
+\end{enumerate}
+
+The key empirical question is not simply whether susceptibility predicts outbreaks. It is whether two populations or clusters with similar current susceptibility but different maintenance balance or restorative response have measurably different future outbreak accessibility.
+
+\section{Where the framework can and cannot yet be strongly tested}
+
+The framework should not present all possible domains as equally testable. Strong tests require independent identification of requirements, thresholds, and return paths.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{0.18\linewidth}p{0.27\linewidth}p{0.20\linewidth}p{0.26\linewidth}}
+\toprule
+Domain & Candidate continuation quantity & Independent identification feasible? & Strength of test \\
+\midrule
+Epidemiology & population immunity / susceptibility structure & Yes, often strongly & Strong: transmission thresholds and demographic flows can be estimated externally \\
+Infrastructure & physical condition / spare capacity & Often & Strong to moderate: engineering tolerances and degradation rates may be independently specified \\
+Renewable resources & biomass, aquifer level, reproductive stock & Often & Strong to moderate: regeneration and extraction can be independently measured \\
+Ecology & redundancy, habitat or population viability state & Sometimes & Moderate: thresholds and effective requirements may be uncertain or context-dependent \\
+Physiology & physiological reserve & Sometimes & Moderate: mechanisms may be measurable but system boundary and thresholds can be difficult \\
+Organizations & trust, knowledge, staffing depth & Usually not yet & Weak: $R$ and $B_{\min}$ are often outcome-defined rather than externally identified \\
+Machine learning & retained capability / representation & Not in the same stock-consumption form without further modelling & Exploratory: useful for return-path and accessibility experiments, not automatically a maintenance-debt test \\
+\bottomrule
+\end{tabular}
+\caption{Evidence hierarchy. A domain is not a strong test merely because the vocabulary can be mapped onto it.}
+\label{tab:evidence-hierarchy}
+\end{table}
+
+Domains in the lower rows should not be used as evidence for generality until the relevant quantities can be independently operationalised.
+
+\section{Retained capability versus depleting reserve}
+
+Within Organizational Accessibility, history can remain causally active in at least two importantly different ways.
+
+\subsection*{History as retained capability}
+
+Past organization can produce a structure that remains functional and changes which successor organization is reachable. Examples include inherited architecture, learned representations, ecological modifications, reusable modules, or stable return paths.
+
+This is history functioning as \emph{productive infrastructure}.
+
+\subsection*{History as consumable reserve}
+
+Past organization can also leave behind a stock that permits present function despite inadequate current regeneration.
+
+This is history functioning as \emph{buffered persistence}.
+
+The distinction is:
+\begin{equation}
+\boxed{
+\text{retained capability}
+\neq
+\text{depleting reserve}.
+}
+\label{eq:capability-vs-reserve}
+\end{equation}
+
+The first can alter future accessibility by changing what the system can do. The second can temporarily conceal that the system is no longer regenerating the conditions of its continuation.
+
+This distinction is central because many existing concepts---for example extinction debt, deferred maintenance, reserve depletion, and susceptible accumulation---primarily concern the second phenomenon. Organizational Accessibility additionally asks when retained history becomes active infrastructure for later organization.
+
+\section{A reusable empirical protocol}
+
+Researchers can test the thesis using the following sequence.
+
+\begin{enumerate}
+    \item \textbf{Define the focal organization.} State the system boundary and the continuation criterion.
+    \item \textbf{Identify the continuation-relevant capacity.} Specify what must remain within a viable region for the chosen organization to continue.
+    \item \textbf{Identify return paths.} Determine which current processes regenerate that capacity and which signals or states regulate those processes.
+    \item \textbf{Require independent identification.} Parameterise $P(t)$, $R(t)$, $B_{\min}$, and any establishment model without using the future failures that will test the prediction.
+    \item \textbf{Measure current state.} Estimate $B(t)$.
+    \item \textbf{Measure maintenance balance.} Estimate $M(t)=P(t)/R(t)$.
+    \item \textbf{Measure responsiveness.} Where possible, estimate $G=-\partial(P-R)/\partial B$ through natural variation, perturbation, or intervention.
+    \item \textbf{Pre-specify baseline models.} At minimum compare state alone, state plus empirical trend, and the explicit maintenance model.
+    \item \textbf{Pre-specify the outcome.} Define failure time, failure hazard, or a future accessibility measure before observing the test interval.
+    \item \textbf{Intervene where possible.} Perturb a proposed return path and test whether $P$, $R$, $M$, $G$, and subsequent viability change as predicted.
+    \item \textbf{Report failures and nulls.} If explicit maintenance accounting adds no predictive value beyond state and trend, report that result as evidence against added value in that system.
+\end{enumerate}
+
+\section{What would count as support?}
+
+Evidence for the proposed framework would be stronger when:
+\begin{itemize}[nosep]
+    \item maintenance deficiency is measurable before overt decline;
+    \item $P$, $R$, and the viability boundary are independently identified;
+    \item two systems with similar present state but different maintenance balance have different future trajectories in the predicted direction;
+    \item restorative gain predicts recovery or resilience after perturbation;
+    \item explicit return-path accounting improves prospective prediction beyond state and empirical trend;
+    \item interventions on a proposed return path alter maintenance balance and future accessibility as predicted.
+\end{itemize}
+
+Evidence is weak if the framework merely redescribes failures after they occur.
+
+\section{What would count against it?}
+
+The framework would be challenged if, across well-defined systems:
+\begin{itemize}[nosep]
+    \item maintenance requirements or thresholds cannot be operationalised independently of the outcome;
+    \item systems with sustained $M(t)<1$ do not consume any identifiable buffer or external support;
+    \item independently predicted buffer depletion is unrelated to future loss of viability or accessibility;
+    \item estimated restorative gain is unrelated to recovery from depletion;
+    \item explicit return-path accounting adds no predictive information beyond present state and empirical trend;
+    \item interventions on purported maintenance pathways fail to alter the predicted maintenance balance or future accessibility.
+\end{itemize}
+
+A general framework should be judged by whether it generates such discriminating tests, not by whether every observed persistence or collapse can be redescribed in its vocabulary.
+
+\section{Evidence hierarchy}
+
+A useful hierarchy of evidential strength is:
+
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{analogy}\\
+<\\
+\text{measured stock}\\
+<\\
+\text{independently parameterised stock--flow model}\\
+<\\
+\text{measured return-path responsiveness}\\
+<\\
+\text{prospective prediction beyond state and trend}\\
+<\\
+\text{interventional confirmation}.
+\end{gathered}
+}
+\label{eq:evidence-hierarchy}
+\end{equation}
+
+The purpose of this hierarchy is to prevent apparent generality from being mistaken for evidence.
+
+\section{Interpretation}
+
+The near-definitional core is modest:
+
+\begin{quote}
+A persistent organization must, directly or indirectly, continue to receive the causal conditions sufficient for its persistence.
+\end{quote}
+
+The empirical content begins when those conditions are decomposed into independently measurable production, requirement, inherited support, and return paths.
+
+This yields a question that can be asked before failure:
+
+\begin{quote}
+\textbf{Is this system regenerating the conditions of its continuation now, is it drawing down organization accumulated earlier, and does deterioration activate a causal process that restores what is being lost?}
+\end{quote}
+
+The framework does not require a universal substance, a universal unit of complexity, or a claim that persistence is ethically good. It asks whether current organization regenerates the capacities on which continuation depends, how history remains active as either capability or reserve, and whether explicit accounting of those processes improves prediction of what becomes accessible next.
+
+\section{A program for others}
+
+No single experiment can establish a substrate-general theory of persistence. The path forward is plural but disciplined.
+
+Researchers in different fields can test the same causal template only where its quantities can be operationalised independently:
+
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{define the organization and its viable boundary}\\
+\downarrow\\
+\text{identify what must be maintained}\\
+\downarrow\\
+\text{identify what currently maintains it}\\
+\downarrow\\
+\text{measure }B,\;P,\;R,\text{ and where possible }G\\
+\downarrow\\
+\text{predict future accessibility before observing it}\\
+\downarrow\\
+\text{compare with state-only and trend-only baselines}\\
+\downarrow\\
+\text{intervene, report nulls, and revise}.
+\end{gathered}
+}
+\label{eq:program}
+\end{equation}
+
+If explicit return-path accounting repeatedly fails to improve prediction, the framework should contract.
+
+If independently identified return paths repeatedly improve prospective prediction across distinct substrates, then the shared scientific object is not the superficial similarity of those systems, but the mechanics by which retained organization contributes to continued and future organization.
+
+\section*{Closing statement}
+
+The strongest formulation is not that all persistent systems are already self-maintaining.
+
+It is:
+
+\begin{quote}
+\textbf{Persistence can be inherited, buffered, borrowed, or actively regenerated. The scientific task is to distinguish these cases prospectively: measure whether current organization is reproducing the conditions of continuation, whether depletion activates restorative return paths, and whether those measurements predict future viability better than present state alone.}
+\end{quote}
+
+That turns ``present persistence does not prove present self-maintenance'' from a retrospective explanation into a falsifiable research program.
+
+\end{document}
