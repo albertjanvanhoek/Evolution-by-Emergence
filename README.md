@@ -1,10 +1,10 @@
 # Evolution by Emergence
 
-**How does existing organisation make further organisation possible, and what allows that process to continue?**
+**How do finite-lived processes keep producing one another, and how does that web of production evolve?**
 
-Evolution by Emergence is an open research project by **Albert Jan van Hoek, with AI collaboration**, developing a general account of **how organisation evolves across living and nonliving systems**. Interacting processes can generate new capacities, retain some of them, and thereby change what can emerge next. The history of evolution can be carried by a web of relationships, exchanges, and combinations across scales.
+Evolution by Emergence is an open research project by **Albert Jan van Hoek, with AI collaboration**, developing a general account of **how organisation evolves across living and nonliving systems**. Its starting point is continual production and renewal. When individual process instances end, their continued presence across time requires further instances to be produced. Existing processes can supply the resources, products, and conditions through which other processes arise and continue. Organisation is realised in this interacting web of production and dependence.
 
-The proposed mechanism is a **cumulative organisational ratchet**: under suitable resource and dynamical conditions, retained organisation becomes a starting point for further organisation. Usable energy drives the activity; the evolving network shapes how that energy is used and which subsequent changes become possible. Biological evolution, learning, and the development of technical and social systems are investigated within this wider framework.
+The web can change through interaction, competition, variation, and recombination. New processes can change the production and maintenance of existing processes, including those that sustain the newcomers. The project investigates a **cumulative organisational ratchet** in which improvements to this regenerative activity are retained and make further changes possible. Retention can occur through repeated production, copying, or reconstruction as individual instances disappear. Usable energy supports the activity; productive relations shape what that activity renews and what it can generate next.
 
 The project brings together a book, mathematical papers, formal proofs, and applications to biological, artificial, and social systems. **SCAP, the Sustainable Collaborative Alignment Protocol, expresses the project's account of how learning systems can maintain the conditions of their own continuation.**
 
@@ -22,34 +22,41 @@ The project's use of *evolution by emergence* means **historical change in which
 
 ## The ratchet under an energy gradient
 
-Usable differences in physical conditions, such as chemical or electrical potentials, can drive organised activity. An open network uses available free energy and materials while producing heat and other outputs. Its organisation determines which pathways those flows follow, which capacities are maintained, and which new activities become affordable or constructible.
+Usable differences in physical conditions, such as chemical or electrical potentials, can drive organised activity. Processes use available free energy and materials while producing heat and other outputs. Their currently realised production relations shape these flows and determine whether enough productive activity is regenerated to offset losses.
 
-A system can persist while its participants change. Cells replace molecules, institutions replace members, and a workshop replaces machines. What continues is an organisation of activities and relations that makes further activity possible.
+New cells arise from existing cells. In a multicellular system, interactions among cells help sustain the conditions in which cells function, divide, and continue those interactions. The organism's organisation is continually realised through their coordinated activity. The same explanatory question can be asked at other scales: which processes produce the participants and conditions through which those processes can continue?
 
-Imagine a workshop that builds a diagnostic tool. Earlier fault detection reduces breakdowns. Some of the saved time and materials support maintaining the tool and teaching others to use and repair it. Once this capacity is retained, the workshop may be able to operate equipment that was previously too fragile or costly. The first innovation has changed the conditions for the next one.
+The accessibility paper makes a minimal version explicit. Executing processes of type A produce B, and B produce A, using supplied substrate. Both types are continually lost. The productive return path can regenerate their active populations. Now allow some production by A to generate a candidate process C. If C returns enough productive benefit to A to offset the diverted production, the changed network can sustain itself under a lower resource supply. The organisation changes because its productive relations change.
 
-The papers distinguish two senses of ratchet. **Hysteretic retention** makes an established capacity maintainable under conditions in which it could not establish from rarity. A **cumulative organisational ratchet** additionally requires retained organisation to improve access to a specified later target. Repeating a maintenance cycle, or establishing hysteresis alone, does not establish that cumulative effect.
-
-The proposed causal pattern is:
+This diagram shows the starting replacement cycle and a candidate extension:
 
 ```mermaid
 flowchart TD
-    E["Usable energy and materials"] --> O["Organised activity"]
-    O --> V["Variation and new relations"]
-    V --> R["Establishment and retention"]
-    R -->|"changes the organisation"| O
-    R --> A["Changed future accessibility"]
-    A -->|"shapes later possibilities"| V
-    O --> D["Heat and material outputs"]
+    S["Supplied activated substrate"] --> A["Executing processes A"]
+    S --> B["Executing processes B"]
+    S --> C["Candidate processes C"]
+    A -->|"produces"| B
+    B -->|"produces"| A
+    A -.->|"candidate production route"| C
+    C -.->|"productive return"| A
+    A --> L["Loss of process instances"]
+    B --> L
+    C --> L
 ```
 
-The **vortex analogy** captures recurrent organisation sustained by flow. The evolutionary addition is retained history: after a change, the network returns to maintaining itself with an altered repertoire, and perhaps altered ways of generating further change. A spiral suggests this recurrence with inherited change; a web captures the many paths that can split, combine, and support one another. These are images of the causal pattern. Literal rotation is not required, and an energy gradient alone does not establish a cumulative ratchet.
+Every new instance consumes substrate, and all types incur losses. The candidate pathways in this example are specified by the model. The broader research question is how an existing web generates and retains further productive relations through its own dynamics.
+
+**Efficiency enters through the consequences for regeneration.** A reorganisation can lower the resources required for maintenance or free capacity for further activity. Where that advantage supports continued production of the processes responsible, it can favour their persistence and propagation. The paper establishes a model-specific improvement in the maintenance threshold. Repeated evolution towards greater efficiency additionally requires suitable variation, competition, and retention; continued existence alone establishes a replacement requirement.
+
+The papers distinguish two senses of ratchet. **Hysteretic retention** makes an established capacity maintainable under conditions in which it could not establish from rarity. A **cumulative organisational ratchet** additionally requires retained organisation to improve access to a specified later target. Repeating a maintenance cycle, or establishing hysteresis alone, does not establish that cumulative effect.
+
+The **vortex analogy** captures recurrent organisation sustained by flow. Here the recurrence is productive: processes keep generating the conditions for further processes. When new productive relations are retained, this recurrence changes. A spiral suggests recurrence with inherited change; a web captures paths that split, combine, compete, and support one another. These are images of the causal pattern. Literal rotation is not required, and an energy gradient alone does not establish a cumulative ratchet.
 
 Three things therefore need explaining: how a new capacity arises, how its contribution returns to support its continuation, and how its retention changes later possibilities. A useful effect that never supports its own maintenance may disappear. A retained capacity can also create a trap or lose its usefulness when conditions change.
 
 The central proposal is:
 
-> **Existing organisation changes what organisation can follow. Previous viability can become infrastructure for subsequent viability.**
+> **Processes produce and sustain other processes. Changes in those productive relations can be retained, changing which processes can exist next.**
 
 ## The two core papers
 
@@ -59,14 +66,14 @@ These papers anchor two complementary parts of the project: **how further organi
 
 This paper asks which persistent successor organisations can be reached from a given architecture, state, environment, and variation process over a specified time horizon.
 
-It develops a resource-limited production model and distinguishes several ways in which history can matter:
+Its base model explicitly represents processes producing other processes while all incur losses and consume supplied substrate. The resulting organisation reproduction number measures whether collective production can replace the executing processes being lost. The paper then distinguishes several ways in which history can matter:
 
 - **Hysteretic retention:** an established organisation can persist under conditions in which it could not establish from rarity. The worked model separates establishment and maintenance thresholds analytically.
 - **Inherited adaptive extension:** subsequent variation can begin from an already viable architecture, with a finite opportunity to generate and establish successors.
 - **Compositional accessibility:** recombination, horizontal transfer, symbiosis, and incorporation across scales can reuse organisation developed elsewhere.
 - **Evolvability:** the process that generates variation can itself change and be retained.
 
-Its proposed test for cumulative emergence is causal: does retaining a structure acquired earlier increase access to a specified later target? This makes the contribution of organisational history something that can be investigated through interventions. The worked model establishes a retention mechanism; demonstrating a complete sequence of cumulative emergence remains a further test.
+Its proposed test for cumulative emergence is causal: does retaining a structure acquired earlier increase access to a specified later target? This makes the contribution of organisational history something that can be investigated through interventions. The worked models specify the possible production pathways in advance. They establish mutual regeneration and conditional improvements in maintenance and retention; demonstrating a network that repeatedly generates and retains new, increasingly efficient pathways remains a further task.
 
 **Read:** [v7 paper PDF][oa-pdf] · [Machine-checked appendix PDF][oa-appendix] · [Paper repository, LaTeX, and Lean proofs][oa-repo]. The v7 reading copy and the verification appendix are available separately.
 
