@@ -1,6 +1,6 @@
 name = "organizational_depth_no_go"
-version = "1.0.0"
-defaultTargets = ["OrganizationalDepth"]
+version = "1.1.0"
+defaultTargets = ["OrganizationalDepth", "OperationalBridge"]
 
 [[require]]
 name = "mathlib"
@@ -9,3 +9,6 @@ rev = "db584cd6d46c92f209a44c0f1c829460d327499d"
 
 [[lean_lib]]
 name = "OrganizationalDepth"
+
+[[lean_lib]]
+name = "OperationalBridge"
