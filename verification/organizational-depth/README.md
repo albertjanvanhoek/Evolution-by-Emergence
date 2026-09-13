@@ -5,6 +5,9 @@ Machine-checked companion to **“Organizational Depth at Finite Time: A Fixed-R
 ## Canonical source
 
 - `OrganizationalDepth.lean` — canonical theorem stack used by the paper.
+- `OperationalBridge.lean` — finite-state Markov-jump bridge from total-variation speed limits to operational distinguishability.
+- `bridge/BRIDGE_REPORT_agent.md` — the agent's full bridge report.
+- `bridge/REVIEW.md` — independent review, corrections, and manuscript implications.
 - `appendix/appendix_lean.tex` — paper-ready Appendix A.
 - `LEAN_REPORT.md` — verification scope and environment.
 - `compile_output.txt` — captured successful build and axiom audit.
@@ -19,7 +22,11 @@ The canonical development verifies:
 3. a uniformly bounded positive rate sequence has a nonsummable reciprocal series;
 4. the weighted finite-action theorem;
 5. the finite-action theorem under a positive kinetic floor `c_* <= c_n`;
-6. the fixed-resolution counting bound and finiteness consequence.
+6. the fixed-resolution counting bound and finiteness consequence;
+7. total-variation data processing under finite measurement channels;
+8. sharpness of the universal comparison constant 1 for the identity channel;
+9. transfer of a TV speed limit to operational distinguishability;
+10. the activity--entropy fixed-resolution counting bound.
 
 The variable-coefficient bridge used by the manuscript is explicit in Lean:
 
@@ -32,7 +39,7 @@ The variable-coefficient bridge used by the manuscript is explicit in Lean:
 This verifies the **conditional mathematics only**. It does not validate:
 
 - the physical applicability of `eps_n * tau_n >= c_n * d_n^2`;
-- the identification of physical distance with operational distinguishability;
+- a universal identification of arbitrary physical metrics with operational distinguishability (the finite-state TV bridge is verified separately in `OperationalBridge.lean`);
 - whether `eps_n` is the correct cumulatively charged physical cost;
 - the classical pure-birth explosion theorem itself;
 - the physical additivity assumption behind the material-to-count step.
