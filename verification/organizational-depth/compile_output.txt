@@ -28,3 +28,5 @@ Build completed successfully (1524 jobs).
 
 Core verification run before bridge: 34739508434
 Bridge-inclusive verification run: 34740795807
+Final proofread verification run: 34742856500
+Final proofread verification commit: 318df0da76c2ae94fa33f7b74c806b8e8451e55d
