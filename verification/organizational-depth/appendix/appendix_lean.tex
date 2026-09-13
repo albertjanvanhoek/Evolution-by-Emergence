@@ -89,6 +89,27 @@ and consequently $\{n:d_n\ge\delta\}$ is finite. The exact manuscript-form
 Lean declarations are \texttt{fixed\_resolution\_count\_of\_kinetic\_floor}
 and \texttt{fixed\_resolution\_finite\_of\_kinetic\_floor}.
 
+\paragraph{A.7 The finite-state operational bridge (Section~\ref{sec:metrics}).}
+For a finite state space and a stochastic measurement channel $\Phi$,
+\[
+d_{\rm TV}(\Phi p,\Phi q)\le d_{\rm TV}(p,q).
+\]
+Hence any operational distance defined as the supremum of readout total
+variation over a fixed admissible channel class satisfies
+$d_{\rm op}\le d_{\rm TV}$. The Lean file
+\texttt{OperationalBridge.lean} verifies the $L^1$ contraction,
+the total-variation data-processing inequality, sharpness for the identity
+channel, transfer of a total-variation speed-limit hypothesis to
+$d_{\rm op}$, and the fixed-resolution counting bound
+\[
+K_\delta^{\rm op}
+\le
+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+\]
+The stochastic-thermodynamic premise
+$2d_{\rm TV}^2\le\Sigma\mathcal N$ is intentionally a hypothesis of the
+Lean development rather than a theorem of it.
+
 \subsection{What is not verified}
 
 The following remain physical or modelling claims and are not certified by Lean:
@@ -96,8 +117,9 @@ The following remain physical or modelling claims and are not certified by Lean:
 \begin{enumerate}
 \item the applicability of $\varepsilon_n\tau_n\ge c_nd_{\rm phys,n}^2$ to a
 particular dynamics;
-\item the identification or comparison of $d_{\rm phys}$ with an operational
-organizational distance;
+\item a universal identification or comparison of arbitrary physical metrics
+with an operational organizational distance; the finite-state
+total-variation/channel comparison of A.7 is machine-checked separately;
 \item the claim that $\varepsilon_n$ is the correct cumulatively charged cost;
 \item the stochastic-process theorem connecting the reciprocal-series criterion
 to pure-birth explosion or non-explosion;
@@ -114,7 +136,7 @@ stated physical and stochastic-process premises.
 \begin{center}
 \begin{tabular}{@{}ll@{}}
 \hline
-Source & \texttt{verification/organizational-depth/OrganizationalDepth.lean} \\
+Sources & \texttt{OrganizationalDepth.lean}; \texttt{OperationalBridge.lean} \\
 Lean & 4.33.0 \\
 \texttt{Mathlib} & commit \texttt{db584cd}, 10 August 2026 \\
 Check & \texttt{lake update; lake exe cache get; lake build} \\
@@ -129,4 +151,8 @@ The manuscript-facing declarations are
 \texttt{weighted\_finite\_action},
 \texttt{finite\_action\_of\_kinetic\_floor},
 \texttt{fixed\_resolution\_count\_of\_kinetic\_floor}, and
-\texttt{fixed\_resolution\_finite\_of\_kinetic\_floor}.
+\texttt{fixed\_resolution\_finite\_of\_kinetic\_floor}. The operational
+bridge declarations are \texttt{dTV\_push\_le},
+\texttt{dTV\_push\_idChannel},
+\texttt{speed\_limit\_operational}, and
+\texttt{operational\_fixed\_resolution}.
