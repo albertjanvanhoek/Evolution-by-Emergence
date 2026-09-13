@@ -7,6 +7,8 @@
 \appendix
 \section{Machine-verified mathematical core}
 \label{app:lean}
+\begingroup
+\setlength{\emergencystretch}{3em}
 
 The results of Sections~3--7 divide cleanly into two kinds of claim. One kind is
 physical: that a speed--distance law of the form
@@ -73,7 +75,7 @@ If in addition $c_n\ge c_*$ for a constant $c_*>0$, then $d$ is summable and
 \sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n}.
 \]
 The exact variable-coefficient Lean declaration is given in the source as
-\texttt{finite\_action\_of\_kinetic\_floor}; the shorter
+\nolinkurl{finite_action_of_kinetic_floor}; the shorter
 \texttt{finite\_action} is its constant-coefficient helper.
 
 \paragraph{A.6 The fixed-resolution counting bound (Corollary~6.1).}
@@ -97,7 +99,7 @@ d_{\rm TV}(\Phi p,\Phi q)\le d_{\rm TV}(p,q).
 Hence any operational distance defined as the supremum of readout total
 variation over a fixed admissible channel class satisfies
 $d_{\rm op}\le d_{\rm TV}$. The Lean file
-\texttt{OperationalBridge.lean} verifies the $L^1$ contraction,
+\nolinkurl{OperationalBridge.lean} verifies the $L^1$ contraction,
 the total-variation data-processing inequality, sharpness for the identity
 channel, transfer of a total-variation speed-limit hypothesis to
 $d_{\rm op}$, and the fixed-resolution counting bound
@@ -134,8 +136,8 @@ stated physical and stochastic-process premises.
 \subsection{Reproduction}
 
 The checked sources are
-\texttt{OrganizationalDepth.lean} and
-\texttt{OperationalBridge.lean}. They use Lean~4.33.0 and
+\nolinkurl{OrganizationalDepth.lean} and
+\nolinkurl{OperationalBridge.lean}. They use Lean~4.33.0 and
 \texttt{Mathlib} commit \texttt{db584cd} (10 August 2026). From the
 verification directory, the check is reproduced with
 \begin{verbatim}
@@ -147,10 +149,12 @@ Both sources compile with no errors and contain no \texttt{sorry}. The axiom
 audit for all manuscript-facing declarations reports only
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 
-The manuscript-facing declarations in \texttt{OrganizationalDepth.lean}
+The manuscript-facing declarations in \nolinkurl{OrganizationalDepth.lean}
 cover stochastic-route closure, the weighted and uniform finite-action
 bounds, and the fixed-resolution counting/finiteness results. The
-declarations in \texttt{OperationalBridge.lean} cover total-variation
+declarations in \nolinkurl{OperationalBridge.lean} cover total-variation
 data processing, identity-channel sharpness, transfer of a TV speed-limit
 hypothesis to operational distance, and the operational fixed-resolution
 counting bound.
+
+\endgroup
