@@ -2,25 +2,54 @@
 
 **How does existing organisation make further organisation possible, and what allows that process to continue?**
 
-Evolution by Emergence is an open research project by **Albert Jan van Hoek, with AI collaboration**, investigating how networks sustain themselves, retain useful changes, and develop new capacities. It connects self-maintenance and evolution to intelligence, learning, and cooperation through one question: how does the organisation produced by earlier activity become part of the conditions for what can happen next?
+Evolution by Emergence is an open research project by **Albert Jan van Hoek, with AI collaboration**, developing a general account of **how organisation evolves across living and nonliving systems**. Interacting processes can generate new capacities, retain some of them, and thereby change what can emerge next. The history of evolution can be carried by a web of relationships, exchanges, and combinations across scales.
+
+The proposed mechanism is a **cumulative organisational ratchet**: under suitable resource and dynamical conditions, retained organisation becomes a starting point for further organisation. Usable energy drives the activity; the evolving network shapes how that energy is used and which subsequent changes become possible. Biological evolution, learning, and the development of technical and social systems are investigated within this wider framework.
 
 The project brings together a book, mathematical papers, formal proofs, and applications to biological, artificial, and social systems. **SCAP, the Sustainable Collaborative Alignment Protocol, expresses the project's account of how learning systems can maintain the conditions of their own continuation.**
 
 [Read the book][book] · [Explore the two core papers](#the-two-core-papers) · [Understand SCAP](#why-this-leads-to-scap) · [Listen on SoundCloud][soundcloud] · [Watch on YouTube][youtube]
 
-## The core idea
+## Why Evolution by Emergence
+
+Darwinian natural selection explains differential propagation among heritable variants. Evolution by Emergence asks how the organisation already present helps determine **which variants, capacities, and persistent organisations can become available in the first place**. It also asks how those possibilities change when an innovation is retained. Where reproduction with heritable variation occurs, natural selection remains part of this account.
+
+The emphasis is on an **evolving web**. A genealogical tree records branching descent; an interaction network records relationships that can cross those branches. Recombination, transfer, symbiosis, shared infrastructure, and incorporation across scales allow previously separate histories to combine. Networks can also produce new kinds of participants that subsequently alter the network that produced them.
+
+Evolutionary biology already studies [reticulate histories][network-evolution] and [organisms changing their own selective environments][niche-construction]. The proposed extension brings these processes into an accessibility framework and investigates the same organisational question beyond biology. For each system, the mechanisms generating, retaining, and combining organisation must be identified.
+
+The project's use of *evolution by emergence* means **historical change in which interactions generate organised capacities, retained capacities alter later possibilities, and the processes producing further change can themselves change**. Its scope includes chemical, biological, computational, technical, and social organisation. Establishing a particular ratchet requires evidence that retained change contributes to later accessibility.
+
+## The ratchet under an energy gradient
+
+Usable differences in physical conditions, such as chemical or electrical potentials, can drive organised activity. An open network uses available free energy and materials while producing heat and other outputs. Its organisation determines which pathways those flows follow, which capacities are maintained, and which new activities become affordable or constructible.
 
 A system can persist while its participants change. Cells replace molecules, institutions replace members, and a workshop replaces machines. What continues is an organisation of activities and relations that makes further activity possible.
 
 Imagine a workshop that builds a diagnostic tool. Earlier fault detection reduces breakdowns. Some of the saved time and materials support maintaining the tool and teaching others to use and repair it. Once this capacity is retained, the workshop may be able to operate equipment that was previously too fragile or costly. The first innovation has changed the conditions for the next one.
 
-Three things need explaining: how the new capacity arises, how its contribution returns to support its continuation, and how its retention changes later possibilities. A useful effect that never supports its own maintenance may disappear. A retained capacity can also create a trap or lose its usefulness when conditions change.
+The papers distinguish two senses of ratchet. **Hysteretic retention** makes an established capacity maintainable under conditions in which it could not establish from rarity. A **cumulative organisational ratchet** additionally requires retained organisation to improve access to a specified later target. Repeating a maintenance cycle, or establishing hysteresis alone, does not establish that cumulative effect.
 
-The central proposal is therefore:
+The proposed causal pattern is:
+
+```mermaid
+flowchart TD
+    E["Usable energy and materials"] --> O["Organised activity"]
+    O --> V["Variation and new relations"]
+    V --> R["Establishment and retention"]
+    R -->|"changes the organisation"| O
+    R --> A["Changed future accessibility"]
+    A -->|"shapes later possibilities"| V
+    O --> D["Heat and material outputs"]
+```
+
+The **vortex analogy** captures recurrent organisation sustained by flow. The evolutionary addition is retained history: after a change, the network returns to maintaining itself with an altered repertoire, and perhaps altered ways of generating further change. A spiral suggests this recurrence with inherited change; a web captures the many paths that can split, combine, and support one another. These are images of the causal pattern. Literal rotation is not required, and an energy gradient alone does not establish a cumulative ratchet.
+
+Three things therefore need explaining: how a new capacity arises, how its contribution returns to support its continuation, and how its retention changes later possibilities. A useful effect that never supports its own maintenance may disappear. A retained capacity can also create a trap or lose its usefulness when conditions change.
+
+The central proposal is:
 
 > **Existing organisation changes what organisation can follow. Previous viability can become infrastructure for subsequent viability.**
-
-This history can extend across a network. Knowledge, components, and capabilities can be copied, combined, transferred, or incorporated from elsewhere. Cumulative emergence can draw on many connected histories.
 
 ## The two core papers
 
@@ -51,11 +80,11 @@ The result identifies what a proposed escape would have to change or overcome. I
 
 **Read:** [Current paper PDF][depth-pdf] · [LaTeX source][depth-source] · [Lean proofs and verification scope][depth-lean].
 
-Together, the papers give the wider theory explicit mechanisms, causal questions, and physical boundaries. Their claims concern specified systems and assumptions; increasing complexity is an outcome to explain in a particular case.
+Together, the papers connect the evolutionary proposal to explicit mechanisms, causal questions, and physical boundaries. The accessibility paper investigates how the repertoire of possible successors changes; the finite-time paper constrains claims about unlimited acceleration or depth. Their results concern specified systems and assumptions; increasing complexity is an outcome to explain in a particular case.
 
 ## Why this leads to SCAP
 
-An intelligence is itself organised activity, dependent on the processes and relationships that sustain it. Its internal model can be incomplete even when it appears entirely convincing from within. If two possible situations require different actions but its present model cannot distinguish them, successful action across those situations requires additional information and the capacity to change because of it.
+Within this evolutionary account, intelligence is one form of organisation that can retain information and use it to change subsequent activity. It depends on the processes and relationships that sustain it. Its internal model can be incomplete even when it appears entirely convincing from within. If two possible situations require different actions but its present model cannot distinguish them, successful action across those situations requires additional information and the capacity to change because of it.
 
 That makes correction a functional dependency. Measurements, experiments, other observers, and communication can supply information unavailable within the current model. These channels require resources and maintenance. They can also prevent wasted effort, preserve accumulated knowledge, and make coordinated activity possible. When those contributions support the continuation of the channels that produced them, correction becomes part of a maintained organisation.
 
@@ -75,7 +104,7 @@ The relevant necessity is causal: when continued functioning depends on a proces
 
 This is the meaning of **“keep alive what keeps you alive”** within the project. Maintaining a learning network can require replacing a component, revising a rule, or ending a relation that destroys its capacity to function. Continuity concerns the capacity to regenerate and adapt through change.
 
-The argument is recursive: intelligence can learn about the conditions that produce and sustain intelligence, then act on those conditions. SCAP makes that maintenance process explicit and subject to correction.
+The argument is recursive: intelligence can learn about the conditions that produce and sustain intelligence, then act on those conditions. Organisation becomes capable of investigating and changing the processes through which further organisation becomes possible. SCAP makes the maintenance of that capacity explicit and subject to correction.
 
 **Read:** [SCAP in the original book][scap] · [Temporal Reach and the Corrigibility Constraint][backbone] · [Existence First][existence-first].
 
@@ -147,3 +176,5 @@ The project is available under [Creative Commons Attribution 4.0](License). When
 [issues]: https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues
 [releases]: https://github.com/albertjanvanhoek/Evolution-by-Emergence/releases
 [v9]: https://github.com/albertjanvanhoek/Evolution-by-Emergence/releases/tag/v9
+[network-evolution]: https://arxiv.org/abs/1405.2965
+[niche-construction]: https://doi.org/10.1007/s10682-016-9821-z
