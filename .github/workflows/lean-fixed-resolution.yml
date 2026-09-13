@@ -1,14 +1,22 @@
-name: Lean fixed-resolution verification
+name: Lean organizational-depth verification
 
 on:
   push:
-    branches:
-      - lean-fixed-resolution-verification
+    paths:
+      - 'verification/organizational-depth/**'
+      - '.github/workflows/lean-fixed-resolution.yml'
+  pull_request:
+    paths:
+      - 'verification/organizational-depth/**'
+      - '.github/workflows/lean-fixed-resolution.yml'
   workflow_dispatch:
 
 jobs:
   verify:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: verification/organizational-depth
     steps:
       - uses: actions/checkout@v4
 
