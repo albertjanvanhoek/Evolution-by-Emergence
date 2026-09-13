@@ -1,6 +1,7 @@
 Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
 Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
 
+Canonical core:
 'OrgDepth.realizations_le_of_material' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OrgDepth.rate_le' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OrgDepth.sum_inv_rate_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -14,8 +15,16 @@ Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
 'OrgDepth.fixed_resolution_count_of_kinetic_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OrgDepth.fixed_resolution_finite_of_kinetic_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
 
-Built OrganizationalDepth
-Build completed successfully (1520 jobs).
+Operational bridge:
+'OrgBridge.l1_push_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgBridge.dTV_push_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgBridge.dTV_push_idChannel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgBridge.speed_limit_operational' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgBridge.operational_fixed_resolution' depends on axioms: [propext, Classical.choice, Quot.sound]
 
-GitHub Actions run: 34739508434
-Verified project commit: 52eae06e3a19af6f041c16ff00a98e165eeff3de
+Built OrganizationalDepth
+Built OperationalBridge
+Build completed successfully (1524 jobs).
+
+Core verification run before bridge: 34739508434
+Bridge-inclusive verification run: 34740795807
