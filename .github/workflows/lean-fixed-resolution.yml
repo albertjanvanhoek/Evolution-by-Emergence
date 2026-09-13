@@ -23,9 +23,13 @@ jobs:
       - name: Install Elan and Lean
         shell: bash
         run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          curl --retry 5 --retry-all-errors --connect-timeout 20 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-          "$HOME/.elan/bin/elan" toolchain install leanprover/lean4:v4.33.0
+          for attempt in 1 2 3; do
+            "$HOME/.elan/bin/elan" toolchain install leanprover/lean4:v4.33.0 && break
+            test "$attempt" = 3 && exit 1
+            sleep 5
+          done
           "$HOME/.elan/bin/elan" default leanprover/lean4:v4.33.0
           "$HOME/.elan/bin/lean" --version
           "$HOME/.elan/bin/lake" --version
