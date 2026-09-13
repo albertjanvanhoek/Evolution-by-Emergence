@@ -8,11 +8,11 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage[hidelinks]{hyperref}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
 
 \numberwithin{equation}{section}
 
@@ -934,8 +934,9 @@ Combining \eqref{eq:tv-operational} and \eqref{eq:sfs-tv} yields
 
 \begin{theorem}[Operational activity--entropy bound]
 \label{thm:markov-operational}
-Let $I_n$ be disjoint sequential transition intervals of a finite-state
-Markov jump process satisfying the conditions of \eqref{eq:sfs-tv}, and let
+Let $I_n=[t_n,t_{n+1}]$ be disjoint sequential transition intervals of a
+finite-state Markov jump process satisfying the conditions of
+\eqref{eq:sfs-tv}, and let
 $d_{{\rm op},n}=d_{\rm op}(p(t_n),p(t_{n+1}))$.
 If
 \[

@@ -10,7 +10,7 @@
 \begingroup
 \setlength{\emergencystretch}{3em}
 
-The results of Sections~3--7 divide cleanly into two kinds of claim. One kind is
+The results of Sections~3--7 and 10 divide cleanly into two kinds of claim. One kind is
 physical: that a speed--distance law of the form
 $\varepsilon_n\tau_n\ge c_nd_{\rm phys,n}^2$ applies to a given class of
 dynamics, that a chosen cost is legitimately charged against a cumulative
@@ -74,9 +74,11 @@ If in addition $c_n\ge c_*$ for a constant $c_*>0$, then $d$ is summable and
 \frac1{\sqrt{c_*}}
 \sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n}.
 \]
-The exact variable-coefficient Lean declaration is given in the source as
-\nolinkurl{finite_action_of_kinetic_floor}; the shorter
-\texttt{finite\_action} is its constant-coefficient helper.
+The Lean declaration \texttt{weighted\_finite\_action} proves A.4.
+The exact manuscript-form statement in A.5 is
+\nolinkurl{finite_action_of_kinetic_floor}: it uses the floor
+$c_n\ge c_*$ to obtain $c_*d_n^2\le\varepsilon_n\tau_n$, and then invokes
+the constant-coefficient theorem \texttt{finite\_action}.
 
 \paragraph{A.6 The fixed-resolution counting bound (Corollary~6.1).}
 Under the hypotheses of A.5, for every finite set $s$ such that
@@ -145,8 +147,9 @@ lake update
 lake exe cache get
 lake build
 \end{verbatim}
-Both sources compile with no errors and contain no \texttt{sorry}. The axiom
-audit for all manuscript-facing declarations reports only
+This exact three-command route is exercised by the repository CI. Both sources
+compile with no errors and contain no \texttt{sorry}. The axiom audit for all
+manuscript-facing declarations reports only
 \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 
 The manuscript-facing declarations in \nolinkurl{OrganizationalDepth.lean}
