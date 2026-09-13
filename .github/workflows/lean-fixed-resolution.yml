@@ -1,0 +1,48 @@
+name: Lean organizational-depth verification
+
+on:
+  push:
+    paths:
+      - 'verification/organizational-depth/**'
+      - '.github/workflows/lean-fixed-resolution.yml'
+  pull_request:
+    paths:
+      - 'verification/organizational-depth/**'
+      - '.github/workflows/lean-fixed-resolution.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: verification/organizational-depth
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Elan and Lean
+        shell: bash
+        run: |
+          curl --retry 5 --retry-all-errors --connect-timeout 20 -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          for attempt in 1 2 3; do
+            "$HOME/.elan/bin/elan" toolchain install leanprover/lean4:v4.33.0 && break
+            test "$attempt" = 3 && exit 1
+            sleep 5
+          done
+          "$HOME/.elan/bin/elan" default leanprover/lean4:v4.33.0
+          "$HOME/.elan/bin/lean" --version
+          "$HOME/.elan/bin/lake" --version
+
+      - name: Resolve Mathlib
+        shell: bash
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake update
+          lake exe cache get
+
+      - name: Build proof
+        shell: bash
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake build

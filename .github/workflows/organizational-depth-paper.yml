@@ -1,0 +1,47 @@
+name: Build organizational-depth paper
+
+on:
+  push:
+    paths:
+      - 'Individual_essays/Organizational Depth at Finite Time.tex'
+      - 'verification/organizational-depth/appendix/**'
+      - '.github/workflows/organizational-depth-paper.yml'
+  pull_request:
+    paths:
+      - 'Individual_essays/Organizational Depth at Finite Time.tex'
+      - 'verification/organizational-depth/appendix/**'
+      - '.github/workflows/organizational-depth-paper.yml'
+  workflow_dispatch:
+
+jobs:
+  build-paper:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
+
+      - name: Compile paper
+        shell: bash
+        run: |
+          mkdir -p build/organizational-depth
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error             -output-directory=build/organizational-depth             "Individual_essays/Organizational Depth at Finite Time.tex"
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error             -output-directory=build/organizational-depth             "Individual_essays/Organizational Depth at Finite Time.tex"
+
+      - name: Check log for unresolved references
+        shell: bash
+        run: |
+          if grep -E "LaTeX Warning: (Reference|Citation).*undefined|There were undefined references" build/organizational-depth/*.log; then
+            echo "Unresolved references found"
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: organizational-depth-paper
+          path: |
+            build/organizational-depth/*.pdf
+            build/organizational-depth/*.log

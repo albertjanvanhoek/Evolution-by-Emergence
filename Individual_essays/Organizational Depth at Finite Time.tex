@@ -34,30 +34,41 @@ $\lambda_n=N_n\nu_np_n$ is non-explosive when total material is bounded,
 each independently counted realization requires a positive minimum
 material allocation, and candidate generation per realization is uniformly
 bounded. Second, a continuum cascade can retain bounded aggregate
-throughput while its specific turnover diverges, because the inventory
-assigned to successive levels tends to zero. This calculation identifies
-a shrinking-scale possibility but does not derive its accelerating
-kinetics physically.
+throughput while its specific turnover diverges because the inventory
+assigned to successive levels tends to zero. This identifies a
+shrinking-scale route but does not derive its accelerating kinetics
+physically.
 
-The central result is a conditional fixed-resolution no-go theorem.
-If transition costs and durations satisfy
+The central mathematical result is a conditional fixed-resolution no-go
+theorem. If transition costs and durations satisfy
 $\varepsilon_n\tau_n\ge c_n d_{\rm phys,n}^2$, finite total charged energy
 and time imply
 $\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty$.
 A uniform positive kinetic coefficient therefore bounds accumulated
-physical distance. If physical distance also uniformly controls
-operational distinguishability, only finitely many transitions at any
-fixed operational resolution can occur within finite time and energy.
-A constant-speed overdamped example saturates the bound while crossing
-infinitely many refinement labels before reaching an ordinary finite
-state.
+physical distance, and a uniform physical-to-operational comparison bounds
+the number of transitions at any fixed operational resolution.
 
-These are elementary mathematical results with conditional physical
-applications, not a universal prohibition of singular dynamics.
-The remaining question is whether an autonomous system can preserve
-operationally nontrivial retained transformations while its physical
-speed--distance cost scale collapses, without concealing an unbounded
-kinetic, control, memory, or measurement resource.
+For finite-state continuous-time Markov jump dynamics, the metric comparison
+can be discharged rather than assumed. Total variation is the distance in an
+exact activity--entropy speed limit and contracts under every stochastic
+measurement channel. If $\Sigma_*$ is total entropy production and
+$\mathcal N_*$ the expected total number of jumps, then
+\[
+\sum_n d_{\rm op,n}\le\sqrt{\Sigma_*\mathcal N_*/2},
+\qquad
+K_\delta^{\rm op}\le
+\delta^{-1}\sqrt{\Sigma_*\mathcal N_*/2}.
+\]
+Thus finite entropy production and finite dynamical activity exclude
+finite-time infinite depth at fixed operational resolution in this model
+class. A bounded-power refinement example shows why infinite labels can
+nevertheless accumulate when the resolved physical scale shrinks.
+
+These are conditional physical boundaries, not a universal prohibition of
+singular dynamics. The remaining challenge is constructive: any proposed
+dynamically organizing system that produces finite-time infinite
+fixed-resolution depth must expose which resource or regularity condition
+fails rather than hiding it in an organizational index.
 \end{abstract}
 
 
@@ -94,20 +105,31 @@ requires an interpretation of increasingly rapid turnover of shrinking
 quantities. An organizational interpretation additionally requires
 physically realizable distinctions between successive retained states.
 
-The resulting boundary is conditional. Finite time and energy exclude
+The general boundary is conditional. Finite time and energy exclude
 infinitely many fixed-resolution transitions when an appropriate
 speed--distance inequality holds uniformly and its physical metric
 controls operational distinguishability. Neither condition follows
 merely from assigning an increasing organizational level number.
 
-The generic mathematical ingredients are established: pure-birth
-non-explosion, energy accounting, Cauchy--Schwarz inequalities,
-thermodynamic speed limits, and metric convergence
-\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
-The proposed contribution is their application to the interpretation
-of organizational depth, including an explicit separation of kinetic
-degeneracy from degenerating physical resolution.
+For one important model class, however, the metric comparison is not an
+extra assumption. In finite-state Markov jump dynamics the
+Shiraishi--Funo--Saito speed limit is expressed directly in total
+variation, while total variation contracts under any stochastic
+measurement channel. This gives a model-specific operational theorem:
+finite total entropy production together with finite total dynamical
+activity bounds the number of operationally distinguishable retained
+transitions. In this setting the abstract kinetic coefficient can be
+identified with inverse average activity.
 
+The generic mathematical ingredients are established: pure-birth
+non-explosion, Cauchy--Schwarz inequalities, stochastic thermodynamic
+speed limits, optimal-transport bounds, and metric convergence
+\cite{Feller1971,Shiraishi2018,Aurell2011,VuSaito2023,Nagayama2025,Zhang2001}.
+The proposed contribution is their application to organizational depth,
+including explicit closure of one stochastic route, separation of
+aggregate throughput from specific turnover, a fixed-resolution
+criterion, and identification of dynamical activity as the concrete
+escape resource in a finite-state stochastic class.
 
 \section{Organization as amount, configuration, and operational distinction}
 
@@ -572,14 +594,13 @@ The same bound for every finite collection excludes an infinite
 qualifying collection.
 \end{proof}
 
-For an organizational conclusion, introduce an operational distance
-$d_{\rm op}$ and assume a uniform comparison
+For a general organizational conclusion, introduce an operational distance
+$d_{\rm op}$ and suppose that the relevant physical metric satisfies
 \begin{equation}
 d_{\rm phys}(x,y)\ge\alpha_*d_{\rm op}(x,y),
 \qquad \alpha_*>0.
 \label{eq:metric-comparison}
 \end{equation}
-This is an additional physical assumption.
 
 \begin{corollary}[Fixed operational resolution]
 \label{cor:operational}
@@ -604,13 +625,12 @@ $d_{\rm phys,n}\ge\alpha_*\delta$.
 Apply Corollary~\ref{cor:physical}.
 \end{proof}
 
-Thus, at every fixed operational resolution, finite-time infinite
-organizational change is excluded under the stated energy, kinetic,
-and metric-comparison assumptions.
-
-The metric comparison cannot be omitted from this organizational
-interpretation. A speed limit in a transport or thermodynamic metric
-does not automatically constrain an abstract organizational label.
+Equation~\eqref{eq:metric-comparison} is an additional assumption in the
+general theorem, not in every model. Section~\ref{sec:metrics} proves the
+comparison with sharp constant one for finite-state Markov dynamics when the
+physical distance is total variation and operational readout is represented by
+a stochastic channel. For transport metrics the comparison requires additional
+readout regularity and is not automatic.
 
 The counting argument applies to any disjoint sequential partition
 for which the cost budget and speed--distance law hold. In the
@@ -618,7 +638,6 @@ uniform-coefficient case, grouping adjacent transitions preserves
 the corresponding bound by the triangle inequality and
 Cauchy--Schwarz. Arbitrary subdivision therefore does not create
 an unlimited number of fixed-resolution changes.
-
 
 \section{Variable kinetic coefficients and the remaining boundary}
 
@@ -769,7 +788,7 @@ measurement resources.
 An operational distinction must specify the allowed observation.
 For a concrete classical readout, let retained states $x,y$
 produce probability distributions $p_x,p_y$. With equal priors,
-the optimal discrimination error is
+the optimal single-shot discrimination error is
 \begin{equation}
 P_{\rm err}
 =
@@ -784,7 +803,7 @@ d_{\rm TV}(p_x,p_y)\ge1-2\epsilon>0.
 \]
 
 More generally, fix a class $\mathcal M$ of admissible measurement
-protocols and define
+channels and define
 \[
 d_{\rm op}(x,y)
 =
@@ -795,11 +814,12 @@ This may be a pseudometric: physically different states can be
 indistinguishable to every permitted measurement. It becomes a
 metric after identifying operationally indistinguishable states.
 
-The class $\mathcal M$ must specify relevant bounds on observation
-time, apparatus, precision, repetitions, and error tolerance.
-A distinction that becomes accessible only by letting these
-resources diverge is not a distinction at fixed operational
-resolution.
+The class $\mathcal M$ must specify the measurement standard. In
+particular, observation time, apparatus, precision, number of repetitions,
+and tolerated error cannot be allowed to grow without accounting. Repeated
+independent samples can amplify arbitrarily small single-shot differences;
+therefore fixed operational resolution means fixed measurement resources
+as well as a fixed discrimination threshold.
 
 \begin{definition}[Resolution-robust organizational escape]
 A retained-transition sequence exhibits resolution-robust
@@ -829,53 +849,205 @@ test to be performed. If measurement, verification, or record
 updates are actually used to generate or retain the sequence,
 however, their costs and timing belong inside the physical model.
 
-
 \section{Physical versus organizational metrics}
+\label{sec:metrics}
 
 The physical metric in a speed limit and the operational metric
-of organizational distinction need not coincide.
+of organizational distinction need not coincide. A uniform comparison
+$d_{\rm phys}\ge\alpha_*d_{\rm op}$ is therefore a genuine condition of
+the general theorem. It can, however, be a theorem rather than an assumption
+in a concrete model.
 
-A uniform comparison
-$d_{\rm phys}\ge\alpha_*d_{\rm op}$
-transfers the physical no-go result immediately. One sufficient
-mechanism is bounded sensitivity of readout to physical changes.
+\subsection*{Finite-state Markov dynamics: the bridge is exact}
 
-For example, suppose physical states are probability measures
-$\mu,\nu$ on a spatial metric space. For every admissible
-measurement $M$ and output event $A$, suppose the conditional
-readout probability
+Let $S$ be a finite state space and let $p,q$ be probability
+distributions on $S$. A measurement channel is a stochastic kernel
+$\Phi(o\mid i)$ from states $i$ to outcomes $o$. Its readout distribution
+is $\Phi p$. Total variation satisfies the data-processing inequality
+\begin{equation}
+d_{\rm TV}(\Phi p,\Phi q)\le d_{\rm TV}(p,q).
+\label{eq:tv-data-processing}
+\end{equation}
+Indeed,
 \[
-g_{M,A}(x)=\Pr_M(A\mid x)
+\sum_o\left|\sum_i\Phi(o\mid i)(p_i-q_i)\right|
+\le
+\sum_i|p_i-q_i|\sum_o\Phi(o\mid i)
+=
+\sum_i|p_i-q_i|.
 \]
-has Lipschitz constant at most $L_{\rm readout}$, uniformly in
-$M,A$. A coupling argument gives
+Taking the supremum over any fixed admissible measurement class gives
+\begin{equation}
+\boxed{
+d_{\rm op}(p,q)\le d_{\rm TV}(p,q).
+}
+\label{eq:tv-operational}
+\end{equation}
+The universal constant one is sharp over unrestricted channels, because the
+identity channel attains equality.
+
+Now consider a continuous-time Markov jump process with rates
+$W_{ij}(t)$ for the transition $j\to i$ and distribution $p(t)$, under the
+standard entropy-production conditions of the Shiraishi--Funo--Saito bound
+(for example, a thermodynamic interpretation with local detailed balance). Define the
+directed probability flux
+\[
+F_{ij}(t)=W_{ij}(t)p_j(t),
+\]
+the dynamical activity
+\[
+A(t)=\sum_{i<j}\bigl(F_{ij}(t)+F_{ji}(t)\bigr),
+\]
+and the dimensionless entropy-production rate
+\[
+\sigma(t)
+=
+\sum_{i<j}
+\bigl(F_{ij}-F_{ji}\bigr)
+\ln\frac{F_{ij}}{F_{ji}},
+\]
+with the usual limiting interpretation when a reverse flux vanishes.
+For an interval $I$, write
+\[
+\mathcal N(I)=\int_I A(t)\,dt,
+\qquad
+\Sigma(I)=\int_I\sigma(t)\,dt.
+\]
+Here $\mathcal N(I)$ is the expected number of jumps on the interval.
+
+The Shiraishi--Funo--Saito speed limit gives
+\begin{equation}
+d_{\rm TV}\bigl(p(t),p(t')\bigr)^2
+\le
+\frac12\,\mathcal N(I)\Sigma(I).
+\label{eq:sfs-tv}
+\end{equation}
+Combining \eqref{eq:tv-operational} and \eqref{eq:sfs-tv} yields
+\begin{equation}
+\boxed{
+2d_{\rm op}\bigl(p(t),p(t')\bigr)^2
+\le
+\mathcal N(I)\Sigma(I).
+}
+\label{eq:operational-action}
+\end{equation}
+
+\begin{theorem}[Operational activity--entropy bound]
+\label{thm:markov-operational}
+Let $I_n$ be disjoint sequential transition intervals of a finite-state
+Markov jump process satisfying the conditions of \eqref{eq:sfs-tv}, and let
+$d_{{\rm op},n}=d_{\rm op}(p(t_n),p(t_{n+1}))$.
+If
+\[
+\sum_n\Sigma(I_n)\le\Sigma_*<\infty,
+\qquad
+\sum_n\mathcal N(I_n)\le\mathcal N_*<\infty,
+\]
+then
+\begin{equation}
+\boxed{
+\sum_n d_{{\rm op},n}
+\le
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:markov-length}
+\end{equation}
+Consequently, for every $\delta>0$,
+\begin{equation}
+\boxed{
+K_\delta^{\rm op}
+\le
+\frac1\delta
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:markov-count}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:operational-action} gives
+$d_{{\rm op},n}\le
+2^{-1/2}\sqrt{\Sigma_n\mathcal N_n}$.
+Summing over a finite prefix and applying Cauchy--Schwarz gives
+\[
+\sum_n d_{{\rm op},n}
+\le
+\frac1{\sqrt2}
+\sqrt{\sum_n\Sigma_n}
+\sqrt{\sum_n\mathcal N_n},
+\]
+and monotone convergence gives \eqref{eq:markov-length}.
+Every transition counted by $K_\delta^{\rm op}$ contributes at least
+$\delta$ to the left-hand side, giving \eqref{eq:markov-count}.
+\end{proof}
+
+This result has a useful interpretation in the notation of the general
+finite-action theorem. If $I_n$ has duration $\tau_n$ and average activity
+$\bar A_n=\mathcal N_n/\tau_n$, then \eqref{eq:sfs-tv} implies
+\[
+\Sigma_n\tau_n
+\ge
+\frac{2}{\bar A_n}d_{{\rm TV},n}^2
+\ge
+\frac{2}{\bar A_n}d_{{\rm op},n}^2.
+\]
+Under an isothermal interpretation in which the charged dissipative cost is
+$\varepsilon_n=k_BT\Sigma_n$,
+\begin{equation}
+\varepsilon_n\tau_n
+\ge
+\frac{2k_BT}{\bar A_n}d_{{\rm op},n}^2.
+\label{eq:activity-coefficient}
+\end{equation}
+Thus, in this model class,
+\[
+c_n=\frac{2k_BT}{\bar A_n}.
+\]
+Loss of a uniform kinetic coefficient corresponds concretely to unbounded
+average dynamical activity. More recent thermodynamic speed-limit work likewise
+identifies activity or mobility as the kinetic resource controlling attainable
+speed \cite{VuSaito2023,Nagayama2025}.
+
+\subsection*{Transport metrics: no unconditional TV comparison}
+
+The corresponding statement is not automatic for Wasserstein distance. There
+is no universal $\alpha>0$ such that
+\[
+W_2(\mu,\nu)\ge\alpha d_{\rm TV}(\mu,\nu)
+\]
+for arbitrary probability measures: for
+$\mu=\delta_0$ and $\nu=\delta_\epsilon$,
+$W_2(\mu,\nu)=\epsilon\to0$ while
+$d_{\rm TV}(\mu,\nu)=1$.
+
+This does not make transport-based operational bounds impossible; it means
+additional readout regularity is required. Suppose, for every admissible
+measurement $M$ and output event $B$, the conditional readout probability
+\[
+g_{M,B}(x)=\Pr_M(B\mid x)
+\]
+has Lipschitz constant at most $L_{\rm readout}$ uniformly in $M,B$. Then a
+coupling argument gives
 \[
 d_{\rm op}(\mu,\nu)
-\le L_{\rm readout}W_1(\mu,\nu).
+\le L_{\rm readout}W_1(\mu,\nu)
+\le L_{\rm readout}W_2(\mu,\nu).
 \]
-For measures with finite second moments,
-$W_1\le W_2$, so a speed limit in $W_2$ supplies
-\[
-d_{\rm phys}=W_2
-\ge \frac1{L_{\rm readout}}d_{\rm op}.
-\]
-Uniform readout sensitivity is an explicit assumption here,
-not a consequence of the definition of organization.
+Hence a $W_2$ speed limit does transfer under an explicit bounded-sensitivity
+measurement assumption. The distinction is between an unconditional global
+comparison, which fails, and a conditional readout comparison, which can hold.
 
-\subsection*{Metric decoupling}
+\subsection*{Metric decoupling outside the finite-state TV class}
 
 On transitions with $d_{\rm op,n}>0$, define
 \[
 \alpha_n=
 \frac{d_{\rm phys,n}}{d_{\rm op,n}}.
 \]
-If operationally significant differences remain bounded below
-while $\alpha_n\to0$, their physical separation collapses relative
-to their operational separation. We call this \emph{metric
-decoupling}.
-
-For a sequence with $d_{\rm op,n}\ge\delta>0$,
-Corollary~\ref{cor:weighted} implies
+If operationally significant differences remain bounded below while
+$\alpha_n\to0$, their physical separation collapses relative to their
+operational separation. For a sequence with
+$d_{\rm op,n}\ge\delta>0$, Corollary~\ref{cor:weighted} implies
 \begin{equation}
 \boxed{
 \sum_n\sqrt{c_n}\,\alpha_n
@@ -885,28 +1057,17 @@ Corollary~\ref{cor:weighted} implies
 \label{eq:operational-weighted}
 \end{equation}
 
-Thus:
-\begin{itemize}
-\item a uniform lower bound on $\alpha_n$ forces
-      $\sum_n\sqrt{c_n}<\infty$;
-\item a uniform lower bound on $c_n$ forces
-      $\sum_n\alpha_n<\infty$;
-\item without either lower bound, only the joint weighted
-      condition follows.
-\end{itemize}
+Thus a uniform lower bound on $\alpha_n$ forces
+$\sum_n\sqrt{c_n}<\infty$, while a uniform lower bound on $c_n$ forces
+$\sum_n\alpha_n<\infty$. Without either lower bound only the joint weighted
+condition follows.
 
-Metric decoupling is a candidate way to evade the sufficient
-no-go assumptions, not an established mechanism.
-It may reflect genuine causal leverage, omitted downstream
-machinery, increasing measurement resources, an expanding state
-description, or a metric that loses sensitivity to the relevant
-physical differences.
-
-Changing coordinates or using level-dependent normalizations
-cannot establish an escape. Metrics, units, and coefficients must
-be transformed consistently. The meaningful object is the
-physical inequality, including its weighted distance, rather
-than one coefficient viewed in isolation.
+Metric decoupling remains a candidate boundary outside the finite-state TV
+setting. It may reflect genuine causal leverage, omitted downstream machinery,
+increasing measurement resources, an expanding state description, or a metric
+that loses sensitivity to the relevant physical differences. Changing
+coordinates or using level-dependent normalizations cannot establish an escape:
+metrics, units, and coefficients must be transformed consistently.
 
 \subsection*{Weak convergence and stronger observables}
 
@@ -941,13 +1102,10 @@ weighted quadratic observable is finite.
 Such distinctions matter for PDEs and cascades
 \cite{PierreSchmitt1997,KatzPavlovic2005}.
 A limit may be regular in an ambient weak space and singular
-in a physically relevant stronger class.
-
-The appropriate question is therefore whether the stronger
-organizational observable is operationally meaningful and
-resolvable with bounded physical resources. Finite metric
-length alone does not answer it.
-
+in a physically relevant stronger class. The relevant question is whether
+the stronger organizational observable is operationally meaningful and
+resolvable with bounded physical resources. Finite metric length alone does
+not answer it.
 
 \section{Landauer, reversible computation, and other special cases}
 
@@ -982,78 +1140,25 @@ Organizational change does not automatically satisfy the
 erasure premise. Reversible computation may preserve
 information in intermediate records and later remove those
 records through uncomputation \cite{Bennett1973,Bennett1989}.
-
 Landauer work or heat must also be distinguished from excess
-dissipation. For ideal isothermal erasure,
-\[
-\Delta F_n=k_BT_n\ln2\,I_n,
-\]
-while
-\[
-W_{\rm diss,n}
-=
-\langle W_n\rangle-\Delta F_n
-\]
-can approach zero in the reversible limit.
+dissipation, and an average erasure bound is not automatically
+a fixed pathwise charge.
 
-Finally, an average erasure bound is not a fixed pathwise charge.
-To use it in a duration argument, one may consider prescribed
-protocols with deterministic durations and bounded gross mean
-power supplying their required work. To use it in a cumulative
-pathwise budget, an appropriate pathwise charged-cost premise
-must be justified separately.
+\subsection*{Activity-based stochastic speed limits}
 
-\subsection*{Classical stochastic speed limits}
+Section~\ref{sec:metrics} used the exact Shiraishi--Funo--Saito
+finite-state Markov bound to obtain the operational theorem
+\eqref{eq:markov-count}. Its essential extra resource is dynamical
+activity: entropy production constrains irreversibility, while activity
+sets the kinetic time scale \cite{Shiraishi2018}.
 
-A concrete model-specific speed--distance inequality can be
-derived for Markov jump dynamics. For forward and reverse
-probability fluxes $a_{ij},b_{ij}$ on undirected edges, define
-\[
-A(t)=\sum_{i<j}(a_{ij}+b_{ij})
-\]
-and dimensionless entropy-production rate
-\[
-\sigma(t)=
-\sum_{i<j}(a_{ij}-b_{ij})
-\ln\frac{a_{ij}}{b_{ij}}.
-\]
-For positive fluxes, the elementary inequality
-\[
-(a-b)\ln(a/b)\ge\frac{2(a-b)^2}{a+b}
-\]
-gives
-\[
-\|\dot p(t)\|_1\le\sqrt{2A(t)\sigma(t)}.
-\]
-Integration and Cauchy--Schwarz yield
-\[
-d_{\rm TV}(p_0,p_\tau)^2
-\le
-\frac12
-\left(\int_0^\tau A(t)\,dt\right)
-\left(\int_0^\tau\sigma(t)\,dt\right).
-\]
-Consequently, if $A(t)\le A_{\max}$ and
-$\Sigma=\int_0^\tau\sigma(t)\,dt$,
-\[
-\Sigma\tau\ge
-\frac{2}{A_{\max}}d_{\rm TV}(p_0,p_\tau)^2.
-\]
-With an isothermal thermodynamic interpretation and
-$\varepsilon_{\rm diss}=k_BT\Sigma$,
-\[
-\varepsilon_{\rm diss}\tau
-\ge
-\frac{2k_BT}{A_{\max}}
-d_{\rm TV}(p_0,p_\tau)^2.
-\]
-
-This illustrates the stochastic speed-limit structure
-\cite{Shiraishi2018}. The coefficient depends on the activity
-bound and on the thermodynamic interpretation. Bounded
-incoming power alone does not bound dynamical activity.
-The energetic budget must apply to the same dissipative
-quantity used in the inequality.
+This distinction is now supported by broader results. Discrete optimal
+transport can be formulated using dynamical state mobility
+\cite{VuSaito2023}, and a general activity framework generates families of
+thermodynamic speed limits for Markov jump processes and deterministic
+chemical reaction networks \cite{Nagayama2025}. These results reinforce the
+interpretation of coefficient collapse as a kinetic-resource question, not
+merely an energetic one.
 
 \subsection*{Overdamped transport and thermodynamic length}
 
@@ -1073,19 +1178,16 @@ the transport-action inequality gives
 \zeta W_2(p_0,p_\tau)^2.
 \]
 This connects finite-time thermodynamics with optimal transport
-\cite{Aurell2011}.
+\cite{Aurell2011}. As shown in Section~\ref{sec:metrics}, $W_2$ does not
+globally control raw total variation; an operational transfer requires a
+specified readout class or additional regularity.
 
-The resulting physical metric is a transport metric.
-Its relation to operational distinguishability must still be
-established, as in the preceding section.
-
-Thermodynamic length provides related bounds in suitable
-slow-driving regimes
-\cite{Crooks2007,SivakCrooks2012}.
-Those approximations must not be extrapolated without
-justification into a proposed limit of vanishing transition times.
-Metric degeneracy or changing friction can also alter the
-uniformity assumptions.
+Classical thermodynamic-length bounds are asymptotic or
+linear-response statements \cite{Crooks2007,SivakCrooks2012}. More recent
+work extends the geometry/optimal-transport connection beyond linear response
+for important overdamped classes \cite{ZhongDeWeese2024}. None of these
+results supplies one universal metric-speed law for arbitrary organizational
+dynamics; the model and metric must remain explicit.
 
 \subsection*{Reversible dynamics and quantum speed limits}
 
@@ -1110,7 +1212,6 @@ model-specific statements.
 The no-go boundary is therefore a family of conditional results,
 not a claim that one dissipation formula covers all physical
 implementations.
-
 
 \section{Implications for Organizational Accessibility}
 
@@ -1155,77 +1256,78 @@ from finite-time organizational escape.
 None of the following is claimed as new generic mathematics:
 the pure-birth criterion, bounded-rate non-explosion,
 geometric-series tests for stationary cascades,
-Cauchy--Schwarz bounds, finite-length Cauchy convergence,
-thermodynamic speed limits, or Zeno accumulation
-\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
+Cauchy--Schwarz bounds, total-variation data processing,
+finite-length Cauchy convergence, thermodynamic speed limits,
+optimal transport, or Zeno accumulation
+\cite{Feller1971,Shiraishi2018,Aurell2011,VuSaito2023,Nagayama2025,Zhang2001}.
 Nor is finite material alongside stronger-norm divergence a new
 singularity mechanism \cite{KatzPavlovic2005}.
 
 The proposed contribution is an application and clarification:
 \begin{enumerate}
 \item the stated physical processor assumptions already close
-      the stochastic accessibility route;
-\item bounded throughput and bounded specific turnover answer
-      different questions;
-\item a physically meaningful organizational escape requires an
-      operational resolution standard;
-\item the physical no-go theorem transfers to organization only
-      through an explicit metric comparison;
-\item the remaining necessary condition concerns a weighted
-      physical cost scale, not an organizational index alone.
+      the sequential stochastic accessibility route;
+\item bounded aggregate throughput and bounded specific turnover
+      answer different questions;
+\item physically meaningful organizational escape requires an
+      operational resolution standard rather than an index alone;
+\item for finite-state Markov jump dynamics the physical-to-operational
+      bridge is exact because the speed-limit metric is total variation
+      and measurement channels contract total variation;
+\item the resulting model-specific boundary is controlled by two
+      cumulative resources---entropy production and dynamical activity---so
+      loss of the uniform kinetic coefficient has a concrete activity
+      interpretation;
+\item outside that class, transport/readout comparison and kinetic
+      coercivity remain explicit assumptions whose failure modes must be
+      identified rather than hidden.
 \end{enumerate}
 
-Whether this combination constitutes a distinctive contribution
-relative to all existing literature requires a separate source
-audit. No priority claim is made here.
+No priority claim is made for the component inequalities. The proposed
+novelty lies in assembling them into a fixed-resolution criterion for
+organizational depth and using that criterion to identify which resource
+must fail in a claimed finite-time escape.
 
+\section{Challenge to a dynamically organizing system}
 
-\section{Open problem}
-
-The remaining question is narrower than whether a prescribed
-rate sequence can explode.
+The paper therefore ends with a constructive challenge rather than a
+conjecture.
 
 \begin{quote}
-Can an autonomous organizational system generate successive
-retained transformations that remain operationally nontrivial,
-while their physical speed--distance cost scale collapses
-sufficiently fast for finite-time infinite depth?
+Produce a physically specified autonomous system that completes infinitely
+many retained transformations in finite time while those transformations
+remain distinguishable at one fixed operational resolution, and provide a
+complete accounting of the kinetic, energetic, control, memory, and
+measurement resources that make this possible.
 \end{quote}
 
-A candidate must realize actual dynamics and accounting with
+For the general speed--distance framework, any such construction must evade
+the sufficient conditions established above by losing uniform kinetic
+coercivity, losing physical-to-operational metric control, leaving the
+finite-cost/finite-time regime, or moving to a model class in which the
+assumed inequality is inapplicable.
+
+For finite-state Markov jump dynamics the challenge is sharper.
+If total entropy production remains finite and
+$d_{{\rm op},n}\ge\delta>0$ for infinitely many retained transitions,
+Theorem~\ref{thm:markov-operational} forces
 \[
-d_{\rm op,n}\ge\delta>0,
-\qquad
-\sum_n\tau_n<\infty,
-\qquad
-\sum_n\varepsilon_n<\infty,
+\mathcal N_*=
+\sum_n\int_{I_n}A(t)\,dt
+=
+\infty.
 \]
-while necessarily satisfying
-\begin{equation}
-\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty.
-\label{eq:open-condition}
-\end{equation}
-It must do so without concealing an unbounded resource in
-mobility, activity, precision, control bandwidth, memory,
-measurement, or an omitted subsystem.
+Thus the bridge does not fail: the required escape resource is unbounded total
+dynamical activity, or else departure from the finite-state Markov model.
+Equivalently, in the time-based form \eqref{eq:activity-coefficient}, the
+effective coefficient can collapse only through diverging average activity
+(or through failure of the thermodynamic interpretation itself).
 
-Equation~\eqref{eq:open-condition} is a necessary feasibility
-condition, not an equivalent existence theorem. It does not
-supply the dynamics, retention, or budget required by a
-constructive answer.
-
-Under uniform kinetic control, the candidate must demonstrate
-the required physical--operational metric decoupling.
-Under uniform metric comparison, it must demonstrate the
-required kinetic-coefficient collapse. When both vary, the
-joint weighted condition is decisive.
-
-The present paper does not conjecture that such a system exists.
-A successful construction would have to identify its collapsing
-scale endogenously. An additional no-go theorem could instead
-derive a uniform bound from a more explicit class of physical
-implementations.
-
+This is left deliberately open. A successful construction would be
+scientifically informative precisely because it would have to expose the
+resource that supports the claimed depth. A stronger no-go theorem would be
+equally informative if it derived an activity or mobility bound from a more
+specific physical architecture.
 
 \section{Conclusion}
 
@@ -1240,11 +1342,11 @@ survives bounded aggregate throughput through a shrinking
 inventory and imposed increasing specific turnover, without
 thereby establishing a physical transient escape.
 
-The central conditional result is:
+The general conditional result is
 \[
 \boxed{
 \begin{gathered}
-\text{finite time and finite charged energy}\\
+\text{finite time and finite charged cost}\\
 +\ \text{uniform speed--distance control}\\
 +\ \text{uniform physical--operational metric comparison}\\
 \Longrightarrow\\
@@ -1253,27 +1355,42 @@ The central conditional result is:
 }
 \]
 
-The bounded-power refinement example shows why the resolution
-condition is essential. The weak-versus-strong norm example
-shows why finite physical metric length must not be mistaken
-for a universal regularity theorem.
+For finite-state Markov jump dynamics a stronger model-specific result is
+available:
+\[
+\boxed{
+\begin{gathered}
+\text{finite entropy production}\\
++\ \text{finite expected total jump count}\\
+\Longrightarrow\\
+\text{finite fixed-resolution operational depth}.
+\end{gathered}
+}
+\]
+Here the physical-to-operational bridge is exact because total variation is
+both the stochastic speed-limit distance and an upper bound on all
+channel-based operational distinguishability. The remaining kinetic resource
+is dynamical activity.
 
-A physically meaningful counterexample must therefore do more
-than assign an increasing level number or prescribe increasing
-rates. It must explain how retained organization maintains
-operationally significant distinctions while the relevant
-weighted physical cost scale collapses under complete resource
-accounting.
+The bounded-power refinement example shows why the resolution condition is
+essential. The weak-versus-strong norm example shows why finite metric length
+must not be mistaken for a universal regularity theorem. The transport example
+shows why an operational comparison cannot be inferred from a physical metric
+without specifying the readout.
 
+A physically meaningful counterexample must therefore do more than assign an
+increasing level number or prescribe increasing rates. It must expose the
+resource that supports infinitely many retained, fixed-resolution distinctions.
+That construction is left as a challenge to any proposed dynamically
+organizing system.
 
 \paragraph{Reference status.}
-The supplied Organizational Accessibility v8 manuscript is the
-source context for this paper. The external references below
-are a provisional primary-source bibliography carried forward
-from the existing reference inventory. They have not been
-freshly retrieved or independently audited for this revision.
-Their exact bibliographic details and the applicability of
-model-specific results require the separate literature audit.
+The supplied Organizational Accessibility v8 manuscript is the source context
+for this paper. Bibliographic details and the model-specific claims used for
+the stochastic speed-limit, optimal-transport, thermodynamic-length, and
+activity/mobility arguments were checked against primary or publisher records
+for this revision. The references are used only within the scope stated in the
+text; no generic physical speed limit is inferred from a model-specific one.
 
 \begin{thebibliography}{99}
 
@@ -1346,6 +1463,29 @@ Thermodynamic metrics and optimal paths.
 108 (2012), 190602.
 \url{https://doi.org/10.1103/PhysRevLett.108.190602}
 
+\bibitem{VuSaito2023}
+T. Van Vu and K. Saito.
+Thermodynamic unification of optimal transport: thermodynamic uncertainty
+relation, minimum dissipation, and thermodynamic speed limits.
+\emph{Physical Review X}
+13 (2023), 011013.
+\url{https://doi.org/10.1103/PhysRevX.13.011013}
+
+\bibitem{ZhongDeWeese2024}
+A. Zhong and M. R. DeWeese.
+Beyond linear response: equivalence between thermodynamic geometry and
+optimal transport.
+\emph{Physical Review Letters}
+133 (2024), 057102.
+\url{https://doi.org/10.1103/PhysRevLett.133.057102}
+
+\bibitem{Nagayama2025}
+R. Nagayama, K. Yoshimura, and S. Ito.
+Infinite variety of thermodynamic speed limits with general activities.
+\emph{Physical Review Research}
+7 (2025), 013307.
+\url{https://doi.org/10.1103/PhysRevResearch.7.013307}
+
 \bibitem{MargolusLevitin1998}
 N. Margolus and L. B. Levitin.
 The maximum speed of dynamical evolution.
@@ -1375,5 +1515,7 @@ Blowup in reaction--diffusion systems with dissipation of mass.
 \url{https://doi.org/10.1137/S0036141095295437}
 
 \end{thebibliography}
+
+\input{verification/organizational-depth/appendix/appendix_lean}
 
 \end{document}

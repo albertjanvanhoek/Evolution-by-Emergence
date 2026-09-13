@@ -1,0 +1,160 @@
+% ---------------------------------------------------------------------------
+% Appendix A: machine-verified mathematical core.
+% Drop in after the main text, inside an \appendix environment.
+% Requires amsmath, amssymb and hyperref.
+% ---------------------------------------------------------------------------
+
+\appendix
+\section{Machine-verified mathematical core}
+\label{app:lean}
+\begingroup
+\setlength{\emergencystretch}{3em}
+
+The results of Sections~3--7 divide cleanly into two kinds of claim. One kind is
+physical: that a speed--distance law of the form
+$\varepsilon_n\tau_n\ge c_nd_{\rm phys,n}^2$ applies to a given class of
+dynamics, that a chosen cost is legitimately charged against a cumulative
+budget, and that a chosen physical metric controls operational
+distinguishability. The other kind is mathematical: that the stated inequalities
+entail the stated conclusions. Only the second kind can be machine-checked, and
+this appendix reports that it has been.
+
+\begin{quote}
+The Lean formalization verifies the elementary mathematical implications
+underlying the main no-go results, conditional on the stated hypotheses. It does
+not formalize or validate the physical applicability of those hypotheses.
+\end{quote}
+
+Concretely, the mathematical core of the no-go argument was independently
+formalized and machine-checked in Lean~4 with \texttt{Mathlib}. The development
+contains no \texttt{sorry}, and \verb|#print axioms| reports that every result
+below depends only on Lean's three standard axioms --- propositional
+extensionality, quotient soundness, and choice --- so nothing rests on an
+assumption added for convenience.
+
+\subsection{What was formalized}
+
+\paragraph{A.1 The material bound on the realization count.}
+If $m_{\min}>0$ and, for every $n$, $m_{\min}N_n\le M_n$ and $M_n\le M_*$, then
+\[
+N_n\le\frac{M_*}{m_{\min}}\qquad\text{for every }n.
+\]
+
+\paragraph{A.2 The uniform rate bound.}
+If $0\le N_n\le N_{\max}$, $0\le\nu_n\le\nu_{\max}$ and $0\le p_n\le1$, then
+\[
+\lambda_n=N_n\nu_np_n\le N_{\max}\nu_{\max}\qquad\text{for every }n.
+\]
+Only the upper bound $p_n\le1$ is used; no lower bound on $p_n$ is required.
+
+\paragraph{A.3 The reciprocal-series obstruction (Theorem~3.1).}
+If $0<\lambda_n\le\Lambda$ for every $n$, then
+\[
+\sum_n\frac1{\lambda_n}\text{ diverges}.
+\]
+This is formalized both in finite-prefix form and as
+$\neg\,\mathrm{Summable}\,(n\mapsto1/\lambda_n)$. A combined declaration
+derives the same conclusion directly from the material budget, material floor,
+generation-rate ceiling, and $0\le p_n\le1$.
+
+\paragraph{A.4 The weighted finite-action bound (Corollary~7.1).}
+For nonnegative sequences $c_n,\varepsilon_n,\tau_n,d_n$ with
+$c_nd_n^2\le\varepsilon_n\tau_n$ and summable $\varepsilon$ and $\tau$,
+\[
+\sum_n\sqrt{c_n}\,d_n
+\le
+\sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n}.
+\]
+
+\paragraph{A.5 The finite-action bound (Theorem~5.1).}
+If in addition $c_n\ge c_*$ for a constant $c_*>0$, then $d$ is summable and
+\[
+\sum_n d_n
+\le
+\frac1{\sqrt{c_*}}
+\sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n}.
+\]
+The exact variable-coefficient Lean declaration is given in the source as
+\nolinkurl{finite_action_of_kinetic_floor}; the shorter
+\texttt{finite\_action} is its constant-coefficient helper.
+
+\paragraph{A.6 The fixed-resolution counting bound (Corollary~6.1).}
+Under the hypotheses of A.5, for every finite set $s$ such that
+$d_n\ge\delta$ for all $n\in s$,
+\[
+|s|\delta
+\le
+\frac1{\sqrt{c_*}}
+\sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n},
+\]
+and consequently $\{n:d_n\ge\delta\}$ is finite. The exact manuscript-form
+Lean declarations are listed in the source file as the counting theorem and
+its corresponding finiteness theorem.
+
+\paragraph{A.7 The finite-state operational bridge (Section~\ref{sec:metrics}).}
+For a finite state space and a stochastic measurement channel $\Phi$,
+\[
+d_{\rm TV}(\Phi p,\Phi q)\le d_{\rm TV}(p,q).
+\]
+Hence any operational distance defined as the supremum of readout total
+variation over a fixed admissible channel class satisfies
+$d_{\rm op}\le d_{\rm TV}$. The Lean file
+\nolinkurl{OperationalBridge.lean} verifies the $L^1$ contraction,
+the total-variation data-processing inequality, sharpness for the identity
+channel, transfer of a total-variation speed-limit hypothesis to
+$d_{\rm op}$, and the fixed-resolution counting bound
+\[
+K_\delta^{\rm op}
+\le
+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+\]
+The stochastic-thermodynamic premise
+$2d_{\rm TV}^2\le\Sigma\mathcal N$ is intentionally a hypothesis of the
+Lean development rather than a theorem of it.
+
+\subsection{What is not verified}
+
+The following remain physical or modelling claims and are not certified by Lean:
+
+\begin{enumerate}
+\item the applicability of $\varepsilon_n\tau_n\ge c_nd_{\rm phys,n}^2$ to a
+particular dynamics;
+\item a universal identification or comparison of arbitrary physical metrics
+with an operational organizational distance; the finite-state
+total-variation/channel comparison of A.7 is machine-checked separately;
+\item the claim that $\varepsilon_n$ is the correct cumulatively charged cost;
+\item the stochastic-process theorem connecting the reciprocal-series criterion
+to pure-birth explosion or non-explosion;
+\item the physical additivity assumption $m_{\min}N_n\le M_n$.
+\end{enumerate}
+
+Thus this appendix does not show that the physical paper as a whole is formally
+proved. It shows that the algebraic and analytic implications formalized here
+are free of derivational gaps; the remaining burden lies in the explicitly
+stated physical and stochastic-process premises.
+
+\subsection{Reproduction}
+
+The checked sources are
+\nolinkurl{OrganizationalDepth.lean} and
+\nolinkurl{OperationalBridge.lean}. They use Lean~4.33.0 and
+\texttt{Mathlib} commit \texttt{db584cd} (10 August 2026). From the
+verification directory, the check is reproduced with
+\begin{verbatim}
+lake update
+lake exe cache get
+lake build
+\end{verbatim}
+Both sources compile with no errors and contain no \texttt{sorry}. The axiom
+audit for all manuscript-facing declarations reports only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+The manuscript-facing declarations in \nolinkurl{OrganizationalDepth.lean}
+cover stochastic-route closure, the weighted and uniform finite-action
+bounds, and the fixed-resolution counting/finiteness results. The
+declarations in \nolinkurl{OperationalBridge.lean} cover total-variation
+data processing, identity-channel sharpness, transfer of a TV speed-limit
+hypothesis to operational distance, and the operational fixed-resolution
+counting bound.
+
+\endgroup
