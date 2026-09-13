@@ -1,0 +1,21 @@
+Lean (version 4.33.0, x86_64-unknown-linux-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)
+Lake version 5.0.0-src+d8b1897 (Lean version 4.33.0)
+
+'OrgDepth.realizations_le_of_material' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.rate_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.sum_inv_rate_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.not_summable_inv_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.stochastic_route_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.weighted_finite_action' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.finite_action' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.finite_action_of_kinetic_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.fixed_resolution_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.fixed_resolution_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.fixed_resolution_count_of_kinetic_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'OrgDepth.fixed_resolution_finite_of_kinetic_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+Built OrganizationalDepth
+Build completed successfully (1520 jobs).
+
+GitHub Actions run: 34739508434
+Verified project commit: 52eae06e3a19af6f041c16ff00a98e165eeff3de
