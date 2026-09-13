@@ -34,30 +34,41 @@ $\lambda_n=N_n\nu_np_n$ is non-explosive when total material is bounded,
 each independently counted realization requires a positive minimum
 material allocation, and candidate generation per realization is uniformly
 bounded. Second, a continuum cascade can retain bounded aggregate
-throughput while its specific turnover diverges, because the inventory
-assigned to successive levels tends to zero. This calculation identifies
-a shrinking-scale possibility but does not derive its accelerating
-kinetics physically.
+throughput while its specific turnover diverges because the inventory
+assigned to successive levels tends to zero. This identifies a
+shrinking-scale route but does not derive its accelerating kinetics
+physically.
 
-The central result is a conditional fixed-resolution no-go theorem.
-If transition costs and durations satisfy
+The central mathematical result is a conditional fixed-resolution no-go
+theorem. If transition costs and durations satisfy
 $\varepsilon_n\tau_n\ge c_n d_{\rm phys,n}^2$, finite total charged energy
 and time imply
 $\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty$.
 A uniform positive kinetic coefficient therefore bounds accumulated
-physical distance. If physical distance also uniformly controls
-operational distinguishability, only finitely many transitions at any
-fixed operational resolution can occur within finite time and energy.
-A constant-speed overdamped example saturates the bound while crossing
-infinitely many refinement labels before reaching an ordinary finite
-state.
+physical distance, and a uniform physical-to-operational comparison bounds
+the number of transitions at any fixed operational resolution.
 
-These are elementary mathematical results with conditional physical
-applications, not a universal prohibition of singular dynamics.
-The remaining question is whether an autonomous system can preserve
-operationally nontrivial retained transformations while its physical
-speed--distance cost scale collapses, without concealing an unbounded
-kinetic, control, memory, or measurement resource.
+For finite-state continuous-time Markov jump dynamics, the metric comparison
+can be discharged rather than assumed. Total variation is the distance in an
+exact activity--entropy speed limit and contracts under every stochastic
+measurement channel. If $\Sigma_*$ is total entropy production and
+$\mathcal N_*$ the expected total number of jumps, then
+\[
+\sum_n d_{\rm op,n}\le\sqrt{\Sigma_*\mathcal N_*/2},
+\qquad
+K_\delta^{\rm op}\le
+\delta^{-1}\sqrt{\Sigma_*\mathcal N_*/2}.
+\]
+Thus finite entropy production and finite dynamical activity exclude
+finite-time infinite depth at fixed operational resolution in this model
+class. A bounded-power refinement example shows why infinite labels can
+nevertheless accumulate when the resolved physical scale shrinks.
+
+These are conditional physical boundaries, not a universal prohibition of
+singular dynamics. The remaining challenge is constructive: any proposed
+dynamically organizing system that produces finite-time infinite
+fixed-resolution depth must expose which resource or regularity condition
+fails rather than hiding it in an organizational index.
 \end{abstract}
 
 
@@ -94,20 +105,31 @@ requires an interpretation of increasingly rapid turnover of shrinking
 quantities. An organizational interpretation additionally requires
 physically realizable distinctions between successive retained states.
 
-The resulting boundary is conditional. Finite time and energy exclude
+The general boundary is conditional. Finite time and energy exclude
 infinitely many fixed-resolution transitions when an appropriate
 speed--distance inequality holds uniformly and its physical metric
 controls operational distinguishability. Neither condition follows
 merely from assigning an increasing organizational level number.
 
-The generic mathematical ingredients are established: pure-birth
-non-explosion, energy accounting, Cauchy--Schwarz inequalities,
-thermodynamic speed limits, and metric convergence
-\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
-The proposed contribution is their application to the interpretation
-of organizational depth, including an explicit separation of kinetic
-degeneracy from degenerating physical resolution.
+For one important model class, however, the metric comparison is not an
+extra assumption. In finite-state Markov jump dynamics the
+Shiraishi--Funo--Saito speed limit is expressed directly in total
+variation, while total variation contracts under any stochastic
+measurement channel. This gives a model-specific operational theorem:
+finite total entropy production together with finite total dynamical
+activity bounds the number of operationally distinguishable retained
+transitions. In this setting the abstract kinetic coefficient can be
+identified with inverse average activity.
 
+The generic mathematical ingredients are established: pure-birth
+non-explosion, Cauchy--Schwarz inequalities, stochastic thermodynamic
+speed limits, optimal-transport bounds, and metric convergence
+\cite{Feller1971,Shiraishi2018,Aurell2011,VuSaito2023,Nagayama2025,Zhang2001}.
+The proposed contribution is their application to organizational depth,
+including explicit closure of one stochastic route, separation of
+aggregate throughput from specific turnover, a fixed-resolution
+criterion, and identification of dynamical activity as the concrete
+escape resource in a finite-state stochastic class.
 
 \section{Organization as amount, configuration, and operational distinction}
 
