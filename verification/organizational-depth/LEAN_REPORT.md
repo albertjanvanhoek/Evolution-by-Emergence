@@ -21,6 +21,20 @@ lake build
 
 The build reported `Built OrganizationalDepth` and `Build completed successfully (1520 jobs).`
 
+## Operational bridge
+
+The companion `OperationalBridge.lean` verifies the purely mathematical bridge for finite-state measurement channels:
+
+- `l1_push_le`
+- `dTV_push_le`
+- `dTV_push_idChannel`
+- `speed_limit_operational`
+- `operational_fixed_resolution`
+
+The Markov-jump speed limit `2 dTV^2 <= Sigma * Nact` remains a hypothesis in Lean; the file checks the data-processing comparison and its transfer to the operational counting result.
+
+A bridge-inclusive GitHub Actions build succeeded in run `34740795807` with `Build completed successfully (1524 jobs)`.
+
 ## Canonical theorem stack
 
 1. `realizations_le_of_material`
