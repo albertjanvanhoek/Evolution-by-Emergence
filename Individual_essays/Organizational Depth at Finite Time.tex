@@ -1254,77 +1254,78 @@ from finite-time organizational escape.
 None of the following is claimed as new generic mathematics:
 the pure-birth criterion, bounded-rate non-explosion,
 geometric-series tests for stationary cascades,
-Cauchy--Schwarz bounds, finite-length Cauchy convergence,
-thermodynamic speed limits, or Zeno accumulation
-\cite{Feller1971,Shiraishi2018,Aurell2011,Zhang2001}.
+Cauchy--Schwarz bounds, total-variation data processing,
+finite-length Cauchy convergence, thermodynamic speed limits,
+optimal transport, or Zeno accumulation
+\cite{Feller1971,Shiraishi2018,Aurell2011,VuSaito2023,Nagayama2025,Zhang2001}.
 Nor is finite material alongside stronger-norm divergence a new
 singularity mechanism \cite{KatzPavlovic2005}.
 
 The proposed contribution is an application and clarification:
 \begin{enumerate}
 \item the stated physical processor assumptions already close
-      the stochastic accessibility route;
-\item bounded throughput and bounded specific turnover answer
-      different questions;
-\item a physically meaningful organizational escape requires an
-      operational resolution standard;
-\item the physical no-go theorem transfers to organization only
-      through an explicit metric comparison;
-\item the remaining necessary condition concerns a weighted
-      physical cost scale, not an organizational index alone.
+      the sequential stochastic accessibility route;
+\item bounded aggregate throughput and bounded specific turnover
+      answer different questions;
+\item physically meaningful organizational escape requires an
+      operational resolution standard rather than an index alone;
+\item for finite-state Markov jump dynamics the physical-to-operational
+      bridge is exact because the speed-limit metric is total variation
+      and measurement channels contract total variation;
+\item the resulting model-specific boundary is controlled by two
+      cumulative resources---entropy production and dynamical activity---so
+      loss of the uniform kinetic coefficient has a concrete activity
+      interpretation;
+\item outside that class, transport/readout comparison and kinetic
+      coercivity remain explicit assumptions whose failure modes must be
+      identified rather than hidden.
 \end{enumerate}
 
-Whether this combination constitutes a distinctive contribution
-relative to all existing literature requires a separate source
-audit. No priority claim is made here.
+No priority claim is made for the component inequalities. The proposed
+novelty lies in assembling them into a fixed-resolution criterion for
+organizational depth and using that criterion to identify which resource
+must fail in a claimed finite-time escape.
 
+\section{Challenge to a dynamically organizing system}
 
-\section{Open problem}
-
-The remaining question is narrower than whether a prescribed
-rate sequence can explode.
+The paper therefore ends with a constructive challenge rather than a
+conjecture.
 
 \begin{quote}
-Can an autonomous organizational system generate successive
-retained transformations that remain operationally nontrivial,
-while their physical speed--distance cost scale collapses
-sufficiently fast for finite-time infinite depth?
+Produce a physically specified autonomous system that completes infinitely
+many retained transformations in finite time while those transformations
+remain distinguishable at one fixed operational resolution, and provide a
+complete accounting of the kinetic, energetic, control, memory, and
+measurement resources that make this possible.
 \end{quote}
 
-A candidate must realize actual dynamics and accounting with
+For the general speed--distance framework, any such construction must evade
+the sufficient conditions established above by losing uniform kinetic
+coercivity, losing physical-to-operational metric control, leaving the
+finite-cost/finite-time regime, or moving to a model class in which the
+assumed inequality is inapplicable.
+
+For finite-state Markov jump dynamics the challenge is sharper.
+If total entropy production remains finite and
+$d_{{\rm op},n}\ge\delta>0$ for infinitely many retained transitions,
+Theorem~\ref{thm:markov-operational} forces
 \[
-d_{\rm op,n}\ge\delta>0,
-\qquad
-\sum_n\tau_n<\infty,
-\qquad
-\sum_n\varepsilon_n<\infty,
+\mathcal N_*=
+\sum_n\int_{I_n}A(t)\,dt
+=
+\infty.
 \]
-while necessarily satisfying
-\begin{equation}
-\sum_n\sqrt{c_n}\,d_{\rm phys,n}<\infty.
-\label{eq:open-condition}
-\end{equation}
-It must do so without concealing an unbounded resource in
-mobility, activity, precision, control bandwidth, memory,
-measurement, or an omitted subsystem.
+Thus the bridge does not fail: the required escape resource is unbounded total
+dynamical activity, or else departure from the finite-state Markov model.
+Equivalently, in the time-based form \eqref{eq:activity-coefficient}, the
+effective coefficient can collapse only through diverging average activity
+(or through failure of the thermodynamic interpretation itself).
 
-Equation~\eqref{eq:open-condition} is a necessary feasibility
-condition, not an equivalent existence theorem. It does not
-supply the dynamics, retention, or budget required by a
-constructive answer.
-
-Under uniform kinetic control, the candidate must demonstrate
-the required physical--operational metric decoupling.
-Under uniform metric comparison, it must demonstrate the
-required kinetic-coefficient collapse. When both vary, the
-joint weighted condition is decisive.
-
-The present paper does not conjecture that such a system exists.
-A successful construction would have to identify its collapsing
-scale endogenously. An additional no-go theorem could instead
-derive a uniform bound from a more explicit class of physical
-implementations.
-
+This is left deliberately open. A successful construction would be
+scientifically informative precisely because it would have to expose the
+resource that supports the claimed depth. A stronger no-go theorem would be
+equally informative if it derived an activity or mobility bound from a more
+specific physical architecture.
 
 \section{Conclusion}
 
@@ -1339,11 +1340,11 @@ survives bounded aggregate throughput through a shrinking
 inventory and imposed increasing specific turnover, without
 thereby establishing a physical transient escape.
 
-The central conditional result is:
+The general conditional result is
 \[
 \boxed{
 \begin{gathered}
-\text{finite time and finite charged energy}\\
+\text{finite time and finite charged cost}\\
 +\ \text{uniform speed--distance control}\\
 +\ \text{uniform physical--operational metric comparison}\\
 \Longrightarrow\\
@@ -1352,18 +1353,32 @@ The central conditional result is:
 }
 \]
 
-The bounded-power refinement example shows why the resolution
-condition is essential. The weak-versus-strong norm example
-shows why finite physical metric length must not be mistaken
-for a universal regularity theorem.
+For finite-state Markov jump dynamics a stronger model-specific result is
+available:
+\[
+\boxed{
+\text{finite entropy production}
++\text{finite expected total jump count}
+\Longrightarrow
+\text{finite fixed-resolution operational depth}.
+}
+\]
+Here the physical-to-operational bridge is exact because total variation is
+both the stochastic speed-limit distance and an upper bound on all
+channel-based operational distinguishability. The remaining kinetic resource
+is dynamical activity.
 
-A physically meaningful counterexample must therefore do more
-than assign an increasing level number or prescribe increasing
-rates. It must explain how retained organization maintains
-operationally significant distinctions while the relevant
-weighted physical cost scale collapses under complete resource
-accounting.
+The bounded-power refinement example shows why the resolution condition is
+essential. The weak-versus-strong norm example shows why finite metric length
+must not be mistaken for a universal regularity theorem. The transport example
+shows why an operational comparison cannot be inferred from a physical metric
+without specifying the readout.
 
+A physically meaningful counterexample must therefore do more than assign an
+increasing level number or prescribe increasing rates. It must expose the
+resource that supports infinitely many retained, fixed-resolution distinctions.
+That construction is left as a challenge to any proposed dynamically
+organizing system.
 
 \paragraph{Reference status.}
 The supplied Organizational Accessibility v8 manuscript is the
