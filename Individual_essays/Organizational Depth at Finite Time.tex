@@ -850,51 +850,202 @@ updates are actually used to generate or retain the sequence,
 however, their costs and timing belong inside the physical model.
 
 \section{Physical versus organizational metrics}
+\label{sec:metrics}
 
 The physical metric in a speed limit and the operational metric
-of organizational distinction need not coincide.
+of organizational distinction need not coincide. A uniform comparison
+$d_{\rm phys}\ge\alpha_*d_{\rm op}$ is therefore a genuine condition of
+the general theorem. It can, however, be a theorem rather than an assumption
+in a concrete model.
 
-A uniform comparison
-$d_{\rm phys}\ge\alpha_*d_{\rm op}$
-transfers the physical no-go result immediately. One sufficient
-mechanism is bounded sensitivity of readout to physical changes.
+\subsection*{Finite-state Markov dynamics: the bridge is exact}
 
-For example, suppose physical states are probability measures
-$\mu,\nu$ on a spatial metric space. For every admissible
-measurement $M$ and output event $A$, suppose the conditional
-readout probability
+Let $S$ be a finite state space and let $p,q$ be probability
+distributions on $S$. A measurement channel is a stochastic kernel
+$\Phi(o\mid i)$ from states $i$ to outcomes $o$. Its readout distribution
+is $\Phi p$. Total variation satisfies the data-processing inequality
+\begin{equation}
+d_{\rm TV}(\Phi p,\Phi q)\le d_{\rm TV}(p,q).
+\label{eq:tv-data-processing}
+\end{equation}
+Indeed,
 \[
-g_{M,A}(x)=\Pr_M(A\mid x)
+\sum_o\left|\sum_i\Phi(o\mid i)(p_i-q_i)\right|
+\le
+\sum_i|p_i-q_i|\sum_o\Phi(o\mid i)
+=
+\sum_i|p_i-q_i|.
 \]
-has Lipschitz constant at most $L_{\rm readout}$, uniformly in
-$M,A$. A coupling argument gives
+Taking the supremum over any fixed admissible measurement class gives
+\begin{equation}
+\boxed{
+d_{\rm op}(p,q)\le d_{\rm TV}(p,q).
+}
+\label{eq:tv-operational}
+\end{equation}
+The universal constant one is sharp over unrestricted channels, because the
+identity channel attains equality.
+
+Now consider a continuous-time Markov jump process with rates
+$W_{ij}(t)$ for the transition $j\to i$ and distribution $p(t)$. Define the
+directed probability flux
+\[
+F_{ij}(t)=W_{ij}(t)p_j(t),
+\]
+the dynamical activity
+\[
+A(t)=\sum_{i<j}\bigl(F_{ij}(t)+F_{ji}(t)\bigr),
+\]
+and the dimensionless entropy-production rate
+\[
+\sigma(t)
+=
+\sum_{i<j}
+\bigl(F_{ij}-F_{ji}\bigr)
+\ln\frac{F_{ij}}{F_{ji}},
+\]
+with the usual limiting interpretation when a reverse flux vanishes.
+For an interval $I$, write
+\[
+\mathcal N(I)=\int_I A(t)\,dt,
+\qquad
+\Sigma(I)=\int_I\sigma(t)\,dt.
+\]
+Here $\mathcal N(I)$ is the expected number of jumps on the interval.
+
+The Shiraishi--Funo--Saito speed limit gives
+\begin{equation}
+d_{\rm TV}\bigl(p(t),p(t')\bigr)^2
+\le
+\frac12\,\mathcal N(I)\Sigma(I).
+\label{eq:sfs-tv}
+\end{equation}
+Combining \eqref{eq:tv-operational} and \eqref{eq:sfs-tv} yields
+\begin{equation}
+\boxed{
+2d_{\rm op}\bigl(p(t),p(t')\bigr)^2
+\le
+\mathcal N(I)\Sigma(I).
+}
+\label{eq:operational-action}
+\end{equation}
+
+\begin{theorem}[Operational activity--entropy bound]
+\label{thm:markov-operational}
+Let $I_n$ be disjoint sequential transition intervals of a finite-state
+Markov jump process, and let
+$d_{{\rm op},n}=d_{\rm op}(p(t_n),p(t_{n+1}))$.
+If
+\[
+\sum_n\Sigma(I_n)\le\Sigma_*<\infty,
+\qquad
+\sum_n\mathcal N(I_n)\le\mathcal N_*<\infty,
+\]
+then
+\begin{equation}
+\boxed{
+\sum_n d_{{\rm op},n}
+\le
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:markov-length}
+\end{equation}
+Consequently, for every $\delta>0$,
+\begin{equation}
+\boxed{
+K_\delta^{\rm op}
+\le
+\frac1\delta
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:markov-count}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:operational-action} gives
+$d_{{\rm op},n}\le
+2^{-1/2}\sqrt{\Sigma_n\mathcal N_n}$.
+Summing over a finite prefix and applying Cauchy--Schwarz gives
+\[
+\sum_n d_{{\rm op},n}
+\le
+\frac1{\sqrt2}
+\sqrt{\sum_n\Sigma_n}
+\sqrt{\sum_n\mathcal N_n},
+\]
+and monotone convergence gives \eqref{eq:markov-length}.
+Every transition counted by $K_\delta^{\rm op}$ contributes at least
+$\delta$ to the left-hand side, giving \eqref{eq:markov-count}.
+\end{proof}
+
+This result has a useful interpretation in the notation of the general
+finite-action theorem. If $I_n$ has duration $\tau_n$ and average activity
+$\bar A_n=\mathcal N_n/\tau_n$, then \eqref{eq:sfs-tv} implies
+\[
+\Sigma_n\tau_n
+\ge
+\frac{2}{\bar A_n}d_{{\rm TV},n}^2
+\ge
+\frac{2}{\bar A_n}d_{{\rm op},n}^2.
+\]
+Under an isothermal interpretation in which the charged dissipative cost is
+$\varepsilon_n=k_BT\Sigma_n$,
+\begin{equation}
+\varepsilon_n\tau_n
+\ge
+\frac{2k_BT}{\bar A_n}d_{{\rm op},n}^2.
+\label{eq:activity-coefficient}
+\end{equation}
+Thus, in this model class,
+\[
+c_n=\frac{2k_BT}{\bar A_n}.
+\]
+Loss of a uniform kinetic coefficient corresponds concretely to unbounded
+average dynamical activity. More recent thermodynamic speed-limit work likewise
+identifies activity or mobility as the kinetic resource controlling attainable
+speed \cite{VuSaito2023,Nagayama2025}.
+
+\subsection*{Transport metrics: no unconditional TV comparison}
+
+The corresponding statement is not automatic for Wasserstein distance. There
+is no universal $\alpha>0$ such that
+\[
+W_2(\mu,\nu)\ge\alpha d_{\rm TV}(\mu,\nu)
+\]
+for arbitrary probability measures: for
+$\mu=\delta_0$ and $\nu=\delta_\epsilon$,
+$W_2(\mu,\nu)=\epsilon\to0$ while
+$d_{\rm TV}(\mu,\nu)=1$.
+
+This does not make transport-based operational bounds impossible; it means
+additional readout regularity is required. Suppose, for every admissible
+measurement $M$ and output event $B$, the conditional readout probability
+\[
+g_{M,B}(x)=\Pr_M(B\mid x)
+\]
+has Lipschitz constant at most $L_{\rm readout}$ uniformly in $M,B$. Then a
+coupling argument gives
 \[
 d_{\rm op}(\mu,\nu)
-\le L_{\rm readout}W_1(\mu,\nu).
+\le L_{\rm readout}W_1(\mu,\nu)
+\le L_{\rm readout}W_2(\mu,\nu).
 \]
-For measures with finite second moments,
-$W_1\le W_2$, so a speed limit in $W_2$ supplies
-\[
-d_{\rm phys}=W_2
-\ge \frac1{L_{\rm readout}}d_{\rm op}.
-\]
-Uniform readout sensitivity is an explicit assumption here,
-not a consequence of the definition of organization.
+Hence a $W_2$ speed limit does transfer under an explicit bounded-sensitivity
+measurement assumption. The distinction is between an unconditional global
+comparison, which fails, and a conditional readout comparison, which can hold.
 
-\subsection*{Metric decoupling}
+\subsection*{Metric decoupling outside the finite-state TV class}
 
 On transitions with $d_{\rm op,n}>0$, define
 \[
 \alpha_n=
 \frac{d_{\rm phys,n}}{d_{\rm op,n}}.
 \]
-If operationally significant differences remain bounded below
-while $\alpha_n\to0$, their physical separation collapses relative
-to their operational separation. We call this \emph{metric
-decoupling}.
-
-For a sequence with $d_{\rm op,n}\ge\delta>0$,
-Corollary~\ref{cor:weighted} implies
+If operationally significant differences remain bounded below while
+$\alpha_n\to0$, their physical separation collapses relative to their
+operational separation. For a sequence with
+$d_{\rm op,n}\ge\delta>0$, Corollary~\ref{cor:weighted} implies
 \begin{equation}
 \boxed{
 \sum_n\sqrt{c_n}\,\alpha_n
@@ -904,28 +1055,17 @@ Corollary~\ref{cor:weighted} implies
 \label{eq:operational-weighted}
 \end{equation}
 
-Thus:
-\begin{itemize}
-\item a uniform lower bound on $\alpha_n$ forces
-      $\sum_n\sqrt{c_n}<\infty$;
-\item a uniform lower bound on $c_n$ forces
-      $\sum_n\alpha_n<\infty$;
-\item without either lower bound, only the joint weighted
-      condition follows.
-\end{itemize}
+Thus a uniform lower bound on $\alpha_n$ forces
+$\sum_n\sqrt{c_n}<\infty$, while a uniform lower bound on $c_n$ forces
+$\sum_n\alpha_n<\infty$. Without either lower bound only the joint weighted
+condition follows.
 
-Metric decoupling is a candidate way to evade the sufficient
-no-go assumptions, not an established mechanism.
-It may reflect genuine causal leverage, omitted downstream
-machinery, increasing measurement resources, an expanding state
-description, or a metric that loses sensitivity to the relevant
-physical differences.
-
-Changing coordinates or using level-dependent normalizations
-cannot establish an escape. Metrics, units, and coefficients must
-be transformed consistently. The meaningful object is the
-physical inequality, including its weighted distance, rather
-than one coefficient viewed in isolation.
+Metric decoupling remains a candidate boundary outside the finite-state TV
+setting. It may reflect genuine causal leverage, omitted downstream machinery,
+increasing measurement resources, an expanding state description, or a metric
+that loses sensitivity to the relevant physical differences. Changing
+coordinates or using level-dependent normalizations cannot establish an escape:
+metrics, units, and coefficients must be transformed consistently.
 
 \subsection*{Weak convergence and stronger observables}
 
@@ -960,13 +1100,10 @@ weighted quadratic observable is finite.
 Such distinctions matter for PDEs and cascades
 \cite{PierreSchmitt1997,KatzPavlovic2005}.
 A limit may be regular in an ambient weak space and singular
-in a physically relevant stronger class.
-
-The appropriate question is therefore whether the stronger
-organizational observable is operationally meaningful and
-resolvable with bounded physical resources. Finite metric
-length alone does not answer it.
-
+in a physically relevant stronger class. The relevant question is whether
+the stronger organizational observable is operationally meaningful and
+resolvable with bounded physical resources. Finite metric length alone does
+not answer it.
 
 \section{Landauer, reversible computation, and other special cases}
 
