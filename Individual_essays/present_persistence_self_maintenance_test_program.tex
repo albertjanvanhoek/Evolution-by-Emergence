@@ -1,0 +1,356 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2.7cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\title{\textbf{Present Persistence Does Not Prove Present Self-Maintenance}\\
+\large A Cross-Disciplinary Test Program for Evolution by Emergence}
+\author{Albert Jan van Hoek}
+\date{Working note --- September 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A system can remain present even after it has ceased to reproduce the conditions required for its own continuation. Current persistence may therefore be supported by organization accumulated earlier or supplied elsewhere. This note formulates that distinction as a prospective research program. Let $P(t)$ denote the rate at which a system currently regenerates a continuation-relevant capacity, $R(t)$ the rate at which that capacity is required, and $B(t)$ the usable inherited or buffered stock. The instantaneous self-maintenance ratio is
+\[
+M(t)=\frac{P(t)}{R(t)}.
+\]
+When $M(t)<1$, continued operation is maintenance-deficient even if no failure is yet visible. Under simple stock-flow assumptions, the remaining time before a critical threshold is crossed depends on the inherited buffer and the maintenance deficit. The central empirical proposal is therefore not to explain failures retrospectively, but to measure return paths and maintenance deficits in systems that still appear functional and test whether they prospectively predict delayed loss of viability or accessibility. The same logic can be tested in epidemiology, ecology, physiology, infrastructure, organizations, machine learning, and other domains. The claim is not that the stock-flow mathematics is novel. The proposed contribution is a common causal decomposition: identify what must be regenerated, identify the processes that regenerate it, quantify inherited support, and test whether present persistence is being sustained by current maintenance or by depletion of past organization.
+\end{abstract}
+
+\section{The central distinction}
+
+Persistence and self-maintenance are not the same observable.
+
+A system may currently exist, function, or remain apparently stable while the processes required to regenerate its continuation-relevant capacities are already insufficient. In that case, present persistence is being supported by organization accumulated earlier, by reserves, by redundancy, or by support supplied from outside the focal boundary.
+
+The central statement is therefore:
+
+\begin{quote}
+\textbf{Present persistence does not prove present self-maintenance.}
+\end{quote}
+
+This statement is useful only if it is treated prospectively. It must not become an auxiliary explanation used after a failure has occurred. The research question is whether maintenance deficiency can be measured while the system still appears viable and whether that measurement predicts the timing or hazard of later failure.
+
+\section{A minimal stock--flow formulation}
+
+Let $B(t)\ge 0$ be the usable stock of a continuation-relevant capacity. Depending on the application, $B$ could represent immune protection, ecological redundancy, stored energy, infrastructure condition, institutional knowledge, financial reserves, spare processing capacity, trust, or another measurable state variable.
+
+Let
+\begin{itemize}[nosep]
+    \item $P(t)$ be the rate at which current organization produces or regenerates this capacity;
+    \item $R(t)$ be the rate at which continuation consumes, depreciates, or otherwise requires this capacity.
+\end{itemize}
+
+A minimal accounting equation is
+\begin{equation}
+\frac{dB}{dt}=P(t)-R(t).
+\label{eq:buffer}
+\end{equation}
+
+Define the \textbf{instantaneous self-maintenance ratio}
+\begin{equation}
+\boxed{
+M(t)=\frac{P(t)}{R(t)}
+}
+\label{eq:maintenance-ratio}
+\end{equation}
+for $R(t)>0$.
+
+Then:
+\begin{align*}
+M(t)>1 &\quad \text{capacity is being replenished faster than required},\\
+M(t)=1 &\quad \text{current production matches current requirement},\\
+M(t)<1 &\quad \text{the system is maintenance-deficient and must draw on a buffer or external support.}
+\end{align*}
+
+Crucially,
+\[
+\text{system persists at time }t
+\quad\not\Rightarrow\quad
+M(t)\ge 1.
+\]
+
+A system with $M(t)<1$ may remain fully functional for a long time if $B(t)$ is sufficiently large.
+
+\section{Maintenance debt and predicted delay}
+
+Let $B_{\min}$ be the minimum usable stock compatible with the chosen continuation criterion. If $P$ and $R$ are approximately constant over a relevant interval and $P<R$, then
+\begin{equation}
+\boxed{
+T_{\mathrm{fail}}
+=
+\frac{B_0-B_{\min}}{R-P}.
+}
+\label{eq:failure-time}
+\end{equation}
+
+This equation is intentionally simple. It is not proposed as a universal law. Its purpose is to expose the measurable quantities required by the hypothesis.
+
+The quantity
+\[
+R-P
+\]
+is the current maintenance deficit, while
+\[
+B_0-B_{\min}
+\]
+is the usable inherited buffer.
+
+This suggests the term \textbf{maintenance debt}: a system can continue operating while consuming organization that it is no longer regenerating.
+
+For time-varying systems, the corresponding depletion condition is
+\begin{equation}
+B(t)
+=
+B(0)
++
+\int_0^t \left[P(s)-R(s)\right]\,ds,
+\label{eq:time-varying-buffer}
+\end{equation}
+with loss of viability when $B(t)$ crosses $B_{\min}$.
+
+A conservative cumulative deficit measure is
+\begin{equation}
+D(t)
+=
+\int_0^t \left[R(s)-P(s)\right]_{+}\,ds,
+\label{eq:deficit}
+\end{equation}
+where $[x]_+=\max(x,0)$.
+
+\section{The risky prediction}
+
+The framework becomes scientifically useful only when the relevant quantities are estimated \emph{before} the outcome is known.
+
+The core prospective prediction is:
+
+\begin{quote}
+\textbf{Among systems that are currently persisting, those with a lower self-maintenance ratio and a smaller usable inherited buffer should, all else equal, show earlier or more likely loss of viability when the relevant external or internal challenge is encountered.}
+\end{quote}
+
+The prediction can fail in several ways:
+\begin{itemize}[nosep]
+    \item the inferred return paths may be wrong;
+    \item the measured capacity may not be continuation-relevant;
+    \item $P(t)$ or $R(t)$ may be mis-specified;
+    \item additional unmeasured buffers may dominate;
+    \item the predicted failure threshold may be wrong;
+    \item the maintenance ratio may add no predictive information beyond ordinary state variables.
+\end{itemize}
+
+Any of these outcomes constrains the framework. A useful research program should report them rather than reinterpret every survival or failure as confirmation.
+
+\section{Stochastic triggers and delayed failure}
+
+In many systems, depletion does not itself produce an immediately observable failure. It changes the \emph{hazard} that an external or stochastic event becomes consequential.
+
+Let $X(t)$ be a maintenance-relevant state derived from the buffer dynamics, and let $\lambda_{\mathrm{trig}}(t)$ be the rate of potentially destabilizing triggers. Let
+\[
+p_{\mathrm{est}}\!\left(X(t)\right)
+\]
+be the probability that a trigger causes an established failure process conditional on the current state.
+
+Then a generic failure hazard can be written as
+\begin{equation}
+h_{\mathrm{fail}}(t)
+=
+\lambda_{\mathrm{trig}}(t)\,
+p_{\mathrm{est}}\!\left(X(t)\right).
+\label{eq:hazard}
+\end{equation}
+
+Under standard hazard assumptions,
+\begin{equation}
+\Pr(T_{\mathrm{fail}}\le t)
+=
+1-
+\exp\left(
+-\int_0^t h_{\mathrm{fail}}(s)\,ds
+\right).
+\label{eq:failure-cdf}
+\end{equation}
+
+Thus the framework need not predict an exact calendar date of a stochastic failure. It can predict how measurable maintenance deficiency changes the distribution of time to failure.
+
+\section{Example: population immunity and measles}
+
+A population can remain measles-free even when current vaccination coverage is no longer sufficient to reproduce the level of population immunity required to prevent sustained transmission.
+
+In this interpretation:
+\begin{itemize}[nosep]
+    \item $B(t)$ is protection inherited from previously immunized or previously infected cohorts;
+    \item $P(t)$ is the rate at which current vaccination and other immunity-generating processes replenish population protection;
+    \item $R(t)$ reflects demographic turnover and other processes that remove protection from the actively mixing population;
+    \item the susceptible population accumulates when $P(t)<R(t)$;
+    \item importations provide stochastic triggers;
+    \item establishment probability increases as the susceptible configuration becomes more permissive to transmission.
+\end{itemize}
+
+The scientific prediction is therefore not simply ``low vaccination causes outbreaks.'' It is that the trajectory of current immunity production relative to the rate at which protection must be replenished should predict the \emph{delay} between declining maintenance and renewed epidemic accessibility.
+
+A prospective test would estimate the relevant maintenance quantities from historical vaccination, demographic, serological, and transmission data, derive a predicted outbreak-hazard trajectory, and compare it with subsequent observations across populations.
+
+\section{Cross-disciplinary applications}
+
+The same causal decomposition can be tested wherever continued function depends on regeneration of a capacity that can temporarily be buffered.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{0.17\linewidth}p{0.25\linewidth}p{0.25\linewidth}p{0.24\linewidth}}
+\toprule
+Domain & Possible buffer $B$ & Production $P$ & Requirement or loss $R$ \\
+\midrule
+Epidemiology & population immunity & vaccination / infection-derived immunity & demographic replacement, waning, mixing structure \\
+Ecology & redundancy, habitat quality, reproductive stock & regeneration, recruitment, restoration & extraction, mortality, degradation \\
+Physiology & physiological reserve & repair, recovery, replenishment & metabolic demand, damage, stress \\
+Infrastructure & physical condition, spare capacity & maintenance, replacement, repair & wear, depreciation, load \\
+Organizations & knowledge, trust, redundancy, staffing depth & training, documentation, repair of relations & turnover, workload, skill decay, extraction \\
+Machine learning & retained representation or reusable capability & training updates that preserve/rebuild capability & forgetting, distribution shift, interference \\
+Resource systems & stored resource or regenerative stock & natural or engineered replenishment & extraction / consumption \\
+\bottomrule
+\end{tabular}
+\caption{Illustrative mappings. Each application must define its own system boundary, continuation criterion, units, and causal return paths. Superficial analogy is not sufficient.}
+\label{tab:domains}
+\end{table}
+
+The proposal is not that these literatures have failed to notice delayed collapse. Many already contain concepts such as reserve depletion, extinction debt, resilience loss, deferred maintenance, allostatic burden, and susceptible accumulation. The proposed unification is methodological: in each case ask whether current persistence is being regenerated by current organization or financed by previously accumulated capacity.
+
+\section{Relation to Organizational Accessibility}
+
+Within the broader Organizational Accessibility framework, maintenance debt is one way in which history remains causally active in the present.
+
+\subsection*{History as retained capability}
+
+Past organization can produce a structure that remains functional and changes what successor organization is reachable. Examples include inherited architecture, learned representation, ecological modification, reusable modules, or a new stable return path.
+
+This is history functioning as \emph{productive infrastructure}.
+
+\subsection*{History as consumable reserve}
+
+Past organization can also leave behind a stock that permits present function despite inadequate current regeneration.
+
+This is history functioning as \emph{buffered persistence}.
+
+The distinction matters:
+\begin{equation}
+\boxed{
+\text{retained capability}
+\neq
+\text{depleting reserve}.
+}
+\end{equation}
+
+The first may expand future accessibility. The second may conceal that future accessibility is shrinking.
+
+\section{A reusable empirical protocol}
+
+Researchers in different disciplines can test the thesis using the following sequence.
+
+\begin{enumerate}
+    \item \textbf{Define the focal organization.} State the system boundary and the continuation criterion.
+    \item \textbf{Identify the continuation-relevant capacity.} Specify what must remain above a threshold for the chosen organization to continue.
+    \item \textbf{Identify return paths.} Determine which current processes regenerate that capacity.
+    \item \textbf{Measure production and requirement.} Estimate $P(t)$ and $R(t)$ in compatible units.
+    \item \textbf{Measure inherited support.} Estimate the usable buffer $B(t)$ and a defensible threshold $B_{\min}$.
+    \item \textbf{Pre-specify the prediction.} Before observing the future outcome, derive a predicted failure time, accessibility trajectory, or failure-hazard distribution.
+    \item \textbf{Compare against simpler predictors.} Test whether explicit maintenance accounting improves prediction beyond current-state indicators alone.
+    \item \textbf{Intervene where possible.} Perturb a proposed return path and test whether the measured maintenance variables change as predicted.
+    \item \textbf{Report failures.} If the ratio or buffer does not predict future loss of viability, treat this as evidence against the chosen causal decomposition.
+\end{enumerate}
+
+The strongest tests are prospective and comparative. Cross-system replication is particularly informative because the framework claims a common causal structure while allowing different physical implementations.
+
+\section{What would count as support?}
+
+Evidence for the proposed mechanism would be stronger when:
+\begin{itemize}[nosep]
+    \item maintenance deficiency is measurable before overt decline;
+    \item independently measured return-path disruption predicts later failure;
+    \item buffer depletion predicts delay-to-failure across systems;
+    \item the same decomposition improves prediction across substantially different substrates;
+    \item interventions that restore production $P(t)$ or reduce requirement $R(t)$ extend persistence by approximately the predicted amount.
+\end{itemize}
+
+Evidence would be weaker if the framework merely redescribes outcomes after they occur.
+
+\section{What would count against it?}
+
+The framework would be challenged if, across well-defined systems:
+\begin{itemize}[nosep]
+    \item proposed maintenance ratios cannot be operationalized independently of the outcome;
+    \item systems with sustained $M(t)<1$ do not consume any measurable buffer;
+    \item predicted buffer depletion is unrelated to future loss of viability or accessibility;
+    \item explicit return-path accounting adds no predictive value beyond generic state variables;
+    \item interventions on purported maintenance pathways fail to alter the predicted maintenance balance.
+\end{itemize}
+
+A general framework should be judged by whether it generates such discriminating tests, not by whether every observed collapse can be redescribed in its vocabulary.
+
+\section{Interpretation}
+
+The near-definitional core is modest:
+
+\begin{quote}
+A persistent organization must, directly or indirectly, continue to receive the causal conditions sufficient for its persistence.
+\end{quote}
+
+The empirical content begins when those causal conditions are decomposed into measurable production, requirement, inherited support, and return paths.
+
+This yields a practical question that can be asked before a system fails:
+
+\begin{quote}
+\textbf{Is this system maintaining the conditions of its continuation now, or is its present functioning being financed by organization accumulated earlier or supplied elsewhere?}
+\end{quote}
+
+That question is portable across disciplines. It does not require a universal substance, a universal unit of complexity, or a claim that persistence is ethically good. It asks only whether current organization regenerates the capacities on which its own continuation depends, and whether the resulting balance predicts what becomes accessible next.
+
+\section{A program for others}
+
+The proposed path forward is deliberately plural.
+
+No single experiment can establish a substrate-general theory of persistence. Instead, researchers can test the same causal template in different domains, each with its own material implementation and failure modes.
+
+The research program is therefore:
+
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{define what must be maintained}\\
+\downarrow\\
+\text{identify what currently maintains it}\\
+\downarrow\\
+\text{measure production, requirement, and inherited buffer}\\
+\downarrow\\
+\text{predict future accessibility or failure before it occurs}\\
+\downarrow\\
+\text{intervene, compare, and revise}
+\end{gathered}
+}
+\end{equation}
+
+If this decomposition repeatedly fails to improve prediction, the general framework should contract.
+
+If it repeatedly succeeds across distinct substrates, then the shared object is not the surface phenomenon but the mechanics of retained organization itself.
+
+\section*{Closing statement}
+
+The strongest formulation is therefore not that all persistent systems are already self-maintaining. It is the opposite:
+
+\begin{quote}
+\textbf{Persistence can be inherited, buffered, or borrowed. The scientific task is to determine whether the processes operating now are regenerating the conditions of continuation, and to measure how long the system can remain viable if they are not.}
+\end{quote}
+
+That turns ``present persistence does not prove present self-maintenance'' from a retrospective explanation into a prospective, cross-disciplinary research program.
+
+\end{document}
