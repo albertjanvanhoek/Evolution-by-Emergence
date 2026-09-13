@@ -72,9 +72,9 @@ If in addition $c_n\ge c_*$ for a constant $c_*>0$, then $d$ is summable and
 \frac1{\sqrt{c_*}}
 \sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n}.
 \]
-The exact variable-coefficient Lean declaration is
-\texttt{finite\_action\_of\_kinetic\_floor}; \texttt{finite\_action} is its
-constant-coefficient helper.
+The exact variable-coefficient Lean declaration is given in the source as
+\texttt{finite\_action\_of\_kinetic\_floor}; the shorter
+\texttt{finite\_action} is its constant-coefficient helper.
 
 \paragraph{A.6 The fixed-resolution counting bound (Corollary~6.1).}
 Under the hypotheses of A.5, for every finite set $s$ such that
@@ -86,8 +86,8 @@ $d_n\ge\delta$ for all $n\in s$,
 \sqrt{\sum_n\varepsilon_n}\sqrt{\sum_n\tau_n},
 \]
 and consequently $\{n:d_n\ge\delta\}$ is finite. The exact manuscript-form
-Lean declarations are \texttt{fixed\_resolution\_count\_of\_kinetic\_floor}
-and \texttt{fixed\_resolution\_finite\_of\_kinetic\_floor}.
+Lean declarations are listed in the source file as the counting theorem and
+its corresponding finiteness theorem.
 
 \paragraph{A.7 The finite-state operational bridge (Section~\ref{sec:metrics}).}
 For a finite state space and a stochastic measurement channel $\Phi$,
@@ -133,26 +133,24 @@ stated physical and stochastic-process premises.
 
 \subsection{Reproduction}
 
-\begin{center}
-\begin{tabular}{@{}ll@{}}
-\hline
-Sources & \texttt{OrganizationalDepth.lean}; \texttt{OperationalBridge.lean} \\
-Lean & 4.33.0 \\
-\texttt{Mathlib} & commit \texttt{db584cd}, 10 August 2026 \\
-Check & \texttt{lake update; lake exe cache get; lake build} \\
-Result & compiles with no errors; no \texttt{sorry} \\
-Axioms & \texttt{[propext, Classical.choice, Quot.sound]} \\
-\hline
-\end{tabular}
-\end{center}
+The checked sources are
+\texttt{OrganizationalDepth.lean} and
+\texttt{OperationalBridge.lean}. They use Lean~4.33.0 and
+\texttt{Mathlib} commit \texttt{db584cd} (10 August 2026). From the
+verification directory, the check is reproduced with
+\begin{verbatim}
+lake update
+lake exe cache get
+lake build
+\end{verbatim}
+Both sources compile with no errors and contain no \texttt{sorry}. The axiom
+audit for all manuscript-facing declarations reports only
+\texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 
-The manuscript-facing declarations are
-\texttt{stochastic\_route\_closed},
-\texttt{weighted\_finite\_action},
-\texttt{finite\_action\_of\_kinetic\_floor},
-\texttt{fixed\_resolution\_count\_of\_kinetic\_floor}, and
-\texttt{fixed\_resolution\_finite\_of\_kinetic\_floor}. The operational
-bridge declarations are \texttt{dTV\_push\_le},
-\texttt{dTV\_push\_idChannel},
-\texttt{speed\_limit\_operational}, and
-\texttt{operational\_fixed\_resolution}.
+The manuscript-facing declarations in \texttt{OrganizationalDepth.lean}
+cover stochastic-route closure, the weighted and uniform finite-action
+bounds, and the fixed-resolution counting/finiteness results. The
+declarations in \texttt{OperationalBridge.lean} cover total-variation
+data processing, identity-channel sharpness, transfer of a TV speed-limit
+hypothesis to operational distance, and the operational fixed-resolution
+counting bound.
