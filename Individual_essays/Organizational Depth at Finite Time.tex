@@ -594,14 +594,13 @@ The same bound for every finite collection excludes an infinite
 qualifying collection.
 \end{proof}
 
-For an organizational conclusion, introduce an operational distance
-$d_{\rm op}$ and assume a uniform comparison
+For a general organizational conclusion, introduce an operational distance
+$d_{\rm op}$ and suppose that the relevant physical metric satisfies
 \begin{equation}
 d_{\rm phys}(x,y)\ge\alpha_*d_{\rm op}(x,y),
 \qquad \alpha_*>0.
 \label{eq:metric-comparison}
 \end{equation}
-This is an additional physical assumption.
 
 \begin{corollary}[Fixed operational resolution]
 \label{cor:operational}
@@ -626,13 +625,12 @@ $d_{\rm phys,n}\ge\alpha_*\delta$.
 Apply Corollary~\ref{cor:physical}.
 \end{proof}
 
-Thus, at every fixed operational resolution, finite-time infinite
-organizational change is excluded under the stated energy, kinetic,
-and metric-comparison assumptions.
-
-The metric comparison cannot be omitted from this organizational
-interpretation. A speed limit in a transport or thermodynamic metric
-does not automatically constrain an abstract organizational label.
+Equation~\eqref{eq:metric-comparison} is an additional assumption in the
+general theorem, not in every model. Section~\ref{sec:metrics} proves the
+comparison with sharp constant one for finite-state Markov dynamics when the
+physical distance is total variation and operational readout is represented by
+a stochastic channel. For transport metrics the comparison requires additional
+readout regularity and is not automatic.
 
 The counting argument applies to any disjoint sequential partition
 for which the cost budget and speed--distance law hold. In the
@@ -640,7 +638,6 @@ uniform-coefficient case, grouping adjacent transitions preserves
 the corresponding bound by the triangle inequality and
 Cauchy--Schwarz. Arbitrary subdivision therefore does not create
 an unlimited number of fixed-resolution changes.
-
 
 \section{Variable kinetic coefficients and the remaining boundary}
 
