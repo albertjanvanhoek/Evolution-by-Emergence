@@ -1138,78 +1138,25 @@ Organizational change does not automatically satisfy the
 erasure premise. Reversible computation may preserve
 information in intermediate records and later remove those
 records through uncomputation \cite{Bennett1973,Bennett1989}.
-
 Landauer work or heat must also be distinguished from excess
-dissipation. For ideal isothermal erasure,
-\[
-\Delta F_n=k_BT_n\ln2\,I_n,
-\]
-while
-\[
-W_{\rm diss,n}
-=
-\langle W_n\rangle-\Delta F_n
-\]
-can approach zero in the reversible limit.
+dissipation, and an average erasure bound is not automatically
+a fixed pathwise charge.
 
-Finally, an average erasure bound is not a fixed pathwise charge.
-To use it in a duration argument, one may consider prescribed
-protocols with deterministic durations and bounded gross mean
-power supplying their required work. To use it in a cumulative
-pathwise budget, an appropriate pathwise charged-cost premise
-must be justified separately.
+\subsection*{Activity-based stochastic speed limits}
 
-\subsection*{Classical stochastic speed limits}
+Section~\ref{sec:metrics} used the exact Shiraishi--Funo--Saito
+finite-state Markov bound to obtain the operational theorem
+\eqref{eq:markov-count}. Its essential extra resource is dynamical
+activity: entropy production constrains irreversibility, while activity
+sets the kinetic time scale \cite{Shiraishi2018}.
 
-A concrete model-specific speed--distance inequality can be
-derived for Markov jump dynamics. For forward and reverse
-probability fluxes $a_{ij},b_{ij}$ on undirected edges, define
-\[
-A(t)=\sum_{i<j}(a_{ij}+b_{ij})
-\]
-and dimensionless entropy-production rate
-\[
-\sigma(t)=
-\sum_{i<j}(a_{ij}-b_{ij})
-\ln\frac{a_{ij}}{b_{ij}}.
-\]
-For positive fluxes, the elementary inequality
-\[
-(a-b)\ln(a/b)\ge\frac{2(a-b)^2}{a+b}
-\]
-gives
-\[
-\|\dot p(t)\|_1\le\sqrt{2A(t)\sigma(t)}.
-\]
-Integration and Cauchy--Schwarz yield
-\[
-d_{\rm TV}(p_0,p_\tau)^2
-\le
-\frac12
-\left(\int_0^\tau A(t)\,dt\right)
-\left(\int_0^\tau\sigma(t)\,dt\right).
-\]
-Consequently, if $A(t)\le A_{\max}$ and
-$\Sigma=\int_0^\tau\sigma(t)\,dt$,
-\[
-\Sigma\tau\ge
-\frac{2}{A_{\max}}d_{\rm TV}(p_0,p_\tau)^2.
-\]
-With an isothermal thermodynamic interpretation and
-$\varepsilon_{\rm diss}=k_BT\Sigma$,
-\[
-\varepsilon_{\rm diss}\tau
-\ge
-\frac{2k_BT}{A_{\max}}
-d_{\rm TV}(p_0,p_\tau)^2.
-\]
-
-This illustrates the stochastic speed-limit structure
-\cite{Shiraishi2018}. The coefficient depends on the activity
-bound and on the thermodynamic interpretation. Bounded
-incoming power alone does not bound dynamical activity.
-The energetic budget must apply to the same dissipative
-quantity used in the inequality.
+This distinction is now supported by broader results. Discrete optimal
+transport can be formulated using dynamical state mobility
+\cite{VuSaito2023}, and a general activity framework generates families of
+thermodynamic speed limits for Markov jump processes and deterministic
+chemical reaction networks \cite{Nagayama2025}. These results reinforce the
+interpretation of coefficient collapse as a kinetic-resource question, not
+merely an energetic one.
 
 \subsection*{Overdamped transport and thermodynamic length}
 
@@ -1229,19 +1176,16 @@ the transport-action inequality gives
 \zeta W_2(p_0,p_\tau)^2.
 \]
 This connects finite-time thermodynamics with optimal transport
-\cite{Aurell2011}.
+\cite{Aurell2011}. As shown in Section~\ref{sec:metrics}, $W_2$ does not
+globally control raw total variation; an operational transfer requires a
+specified readout class or additional regularity.
 
-The resulting physical metric is a transport metric.
-Its relation to operational distinguishability must still be
-established, as in the preceding section.
-
-Thermodynamic length provides related bounds in suitable
-slow-driving regimes
-\cite{Crooks2007,SivakCrooks2012}.
-Those approximations must not be extrapolated without
-justification into a proposed limit of vanishing transition times.
-Metric degeneracy or changing friction can also alter the
-uniformity assumptions.
+Classical thermodynamic-length bounds are asymptotic or
+linear-response statements \cite{Crooks2007,SivakCrooks2012}. More recent
+work extends the geometry/optimal-transport connection beyond linear response
+for important overdamped classes \cite{ZhongDeWeese2024}. None of these
+results supplies one universal metric-speed law for arbitrary organizational
+dynamics; the model and metric must remain explicit.
 
 \subsection*{Reversible dynamics and quantum speed limits}
 
@@ -1266,7 +1210,6 @@ model-specific statements.
 The no-go boundary is therefore a family of conditional results,
 not a claim that one dissipation formula covers all physical
 implementations.
-
 
 \section{Implications for Organizational Accessibility}
 
