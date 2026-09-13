@@ -887,7 +887,9 @@ The universal constant one is sharp over unrestricted channels, because the
 identity channel attains equality.
 
 Now consider a continuous-time Markov jump process with rates
-$W_{ij}(t)$ for the transition $j\to i$ and distribution $p(t)$. Define the
+$W_{ij}(t)$ for the transition $j\to i$ and distribution $p(t)$, under the
+standard entropy-production conditions of the Shiraishi--Funo--Saito bound
+(for example, a thermodynamic interpretation with local detailed balance). Define the
 directed probability flux
 \[
 F_{ij}(t)=W_{ij}(t)p_j(t),
@@ -933,7 +935,7 @@ Combining \eqref{eq:tv-operational} and \eqref{eq:sfs-tv} yields
 \begin{theorem}[Operational activity--entropy bound]
 \label{thm:markov-operational}
 Let $I_n$ be disjoint sequential transition intervals of a finite-state
-Markov jump process, and let
+Markov jump process satisfying the conditions of \eqref{eq:sfs-tv}, and let
 $d_{{\rm op},n}=d_{\rm op}(p(t_n),p(t_{n+1}))$.
 If
 \[
