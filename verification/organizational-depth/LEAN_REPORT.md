@@ -8,8 +8,8 @@
 - Lake: `5.0.0-src+d8b1897`
 - Mathlib: `db584cd6d46c92f209a44c0f1c829460d327499d` (10 August 2026)
 - source: `OrganizationalDepth.lean`
-- verified project commit before repository reorganization: `52eae06e3a19af6f041c16ff00a98e165eeff3de`
-- successful GitHub Actions run: `34739508434`
+- final proofread verification commit: `318df0da76c2ae94fa33f7b74c806b8e8451e55d`
+- final proofread GitHub Actions run: `34742856500`
 
 CI commands:
 
@@ -19,7 +19,7 @@ lake exe cache get
 lake build
 ```
 
-The build reported `Built OrganizationalDepth` and `Build completed successfully (1520 jobs).`
+The final proofread build compiled both `OrganizationalDepth` and `OperationalBridge` successfully in the pinned environment.
 
 ## Operational bridge
 
@@ -33,7 +33,7 @@ The companion `OperationalBridge.lean` verifies the purely mathematical bridge f
 
 The Markov-jump speed limit `2 dTV^2 <= Sigma * Nact` remains a hypothesis in Lean; the file checks the data-processing comparison and its transfer to the operational counting result.
 
-A bridge-inclusive GitHub Actions build succeeded in run `34740795807` with `Build completed successfully (1524 jobs)`.
+The bridge-inclusive development was re-checked unchanged in the final proofread verification run `34742856500`.
 
 ## Canonical theorem stack
 
@@ -67,6 +67,6 @@ There is no `sorry` in the canonical source.
 
 ## Scope boundary
 
-The formalization verifies conditional mathematical implications. It does **not** formalize or validate the physical speed-distance law, the physical-to-operational metric bridge, the charged-cost interpretation, the continuous-time pure-birth theorem, or material additivity in a concrete physical system.
+The formalization verifies conditional mathematical implications. It does **not** formalize or validate the physical speed-distance law, the charged-cost interpretation, the continuous-time pure-birth theorem, or material additivity in a concrete physical system. The finite-state total-variation-to-operational measurement-channel bridge is formalized in `OperationalBridge.lean`; no universal bridge for arbitrary physical metrics is claimed.
 
 The archived `FixedResolution.lean` was independently developed before adoption of the canonical file. It is retained only as a useful cross-check; manuscript theorem names should refer to `OrganizationalDepth.lean`.
