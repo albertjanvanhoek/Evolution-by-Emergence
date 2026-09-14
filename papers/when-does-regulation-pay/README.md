@@ -88,3 +88,5 @@ The first Lean formalization is kept with the existing persistence formalization
 formalization/persistence-drift/RegulatoryReturn.lean
 
 It verifies the elementary control-margin and return-factorization statements without claiming to formalize the biological assumptions themselves.
+
+Verified proof-state commit: 3005e2e3b2104a477b704815408340055fe462fa
