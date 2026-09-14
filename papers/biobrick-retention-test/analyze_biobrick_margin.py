@@ -153,17 +153,25 @@ def candidate_pairs(cands):
     pairs = []
     for a, b in itertools.combinations(cands, 2):
         b1, b2 = a["burden"], b["burden"]
-        add = b1 + b2
-        mult = 1.0 - (1.0 - b1) * (1.0 - b2)
-        if add >= 0.48 and mult <= 0.46:
-            score = abs(add - 0.50) + abs(mult - 0.44)
+        k1 = b1 / (1.0 - b1)
+        k2 = b2 / (1.0 - b2)
+        shared = (k1 + k2) / (1.0 + k1 + k2)
+        sequential = 1.0 - (1.0 - b1) * (1.0 - b2)
+        additive = b1 + b2
+        if additive >= 0.48 and shared <= 0.43:
+            score = abs(additive - 0.50) + abs(shared - 0.40)
             pairs.append({
                 "a": a["accession"],
                 "b": b["accession"],
                 "b1": b1,
                 "b2": b2,
-                "additive": add,
-                "multiplicative": mult,
+                "kappa1": k1,
+                "kappa2": k2,
+                "shared_pool": shared,
+                "sequential": sequential,
+                "additive": additive,
+                "gap_shared_sequential": sequential - shared,
+                "gap_shared_additive": additive - shared,
                 "score": score,
             })
     return sorted(pairs, key=lambda x: x["score"])
@@ -263,8 +271,10 @@ def main():
         print(
             p["a"], p["b"],
             f"b1={p['b1']:.4f}", f"b2={p['b2']:.4f}",
-            f"add={p['additive']:.4f}",
-            f"mult={p['multiplicative']:.4f}",
+            f"shared={p['shared_pool']:.4f}",
+            f"sequential={p['sequential']:.4f}",
+            f"additive={p['additive']:.4f}",
+            f"gap(shared,seq)={p['gap_shared_sequential']:.4f}",
         )
 
     summary = {
