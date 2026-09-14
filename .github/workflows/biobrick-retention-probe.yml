@@ -7,6 +7,10 @@ on:
     paths:
       - "papers/biobrick-retention-test/**"
       - ".github/workflows/biobrick-retention-probe.yml"
+  pull_request:
+    paths:
+      - "papers/biobrick-retention-test/**"
+      - ".github/workflows/biobrick-retention-probe.yml"
 
 jobs:
   probe:
