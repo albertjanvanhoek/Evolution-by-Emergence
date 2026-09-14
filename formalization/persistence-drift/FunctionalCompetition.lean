@@ -66,6 +66,48 @@ theorem cov_linear (hp : ∑ i, p i = 1) (hlin : ∀ i, r i = b - α * c i) :
   simp only [mean]
   ring
 
+/-- Mean reproduction when productive return may vary across implementations:
+    r_i = h_i - alpha c_i. -/
+theorem mean_return_cost (h : I → ℝ)
+    (hlin : ∀ i, r i = h i - α * c i) :
+    mean p r = mean p h - α * mean p c := by
+  simp only [mean]
+  have ht : ∀ i : I,
+      p i * r i = p i * h i - α * (p i * c i) := by
+    intro i
+    rw [hlin i]
+    ring
+  rw [Finset.sum_congr rfl (fun i _ => ht i)]
+  rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
+
+/-- Mixed second moment for varying productive return. -/
+theorem sum_return_cost (h : I → ℝ)
+    (hlin : ∀ i, r i = h i - α * c i) :
+    (∑ i, p i * r i * c i)
+      = (∑ i, p i * h i * c i)
+        - α * (∑ i, p i * c i * c i) := by
+  have ht : ∀ i : I,
+      p i * r i * c i
+        = p i * h i * c i - α * (p i * c i * c i) := by
+    intro i
+    rw [hlin i]
+    ring
+  rw [Finset.sum_congr rfl (fun i _ => ht i)]
+  rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
+
+/-- General benefit-cost covariance decomposition:
+    cov(r,c) = cov(h,c) - alpha var(c). -/
+theorem cov_return_cost (h : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hlin : ∀ i, r i = h i - α * c i) :
+    cov p r c = cov p h c - α * variance p c := by
+  rw [cov_eq_sub p r c hp,
+      cov_eq_sub p h c hp,
+      cov_eq_sub p c c hp,
+      sum_return_cost p c r α h hlin,
+      mean_return_cost p c r α h hlin]
+  ring
+
 noncomputable def step (p r : I → ℝ) : I → ℝ :=
   fun i => p i * r i / (∑ j, p j * r j)
 
@@ -146,6 +188,31 @@ theorem price_linear (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0)
       = - α * variance p c / (∑ j, p j * r j) := by
   rw [price_equation p c r hp hr, cov_linear p c r b α hp hlin]
 
+/-- General Price identity for the return-cost tradeoff. -/
+theorem price_return_cost (h : I → ℝ)
+    (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0)
+    (hlin : ∀ i, r i = h i - α * c i) :
+    mean (step p r) c - mean p c
+      = (cov p h c - α * variance p c) / (∑ j, p j * r j) := by
+  rw [price_equation p c r hp hr, cov_return_cost p c r α h hp hlin]
+
+/-- With positive mean reproduction, mean implementation cost decreases whenever
+the covariance between productive return and cost does not exceed the
+cost-selection term alpha Var(c). -/
+theorem mean_cost_nonincreasing_of_return_tradeoff (h : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hrbar : 0 < ∑ j, p j * r j)
+    (hlin : ∀ i, r i = h i - α * c i)
+    (htrade : cov p h c ≤ α * variance p c) :
+    mean (step p r) c ≤ mean p c := by
+  have key := price_return_cost p c r α h hp (ne_of_gt hrbar) hlin
+  have hnum : cov p h c - α * variance p c ≤ 0 :=
+    sub_nonpos.mpr htrade
+  have hdiv :
+      (cov p h c - α * variance p c) / (∑ j, p j * r j) ≤ 0 :=
+    div_nonpos_of_nonpos_of_nonneg hnum (le_of_lt hrbar)
+  linarith
+
 theorem mean_cost_nonincreasing
     (hp : ∑ i, p i = 1) (hpnn : ∀ i, 0 ≤ p i)
     (hα : 0 ≤ α) (hrbar : 0 < ∑ j, p j * r j)
@@ -212,6 +279,11 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms mean_linear
 #print axioms sum_fitness_cost
 #print axioms cov_linear
+#print axioms mean_return_cost
+#print axioms sum_return_cost
+#print axioms cov_return_cost
+#print axioms price_return_cost
+#print axioms mean_cost_nonincreasing_of_return_tradeoff
 #print axioms step_sum_one
 #print axioms step_nonneg
 #print axioms step_is_distribution
