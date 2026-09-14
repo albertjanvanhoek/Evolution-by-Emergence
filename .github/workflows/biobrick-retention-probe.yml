@@ -1,0 +1,20 @@
+name: Probe BioBrick Supplementary Data
+
+on:
+  push:
+    branches:
+      - chatgpt/biobrick-retention-test
+    paths:
+      - "papers/biobrick-retention-test/**"
+      - ".github/workflows/biobrick-retention-probe.yml"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install openpyxl
+      - run: python papers/biobrick-retention-test/probe_data3.py
