@@ -14,8 +14,10 @@
 | A10 | With zero association overhead and turnover-shaped productive coupling, productive mass is globally maximized at \(a=1\). | Exact theorem; machine checked |
 | A11 | In an exact rational witness, \(a=1\) gives margin \(97/99\), while \(a=1/2\) and \(a=2\) give \(53/66\). | Exact theorem; machine checked |
 | A12 | In the same witness, \(a=1/10\) and \(a=10\) give effective spectral scale \(48/121<1/2\), so the normalized positive equilibrium fails at both extremes. | Exact theorem; machine checked |
-| A13 | The turnover mechanism is structurally analogous to the Sabatier principle: weak association limits residence and strong association limits release/turnover. | Literature-positioned interpretation, not a universality claim |
-| A14 | Affinity is one determinant of which encounters become candidate productive couplings and therefore supplies a physical component of the candidate-generation layer. | Framework interpretation |
+| A13 | The minimal turnover law is reciprocal-symmetric, \(h(a)=h(1/a)\), hence symmetric under \(\log a\mapsto-\log a\). | Exact theorem; machine checked |
+| A14 | Reciprocal symmetry is a falsifiable null prediction of the minimal turnover law, not a universal property of catalytic volcanoes. | Model implication / scope statement |
+| A15 | The turnover mechanism is structurally analogous to the Sabatier principle: weak association limits residence and strong association limits release/turnover. | Literature-positioned interpretation, not a universality claim |
+| A16 | Affinity is one determinant of which encounters become candidate productive couplings and therefore supplies a physical component of the candidate-generation layer. | Framework interpretation |
 
 ## Non-claims
 
