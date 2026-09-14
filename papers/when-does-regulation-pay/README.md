@@ -6,42 +6,27 @@ Reproducible paper package for:
 
 This paper is the direct sequel to papers/persistence-does-not-measure-function/.
 
-## Core question
+## Core result
 
-The previous paper introduced an externally evaluated functional margin. This paper asks what happens when the organization itself senses deviation and acts on it.
-
-The central distinction is:
-
-- **control efficacy:** is regulatory gain large enough to keep the functional state inside the declared viable region?
-- **regulatory retention:** does paying for that gain improve the selected growth/maintenance objective?
-
-These thresholds are not identical.
-
-## Main exact result
-
-For the scalar negative-feedback model
+For the proportional-feedback model
 
 \[
 \dot z=\eta-\gamma z-\beta u,\qquad u=kz,
 \]
 
-with functional tolerance \(m\), constitutive controller cost \(c_0k\), activity cost \(c_1u\), and damage penalty \(Lz\), define
+with functional tolerance \(m\), constitutive controller cost \(c_0k\), activity cost \(c_1u\), and deviation penalty \(Lz\), define
 
 \[
 A=\beta L-c_1\gamma.
 \]
 
-When \(A>0\) and regulation is selected, the growth-optimal gain is
+On the positive-regulation branch,
 
 \[
 k_{\rm opt}
 =
 \frac{\sqrt{\eta A/c_0}-\gamma}{\beta},
-\]
-
-whereas the minimum function-preserving gain is
-
-\[
+\qquad
 k_{\rm func}
 =
 \max\left\{0,\frac{\eta/m-\gamma}{\beta}\right\}.
@@ -52,41 +37,120 @@ At the selected optimum,
 \[
 M_{\rm opt}
 =
-m-\sqrt{\frac{\eta c_0}{A}}.
+m-\sqrt{\frac{\eta c_0}{A}},
 \]
 
-Therefore the growth-optimal regulator is functionally sufficient exactly when
+so the selected regulator is functionally sufficient exactly when
 
 \[
-\eta\le\frac{A m^2}{c_0}.
+\eta\le\frac{Am^2}{c_0}.
 \]
 
-Selection can therefore retain a regulator while selecting **too little regulation** to satisfy an independently declared functional threshold.
+> **Selected control need not equal sufficient control.**
+
+## General marginal-alignment theorem
+
+Generalizing the objective to
+
+\[
+g(k)=g_0-\Phi(z^*)-C(k)-c_1kz^*,
+\]
+
+the overloaded regime \(\eta>m\gamma\), together with convex deviation penalty and increasing-convex constitutive cost, gives
+
+\[
+\boxed{
+z_{\rm opt}\le m
+\iff
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})+c_1\gamma m^2.
+}
+\]
+
+With
+
+\[
+\Psi'(m)=\Phi'(m)-\frac{c_1\gamma}{\beta},
+\]
+
+this is
+
+\[
+\boxed{
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
+The linear boundary above is an exact corollary.
+
+Two further corollaries are developed in the manuscript:
+
+- for \(\Phi_p(z)=Lm(z/m)^p\) and \(C(k)=c_0k\),
+  \[
+  p_{\min}
+  =
+  \frac{c_1\gamma+\eta c_0/m^2}{\beta L};
+  \]
+- for fixed finite \(\Psi'(m)\), the asymptotically relevant controller-cost quantity is \(kC'(k)\); if \(kC'(k)\to\infty\), eventual underprovision follows under unbounded disturbance.
+
+## Pooling
+
+The pooling result assumes shared, sufficiently non-rival constitutive infrastructure. Under that explicit assumption,
+
+\[
+c_0\mapsto c_0/n
+\]
+
+and the linear alignment boundary becomes
+
+\[
+\eta\le\frac{nAm^2}{c_0}.
+\]
+
+For a discrete beneficiary count,
+
+\[
+n_{\min}
+=
+\left\lceil\frac{\eta c_0}{Am^2}\right\rceil.
+\]
+
+The \(1/n\) result does not apply when controller capacity must be duplicated proportionally for every added beneficiary.
 
 ## Contents
 
-- manuscript.md — full working manuscript.
-- CLAIMS.md — claim and non-claim ledger.
-- REPRODUCIBILITY.md — equations, parameters, computational checks, and proof status.
-- references.bib — literature used in the draft.
-- LITERATURE_POSITIONING.md — explicit separation between established results and the proposed contribution.
-- figures/make_figures.py — standard-library Python figure generator.
-- figures/regulatory_gain_alignment.svg — selected versus function-preserving gain.
-- figures/functional_margin_pooling.svg — functional margin at the selected optimum, with and without pooling.
-- figures/worked_example.csv — plotted parameter values.
-
-## Relationship to existing literature
-
-The paper does **not** claim that cost–effectiveness tradeoffs in regulation are new. Those are established in control theory, evolutionary systems biology, sensory adaptation, and fluctuating-environment theory.
-
-The narrower contribution is the explicit separation between a **selected control optimum** and an **externally declared functional boundary**, using the functional-margin language developed in the companion paper.
+- manuscript.md — full manuscript.
+- CLAIMS.md — claim, scope, and non-claim ledger.
+- REPRODUCIBILITY.md — derivations, parameters, computational checks, and proof scope.
+- LITERATURE_POSITIONING.md — novelty and prior-work positioning.
+- references.bib — bibliography.
+- figures/make_figures.py — standard-library figure generator.
+- figures/regulatory_gain_alignment.svg — selected versus sufficient gain.
+- figures/functional_margin_pooling.svg — selected functional margin with and without pooling.
+- figures/worked_example.csv — plotted values.
+- formalization/persistence-drift/RegulatoryReturn.lean — machine-checked algebraic core.
 
 ## Formalization
 
-The first Lean formalization is kept with the existing persistence formalization:
+The Lean development checks:
 
-formalization/persistence-drift/RegulatoryReturn.lean
+- functional-margin equivalence;
+- regulatory-return factorization;
+- nonpositive return under a nonpositive activity-return gap;
+- an algebraic global-optimum certificate for the linear model;
+- the scaled general boundary derivative;
+- the marginal-alignment inequality;
+- the effective-value reformulation;
+- the linear and scaled-power specializations;
+- the pooling numerator identity.
 
-It verifies the elementary control-margin and return-factorization statements without claiming to formalize the biological assumptions themselves.
+It verifies mathematical implications under explicit assumptions. It does not validate biological assumptions, empirical mappings, natural-selection claims, or the separate Poisson rare-shock model.
 
-Verified proof-state commit: 3005e2e3b2104a477b704815408340055fe462fa
+## Position in the larger project
+
+This paper does not establish a universal forward arrow of organization. It secures a reusable intermediate result:
+
+> optimizing an endogenous objective does not by itself guarantee satisfaction of an independently specified functional boundary; alignment requires sufficient marginal value at that boundary relative to the marginal cost of the control needed to hold it.
