@@ -1,6 +1,6 @@
 name = "functional_competition_check"
 version = "0.1.0"
-defaultTargets = ["ReturnPathPrice"]
+defaultTargets = ["FunctionalCompetition", "ReturnPathPrice", "EquilibriumExposure"]
 
 [[require]]
 name = "mathlib"
@@ -12,3 +12,6 @@ name = "FunctionalCompetition"
 
 [[lean_lib]]
 name = "ReturnPathPrice"
+
+[[lean_lib]]
+name = "EquilibriumExposure"
