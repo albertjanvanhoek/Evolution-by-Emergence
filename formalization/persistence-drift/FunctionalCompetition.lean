@@ -101,11 +101,15 @@ theorem cov_return_cost (h : I → ℝ)
     (hp : ∑ i, p i = 1)
     (hlin : ∀ i, r i = h i - α * c i) :
     cov p r c = cov p h c - α * variance p c := by
+  have hvar :
+      variance p c
+        = (∑ i, p i * c i * c i) - mean p c * mean p c :=
+    cov_eq_sub p c c hp
   rw [cov_eq_sub p r c hp,
       cov_eq_sub p h c hp,
-      cov_eq_sub p c c hp,
       sum_return_cost p c r α h hlin,
-      mean_return_cost p c r α h hlin]
+      mean_return_cost p c r α h hlin,
+      hvar]
   ring
 
 /-- Continuous-time replicator vector field for a Malthusian growth rate.
