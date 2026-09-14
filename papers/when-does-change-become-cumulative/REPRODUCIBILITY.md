@@ -327,13 +327,28 @@ W_n\ge W_0-\sum_{i=1}^nY_i,
 
 the strong law of large numbers, integrability of the positive tail, and Borel--Cantelli.
 
-For positive mean, the manuscript only claims the conditional-drift identity
+For positive mean, the manuscript uses the conditional-drift identity
 
 \[
-d(w)=-\mathbb E[Y\mathbf 1_{Y\le w}]
+d(w)=-\mathbb E[Y\mathbf 1_{Y\le w}].
 \]
 
-and its sign change under a continuous two-sided candidate law. It does not claim a universal stationary distribution or universal acceptance fraction.
+Writing
+
+\[
+g(w)=\mathbb E[Y\mathbf 1_{Y\le w}],
+\]
+
+an absolutely continuous candidate law gives
+
+\[
+g'(w)=wf(w)\ge0
+\qquad (w\ge0)
+\]
+
+where the derivative exists. If \(P(Y<0)>0\), \(\mathbb E[Y]>0\), and the density is positive on every nontrivial interval of \((0,\infty)\), then there is a unique zero \(w^\star\), with positive drift below and negative drift above.
+
+This is a mean-drift equilibrium scale, not a proof of a stationary distribution. The paper does not identify \(w^\star\) with the stationary mean or acceptance rate.
 
 The illustrative Gaussian simulation is:
 
@@ -373,6 +388,9 @@ CumulativeAccessibility.lean machine-checks:
 - general multiplicative margin update;
 - winding iff the positive binding-cost multiplier is below one;
 - positivity after accepting a strict fraction of positive margin;
+- monotonic contraction of the accepted candidate set as log-slack falls;
+- zero-slack exclusion of strictly spending candidates;
+- acceptance of winding candidates at every nonnegative log-slack;
 - pure-dilution margin recursion;
 - exact declared-set retention boundary;
 - opened coupling window after margin increase;
