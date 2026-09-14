@@ -334,30 +334,78 @@ Again, this is a sufficient mechanism-level result. To infer a change in the pro
 
 The cost specialization gives a precise version of the intuition that retained organization changes the starting point of future search.
 
-Suppose a target can be reached through production or transformation routes \(p\), each with cost \(C_t(p)\). Define
+Let \(\mathcal P_t(U)\) be the set of admissible production or transformation routes to target \(U\), and let \(C_t(U,p)\) be the effective cost of route \(p\).
 
-\[
-c_t(U)
-=
-\inf_{p\in\mathcal P_t(U)} C_t(p),
-\]
-
-where \(\mathcal P_t(U)\) is the set of admissible routes to \(U\).
-
-A sufficient route-preservation condition is:
-
-1. every old route remains available after the change;
-2. the cost of each retained old route does not increase.
-
-Then the infimum over the later route set cannot exceed the earlier one:
+Rather than requiring material identity of routes across time, define **route dominance** as follows: for every old route \(p\in\mathcal P_t(U)\) to every declared target \(U\), there exists some later route \(p'\in\mathcal P_{t+1}(U)\) such that
 
 \[
 \boxed{
-c_{t+1}(U)\le c_t(U).
+C_{t+1}(U,p')
+\le
+C_t(U,p).
 }
 \]
 
-Adding a new route, recombining two retained modules, importing a module by horizontal transfer, integrating a symbiotic partner, or introducing a cross-scale bridge can therefore create a strict budget-level click when it opens a route below the chosen budget without making previously feasible declared targets infeasible.
+The later route may be the retained old route, an improved implementation of it, or a different route that realizes the same target at no greater cost.
+
+For budget \(B\), define route-feasible targets by
+
+\[
+\mathcal F_t^{\rm route}(B)
+=
+\left\{
+U\in\mathscr U:
+\exists p\in\mathcal P_t(U)
+\text{ with }
+C_t(U,p)\le B
+\right\}.
+\]
+
+### Proposition 2 — non-destructive route extension
+
+If route dominance holds over the declared target family, then
+
+\[
+\boxed{
+\mathcal F_t^{\rm route}(B)
+\subseteq
+\mathcal F_{t+1}^{\rm route}(B).
+}
+\]
+
+The proof is direct. If \(U\) was feasible before, choose one old route with cost at most \(B\). Route dominance supplies a later route with cost no greater, so the later route is also within budget.
+
+If there is additionally a target \(U^\star\) for which no old route lies within budget but some later route does,
+
+\[
+\neg\exists p\in\mathcal P_t(U^\star):
+C_t(U^\star,p)\le B,
+\]
+
+while
+
+\[
+\exists p'\in\mathcal P_{t+1}(U^\star):
+C_{t+1}(U^\star,p')\le B,
+\]
+
+then
+
+\[
+\boxed{
+\mathcal F_t^{\rm route}(B)
+\subsetneq
+\mathcal F_{t+1}^{\rm route}(B).
+}
+\]
+
+Both statements are machine checked.
+
+This gives a network-level sufficient condition for a click without requiring the same physical components to persist. What must be carried forward is the ability to realize the old declared targets through routes that are no more costly.
+
+Adding a new route, recombining retained modules, importing a module by horizontal transfer, integrating a symbiotic partner, or introducing a cross-scale bridge can therefore create a strict budget-level click **when the extension is non-destructive over the declared repertoire**.
+
+That qualification matters. A new route can disable an old route, impose a dependency, divert a limiting resource, or raise the cost of an old target. In that case route dominance fails, and the addition is not certified as a monotone ratchet click.
 
 This is the network interpretation of the sentence:
 
@@ -367,7 +415,7 @@ This is the network interpretation of the sentence:
 }
 \]
 
-The claim is conditional. Reorganization can also delete routes, increase dependencies, or raise costs elsewhere. Such changes need not be ratchet clicks.
+The old material need not survive. What the sufficient condition preserves is a functional equivalence class of routes capable of realizing the previously accessible targets.
 
 ---
 
@@ -564,7 +612,9 @@ It verifies:
 8. a score crossing produces strict expansion;
 9. pointwise cost non-increase preserves budget-feasible accessibility;
 10. a cost crossing produces strict expansion;
-11. loss of any previously accessible declared target rules out a monotone preservation step.
+11. route-level dominance preserves every previously budget-feasible declared target;
+12. a newly feasible route creates a strict click when route dominance preserves the old repertoire;
+13. loss of any previously accessible declared target rules out a monotone preservation step.
 
 The formalization intentionally does not prove that any particular biological, institutional, technological, or chemical change satisfies the hypotheses. Those are empirical or model-specific questions.
 
