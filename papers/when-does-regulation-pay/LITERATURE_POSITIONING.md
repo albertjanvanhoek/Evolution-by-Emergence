@@ -1,24 +1,24 @@
 # Literature positioning
 
-This note records which ingredients of the paper are established and where the proposed contribution begins.
+This note separates established ingredients from the proposed contribution.
 
 ## Established ingredients
 
 ### Regulation as control from within
 
-Bich et al. (2016) distinguish regulation from mere constitutive dynamics and describe it as second-order control over the processes that produce and maintain an organism. This is close to the conceptual move made here from a fixed production matrix to state-dependent control.
+Bich et al. (2016) distinguish regulation from constitutive dynamics and describe it as second-order control over the processes that produce and maintain an organism.
 
 DOI: 10.1007/s10539-015-9497-8
 
 ### Economy versus effectiveness
 
-Szekely et al. (2013) explicitly analyze biological regulatory systems as a tradeoff between effectiveness and economy, using integral feedback and Pareto optimality. The present paper must not claim that regulatory cost–benefit optimization is new.
+Szekely et al. (2013) explicitly analyze biological regulatory systems as a tradeoff between effectiveness and economy, using integral feedback and Pareto optimality. The present paper does not claim that regulatory cost-effectiveness optimization is new.
 
 DOI: 10.1371/journal.pcbi.1003163
 
 ### Energetic cost of adaptation
 
-Lan et al. (2012) show that accurate sensory adaptation is dissipative and establish an energy–speed–accuracy tradeoff. This supports charging the controller explicitly rather than treating regulation as free.
+Lan et al. (2012) show that accurate sensory adaptation is dissipative and establish an energy-speed-accuracy tradeoff.
 
 DOI: 10.1038/nphys2276
 
@@ -28,7 +28,7 @@ Dekel & Alon (2005) directly measured protein-expression cost and benefit and ob
 
 DOI: 10.1038/nature03842
 
-Poelwijk et al. (2011) studied optimality and evolution of transcriptionally regulated expression using experimentally measurable cost–benefit relationships.
+Poelwijk et al. (2011) studied optimality and evolution of transcriptionally regulated expression using experimentally measurable cost-benefit relationships.
 
 DOI: 10.1186/1752-0509-5-128
 
@@ -44,19 +44,13 @@ DOI: 10.1371/journal.pone.0027033
 
 ### Loss of regulation
 
-Moran et al. (2005) show that the highly reduced Buchnera genome lacks most regulatory genes for pathways examined and has correspondingly limited transcriptional responsiveness.
+Moran et al. (2005) and Chong et al. (2019) document extensive regulatory-gene loss during *Buchnera* genome reduction.
 
-DOI: 10.1128/JB.187.12.4229-4237.2005
+DOIs: 10.1128/JB.187.12.4229-4237.2005; 10.1093/molbev/msz082
 
-Chong et al. (2019) show repeated loss of stress-response and transcriptional-regulation genes across Buchnera lineages during continued genome reduction.
+## Proposed contribution
 
-DOI: 10.1093/molbev/msz082
-
-## Proposed contribution of this paper
-
-The paper does not introduce the general idea that regulation trades effectiveness against cost.
-
-It adds a separate object inherited from the companion paper:
+The paper imports a separate object from the companion paper:
 
 \[
 M=m-z,
@@ -64,55 +58,101 @@ M=m-z,
 
 an independently declared functional margin.
 
-This permits two different controller questions:
+This creates two distinct questions:
 
-1. Which controller gain maximizes the declared selected growth/maintenance objective?
-2. Which controller gain is sufficient to keep the functional margin nonnegative?
+1. which controller maximizes the declared endogenous objective?
+2. which controller is sufficient to keep the declared function inside its boundary?
 
-In the minimal model these are
+The linear model gives
 
 \[
 k_{\rm opt}
 =
-\frac{\sqrt{\eta A/c_0}-\gamma}{\beta}
-\]
-
-and
-
-\[
+\frac{\sqrt{\eta A/c_0}-\gamma}{\beta},
+\qquad
 k_{\rm func}
 =
-\max\left\{0,\frac{\eta/m-\gamma}{\beta}\right\}.
+\max\left\{0,\frac{\eta/m-\gamma}{\beta}\right\},
 \]
 
-The proposed methodological contribution is the explicit demonstration that these need not coincide.
-
-At the selected optimum,
+with
 
 \[
-M_{\rm opt}
-=
-m-\sqrt{\frac{\eta c_0}{A}},
+A=\beta L-c_1\gamma.
 \]
 
-giving the exact alignment boundary
+These need not coincide.
+
+The paper then generalizes the result. For
 
 \[
-\eta_{\rm align}
-=
-\frac{Am^2}{c_0}.
+g(k)=g_0-\Phi(z^*)-C(k)-c_1kz^*,
 \]
 
-The pooling corollary shifts that boundary to
+with the stated convexity and monotonicity assumptions, alignment at the independently declared functional boundary is equivalent to
 
 \[
-\eta_{\rm align,n}
-=
-\frac{nAm^2}{c_0}
+\boxed{
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})
++
+c_1\gamma m^2.
+}
 \]
 
-under the explicit assumption that the constitutive controller cost is shared across \(n\) beneficiaries.
+Equivalently, with
+
+\[
+\Psi'(m)
+=
+\Phi'(m)-\frac{c_1\gamma}{\beta},
+\]
+
+\[
+\boxed{
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
+The proposed methodological contribution is therefore not a new theory of biological control, nor the discovery that regulation trades cost against effectiveness. It is the explicit separation between:
+
+- a selected controller optimum;
+- an independently declared functional boundary;
+- and the exact marginal condition under which the former respects the latter.
+
+The linear boundary
+
+\[
+\eta\le\frac{Am^2}{c_0}
+\]
+
+is an exact corollary.
+
+The same theorem yields:
+
+- the scaled-power steepness threshold
+  \[
+  p_{\min}
+  =
+  \frac{c_1\gamma+\eta c_0/m^2}{\beta L};
+  \]
+- the asymptotic cost classification through \(kC'(k)\);
+- the critical nature of logarithmic constitutive-cost growth;
+- a precise condition under which fixed finite boundary valuation is eventually outrun by unbounded disturbance.
+
+## Pooling scope
+
+The pooling corollary assumes shared, sufficiently non-rival constitutive infrastructure. It does not require perfectly common-mode disturbance, but it also does not apply when each beneficiary requires proportional duplication of controller capacity.
 
 ## Novelty caution
 
-A dedicated literature search should still be performed before submission for exact prior instances of the same selected-optimum-versus-functional-threshold equation. The current evidence supports treating the result as a compact synthesis/extension of established control and evolutionary cost–benefit ideas rather than claiming a new general law of biological regulation.
+A dedicated pre-submission literature search should still check for exact prior formulations of the selected-optimum-versus-functional-boundary inequality and its marginal form.
+
+The safest novelty framing is:
+
+> established regulatory cost-effectiveness theory plus an independently specified functional boundary yields a distinct alignment problem, together with an exact local criterion for when the selected controller respects that boundary.
+
+The paper does not claim a universal forward direction of evolution or organization.
