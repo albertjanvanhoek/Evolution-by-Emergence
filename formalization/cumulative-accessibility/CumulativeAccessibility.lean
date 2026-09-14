@@ -310,6 +310,47 @@ theorem margin_increase_opens_coupling_window
     ∃ kappa, 0 ≤ kappa ∧ M0 < kappa ∧ kappa ≤ M1 := by
   refine ⟨(M0 + M1) / 2, ?_, ?_, ?_⟩ <;> linarith
 
+/-- A coupling lying above the old margin but at or below the new margin
+switches the same uniformly dilutive acquisition from unaffordable to
+affordable, provided each margin is computed from an attained declared-set
+binding cost. -/
+theorem coupling_between_margins_switches_retention
+    (targets : Set α)
+    (oldCost newCost : Cost α)
+    {budget kappa oldBinding newBinding : ℝ}
+    (hkappa : 0 ≤ kappa)
+    (hOldBinding : 0 < oldBinding)
+    (hNewBinding : 0 < newBinding)
+    (hOldHub :
+      ∀ x, x ∈ targets → oldCost x ≤ budget → oldCost x ≤ oldBinding)
+    (hNewHub :
+      ∀ x, x ∈ targets → newCost x ≤ budget → newCost x ≤ newBinding)
+    (oldWitness newWitness : α)
+    (hOldWitnessT : oldWitness ∈ targets)
+    (hNewWitnessT : newWitness ∈ targets)
+    (hOldAttain : oldCost oldWitness = oldBinding)
+    (hNewAttain : newCost newWitness = newBinding)
+    (hOldInside : oldBinding ≤ budget)
+    (hNewInside : newBinding ≤ budget)
+    (hTooLargeBefore : Margin budget oldBinding < kappa)
+    (hFitsAfter : kappa ≤ Margin budget newBinding) :
+    ¬ RetainsCostOn targets oldCost
+        (fun x => (1 + kappa) * oldCost x) budget
+      ∧
+    RetainsCostOn targets newCost
+        (fun x => (1 + kappa) * newCost x) budget := by
+  constructor
+  · intro hret
+    have hk :=
+      (retainsCostOn_scaled_iff_margin
+        targets oldCost hkappa hOldBinding hOldHub
+        oldWitness hOldWitnessT hOldAttain hOldInside).mp hret
+    linarith
+  · exact
+      (retainsCostOn_scaled_iff_margin
+        targets newCost hkappa hNewBinding hNewHub
+        newWitness hNewWitnessT hNewAttain hNewInside).2 hFitsAfter
+
 /-- If maintained production rises, then for every positive coupling there is
 a nonempty interval of module thresholds that are unattainable before and
 attainable after. -/
@@ -557,6 +598,7 @@ theorem not_preservesOn_of_lost_target
 #print axioms margin_dilute
 #print axioms retainsCostOn_scaled_iff_margin
 #print axioms margin_increase_opens_coupling_window
+#print axioms coupling_between_margins_switches_retention
 #print axioms production_increase_opens_threshold_window
 #print axioms exact_two_click_witness
 #print axioms exact_second_click_unavailable_at_baseline
