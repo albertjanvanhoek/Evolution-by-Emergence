@@ -91,6 +91,14 @@ Because
 
 for \(a>0\), with equality only at \(a=1\).
 
+The same shape obeys the exact reciprocal identity
+
+\[
+\boxed{h(a)=h(1/a)}
+\]
+
+for \(a>0\). Hence it is symmetric in log-affinity.
+
 With
 
 \[
@@ -122,4 +130,6 @@ Numerical and closed-form checks:
 
 ## Formalization scope
 
-Lean checks the reduced algebra. It does not derive the affinity laws from chemistry, mechanics, or the full production-network ODEs.
+Lean checks the reduced algebra, including the reciprocal/log-affinity symmetry of the turnover law. It does not derive the affinity laws from chemistry, mechanics, or the full production-network ODEs.
+
+The proposed asymmetric two-exponent extension in the manuscript is not formalized and is not part of the verified claim set.
