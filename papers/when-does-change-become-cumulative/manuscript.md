@@ -489,11 +489,13 @@ In the worked two-click example below, the first acquired capability is chosen s
 
 ---
 
-## 8. A winding click opens future acquisition space
+## 8. Corollary: a winding click opens future acquisition space
 
-The margin identity turns the phrase “previous organization becomes the starting point for the next search” into a checkable statement.
+The margin identity turns the phrase “previous organization becomes the starting point for the next search” into a checkable consequence.
 
-Suppose a retained first click changes the current margin from
+This section is deliberately a **corollary** of the exact retention boundary. It assumes that a retained first click with \(M_1>M_0\) already exists. The substantive existence claim is supplied by the worked network in Section 9.
+
+Suppose such a click changes the current margin from
 
 \[
 M_0
@@ -523,21 +525,23 @@ Then the interval
 
 is nonempty.
 
-Every uniform-dilution coupling \(\kappa\) in that interval has the property:
+Every uniform-dilution coupling \(\kappa\) in that interval has the property
 
 \[
-\kappa>M_0
+\kappa>M_0,
 \]
 
-so it could not have been retained before the first click, while
+so the same load is not retainable before the first click, while
 
 \[
-\kappa\le M_1
+\kappa\le M_1,
 \]
 
-so it can be retained afterward.
+so it is retainable afterward.
 
-### Proposition 2 — margin opening theorem
+Formally, this is Proposition 1 applied at two different historical states, with each margin computed from the binding cost of the declared repertoire at that state.
+
+### Corollary 1 — retention window opened by winding
 
 If
 
@@ -545,19 +549,11 @@ If
 M_1>M_0\ge0,
 \]
 
-then there exists a nonempty set of future loads that are unaffordable before the click and affordable after it.
+then there exists a nonempty set of future loads that are not retainable before the first click and are retainable afterward.
 
-This is the first forward implication:
+Retainability alone is **not** a second click. The prospective module must itself become newly accessible.
 
-\[
-\boxed{
-\text{a winding click changes which later acquisitions can be retained}.
-}
-\]
-
-The result becomes stronger when the first click also raises maintained production.
-
-Suppose
+Suppose the first click also raises maintained production:
 
 \[
 X_1>X_0.
@@ -571,14 +567,14 @@ x_D
 \frac{X\kappa}{1+\kappa}.
 \]
 
-If its declared threshold is \(\theta_D\), then it is accessible when
+If its declared threshold is \(\theta_D\), it is accessible when
 
 \[
 \theta_D\le
 \frac{X\kappa}{1+\kappa}.
 \]
 
-Thus for every \(\kappa>0\), the interval
+Thus for every \(\kappa>0\),
 
 \[
 \boxed{
@@ -589,13 +585,27 @@ Thus for every \(\kappa>0\), the interval
 }
 \]
 
-is nonempty.
+is a nonempty interval of thresholds for which the proposed module is inaccessible before the first click and accessible afterward.
 
-Any \(\theta_D\) in that interval describes a module that is inaccessible before the productive click and accessible afterward.
+The two ingredients therefore play different roles:
 
-Combining the two intervals gives a two-parameter region in which the first click makes a second click possible.
+\[
+\boxed{
+\begin{aligned}
+M_0<\kappa\le M_1
+&\quad\Rightarrow\quad
+\text{the inherited repertoire can retain the load only after click 1},\\
+\frac{X_0\kappa}{1+\kappa}<\theta_D\le
+\frac{X_1\kappa}{1+\kappa}
+&\quad\Rightarrow\quad
+\text{the new capability itself crosses into accessibility only after click 1}.
+\end{aligned}
+}
+\]
 
-Both interval results are machine checked.
+Only their conjunction supplies the two-click region.
+
+The coupling-window existence, its direct retainability interpretation, and the threshold-window existence are machine checked.
 
 ---
 
@@ -956,16 +966,237 @@ This is conceptually consistent with the fixed-resolution no-go result: fixed-si
 
 ---
 
-## 13. Endogenous click rate
+## 13. Log-slack and the filtered candidate process
 
-A forward stochastic dynamics should not treat the probability of a click as an exogenous constant.
+The margin identity gives a useful final change of variables.
 
-Let \(s\) denote the current organization and let \(Q_s\) be the state-dependent distribution of candidate changes generated from it. Let \(\mathcal C(s)\) be the subset of candidates that:
+Define
 
-1. preserve the declared inherited repertoire;
-2. make at least one declared target newly accessible.
+\[
+\boxed{
+W_t=\log(1+M_t).
+}
+\]
 
-If candidates are generated at rate \(\nu(s)\), then the order-theoretic click rate is
+For a candidate whose multiplicative change in binding cost is
+
+\[
+r_t=\frac{c_{t+1}^\star}{c_t^\star},
+\]
+
+the verified identity
+
+\[
+1+M_{t+1}
+=
+\frac{1+M_t}{r_t}
+\]
+
+becomes, for an accepted candidate,
+
+\[
+\boxed{
+W_{t+1}
+=
+W_t-\log r_t.
+}
+\]
+
+Retention requires
+
+\[
+r_t\le1+M_t,
+\]
+
+equivalently
+
+\[
+\boxed{
+\log r_t\le W_t.
+}
+\]
+
+Thus candidate acceptance is a state-dependent filter on a multiplicative process.
+
+Let
+
+\[
+Y_t=\log r_t.
+\]
+
+If a candidate that violates retention is rejected without changing the current organization, the one-dimensional update is
+
+\[
+\boxed{
+W_{t+1}
+=
+\begin{cases}
+W_t-Y_{t+1}, & Y_{t+1}\le W_t,\\
+W_t, & Y_{t+1}>W_t.
+\end{cases}
+}
+\]
+
+This is not an ordinary unconstrained random walk. The increment law is filtered by the current slack.
+
+### Proposition 3 — geometric-mean criterion for linear self-propagation
+
+Assume, as a deliberately simplified forward model, that the candidate log-multipliers
+
+\[
+Y_1,Y_2,\ldots
+\]
+
+are i.i.d. with
+
+\[
+\mathbb E|Y_1|<\infty
+\]
+
+and are drawn from a state-independent candidate pool.
+
+Write
+
+\[
+\mu=\mathbb E[Y_1]=\mathbb E[\log r].
+\]
+
+Define **linear self-propagation** to mean positive asymptotic growth of log-slack,
+
+\[
+\liminf_{n\to\infty}\frac{W_n}{n}>0.
+\]
+
+Then
+
+\[
+\boxed{
+\mu<0
+}
+\]
+
+is exactly the condition for linear self-propagation in this filtered model, and in that regime
+
+\[
+\boxed{
+\frac{W_n}{n}\longrightarrow-\mu
+\qquad\text{almost surely}.
+}
+\]
+
+Equivalently, the geometric mean multiplier satisfies
+
+\[
+\boxed{
+\exp(\mathbb E[\log r])<1.
+}
+\]
+
+The arithmetic mean \(\mathbb E[r]\) is not the relevant multiplicative criterion.
+
+#### Proof sketch
+
+For every candidate,
+
+\[
+W_{n+1}-W_n
+=
+-Y_{n+1}\mathbf 1_{\{Y_{n+1}\le W_n\}}.
+\]
+
+When a candidate is rejected, \(Y_{n+1}>W_n\ge0\), so replacing the rejected update by the unconstrained increment \(-Y_{n+1}\) could only make the state smaller. Hence pathwise
+
+\[
+W_n
+\ge
+W_0-\sum_{i=1}^{n}Y_i.
+\]
+
+If \(\mu<0\), the strong law of large numbers gives a positive linear lower bound on \(W_n\). A rejection at sufficiently large \(n\) then requires \(Y_n\) itself to exceed a linearly growing threshold. Integrability of \(Y^+\) makes the corresponding tail probabilities summable; Borel--Cantelli therefore implies only finitely many rejections. After that random finite time every candidate is accepted, and the strong law gives
+
+\[
+W_n/n\to-\mu.
+\]
+
+Conversely, if \(W_n\) had a positive linear lower growth rate while \(\mu\ge0\), the same tail argument would again make rejections eventually finite, after which the strong law would force asymptotic rate \(-\mu\le0\), a contradiction.
+
+So the logarithm turns the multiplicative winding/spending problem into an additive long-run criterion.
+
+### The positive-mean regime is filtered, not collapsed
+
+The case
+
+\[
+\mu>0
+\]
+
+does **not** imply that slack simply goes to zero or that only \(r<1\) candidates are eventually accepted.
+
+At state \(W=w\), the conditional mean increment is
+
+\[
+\boxed{
+d(w)
+=
+-\mathbb E\!\left[
+Y\,\mathbf 1_{\{Y\le w\}}
+\right].
+}
+\]
+
+If the candidate law is continuous, has finite first moment, and assigns positive probability to winding candidates \(Y<0\), then
+
+\[
+d(0)>0,
+\]
+
+whereas
+
+\[
+d(w)\longrightarrow-\mu<0
+\qquad
+(w\to\infty).
+\]
+
+Hence the drift changes sign at at least one finite slack level. This supplies a genuine negative-feedback mechanism: low slack preferentially filters out expensive candidates, while high slack admits enough spending candidates to push the expected drift back downward.
+
+This drift argument does **not** by itself prove a unique stationary distribution, its acceptance rate, or a universal closed form for the pinned regime. Those remain separate stochastic questions.
+
+In particular, the asymptotic acceptance probability is not generally
+
+\[
+P(Y\le0).
+\]
+
+At positive slack, some spending candidates with
+
+\[
+0<Y\le W
+\]
+
+remain admissible. If a stationary law \(\pi\) exists, the stationary acceptance fraction would instead be
+
+\[
+\mathbb E_\pi[F_Y(W)],
+\]
+
+not simply \(F_Y(0)\).
+
+A Gaussian simulation supplied during development illustrates this point. For \(\mu=0.30,\sigma=0.5\), the simulated tail acceptance fraction is about \(0.548\), while \(P(Y\le0)\approx0.274\); for \(\mu=0.80,\sigma=0.5\), the corresponding values are about \(0.109\) and \(0.0548\). The near factor of two observed for symmetric laws is not universal and is not used as a theorem.
+
+### Endogenous candidate generation remains the open recursion
+
+The i.i.d. model above holds the candidate law fixed in order to isolate the effect of the retention filter.
+
+The more general organizational problem remains
+
+\[
+Q_s,
+\]
+
+the candidate distribution generated by the current organization itself.
+
+If candidates arise at rate \(\nu(s)\), and \(\mathcal C(s)\) denotes candidates that both preserve the declared inherited repertoire and add at least one newly accessible target, then
 
 \[
 \boxed{
@@ -976,37 +1207,14 @@ Q_s\!\left(\mathcal C(s)\right).
 }
 \]
 
-Both factors can be endogenous.
+A successful click changes \(s\), the slack \(W\), and potentially \(Q_s\) itself.
 
-For a purely dilutive candidate described only by \(\kappa\), affordability is
+This separates two recursive effects:
 
-\[
-\kappa\le M(s),
-\]
+1. **budget filtering** — current slack determines which candidates can be retained;
+2. **evolvability change** — current organization determines which candidates are generated.
 
-so the candidate distribution is filtered by the current margin.
-
-A successful click then changes the organization, the margin, and potentially the next candidate distribution:
-
-\[
-s_t
-\rightarrow
-Q_{s_t}
-\rightarrow
-\text{candidate}
-\rightarrow
-s_{t+1}
-\rightarrow
-Q_{s_{t+1}}.
-\]
-
-This is the recursive point.
-
-A spending click can reduce the measure of future affordable candidates. A winding click can increase it. A change to recombination, transfer, modularity, memory, or any other candidate-generating machinery can change \(Q_s\) itself.
-
-The paper does not yet prove a universal drift toward winding candidates. That would be the next forward-dynamics theorem.
-
-What it does establish is the state variable and the selection filter such a theorem would have to act through.
+The first now has an exact state variable and a long-run criterion in the fixed-pool model. The second remains the unresolved step toward a general dynamics of cumulative evolution.
 
 ---
 
@@ -1098,7 +1306,8 @@ Under the explicit definitions and assumptions:
 - a production increase creates a nonempty interval of newly accessible module thresholds;
 - an exact two-click accessibility sequence exists;
 - the second click in that witness is unavailable at the baseline;
-- repeated fixed-minimum non-returning loads have a finite load-ladder bound.
+- repeated fixed-minimum non-returning loads have a finite load-ladder bound;
+- in the i.i.d. fixed candidate-pool model, negative mean log-multiplier (mathbb E[log r]<0) is the criterion for positive linear log-slack growth, with (W_n/n	o-mathbb E[log r]) almost surely under the stated integrability assumptions.
 
 ### Not secured
 
@@ -1153,8 +1362,22 @@ The exact two-click network witness shows this can happen in the model.
 
 So the ratchet is not a drive toward complexity. It is a conditional memory mechanism: retained organization can preserve what has already become reachable and alter the budget from which subsequent organization is built.
 
-The next forward question is no longer vague:
+For a fixed i.i.d. candidate pool, that question now has a partial answer. In log-slack coordinates,
 
-> **Under what conditions does the candidate-generating process produce and retain enough winding clicks to replenish the slack consumed by later organization?**
+[
+W_t=log(1+M_t),
+]
 
-That is the point at which cumulative accessibility becomes a dynamics of cumulative evolution.
+multiplicative binding-cost changes become additive, and positive linear slack accumulation occurs exactly when
+
+[
+oxed{
+mathbb E[log r]<0.
+}
+]
+
+The remaining forward question is therefore narrower:
+
+> **Under what conditions does the organization change its own candidate-generating process (Q_s) so that winding-enough, retainable, capability-adding candidates continue to be produced?**
+
+That is the point at which a budgeted ratchet becomes an endogenous dynamics of cumulative evolution.
