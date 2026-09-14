@@ -12,7 +12,7 @@ Fix a declared family of target organizations, an evaluation protocol, a finite 
 
 The definition is intentionally resolution- and protocol-specific. It does not imply that evolution generally preserves all capabilities, nor that complexity increases. A new capability acquired at the cost of an old one is novelty but not a strict monotone accessibility click under the declared target family. We provide two sufficient conditions. First, pointwise non-decrease of finite-horizon target hitting scores preserves every thresholded accessible set; if one target crosses threshold, the step is strict. Second, in a mechanism-level cost representation, pointwise non-increase of realization cost preserves every budget-feasible target set; if one target crosses the budget boundary, the step is strict. Cost is treated as a determinant of accessibility, not as a replacement for the probabilistic accessibility kernel.
 
-The algebra of preservation, strict expansion, score dominance, cost dominance, and loss is machine checked in Lean. The result supplies a compositional building block for cumulative emergence: **retained organization produces a monotone ratchet only when the historical change preserves the declared accessible region while adding at least one newly accessible target.**
+The algebra of preservation, strict expansion, score dominance, cost dominance, and loss is machine checked in Lean. Set expansion alone, however, does not identify its historical cause. We therefore distinguish an **order-theoretic click** from a **historically attributed ratchet click**: the latter additionally requires a retained earlier structure to make a positive causal contribution to at least one newly accessible target under the interventional criterion of the parent framework. The result supplies a compositional building block for cumulative emergence: **retained organization produces a strong monotone ratchet only when the historical change preserves the declared accessible region, adds at least one newly accessible target, and the added access is causally attributable to retained history.**
 
 ---
 
@@ -154,6 +154,26 @@ If either step is strict and the other preserves accessibility, then
 Therefore a registered click cannot disappear relative to its earlier baseline so long as later steps continue to preserve the declared accessible set.
 
 This is the minimal algebra of a cumulative ratchet.
+
+### Definition 3 — historically attributed ratchet click
+
+Set inclusion establishes an order relation, not historical causation.
+
+Let (N_{t+1}=mathcal R_{t+1}setminusmathcal R_t) be the newly accessible declared targets. Let (h) be structure acquired earlier and retained into the later state. An **historically attributed ratchet click** requires both:
+
+1. a strict order-theoretic click,
+   [
+   mathcal R_tsubsetneqmathcal R_{t+1};
+   ]
+2. at least one witness (U^starin N_{t+1}) for which retaining (h) has a positive causal contribution under the parent framework's defined intervention,
+   [
+   Delta_	au^{mathrm{total}}(U^star;hmid B)>0,
+   ]
+   or the corresponding controlled-opportunity contrast when that is the estimand of interest.
+
+The first condition says that a declared repertoire has been preserved and extended. The second says that at least part of the extension is historically attributable to retained organization rather than merely coincident with it.
+
+This distinction prevents a change in an uncontrolled external condition from being relabelled as a cumulative organizational ratchet simply because the later accessible set is larger.
 
 ### Preorder, not automatically a partial order
 
@@ -564,9 +584,11 @@ The result does not establish that:
 - a strong monotone ratchet is required for every meaningful form of cumulative evolution;
 - an infinite sequence of fixed-resolution clicks can occur in finite physical time.
 
-It establishes a conditional statement:
+It establishes a conditional order statement:
 
-> **If historical change preserves a declared accessible repertoire and adds at least one newly accessible target, then accessibility has changed cumulatively in a composable monotone sense.**
+> **If historical change preserves a declared accessible repertoire and adds at least one newly accessible target, then accessibility has expanded in a composable monotone sense.**
+
+To call that expansion a historically attributed organizational ratchet, the added access must also be causally linked to retained earlier organization under a defined intervention.
 
 ---
 
