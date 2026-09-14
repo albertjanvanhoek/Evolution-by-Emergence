@@ -245,6 +245,54 @@ theorem two_type_linear_cost_slack_strict
     exact mul_pos (mul_pos (mul_pos halpha hp0) h1mp) hdiff
   nlinarith
 
+
+/-- Local search-rate velocity when a fraction/budget-coupling beta of released
+slack is reinvested into candidate generation. -/
+def linearSearchVelocity (beta slackVelocity : ℝ) : ℝ :=
+  beta * slackVelocity
+
+/-- If released slack is coupled nonnegatively to exploration, cost selection
+among functionally equivalent implementations cannot decrease the search-rate
+velocity. This is the formal bridge:
+  implementation competition -> slack -> exploration.
+-/
+theorem two_type_cost_selection_search_nondecreasing
+    (p benefit alpha beta cA cB : ℝ)
+    (hp0 : 0 ≤ p)
+    (hp1 : p ≤ 1)
+    (halpha : 0 ≤ alpha)
+    (hbeta : 0 ≤ beta) :
+    0 ≤ linearSearchVelocity beta
+      (twoTypeSlackVelocity p cA cB
+        (costFitness benefit alpha cA)
+        (costFitness benefit alpha cB)) := by
+  unfold linearSearchVelocity
+  exact mul_nonneg hbeta
+    (two_type_linear_cost_slack_nondecreasing
+      p benefit alpha cA cB hp0 hp1 halpha)
+
+/-- Strict search acceleration when both competing implementations are present,
+their costs differ, cost matters for reproduction, and released slack has a
+strictly positive coupling to exploration. -/
+theorem two_type_cost_selection_search_strict
+    (p benefit alpha beta cA cB : ℝ)
+    (hp0 : 0 < p)
+    (hp1 : p < 1)
+    (halpha : 0 < alpha)
+    (hbeta : 0 < beta)
+    (hcost : cA ≠ cB) :
+    0 < linearSearchVelocity beta
+      (twoTypeSlackVelocity p cA cB
+        (costFitness benefit alpha cA)
+        (costFitness benefit alpha cB)) := by
+  unfold linearSearchVelocity
+  exact mul_pos hbeta
+    (two_type_linear_cost_slack_strict
+      p benefit alpha cA cB hp0 hp1 halpha hcost)
+
+#print axioms two_type_cost_selection_search_nondecreasing
+#print axioms two_type_cost_selection_search_strict
+
 #print axioms two_type_competition_mean_cost_nonincreasing
 #print axioms two_type_linear_cost_exact
 #print axioms two_type_linear_cost_nonincreasing
