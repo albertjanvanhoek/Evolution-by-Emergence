@@ -1,25 +1,14 @@
 # Reproducibility
 
-## Model
-
-The regulated deviation variable \(z\ge0\) obeys
+## Controlled deviation model
 
 \[
 \dot z=\eta-\gamma z-\beta u,
 \qquad
-u=kz.
+u=kz,
 \]
 
-Parameters:
-
-- \(\eta>0\): disturbance/damage input.
-- \(\gamma>0\): passive recovery/removal.
-- \(\beta>0\): efficacy of regulatory action.
-- \(k\ge0\): controller gain.
-- \(m>0\): maximum tolerated steady deviation; functional margin is \(M=m-z\).
-- \(L>0\): growth/maintenance penalty per unit deviation.
-- \(c_0>0\): constitutive cost per unit installed gain.
-- \(c_1\ge0\): activity-dependent cost per unit control action.
+with \(\eta>0\), \(\gamma>0\), \(\beta>0\), and \(k\ge0\).
 
 The steady state is
 
@@ -27,30 +16,35 @@ The steady state is
 z^*(k)=\frac{\eta}{\gamma+\beta k}.
 \]
 
-Functional sufficiency is
+For declared tolerance \(m>0\),
 
 \[
-M^*(k)=m-z^*(k)\ge0.
+M^*(k)=m-z^*(k),
 \]
 
-## Growth/maintenance objective
-
-The selected scalar objective in the worked model is
+and
 
 \[
-g(k)=g_0-Lz^*(k)-c_0k-c_1kz^*(k).
+M^*(k)\ge0
+\iff
+\eta\le m(\gamma+\beta k).
 \]
 
-The advantage over the unregulated state is
+Thus
 
 \[
-\Delta g(k)
+k_{\rm func}
 =
-L[z^*(0)-z^*(k)]
--c_0k-c_1kz^*(k).
+\max\left\{0,\frac{\eta/m-\gamma}{\beta}\right\}.
 \]
 
-Define
+## Linear selected objective
+
+\[
+g(k)=g_0-Lz^*(k)-c_0k-c_1kz^*(k),
+\]
+
+with \(L>0\), \(c_0>0\), and \(c_1\ge0\). Define
 
 \[
 A=\beta L-c_1\gamma.
@@ -68,29 +62,27 @@ k[\eta A-c_0\gamma(\gamma+\beta k)]
 }.
 \]
 
-The derivative is
+The derivatives are
 
 \[
 \frac{d\Delta g}{dk}
 =
-\frac{\eta A}{(\gamma+\beta k)^2}-c_0.
+\frac{\eta A}{(\gamma+\beta k)^2}-c_0,
 \]
-
-If \(A>0\), the second derivative is negative:
 
 \[
 \frac{d^2\Delta g}{dk^2}
 =
--\frac{2\eta A\beta}{(\gamma+\beta k)^3}<0.
+-\frac{2\eta A\beta}{(\gamma+\beta k)^3}.
 \]
 
-Thus the positive optimum exists when
+For \(A>0\), positive regulation is selected when
 
 \[
-\eta A>c_0\gamma^2
+\eta A>c_0\gamma^2,
 \]
 
-and equals
+and then
 
 \[
 k_{\rm opt}
@@ -104,43 +96,278 @@ At that optimum,
 z^*_{\rm opt}
 =
 \sqrt{\frac{\eta c_0}{A}},
-\]
-
-hence
-
-\[
+\qquad
 M^*_{\rm opt}
 =
 m-\sqrt{\frac{\eta c_0}{A}}.
 \]
 
-The growth-optimal regulator is functionally sufficient iff
+Hence
 
 \[
-\eta\le\frac{A m^2}{c_0}.
+M^*_{\rm opt}\ge0
+\iff
+\eta\le\frac{Am^2}{c_0}.
 \]
 
-## Minimum function-preserving gain
+### Algebraic global-optimum certificate
 
-Functional sufficiency requires
+Let
 
 \[
-\eta\le m(\gamma+\beta k).
+d=\gamma+\beta k
 \]
 
-If \(\eta>m\gamma\),
+and
 
 \[
-k_{\rm func}
+R(d)=c_0d+\frac{\eta A}{d}.
+\]
+
+Up to a \(k\)-independent constant and the positive factor \(1/\beta\), maximizing \(g\) is minimizing \(R\).
+
+If \(d_0>0\) satisfies
+
+\[
+\eta A=c_0d_0^2,
+\]
+
+then
+
+\[
+R(d)-R(d_0)
 =
-\frac{\eta/m-\gamma}{\beta}.
+\frac{c_0(d-d_0)^2}{d}
+\ge0.
 \]
 
-Otherwise \(k_{\rm func}=0\).
+This gives a global-optimum certificate for the linear model and is machine checked in Lean.
+
+## General marginal-alignment theorem
+
+Generalize to
+
+\[
+g(k)
+=
+g_0
+-
+\Phi(z^*(k))
+-
+C(k)
+-
+c_1kz^*(k).
+\]
+
+On the overloaded branch
+
+\[
+\eta>m\gamma,
+\]
+
+the functional boundary corresponds to
+
+\[
+k(m)=k_{\rm func}.
+\]
+
+Using
+
+\[
+k(z)=\frac{\eta/z-\gamma}{\beta}
+\]
+
+and
+
+\[
+k(z)z=\frac{\eta-\gamma z}{\beta},
+\]
+
+the objective becomes, up to constants,
+
+\[
+g(z)
+=
+-\Phi(z)
+-C(k(z))
++\frac{c_1\gamma}{\beta}z.
+\]
+
+Therefore
+
+\[
+g'(z)
+=
+-\Phi'(z)
++
+\frac{\eta}{\beta z^2}C'(k(z))
++
+\frac{c_1\gamma}{\beta},
+\]
+
+and
+
+\[
+g''(z)
+=
+-\Phi''(z)
+-
+\frac{\eta^2}{\beta^2z^4}C''(k(z))
+-
+\frac{2\eta}{\beta z^3}C'(k(z)).
+\]
+
+Under
+
+\[
+\Phi''\ge0,
+\qquad
+C'>0,
+\qquad
+C''\ge0,
+\]
+
+we have \(g''<0\). Hence
+
+\[
+z_{\rm opt}\le m
+\iff
+g'(m)\le0.
+\]
+
+Substitution gives
+
+\[
+\boxed{
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})
++
+c_1\gamma m^2.
+}
+\]
+
+Define
+
+\[
+\Psi'(m)
+=
+\Phi'(m)-\frac{c_1\gamma}{\beta}.
+\]
+
+Then equivalently
+
+\[
+\boxed{
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
+This criterion is local at \(z=m\): it decides aligned versus non-aligned but does not determine \(M^*_{\rm opt}\) without solving for the optimum.
+
+## Exact specializations
+
+For
+
+\[
+\Phi(z)=Lz,
+\qquad
+C(k)=c_0k,
+\]
+
+\[
+\Psi'(m)=\frac{A}{\beta},
+\]
+
+and the theorem reduces to
+
+\[
+\eta c_0\le Am^2.
+\]
+
+For
+
+\[
+\Phi_p(z)
+=
+Lm\left(\frac zm\right)^p,
+\qquad
+p\ge1,
+\]
+
+with \(C(k)=c_0k\),
+
+\[
+\Phi_p'(m)=Lp,
+\]
+
+so
+
+\[
+\boxed{
+p_{\min}
+=
+\frac{c_1\gamma+\eta c_0/m^2}{\beta L}.
+}
+\]
+
+For the worked parameters,
+
+\[
+p_{\min}=0.2+0.4\eta.
+\]
+
+## Constitutive-cost asymptotics
+
+On the overloaded branch,
+
+\[
+\eta=m(\gamma+\beta k_{\rm func}).
+\]
+
+Thus
+
+\[
+\eta C'(k_{\rm func})
+=
+m(\gamma+\beta k_{\rm func})C'(k_{\rm func}),
+\]
+
+so the relevant large-gain quantity is \(kC'(k)\).
+
+If
+
+\[
+kC'(k)\to\infty,
+\]
+
+then any fixed finite \(\Psi'(m)\) is eventually insufficient under unbounded disturbance.
+
+For \(C(k)=c_0k^a\), \(a>0\), this condition holds.
+
+For \(C(k)\sim c_0\log k\),
+
+\[
+kC'(k)\to c_0,
+\]
+
+so the logarithmic case is critical.
+
+For \(C(k)\sim c_0(\log k)^2\),
+
+\[
+kC'(k)\sim2c_0\log k\to\infty,
+\]
+
+so eventual separation still occurs, although slowly.
+
+These are asymptotic statements only. The exact finite-system criterion is the boundary inequality above.
 
 ## Pooling
 
-The pooling calculation assumes that the constitutive controller cost \(c_0k\) is shared equally across \(n\) beneficiaries, while each beneficiary retains the same local benefit and activity-dependent cost. Thus replace
+The pooling calculation assumes sufficiently shared, non-rival constitutive infrastructure, so
 
 \[
 c_0\mapsto c_0/n.
@@ -149,30 +376,28 @@ c_0\mapsto c_0/n.
 Then
 
 \[
-k_{{\rm opt},n}
-=
-\frac{\sqrt{n\eta A/c_0}-\gamma}{\beta},
-\]
-
-on the positive branch, and
-
-\[
 M^*_{{\rm opt},n}
 =
-m-\sqrt{\frac{\eta c_0}{nA}}.
+m-\sqrt{\frac{\eta c_0}{nA}},
 \]
 
-Functional sufficiency at the selected optimum requires
+and alignment requires
 
 \[
-n\ge\frac{\eta c_0}{A m^2}.
+\eta\le\frac{nAm^2}{c_0}.
 \]
 
-This is a model assumption about which cost is shareable, not a universal pooling law.
+For a discrete beneficiary count,
+
+\[
+n_{\min}
+=
+\left\lceil\frac{\eta c_0}{Am^2}\right\rceil.
+\]
+
+This \(1/n\) result does not apply when controller capacity must be duplicated proportionally for each additional beneficiary.
 
 ## Worked parameters
-
-Figures use:
 
     gamma = 1
     beta  = 1
@@ -187,48 +412,43 @@ Therefore
 A=0.8.
 \]
 
-Important thresholds:
+Thresholds:
 
-    onset of positive selected gain: eta_sel = 0.125
-    unregulated functional failure: eta_unreg = 0.5
-    unpooled alignment boundary: eta_align = 2.0
-    pooled alignment boundary for n=4: eta_align,4 = 8.0
+    eta_sel   = 0.125
+    eta_unreg = 0.5
+    eta_align = 2.0
+    eta_align,n=4 = 8.0
 
 At \(\eta=3\):
 
     k_func = 5.0000
-    k_opt,n=1 = 3.8990     -> functionally insufficient
-    k_opt,n=4 = 8.7980     -> functionally sufficient
+    k_opt,n=1 = 3.8990
+    k_opt,n=4 = 8.7980
+
+The three linear-model disturbance boundaries satisfy
+
+\[
+\eta_{\rm unreg}^2
+=
+\eta_{\rm sel}\eta_{\rm align}.
+\]
 
 ## Rare-shock limiting model
 
-Let shocks arrive as a Poisson process \(N_t\) of rate \(\nu\). Suppose an unregulated shock multiplies abundance by survival factor \(s_0\in(0,1)\), while regulation improves this to \(s_1\in(s_0,1]\), at continuous cost \(c\).
-
-Then almost surely,
+With shocks arriving at rate \(\nu\), survival factors \(s_0<s_1\), and continuous preparedness cost \(c\),
 
 \[
-\frac{1}{t}\log X_t
-\to
-g_0+\nu\log s_0
+\Delta g_{\rm shock}
+=
+-c+
+\nu\log\left(\frac{s_1}{s_0}\right).
 \]
 
-without regulation and
-
-\[
-\frac{1}{t}\log X_t^{\rm reg}
-\to
-g_0-c+\nu\log s_1
-\]
-
-with regulation.
-
-Therefore regulation is favored iff
+Preparedness pays iff
 
 \[
 \nu\log(s_1/s_0)>c.
 \]
-
-If the continuous cost is pooled equally across \(n\) beneficiaries, replace \(c\) by \(c/n\).
 
 ## Figures
 
@@ -240,16 +460,22 @@ The generator uses only the Python standard library and writes the committed SVG
 
 ## Formalization
 
-The first formalization lives at:
+The Lean source is:
 
     formalization/persistence-drift/RegulatoryReturn.lean
 
-Verified Lean proof state:
+It machine-checks:
 
-    3005e2e3b2104a477b704815408340055fe462fa
+1. functional sufficiency versus the load-control inequality;
+2. exact return factorization;
+3. positive and nonpositive return implications;
+4. the reduced-cost representation;
+5. a global-optimum certificate for the linear stationary candidate;
+6. the scaled boundary-derivative identity;
+7. the exact marginal-alignment inequality;
+8. the effective marginal-value reformulation;
+9. the linear specialization;
+10. the scaled-power boundary specialization;
+11. the pooling numerator identity.
 
-GitHub Actions run:
-
-    34838013513
-
-The formalization is intentionally limited to algebraic implications. It does not formalize natural selection, empirical controller biology, or the stochastic Poisson limit unless explicitly stated in theorem assumptions.
+The Lean development checks algebraic implications under explicit assumptions. The manuscript's differentiability and convexity assumptions for the general \(\Phi,C\) theorem are analytic and stated separately. No empirical biological assumption is machine validated.
