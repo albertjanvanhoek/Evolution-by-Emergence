@@ -303,6 +303,41 @@ theorem accepted_fraction_margin_positive
     linarith
   exact div_pos hnum hden
 
+/-- Candidate acceptance in log-slack coordinates: a log-cost multiplier
+Y is retainable at slack W exactly when Y <= W. -/
+def AcceptedAtSlack (W Y : ℝ) : Prop :=
+  Y ≤ W
+
+/-- Lower slack weakly contracts the admissible candidate set. -/
+theorem acceptedAtSlack_mono
+    {Wlow Whigh Y : ℝ}
+    (hW : Wlow ≤ Whigh)
+    (hacc : AcceptedAtSlack Wlow Y) :
+    AcceptedAtSlack Whigh Y := by
+  exact le_trans hacc hW
+
+/-- At zero log-slack, only neutral or winding candidates are admissible. -/
+theorem acceptedAtZero_iff_nonpositive
+    (Y : ℝ) :
+    AcceptedAtSlack 0 Y ↔ Y ≤ 0 := by
+  rfl
+
+/-- A strictly spending candidate is rejected at zero log-slack. -/
+theorem spending_rejected_at_zero
+    {Y : ℝ} (hspend : 0 < Y) :
+    ¬ AcceptedAtSlack 0 Y := by
+  exact not_le_of_gt hspend
+
+/-- A strictly winding candidate is admissible at every nonnegative
+log-slack level, including the boundary. -/
+theorem winding_accepted_at_nonnegative_slack
+    {W Y : ℝ}
+    (hW : 0 ≤ W)
+    (hwind : Y < 0) :
+    AcceptedAtSlack W Y := by
+  unfold AcceptedAtSlack
+  linarith
+
 /-- Exact margin recursion for a uniformly dilutive load.
 This identity alone does not imply finite-step exhaustion when accepted loads
 may become arbitrarily small. -/
@@ -665,6 +700,10 @@ theorem not_preservesOn_of_lost_target
 #print axioms margin_update
 #print axioms winds_iff_binding_cost_falls
 #print axioms accepted_fraction_margin_positive
+#print axioms acceptedAtSlack_mono
+#print axioms acceptedAtZero_iff_nonpositive
+#print axioms spending_rejected_at_zero
+#print axioms winding_accepted_at_nonnegative_slack
 #print axioms margin_dilute
 #print axioms retainsCostOn_scaled_iff_margin
 #print axioms margin_increase_opens_coupling_window
