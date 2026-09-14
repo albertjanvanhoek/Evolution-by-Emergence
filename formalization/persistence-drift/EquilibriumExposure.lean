@@ -66,9 +66,14 @@ theorem x_star_strictly_increases
     (hlt : lambda1 < lambda2) :
     xStar J ell d lambda1 < xStar J ell d lambda2 := by
   have hr := r_star_strictly_decreases d lambda1 lambda2 hd hlambda1 hlt
+  have hscaled :
+      ell * rStar d lambda2 < ell * rStar d lambda1 :=
+    mul_lt_mul_of_pos_left hr hell
+  have hnum :
+      J - ell * rStar d lambda1 < J - ell * rStar d lambda2 := by
+    linarith
   unfold xStar
-  apply (div_lt_div_iff₀ hd hd).2
-  nlinarith
+  exact (div_lt_div_iff₀ hd hd).2 (mul_lt_mul_of_pos_right hnum hd)
 
 /-- If candidate generation is proportional to maintained abundance, the same
 efficiency gain strictly increases candidate-generation exposure. -/
