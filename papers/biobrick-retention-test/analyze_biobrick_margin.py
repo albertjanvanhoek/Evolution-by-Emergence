@@ -23,10 +23,11 @@ from pathlib import Path
 from math import isfinite
 import itertools
 import json
+import hashlib
 
 import numpy as np
 from openpyxl import load_workbook
-from scipy.stats import genpareto
+from scipy.stats import genpareto, t
 
 URL = "https://media.springernature.com/original/springer-static/esm/art%3A10.1038%2Fs41467-024-50639-9/MediaObjects/41467_2024_50639_MOESM6_ESM.xlsx"
 CACHE = Path("/tmp/biobrick_data3.xlsx")
@@ -39,6 +40,7 @@ def download() -> Path:
     req = Request(URL, headers={"User-Agent": "Mozilla/5.0"})
     with urlopen(req, timeout=60) as r:
         CACHE.write_bytes(r.read())
+    print("Supplementary Data 3 sha256:", hashlib.sha256(CACHE.read_bytes()).hexdigest())
     return CACHE
 
 
@@ -181,8 +183,23 @@ def main():
 
     print("burden min/max:", float(burdens.min()), float(burdens.max()))
     print("kappa min/max:", float(kappas.min()), float(kappas.max()))
-    print("BioBricks >45% burden:", int(np.sum(burdens > 0.45)))
-    print("BioBricks >40% burden:", int(np.sum(burdens > 0.40)))
+    print("BioBricks >45% burden (point estimate):", int(np.sum(burdens > 0.45)))
+    print("BioBricks >40% burden (point estimate):", int(np.sum(burdens > 0.40)))
+
+    for cutoff in [0.45, 0.50]:
+        ps = []
+        for r in parts:
+            sem = finite_float(r["normalized.growth.rate.sem"])
+            n = int(r["replicates"])
+            if sem is None or sem <= 0 or n < 2:
+                continue
+            stat = (r["burden"] - cutoff) / sem
+            ps.append(float(t.sf(stat, df=n - 1)))
+        print(
+            f"BioBricks significantly >{cutoff:.0%} burden "
+            f"(one-tailed p<0.05, unadjusted):",
+            int(np.sum(np.asarray(ps) < 0.05)),
+        )
 
     print("\nTOP PUBLISHED BIOBRICKS")
     for r in sorted(parts, key=lambda x: -x["burden"])[:12]:
@@ -232,6 +249,8 @@ def main():
             f"kappa={r['kappa']:.4f}",
             "vector=", r["vectors"],
             "other=", r["other.burden.greater.significant"],
+            "type=", r["part.type"],
+            "desc=", r["part.description"],
         )
 
     print("\nDISCRIMINATING PAIRS")
