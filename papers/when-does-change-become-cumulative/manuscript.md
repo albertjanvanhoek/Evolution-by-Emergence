@@ -460,23 +460,30 @@ This gives a precise classification.
 - \(1<r_t\le1+M_t\): the step **spends** slack but retains the inherited repertoire.
 - \(r_t>1+M_t\): retention fails.
 
-For a purely dilutive load,
+For a purely dilutive transition, define the **effective current-state load**
 
 \[
-r_t=1+\kappa,
+\kappa_t^{\rm eff}=r_t-1.
 \]
 
-so
+Then
+
+\[
+r_t=1+\kappa_t^{\rm eff},
+\]
+
+and
 
 \[
 \boxed{
 M_{t+1}
 =
-\frac{M_t-\kappa}{1+\kappa}.
+\frac{M_t-\kappa_t^{\rm eff}}
+{1+\kappa_t^{\rm eff}}.
 }
 \]
 
-This recursion is exact.
+This recursion is exact. The superscript matters when an intrinsic module parameter is embedded in a multi-load topology: the \(\kappa\) that enters the one-step theorem is the realized multiplier minus one at the state where the candidate is applied, not automatically a topology-independent module constant.
 
 It does not imply finite-step exhaustion when accepted loads can become arbitrarily small. Finite load counts require an additional resolution or minimum-load condition.
 
@@ -1050,7 +1057,51 @@ n
 
 Thus the logarithmic ladder bound and the linear shared-pool bound are both correct, but for different load topologies.
 
-The distinction is substantive: sequential renormalization means later demand is defined relative to already-diluted host capacity, whereas simultaneous shared-pool demand is defined relative to the same undiluted host state.
+The distinction is substantive: sequential renormalization means later demand is defined relative to already-diluted host capacity, whereas simultaneous shared-pool demand is accumulated against one common pool.
+
+This also fixes the bookkeeping for the one-step theorem. If the shared-pool state already carries total intrinsic load
+
+\[
+S_t=\sum_{i\le t}\kappa_i,
+\]
+
+and a new intrinsic load \(\kappa\) is added, then
+
+\[
+c_t^\star=(1+S_t)c_0^\star,
+\qquad
+c_{t+1}^\star=(1+S_t+\kappa)c_0^\star.
+\]
+
+The realized binding-cost ratio is therefore
+
+\[
+\boxed{
+r_t
+=
+\frac{1+S_t+\kappa}{1+S_t}
+=
+1+\frac{\kappa}{1+S_t}.
+}
+\]
+
+So the effective one-step dilution parameter is
+
+\[
+\boxed{
+\kappa_t^{\rm eff}
+=
+\frac{\kappa}{1+S_t}.
+}
+\]
+
+Applying the generic theorem \(\kappa_t^{\rm eff}\le M_t\) is exactly equivalent to
+
+\[
+S_t+\kappa\le M_0.
+\]
+
+This is why the one-step theorem survives while repeated-load composition changes.
 
 Neither bound is a universal count of future capability acquisitions. Newly acquired capabilities may join the declaration and become binding earlier.
 
@@ -1182,7 +1233,9 @@ If ordinary dynamics continues to generate at least some winding candidates, the
 
 Candidate generation may therefore remain undirected. Direction can arise from differential retention.
 
-### Proposition 4 — geometric-mean criterion for linear self-propagation
+### Proposition 4 — geometric-mean criterion for an i.i.d. realized-multiplier model
+
+The following probability result is **not** a topology-free statement about i.i.d. intrinsic module loads. It is a theorem about a candidate pool specified directly in terms of the **realized** binding-cost multiplier \(r\).
 
 Now assume, as a deliberately simplified forward model, that the candidate log-multipliers
 
@@ -1265,7 +1318,42 @@ Conversely, positive linear growth would itself force rejections to become finit
 
 This probability theorem is analytical rather than Lean-formalized.
 
-### Positive mean: a stabilising drift field
+For sequentially renormalized candidate loads, a state-independent candidate law for the realized multiplier can be natural. For simultaneous shared-pool loads with i.i.d. intrinsic \(\kappa\), it is not: if the current accumulated load is \(S_t\),
+
+\[
+Y_{t+1}
+=
+\log\!\left(
+\frac{1+S_t+\kappa_{t+1}}
+{1+S_t}
+\right),
+\]
+
+so the realized \(Y_{t+1}\) is state dependent even when the intrinsic \(\kappa_{t+1}\) are i.i.d.
+
+Therefore the criterion
+
+\[
+\mathbb E[\log r]<0
+\]
+
+must not be imported directly into an i.i.d.-\(\kappa\) shared-pool model.
+
+For nonnegative shared-pool loads, the natural state variable is instead the remaining intrinsic allowance
+
+\[
+L_t=M_0-S_t,
+\]
+
+with acceptance condition
+
+\[
+\kappa_{t+1}\le L_t.
+\]
+
+If a positive minimum load exists, only finitely many loads can be accepted. If the candidate distribution reaches arbitrarily close to zero, arbitrarily many vanishing loads can in principle be accepted over an unbounded proposal horizon. The asymptotics then depend on the near-zero candidate distribution rather than on a topology-independent geometric-mean criterion.
+
+### Positive mean in the i.i.d. realized-multiplier model: a stabilising drift field
 
 The case
 
