@@ -262,21 +262,17 @@ to
 
 The Lean theorem checks the exact cost and margin arithmetic; the closed-form production-network mapping is documented in the manuscript and remains inherited model algebra rather than a formalized matrix-eigenvalue theorem.
 
-## 8. Load ladder
+## 8. Repeated-load topology
 
-For a fixed declared repertoire under repeated non-returning loads,
+### Sequential renormalization
 
-\[
-\prod_{i=1}^{n}(1+\kappa_i)\le1+M_0.
-\]
-
-If
+If each load is defined relative to the currently remaining host,
 
 \[
-\kappa_i\ge\kappa_{\min}>0,
+\prod_{i=1}^{n}(1+\kappa_i)\le1+M_0,
 \]
 
-then
+and for \(\kappa_i\ge\kappa_{\min}>0\),
 
 \[
 n\le
@@ -284,7 +280,34 @@ n\le
 {\log(1+\kappa_{\min})}.
 \]
 
-This is a maximum load-ladder bound, not a universal count of future capability acquisitions. If newly acquired capabilities join the declaration, they can become binding earlier.
+### Simultaneous shared pool
+
+If several one-way loads are present simultaneously and each satisfies
+
+\[
+R_i=H\kappa_i,
+\]
+
+then
+
+\[
+X^\star=H\left(1+\sum_i\kappa_i\right).
+\]
+
+Retention becomes
+
+\[
+\sum_i\kappa_i\le M_0,
+\]
+
+and for \(\kappa_i\ge\kappa_{\min}>0\),
+
+\[
+n\le\frac{M_0}{\kappa_{\min}}.
+\]
+
+The two formulas describe different topologies and must not be interchanged.
+
 
 ## 9. Log-slack filtered dynamics
 
