@@ -1,10 +1,10 @@
 # Literature and framework positioning
 
-This note is primarily an internal formal refinement of the existing **Organizational Accessibility: From Self-Maintenance to Evolvability** framework rather than a claim to introduce accessibility, cumulative evolution, or partial-order mathematics as new fields.
+This paper is first a formal extension of the existing **Organizational Accessibility: From Self-Maintenance to Evolvability** framework. It should not claim novelty for accessibility, cumulative evolution, partial orders, autocatalytic hierarchy, or the adjacent possible as such.
 
-## What already exists in the project
+## What already exists in this project
 
-The Organizational Accessibility framework already:
+The parent Organizational Accessibility framework already:
 
 - defines a finite-horizon organizational-accessibility kernel;
 - distinguishes endpoint accessibility from target hitting probability;
@@ -12,42 +12,89 @@ The Organizational Accessibility framework already:
 - treats energetic/material cost, rates, variation probabilities, and basin geometry as mechanisms affecting accessibility rather than interchangeable definitions of accessibility;
 - defines cumulative organizational contribution through interventions on retained historical structure;
 - explicitly allows accessibility to widen, narrow, redirect, or collapse;
-- defines a broad cumulative organizational ratchet that does not require absolute irreversibility.
+- states that successful previous organization can become the starting point for subsequent search.
 
-The present note does not replace those definitions.
+The present paper does not replace those definitions.
 
-## Narrow contribution of this note
+## Closest verified external antecedent
 
-The new question is whether a historical sequence satisfies a **strong monotone** criterion over a declared target family under a common evaluation protocol.
+A particularly close precedent is:
 
-That criterion is:
+**Peng Z, Linderoth J, Blum D, Baum DA. The hierarchical organization of autocatalytic reaction networks and its relevance to the origin of life. PLOS Computational Biology. 2022;18(9):e1010498. doi:10.1371/journal.pcbi.1010498.**
+
+Peng and colleagues introduce seed-dependent autocatalytic systems and show that networks can be arranged in trophic tiers. Higher-tier systems can become seedable by relatively simple chemicals once lower tiers have already been activated. This is a genuine positive example of historically contingent sequential accessibility.
+
+The present paper should therefore not claim to discover the general fact that earlier organization can make later organization reachable.
+
+The narrower contribution proposed here is different:
+
+1. define preservation of a declared operational repertoire separately from novelty;
+2. distinguish order-theoretic expansion from causal historical attribution;
+3. show that pointwise cost improvement is stronger than budget retention;
+4. derive an exact shared-budget boundary for uniform dilution,
+   \[
+   \kappa\le M_t;
+   \]
+5. identify the binding margin as a state variable for winding and spending;
+6. prove that \(M_1>M_0\) opens a nonempty interval of future acquisitions that were previously unaffordable;
+7. exhibit and machine-check an exact two-click cost witness in which the second click is unavailable at baseline.
+
+The appropriate comparison with Peng et al. is therefore:
+
+> hierarchical autocatalytic networks demonstrate sequential activation; the present result asks when sequential activation preserves a declared inherited repertoire under a shared budget, and quantifies when an earlier retained step changes the affordability of a later one.
+
+## Adjacent possible and cumulative innovation
+
+The adjacent-possible literature formalizes or models the expansion of candidate possibility spaces through novelty and recombination. Recent work also treats combinatorial innovation and the way inherited technologies alter future invention.
+
+That literature is closest to the **generative** side of this project.
+
+The present paper is deliberately about the **retained** side:
 
 \[
-\mathcal R_t\subsetneq\mathcal R_{t+1}.
+\text{what remains accessible after resource competition and declared retention constraints are imposed?}
 \]
 
-The contribution is the explicit distinction between:
+The distinction matters because a larger candidate space does not imply a larger retained accessible repertoire.
 
-1. target-specific causal cumulative contribution; and
-2. preservation plus strict expansion of a declared accessible repertoire.
+## Autocatalytic and reaction-network theory
 
-The second notion composes transitively and therefore supports a literal ratchet algebra.
+Autocatalytic-set and reaction-network theory provide structural accounts of self-sustaining and catalytic organization. The production-network results here should be positioned as resource-coupled realizations, not alternatives to those graph-level theories.
+
+The paper's route-dominance result is intentionally modest: route addition or non-increasing route cost is a strong sufficient condition in separable settings, while shared resource constraints can make realized costs move in opposed directions.
+
+## Cumulative cultural and technological evolution
+
+Cumulative-culture and cumulative-innovation research routinely studies how inherited solutions alter subsequent search. That is conceptually aligned with the two-click result.
+
+The paper should not claim novelty for the idea of inheritance enabling later innovation. Its proposed contribution is the explicit separation between:
+
+- candidate generation;
+- retained accessibility;
+- binding slack;
+- and the resource condition under which a previous retained change opens or closes later acquisition space.
+
+## Viability and reachability
+
+Viability and reachability theory are obvious mathematical neighbors because they ask which states remain reachable under constraints. The operational repertoire here should therefore be presented as an application-specific construction within the broader family of constrained reachability ideas, not as a new mathematical concept.
+
+The new work is the way that construction is tied to the project's declared-function framework, shared-budget production network, margin identity, and historically retained organization.
 
 ## Mathematical modesty
 
-The core set-theoretic results are elementary. Their value is not mathematical novelty in subset transitivity.
+Subset transitivity, threshold crossing, and elementary budget inequalities are not mathematically novel by themselves.
 
-The intended contribution is conceptual and methodological:
+The intended contribution is the assembled scientific statement:
 
-- specify the target family and operational resolution;
-- distinguish novelty from preserved cumulative accessibility;
-- make the strong ratchet criterion composable;
-- provide sufficient score- and cost-based conditions;
-- machine-check the formal implications;
-- connect the result back to the broader causal accessibility framework without turning it into a universal progress law.
+> retained organization can preserve a declared repertoire while altering the resource slack from which later organization is acquired; when a retained click increases that slack, there is a quantifiable region of later organization that becomes accessible only because the earlier click occurred.
 
-## Prior-work search
+The exact two-click witness and the machine-checked conditions make that statement testable rather than metaphorical.
 
-No new claim of external literature novelty is made in this note. Before external submission as a standalone paper, a dedicated search should compare the proposed strong accessibility preorder with formal work on cumulative culture, evolutionary innovations, reachability orders, viability theory, state-space accessibility, technological capability sets, and monotone dynamical systems.
+## Pre-submission work still required
 
-Until that search is completed, the safest framing is a formal clarification and extension of the project's existing Organizational Accessibility framework.
+Before external submission as a standalone paper:
+
+- extend the dedicated literature search around constrained reachability, cumulative innovation, major transitions, and autocatalytic hierarchy;
+- decide whether the paper is best framed as a theorem/note extending the existing Organizational Accessibility paper or as a standalone methods paper;
+- cite the parent framework and the closest external antecedents directly in the manuscript;
+- avoid claiming a universal evolutionary arrow or a unique definition of cumulative evolution.
