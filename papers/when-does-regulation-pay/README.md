@@ -69,6 +69,7 @@ Selection can therefore retain a regulator while selecting **too little regulati
 - CLAIMS.md — claim and non-claim ledger.
 - REPRODUCIBILITY.md — equations, parameters, computational checks, and proof status.
 - references.bib — literature used in the draft.
+- LITERATURE_POSITIONING.md — explicit separation between established results and the proposed contribution.
 - figures/make_figures.py — standard-library Python figure generator.
 - figures/regulatory_gain_alignment.svg — selected versus function-preserving gain.
 - figures/functional_margin_pooling.svg — functional margin at the selected optimum, with and without pooling.
