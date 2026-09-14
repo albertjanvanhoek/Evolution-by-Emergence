@@ -104,14 +104,14 @@ The formalization proves the abstract implications. It does not validate an empi
 
 Current verified Lean source commit:
 
-    7feac0d14429e0685ec78e411ea0dee6e44e2307
+    f7820e99f58c21a050790fab800465033b02604c
 
 GitHub Actions run:
 
-    34844171842
+    34844535869
 
 Result:
 
     Cumulative Accessibility Lean Check: PASS
 
-This proof state includes the route-dominance and newly-feasible-route theorems.
+This proof state includes route-dominance reflexivity/transitivity, preservation under route dominance, and strict expansion from a newly feasible route.
