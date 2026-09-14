@@ -33,6 +33,7 @@ URL = "https://media.springernature.com/original/springer-static/esm/art%3A10.10
 CACHE = Path("/tmp/biobrick_data3.xlsx")
 SEED = 20260914
 BOOT = 1000
+EXPECTED_SHA256 = "e50996a272f275006ce7961bc3ffc14e2b60ff5d991bd78f553d99da063e221a"
 BURDEN_THRESHOLDS = [0.12, 0.15, 0.18, 0.20, 0.22, 0.25, 0.26]
 
 
@@ -40,7 +41,9 @@ def download() -> Path:
     req = Request(URL, headers={"User-Agent": "Mozilla/5.0"})
     with urlopen(req, timeout=60) as r:
         CACHE.write_bytes(r.read())
-    print("Supplementary Data 3 sha256:", hashlib.sha256(CACHE.read_bytes()).hexdigest())
+    digest = hashlib.sha256(CACHE.read_bytes()).hexdigest()
+    print("Supplementary Data 3 sha256:", digest)
+    assert digest == EXPECTED_SHA256, (digest, EXPECTED_SHA256)
     return CACHE
 
 
