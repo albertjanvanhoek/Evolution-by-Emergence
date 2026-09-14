@@ -13,7 +13,8 @@ under a declared target family, evaluation protocol, horizon, establishment crit
 The note distinguishes:
 
 - **cumulative organizational contribution** from the existing framework: retained history causally improves access to a designated later target;
-- **strong monotone accessibility ratchet**: the declared accessible repertoire is preserved and strictly expanded.
+- **strong monotone accessibility click**: the declared accessible repertoire is preserved and strictly expanded;
+- **historically attributed ratchet click**: a strict monotone click for which retained earlier organization causally contributes to at least one newly accessible target under the parent framework's intervention criterion.
 
 The machine-verified algebra is in:
 
