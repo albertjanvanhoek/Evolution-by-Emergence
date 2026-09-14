@@ -16,6 +16,8 @@ This file separates the paper's mathematical deductions, classical ingredients, 
 | C10 | Under the same assumptions, functional viability is equivalent to \(\kappa\le M^0\), hence \(\kappa_{\rm crit}=M^0\). | Machine-checked | \`FunctionalThresholds.lean\` |
 | C11 | None of the endogenous observables considered in the worked examples recovers the prespecified functional verdict in general. | Counterexample conclusion | Manuscript §12 |
 | C12 | Persistence alone does not induce a universal organizational ordering in this model class. | Counterexample conclusion, not a universal theorem about all conceivable models | Manuscript §§14–17 |
+| C13 | The current model contains no endogenous regulator: \(B\) is constant and \(\Phi,\theta\) are external evaluation objects. | Model-scope statement | Manuscript §16 |
+| C14 | \(R_{\rm reg}=\nu L-c\) and its pooled form are proposed bookkeeping hypotheses for a future state-dependent extension, not theorems of the current ODE. | Explicit hypothesis | Manuscript §16 |
 
 ## Classical ingredients, not novelty claims
 
@@ -38,6 +40,8 @@ The paper does **not** establish that:
 - the toy production model is empirically adequate for a specific biological, social, or technological system;
 - the Perron-Frobenius or resource-competition mathematics used here is new;
 - the machine verification validates empirical assumptions.
+- threat frequency alone determines whether a regulator is retained;
+- the present model contains endogenous sensing, checkpoints, homeostatic feedback, or other biological regulation.
 
 ## Reproducibility anchors
 
