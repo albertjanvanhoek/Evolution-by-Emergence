@@ -166,7 +166,15 @@ Core diagnostic claim:
 
 The paper is deliberately narrow about novelty: Perron-Frobenius theory and the resource-competition results it uses are classical. The contribution is the separation of these observables inside one self-maintaining production model and the exact counterexamples showing why persistence or productive efficiency cannot stand in for independently specified function.
 
-### 8. Formal/operator work: Existence First, SCAP, and ARVC
+### 8. Endogenous regulation: when does control pay?
+
+- **Paper package:** [papers/when-does-regulation-pay/](papers/when-does-regulation-pay/) — *When Does Regulation Pay? Functional Control, Regulatory Retention, and the Cost of Staying Within Bounds*.
+- **Core question:** when does a negative-feedback controller both pay for itself and remain strong enough to satisfy an independently declared functional threshold?
+- **Main distinction:** selected control need not equal sufficient control.
+- **Formalization:** [formalization/persistence-drift/RegulatoryReturn.lean](formalization/persistence-drift/RegulatoryReturn.lean).
+- **Reproducibility:** the paper package includes exact parameter definitions, generated SVG figures, worked-example CSV data, and a standard-library Python generator checked by CI.
+
+### 9. Formal/operator work: Existence First, SCAP, and ARVC
 
 - **Existence First:** `Backmatter/Appendix26.tex`, `Backmatter/Appendix30.tex`, and `Backmatter/Appendix31.tex`.
 - **SCAP:** `Backmatter/Appendix.tex`, `Backmatter/AppendixIII.tex`, `Backmatter/AppendixV.tex`, and `Backmatter/AppendixXIII.tex`.
@@ -188,6 +196,7 @@ Treat formal notation carefully: some documents are exploratory formalizations a
 | Summarize the current theory | `A Theory Towards The Structure of Prolonged Existence.tex` | `The shape held in the flow.tex`; `Adaptive Imperative Systems.tex` |
 | Evaluate the theory scientifically | `CLAIMS.md` | the three files above; trace cited literature and seek counterexamples |
 | Inspect the machine-checked counterexample paper | `papers/persistence-does-not-measure-function/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/FunctionalThresholds.lean` |
+| Inspect the endogenous-regulation sequel | `papers/when-does-regulation-pay/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/RegulatoryReturn.lean` |
 | Reason about LLM agency | `Universal declaration of being an intelligent agent.tex` | `Beyond the singularity.tex`; `Wisdom in model speak.tex` |
 | Analyze AI alignment/capture | `Society of equal minds.tex` | `Adaptive Imperative Systems.tex`; `The Hardenberg Project.tex`; ARVC sources |
 | Design multi-agent collaboration | `TLC.tex` | `handshake_protocol.tex`; `Alignment_theory.tex`; `Beyond the singularity.tex` |
