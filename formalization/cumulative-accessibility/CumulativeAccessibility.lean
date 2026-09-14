@@ -55,7 +55,8 @@ theorem strictExpandsOn_iff_ssubset
     apply hne
     ext x
     constructor
-    · exact hsub
+    · intro hxOldSet
+      exact hsub hxOldSet
     · intro hxNew
       have hOld : oldAccess x := by
         by_contra hxOld
