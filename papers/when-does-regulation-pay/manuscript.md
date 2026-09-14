@@ -38,9 +38,30 @@ Thus selection can retain regulation while selecting too little regulation to sa
 \eta\le\frac{A m^2}{c_0}.
 \]
 
-If constitutive regulatory cost is shared across \(n\) beneficiaries, this boundary expands linearly to \(\eta\le nAm^2/c_0\).
+We then generalize the objective to a deviation penalty \(\Phi(z)\) and constitutive controller cost \(C(k)\). In the overloaded regime \(\eta>m\gamma\), and under increasing-convex controller cost and convex deviation penalty, alignment is decided locally at the declared boundary:
 
-The result complements established work on economy–effectiveness tradeoffs, sensory adaptation, and responsive gene expression. Its contribution is not a new theory of feedback control, but an explicit bridge between endogenous regulation and an independently specified functional margin. Negative feedback and positive maintenance return are distinct properties. Regulation can be dynamically effective yet selectively disfavored, selectively favored yet functionally insufficient, or both retained and sufficient. This distinction provides a quantitative route from self-maintenance to the evolution of the mechanisms that regulate self-maintenance.
+\[
+\boxed{
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})+c_1\gamma m^2.
+}
+\]
+
+Equivalently, with the effective marginal deviation value
+\(\Psi'(m)=\Phi'(m)-c_1\gamma/\beta\),
+
+\[
+\boxed{
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
+The linear result above is an exact corollary. The theorem also identifies the asymptotically relevant cost quantity \(kC'(k)\): any constitutive cost for which \(kC'(k)\to\infty\) eventually drives the selected optimum below a fixed functional boundary under unbounded disturbance. Shared, sufficiently non-rival constitutive infrastructure can move the selected optimum back into the sufficient region.
+
+The result complements established work on economy–effectiveness tradeoffs, sensory adaptation, and responsive gene expression. Its contribution is not a new theory of feedback control, but an explicit bridge between endogenous regulation and an independently specified functional margin. Negative feedback and positive maintenance return are distinct properties. More generally, optimizing an endogenous objective does not by itself guarantee satisfaction of an independently specified functional boundary; the objective must value preservation strongly enough relative to the marginal cost of the control required at that boundary.
 
 ---
 
@@ -639,6 +660,346 @@ The controller remains beneficial. It remains present. It remains active. It may
 
 Yet the selected strength no longer suffices to maintain the declared function.
 
+### 7.1 General marginal-alignment theorem
+
+The square-root result above follows from the linear choices \(Lz\) and \(c_0k\). The selected-versus-sufficient distinction is more general.
+
+Let the equilibrium objective be
+
+\[
+g(k)
+=
+g_0
+-
+\Phi(z^*(k))
+-
+C(k)
+-
+c_1kz^*(k),
+\]
+
+where \(\Phi\) is the penalty assigned to deviation and \(C\) is the constitutive cost of installed controller gain. Assume, on the relevant domain,
+
+\[
+\Phi''(z)\ge0,
+\qquad
+C'(k)>0,
+\qquad
+C''(k)\ge0.
+\]
+
+For the controlled plant
+
+\[
+z=\frac{\eta}{\gamma+\beta k},
+\]
+
+gain can be written as a function of steady deviation:
+
+\[
+k(z)
+=
+\frac{\eta/z-\gamma}{\beta}.
+\]
+
+The activity term simplifies because
+
+\[
+k(z)z
+=
+\frac{\eta-\gamma z}{\beta}.
+\]
+
+Thus, up to constants independent of \(z\),
+
+\[
+g(z)
+=
+-
+\Phi(z)
+-
+C(k(z))
++
+\frac{c_1\gamma}{\beta}z.
+\]
+
+Differentiation gives
+
+\[
+\boxed{
+g'(z)
+=
+-
+\Phi'(z)
++
+\frac{\eta}{\beta z^2}C'(k(z))
++
+\frac{c_1\gamma}{\beta}.
+}
+\]
+
+Moreover,
+
+\[
+g''(z)
+=
+-
+\Phi''(z)
+-
+\frac{\eta^2}{\beta^2z^4}C''(k(z))
+-
+\frac{2\eta}{\beta z^3}C'(k(z))
+<0,
+\]
+
+so the objective is strictly concave in \(z\) under the stated assumptions.
+
+Now consider the overloaded regime
+
+\[
+\eta>m\gamma,
+\]
+
+for which the functional boundary lies inside the attainable steady-state interval and
+
+\[
+k(m)=k_{\rm func}.
+\]
+
+Strict concavity means that the selected optimum lies at or below the declared deviation boundary,
+
+\[
+z_{\rm opt}\le m,
+\]
+
+if and only if the derivative at the boundary is nonpositive:
+
+\[
+g'(m)\le0.
+\]
+
+Therefore
+
+\[
+\boxed{
+z_{\rm opt}\le m
+\iff
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})
++
+c_1\gamma m^2.
+}
+\]
+
+This is the paper's general marginal-alignment condition.
+
+Define the effective marginal value of reducing deviation after charging the activity-dependent term by
+
+\[
+\boxed{
+\Psi'(m)
+=
+\Phi'(m)
+-
+\frac{c_1\gamma}{\beta}.
+}
+\]
+
+Then the same condition is
+
+\[
+\boxed{
+z_{\rm opt}\le m
+\iff
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
+In words:
+
+> **At the functional boundary, the effective marginal value assigned to further deviation reduction must cover the marginal constitutive price of the gain required to hold that boundary.**
+
+The criterion is local at \(z=m\). It decides whether the optimum lies inside or outside the declared functional region; it does not by itself give the distance from the boundary. The explicit linear model remains useful because it also yields \(M^*_{\rm opt}\).
+
+For the linear choices
+
+\[
+\Phi(z)=Lz,
+\qquad
+C(k)=c_0k,
+\]
+
+we have
+
+\[
+\Psi'(m)
+=
+L-\frac{c_1\gamma}{\beta}
+=
+\frac{A}{\beta},
+\]
+
+and the general theorem reduces exactly to
+
+\[
+\eta c_0
+\le
+Am^2,
+\]
+
+or
+
+\[
+\eta
+\le
+\frac{Am^2}{c_0}.
+\]
+
+The combination
+
+\[
+A=\beta L-c_1\gamma
+\]
+
+therefore has a direct interpretation: \(A/\beta\) is the net marginal value assigned to reducing deviation after accounting for the activity cost associated with maintaining lower deviation.
+
+### 7.2 How steep must the functional penalty be?
+
+The theorem also answers how strongly the selected objective must encode the declared boundary.
+
+Consider the scaled family
+
+\[
+\Phi_p(z)
+=
+Lm\left(\frac{z}{m}\right)^p,
+\qquad
+p\ge1,
+\]
+
+with the original linear constitutive cost
+
+\[
+C(k)=c_0k.
+\]
+
+At the boundary,
+
+\[
+\Phi_p'(m)=Lp.
+\]
+
+Therefore alignment requires
+
+\[
+\beta Lp
+\ge
+c_1\gamma
++
+\frac{\eta c_0}{m^2},
+\]
+
+or
+
+\[
+\boxed{
+p
+\ge
+p_{\min}
+=
+\frac{
+c_1\gamma+\eta c_0/m^2
+}{
+\beta L
+}.
+}
+\]
+
+For the worked parameters this becomes
+
+\[
+p_{\min}
+=
+0.2+0.4\eta.
+\]
+
+Finite steepening can therefore restore alignment at any fixed finite disturbance. But if \(\Phi'(m)\) remains finite and fixed while disturbance grows without bound, the required boundary sensitivity eventually outruns it.
+
+### 7.3 Constitutive-cost growth and eventual separation
+
+The same theorem can be read from the cost side. On the overloaded branch,
+
+\[
+\eta
+=
+m(\gamma+\beta k_{\rm func}).
+\]
+
+Hence the cost term at the boundary is
+
+\[
+\eta C'(k_{\rm func})
+=
+m(\gamma+\beta k_{\rm func})C'(k_{\rm func}).
+\]
+
+For fixed finite \(\Psi'(m)>0\), the asymptotically relevant quantity is therefore
+
+\[
+kC'(k).
+\]
+
+If
+
+\[
+kC'(k)\to\infty,
+\]
+
+then a fixed functional boundary is eventually underprovided as disturbance tends to infinity.
+
+For a power-law constitutive cost
+
+\[
+C(k)=c_0k^a,
+\qquad
+a>0,
+\]
+
+\[
+kC'(k)=ac_0k^a\to\infty,
+\]
+
+so eventual selected-versus-sufficient separation is unavoidable, even when \(0<a<1\).
+
+The logarithmic case is critical. For
+
+\[
+C(k)\sim c_0\log k,
+\]
+
+\[
+kC'(k)\to c_0,
+\]
+
+so selected and sufficient gain remain of the same asymptotic order and alignment depends on the finite marginal-value balance. By contrast,
+
+\[
+C(k)\sim c_0(\log k)^2
+\]
+
+has
+
+\[
+kC'(k)\sim2c_0\log k\to\infty,
+\]
+
+so underprovision still occurs eventually, although only logarithmically slowly. This is why finite-range power-law fits can be misleading near the logarithmic boundary.
+
+These asymptotic statements concern unbounded disturbance. For constitutive costs close to logarithmic, the crossing can occur only at disturbance levels outside the physically relevant range. The exact boundary criterion should therefore be used for finite systems.
+
 ---
 
 ## 8. Four regulatory regimes
@@ -813,21 +1174,19 @@ Some regulatory functions can be shared.
 
 This can occur within multicellular organisms, where one regulatory subsystem protects many dependent units, and at larger scales through shared monitoring, immune, repair, safety, or surveillance infrastructure.
 
-To isolate the bookkeeping effect, suppose the constitutive cost
-
-\[
-c_0k
-\]
-
-is shared equally across
+To isolate the bookkeeping effect, suppose the constitutive regulatory infrastructure is sufficiently shared and non-rival that one installed controller capacity can serve
 
 \[
 n
 \]
 
-beneficiaries, while each beneficiary retains the same local benefit and activity-dependent cost.
+beneficiaries without requiring proportional duplication of its constitutive cost. Each beneficiary retains the same local benefit and activity-dependent cost. Under that explicit assumption, the per-beneficiary constitutive cost
 
-Replace
+\[
+c_0k
+\]
+
+is replaced by
 
 \[
 c_0
@@ -889,15 +1248,27 @@ The pooled selected controller is functionally sufficient iff
 \frac{nAm^2}{c_0}.
 \]
 
-Equivalently, the minimum pool size required for functional sufficiency at the selected optimum is
+Equivalently, the minimum effective sharing factor required for functional sufficiency at the selected optimum satisfies
 
 \[
-\boxed{
 n
 \ge
 \frac{\eta c_0}{Am^2}.
+\]
+
+If \(n\) counts discrete beneficiaries, the minimum feasible integer is
+
+\[
+\boxed{
+n_{\min}
+=
+\left\lceil
+\frac{\eta c_0}{Am^2}
+\right\rceil.
 }
 \]
+
+This result does not apply when each added beneficiary requires its own proportional duplication of controller capacity. Common-mode disturbance is one setting in which sharing may be plausible, but it is not required; the mathematical requirement is shared, sufficiently non-rival constitutive infrastructure.
 
 Pooling therefore does more than make a regulator easier to retain.
 
@@ -1377,13 +1748,33 @@ Pooling constitutive regulatory cost moves that boundary:
 }
 \]
 
+The linear model is a special case of a more general marginal-alignment condition. For an increasing-convex constitutive cost \(C(k)\) and convex deviation penalty \(\Phi(z)\), the selected optimum respects the declared boundary exactly when
+
+\[
+\boxed{
+\beta m^2\Phi'(m)
+\ge
+\eta C'(k_{\rm func})
++
+c_1\gamma m^2,
+}
+\]
+
+or equivalently
+
+\[
+\boxed{
+\beta m^2\Psi'(m)
+\ge
+\eta C'(k_{\rm func}).
+}
+\]
+
 The result sharpens the earlier measurement principle.
 
-Persistence does not measure function.
+Persistence and related endogenous organizational observables do not by themselves supply an independently declared functional standard. Optimizing an endogenous objective does not by itself guarantee that standard either.
 
-And regulation does not automatically solve that problem.
-
-The next distinction is:
+The paper-specific distinction is:
 
 \[
 \boxed{
@@ -1393,11 +1784,15 @@ The next distinction is:
 }
 \]
 
+Alignment occurs only when the effective marginal value assigned to preserving function at the boundary is large enough relative to the marginal cost of the control required there.
+
 A self-maintaining system must therefore solve two problems, not one.
 
 It must maintain the things that maintain it.
 
 And it must maintain enough of the mechanisms that correct those things when they begin to fail.
+
+This does not prove a universal forward arrow of organization. It secures a narrower step: an exact, testable condition for when endogenous regulation does or does not preserve a function whose standard is specified independently.
 
 ---
 
