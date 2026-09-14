@@ -38,14 +38,14 @@ theorem extraction_margin_zero_at_budget
     extractionMargin M0 M0 = 0 := by
   unfold extractionMargin
   have hne : 1 + M0 ≠ 0 := by linarith
-  field_simp [hne]
+  rw [div_self hne]
+  ring
 
 /-- If extraction strength is kappa = q*u/lambda, its critical q value is
 lambda*M0/u. -/
 theorem single_channel_extraction_threshold
     (M0 q u lambda : ℝ)
-    (hu : 0 < u) (hlambda : 0 < lambda)
-    (hq : 0 ≤ q) :
+    (hu : 0 < u) (hlambda : 0 < lambda) :
     q * u / lambda ≤ M0 ↔ q ≤ lambda * M0 / u := by
   constructor
   · intro h
@@ -126,7 +126,6 @@ theorem hollowB_strictly_decreases
       / (lambda1*lambda2*(1+lambda1)*(1+lambda2)) := by
     field_simp [ne_of_gt hp1, ne_of_gt hp2, ne_of_gt hd1, ne_of_gt hd2]
     ring
-  rw [sub_lt_zero, ← hfactor]
   have hnum : (lambda1-lambda2) *
         (2*lambda1^2*lambda2^2
         + 2*lambda1^2*lambda2
@@ -134,7 +133,12 @@ theorem hollowB_strictly_decreases
         + 3*lambda1*lambda2
         - 2*lambda1 - 2*lambda2 - 2) < 0 := by
     exact mul_neg_of_neg_of_pos (sub_neg.mpr hlt) hpoly
-  exact div_neg_of_neg_of_pos hnum hden
+  have hdiff :
+      ((2 - 1/lambda2) * (2-lambda2^2) / (1+lambda2))
+        - ((2 - 1/lambda1) * (2-lambda1^2) / (1+lambda1)) < 0 := by
+    rw [hfactor]
+    exact div_neg_of_neg_of_pos hnum hden
+  linarith
 
 #print axioms extraction_margin_eq
 #print axioms extraction_viable_iff
