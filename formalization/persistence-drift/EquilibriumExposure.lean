@@ -17,6 +17,17 @@ noncomputable def jCrit (ell d lambda : ℝ) : ℝ :=
 noncomputable def grossMeanStar (d lambda : ℝ) : ℝ :=
   rStar d lambda * lambda
 
+/-- External supply required to maintain a chosen total abundance X at a
+positive Perron equilibrium. This is the natural fixed-scale budget. -/
+noncomputable def requiredSupply (X ell d lambda : ℝ) : ℝ :=
+  d * X + ell * rStar d lambda
+
+/-- Maximum number of realizations compatible with total abundance X when each
+realization requires at least mMin units of abundance. This is an upper bound,
+not an equality or a prediction of actual N. -/
+noncomputable def realizationUpperBound (X mMin : ℝ) : ℝ :=
+  X / mMin
+
 /-- Candidate-generation exposure if attempts occur at per-abundance rate nu. -/
 noncomputable def candidateExposure (J ell d nu lambda : ℝ) : ℝ :=
   nu * xStar J ell d lambda
@@ -116,6 +127,56 @@ theorem efficiency_changes_exposure_not_equilibrium_mean_fitness
   · exact x_star_strictly_increases J ell d lambda1 lambda2 hell hd hlambda1 hlt
   · exact candidate_exposure_strictly_increases
       J ell d nu lambda1 lambda2 hnu hell hd hlambda1 hlt
+
+
+/-- At fixed maintained scale X, increasing production efficiency strictly
+reduces the external supply required. This is the model-specific budgetary
+dividend; no idle resource pool is assumed. -/
+theorem required_supply_strictly_decreases
+    (X ell d lambda1 lambda2 : ℝ)
+    (hell : 0 < ell)
+    (hd : 0 < d)
+    (hlambda1 : 0 < lambda1)
+    (hlt : lambda1 < lambda2) :
+    requiredSupply X ell d lambda2
+      < requiredSupply X ell d lambda1 := by
+  unfold requiredSupply
+  have hr := r_star_strictly_decreases d lambda1 lambda2 hd hlambda1 hlt
+  have hscaled :
+      ell * rStar d lambda2 < ell * rStar d lambda1 :=
+    mul_lt_mul_of_pos_left hr hell
+  linarith
+
+/-- If each realization needs at least mMin abundance, greater maintained
+abundance raises only the upper bound on realization count. -/
+theorem realization_upper_bound_strictly_increases
+    (X1 X2 mMin : ℝ)
+    (hm : 0 < mMin)
+    (hX : X1 < X2) :
+    realizationUpperBound X1 mMin < realizationUpperBound X2 mMin := by
+  unfold realizationUpperBound
+  exact (div_lt_div_iff₀ hm hm).2 (mul_lt_mul_of_pos_right hX hm)
+
+/-- Combining the equilibrium result with the finite-material bound: higher
+lambda raises the ceiling X*/mMin on the number of realizations, but this does
+NOT assert that actual N rises. -/
+theorem efficiency_raises_realization_ceiling
+    (J ell d mMin lambda1 lambda2 : ℝ)
+    (hell : 0 < ell)
+    (hd : 0 < d)
+    (hm : 0 < mMin)
+    (hlambda1 : 0 < lambda1)
+    (hlt : lambda1 < lambda2) :
+    realizationUpperBound (xStar J ell d lambda1) mMin
+      < realizationUpperBound (xStar J ell d lambda2) mMin := by
+  apply realization_upper_bound_strictly_increases
+  · exact hm
+  · exact x_star_strictly_increases
+      J ell d lambda1 lambda2 hell hd hlambda1 hlt
+
+#print axioms required_supply_strictly_decreases
+#print axioms realization_upper_bound_strictly_increases
+#print axioms efficiency_raises_realization_ceiling
 
 #print axioms gross_mean_star_eq_loss
 #print axioms r_star_strictly_decreases
