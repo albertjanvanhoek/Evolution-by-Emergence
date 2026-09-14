@@ -479,3 +479,19 @@ It machine-checks:
 11. the pooling numerator identity.
 
 The Lean development checks algebraic implications under explicit assumptions. The manuscript's differentiability and convexity assumptions for the general \(\Phi,C\) theorem are analytic and stated separately. No empirical biological assumption is machine validated.
+
+Verified proof-state commit:
+
+    75d6866d2ac77e3fd25a48247504c2a1f1359049
+
+GitHub Actions run:
+
+    34841211698
+
+Result:
+
+    Persistence Drift Lean Check: PASS
+
+At the same proof-state commit, the regulation-retention figure/data reproducibility workflow also passed:
+
+    Regulation Retention Paper Check: PASS
