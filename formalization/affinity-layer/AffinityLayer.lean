@@ -50,8 +50,7 @@ theorem costScore_difference_of_stationary
   have hca : 1 + c * a ≠ 0 := by nlinarith
   have hca0 : 1 + c * a0 ≠ 0 := by nlinarith
   field_simp [hane, ha0ne, hlamne, hca, hca0]
-  ring_nf at hstat ⊢
-  nlinarith [hstat]
+  linear_combination a * (a - a0) * hstat
 
 /-- Any positive stationary point of the linear-upkeep score is a global
 maximizer on positive affinity. -/
