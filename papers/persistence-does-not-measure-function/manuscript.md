@@ -778,7 +778,45 @@ This is why the simplicity of the worked capacity \(\Phi_1=x_B\) is not a defect
 
 The threshold sensitivity analysis clarifies what is and is not universal. The precise value \(f^*=0.7198206\) depends on the chosen functional requirement. The existence of an interior crossing does not: for every positive threshold below the baseline \(B\) capacity, increasing reallocation eventually crosses it while \(\lambda\) and \(X^*\) continue to rise.
 
-A counterexample paper should stop there. This model does not show that functional capacity generally declines with efficiency, nor that organizational evolution lacks long-run trends. It shows that such trends cannot be inferred from persistence, spectral efficiency, maintained abundance, or positive structural support alone.
+### Regulation is absent from the present model
+
+A biologically important limitation is that the production matrix \(B\) is constant. No component senses a system state and changes production in response. The capacity map \(\Phi\) and thresholds \(\theta\) are evaluated by the analyst from outside the dynamics; they are not regulatory checkpoints implemented by the modeled organization itself. Thus the present model contains self-maintenance and state-independent production, but no endogenous regulatory layer.
+
+This distinction matters because biological self-maintenance is densely regulated. Regulation also separates two ideas that are easy to conflate. A regulatory circuit may use **negative feedback** in the control-theoretic sense while nevertheless generating a **positive net return** to maintenance. Feedback sign and maintenance return are different axes.
+
+A minimal extension would replace the fixed production matrix by a state-dependent matrix,
+
+\[
+B=B(z),
+\]
+
+where \(z\) is a sensed internal or external variable, or introduce an explicit regulatory component whose abundance or activity alters selected entries of \(B\). The nonlinear state-dependent terms already used in the companion Organizational Accessibility model provide one possible implementation idiom. Such an extension is not analysed here.
+
+The present framework nevertheless suggests a testable bookkeeping hypothesis. Suppose maintaining a regulatory function costs \(c\) per unit time, relevant perturbations occur with rate \(\nu\), and successful regulation averts expected maintenance loss \(L\) per perturbation. Ignoring other returns, its expected net contribution is
+
+\[
+R_{\rm reg}=\nu L-c.
+\]
+
+This expression is intentionally schematic rather than a theorem of the current ODE. It identifies the source of directional selection: regulation is favored when its expected avoided loss exceeds its maintenance cost. Threat frequency enters through \(\nu\), but frequency alone is not decisive. A rare perturbation can justify regulation when \(L\) is sufficiently large; a frequently used regulator can still be lost when its cost is shifted elsewhere, its benefit is buffered by another level of organization, or selection is too weak relative to drift.
+
+This qualification is empirically necessary. Obligate bacterial endosymbionts such as *Buchnera aphidicola* have lost most ancestral transcriptional regulators, and reduced endosymbiont genomes can lose DNA-repair functions despite the fact that replication errors and molecular damage are recurrent rather than rare (Moran et al., 2005; Delmotte et al., 2006). Conversely, experimental-evolution work shows that simplified laboratory environments can favor loss of functions that have become superfluous under the imposed conditions (McDonald, 2019). These observations support a weaker and more precise prediction than “continuous regulators are retained whereas rare-threat regulators are lost”:
+
+> **All else equal, regulatory capacity should be retained more strongly when its expected avoided loss is large relative to its ongoing cost; reducing exposure to the states in which the regulator pays back should weaken that retention.**
+
+A second route is cost pooling. If a regulatory or surveillance function costs \(c\) but its cost is shared across \(n\) beneficiaries while each receives the avoided loss \(L\), the per-participant bookkeeping becomes
+
+\[
+R_{\rm reg}^{\rm pooled}
+=
+\nu L-\frac{c}{n}.
+\]
+
+Pooling therefore lowers the perturbation frequency or consequence size required to justify maintenance of a preparedness function. This provides a natural bridge to institutional surveillance and insurance, but that interpretation remains a hypothesis for a state-dependent extension rather than a result of the present model.
+
+The important limitation is therefore explicit: this paper distinguishes persistence from function **without yet modelling the mechanisms by which a living system senses functional deviation and regulates itself back toward a viable region**. Regulation is a natural next extension precisely because it can couple the externally declared margin \(M\) back into the dynamics.
+
+A counterexample paper should not go further than that extension hypothesis. The current model does not show that functional capacity generally declines with efficiency, nor that organizational evolution lacks long-run trends. It shows that such trends cannot be inferred from persistence, spectral efficiency, maintained abundance, or positive structural support alone.
 
 ---
 
@@ -823,6 +861,12 @@ Persistence does something different: it can make those consequences endure.
 Berman, A., & Plemmons, R. J. (1994). *Nonnegative Matrices in the Mathematical Sciences*. SIAM.
 
 Hazen, R. M., Griffin, P. L., Carothers, J. M., & Szostak, J. W. (2007). Functional information and the emergence of biocomplexity. *Proceedings of the National Academy of Sciences*, 104(Suppl. 1), 8574–8581. https://doi.org/10.1073/pnas.0701744104
+
+Delmotte, F., Rispe, C., Schaber, J., Silva, F. J., & Moya, A. (2006). Tempo and mode of early gene loss in endosymbiotic bacteria from insects. *BMC Evolutionary Biology*, 6, 56. https://doi.org/10.1186/1471-2148-6-56
+
+McDonald, M. J. (2019). Microbial experimental evolution—A proving ground for evolutionary theory and a tool for discovery. *EMBO Reports*, 20(8), e46992. https://doi.org/10.15252/embr.201846992
+
+Moran, N. A., Dunbar, H. E., & Wilcox, J. L. (2005). Regulation of transcription in a reduced bacterial genome: Nutrient-provisioning genes of the obligate symbiont *Buchnera aphidicola*. *Journal of Bacteriology*, 187(12), 4229–4237. https://doi.org/10.1128/JB.187.12.4229-4237.2005
 
 Rothblum, U. G. (1975). Algebraic eigenspaces of nonnegative matrices. *Linear Algebra and its Applications*, 12(3), 281–292. https://doi.org/10.1016/0024-3795(75)90050-6
 
