@@ -322,4 +322,20 @@ It does not formalize:
 
 ## 11. Verification record
 
-The exact verified commit and GitHub Actions run should be recorded here after the final combined proof state passes CI.
+Verified combined proof/document state:
+
+    333b98b7b8073582291dbba124c5f8f3fec0e55f
+
+GitHub Actions run:
+
+    34848881508
+
+Result:
+
+    Cumulative Accessibility Check: PASS
+    lean: PASS
+    budget-ratchet: PASS
+
+The Lean log reports no sorryAx dependency for the new shared-budget, margin-window, exact two-click, direct-counterfactual, or productive-domination theorems.
+
+This verification-record commit changes documentation only; it does not alter the verified Lean source or Python verifier.
