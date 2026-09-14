@@ -6,6 +6,7 @@ on:
       - main
       - chatgpt/persistence-drift-lean-check
       - chatgpt/persistence-function-paper
+      - chatgpt/regulation-retention-paper
     paths:
       - "formalization/persistence-drift/**"
       - ".github/workflows/persistence-drift-lean-check.yml"

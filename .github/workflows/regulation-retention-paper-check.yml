@@ -1,0 +1,32 @@
+name: Regulation Retention Paper Check
+
+on:
+  push:
+    branches:
+      - main
+      - chatgpt/regulation-retention-paper
+    paths:
+      - "papers/when-does-regulation-pay/**"
+      - ".github/workflows/regulation-retention-paper-check.yml"
+  pull_request:
+    paths:
+      - "papers/when-does-regulation-pay/**"
+      - ".github/workflows/regulation-retention-paper-check.yml"
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Regenerate figures and worked example
+        run: |
+          python papers/when-does-regulation-pay/figures/make_figures.py
+      - name: Require generated artifacts to match repository
+        run: |
+          git diff --exit-code -- \
+            papers/when-does-regulation-pay/figures/regulatory_gain_alignment.svg \
+            papers/when-does-regulation-pay/figures/functional_margin_pooling.svg \
+            papers/when-does-regulation-pay/figures/worked_example.csv
