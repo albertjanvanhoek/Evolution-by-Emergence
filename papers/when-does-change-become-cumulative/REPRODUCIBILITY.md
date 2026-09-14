@@ -395,13 +395,13 @@ It does not formalize:
 
 ## 12. Verification record
 
-Verified combined proof/document state:
+Current verified PR head:
 
-    333b98b7b8073582291dbba124c5f8f3fec0e55f
+    6c0e32cbd025b035b76365415d0f2f48d370c1ee
 
 GitHub Actions run:
 
-    34848881508
+    34852545903
 
 Result:
 
@@ -409,6 +409,9 @@ Result:
     lean: PASS
     budget-ratchet: PASS
 
-The Lean log reports no sorryAx dependency for the new shared-budget, margin-window, exact two-click, direct-counterfactual, or productive-domination theorems.
+The budget-ratchet job runs both:
 
-This verification-record commit changes documentation only; it does not alter the verified Lean source or Python verifier.
+    verify_budget_ratchet.py
+    verify_log_slack.py
+
+The Lean log reports no `sorryAx` dependency for the new shared-budget, margin-update, winding-equivalence, vanishing-load, margin-window, exact two-click, direct-counterfactual, or productive-domination theorems. Reported dependencies such as `propext`, `Classical.choice`, and `Quot.sound` are standard Mathlib/Lean axioms rather than unproved placeholders.
