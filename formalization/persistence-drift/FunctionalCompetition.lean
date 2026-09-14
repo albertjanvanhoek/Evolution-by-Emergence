@@ -74,6 +74,32 @@ theorem step_sum_one (hr : (∑ j, p j * r j) ≠ 0) :
   simp only [step, ← Finset.sum_div]
   exact div_self hr
 
+/-- If pre-selection weights and reproduction factors are non-negative and
+mean fitness is positive, the replicator step has non-negative weights. -/
+theorem step_nonneg
+    (hpnn : ∀ i, 0 ≤ p i) (hrnn : ∀ i, 0 ≤ r i)
+    (hrbar : 0 < ∑ j, p j * r j) :
+    ∀ i, 0 ≤ step p r i := by
+  intro i
+  unfold step
+  exact div_nonneg (mul_nonneg (hpnn i) (hrnn i)) (le_of_lt hrbar)
+
+/-- Under the same assumptions, the selection step is a genuine probability
+distribution: non-negative weights summing to one. -/
+theorem step_is_distribution
+    (hpnn : ∀ i, 0 ≤ p i) (hrnn : ∀ i, 0 ≤ r i)
+    (hrbar : 0 < ∑ j, p j * r j) :
+    (∀ i, 0 ≤ step p r i) ∧ (∑ i, step p r i = 1) := by
+  constructor
+  · exact step_nonneg p r hpnn hrnn hrbar
+  · exact step_sum_one p r (ne_of_gt hrbar)
+
+/-- Pure selection cannot create an implementation absent before selection.
+Novel implementations require a separate variation/injection mechanism. -/
+theorem step_zero_of_zero (i : I) (hzero : p i = 0) :
+    step p r i = 0 := by
+  simp [step, hzero]
+
 theorem price_equation (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0) :
     mean (step p r) c - mean p c = cov p r c / (∑ j, p j * r j) := by
   have hlhs : mean (step p r) c
@@ -84,6 +110,35 @@ theorem price_equation (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0) :
     rw [cov_eq_sub p r c hp]; rfl
   rw [hlhs, hcov]
   field_simp
+
+/-- The general fixed-fitness selection arrow: mean reproduction factor
+changes by variance divided by mean reproduction factor. -/
+theorem mean_fitness_change
+    (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0) :
+    mean (step p r) r - mean p r
+      = variance p r / (∑ j, p j * r j) := by
+  rw [price_equation p r r hp hr]
+  rfl
+
+theorem mean_fitness_nondecreasing
+    (hp : ∑ i, p i = 1) (hpnn : ∀ i, 0 ≤ p i)
+    (hrbar : 0 < ∑ j, p j * r j) :
+    mean p r ≤ mean (step p r) r := by
+  have key := mean_fitness_change p r hp (ne_of_gt hrbar)
+  have hvar : 0 ≤ variance p r := variance_nonneg p r hpnn
+  have hdiv : 0 ≤ variance p r / (∑ j, p j * r j) :=
+    div_nonneg hvar (le_of_lt hrbar)
+  linarith
+
+theorem mean_fitness_strictly_increases
+    (hp : ∑ i, p i = 1) (hpnn : ∀ i, 0 ≤ p i)
+    (hrbar : 0 < ∑ j, p j * r j)
+    (hvar : 0 < variance p r) :
+    mean p r < mean (step p r) r := by
+  have key := mean_fitness_change p r hp (ne_of_gt hrbar)
+  have hdiv : 0 < variance p r / (∑ j, p j * r j) :=
+    div_pos hvar hrbar
+  linarith
 
 theorem price_linear (hp : ∑ i, p i = 1) (hr : (∑ j, p j * r j) ≠ 0)
     (hlin : ∀ i, r i = b - α * c i) :
@@ -158,7 +213,13 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms sum_fitness_cost
 #print axioms cov_linear
 #print axioms step_sum_one
+#print axioms step_nonneg
+#print axioms step_is_distribution
+#print axioms step_zero_of_zero
 #print axioms price_equation
+#print axioms mean_fitness_change
+#print axioms mean_fitness_nondecreasing
+#print axioms mean_fitness_strictly_increases
 #print axioms price_linear
 #print axioms mean_cost_nonincreasing
 #print axioms slack_nondecreasing
