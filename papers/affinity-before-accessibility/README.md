@@ -74,3 +74,16 @@ See:
     papers/affinity-before-accessibility/verify_affinity.py
 
 and the GitHub Actions affinity-layer workflow.
+
+
+## Falsifiable symmetry prediction
+
+The minimal turnover law is exactly reciprocal-symmetric,
+
+\[
+h(a)=h(1/a),
+\]
+
+so it is symmetric in log-affinity. This is a deliberately strong null prediction. Empirical asymmetry falsifies the minimal turnover law without falsifying the broader affinity layer.
+
+The manuscript points to measured asymmetric volcanoes and to the 2025 SPOCK framework for standardized empirical volcano fitting and false-positive detection.
