@@ -99,7 +99,7 @@ while the second click attempted directly from the baseline both loses inherited
 
 ## Fixed-pool forward criterion
 
-For the simplified i.i.d. state-independent candidate pool with (mathbb E|\log r|<\infty), positive linear log-slack accumulation occurs exactly when
+For the simplified i.i.d. state-independent **realized-multiplier** pool with (mathbb E|\log r|<\infty), positive linear log-slack accumulation occurs exactly when
 
 \[
 \boxed{
@@ -115,7 +115,7 @@ In that regime,
 
 almost surely.
 
-For positive mean, the retention filter creates state-dependent feedback; the paper does not claim a universal stationary law or that acceptance converges to (P(r\le1)).
+For positive mean, the retention filter creates state-dependent feedback; the paper does not claim a universal stationary law or that acceptance converges to (P(r\le1)). This i.i.d.-\(r\) result does not directly describe i.i.d. intrinsic loads in the simultaneous shared-pool topology, because their realized cost multiplier depends on accumulated load.
 
 ## Important distinctions
 
