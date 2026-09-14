@@ -1,117 +1,325 @@
 # Reproducibility
 
-## Declared accessible set
+## 1. Operational repertoire
 
-Fix a target family \(\mathscr U\), common evaluation protocol \(\mathcal P\), horizon \(\tau\), establishment criterion, and threshold \(p_\star\).
-
-For target hitting score
-
-\[
-h_t(U)=\mathcal H_\tau(U\mid s_t,\mathcal P),
-\]
-
-define
+Fix target family \(\mathscr U\), protocol \(\mathcal P\), horizon \(\tau\), establishment criterion, and threshold \(p_\star\).
 
 \[
 \mathcal R_t
 =
-\{U\in\mathscr U:h_t(U)\ge p_\star\}.
+\{U\in\mathscr U:
+\mathcal H_\tau(U\mid s_t,\mathcal P)\ge p_\star\}.
 \]
 
-A preserving step satisfies
+Preservation:
 
 \[
 \mathcal R_t\subseteq\mathcal R_{t+1}.
 \]
 
-A strict click satisfies
+Strict click:
 
 \[
 \mathcal R_t\subsetneq\mathcal R_{t+1}.
 \]
 
-## Score sufficient condition
+Historical attribution is separate and uses the intervention criterion of the parent Organizational Accessibility framework.
 
-If
+## 2. Cost specialization
+
+For effective cost \(c_t(x)\) and common budget \(B\),
 
 \[
-h_{t+1}(U)\ge h_t(U)
-\quad\forall U\in\mathscr U,
+\mathcal F_t(B)=\{x:c_t(x)\le B\}.
 \]
 
-then every thresholded accessible target remains accessible.
-
-If additionally some target crosses the threshold,
+Pointwise cost domination is
 
 \[
-h_t(U^\star)<p_\star\le h_{t+1}(U^\star),
+c_{t+1}(x)\le c_t(x)
+\quad\forall x,
 \]
 
-the step is strict.
+and is sufficient but not necessary for budget retention.
 
-## Cost sufficient condition
+## 3. Uniform-dilution theorem
 
-For a mechanism-level effective cost \(c_t(U)\) and budget \(B\),
+Fix a declared inherited set and let \(c_t^\star\) be its attained binding cost among currently budget-feasible declared capabilities.
+
+Define
 
 \[
-\mathcal F_t(B)
+M_t=\frac{B}{c_t^\star}-1.
+\]
+
+If a one-way non-returning load multiplies inherited costs by \(1+\kappa\), then
+
+\[
+\boxed{
+\text{retention}\iff \kappa\le M_t.
+}
+\]
+
+The Lean theorem is retainsCostOn_scaled_iff_margin.
+
+## 4. Margin dynamics
+
+For positive budget and binding costs,
+
+\[
+\boxed{
+\frac{1+M_{t+1}}{1+M_t}
 =
-\{U\in\mathscr U:c_t(U)\le B\}.
+\frac{c_t^\star}{c_{t+1}^\star}.
+}
+\]
+
+For uniform dilution,
+
+\[
+\boxed{
+M_{t+1}
+=
+\frac{M_t-\kappa}{1+\kappa}.
+}
+\]
+
+The second identity does not by itself imply finite-step exhaustion if accepted \(\kappa\) can become arbitrarily small.
+
+## 5. General two-click region
+
+If
+
+\[
+M_1>M_0\ge0,
+\]
+
+then the interval
+
+\[
+(M_0,M_1]
+\]
+
+is nonempty. Every coupling in it is too expensive before the first click but affordable afterward.
+
+If also
+
+\[
+X_1>X_0
+\]
+
+and \(\kappa>0\), then
+
+\[
+\left(
+\frac{X_0\kappa}{1+\kappa},
+\frac{X_1\kappa}{1+\kappa}
+\right]
+\]
+
+is a nonempty interval of module thresholds inaccessible before and accessible after.
+
+Both existence statements are machine checked.
+
+## 6. Exact rational witness
+
+Budget:
+
+\[
+B=1.
+\]
+
+Thresholds:
+
+\[
+\theta_A=3/10,\quad
+\theta_B=3/20,\quad
+\theta_C=1/10,\quad
+\theta_D=1/2.
+\]
+
+Baseline:
+
+\[
+c_0(A)=3/5,\qquad
+c_0(B)=3/10,
+\]
+
+with \(C,D\) inaccessible.
+
+Productive click:
+
+\[
+f=11/25,\qquad
+v=2,\qquad
+\lambda=6/5,\qquad
+X_1=7/6.
+\]
+
+Costs:
+
+\[
+c_1(A)=33/70,\quad
+c_1(B)=99/196,\quad
+c_1(C)=3/7.
+\]
+
+Thus
+
+\[
+M_0=2/3,\qquad
+M_1=97/99.
+\]
+
+Second click:
+
+\[
+\kappa_D=9/10,\qquad
+\theta_D=1/2.
+\]
+
+Costs:
+
+\[
+c_2(A)=627/700,
+\]
+
+\[
+c_2(B)=1881/1960,
+\]
+
+\[
+c_2(C)=57/70,
+\]
+
+\[
+c_2(D)=19/21.
+\]
+
+Therefore
+
+\[
+\{A,B\}\subsetneq\{A,B,C\}\subsetneq\{A,B,C,D\}.
+\]
+
+Direct second-click counterfactual:
+
+\[
+c_{\rm direct}(A)=57/50>1,
+\]
+
+\[
+c_{\rm direct}(D)=19/18>1.
+\]
+
+The Lean specialization uses finite real costs above budget for capabilities that are structurally absent at baseline; this is an accessibility-equivalent sentinel for the thresholded theorem, not a claim that the physical cost is finite.
+
+## 7. Productive domination witness
+
+The standard-library Python verifier reproduces the corrected numerical witness
+
+\[
+v=100,\quad f=0.01,
+\]
+
+for which
+
+\[
+c(A):0.60000\to0.39775,
+\]
+
+\[
+c(B):0.30000\to0.28125.
+\]
+
+The Lean source additionally checks exact rational strict domination using
+
+\[
+f=1/100,\quad v=44,\quad \lambda=6/5,
+\]
+
+with
+
+\[
+c(A)=663/1400<3/5,
+\]
+
+\[
+c(B)=1989/7000<3/10.
+\]
+
+The Lean theorem checks the exact cost inequalities; the closed-form production-network mapping is documented in the manuscript and remains inherited model algebra rather than a formalized matrix-eigenvalue theorem.
+
+## 8. Load ladder
+
+For a fixed declared repertoire under repeated non-returning loads,
+
+\[
+\prod_{i=1}^{n}(1+\kappa_i)\le1+M_0.
 \]
 
 If
 
 \[
-c_{t+1}(U)\le c_t(U)
-\quad\forall U\in\mathscr U,
+\kappa_i\ge\kappa_{\min}>0,
 \]
 
 then
 
 \[
-\mathcal F_t(B)\subseteq\mathcal F_{t+1}(B).
+n\le
+\frac{\log(1+M_0)}
+{\log(1+\kappa_{\min})}.
 \]
 
-If
+This is a maximum load-ladder bound, not a universal count of future capability acquisitions. If newly acquired capabilities join the declaration, they can become binding earlier.
 
-\[
-c_{t+1}(U^\star)\le B<c_t(U^\star),
-\]
+## 9. Local reproduction
 
-then the inclusion is strict.
-
-This cost construction is a mechanism-level specialization. It does not redefine the probabilistic organizational-accessibility kernel.
-
-## Machine verification
-
-Project:
-
-    formalization/cumulative-accessibility/
-
-Build locally with:
+Lean:
 
     cd formalization/cumulative-accessibility
     lake update
     lake exe cache get
     lake build
 
-The Lean source checks preservation, strict expansion, composition, score dominance, threshold crossing, cost dominance, budget crossing, route-level non-destructive extension, newly feasible routes, and the failure of preservation after target loss.
+Budget-ratchet checks:
 
-The formalization proves the abstract implications. It does not validate an empirical choice of target family, protocol, score, cost, or threshold.
+    python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
 
+The Python script uses only the standard library and exact Fraction arithmetic for the two-click witness.
 
-## Verified proof state
+## 10. Formalization scope
 
-Current verified Lean source commit:
+CumulativeAccessibility.lean machine-checks:
 
-    f7820e99f58c21a050790fab800465033b02604c
+- preservation/subset equivalence;
+- strict expansion/proper-subset equivalence;
+- preservation and strict-click composition;
+- score dominance and threshold crossing;
+- cost dominance and budget crossing;
+- existence of strict pointwise cost domination;
+- impossibility of cost domination under positive uniform dilution;
+- margin nonnegativity;
+- margin ratio;
+- pure-dilution margin recursion;
+- exact declared-set retention boundary;
+- opened coupling window after margin increase;
+- opened threshold window after production increase;
+- exact two-click rational witness;
+- direct second-click failure;
+- exact winding and window inequalities;
+- exact productive strict-domination cost witness;
+- route-dominance reflexivity/transitivity and its sufficient implications.
 
-GitHub Actions run:
+It does not formalize:
 
-    34844535869
+- the full stochastic accessibility kernel;
+- empirical causal identification;
+- the production-network ODE/eigenvector derivation;
+- the external declaration of target families;
+- a directional theorem for the state-dependent candidate generator \(Q_s\).
 
-Result:
+## 11. Verification record
 
-    Cumulative Accessibility Lean Check: PASS
-
-This proof state includes route-dominance reflexivity/transitivity, preservation under route dominance, and strict expansion from a newly feasible route.
+The exact verified commit and GitHub Actions run should be recorded here after the final combined proof state passes CI.
