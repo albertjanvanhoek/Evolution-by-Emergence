@@ -283,7 +283,7 @@ theorem retainsCostOn_scaled_iff_margin
       simpa [hattain] using hinside
     have hxnew := h x0 hx0 hxold
     unfold AccessibleByCost at hxnew
-    rw [hattain] at hxnew
+    simp [hattain] at hxnew
     have hdiv : (1 : ℝ) + kappa ≤ budget / bindingCost :=
       (le_div_iff₀ hbinding).2 hxnew
     unfold Margin
@@ -338,7 +338,7 @@ inductive Cap4
 open Cap4
 
 /-- Baseline exact costs for the rational witness. -/
-def twoClickCost0 : Cost Cap4
+noncomputable def twoClickCost0 : Cost Cap4
   | A => 3 / 5
   | B => 3 / 10
   | C => 2
@@ -346,14 +346,14 @@ def twoClickCost0 : Cost Cap4
 
 /-- After a productive click with exact closed-form parameters
 lambda=6/5, f=11/25, v=2. -/
-def twoClickCost1 : Cost Cap4
+noncomputable def twoClickCost1 : Cost Cap4
   | A => 33 / 70
   | B => 99 / 196
   | C => 3 / 7
   | D => 2
 
 /-- After adding a non-returning downstream module with kappa=9/10. -/
-def twoClickCost2 : Cost Cap4
+noncomputable def twoClickCost2 : Cost Cap4
   | A => 627 / 700
   | B => 1881 / 1960
   | C => 57 / 70
@@ -361,7 +361,7 @@ def twoClickCost2 : Cost Cap4
 
 /-- Counterfactual cost profile for trying the second click directly from the
 baseline. -/
-def directSecondClickCost : Cost Cap4
+noncomputable def directSecondClickCost : Cost Cap4
   | A => 57 / 50
   | B => 57 / 100
   | C => 2
@@ -380,14 +380,20 @@ theorem exact_two_click_witness :
   constructor
   · refine ⟨?_, C, by simp, ?_, ?_⟩
     · intro x hxT hxOld
-      cases x <;>
-        norm_num [AccessibleByCost, twoClickCost0, twoClickCost1] at hxOld ⊢
+      cases x with
+      | A => norm_num [AccessibleByCost, twoClickCost0, twoClickCost1]
+      | B => norm_num [AccessibleByCost, twoClickCost0, twoClickCost1]
+      | C => norm_num [AccessibleByCost, twoClickCost0] at hxOld
+      | D => norm_num [AccessibleByCost, twoClickCost0] at hxOld
     · norm_num [AccessibleByCost, twoClickCost0]
     · norm_num [AccessibleByCost, twoClickCost1]
   · refine ⟨?_, D, by simp, ?_, ?_⟩
     · intro x hxT hxOld
-      cases x <;>
-        norm_num [AccessibleByCost, twoClickCost1, twoClickCost2] at hxOld ⊢
+      cases x with
+      | A => norm_num [AccessibleByCost, twoClickCost1, twoClickCost2]
+      | B => norm_num [AccessibleByCost, twoClickCost1, twoClickCost2]
+      | C => norm_num [AccessibleByCost, twoClickCost1, twoClickCost2]
+      | D => norm_num [AccessibleByCost, twoClickCost1] at hxOld
     · norm_num [AccessibleByCost, twoClickCost1]
     · norm_num [AccessibleByCost, twoClickCost2]
 
