@@ -180,6 +180,271 @@ theorem strictExpandsOn_of_cost_crossing
   intro h
   exact (not_le_of_gt hOld) h
 
+/-! ## Shared-budget specialization: retention, slack, and two-click existence -/
+
+/-- A scalar cost profile over capabilities. -/
+abbrev Cost (α : Type*) := α → ℝ
+
+/-- Retention of a declared target family under a common scalar budget. -/
+def RetainsCostOn
+    (targets : Set α) (oldCost newCost : Cost α) (budget : ℝ) : Prop :=
+  PreservesOn targets
+    (AccessibleByCost oldCost budget)
+    (AccessibleByCost newCost budget)
+
+/-- Pointwise cost domination is achievable in general; it is not a vacuous
+order. This abstract witness prevents the uniform-dilution impossibility below
+from being misread as an impossibility theorem for all acquisitions. -/
+theorem exists_strictCostDominatingStep :
+    ∃ oldCost newCost : Cost (Fin 2),
+      CostDominatesOn Set.univ oldCost newCost ∧
+      ∀ x, newCost x < oldCost x := by
+  refine ⟨fun _ => (1 : ℝ), fun _ => (0 : ℝ), ?_, ?_⟩
+  · intro x hx
+    norm_num
+  · intro x
+    norm_num
+
+/-- Uniform positive dilution cannot pointwise dominate a positive inherited
+cost on a declared target. This is a statement about the dilutive topology,
+not about acquisitions in general. -/
+theorem not_costDominates_scaled
+    (targets : Set α) (cost : Cost α)
+    {kappa : ℝ} (hkappa : 0 < kappa)
+    (x0 : α) (hx0 : x0 ∈ targets) (hpos : 0 < cost x0) :
+    ¬ CostDominatesOn targets cost (fun x => (1 + kappa) * cost x) := by
+  intro h
+  have hx := h x0 hx0
+  nlinarith
+
+/-- Slack relative to a positive binding cost: the proportional extra load
+that can be absorbed before the binding capability crosses the budget. -/
+noncomputable def Margin (budget bindingCost : ℝ) : ℝ :=
+  budget / bindingCost - 1
+
+theorem margin_nonneg
+    {budget bindingCost : ℝ}
+    (hcost : 0 < bindingCost)
+    (hinside : bindingCost ≤ budget) :
+    0 ≤ Margin budget bindingCost := by
+  unfold Margin
+  rw [sub_nonneg]
+  exact (le_div_iff₀ hcost).2 (by simpa using hinside)
+
+/-- Winding/spending identity. Positive budget is required because otherwise
+the normalized slack ratio is degenerate. -/
+theorem margin_ratio
+    {budget oldBinding newBinding : ℝ}
+    (hbudget : 0 < budget)
+    (hold : 0 < oldBinding)
+    (hnew : 0 < newBinding) :
+    (1 + Margin budget newBinding) /
+        (1 + Margin budget oldBinding)
+      =
+    oldBinding / newBinding := by
+  unfold Margin
+  field_simp [ne_of_gt hbudget, ne_of_gt hold, ne_of_gt hnew]
+  ring
+
+/-- Exact margin recursion for a uniformly dilutive load.
+This identity alone does not imply finite-step exhaustion when accepted loads
+may become arbitrarily small. -/
+theorem margin_dilute
+    {budget oldBinding kappa : ℝ}
+    (hold : 0 < oldBinding)
+    (hkappa : -1 < kappa) :
+    Margin budget ((1 + kappa) * oldBinding)
+      =
+    (Margin budget oldBinding - kappa) / (1 + kappa) := by
+  unfold Margin
+  have h1 : (1 : ℝ) + kappa ≠ 0 := by linarith
+  field_simp [ne_of_gt hold, h1]
+  ring
+
+/-- Exact declared-set budget bound under uniform dilution.
+bindingCost is the attained maximum cost among the declared capabilities
+that are already within budget. -/
+theorem retainsCostOn_scaled_iff_margin
+    (targets : Set α) (cost : Cost α)
+    {budget kappa bindingCost : ℝ}
+    (hkappa : 0 ≤ kappa)
+    (hbinding : 0 < bindingCost)
+    (hub : ∀ x, x ∈ targets → cost x ≤ budget → cost x ≤ bindingCost)
+    (x0 : α) (hx0 : x0 ∈ targets)
+    (hattain : cost x0 = bindingCost)
+    (hinside : bindingCost ≤ budget) :
+    RetainsCostOn targets cost (fun x => (1 + kappa) * cost x) budget
+      ↔
+    kappa ≤ Margin budget bindingCost := by
+  constructor
+  · intro h
+    have hxold : AccessibleByCost cost budget x0 := by
+      unfold AccessibleByCost
+      simpa [hattain] using hinside
+    have hxnew := h x0 hx0 hxold
+    unfold AccessibleByCost at hxnew
+    rw [hattain] at hxnew
+    have hdiv : (1 : ℝ) + kappa ≤ budget / bindingCost :=
+      (le_div_iff₀ hbinding).2 hxnew
+    unfold Margin
+    linarith
+  · intro hk x hxT hxold
+    unfold AccessibleByCost at hxold ⊢
+    have h1 : (1 : ℝ) + kappa ≤ budget / bindingCost := by
+      unfold Margin at hk
+      linarith
+    have hbound : (1 + kappa) * bindingCost ≤ budget :=
+      (le_div_iff₀ hbinding).1 h1
+    have hscale : 0 ≤ (1 : ℝ) + kappa := by linarith
+    have hxbind : cost x ≤ bindingCost := hub x hxT hxold
+    have hmul :
+        (1 + kappa) * cost x ≤ (1 + kappa) * bindingCost :=
+      mul_le_mul_of_nonneg_left hxbind hscale
+    linarith
+
+/-- A winding step opens a nonempty interval of future dilutive couplings:
+loads in this interval were too large for the earlier margin but fit inside
+the later one. -/
+theorem margin_increase_opens_coupling_window
+    {M0 M1 : ℝ} (hM0 : 0 ≤ M0) (hinc : M0 < M1) :
+    ∃ kappa, 0 ≤ kappa ∧ M0 < kappa ∧ kappa ≤ M1 := by
+  refine ⟨(M0 + M1) / 2, ?_, ?_, ?_⟩ <;> linarith
+
+/-- If maintained production rises, then for every positive coupling there is
+a nonempty interval of module thresholds that are unattainable before and
+attainable after. -/
+theorem production_increase_opens_threshold_window
+    {X0 X1 kappa : ℝ}
+    (hX : X0 < X1) (hkappa : 0 < kappa) :
+    ∃ theta,
+      X0 * kappa / (1 + kappa) < theta ∧
+      theta ≤ X1 * kappa / (1 + kappa) := by
+  have hden : 0 < (1 : ℝ) + kappa := by linarith
+  have hnum : X0 * kappa < X1 * kappa :=
+    mul_lt_mul_of_pos_right hX hkappa
+  have hlr :
+      X0 * kappa / (1 + kappa) <
+      X1 * kappa / (1 + kappa) :=
+    (div_lt_div_iff_of_pos_right hden).2 hnum
+  refine ⟨
+    (X0 * kappa / (1 + kappa) + X1 * kappa / (1 + kappa)) / 2,
+    ?_, ?_⟩ <;> linarith
+
+/-- Four capabilities used for an exact two-click witness. -/
+inductive Cap4
+  | A | B | C | D
+  deriving DecidableEq
+
+open Cap4
+
+/-- Baseline exact costs for the rational witness. -/
+def twoClickCost0 : Cost Cap4
+  | A => 3 / 5
+  | B => 3 / 10
+  | C => 2
+  | D => 2
+
+/-- After a productive click with exact closed-form parameters
+lambda=6/5, f=11/25, v=2. -/
+def twoClickCost1 : Cost Cap4
+  | A => 33 / 70
+  | B => 99 / 196
+  | C => 3 / 7
+  | D => 2
+
+/-- After adding a non-returning downstream module with kappa=9/10. -/
+def twoClickCost2 : Cost Cap4
+  | A => 627 / 700
+  | B => 1881 / 1960
+  | C => 57 / 70
+  | D => 19 / 21
+
+/-- Counterfactual cost profile for trying the second click directly from the
+baseline. -/
+def directSecondClickCost : Cost Cap4
+  | A => 57 / 50
+  | B => 57 / 100
+  | C => 2
+  | D => 19 / 18
+
+/-- Exact rational positive existence witness:
+{A,B} -> {A,B,C} -> {A,B,C,D} at budget 1. -/
+theorem exact_two_click_witness :
+    StrictExpandsOn Set.univ
+      (AccessibleByCost twoClickCost0 1)
+      (AccessibleByCost twoClickCost1 1)
+    ∧
+    StrictExpandsOn Set.univ
+      (AccessibleByCost twoClickCost1 1)
+      (AccessibleByCost twoClickCost2 1) := by
+  constructor
+  · refine ⟨?_, C, by simp, ?_, ?_⟩
+    · intro x hxT hxOld
+      cases x <;>
+        norm_num [AccessibleByCost, twoClickCost0, twoClickCost1] at hxOld ⊢
+    · norm_num [AccessibleByCost, twoClickCost0]
+    · norm_num [AccessibleByCost, twoClickCost1]
+  · refine ⟨?_, D, by simp, ?_, ?_⟩
+    · intro x hxT hxOld
+      cases x <;>
+        norm_num [AccessibleByCost, twoClickCost1, twoClickCost2] at hxOld ⊢
+    · norm_num [AccessibleByCost, twoClickCost1]
+    · norm_num [AccessibleByCost, twoClickCost2]
+
+/-- The second click is unavailable at the baseline: it loses inherited A,
+and D itself remains outside the budget. -/
+theorem exact_second_click_unavailable_at_baseline :
+    ¬ PreservesOn Set.univ
+        (AccessibleByCost twoClickCost0 1)
+        (AccessibleByCost directSecondClickCost 1)
+    ∧
+    ¬ AccessibleByCost directSecondClickCost 1 D := by
+  constructor
+  · intro h
+    have hAold : AccessibleByCost twoClickCost0 1 A := by
+      norm_num [AccessibleByCost, twoClickCost0]
+    have hAnew := h A (by simp) hAold
+    norm_num [AccessibleByCost, directSecondClickCost] at hAnew
+  · norm_num [AccessibleByCost, directSecondClickCost]
+
+/-- The exact rational productive first click winds the declared {A,B,C}
+repertoire: its margin rises from 2/3 to 97/99. -/
+theorem exact_first_click_winds :
+    Margin 1 (3 / 5) < Margin 1 (99 / 196) := by
+  norm_num [Margin]
+
+/-- kappa=9/10 lies in the coupling interval opened by the exact first click. -/
+theorem exact_second_coupling_in_opened_window :
+    Margin 1 (3 / 5) < (9 / 10 : ℝ)
+      ∧
+    (9 / 10 : ℝ) ≤ Margin 1 (99 / 196) := by
+  norm_num [Margin]
+
+/-- theta_D=1/2 lies in the exact production window opened by
+X0=1 -> X1=7/6 at kappa=9/10. -/
+theorem exact_second_threshold_in_opened_window :
+    (1 : ℝ) * (9 / 10) / (1 + 9 / 10) < 1 / 2
+      ∧
+    (1 / 2 : ℝ) ≤
+      (7 / 6) * (9 / 10) / (1 + 9 / 10) := by
+  norm_num
+
+/-- A concrete strict pointwise cost improvement, showing again that cost
+domination is possible outside the dilutive topology. These rational values
+come from the non-substituting productive extension with f=1/100, v=44 and
+lambda=6/5 in the same closed-form production-network family. -/
+theorem exact_productive_extension_strictly_dominates :
+    let oldCost : Cost (Fin 2) := ![(3 : ℝ) / 5, 3 / 10]
+    let newCost : Cost (Fin 2) := ![(663 : ℝ) / 1400, 1989 / 7000]
+    CostDominatesOn Set.univ oldCost newCost ∧
+      ∀ x, newCost x < oldCost x := by
+  dsimp
+  constructor
+  · intro x hx
+    fin_cases x <;> norm_num
+  · intro x
+    fin_cases x <;> norm_num
+
 /-- A target is route-feasible within budget when at least one admissible
 route realizes it at or below the declared budget. -/
 def ReachableWithinBudget {ρ : Type*}
@@ -279,6 +544,20 @@ theorem not_preservesOn_of_lost_target
 #print axioms strictExpandsOn_of_score_crossing
 #print axioms costDominates_preservesOn
 #print axioms strictExpandsOn_of_cost_crossing
+#print axioms exists_strictCostDominatingStep
+#print axioms not_costDominates_scaled
+#print axioms margin_nonneg
+#print axioms margin_ratio
+#print axioms margin_dilute
+#print axioms retainsCostOn_scaled_iff_margin
+#print axioms margin_increase_opens_coupling_window
+#print axioms production_increase_opens_threshold_window
+#print axioms exact_two_click_witness
+#print axioms exact_second_click_unavailable_at_baseline
+#print axioms exact_first_click_winds
+#print axioms exact_second_coupling_in_opened_window
+#print axioms exact_second_threshold_in_opened_window
+#print axioms exact_productive_extension_strictly_dominates
 #print axioms routeDominatesOn_refl
 #print axioms routeDominatesOn_trans
 #print axioms routeDominates_preservesOn
