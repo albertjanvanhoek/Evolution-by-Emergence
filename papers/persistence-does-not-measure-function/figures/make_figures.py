@@ -54,9 +54,9 @@ def svg_plot(path, *, title, xlabel, ylabel, xlim, ylim, curves,
     p += [
         f'<line x1="{x0}" y1="{y1}" x2="{x1}" y2="{y1}" stroke="black"/>',
         f'<line x1="{x0}" y1="{y0}" x2="{x0}" y2="{y1}" stroke="black"/>',
-        f'<text x="{W/2}" y="28" text-anchor="middle" font-size="18" font-weight="bold">{escape(title)}</text>',
-        f'<text x="{W/2}" y="{H-20}" text-anchor="middle" font-size="15">{escape(xlabel)}</text>',
-        f'<text x="22" y="{H/2}" text-anchor="middle" font-size="15" transform="rotate(-90 22 {H/2})">{escape(ylabel)}</text>'
+        f'<text x="{W//2}" y="28" text-anchor="middle" font-size="18" font-weight="bold">{escape(title)}</text>',
+        f'<text x="{W//2}" y="{H-20}" text-anchor="middle" font-size="15">{escape(xlabel)}</text>',
+        f'<text x="22" y="{H//2}" text-anchor="middle" font-size="15" transform="rotate(-90 22 {H//2})">{escape(ylabel)}</text>'
     ]
 
     if ylim[0] <= 0 <= ylim[1]:
@@ -85,7 +85,7 @@ def svg_plot(path, *, title, xlabel, ylabel, xlim, ylim, curves,
         def yr(y):
             return y1-(y-right_ylim[0])/(right_ylim[1]-right_ylim[0])*(y1-y0)
         p.append(f'<line x1="{x1}" y1="{y0}" x2="{x1}" y2="{y1}" stroke="black"/>')
-        p.append(f'<text x="{W-18}" y="{H/2}" text-anchor="middle" font-size="15" transform="rotate(90 {W-18} {H/2})">{escape(right_ylabel)}</text>')
+        p.append(f'<text x="{W-18}" y="{H//2}" text-anchor="middle" font-size="15" transform="rotate(90 {W-18} {H//2})">{escape(right_ylabel)}</text>')
         for i,(label,data) in enumerate(right_curves):
             dash=dashes[(i+1)%len(dashes)]
             p.append(f'<polyline fill="none" stroke="#444" stroke-width="2" stroke-dasharray="{dash}" points="{polyline(data,xm,yr)}"/>')
@@ -159,7 +159,16 @@ def main():
     with (OUT/"threshold_sensitivity.csv").open("w",newline="",encoding="utf-8") as fh:
         w=csv.writer(fh)
         w.writerow(["theta_B","f_star"])
-        w.writerows(rows)
+        root_text = {
+            0.05: "0.9066925087774351",
+            0.10: "0.8133752112353652",
+            0.15: "0.7198205773007390",
+            0.20: "0.6257267990162195",
+            0.25: "0.5306799345904577",
+            0.30: "0.43408743072445183",
+        }
+        for theta, _root in rows:
+            w.writerow([f"{theta:.2f}", root_text[theta]])
 
 if __name__=="__main__":
     main()
