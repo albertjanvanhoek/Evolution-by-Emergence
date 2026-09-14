@@ -646,6 +646,75 @@ M_{\rm turn}\approx1.09239,
 
 matching the previously observed optimum margin scale.
 
+### A falsifiable symmetry prediction
+
+The minimal turnover law has an additional exact property:
+
+\[
+\boxed{
+h(a)=h(1/a).
+}
+\]
+
+Indeed,
+
+\[
+\frac{4/a}{(1+1/a)^2}
+=
+\frac{4a}{(1+a)^2}.
+\]
+
+So if
+
+\[
+x=\log a,
+\]
+
+then
+
+\[
+\boxed{
+h(e^x)=h(e^{-x}).
+}
+\]
+
+The minimal model therefore predicts a volcano that is **exactly symmetric in log-affinity**. Binding twice as strongly and binding half as strongly have the same turnover factor.
+
+This reciprocal symmetry is machine checked.
+
+It should be treated as a falsifiable null prediction, not as a general property of volcano plots. Published catalytic volcanoes can be asymmetric because the weak- and strong-binding sides are controlled by different limiting steps or additional mechanisms. For example, Li et al. (2017) reported an explicitly asymmetric oxygen-reduction volcano and attributed the asymmetry to changing contributions of site blocking and intrinsic activity (JACS, DOI 10.1021/jacs.6b11072).
+
+Thus empirical asymmetry is informative rather than a failure of the entire affinity layer:
+
+\[
+\boxed{
+\text{departure from reciprocal symmetry}
+\Longrightarrow
+\text{the minimal turnover law is incomplete}.
+}
+\]
+
+The direction and degree of asymmetry can then be used to identify which side of the association process contains additional kinetic structure.
+
+A natural later extension is a normalized two-exponent family
+
+\[
+h_{p,q}(a)
+=
+\frac{(p+q)^{p+q}}{p^p q^q}
+\frac{a^p}{(1+a)^{p+q}},
+\qquad
+p,q>0,
+\]
+
+whose peak occurs at
+
+\[
+a=\frac{p}{q}.
+\]
+
+The symmetric model is recovered when \(p=q\). This family is proposed only as an empirical extension; it is not part of the present theorem stack.
+
 ---
 
 ## 8. Relation to the Sabatier principle
@@ -678,7 +747,9 @@ That is much closer to the catalytic mechanism than the linear-upkeep volcano of
 
 The comparison is still not a universality claim. Volcano relations depend on the reaction mechanism and chosen descriptor; the catalysis literature contains both strong empirical support and critical discussions of where the Sabatier picture succeeds or fails.
 
-A directly relevant biochemical example is Kari et al. (2018), who reported an intermediate-binding optimum for interfacial cellulase catalysis and interpreted the volcano through the Sabatier principle (ACS Catalysis, DOI 10.1021/acscatal.8b03547).
+A directly relevant biochemical example is Kari et al. (2018), who reported an intermediate-binding optimum for interfacial cellulase catalysis and interpreted the volcano through the Sabatier principle (ACS Catalysis, DOI 10.1021/acscatal.8b03547). A later review by Chiba and Ooka, published online in 2025 and appearing in the 2026 volume of *Bioscience, Biotechnology, and Biochemistry* (DOI 10.1093/bbb/zbaf181), reviews enzymatic rate enhancement through optimization rather than minimization of binding-related (K_m).
+
+Empirical volcano construction is itself now methodologically testable. Suvarna et al. (2025) introduced the SPOCK framework for standardized empirical volcano fitting and false-positive detection across heterogeneous, homogeneous, and enzymatic catalysis (ACS Catalysis, DOI 10.1021/acscatal.5c00412). This provides an existing route for confronting the reciprocal-symmetry prediction above with data rather than relying on visual inspection.
 
 The cost channel and turnover channel should therefore remain separate propositions:
 
