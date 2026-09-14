@@ -3,22 +3,22 @@ import Mathlib
 namespace EquilibriumExposure
 
 /-- Resource level at a positive Perron equilibrium. -/
-def rStar (d lambda : ℝ) : ℝ := d / lambda
+noncomputable def rStar (d lambda : ℝ) : ℝ := d / lambda
 
 /-- Total maintained abundance at the positive equilibrium. -/
-def xStar (J ell d lambda : ℝ) : ℝ :=
+noncomputable def xStar (J ell d lambda : ℝ) : ℝ :=
   (J - ell * rStar d lambda) / d
 
 /-- Critical external supply for positive abundance. -/
-def jCrit (ell d lambda : ℝ) : ℝ :=
+noncomputable def jCrit (ell d lambda : ℝ) : ℝ :=
   ell * rStar d lambda
 
 /-- Gross mean production/replacement rate at a Perron equilibrium. -/
-def grossMeanStar (d lambda : ℝ) : ℝ :=
+noncomputable def grossMeanStar (d lambda : ℝ) : ℝ :=
   rStar d lambda * lambda
 
 /-- Candidate-generation exposure if attempts occur at per-abundance rate nu. -/
-def candidateExposure (J ell d nu lambda : ℝ) : ℝ :=
+noncomputable def candidateExposure (J ell d nu lambda : ℝ) : ℝ :=
   nu * xStar J ell d lambda
 
 /-- The equilibrium gross mean production rate is pinned to the loss rate.
@@ -67,7 +67,7 @@ theorem x_star_strictly_increases
     xStar J ell d lambda1 < xStar J ell d lambda2 := by
   have hr := r_star_strictly_decreases d lambda1 lambda2 hd hlambda1 hlt
   unfold xStar
-  apply (div_lt_div_right hd).2
+  apply (div_lt_div_iff₀ hd hd).2
   nlinarith
 
 /-- If candidate generation is proportional to maintained abundance, the same
