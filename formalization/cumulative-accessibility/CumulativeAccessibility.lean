@@ -273,8 +273,18 @@ theorem winds_iff_binding_cost_falls
   rw [sub_lt_sub_iff_right]
   have hrOld : 0 < r * oldBinding := mul_pos hr hold
   rw [div_lt_div_iff_of_pos_left hbudget hold hrOld]
-  simpa only [one_mul] using
-    (mul_lt_mul_right hold : r * oldBinding < 1 * oldBinding ↔ r < 1)
+  constructor
+  · intro hmul
+    by_contra hnot
+    have hge : (1 : ℝ) ≤ r := le_of_not_gt hnot
+    have hr1 : 0 ≤ r - 1 := sub_nonneg.mpr hge
+    have hprod : 0 ≤ (r - 1) * oldBinding :=
+      mul_nonneg hr1 (le_of_lt hold)
+    nlinarith
+  · intro hrlt
+    have h1r : 0 < (1 : ℝ) - r := sub_pos.mpr hrlt
+    have hprod : 0 < (1 - r) * oldBinding := mul_pos h1r hold
+    nlinarith
 
 /-- If a currently positive margin accepts a load equal to a strict fraction
 u of that margin, with 0 <= u < 1, the updated margin remains strictly
