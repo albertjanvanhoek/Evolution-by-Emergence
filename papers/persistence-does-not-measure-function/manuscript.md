@@ -62,7 +62,7 @@ Components are lost at common rate \(d>0\). Activated substrate enters at rate \
 \dot r=J-\ell r-r\mathbf 1^TBx.
 \]
 
-The model represents replacement bookkeeping rather than full thermodynamics.
+The model represents replacement bookkeeping rather than full thermodynamics. Importantly, \(B\) is fixed: no modeled component senses a state variable and changes production in response. The system therefore contains no endogenous regulatory or checkpoint layer, and the later capacity objects \(\Phi\) and \(\theta\) are external evaluation criteria rather than feedback mechanisms. This limitation is returned to explicitly in §16.
 
 Let \(\lambda=\rho(B)\) be the spectral radius. For irreducible \(B\), let \(p\gg0\) be its Perron eigenvector normalized by \(\mathbf 1^Tp=1\). A positive equilibrium satisfies
 
