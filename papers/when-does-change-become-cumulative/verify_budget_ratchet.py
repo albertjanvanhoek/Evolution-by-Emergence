@@ -47,11 +47,12 @@ assert lo < thetaD <= hi
 assert lo == F(9,19)
 assert hi == F(21,38)
 
-# Exact productive pointwise-domination witness from the non-substituting
-# extension family f=1/100, v=44, lambda=6/5.
+# Exact productive pointwise-domination witness used in the manuscript/Lean:
+# f=1/100, v=125, lambda=3/2.
 old = {"A": F(3,5), "B": F(3,10)}
-new = {"A": F(663,1400), "B": F(1989,7000)}
+new = {"A": F(753,2000), "B": F(2259,8000)}
 assert all(new[k] < old[k] for k in old)
+assert margin(new["A"]) == F(1247,753)
 
 # Reproduce the corrected floating-point witness v=100, f=.01.
 def non_substituting_extension(f, v):
@@ -69,22 +70,46 @@ assert cA < 0.60 and cB < 0.30
 assert abs(cA - 0.39775) < 1e-4
 assert abs(cB - 0.28125) < 1e-4
 
-# Fixed-minimum load ladder: this is a load bound, not a universal capability
-# count. For the exact rational first-click margin and kappa_min=.1:
+# Repeated-load topology checks.
+# Sequential renormalization: multipliers compose.
 kmin = 0.10
-bound = log(1 + float(M1)) / log(1 + kmin)
+seq_bound = log(1 + float(M1)) / log(1 + kmin)
 prod = 1.0
-n = 0
+n_seq = 0
 binding = float(F(99,196))
 while binding * prod * (1+kmin) <= 1.0 + 1e-15:
     prod *= (1+kmin)
-    n += 1
-assert n == int(bound)
+    n_seq += 1
+assert n_seq == int(seq_bound)
+
+# Simultaneous shared pool: intrinsic kappas add.
+pool_bound = float(M1) / kmin
+n_pool = 0
+S = 0.0
+while S + kmin <= float(M1) + 1e-15:
+    S += kmin
+    n_pool += 1
+assert n_pool == int(pool_bound)
+
+# Exact shared-pool realized-ratio identity at an arbitrary rational state.
+Mbase = F(1,1)
+S0 = F(1,3)
+knew = F(1,4)
+M_before = (Mbase - S0) / (1 + S0)
+M_after = (Mbase - S0 - knew) / (1 + S0 + knew)
+r_realized = (1 + S0 + knew) / (1 + S0)
+k_eff = r_realized - 1
+assert k_eff == knew / (1 + S0)
+assert 1 + M_after == (1 + M_before) / r_realized
+assert k_eff <= M_before
+assert S0 + knew <= Mbase
 
 print("Exact accessible sets:", acc0, "->", acc1, "->", acc2)
 print("M0 =", M0, "M1 =", M1, "kappa =", kappa)
 print("theta_D window =", lo, "<", thetaD, "<=", hi)
 print("productive domination exact costs:", new)
 print("v=100,f=.01 costs:", f"{cA:.5f}", f"{cB:.5f}")
-print("fixed-load bound:", bound, "simulated accepted loads:", n)
+print("sequential fixed-load bound:", seq_bound, "accepted loads:", n_seq)
+print("shared-pool fixed-load bound:", pool_bound, "accepted loads:", n_pool)
+print("shared-pool realized kappa_eff:", k_eff, "M before:", M_before, "M after:", M_after)
 print("ALL CHECKS PASS")
