@@ -95,23 +95,23 @@ Build locally with:
     lake exe cache get
     lake build
 
-The Lean source checks preservation, strict expansion, composition, score dominance, threshold crossing, cost dominance, budget crossing, and the failure of preservation after target loss.
+The Lean source checks preservation, strict expansion, composition, score dominance, threshold crossing, cost dominance, budget crossing, route-level non-destructive extension, newly feasible routes, and the failure of preservation after target loss.
 
 The formalization proves the abstract implications. It does not validate an empirical choice of target family, protocol, score, cost, or threshold.
 
 
 ## Verified proof state
 
-Lean source commit:
+Current verified Lean source commit:
 
-    3c0ba6746846625b3196e226beba3287ffadcba8
+    7feac0d14429e0685ec78e411ea0dee6e44e2307
 
 GitHub Actions run:
 
-    34843700850
+    34844171842
 
 Result:
 
     Cumulative Accessibility Lean Check: PASS
 
-The later documentation commits do not modify the verified Lean source.
+This proof state includes the route-dominance and newly-feasible-route theorems.
