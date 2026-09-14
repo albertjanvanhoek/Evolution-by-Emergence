@@ -1,4 +1,4 @@
-name: Cumulative Accessibility Lean Check
+name: Cumulative Accessibility Check
 
 on:
   push:
@@ -7,10 +7,12 @@ on:
       - chatgpt/cumulative-accessibility-ratchet
     paths:
       - "formalization/cumulative-accessibility/**"
+      - "papers/when-does-change-become-cumulative/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
   pull_request:
     paths:
       - "formalization/cumulative-accessibility/**"
+      - "papers/when-does-change-become-cumulative/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
 
 jobs:
@@ -34,3 +36,11 @@ jobs:
       - name: Compile
         run: |
           $HOME/.elan/bin/lake build
+
+  budget-ratchet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact and numerical budget-ratchet checks
+        run: |
+          python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
