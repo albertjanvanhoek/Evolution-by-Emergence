@@ -173,5 +173,6 @@ Machine verification establishes algebraic implications of formalized assumption
 - the declared capacities or thresholds are biologically privileged;
 - persistence implies functional progress;
 - the classical Perron-Frobenius or resource-competition results discussed in the manuscript are novel.
+- the current constant-\(B\) model contains an endogenous regulator; the regulatory-return equations in the Discussion are hypotheses for a future state-dependent extension.
 
 This is intentionally a counterexample/methods contribution: one internally consistent model is sufficient to show that productive persistence, structural support, and functional capacity are not universally interchangeable measurements.
