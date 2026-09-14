@@ -112,107 +112,89 @@ A burden range around 45–50% corresponds algebraically to
 
 This is a mapping of the Barrick population-genetic boundary into the framework's load coordinate. It is not an estimate obtained from the empirical tail.
 
-## 4. Prospective prediction remains strong
+## 4. Correct prospective topology
 
-The existing cohort cannot test the central composition law because it contains single BioBricks, not controlled pairs of independently characterized one-way loads.
+The earlier draft incorrectly treated two simultaneous one-way loads as sequentially renormalized loads.
 
-The prospective prediction is
+For simultaneous shared-pool loads,
+
+\[
+R_i=H\kappa_i,
+\]
+
+so
+
+\[
+X^\star
+=
+H\left(1+\kappa_1+\kappa_2\right)
+\]
+
+and therefore
 
 \[
 \boxed{
+b_{12}^{\rm shared}
+=
+\frac{\kappa_1+\kappa_2}
+{1+\kappa_1+\kappa_2}.
+}
+\]
+
+The multiplicative burden relation
+
+\[
 1-b_{12}=(1-b_1)(1-b_2)
-}
 \]
 
-or
+belongs to a different sequential-renormalization topology.
+
+For the current nominee pair K733013 + J36335,
+
+\[
+b_1=0.1955,
+\qquad
+b_2=0.3024,
+\]
+
+the predictions are approximately
 
 \[
 \boxed{
-b_{12}=b_1+b_2-b_1b_2.
+b_{12}^{\rm shared}=0.4035,
 }
 \]
 
-This differs from the naive additive model
-
 \[
-b_{12}=b_1+b_2.
-\]
-
-The published data contain moderate-burden constructs that can nominate experimental candidates.
-
-Using a conservative screen:
-
-- burden 18–32%;
-- statistically significant burden;
-- no GFP-interference flag;
-- no significant evidence of non-expression burden in the published capacity-monitor test;
-
-six candidates remain.
-
-Two pairs create particularly clear separation between additive and multiplicative predictions:
-
-### Pair A
-
-\[
-K733013:\ b_1=0.1955,
+b_{12}^{\rm sequential}=0.4388,
 \]
 
 \[
-J36335:\ b_2=0.3024.
+b_{12}^{\rm additive}=0.4979.
 \]
 
-Predictions:
+For K733013 + K346000,
 
 \[
-b_{12}^{\rm additive}=0.4979,
+b_{12}^{\rm shared}=0.3955,
+\qquad
+b_{12}^{\rm sequential}=0.4299,
+\qquad
+b_{12}^{\rm additive}=0.4869.
 \]
 
-\[
-\boxed{
-b_{12}^{\rm multiplicative}=0.4388.
-}
-\]
+Thus the scientifically interesting experiment is not merely multiplicative versus naive additive burden. It is the harder mechanistic comparison between **shared-pool** and **sequential-renormalization** topologies.
 
-### Pair B
-
-\[
-K733013:\ b_1=0.1955,
-\]
-
-\[
-K346000:\ b_2=0.2914.
-\]
-
-Predictions:
-
-\[
-b_{12}^{\rm additive}=0.4869,
-\]
-
-\[
-\boxed{
-b_{12}^{\rm multiplicative}=0.4299.
-}
-\]
-
-These are **candidate-nomination calculations only**. Construct sequence, mechanism, backbone compatibility, copy number, and absence of direct product interactions must be checked before preregistering a particular pair.
+The shared-pool law is already structurally aligned with established synthetic-biology resource-competition theory. Agreement would therefore be a consistency check of the framework's resource layer rather than a new resource-competition discovery.
 
 ## 5. Interpretation
 
 The retrospective tail analysis is weaker than initially reported.
 
-The prospective test is stronger than the retrospective tail analysis.
+The prospective route remains useful, but its purpose is now narrower.
 
-The empirical claim should therefore be:
+The empirical claim should be:
 
-> The published BioBrick system provides measured single-load effects and an externally grounded evolutionary-retention problem. The framework predicts how two separable loads should compose, and that prediction is not contained in the existing data.
+> The published BioBrick system provides measured single-load effects and an externally grounded evolutionary-retention problem. The framework's simultaneous-load specialization predicts shared-pool composition, while sequential renormalization is a different topology.
 
-If a controlled double-load experiment rejects
-
-\[
-1-b_{12}=(1-b_1)(1-b_2),
-\]
-
-then the uniform-dilution specialization fails in that system.
-
-If it succeeds prospectively across several independent load pairs, the framework gains a substantially stronger empirical result than any retrospective endpoint fit can provide.
+A double-load experiment can test whether the chosen implementation behaves as the shared-pool topology assumes. Agreement is a consistency check of the resource layer. The more distinctive empirical target lies downstream: whether a declared repertoire has a measurable retention margin and whether a retained productive change can enlarge that margin and future accessibility.
