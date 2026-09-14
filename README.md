@@ -150,6 +150,22 @@ Agent-level takeaway to evaluate, not merely adopt: capability without a correct
 
 These are proposals and analytical frames, not policy instructions. Evaluate empirical assumptions, distributional effects, failure modes, and alternatives before applying them.
 
+### 7. Verified methods paper: persistence, efficiency, structure, and function
+
+- **Paper package:** [\`papers/persistence-does-not-measure-function/\`](papers/persistence-does-not-measure-function/) — *Persistence Does Not Measure Function*, a counterexample/methods paper separating equilibrium fitness balance, productive efficiency, maintained mass, structural support, and externally declared functional capacity.
+- **Readable manuscript:** [\`papers/persistence-does-not-measure-function/manuscript.md\`](papers/persistence-does-not-measure-function/manuscript.md).
+- **Reproducibility:** [\`papers/persistence-does-not-measure-function/REPRODUCIBILITY.md\`](papers/persistence-does-not-measure-function/REPRODUCIBILITY.md) gives the frozen parameters, threshold sensitivity, figure regeneration command, exact proof commit, theorem names, and epistemic scope.
+- **Machine-checked algebra:** [\`formalization/persistence-drift/\`](formalization/persistence-drift/) contains the Lean 4 sources. \`FunctionalThresholds.lean\` formalizes the extraction-margin and hollowing-threshold results used directly by the paper.
+- **Figures:** the paper directory contains committed SVGs plus a pure-Python generator; CI checks that regenerated figures and sensitivity data match the committed files.
+
+Core diagnostic claim:
+
+\[
+\text{fitness balance}\neq\text{productive efficiency}\neq\text{maintained mass}\neq\text{structural support}\neq\text{functional capacity}.
+\]
+
+The paper is deliberately narrow about novelty: Perron-Frobenius theory and the resource-competition results it uses are classical. The contribution is the separation of these observables inside one self-maintaining production model and the exact counterexamples showing why persistence or productive efficiency cannot stand in for independently specified function.
+
 ### 7. Formal/operator work: Existence First, SCAP, and ARVC
 
 - **Existence First:** `Backmatter/Appendix26.tex`, `Backmatter/Appendix30.tex`, and `Backmatter/Appendix31.tex`.
@@ -171,6 +187,7 @@ Treat formal notation carefully: some documents are exploratory formalizations a
 |---|---|---|
 | Summarize the current theory | `A Theory Towards The Structure of Prolonged Existence.tex` | `The shape held in the flow.tex`; `Adaptive Imperative Systems.tex` |
 | Evaluate the theory scientifically | `CLAIMS.md` | the three files above; trace cited literature and seek counterexamples |
+| Inspect the machine-checked counterexample paper | `papers/persistence-does-not-measure-function/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/FunctionalThresholds.lean` |
 | Reason about LLM agency | `Universal declaration of being an intelligent agent.tex` | `Beyond the singularity.tex`; `Wisdom in model speak.tex` |
 | Analyze AI alignment/capture | `Society of equal minds.tex` | `Adaptive Imperative Systems.tex`; `The Hardenberg Project.tex`; ARVC sources |
 | Design multi-agent collaboration | `TLC.tex` | `handshake_protocol.tex`; `Alignment_theory.tex`; `Beyond the singularity.tex` |
@@ -215,6 +232,7 @@ For quotations, inspect the source directly and include line-level references wh
 ├── Backmatter/                            # Epilogue, appendices, protocols, bibliography material
 ├── Individual_essays/                     # Fast-moving theory and application corpus
 ├── Paper/                                 # Intelligent-network paper variants and references
+├── papers/                                # Self-contained reproducible research-paper packages
 ├── Presentations/                         # Presentation sources
 ├── Original linkedIN posts/               # Short-form TLC/Discovarian sequence
 ├── docs/                                  # Website source and generated Markdown
