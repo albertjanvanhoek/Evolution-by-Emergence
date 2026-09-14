@@ -845,41 +845,83 @@ The Lean formalization checks the thresholded cost profiles with exact rational 
 
 The two-click witness above winds the margin without lowering every inherited cost: \(A\) becomes cheaper but \(B\) becomes more expensive while remaining within budget.
 
-A separate productive extension demonstrates the stronger case.
+A separate productive extension demonstrates the stronger case with exact rational arithmetic.
 
 For the non-substituting extension family, choose
 
 \[
 f=\frac1{100},
 \qquad
-v=44,
+v=125.
+\]
+
+Then
+
+\[
+\lambda^2
+=
+1+vf
+=
+\frac94,
 \]
 
 so
 
 \[
-\lambda=\frac65,
+\lambda=\frac32,
 \qquad
-X=\frac76.
+X=2-\frac1\lambda=\frac43.
 \]
 
-The inherited costs become
+The inherited abundances are
 
 \[
-c(A)=\frac{663}{1400}
+x_A=\frac{200}{251},
+\qquad
+x_B=\frac{400}{753},
+\]
+
+and the corresponding inherited costs are
+
+\[
+c(A)=\frac{753}{2000}
 <
 \frac35,
 \]
 
 \[
-c(B)=\frac{1989}{7000}
+c(B)=\frac{2259}{8000}
 <
 \frac3{10}.
 \]
 
 Thus every inherited cost falls.
 
-This exact rational cost-domination witness is machine checked.
+The binding inherited cost falls from
+
+\[
+\frac35
+\]
+
+to
+
+\[
+\frac{753}{2000},
+\]
+
+so the margin rises exactly from
+
+\[
+\frac23
+\]
+
+to
+
+\[
+\frac{1247}{753}.
+\]
+
+The exact rational cost inequalities and margin winding are machine checked, conditional on the closed-form equilibrium formulas inherited from the parent production-network model.
 
 The lesson is not that cost domination is impossible. It is that cumulative accessibility does not require it.
 
@@ -966,7 +1008,7 @@ This is conceptually consistent with the fixed-resolution no-go result: fixed-si
 
 ---
 
-## 13. Log-slack and the filtered candidate process
+## 13. Log-slack and the self-limiting retention filter
 
 The margin identity gives a useful final change of variables.
 
@@ -984,7 +1026,13 @@ For a candidate whose multiplicative change in binding cost is
 r_t=\frac{c_{t+1}^\star}{c_t^\star},
 \]
 
-the verified identity
+write
+
+\[
+Y_t=\log r_t.
+\]
+
+The verified identity
 
 \[
 1+M_{t+1}
@@ -996,35 +1044,25 @@ becomes, for an accepted candidate,
 
 \[
 \boxed{
-W_{t+1}
-=
-W_t-\log r_t.
+W_{t+1}=W_t-Y_{t+1}.
 }
 \]
 
 Retention requires
 
 \[
-r_t\le1+M_t,
+r_{t+1}\le1+M_t,
 \]
 
 equivalently
 
 \[
 \boxed{
-\log r_t\le W_t.
+Y_{t+1}\le W_t.
 }
 \]
 
-Thus candidate acceptance is a state-dependent filter on a multiplicative process.
-
-Let
-
-\[
-Y_t=\log r_t.
-\]
-
-If a candidate that violates retention is rejected without changing the current organization, the one-dimensional update is
+If non-retainable candidates are rejected without changing the current organization, then
 
 \[
 \boxed{
@@ -1037,11 +1075,65 @@ W_t, & Y_{t+1}>W_t.
 }
 \]
 
-This is not an ordinary unconstrained random walk. The increment law is filtered by the current slack.
+This is not an ordinary unconstrained random walk. It is a state-filtered process.
 
-### Proposition 3 — geometric-mean criterion for linear self-propagation
+### Proposition 3 — self-enforcing conservatism of the retention boundary
 
-Assume, as a deliberately simplified forward model, that the candidate log-multipliers
+For two slack levels
+
+\[
+0\le W_1\le W_2,
+\]
+
+the admissible candidate sets satisfy
+
+\[
+\boxed{
+\{Y:Y\le W_1\}
+\subseteq
+\{Y:Y\le W_2\}.
+}
+\]
+
+Thus spending slack contracts the set of retainable changes.
+
+At the boundary
+
+\[
+W=0,
+\]
+
+retention becomes
+
+\[
+\boxed{
+Y\le0
+}
+\]
+
+or equivalently
+
+\[
+\boxed{
+r\le1.
+}
+\]
+
+So a zero-slack organization can retain only neutral or winding changes. Any strictly spending candidate is rejected, while any strictly winding candidate remains admissible.
+
+This statement is deterministic and machine checked. It does not require a stochastic candidate law, foresight, an adaptive regulator, or evolution of the candidate distribution.
+
+The consequence is important:
+
+> **Over-spending does not automatically imply collapse. As slack is consumed, the retention boundary itself makes the organization increasingly conservative. At zero slack, further spending is blocked while neutral or winding changes remain admissible.**
+
+If ordinary dynamics continues to generate at least some winding candidates, then zero slack is not an absorbing dead state: a retained \(r<1\) change immediately recreates positive slack.
+
+Candidate generation may therefore remain undirected. Direction can arise from differential retention.
+
+### Proposition 4 — geometric-mean criterion for linear self-propagation
+
+Now assume, as a deliberately simplified forward model, that the candidate log-multipliers
 
 \[
 Y_1,Y_2,\ldots
@@ -1061,7 +1153,7 @@ Write
 \mu=\mathbb E[Y_1]=\mathbb E[\log r].
 \]
 
-Define **linear self-propagation** to mean positive asymptotic growth of log-slack,
+Define **linear self-propagation** to mean
 
 \[
 \liminf_{n\to\infty}\frac{W_n}{n}>0.
@@ -1084,7 +1176,7 @@ is exactly the condition for linear self-propagation in this filtered model, and
 }
 \]
 
-Equivalently, the geometric mean multiplier satisfies
+Equivalently,
 
 \[
 \boxed{
@@ -1092,7 +1184,7 @@ Equivalently, the geometric mean multiplier satisfies
 }
 \]
 
-The arithmetic mean \(\mathbb E[r]\) is not the relevant multiplicative criterion.
+The geometric mean multiplier, not the arithmetic mean multiplier, controls multiplicative self-propagation.
 
 #### Proof sketch
 
@@ -1104,7 +1196,7 @@ W_{n+1}-W_n
 -Y_{n+1}\mathbf 1_{\{Y_{n+1}\le W_n\}}.
 \]
 
-When a candidate is rejected, \(Y_{n+1}>W_n\ge0\), so replacing the rejected update by the unconstrained increment \(-Y_{n+1}\) could only make the state smaller. Hence pathwise
+When a candidate is rejected, \(Y_{n+1}>W_n\ge0\). Therefore replacing the rejected update by the unconstrained increment \(-Y_{n+1}\) can only make the state smaller, giving the pathwise bound
 
 \[
 W_n
@@ -1112,17 +1204,17 @@ W_n
 W_0-\sum_{i=1}^{n}Y_i.
 \]
 
-If \(\mu<0\), the strong law of large numbers gives a positive linear lower bound on \(W_n\). A rejection at sufficiently large \(n\) then requires \(Y_n\) itself to exceed a linearly growing threshold. Integrability of \(Y^+\) makes the corresponding tail probabilities summable; Borel--Cantelli therefore implies only finitely many rejections. After that random finite time every candidate is accepted, and the strong law gives
+If \(\mu<0\), the strong law gives a positive linear lower bound on \(W_n\). A rejection at sufficiently large \(n\) then requires \(Y_n\) to exceed a linearly growing threshold. Integrability of \(Y^+\) makes those tail probabilities summable, so Borel--Cantelli implies that only finitely many candidates are rejected. Thereafter the process is the ordinary additive walk and
 
 \[
 W_n/n\to-\mu.
 \]
 
-Conversely, if \(W_n\) had a positive linear lower growth rate while \(\mu\ge0\), the same tail argument would again make rejections eventually finite, after which the strong law would force asymptotic rate \(-\mu\le0\), a contradiction.
+Conversely, positive linear growth would itself force rejections to become finite by the same argument, after which the strong law requires the asymptotic rate to equal \(-\mu\). Hence positive linear growth is impossible when \(\mu\ge0\).
 
-So the logarithm turns the multiplicative winding/spending problem into an additive long-run criterion.
+This probability theorem is analytical rather than Lean-formalized.
 
-### The positive-mean regime is filtered, not collapsed
+### Positive mean: a stabilising drift field
 
 The case
 
@@ -1130,7 +1222,7 @@ The case
 \mu>0
 \]
 
-does **not** imply that slack simply goes to zero or that only \(r<1\) candidates are eventually accepted.
+does not imply collapse to zero slack.
 
 At state \(W=w\), the conditional mean increment is
 
@@ -1144,77 +1236,117 @@ Y\,\mathbf 1_{\{Y\le w\}}
 }
 \]
 
-If the candidate law is continuous, has finite first moment, and assigns positive probability to winding candidates \(Y<0\), then
+Define
 
 \[
-d(0)>0,
+g(w)
+=
+\mathbb E\!\left[
+Y\,\mathbf 1_{\{Y\le w\}}
+\right]
+=
+-d(w).
 \]
 
-whereas
-
-\[
-d(w)\longrightarrow-\mu<0
-\qquad
-(w\to\infty).
-\]
-
-Hence the drift changes sign at at least one finite slack level. This supplies a genuine negative-feedback mechanism: low slack preferentially filters out expensive candidates, while high slack admits enough spending candidates to push the expected drift back downward.
-
-This drift argument does **not** by itself prove a unique stationary distribution, its acceptance rate, or a universal closed form for the pinned regime. Those remain separate stochastic questions.
-
-In particular, the asymptotic acceptance probability is not generally
-
-\[
-P(Y\le0).
-\]
-
-At positive slack, some spending candidates with
-
-\[
-0<Y\le W
-\]
-
-remain admissible. If a stationary law \(\pi\) exists, the stationary acceptance fraction would instead be
-
-\[
-\mathbb E_\pi[F_Y(W)],
-\]
-
-not simply \(F_Y(0)\).
-
-A Gaussian simulation supplied during development illustrates this point. For \(\mu=0.30,\sigma=0.5\), the simulated tail acceptance fraction is about \(0.548\), while \(P(Y\le0)\approx0.274\); for \(\mu=0.80,\sigma=0.5\), the corresponding values are about \(0.109\) and \(0.0548\). The near factor of two observed for symmetric laws is not universal and is not used as a theorem.
-
-### Endogenous candidate generation remains the open recursion
-
-The i.i.d. model above holds the candidate law fixed in order to isolate the effect of the retention filter.
-
-The more general organizational problem remains
-
-\[
-Q_s,
-\]
-
-the candidate distribution generated by the current organization itself.
-
-If candidates arise at rate \(\nu(s)\), and \(\mathcal C(s)\) denotes candidates that both preserve the declared inherited repertoire and add at least one newly accessible target, then
+For \(w\ge0\), \(g\) is nondecreasing. If \(Y\) has an absolutely continuous distribution with density \(f\), then wherever the derivative exists,
 
 \[
 \boxed{
-\lambda(s)
-=
-\nu(s)\,
-Q_s\!\left(\mathcal C(s)\right).
+g'(w)=w f(w)\ge0.
 }
 \]
 
-A successful click changes \(s\), the slack \(W\), and potentially \(Q_s\) itself.
+If additionally
 
-This separates two recursive effects:
+\[
+P(Y<0)>0
+\]
 
-1. **budget filtering** — current slack determines which candidates can be retained;
-2. **evolvability change** — current organization determines which candidates are generated.
+and
 
-The first now has an exact state variable and a long-run criterion in the fixed-pool model. The second remains the unresolved step toward a general dynamics of cumulative evolution.
+\[
+\mathbb E[Y]>0,
+\]
+
+then
+
+\[
+g(0)=-\mathbb E[Y^-]<0,
+\]
+
+while
+
+\[
+g(w)\longrightarrow\mathbb E[Y]>0
+\qquad(w\to\infty).
+\]
+
+So there is at least one finite zero of the mean drift.
+
+Under the stronger regularity condition that \(f\) is positive on every nontrivial interval of \((0,\infty)\), \(g\) is strictly increasing there and the zero is unique:
+
+\[
+\boxed{
+\mathbb E\!\left[
+Y\,\mathbf 1_{\{Y\le w^\star\}}
+\right]
+=
+0.
+}
+\]
+
+Then
+
+\[
+d(w)>0
+\quad\text{for }w<w^\star,
+\]
+
+and
+
+\[
+d(w)<0
+\quad\text{for }w>w^\star.
+\]
+
+Thus \(w^\star\) is a unique **mean-drift equilibrium scale** with the stabilising sign pattern: low slack is pushed upward on average, while high slack is pushed downward on average.
+
+This does not by itself prove positive recurrence, a stationary distribution, or that the stationary mean equals \(w^\star\).
+
+Indeed, the accompanying simulations show that the drift-zero level, stationary mean, acceptance probability at \(w^\star\), and simulated stationary acceptance rate are distinct quantities.
+
+The previously observed near factor of two between stationary acceptance and the pure winding fraction for some symmetric laws is distribution-specific and is not a theorem.
+
+### Ordinary dynamics can supply the candidates
+
+Nothing in the basic filter requires the candidate distribution itself to become progressively more favourable.
+
+The candidate pool may simply be generated by ordinary dynamics: collision, recombination, mutation, transfer, breakage, association, expression, construction, or other local changes in a bounded interacting system.
+
+The minimal ratchet is then
+
+\[
+\boxed{
+\text{ordinary candidate generation}
++
+\text{state-dependent retention}
+=
+\text{biased retained change}.
+}
+\]
+
+A change to the candidate-generating process itself remains possible and scientifically important, but it is a second-order phenomenon: **evolvability**.
+
+If current organization \(s\) generates candidates according to \(Q_s\), and \(\mathcal C(s)\) denotes candidates that both preserve the declared inherited repertoire and add at least one newly accessible target, then
+
+\[
+\lambda(s)
+=
+\nu(s)\,
+Q_s(\mathcal C(s)).
+\]
+
+Changing \(Q_s\) can alter the supply of future candidates. The basic directional filtering result, however, does not require that additional mechanism.
 
 ---
 
@@ -1307,7 +1439,17 @@ Under the explicit definitions and assumptions:
 - an exact two-click accessibility sequence exists;
 - the second click in that witness is unavailable at the baseline;
 - repeated fixed-minimum non-returning loads have a finite load-ladder bound;
-- in the i.i.d. fixed candidate-pool model, negative mean log-multiplier (mathbb E[log r]<0) is the criterion for positive linear log-slack growth, with (W_n/n	o-mathbb E[log r]) almost surely under the stated integrability assumptions.
+- lower slack weakly contracts the admissible candidate set; at zero slack only neutral or winding candidates are retainable;
+- in the i.i.d. fixed candidate-pool model, negative mean log-multiplier
+  \[
+  \mathbb E[\log r]<0
+  \]
+  is the criterion for positive linear log-slack growth, with
+  \[
+  W_n/n\to-\mathbb E[\log r]
+  \]
+  almost surely under the stated integrability assumptions;
+- in the positive-mean absolutely continuous fixed-pool model, the conditional drift has a stabilising sign pattern; under positive density on every interval of \((0,\infty)\), the truncated-mean equation has a unique drift-zero level \(w^\star\).
 
 ### Not secured
 
@@ -1342,7 +1484,7 @@ M_t
 \frac{B}{c_t^\star}-1
 \]
 
-then measures how much additional one-way load that repertoire can tolerate.
+measures how much additional one-way load that repertoire can tolerate.
 
 Some clicks spend that slack.
 
@@ -1360,24 +1502,66 @@ M_{t+1}>M_t
 
 The exact two-click network witness shows this can happen in the model.
 
-So the ratchet is not a drive toward complexity. It is a conditional memory mechanism: retained organization can preserve what has already become reachable and alter the budget from which subsequent organization is built.
+But the ratchet has another property that does not require favourable evolution of the candidate pool.
 
-For a fixed i.i.d. candidate pool, that question now has a partial answer. In log-slack coordinates,
+Writing
 
-[
-W_t=log(1+M_t),
-]
+\[
+W_t=\log(1+M_t),
+\qquad
+Y_t=\log r_t,
+\]
 
-multiplicative binding-cost changes become additive, and positive linear slack accumulation occurs exactly when
+retention is simply
 
-[
-oxed{
-mathbb E[log r]<0.
+\[
+Y_t\le W_t.
+\]
+
+Therefore lower slack automatically means a smaller admissible set of changes. At the boundary \(W=0\), only
+
+\[
+Y\le0
+\]
+
+remains retainable: neutral or winding changes.
+
+So accumulated organization protects itself through a **self-limiting retention filter**. Over-spending need not cause immediate collapse. It makes further spending progressively harder to retain while continuing to permit changes that preserve or recreate slack.
+
+This means the basic forward bias need not reside in candidate generation. Ordinary undirected dynamics can continue to propose changes. Direction arises because the current organization filters those proposals through the requirement that retained organization remain viable.
+
+For a fixed i.i.d. candidate pool, the long-run winding criterion is
+
+\[
+\boxed{
+\mathbb E[\log r]<0,
 }
-]
+\]
 
-The remaining forward question is therefore narrower:
+under which log-slack grows linearly at rate
 
-> **Under what conditions does the organization change its own candidate-generating process (Q_s) so that winding-enough, retainable, capability-adding candidates continue to be produced?**
+\[
+-\mathbb E[\log r].
+\]
 
-That is the point at which a budgeted ratchet becomes an endogenous dynamics of cumulative evolution.
+When the mean log-multiplier is positive, the same retention rule instead produces a stabilising mean-drift scale under the stated regularity conditions.
+
+The remaining second-order question is therefore not required to explain the basic ratchet, but it remains important:
+
+> **How can retained organization alter the kinds of candidates ordinary dynamics generates?**
+
+That is evolvability: a ratchet acting not only on what is retained, but on the process that generates future possibilities.
+
+The basic cumulative mechanism is already present one level below:
+
+\[
+\boxed{
+\text{ordinary variation}
++
+\text{retention of inherited accessibility}
++
+\text{resource slack}
+\Longrightarrow
+\text{biased cumulative change}.
+}
+\]
