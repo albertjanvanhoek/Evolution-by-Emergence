@@ -2,6 +2,8 @@ import Mathlib
 
 namespace AffinityLayer
 
+noncomputable section
+
 /-! # Association strength before accessibility
 
 Two independent sufficient mechanisms can create an interior association optimum.
@@ -18,16 +20,16 @@ molecular physics.
 -/
 
 /-- Productive mass in the normalized linear-affinity model. -/
-def productiveMass (lam a : ℝ) : ℝ :=
+noncomputable def productiveMass (lam a : ℝ) : ℝ :=
   2 - 1 / (a * lam)
 
 /-- Productive mass remaining per unit linear association overhead. -/
-def costScore (lam c a : ℝ) : ℝ :=
+noncomputable def costScore (lam c a : ℝ) : ℝ :=
   productiveMass lam a / (1 + c * a)
 
 /-- Declared margin after multiplying productive mass by a positive capability
 scale K. -/
-def costMargin (K lam c a : ℝ) : ℝ :=
+noncomputable def costMargin (K lam c a : ℝ) : ℝ :=
   K * costScore lam c a - 1
 
 /-- Exact global-optimum certificate for the linear-upkeep channel.
@@ -48,6 +50,7 @@ theorem costScore_difference_of_stationary
   have hca : 1 + c * a ≠ 0 := by nlinarith
   have hca0 : 1 + c * a0 ≠ 0 := by nlinarith
   field_simp [hane, ha0ne, hlamne, hca, hca0]
+  ring_nf at hstat ⊢
   nlinarith [hstat]
 
 /-- Any positive stationary point of the linear-upkeep score is a global
@@ -81,15 +84,19 @@ theorem costAStar_stationary
     2 * c * lam * (costAStar lam c)^2
       =
     1 + 2 * c * costAStar lam c := by
-  unfold costAStar
   let s : ℝ := Real.sqrt (1 + 2 * lam / c)
   have harg : 0 ≤ 1 + 2 * lam / c := by positivity
-  have hs2 : s^2 = 1 + 2 * lam / c := by
+  have hs2raw : s^2 = 1 + 2 * lam / c := by
     dsimp [s]
     simpa using Real.sq_sqrt harg
-  have hlamne : lam ≠ 0 := ne_of_gt hlam
   have hcne : c ≠ 0 := ne_of_gt hc
-  field_simp [hlamne, hcne] at hs2 ⊢
+  have hs2 : c * s^2 = c + 2 * lam := by
+    field_simp [hcne] at hs2raw
+    nlinarith [hs2raw]
+  have hlamne : lam ≠ 0 := ne_of_gt hlam
+  change 2 * c * lam * ((1 + s) / (2 * lam))^2
+      = 1 + 2 * c * ((1 + s) / (2 * lam))
+  field_simp [hlamne]
   nlinarith [hs2]
 
 theorem costAStar_global_max
@@ -109,19 +116,25 @@ theorem costScore_at_aStar
     costScore lam c (costAStar lam c)
       =
     2 * (costS lam c - 1) / (costS lam c + 1) := by
-  unfold costScore productiveMass costAStar costS
   let s : ℝ := Real.sqrt (1 + 2 * lam / c)
   have harg : 0 ≤ 1 + 2 * lam / c := by positivity
-  have hs2 : s^2 = 1 + 2 * lam / c := by
+  have hs2raw : s^2 = 1 + 2 * lam / c := by
     dsimp [s]
     simpa using Real.sq_sqrt harg
+  have hcne : c ≠ 0 := ne_of_gt hc
+  have hs2 : c * s^2 = c + 2 * lam := by
+    field_simp [hcne] at hs2raw
+    nlinarith [hs2raw]
   have hs : 0 ≤ s := by
     dsimp [s]
     exact Real.sqrt_nonneg _
   have hs1 : s + 1 ≠ 0 := by linarith
   have hlamne : lam ≠ 0 := ne_of_gt hlam
-  have hcne : c ≠ 0 := ne_of_gt hc
-  dsimp [s] at *
+  change
+    (2 - 1 / (((1 + s) / (2 * lam)) * lam)) /
+        (1 + c * ((1 + s) / (2 * lam)))
+      =
+    2 * (s - 1) / (s + 1)
   field_simp [hlamne, hcne, hs1]
   nlinarith [hs2]
 
@@ -143,7 +156,7 @@ noncomputable def costCritical (K lam : ℝ) : ℝ :=
 
 /-- Symmetric association-turnover factor. It vanishes for arbitrarily weak
 or strong association and peaks at one. -/
-def turnoverShape (a : ℝ) : ℝ :=
+noncomputable def turnoverShape (a : ℝ) : ℝ :=
   4 * a / (1 + a)^2
 
 theorem turnoverShape_pos {a : ℝ} (ha : 0 < a) :
@@ -172,7 +185,7 @@ theorem turnoverShape_eq_one_iff {a : ℝ} (ha : 0 < a) :
     norm_num [turnoverShape]
 
 /-- Effective productive spectral scale in the turnover channel. -/
-def turnoverLambda (lam a : ℝ) : ℝ :=
+noncomputable def turnoverLambda (lam a : ℝ) : ℝ :=
   lam * turnoverShape a
 
 theorem turnoverLambda_le_peak
@@ -182,7 +195,7 @@ theorem turnoverLambda_le_peak
   nlinarith [turnoverShape_le_one ha]
 
 /-- Productive mass with Sabatier-shaped turnover and no association overhead. -/
-def turnoverMass (lam a : ℝ) : ℝ :=
+noncomputable def turnoverMass (lam a : ℝ) : ℝ :=
   2 - 1 / turnoverLambda lam a
 
 /-- The no-upkeep turnover channel has its global productive-mass maximum at
@@ -197,7 +210,10 @@ theorem turnoverMass_le_peak
   have hle : turnoverLambda lam a ≤ lam := turnoverLambda_le_peak hlam ha
   have hinv : 1 / lam ≤ 1 / turnoverLambda lam a := by
     exact (div_le_div_iff₀ hlam hlamA).2 (by simpa using hle)
-  norm_num [turnoverMass, turnoverLambda, turnoverShape]
+  have hpeak : turnoverLambda lam 1 = lam := by
+    norm_num [turnoverLambda, turnoverShape]
+  unfold turnoverMass
+  rw [hpeak]
   linarith
 
 /-- Exact normalized witness: with lam=6/5 and K=56/33, the no-upkeep
@@ -231,5 +247,7 @@ theorem turnover_exact_two_sided_failure :
 #print axioms turnoverMass_le_peak
 #print axioms turnover_exact_witness
 #print axioms turnover_exact_two_sided_failure
+
+end
 
 end AffinityLayer
