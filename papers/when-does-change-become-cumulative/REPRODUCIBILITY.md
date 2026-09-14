@@ -235,20 +235,32 @@ c(B):0.30000\to0.28125.
 The Lean source additionally checks exact rational strict domination using
 
 \[
-f=1/100,\quad v=44,\quad \lambda=6/5,
+f=1/100,\quad v=125,\quad \lambda=3/2,
 \]
 
 with
 
 \[
-c(A)=663/1400<3/5,
+c(A)=753/2000<3/5,
 \]
 
 \[
-c(B)=1989/7000<3/10.
+c(B)=2259/8000<3/10.
 \]
 
-The Lean theorem checks the exact cost inequalities; the closed-form production-network mapping is documented in the manuscript and remains inherited model algebra rather than a formalized matrix-eigenvalue theorem.
+The corresponding binding margin rises exactly from
+
+\[
+2/3
+\]
+
+to
+
+\[
+1247/753.
+\]
+
+The Lean theorem checks the exact cost and margin arithmetic; the closed-form production-network mapping is documented in the manuscript and remains inherited model algebra rather than a formalized matrix-eigenvalue theorem.
 
 ## 8. Load ladder
 
@@ -274,7 +286,62 @@ n\le
 
 This is a maximum load-ladder bound, not a universal count of future capability acquisitions. If newly acquired capabilities join the declaration, they can become binding earlier.
 
-## 9. Local reproduction
+## 9. Log-slack filtered dynamics
+
+Define
+
+\[
+W=\log(1+M),\qquad Y=\log r.
+\]
+
+If a candidate is accepted exactly when it preserves the current declared repertoire, then
+
+\[
+W_{n+1}
+=
+\begin{cases}
+W_n-Y_{n+1}, & Y_{n+1}\le W_n,\\
+W_n, & Y_{n+1}>W_n.
+\end{cases}
+\]
+
+For an i.i.d. state-independent candidate pool with \(\mathbb E|Y|<\infty\), the manuscript proves analytically that
+
+\[
+\mathbb E[Y]<0
+\]
+
+is exactly the condition for positive linear log-slack growth, and then
+
+\[
+W_n/n\to-\mathbb E[Y]
+\]
+
+almost surely.
+
+This analytical probability result is not formalized in Lean. The proof uses the pathwise inequality
+
+\[
+W_n\ge W_0-\sum_{i=1}^nY_i,
+\]
+
+the strong law of large numbers, integrability of the positive tail, and Borel--Cantelli.
+
+For positive mean, the manuscript only claims the conditional-drift identity
+
+\[
+d(w)=-\mathbb E[Y\mathbf 1_{Y\le w}]
+\]
+
+and its sign change under a continuous two-sided candidate law. It does not claim a universal stationary distribution or universal acceptance fraction.
+
+The illustrative Gaussian simulation is:
+
+    python papers/when-does-change-become-cumulative/verify_log_slack.py
+
+It intentionally checks that the filtered acceptance fraction is not simply \(P(Y\le0)\).
+
+## 10. Local reproduction
 
 Lean:
 
@@ -286,10 +353,11 @@ Lean:
 Budget-ratchet checks:
 
     python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
+    python papers/when-does-change-become-cumulative/verify_log_slack.py
 
-The Python script uses only the standard library and exact Fraction arithmetic for the two-click witness.
+Both scripts use only the Python standard library. The budget-ratchet script uses exact Fraction arithmetic for the two-click witness; the log-slack script is an illustrative simulation rather than a proof.
 
-## 10. Formalization scope
+## 11. Formalization scope
 
 CumulativeAccessibility.lean machine-checks:
 
@@ -302,6 +370,9 @@ CumulativeAccessibility.lean machine-checks:
 - impossibility of cost domination under positive uniform dilution;
 - margin nonnegativity;
 - margin ratio;
+- general multiplicative margin update;
+- winding iff the positive binding-cost multiplier is below one;
+- positivity after accepting a strict fraction of positive margin;
 - pure-dilution margin recursion;
 - exact declared-set retention boundary;
 - opened coupling window after margin increase;
@@ -318,9 +389,11 @@ It does not formalize:
 - empirical causal identification;
 - the production-network ODE/eigenvector derivation;
 - the external declaration of target families;
+- the SLLN/Borel--Cantelli log-slack theorem;
+- a stationary law for the positive-mean filtered process;
 - a directional theorem for the state-dependent candidate generator \(Q_s\).
 
-## 11. Verification record
+## 12. Verification record
 
 Verified combined proof/document state:
 
