@@ -136,7 +136,6 @@ theorem meanTraitVelocity_eq_cov (m trait : I → ℝ)
     ring
   rw [Finset.sum_congr rfl (fun i _ => ht i)]
   rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
-  ring
 
 /-- Selection component of the continuous-time change in mean Malthusian
 growth rate: exactly the weighted variance in growth rate. -/
