@@ -246,6 +246,52 @@ theorem margin_ratio
   field_simp [ne_of_gt hbudget, ne_of_gt hold, ne_of_gt hnew]
   ring
 
+/-- General winding/spending update when the binding cost changes by a
+positive multiplicative factor r. -/
+theorem margin_update
+    {budget oldBinding r : ℝ}
+    (hold : 0 < oldBinding)
+    (hr : 0 < r) :
+    1 + Margin budget (r * oldBinding)
+      =
+    (1 + Margin budget oldBinding) / r := by
+  unfold Margin
+  field_simp [ne_of_gt hold, ne_of_gt hr]
+  ring
+
+/-- For positive budget and binding cost, multiplying the binding cost by r
+winds the margin exactly when r < 1. -/
+theorem winds_iff_binding_cost_falls
+    {budget oldBinding r : ℝ}
+    (hbudget : 0 < budget)
+    (hold : 0 < oldBinding)
+    (hr : 0 < r) :
+    Margin budget oldBinding < Margin budget (r * oldBinding)
+      ↔
+    r < 1 := by
+  unfold Margin
+  rw [sub_lt_sub_iff_right]
+  have hrOld : 0 < r * oldBinding := mul_pos hr hold
+  rw [div_lt_div_iff₀ hold hrOld]
+  constructor <;> intro h <;> nlinarith
+
+/-- If a currently positive margin accepts a load equal to a strict fraction
+u of that margin, with 0 <= u < 1, the updated margin remains strictly
+positive. This is the deterministic core of the finite-step correction:
+arbitrarily small accepted loads need not exhaust margin in finitely many
+clicks. -/
+theorem accepted_fraction_margin_positive
+    {M u : ℝ}
+    (hM : 0 < M)
+    (hu0 : 0 ≤ u)
+    (hu1 : u < 1) :
+    0 < M * (1 - u) / (1 + u * M) := by
+  have hnum : 0 < M * (1 - u) := mul_pos hM (by linarith)
+  have hden : 0 < 1 + u * M := by
+    have hprod : 0 ≤ u * M := mul_nonneg hu0 (le_of_lt hM)
+    linarith
+  exact div_pos hnum hden
+
 /-- Exact margin recursion for a uniformly dilutive load.
 This identity alone does not imply finite-step exhaustion when accepted loads
 may become arbitrarily small. -/
@@ -477,12 +523,14 @@ theorem exact_second_threshold_in_opened_window :
   norm_num
 
 /-- A concrete strict pointwise cost improvement, showing again that cost
-domination is possible outside the dilutive topology. These rational values
-come from the non-substituting productive extension with f=1/100, v=44 and
-lambda=6/5 in the same closed-form production-network family. -/
+domination is possible outside the dilutive topology. These exact rational
+values come from the non-substituting productive extension with f=1/100,
+v=125 and lambda=3/2 in the same closed-form production-network family.
+The equilibrium-formula arithmetic is checked here; the ODE/eigenvalue
+derivation itself remains inherited from the parent model. -/
 theorem exact_productive_extension_strictly_dominates :
     let oldCost : Cost (Fin 2) := ![(3 : ℝ) / 5, 3 / 10]
-    let newCost : Cost (Fin 2) := ![(663 : ℝ) / 1400, 1989 / 7000]
+    let newCost : Cost (Fin 2) := ![(753 : ℝ) / 2000, 2259 / 8000]
     CostDominatesOn Set.univ oldCost newCost ∧
       ∀ x, newCost x < oldCost x := by
   dsimp
@@ -491,6 +539,14 @@ theorem exact_productive_extension_strictly_dominates :
     fin_cases x <;> norm_num
   · intro x
     fin_cases x <;> norm_num
+
+/-- The same rational productive witness winds the binding-cost margin from
+2/3 to 1247/753. -/
+theorem exact_productive_extension_winds_margin :
+    Margin 1 ((753 : ℝ) / 2000) = 1247 / 753
+      ∧
+    Margin 1 ((3 : ℝ) / 5) < Margin 1 (753 / 2000) := by
+  constructor <;> norm_num [Margin]
 
 /-- A target is route-feasible within budget when at least one admissible
 route realizes it at or below the declared budget. -/
@@ -595,6 +651,9 @@ theorem not_preservesOn_of_lost_target
 #print axioms not_costDominates_scaled
 #print axioms margin_nonneg
 #print axioms margin_ratio
+#print axioms margin_update
+#print axioms winds_iff_binding_cost_falls
+#print axioms accepted_fraction_margin_positive
 #print axioms margin_dilute
 #print axioms retainsCostOn_scaled_iff_margin
 #print axioms margin_increase_opens_coupling_window
@@ -606,6 +665,7 @@ theorem not_preservesOn_of_lost_target
 #print axioms exact_second_coupling_in_opened_window
 #print axioms exact_second_threshold_in_opened_window
 #print axioms exact_productive_extension_strictly_dominates
+#print axioms exact_productive_extension_winds_margin
 #print axioms routeDominatesOn_refl
 #print axioms routeDominatesOn_trans
 #print axioms routeDominates_preservesOn
