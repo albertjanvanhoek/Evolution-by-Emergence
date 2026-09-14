@@ -44,3 +44,4 @@ jobs:
       - name: Verify exact and numerical budget-ratchet checks
         run: |
           python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
+          python papers/when-does-change-become-cumulative/verify_log_slack.py
