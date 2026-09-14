@@ -3,7 +3,13 @@ name: Persistence Drift Lean Check
 on:
   push:
     branches:
+      - main
       - chatgpt/persistence-drift-lean-check
+      - chatgpt/persistence-function-paper
+    paths:
+      - "formalization/persistence-drift/**"
+      - ".github/workflows/persistence-drift-lean-check.yml"
+  pull_request:
     paths:
       - "formalization/persistence-drift/**"
       - ".github/workflows/persistence-drift-lean-check.yml"
