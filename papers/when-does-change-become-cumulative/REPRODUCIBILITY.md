@@ -98,3 +98,20 @@ Build locally with:
 The Lean source checks preservation, strict expansion, composition, score dominance, threshold crossing, cost dominance, budget crossing, and the failure of preservation after target loss.
 
 The formalization proves the abstract implications. It does not validate an empirical choice of target family, protocol, score, cost, or threshold.
+
+
+## Verified proof state
+
+Lean source commit:
+
+    3c0ba6746846625b3196e226beba3287ffadcba8
+
+GitHub Actions run:
+
+    34843700850
+
+Result:
+
+    Cumulative Accessibility Lean Check: PASS
+
+The later documentation commits do not modify the verified Lean source.
