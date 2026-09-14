@@ -31,6 +31,7 @@ It does not formalize the full stochastic organizational-accessibility kernel, e
 - upward score crossing implies strict expansion;
 - cost dominance implies preservation;
 - downward cost crossing implies strict expansion;
+- route dominance is reflexive and transitive;
 - route-level dominance preserves every old budget-feasible declared target;
 - a newly feasible route plus route dominance yields strict expansion;
 - loss of a previously accessible target rules out preservation.
