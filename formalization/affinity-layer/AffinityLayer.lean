@@ -229,7 +229,8 @@ theorem turnoverShape_inv
 theorem turnoverShape_exp_neg (x : ℝ) :
     turnoverShape (Real.exp (-x)) = turnoverShape (Real.exp x) := by
   rw [Real.exp_neg]
-  exact turnoverShape_inv (Real.exp_pos x)
+  simpa [one_div] using
+    (turnoverShape_inv (a := Real.exp x) (Real.exp_pos x))
 
 /-- Effective productive spectral scale in the turnover channel. -/
 noncomputable def turnoverLambda (lam a : ℝ) : ℝ :=
