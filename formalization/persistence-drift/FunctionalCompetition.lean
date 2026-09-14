@@ -108,6 +108,59 @@ theorem cov_return_cost (h : I → ℝ)
       mean_return_cost p c r α h hlin]
   ring
 
+/-- Continuous-time replicator vector field for a Malthusian growth rate.
+Unlike a discrete reproduction factor, the entries of m may be negative. -/
+noncomputable def replicatorVelocity (p m : I → ℝ) : I → ℝ :=
+  fun i => p i * (m i - mean p m)
+
+/-- Instantaneous velocity of the mean of a fixed trait under the replicator
+vector field. -/
+noncomputable def meanTraitVelocity (p m trait : I → ℝ) : ℝ :=
+  ∑ i, replicatorVelocity p m i * trait i
+
+/-- Continuous Price/covariance identity for the replicator vector field. -/
+theorem meanTraitVelocity_eq_cov (m trait : I → ℝ)
+    (hp : ∑ i, p i = 1) :
+    meanTraitVelocity p m trait = cov p m trait := by
+  rw [cov_eq_sub p m trait hp]
+  simp only [meanTraitVelocity, replicatorVelocity, mean]
+  have ht : ∀ i : I,
+      p i * (m i - ∑ j, p j * m j) * trait i
+        = p i * m i * trait i
+          - (∑ j, p j * m j) * (p i * trait i) := by
+    intro i
+    ring
+  rw [Finset.sum_congr rfl (fun i _ => ht i)]
+  rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
+  ring
+
+/-- General continuous-time cost drift with varying productive return. -/
+theorem continuous_cost_velocity_return_cost (h : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hlin : ∀ i, r i = h i - α * c i) :
+    meanTraitVelocity p r c = cov p h c - α * variance p c := by
+  rw [meanTraitVelocity_eq_cov p r c hp,
+      cov_return_cost p c r α h hp hlin]
+
+/-- Exact same-function fibre: continuous competition drives implementation
+cost downward at rate alpha times the weighted cost variance. -/
+theorem continuous_cost_velocity_linear
+    (hp : ∑ i, p i = 1)
+    (hlin : ∀ i, r i = b - α * c i) :
+    meanTraitVelocity p r c = - α * variance p c := by
+  rw [meanTraitVelocity_eq_cov p r c hp,
+      cov_linear p c r b α hp hlin]
+
+theorem continuous_cost_velocity_nonpos
+    (hp : ∑ i, p i = 1)
+    (hpnn : ∀ i, 0 ≤ p i)
+    (hα : 0 ≤ α)
+    (hlin : ∀ i, r i = b - α * c i) :
+    meanTraitVelocity p r c ≤ 0 := by
+  rw [continuous_cost_velocity_linear p c r b α hp hlin]
+  have hvar : 0 ≤ variance p c := variance_nonneg p c hpnn
+  nlinarith
+
 noncomputable def step (p r : I → ℝ) : I → ℝ :=
   fun i => p i * r i / (∑ j, p j * r j)
 
@@ -282,6 +335,10 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms mean_return_cost
 #print axioms sum_return_cost
 #print axioms cov_return_cost
+#print axioms meanTraitVelocity_eq_cov
+#print axioms continuous_cost_velocity_return_cost
+#print axioms continuous_cost_velocity_linear
+#print axioms continuous_cost_velocity_nonpos
 #print axioms price_return_cost
 #print axioms mean_cost_nonincreasing_of_return_tradeoff
 #print axioms step_sum_one
