@@ -166,7 +166,7 @@ Core diagnostic claim:
 
 The paper is deliberately narrow about novelty: Perron-Frobenius theory and the resource-competition results it uses are classical. The contribution is the separation of these observables inside one self-maintaining production model and the exact counterexamples showing why persistence or productive efficiency cannot stand in for independently specified function.
 
-### 7. Formal/operator work: Existence First, SCAP, and ARVC
+### 8. Formal/operator work: Existence First, SCAP, and ARVC
 
 - **Existence First:** `Backmatter/Appendix26.tex`, `Backmatter/Appendix30.tex`, and `Backmatter/Appendix31.tex`.
 - **SCAP:** `Backmatter/Appendix.tex`, `Backmatter/AppendixIII.tex`, `Backmatter/AppendixV.tex`, and `Backmatter/AppendixXIII.tex`.
