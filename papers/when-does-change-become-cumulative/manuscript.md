@@ -460,23 +460,30 @@ This gives a precise classification.
 - \(1<r_t\le1+M_t\): the step **spends** slack but retains the inherited repertoire.
 - \(r_t>1+M_t\): retention fails.
 
-For a purely dilutive load,
+For a purely dilutive transition, define the **effective current-state load**
 
 \[
-r_t=1+\kappa,
+\kappa_t^{\rm eff}=r_t-1.
 \]
 
-so
+Then
+
+\[
+r_t=1+\kappa_t^{\rm eff},
+\]
+
+and
 
 \[
 \boxed{
 M_{t+1}
 =
-\frac{M_t-\kappa}{1+\kappa}.
+\frac{M_t-\kappa_t^{\rm eff}}
+{1+\kappa_t^{\rm eff}}.
 }
 \]
 
-This recursion is exact.
+This recursion is exact. The superscript matters when an intrinsic module parameter is embedded in a multi-load topology: the \(\kappa\) that enters the one-step theorem is the realized multiplier minus one at the state where the candidate is applied, not automatically a topology-independent module constant.
 
 It does not imply finite-step exhaustion when accepted loads can become arbitrarily small. Finite load counts require an additional resolution or minimum-load condition.
 
@@ -953,11 +960,13 @@ Under a shared limiting resource, an extension generally imposes an opportunity 
 
 ---
 
-## 12. Repeated non-returning loads
+## 12. Repeated loads: topology matters
 
-Suppose a fixed declared repertoire experiences a sequence of purely non-returning uniform loads \(\kappa_i\).
+The one-step retention theorem is exact for any load that multiplies inherited costs by a known factor. Repeated-load composition, however, depends on how the load parameters are defined.
 
-The inherited binding cost is multiplied by
+### 12.1 Sequentially renormalized loads
+
+Suppose each accepted load \(\kappa_i\) is defined relative to the **currently remaining** host after previous loads. Then inherited binding cost is multiplied sequentially by
 
 \[
 \prod_{i=1}^{n}(1+\kappa_i).
@@ -973,21 +982,13 @@ Retention requires
 }
 \]
 
-If every accepted load has a positive lower bound
+If
 
 \[
 \kappa_i\ge\kappa_{\min}>0,
 \]
 
 then
-
-\[
-(1+\kappa_{\min})^n
-\le
-1+M_0,
-\]
-
-so
 
 \[
 \boxed{
@@ -998,13 +999,114 @@ n
 }
 \]
 
-This is a **maximum load-ladder bound on a fixed declared repertoire**.
+This is the topology implicitly used by the multiplicative ladder calculation.
 
-It is not a universal bound on the number of future capability acquisitions. A newly acquired capability may join the declaration and become binding earlier.
+### 12.2 Simultaneous shared-pool loads
 
-Nor does finite margin alone imply a finite number of accepted loads when arbitrarily small \(\kappa_i\) are permitted. An infinite sequence of vanishing loads can satisfy the product bound. In that regime the remaining margin can tend toward zero while admissible future loads become correspondingly small.
+For the Section 7 topology with several one-way components simultaneously drawing from the same host pool, each load satisfies
 
-This is conceptually consistent with the fixed-resolution no-go result: fixed-sized or fixed-resolution increments are finitely bounded under finite resources, whereas indefinite continuation requires vanishing increments or some mechanism that replenishes capacity.
+\[
+R_i=H\kappa_i.
+\]
+
+Hence
+
+\[
+X^\star
+=
+H+\sum_iR_i
+=
+H\left(1+\sum_i\kappa_i\right),
+\]
+
+so the inherited host is diluted by
+
+\[
+\boxed{
+\frac{1}{1+\sum_i\kappa_i},
+}
+\]
+
+not by \(\prod_i(1+\kappa_i)^{-1}\).
+
+For a fixed declared repertoire, retention therefore requires
+
+\[
+\boxed{
+\sum_{i=1}^{n}\kappa_i
+\le
+M_0.
+}
+\]
+
+If every simultaneous load satisfies
+
+\[
+\kappa_i\ge\kappa_{\min}>0,
+\]
+
+then
+
+\[
+\boxed{
+n
+\le
+\frac{M_0}{\kappa_{\min}}.
+}
+\]
+
+Thus the logarithmic ladder bound and the linear shared-pool bound are both correct, but for different load topologies.
+
+The distinction is substantive: sequential renormalization means later demand is defined relative to already-diluted host capacity, whereas simultaneous shared-pool demand is accumulated against one common pool.
+
+This also fixes the bookkeeping for the one-step theorem. If the shared-pool state already carries total intrinsic load
+
+\[
+S_t=\sum_{i\le t}\kappa_i,
+\]
+
+and a new intrinsic load \(\kappa\) is added, then
+
+\[
+c_t^\star=(1+S_t)c_0^\star,
+\qquad
+c_{t+1}^\star=(1+S_t+\kappa)c_0^\star.
+\]
+
+The realized binding-cost ratio is therefore
+
+\[
+\boxed{
+r_t
+=
+\frac{1+S_t+\kappa}{1+S_t}
+=
+1+\frac{\kappa}{1+S_t}.
+}
+\]
+
+So the effective one-step dilution parameter is
+
+\[
+\boxed{
+\kappa_t^{\rm eff}
+=
+\frac{\kappa}{1+S_t}.
+}
+\]
+
+Applying the generic theorem \(\kappa_t^{\rm eff}\le M_t\) is exactly equivalent to
+
+\[
+S_t+\kappa\le M_0.
+\]
+
+This is why the one-step theorem survives while repeated-load composition changes.
+
+Neither bound is a universal count of future capability acquisitions. Newly acquired capabilities may join the declaration and become binding earlier.
+
+Nor does finite margin alone imply finite-step exhaustion when arbitrarily small loads are permitted. Infinite sequences of vanishing loads remain possible in either topology.
+
 
 ---
 
@@ -1131,7 +1233,9 @@ If ordinary dynamics continues to generate at least some winding candidates, the
 
 Candidate generation may therefore remain undirected. Direction can arise from differential retention.
 
-### Proposition 4 — geometric-mean criterion for linear self-propagation
+### Proposition 4 — geometric-mean criterion for an i.i.d. realized-multiplier model
+
+The following probability result is **not** a topology-free statement about i.i.d. intrinsic module loads. It is a theorem about a candidate pool specified directly in terms of the **realized** binding-cost multiplier \(r\).
 
 Now assume, as a deliberately simplified forward model, that the candidate log-multipliers
 
@@ -1214,7 +1318,42 @@ Conversely, positive linear growth would itself force rejections to become finit
 
 This probability theorem is analytical rather than Lean-formalized.
 
-### Positive mean: a stabilising drift field
+For sequentially renormalized candidate loads, a state-independent candidate law for the realized multiplier can be natural. For simultaneous shared-pool loads with i.i.d. intrinsic \(\kappa\), it is not: if the current accumulated load is \(S_t\),
+
+\[
+Y_{t+1}
+=
+\log\!\left(
+\frac{1+S_t+\kappa_{t+1}}
+{1+S_t}
+\right),
+\]
+
+so the realized \(Y_{t+1}\) is state dependent even when the intrinsic \(\kappa_{t+1}\) are i.i.d.
+
+Therefore the criterion
+
+\[
+\mathbb E[\log r]<0
+\]
+
+must not be imported directly into an i.i.d.-\(\kappa\) shared-pool model.
+
+For nonnegative shared-pool loads, the natural state variable is instead the remaining intrinsic allowance
+
+\[
+L_t=M_0-S_t,
+\]
+
+with acceptance condition
+
+\[
+\kappa_{t+1}\le L_t.
+\]
+
+If a positive minimum load exists, only finitely many loads can be accepted. If the candidate distribution reaches arbitrarily close to zero, arbitrarily many vanishing loads can in principle be accepted over an unbounded proposal horizon. The asymptotics then depend on the near-zero candidate distribution rather than on a topology-independent geometric-mean criterion.
+
+### Positive mean in the i.i.d. realized-multiplier model: a stabilising drift field
 
 The case
 
@@ -1438,7 +1577,7 @@ Under the explicit definitions and assumptions:
 - a production increase creates a nonempty interval of newly accessible module thresholds;
 - an exact two-click accessibility sequence exists;
 - the second click in that witness is unavailable at the baseline;
-- repeated fixed-minimum non-returning loads have a finite load-ladder bound;
+- repeated fixed-minimum loads have topology-specific finite bounds: logarithmic for sequential renormalization and linear in total \(\kappa\) for simultaneous shared-pool loads;
 - lower slack weakly contracts the admissible candidate set; at zero slack only neutral or winding candidates are retainable;
 - in the i.i.d. fixed candidate-pool model, negative mean log-multiplier
   \[

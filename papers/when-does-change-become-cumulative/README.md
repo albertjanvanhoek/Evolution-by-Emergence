@@ -99,7 +99,7 @@ while the second click attempted directly from the baseline both loses inherited
 
 ## Fixed-pool forward criterion
 
-For the simplified i.i.d. state-independent candidate pool with (mathbb E|\log r|<\infty), positive linear log-slack accumulation occurs exactly when
+For the simplified i.i.d. state-independent **realized-multiplier** pool with (mathbb E|\log r|<\infty), positive linear log-slack accumulation occurs exactly when
 
 \[
 \boxed{
@@ -115,7 +115,7 @@ In that regime,
 
 almost surely.
 
-For positive mean, the retention filter creates state-dependent feedback; the paper does not claim a universal stationary law or that acceptance converges to (P(r\le1)).
+For positive mean, the retention filter creates state-dependent feedback; the paper does not claim a universal stationary law or that acceptance converges to (P(r\le1)). This i.i.d.-\(r\) result does not directly describe i.i.d. intrinsic loads in the simultaneous shared-pool topology, because their realized cost multiplier depends on accumulated load.
 
 ## Important distinctions
 
@@ -125,7 +125,7 @@ For positive mean, the retention filter creates state-dependent feedback; the pa
 - Uniform positive dilution cannot satisfy pointwise cost domination.
 - Route dominance is retained only as a strong sufficient condition for separable settings.
 - Set expansion is not historical causation.
-- The load-ladder bound requires a positive minimum load and applies to a fixed declared repertoire.
+- Repeated-load composition is topology-specific: sequential renormalization gives a product/log bound, whereas simultaneous shared-pool loads add in \(\kappa\) and give a linear bound.
 - The paper does not establish a universal evolutionary arrow.
 
 ## Reproducibility

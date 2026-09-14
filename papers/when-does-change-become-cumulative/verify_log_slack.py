@@ -1,5 +1,9 @@
 """
-Illustrative simulation for the log-slack filtered candidate process.
+Illustrative simulation for the log-slack filtered **realized-multiplier** process.
+
+The random variable Y=log r is sampled directly. This is not a simulation of
+i.i.d. intrinsic kappa loads in the simultaneous shared-pool topology, because
+there the realized r depends on the accumulated load state.
 
 This is not a proof. The analytical result in the manuscript uses the SLLN
 and Borel--Cantelli. This script checks two numerical signatures:

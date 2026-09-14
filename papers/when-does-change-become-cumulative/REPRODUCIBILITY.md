@@ -74,17 +74,24 @@ For positive budget and binding costs,
 }
 \]
 
-For uniform dilution,
+For a realized one-step dilution multiplier
+
+\[
+r_t=1+\kappa_t^{\rm eff},
+\]
 
 \[
 \boxed{
 M_{t+1}
 =
-\frac{M_t-\kappa}{1+\kappa}.
+\frac{M_t-\kappa_t^{\rm eff}}
+{1+\kappa_t^{\rm eff}}.
 }
 \]
 
-The second identity does not by itself imply finite-step exhaustion if accepted \(\kappa\) can become arbitrarily small.
+Here \(\kappa_t^{\rm eff}=r_t-1\) is the **current-state effective load**. It need not equal a topology-independent intrinsic module parameter.
+
+The identity does not by itself imply finite-step exhaustion if accepted effective loads can become arbitrarily small.
 
 ## 5. General two-click region
 
@@ -262,21 +269,17 @@ to
 
 The Lean theorem checks the exact cost and margin arithmetic; the closed-form production-network mapping is documented in the manuscript and remains inherited model algebra rather than a formalized matrix-eigenvalue theorem.
 
-## 8. Load ladder
+## 8. Repeated-load topology
 
-For a fixed declared repertoire under repeated non-returning loads,
+### Sequential renormalization
 
-\[
-\prod_{i=1}^{n}(1+\kappa_i)\le1+M_0.
-\]
-
-If
+If each load is defined relative to the currently remaining host,
 
 \[
-\kappa_i\ge\kappa_{\min}>0,
+\prod_{i=1}^{n}(1+\kappa_i)\le1+M_0,
 \]
 
-then
+and for \(\kappa_i\ge\kappa_{\min}>0\),
 
 \[
 n\le
@@ -284,7 +287,34 @@ n\le
 {\log(1+\kappa_{\min})}.
 \]
 
-This is a maximum load-ladder bound, not a universal count of future capability acquisitions. If newly acquired capabilities join the declaration, they can become binding earlier.
+### Simultaneous shared pool
+
+If several one-way loads are present simultaneously and each satisfies
+
+\[
+R_i=H\kappa_i,
+\]
+
+then
+
+\[
+X^\star=H\left(1+\sum_i\kappa_i\right).
+\]
+
+Retention becomes
+
+\[
+\sum_i\kappa_i\le M_0,
+\]
+
+and for \(\kappa_i\ge\kappa_{\min}>0\),
+
+\[
+n\le\frac{M_0}{\kappa_{\min}}.
+\]
+
+The two formulas describe different topologies and must not be interchanged.
+
 
 ## 9. Log-slack filtered dynamics
 
@@ -293,6 +323,8 @@ Define
 \[
 W=\log(1+M),\qquad Y=\log r.
 \]
+
+The identity below is topology-free **given the realized multiplier** \(r=c_{t+1}^\star/c_t^\star\). The stochastic theorem that follows additionally assumes that realized \(Y\) values themselves are i.i.d. and state independent. That assumption must not be confused with i.i.d. intrinsic module loads.
 
 If a candidate is accepted exactly when it preserves the current declared repertoire, then
 
@@ -305,7 +337,7 @@ W_n, & Y_{n+1}>W_n.
 \end{cases}
 \]
 
-For an i.i.d. state-independent candidate pool with \(\mathbb E|Y|<\infty\), the manuscript proves analytically that
+For an i.i.d. state-independent **realized-multiplier** pool with \(\mathbb E|Y|<\infty\), the manuscript proves analytically that
 
 \[
 \mathbb E[Y]<0
@@ -326,6 +358,39 @@ W_n\ge W_0-\sum_{i=1}^nY_i,
 \]
 
 the strong law of large numbers, integrability of the positive tail, and Borel--Cantelli.
+
+
+For a simultaneous shared-pool process with intrinsic candidate loads \(\kappa_i\) and accumulated accepted load
+
+\[
+S_t=\sum_{i\le t}\kappa_i,
+\]
+
+the realized multiplier of a newly accepted load is
+
+\[
+\boxed{
+r_t=
+\frac{1+S_t+\kappa_{t+1}}
+{1+S_t}.
+}
+\]
+
+Thus even i.i.d. intrinsic \(\kappa_i\) induce state-dependent realized \(Y_t=\log r_t\). The i.i.d.-\(Y\) theorem therefore does not directly apply to that shared-pool model.
+
+The shared-pool remaining allowance is
+
+\[
+L_t=M_0-S_t,
+\]
+
+and acceptance is
+
+\[
+\kappa_{t+1}\le L_t.
+\]
+
+With a positive minimum intrinsic load, accepted count is finite. If the candidate distribution has support arbitrarily close to zero, indefinitely many vanishing accepted loads are not excluded over an unbounded proposal horizon.
 
 For positive mean, the manuscript uses the conditional-drift identity
 
