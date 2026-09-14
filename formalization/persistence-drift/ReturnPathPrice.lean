@@ -93,6 +93,47 @@ theorem trait_nondecreasing_iff_return_bound
   have h := price_with_state_change p r zOld zNew hp hr
   constructor <;> intro hs <;> linarith
 
+
+/-- Continuous-time bookkeeping when the fitness map itself changes because
+the shared state/environment changes. The argument dr is the instantaneous
+change in each type's fitness caused by that endogenous state change. -/
+noncomputable def totalMeanFitnessVelocity
+    (p r dr : I → ℝ) : ℝ :=
+  meanTraitVelocity p r r + mean p dr
+
+/-- Full continuous mean-fitness change:
+    selection variance + endogenous return-path contribution. -/
+theorem total_mean_fitness_velocity_decomposition
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1) :
+    totalMeanFitnessVelocity p r dr
+      = variance p r + mean p dr := by
+  unfold totalMeanFitnessVelocity
+  rw [continuous_mean_fitness_velocity_eq_variance p r hp]
+
+/-- Exact sign boundary in continuous time. -/
+theorem total_mean_fitness_velocity_nonneg_iff_feedback_bound
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1) :
+    0 ≤ totalMeanFitnessVelocity p r dr
+      ↔ - variance p r ≤ mean p dr := by
+  rw [total_mean_fitness_velocity_decomposition p r dr hp]
+  constructor <;> intro h <;> linarith
+
+/-- A sufficiently negative endogenous return-path contribution overwhelms the
+non-negative selection component. -/
+theorem total_mean_fitness_velocity_negative_of_bad_feedback
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hbad : mean p dr < - variance p r) :
+    totalMeanFitnessVelocity p r dr < 0 := by
+  rw [total_mean_fitness_velocity_decomposition p r dr hp]
+  linarith
+
+#print axioms total_mean_fitness_velocity_decomposition
+#print axioms total_mean_fitness_velocity_nonneg_iff_feedback_bound
+#print axioms total_mean_fitness_velocity_negative_of_bad_feedback
+
 #print axioms mean_sub
 #print axioms price_with_state_change
 #print axioms mean_fitness_with_state_change
