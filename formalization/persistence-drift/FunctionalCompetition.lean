@@ -139,8 +139,17 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
   have key := price_linear p c r b α hp (ne_of_lt hrbar) hlin
   have hvar : 0 ≤ variance p c := variance_nonneg p c hpnn
   have hnum : - α * variance p c ≤ 0 := by nlinarith
-  have hdiv : 0 ≤ - α * variance p c / (∑ j, p j * r j) :=
-    div_nonneg_of_nonpos_of_nonpos hnum (le_of_lt hrbar)
+  have hnumpos : 0 ≤ α * variance p c := mul_nonneg hα hvar
+  have hdenpos : 0 ≤ -(∑ j, p j * r j) := by linarith
+  have hpos : 0 ≤ (α * variance p c) / (-(∑ j, p j * r j)) :=
+    div_nonneg hnumpos hdenpos
+  have heq :
+      - α * variance p c / (∑ j, p j * r j)
+        = (α * variance p c) / (-(∑ j, p j * r j)) := by
+    simp [div_eq_mul_inv]
+  have hdiv : 0 ≤ - α * variance p c / (∑ j, p j * r j) := by
+    rw [heq]
+    exact hpos
   linarith
 
 #print axioms cov_eq_sub
@@ -153,6 +162,6 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms price_linear
 #print axioms mean_cost_nonincreasing
 #print axioms slack_nondecreasing
-#print axioms drift_eq_zero_iff_variance_eq_zero
+#print axioms drift_eq_zero_iff_variance_eq_zero\n#print axioms mean_cost_nondecreasing_of_neg_mean_fitness
 
 end FunctionalCompetition
