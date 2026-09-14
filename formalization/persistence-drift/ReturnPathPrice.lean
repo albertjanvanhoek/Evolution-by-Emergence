@@ -1,0 +1,145 @@
+import FunctionalCompetition
+
+namespace ReturnPathPrice
+
+open Finset
+open scoped BigOperators
+open FunctionalCompetition
+
+variable {I : Type*} [Fintype I]
+
+theorem mean_sub (p f g : I → ℝ) :
+    mean p (fun i => f i - g i) = mean p f - mean p g := by
+  simp only [mean]
+  have h : ∀ i : I, p i * (f i - g i) = p i * f i - p i * g i := by
+    intro i
+    ring
+  rw [Finset.sum_congr rfl (fun i _ => h i)]
+  rw [Finset.sum_sub_distrib]
+
+theorem price_full
+    (p r zOld zNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hr : (∑ i, p i * r i) ≠ 0) :
+    mean (step p r) zNew - mean p zOld
+      =
+      cov p r zOld / (∑ i, p i * r i)
+      + mean (step p r) (fun i => zNew i - zOld i) := by
+  have hprice :
+      mean (step p r) zOld - mean p zOld
+        = cov p r zOld / (∑ i, p i * r i) := by
+    exact price_equation p zOld r hp hr
+  have hchange :
+      mean (step p r) (fun i => zNew i - zOld i)
+        = mean (step p r) zNew - mean (step p r) zOld :=
+    mean_sub (step p r) zNew zOld
+  rw [hchange]
+  linarith
+
+theorem mean_fitness_with_state_change
+    (p rOld rNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hr : (∑ i, p i * rOld i) ≠ 0) :
+    mean (step p rOld) rNew - mean p rOld
+      =
+      variance p rOld / (∑ i, p i * rOld i)
+      + mean (step p rOld) (fun i => rNew i - rOld i) := by
+  rw [price_full p rOld rOld rNew hp hr]
+  rfl
+
+theorem mean_fitness_nondecreasing_iff_return_bound
+    (p rOld rNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hr : (∑ i, p i * rOld i) ≠ 0) :
+    mean p rOld ≤ mean (step p rOld) rNew
+      ↔
+    -(variance p rOld / (∑ i, p i * rOld i))
+      ≤ mean (step p rOld) (fun i => rNew i - rOld i) := by
+  have h := mean_fitness_with_state_change p rOld rNew hp hr
+  constructor <;> intro hs <;> linarith
+
+theorem mean_fitness_nondecreasing_of_nonnegative_return
+    (p rOld rNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hpnn : ∀ i, 0 ≤ p i)
+    (hrbar : 0 < ∑ i, p i * rOld i)
+    (hreturn : 0 ≤ mean (step p rOld) (fun i => rNew i - rOld i)) :
+    mean p rOld ≤ mean (step p rOld) rNew := by
+  have h := mean_fitness_with_state_change p rOld rNew hp (ne_of_gt hrbar)
+  have hvar : 0 ≤ variance p rOld := variance_nonneg p rOld hpnn
+  have hsel : 0 ≤ variance p rOld / (∑ i, p i * rOld i) :=
+    div_nonneg hvar (le_of_lt hrbar)
+  linarith
+
+theorem mean_fitness_decreases_of_return_below_selection
+    (p rOld rNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hr : (∑ i, p i * rOld i) ≠ 0)
+    (hbad :
+      mean (step p rOld) (fun i => rNew i - rOld i)
+        < -(variance p rOld / (∑ i, p i * rOld i))) :
+    mean (step p rOld) rNew < mean p rOld := by
+  have h := mean_fitness_with_state_change p rOld rNew hp hr
+  linarith
+
+theorem trait_nondecreasing_iff_return_bound
+    (p r zOld zNew : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hr : (∑ i, p i * r i) ≠ 0) :
+    mean p zOld ≤ mean (step p r) zNew
+      ↔
+    -(cov p r zOld / (∑ i, p i * r i))
+      ≤ mean (step p r) (fun i => zNew i - zOld i) := by
+  have h := price_full p r zOld zNew hp hr
+  constructor <;> intro hs <;> linarith
+
+
+/-- Continuous-time bookkeeping when the fitness map itself changes because
+the shared state/environment changes. The argument dr is the instantaneous
+change in each type's fitness caused by that endogenous state change. -/
+noncomputable def totalMeanFitnessVelocity
+    (p r dr : I → ℝ) : ℝ :=
+  meanTraitVelocity p r r + mean p dr
+
+/-- Full continuous mean-fitness change:
+    selection variance + endogenous return-path contribution. -/
+theorem total_mean_fitness_velocity_decomposition
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1) :
+    totalMeanFitnessVelocity p r dr
+      = variance p r + mean p dr := by
+  unfold totalMeanFitnessVelocity
+  rw [continuous_mean_fitness_velocity_eq_variance p r hp]
+
+/-- Exact sign boundary in continuous time. -/
+theorem total_mean_fitness_velocity_nonneg_iff_feedback_bound
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1) :
+    0 ≤ totalMeanFitnessVelocity p r dr
+      ↔ - variance p r ≤ mean p dr := by
+  rw [total_mean_fitness_velocity_decomposition p r dr hp]
+  constructor <;> intro h <;> linarith
+
+/-- A sufficiently negative endogenous return-path contribution overwhelms the
+non-negative selection component. -/
+theorem total_mean_fitness_velocity_negative_of_bad_feedback
+    (p r dr : I → ℝ)
+    (hp : ∑ i, p i = 1)
+    (hbad : mean p dr < - variance p r) :
+    totalMeanFitnessVelocity p r dr < 0 := by
+  rw [total_mean_fitness_velocity_decomposition p r dr hp]
+  linarith
+
+#print axioms total_mean_fitness_velocity_decomposition
+#print axioms total_mean_fitness_velocity_nonneg_iff_feedback_bound
+#print axioms total_mean_fitness_velocity_negative_of_bad_feedback
+
+#print axioms mean_sub
+#print axioms price_full
+#print axioms mean_fitness_with_state_change
+#print axioms mean_fitness_nondecreasing_iff_return_bound
+#print axioms mean_fitness_nondecreasing_of_nonnegative_return
+#print axioms mean_fitness_decreases_of_return_below_selection
+#print axioms trait_nondecreasing_iff_return_bound
+
+end ReturnPathPrice

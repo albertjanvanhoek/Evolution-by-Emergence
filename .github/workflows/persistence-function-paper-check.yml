@@ -1,0 +1,32 @@
+name: Persistence Function Paper Check
+
+on:
+  push:
+    branches:
+      - main
+      - chatgpt/persistence-function-paper
+    paths:
+      - "papers/persistence-does-not-measure-function/**"
+      - ".github/workflows/persistence-function-paper-check.yml"
+  pull_request:
+    paths:
+      - "papers/persistence-does-not-measure-function/**"
+      - ".github/workflows/persistence-function-paper-check.yml"
+
+jobs:
+  reproduce-figures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Regenerate figures and sensitivity data
+        run: |
+          python papers/persistence-does-not-measure-function/figures/make_figures.py
+      - name: Require generated artifacts to match repository
+        run: |
+          git diff --exit-code -- \
+            papers/persistence-does-not-measure-function/figures/integrated_hollowing_margin.svg \
+            papers/persistence-does-not-measure-function/figures/downstream_extraction_margin.svg \
+            papers/persistence-does-not-measure-function/figures/threshold_sensitivity.csv
