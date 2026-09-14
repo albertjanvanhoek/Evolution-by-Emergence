@@ -138,6 +138,21 @@ theorem meanTraitVelocity_eq_cov (m trait : I → ℝ)
   rw [Finset.sum_sub_distrib, ← Finset.mul_sum]
   ring
 
+/-- Selection component of the continuous-time change in mean Malthusian
+growth rate: exactly the weighted variance in growth rate. -/
+theorem continuous_mean_fitness_velocity_eq_variance
+    (hp : ∑ i, p i = 1) :
+    meanTraitVelocity p r r = variance p r := by
+  rw [meanTraitVelocity_eq_cov p r r hp]
+  rfl
+
+theorem continuous_mean_fitness_velocity_nonneg
+    (hp : ∑ i, p i = 1)
+    (hpnn : ∀ i, 0 ≤ p i) :
+    0 ≤ meanTraitVelocity p r r := by
+  rw [continuous_mean_fitness_velocity_eq_variance p r hp]
+  exact variance_nonneg p r hpnn
+
 /-- General continuous-time cost drift with varying productive return. -/
 theorem continuous_cost_velocity_return_cost (h : I → ℝ)
     (hp : ∑ i, p i = 1)
@@ -340,6 +355,8 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms sum_return_cost
 #print axioms cov_return_cost
 #print axioms meanTraitVelocity_eq_cov
+#print axioms continuous_mean_fitness_velocity_eq_variance
+#print axioms continuous_mean_fitness_velocity_nonneg
 #print axioms continuous_cost_velocity_return_cost
 #print axioms continuous_cost_velocity_linear
 #print axioms continuous_cost_velocity_nonpos
