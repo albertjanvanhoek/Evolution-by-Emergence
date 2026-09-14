@@ -23,6 +23,8 @@ print("sheets:", wb.sheetnames)
 for ws in wb.worksheets:
     print("\nSHEET", ws.title, "rows", ws.max_row, "cols", ws.max_column)
     for i, row in enumerate(ws.iter_rows(values_only=True), start=1):
-        print("ROW", i, repr(row))
-        if i >= 8:
+        nonnull = sum(v is not None for v in row)
+        if i <= 40 or nonnull >= 5:
+            print("ROW", i, "nonnull", nonnull, repr(row))
+        if i >= 40:
             break
