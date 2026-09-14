@@ -244,4 +244,12 @@ The first formalization lives at:
 
     formalization/persistence-drift/RegulatoryReturn.lean
 
+Verified Lean proof state:
+
+    3005e2e3b2104a477b704815408340055fe462fa
+
+GitHub Actions run:
+
+    34838013513
+
 The formalization is intentionally limited to algebraic implications. It does not formalize natural selection, empirical controller biology, or the stochastic Poisson limit unless explicitly stated in theorem assumptions.
