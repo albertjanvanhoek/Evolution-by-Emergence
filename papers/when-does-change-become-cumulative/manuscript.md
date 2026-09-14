@@ -953,11 +953,13 @@ Under a shared limiting resource, an extension generally imposes an opportunity 
 
 ---
 
-## 12. Repeated non-returning loads
+## 12. Repeated loads: topology matters
 
-Suppose a fixed declared repertoire experiences a sequence of purely non-returning uniform loads \(\kappa_i\).
+The one-step retention theorem is exact for any load that multiplies inherited costs by a known factor. Repeated-load composition, however, depends on how the load parameters are defined.
 
-The inherited binding cost is multiplied by
+### 12.1 Sequentially renormalized loads
+
+Suppose each accepted load \(\kappa_i\) is defined relative to the **currently remaining** host after previous loads. Then inherited binding cost is multiplied sequentially by
 
 \[
 \prod_{i=1}^{n}(1+\kappa_i).
@@ -973,21 +975,13 @@ Retention requires
 }
 \]
 
-If every accepted load has a positive lower bound
+If
 
 \[
 \kappa_i\ge\kappa_{\min}>0,
 \]
 
 then
-
-\[
-(1+\kappa_{\min})^n
-\le
-1+M_0,
-\]
-
-so
 
 \[
 \boxed{
@@ -998,13 +992,70 @@ n
 }
 \]
 
-This is a **maximum load-ladder bound on a fixed declared repertoire**.
+This is the topology implicitly used by the multiplicative ladder calculation.
 
-It is not a universal bound on the number of future capability acquisitions. A newly acquired capability may join the declaration and become binding earlier.
+### 12.2 Simultaneous shared-pool loads
 
-Nor does finite margin alone imply a finite number of accepted loads when arbitrarily small \(\kappa_i\) are permitted. An infinite sequence of vanishing loads can satisfy the product bound. In that regime the remaining margin can tend toward zero while admissible future loads become correspondingly small.
+For the Section 7 topology with several one-way components simultaneously drawing from the same host pool, each load satisfies
 
-This is conceptually consistent with the fixed-resolution no-go result: fixed-sized or fixed-resolution increments are finitely bounded under finite resources, whereas indefinite continuation requires vanishing increments or some mechanism that replenishes capacity.
+\[
+R_i=H\kappa_i.
+\]
+
+Hence
+
+\[
+X^\star
+=
+H+\sum_iR_i
+=
+H\left(1+\sum_i\kappa_i\right),
+\]
+
+so the inherited host is diluted by
+
+\[
+\boxed{
+\frac{1}{1+\sum_i\kappa_i},
+}
+\]
+
+not by \(\prod_i(1+\kappa_i)^{-1}\).
+
+For a fixed declared repertoire, retention therefore requires
+
+\[
+\boxed{
+\sum_{i=1}^{n}\kappa_i
+\le
+M_0.
+}
+\]
+
+If every simultaneous load satisfies
+
+\[
+\kappa_i\ge\kappa_{\min}>0,
+\]
+
+then
+
+\[
+\boxed{
+n
+\le
+\frac{M_0}{\kappa_{\min}}.
+}
+\]
+
+Thus the logarithmic ladder bound and the linear shared-pool bound are both correct, but for different load topologies.
+
+The distinction is substantive: sequential renormalization means later demand is defined relative to already-diluted host capacity, whereas simultaneous shared-pool demand is defined relative to the same undiluted host state.
+
+Neither bound is a universal count of future capability acquisitions. Newly acquired capabilities may join the declaration and become binding earlier.
+
+Nor does finite margin alone imply finite-step exhaustion when arbitrarily small loads are permitted. Infinite sequences of vanishing loads remain possible in either topology.
+
 
 ---
 
@@ -1438,7 +1489,7 @@ Under the explicit definitions and assumptions:
 - a production increase creates a nonempty interval of newly accessible module thresholds;
 - an exact two-click accessibility sequence exists;
 - the second click in that witness is unavailable at the baseline;
-- repeated fixed-minimum non-returning loads have a finite load-ladder bound;
+- repeated fixed-minimum loads have topology-specific finite bounds: logarithmic for sequential renormalization and linear in total \(\kappa\) for simultaneous shared-pool loads;
 - lower slack weakly contracts the admissible candidate set; at zero slack only neutral or winding candidates are retainable;
 - in the i.i.d. fixed candidate-pool model, negative mean log-multiplier
   \[
