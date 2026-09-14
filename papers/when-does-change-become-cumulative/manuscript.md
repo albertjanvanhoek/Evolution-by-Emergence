@@ -401,6 +401,44 @@ then
 
 Both statements are machine checked.
 
+### Proposition 3 — non-destructive route extension composes
+
+Route dominance is itself reflexive and transitive.
+
+If every old route has a no-more-costly realization in an intermediate organization,
+
+\[
+(\mathcal P_0,C_0)
+\preceq_{\rm route}
+(\mathcal P_1,C_1),
+\]
+
+and every intermediate route has a no-more-costly realization in a later organization,
+
+\[
+(\mathcal P_1,C_1)
+\preceq_{\rm route}
+(\mathcal P_2,C_2),
+\]
+
+then every old route has a no-more-costly realization in the later organization:
+
+\[
+\boxed{
+(\mathcal P_0,C_0)
+\preceq_{\rm route}
+(\mathcal P_2,C_2).
+}
+\]
+
+This composition theorem is also machine checked.
+
+It suggests a specific class of **extension operators**. An organizational change acts as an extension operator over a declared target family when it adds or modifies routes while preserving, possibly through replacement implementations, a no-more-costly realization of every old route relevant to that family.
+
+A sequence of such operators carries forward route feasibility even though the material realization of the routes can change at every step.
+
+This is stronger than inheritance of components. It is inheritance of **realizability**.
+
 This gives a network-level sufficient condition for a click without requiring the same physical components to persist. What must be carried forward is the ability to realize the old declared targets through routes that are no more costly.
 
 Adding a new route, recombining retained modules, importing a module by horizontal transfer, integrating a symbiotic partner, or introducing a cross-scale bridge can therefore create a strict budget-level click **when the extension is non-destructive over the declared repertoire**.
@@ -612,9 +650,10 @@ It verifies:
 8. a score crossing produces strict expansion;
 9. pointwise cost non-increase preserves budget-feasible accessibility;
 10. a cost crossing produces strict expansion;
-11. route-level dominance preserves every previously budget-feasible declared target;
-12. a newly feasible route creates a strict click when route dominance preserves the old repertoire;
-13. loss of any previously accessible declared target rules out a monotone preservation step.
+11. route dominance is reflexive and transitive;
+12. route-level dominance preserves every previously budget-feasible declared target;
+13. a newly feasible route creates a strict click when route dominance preserves the old repertoire;
+14. loss of any previously accessible declared target rules out a monotone preservation step.
 
 The formalization intentionally does not prove that any particular biological, institutional, technological, or chemical change satisfies the hypotheses. Those are empirical or model-specific questions.
 
