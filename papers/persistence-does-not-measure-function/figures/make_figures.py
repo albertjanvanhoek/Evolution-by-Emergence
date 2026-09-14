@@ -157,7 +157,7 @@ def main():
         (0.30,0.43408743072445183),
     ]
     with (OUT/"threshold_sensitivity.csv").open("w",newline="",encoding="utf-8") as fh:
-        w=csv.writer(fh)
+        w=csv.writer(fh, lineterminator="\n")
         w.writerow(["theta_B","f_star"])
         root_text = {
             0.05: "0.9066925087774351",
