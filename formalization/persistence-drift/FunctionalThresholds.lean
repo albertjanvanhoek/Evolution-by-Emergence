@@ -101,6 +101,24 @@ theorem hollowB_strictly_decreases
   have hp2 : 0 < lambda2 := lt_trans zero_lt_one h2
   have hd1 : 0 < 1 + lambda1 := by linarith
   have hd2 : 0 < 1 + lambda2 := by linarith
+  have ha : 0 ≤ lambda1 - 1 := by linarith
+  have hb : 0 ≤ lambda2 - 1 := by linarith
+  have hdecomp :
+      2*lambda1^2*lambda2^2
+        + 2*lambda1^2*lambda2
+        + 2*lambda1*lambda2^2
+        + 3*lambda1*lambda2
+        - 2*lambda1 - 2*lambda2 - 2
+      =
+      2*(lambda1-1)^2*(lambda2-1)^2
+        + 6*(lambda1-1)^2*(lambda2-1)
+        + 4*(lambda1-1)^2
+        + 6*(lambda1-1)*(lambda2-1)^2
+        + 19*(lambda1-1)*(lambda2-1)
+        + 11*(lambda1-1)
+        + 4*(lambda2-1)^2
+        + 11*(lambda2-1)
+        + 3 := by ring
   have hpoly :
       0 <
         2*lambda1^2*lambda2^2
@@ -108,8 +126,8 @@ theorem hollowB_strictly_decreases
         + 2*lambda1*lambda2^2
         + 3*lambda1*lambda2
         - 2*lambda1 - 2*lambda2 - 2 := by
-    nlinarith [sq_nonneg (lambda1-1), sq_nonneg (lambda2-1),
-      mul_nonneg (sub_nonneg.mpr h1) (sub_nonneg.mpr (le_of_lt h2))]
+    rw [hdecomp]
+    positivity
   unfold hollowB
   have hden :
       0 < lambda1 * lambda2 * (1 + lambda1) * (1 + lambda2) := by positivity
