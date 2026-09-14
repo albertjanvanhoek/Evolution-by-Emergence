@@ -17,7 +17,7 @@ theorem mean_sub (p f g : I → ℝ) :
   rw [Finset.sum_congr rfl (fun i _ => h i)]
   rw [Finset.sum_sub_distrib]
 
-theorem price_with_state_change
+theorem price_full
     (p r zOld zNew : I → ℝ)
     (hp : ∑ i, p i = 1)
     (hr : (∑ i, p i * r i) ≠ 0) :
@@ -44,7 +44,7 @@ theorem mean_fitness_with_state_change
       =
       variance p rOld / (∑ i, p i * rOld i)
       + mean (step p rOld) (fun i => rNew i - rOld i) := by
-  rw [price_with_state_change p rOld rOld rNew hp hr]
+  rw [price_full p rOld rOld rNew hp hr]
   rfl
 
 theorem mean_fitness_nondecreasing_iff_return_bound
@@ -90,7 +90,7 @@ theorem trait_nondecreasing_iff_return_bound
       ↔
     -(cov p r zOld / (∑ i, p i * r i))
       ≤ mean (step p r) (fun i => zNew i - zOld i) := by
-  have h := price_with_state_change p r zOld zNew hp hr
+  have h := price_full p r zOld zNew hp hr
   constructor <;> intro hs <;> linarith
 
 
@@ -135,7 +135,7 @@ theorem total_mean_fitness_velocity_negative_of_bad_feedback
 #print axioms total_mean_fitness_velocity_negative_of_bad_feedback
 
 #print axioms mean_sub
-#print axioms price_with_state_change
+#print axioms price_full
 #print axioms mean_fitness_with_state_change
 #print axioms mean_fitness_nondecreasing_iff_return_bound
 #print axioms mean_fitness_nondecreasing_of_nonnegative_return
