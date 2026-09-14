@@ -13,6 +13,7 @@ This directory is the reproducible paper package for:
 - [figures/threshold_sensitivity.csv](figures/threshold_sensitivity.csv) — sensitivity of the hollowing crossing to the declared threshold.
 - [REPRODUCIBILITY.md](REPRODUCIBILITY.md) — exact parameters, proof locations, CI instructions, and epistemic scope.
 - [references.bib](references.bib) — bibliography.
+- [CLAIMS.md](CLAIMS.md) — claim ledger separating derived, machine-checked, classical, counterexample-supported, and explicitly unclaimed statements.
 
 ## Main claim
 
