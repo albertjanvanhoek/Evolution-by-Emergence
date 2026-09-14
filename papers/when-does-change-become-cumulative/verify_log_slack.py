@@ -26,6 +26,32 @@ def normal_cdf(x, mu, sig):
     return 0.5 * (1.0 + math.erf(z))
 
 
+
+
+def normal_pdf_std(z):
+    return math.exp(-0.5 * z * z) / math.sqrt(2.0 * math.pi)
+
+
+def gaussian_truncated_mean(w, mu, sig):
+    """E[Y 1{Y<=w}] for Y ~ Normal(mu, sig^2)."""
+    z = (w - mu) / sig
+    return mu * normal_cdf(w, mu, sig) - sig * normal_pdf_std(z)
+
+
+def drift_zero_gaussian(mu, sig):
+    lo, hi = 0.0, max(1.0, mu + 10.0 * sig)
+    assert gaussian_truncated_mean(lo, mu, sig) < 0.0
+    while gaussian_truncated_mean(hi, mu, sig) <= 0.0:
+        hi *= 2.0
+    for _ in range(100):
+        mid = 0.5 * (lo + hi)
+        if gaussian_truncated_mean(mid, mu, sig) <= 0.0:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
+
+
 def run(mu, sig):
     rng = random.Random(SEED + int(round(1000 * (mu + 5))))
     ends = []
@@ -70,4 +96,16 @@ for mu, sig, Wend, drift, acc, pwind in rows[:2]:
 for mu, sig, Wend, drift, acc, pwind in rows[2:]:
     assert acc > pwind + 0.02, (mu, acc, pwind)
 
+
+
+print("\npositive-mean Gaussian drift-zero levels:")
+for mu, sig in [(0.30, 0.5), (0.80, 0.5), (0.30, 1.0)]:
+    wstar = drift_zero_gaussian(mu, sig)
+    accept_at_wstar = normal_cdf(wstar, mu, sig)
+    gleft = gaussian_truncated_mean(max(0.0, wstar - 1e-4), mu, sig)
+    gright = gaussian_truncated_mean(wstar + 1e-4, mu, sig)
+    assert gleft <= 0.0 <= gright
+    print(f"mu={mu:.2f}, sig={sig:.2f}: w*={wstar:.6f}, accept@w*={accept_at_wstar:.6f}")
+
 print("ALL LOG-SLACK CHECKS PASS")
+
