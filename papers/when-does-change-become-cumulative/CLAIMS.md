@@ -24,8 +24,10 @@
 | C19 | \(\theta_D=1/2\) lies in the exact production window opened by \(X_0=1\to X_1=7/6\) at \(\kappa=9/10\). | Exact result; machine checked |
 | C20 | Route-level cost dominance is reflexive/transitive and preserves route-feasible targets, but is only a strong sufficient condition in separable settings. | Exact result plus scope statement; machine checked |
 | C21 | Graph extension does not in general imply realized accessibility extension under shared resource constraints. | Model result / conceptual consequence |
-| C22 | For repeated non-returning loads on a fixed declared repertoire, \(\prod_i(1+\kappa_i)\le1+M_0\) is necessary for retention. | Exact algebraic consequence |
-| C23 | If every such load satisfies \(\kappa_i\ge\kappa_{\min}>0\), then \(n\le\log(1+M_0)/\log(1+\kappa_{\min})\). | Exact analytical bound |
+| C22 | For sequentially renormalized loads, \(\prod_i(1+\kappa_i)\le1+M_0\) is necessary for retention. | Exact algebraic consequence; topology-specific |
+| C23 | If every sequentially renormalized load satisfies \(\kappa_i\ge\kappa_{\min}>0\), then \(n\le\log(1+M_0)/\log(1+\kappa_{\min})\). | Exact analytical bound; topology-specific |
+| C23a | For simultaneous one-way loads sharing one host pool, \(\sum_i\kappa_i\le M_0\) is the corresponding retention condition. | Exact model algebra; shared-pool topology |
+| C23b | If every simultaneous shared-pool load satisfies \(\kappa_i\ge\kappa_{\min}>0\), then \(n\le M_0/\kappa_{\min}\). | Exact analytical bound; shared-pool topology |
 | C24 | Without a positive minimum load, finite margin alone does not imply finite-step exhaustion; if a load is a strict fraction \(u<1\) of positive current margin, the next margin remains positive. | Exact deterministic correction machine checked; infinite-sequence interpretation conditional on the load process |
 | C25 | With \(W=\log(1+M)\) and candidate log-multiplier \(Y=\log r\), retention filtering gives \(W_{n+1}=W_n-Y_{n+1}\) when \(Y_{n+1}\le W_n\), otherwise \(W_{n+1}=W_n\). | Exact transformation / model definition |
 | C26 | For an i.i.d. state-independent candidate pool with \(\mathbb E|Y|<\infty\), positive linear log-slack growth occurs iff \(\mathbb E[Y]<0\); in that regime \(W_n/n\to-\mathbb E[Y]\) almost surely. | Analytical proposition using SLLN and Borel--Cantelli; not machine formalized |
