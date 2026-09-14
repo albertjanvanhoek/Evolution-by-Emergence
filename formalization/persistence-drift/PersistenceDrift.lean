@@ -241,7 +241,9 @@ theorem two_type_linear_cost_slack_strict
   rw [two_type_linear_cost_exact]
   have h1mp : 0 < 1 - p := sub_pos.mpr hp1
   have hdiff : 0 < (cA - cB)^2 := sq_pos_of_ne_zero (sub_ne_zero.mpr hcost)
-  positivity
+  have hprod : 0 < alpha * p * (1 - p) * (cA - cB)^2 := by
+    exact mul_pos (mul_pos (mul_pos halpha hp0) h1mp) hdiff
+  nlinarith
 
 #print axioms two_type_competition_mean_cost_nonincreasing
 #print axioms two_type_linear_cost_exact
