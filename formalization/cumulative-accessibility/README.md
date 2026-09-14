@@ -54,6 +54,10 @@ The formalization does not claim that scalar cost is generally equivalent to fin
 - exact declared-set retention iff \(\kappa\le M\);
 - margin nonnegativity;
 - winding/spending margin ratio;
+- general multiplicative margin update;
+- winding iff the positive binding-cost multiplier is below one;
+- lower log-slack contracts the admissible candidate set;
+- at zero log-slack strictly spending candidates are rejected and winding candidates remain admissible;
 - pure-dilution margin recursion;
 - a margin increase opens a nonempty future coupling interval;
 - a production increase opens a nonempty target-threshold interval.
