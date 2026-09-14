@@ -62,7 +62,7 @@ M_{t+1}
 }
 \]
 
-A step that lowers the binding inherited cost winds future capacity; one that raises it spends capacity.
+A step that lowers the binding inherited cost winds future capacity; one that raises it spends capacity. With (W=\log(1+M)) and (Y=\log r), an accepted candidate obeys (W_{t+1}=W_t-Y_t), while candidates with (Y_t>W_t) are filtered out by retention.
 
 ## Positive cumulative-existence result
 
@@ -97,6 +97,26 @@ The paper contains an exact rational two-click witness:
 
 while the second click attempted directly from the baseline both loses inherited \(A\) and leaves \(D\) inaccessible.
 
+## Fixed-pool forward criterion
+
+For the simplified i.i.d. state-independent candidate pool with (mathbb E|\log r|<\infty), positive linear log-slack accumulation occurs exactly when
+
+\[
+\boxed{
+\mathbb E[\log r]<0.
+}
+\]
+
+In that regime,
+
+\[
+\frac{W_n}{n}\to-\mathbb E[\log r]
+\]
+
+almost surely.
+
+For positive mean, the retention filter creates state-dependent feedback; the paper does not claim a universal stationary law or that acceptance converges to (P(r\le1)).
+
 ## Important distinctions
 
 - Cost accessibility is a mechanistic specialization, not a replacement for the stochastic accessibility kernel.
@@ -120,8 +140,9 @@ Lean:
 Budget-ratchet checks:
 
     python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
+    python papers/when-does-change-become-cumulative/verify_log_slack.py
 
-GitHub Actions runs both.
+GitHub Actions runs Lean plus both reproducibility scripts.
 
 ## Files
 
@@ -129,5 +150,6 @@ GitHub Actions runs both.
 - CLAIMS.md — claim and non-claim ledger.
 - REPRODUCIBILITY.md — derivations and verification record.
 - LITERATURE_POSITIONING.md — novelty and prior-work caution.
-- verify_budget_ratchet.py — exact and numerical checks.
+- verify_budget_ratchet.py — exact and numerical budget-ratchet checks.
+- verify_log_slack.py — illustrative filtered log-slack simulation.
 - formalization/cumulative-accessibility/CumulativeAccessibility.lean — machine-checked core.
