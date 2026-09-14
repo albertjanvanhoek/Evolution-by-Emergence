@@ -184,6 +184,19 @@ def main():
     print("BioBricks >45% burden:", int(np.sum(burdens > 0.45)))
     print("BioBricks >40% burden:", int(np.sum(burdens > 0.40)))
 
+    print("\nTOP PUBLISHED BIOBRICKS")
+    for r in sorted(parts, key=lambda x: -x["burden"])[:12]:
+        print(
+            r["accession"],
+            r["strains"],
+            f"b={r['burden']:.6f}",
+            f"kappa={r['kappa']:.6f}",
+            f"rep={r['replicates']}",
+            f"sem={r['normalized.growth.rate.sem']}",
+            f"CIhalf={r['normalized.growth.rate.95CI.range']}",
+            f"cat={r['burden.category']}",
+        )
+
     print("\nBFP CONTROLS")
     for r in sorted(controls, key=lambda x: x["burden"]):
         print(r["accession"], r["strains"], f"b={r['burden']:.6f}", f"kappa={r['kappa']:.6f}")
