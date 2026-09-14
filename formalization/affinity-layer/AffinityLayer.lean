@@ -212,6 +212,25 @@ theorem turnoverShape_eq_one_iff {a : ℝ} (ha : 0 < a) :
     subst a
     norm_num [turnoverShape]
 
+
+/-- The minimal turnover law is exactly reciprocal-symmetric:
+association strength a and 1/a have the same turnover factor. In log-affinity
+coordinates this is symmetry under x ↦ -x. -/
+theorem turnoverShape_inv
+    {a : ℝ} (ha : 0 < a) :
+    turnoverShape (1 / a) = turnoverShape a := by
+  unfold turnoverShape
+  have hane : a ≠ 0 := ne_of_gt ha
+  have h1a : 1 + a ≠ 0 := by linarith
+  field_simp [hane, h1a]
+  ring
+
+/-- Explicit log-affinity symmetry of the minimal turnover law. -/
+theorem turnoverShape_exp_neg (x : ℝ) :
+    turnoverShape (Real.exp (-x)) = turnoverShape (Real.exp x) := by
+  rw [Real.exp_neg]
+  exact turnoverShape_inv (Real.exp_pos x)
+
 /-- Effective productive spectral scale in the turnover channel. -/
 noncomputable def turnoverLambda (lam a : ℝ) : ℝ :=
   lam * turnoverShape a
@@ -274,6 +293,8 @@ theorem turnover_exact_two_sided_failure :
 #print axioms costCritical_exact_witness
 #print axioms turnoverShape_le_one
 #print axioms turnoverShape_eq_one_iff
+#print axioms turnoverShape_inv
+#print axioms turnoverShape_exp_neg
 #print axioms turnoverMass_le_peak
 #print axioms turnover_exact_witness
 #print axioms turnover_exact_two_sided_failure
