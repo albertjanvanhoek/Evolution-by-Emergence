@@ -81,7 +81,7 @@ is unaffordable before the first click but affordable afterward. If maintained p
 
 while the second click attempted directly from the baseline both loses inherited capability \(A\) and fails to make \(D\) accessible.
 
-The order-theoretic core, the budget bound, the margin identities, the opening of future coupling and threshold windows, and the exact two-click witness are machine checked in Lean. The result is not a universal arrow of evolution. It is a conditional ratchet: cumulative change occurs when retained organization preserves a declared repertoire while changing the resource state so that additional organization becomes retainable.
+The order-theoretic core, the budget bound, the margin identities, the opening of future coupling and threshold windows, and the exact two-click witness are machine checked in Lean. Finally, writing \(W=\log(1+M)\) and \(Y=\log r\) turns retained multiplicative change into a state-filtered additive process. For an i.i.d. state-independent candidate pool with \(\mathbb E|Y|<\infty\), positive linear growth of log-slack occurs exactly when \(\mathbb E[Y]<0\), equivalently when the geometric mean binding-cost multiplier is below one. The result is not a universal arrow of evolution. It is a conditional ratchet: cumulative change occurs when retained organization preserves a declared repertoire while changing the resource state so that additional organization becomes retainable.
 
 ---
 
