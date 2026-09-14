@@ -272,8 +272,8 @@ theorem winds_iff_binding_cost_falls
   unfold Margin
   rw [sub_lt_sub_iff_right]
   have hrOld : 0 < r * oldBinding := mul_pos hr hold
-  rw [div_lt_div_iff₀ hold hrOld]
-  constructor <;> intro h <;> nlinarith
+  rw [div_lt_div_iff_of_pos_left hbudget hold hrOld]
+  simpa using (mul_lt_mul_right hold).symm
 
 /-- If a currently positive margin accepts a load equal to a strict fraction
 u of that margin, with 0 <= u < 1, the updated margin remains strictly
