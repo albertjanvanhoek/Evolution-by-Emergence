@@ -133,3 +133,22 @@ Numerical and closed-form checks:
 Lean checks the reduced algebra, including the reciprocal/log-affinity symmetry of the turnover law. It does not derive the affinity laws from chemistry, mechanics, or the full production-network ODEs.
 
 The proposed asymmetric two-exponent extension in the manuscript is not formalized and is not part of the verified claim set.
+
+
+## Verification record
+
+Verified theorem/document state:
+
+    c10dadf428b217263eadbf358bd66d08720a61e7
+
+GitHub Actions run:
+
+    34861086383
+
+Result:
+
+    Affinity Layer Check: PASS
+    lean: PASS
+    affinity-reproducibility: PASS
+
+The Lean log contains no sorryAx dependency for the secured affinity theorems, including the global cost certificate, saturating-overhead scope theorem, turnover optimum, reciprocal symmetry, log-affinity symmetry, and exact rational witnesses.
