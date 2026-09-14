@@ -180,6 +180,60 @@ theorem strictExpandsOn_of_cost_crossing
   intro h
   exact (not_le_of_gt hOld) h
 
+/-- A target is route-feasible within budget when at least one admissible
+route realizes it at or below the declared budget. -/
+def ReachableWithinBudget {ρ : Type*}
+    (routes : α → ρ → Prop) (cost : α → ρ → ℝ)
+    (budget : ℝ) : α → Prop :=
+  fun x => ∃ r, routes x r ∧ cost x r ≤ budget
+
+/-- Route-level dominance: every old route to a declared target has some
+later admissible route that is no more costly. The later route need not be
+materially identical to the old route. -/
+def RouteDominatesOn {ρ : Type*}
+    (targets : Set α)
+    (oldRoutes newRoutes : α → ρ → Prop)
+    (oldCost newCost : α → ρ → ℝ) : Prop :=
+  ∀ x, x ∈ targets → ∀ r, oldRoutes x r →
+    ∃ r', newRoutes x r' ∧ newCost x r' ≤ oldCost x r
+
+/-- Route-level non-destructive extension preserves every declared target
+that was feasible within the same budget. -/
+theorem routeDominates_preservesOn {ρ : Type*}
+    (targets : Set α)
+    (oldRoutes newRoutes : α → ρ → Prop)
+    (oldCost newCost : α → ρ → ℝ)
+    (budget : ℝ)
+    (hdom : RouteDominatesOn targets oldRoutes newRoutes oldCost newCost) :
+    PreservesOn targets
+      (ReachableWithinBudget oldRoutes oldCost budget)
+      (ReachableWithinBudget newRoutes newCost budget) := by
+  intro x hx hOld
+  rcases hOld with ⟨r, hr, hcost⟩
+  rcases hdom x hx r hr with ⟨r', hr', hle⟩
+  exact ⟨r', hr', le_trans hle hcost⟩
+
+/-- If route dominance preserves all old budget-feasible targets and some
+declared target gains a newly feasible route, the route extension is a strict
+accessibility click at that budget. -/
+theorem strictExpandsOn_of_new_route {ρ : Type*}
+    (targets : Set α)
+    (oldRoutes newRoutes : α → ρ → Prop)
+    (oldCost newCost : α → ρ → ℝ)
+    (budget : ℝ)
+    (hdom : RouteDominatesOn targets oldRoutes newRoutes oldCost newCost)
+    (x : α) (hxT : x ∈ targets)
+    (hOld : ¬ ReachableWithinBudget oldRoutes oldCost budget x)
+    (rNew : ρ)
+    (hrNew : newRoutes x rNew)
+    (hcostNew : newCost x rNew ≤ budget) :
+    StrictExpandsOn targets
+      (ReachableWithinBudget oldRoutes oldCost budget)
+      (ReachableWithinBudget newRoutes newCost budget) := by
+  refine ⟨routeDominates_preservesOn targets oldRoutes newRoutes
+    oldCost newCost budget hdom, x, hxT, hOld, ?_⟩
+  exact ⟨rNew, hrNew, hcostNew⟩
+
 /-- Loss of any previously accessible declared target rules out preservation
 and therefore rules out a strict monotone ratchet click. -/
 theorem not_preservesOn_of_lost_target
@@ -201,6 +255,8 @@ theorem not_preservesOn_of_lost_target
 #print axioms strictExpandsOn_of_score_crossing
 #print axioms costDominates_preservesOn
 #print axioms strictExpandsOn_of_cost_crossing
+#print axioms routeDominates_preservesOn
+#print axioms strictExpandsOn_of_new_route
 #print axioms not_preservesOn_of_lost_target
 
 end CumulativeAccessibility
