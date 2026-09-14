@@ -1010,7 +1010,27 @@ What it does establish is the state variable and the selection filter such a the
 
 ---
 
-## 14. Relation to the larger framework
+## 14. Closest external antecedent
+
+A particularly close external precedent is Peng, Linderoth, Blum and Baum (2022), *The hierarchical organization of autocatalytic reaction networks and its relevance to the origin of life* (PLOS Computational Biology 18:e1010498; doi:10.1371/journal.pcbi.1010498).
+
+Their seed-dependent autocatalytic systems can form trophic tiers in which higher-tier systems become seedable by relatively simple chemicals once lower tiers have already been activated. That is already a positive demonstration that realized lower-level organization can make later organization reachable.
+
+The present result should therefore not be framed as discovering sequential accessibility itself.
+
+Its narrower contribution is to ask what is required for such sequential accessibility to count as a **retained, resource-feasible ratchet**:
+
+- which earlier capabilities must remain accessible;
+- how shared resource use can make extension partly substitutive;
+- when the inherited repertoire remains inside budget;
+- how much slack remains after a click;
+- and whether the earlier click opens a later acquisition region that was previously unaffordable.
+
+That distinction is important for positioning. Sequential enablement is established in prior work; the budgeted-retention condition developed here is the proposed addition.
+
+---
+
+## 15. Relation to the larger framework
 
 The result now sits in a sequence.
 
@@ -1058,7 +1078,7 @@ That statement is conditional, quantitative, and falsifiable.
 
 ---
 
-## 15. What is and is not secured
+## 16. What is and is not secured
 
 ### Secured
 
@@ -1097,7 +1117,7 @@ The paper does not establish that:
 
 ---
 
-## Conclusion
+## 17. Conclusion
 
 The original question was why continuously changing reality can nevertheless exhibit cumulative organization.
 
