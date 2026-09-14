@@ -352,6 +352,7 @@ theorem mean_cost_nondecreasing_of_neg_mean_fitness
 #print axioms price_linear
 #print axioms mean_cost_nonincreasing
 #print axioms slack_nondecreasing
-#print axioms drift_eq_zero_iff_variance_eq_zero\n#print axioms mean_cost_nondecreasing_of_neg_mean_fitness
+#print axioms drift_eq_zero_iff_variance_eq_zero
+#print axioms mean_cost_nondecreasing_of_neg_mean_fitness
 
 end FunctionalCompetition
