@@ -197,6 +197,30 @@ def RouteDominatesOn {ρ : Type*}
   ∀ x, x ∈ targets → ∀ r, oldRoutes x r →
     ∃ r', newRoutes x r' ∧ newCost x r' ≤ oldCost x r
 
+theorem routeDominatesOn_refl {ρ : Type*}
+    (targets : Set α)
+    (routes : α → ρ → Prop)
+    (cost : α → ρ → ℝ) :
+    RouteDominatesOn targets routes routes cost cost := by
+  intro x hx r hr
+  exact ⟨r, hr, le_rfl⟩
+
+/-- Non-destructive route extension composes: if every old route has a
+no-more-costly middle realization, and every such middle route has a
+no-more-costly later realization, then every old route has a no-more-costly
+later realization. -/
+theorem routeDominatesOn_trans {ρ : Type*}
+    (targets : Set α)
+    (routes0 routes1 routes2 : α → ρ → Prop)
+    (cost0 cost1 cost2 : α → ρ → ℝ)
+    (h01 : RouteDominatesOn targets routes0 routes1 cost0 cost1)
+    (h12 : RouteDominatesOn targets routes1 routes2 cost1 cost2) :
+    RouteDominatesOn targets routes0 routes2 cost0 cost2 := by
+  intro x hx r0 hr0
+  rcases h01 x hx r0 hr0 with ⟨r1, hr1, hc10⟩
+  rcases h12 x hx r1 hr1 with ⟨r2, hr2, hc21⟩
+  exact ⟨r2, hr2, le_trans hc21 hc10⟩
+
 /-- Route-level non-destructive extension preserves every declared target
 that was feasible within the same budget. -/
 theorem routeDominates_preservesOn {ρ : Type*}
@@ -255,6 +279,8 @@ theorem not_preservesOn_of_lost_target
 #print axioms strictExpandsOn_of_score_crossing
 #print axioms costDominates_preservesOn
 #print axioms strictExpandsOn_of_cost_crossing
+#print axioms routeDominatesOn_refl
+#print axioms routeDominatesOn_trans
 #print axioms routeDominates_preservesOn
 #print axioms strictExpandsOn_of_new_route
 #print axioms not_preservesOn_of_lost_target
