@@ -151,6 +151,35 @@ theorem costMargin_at_aStar
 noncomputable def costCritical (K lam : ℝ) : ℝ :=
   lam * (2 * K - 1)^2 / (4 * K)
 
+/-- Numerator of the derivative in the bounded saturating-overhead
+counterexample kappa(a)=c*a/(1+a). -/
+def saturatingDerivativeNumerator (lam c a : ℝ) : ℝ :=
+  1 + 2 * (c + 1) * a + (c + 1 - 2 * c * lam) * a^2
+
+/-- If c(2*lam-1) <= 1, the derivative numerator is strictly positive for
+all positive affinity. Thus the bounded-overhead example has no forced
+high-affinity downturn from this cost channel. -/
+theorem saturatingDerivativeNumerator_pos
+    {lam c a : ℝ}
+    (ha : 0 < a) (hc : 0 ≤ c)
+    (hcond : c * (2 * lam - 1) ≤ 1) :
+    0 < saturatingDerivativeNumerator lam c a := by
+  unfold saturatingDerivativeNumerator
+  have hcoef : 0 ≤ c + 1 - 2 * c * lam := by
+    nlinarith
+  have hquad : 0 ≤ (c + 1 - 2 * c * lam) * a^2 :=
+    mul_nonneg hcoef (sq_nonneg a)
+  have hlin : 0 ≤ 2 * (c + 1) * a := by
+    have hc1 : 0 ≤ c + 1 := by linarith
+    positivity
+  nlinarith
+
+/-- Exact rational value of the linear-upkeep critical coefficient for the
+turnover witness parameters lam=6/5 and K=56/33. -/
+theorem costCritical_exact_witness :
+    costCritical (56 / 33 : ℝ) (6 / 5) = 6241 / 6160 := by
+  norm_num [costCritical]
+
 /-! ## Turnover/Sabatier channel: no maintained-association overhead -/
 
 /-- Symmetric association-turnover factor. It vanishes for arbitrarily weak
@@ -241,6 +270,8 @@ theorem turnover_exact_two_sided_failure :
 #print axioms costAStar_stationary
 #print axioms costAStar_global_max
 #print axioms costScore_at_aStar
+#print axioms saturatingDerivativeNumerator_pos
+#print axioms costCritical_exact_witness
 #print axioms turnoverShape_le_one
 #print axioms turnoverShape_eq_one_iff
 #print axioms turnoverMass_le_peak
