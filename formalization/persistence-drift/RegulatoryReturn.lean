@@ -236,7 +236,6 @@ theorem boundaryDerivative_scaled
         + c1 * gamma * m^2 := by
   unfold boundaryDerivative
   field_simp [hbeta, hm]
-  ring
 
 /-- General marginal-alignment theorem in local form. Under beta>0 and m>0,
 the boundary derivative is nonpositive exactly when the marginal value of
