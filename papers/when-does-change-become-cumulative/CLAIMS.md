@@ -18,6 +18,8 @@
 | C14 | The note does not establish a universal arrow of increasing complexity or accessibility. | Scope statement |
 | C15 | The note's order structure does not evade the finite-time fixed-resolution physical no-go result. | Scope/compatibility statement |
 | C16 | Proper accessible-set expansion does not by itself identify historical causation; a historically attributed ratchet additionally requires retained earlier structure to contribute causally to at least one newly accessible target under a defined intervention. | Definition linking this note to the parent causal framework |
+| C17 | If every old route to every declared target has a later route of no greater cost, every previously budget-feasible declared target remains feasible. | Exact route-dominance result; machine checked |
+| C18 | Under route dominance, if a previously infeasible declared target gains a route within budget, the budget-feasible repertoire strictly expands. | Exact route-extension result; machine checked |
 
 ## Non-claims
 
