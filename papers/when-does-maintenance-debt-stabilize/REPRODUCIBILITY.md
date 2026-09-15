@@ -52,7 +52,7 @@ End-to-end checks:
 
 The formalization checks the equilibrium balances, nonlinear coordinate derivatives, Jacobian transcription, explicit characteristic determinant, cubic root-location theorem, critical threshold, monotonicity in debt-response gain, and the periodic-average identities derived from the base ODE by the fundamental theorem of calculus.
 
-The final axiom audit must contain no sorryAx.
+The CI axiom audit contains no `sorryAx`; the reported declarations depend only on the standard Lean/Mathlib axioms shown by `#print axioms` (`propext`, `Classical.choice`, and `Quot.sound`).
 
 ## What Lean does not check
 
@@ -79,4 +79,17 @@ and
 
 ## Proof commit
 
-The definitive green proof commit and workflow run will be inserted after the complete paper branch passes CI and before merging to main.
+The complete proof + paper state was verified at commit `7de2a573eb5bb9de0fbe6724210801800d66a12d`.
+
+GitHub Actions workflow run: `34935524688`  
+Job: `104272464669`
+
+That run passed:
+
+- Lean 4.33.0 installation;
+- pinned Mathlib resolution;
+- `lake build`, including `maintenance_end_to_end_spectral`;
+- the worked numerical reproduction script;
+- the axiom audit with no `sorryAx`.
+
+Subsequent commits before merge are documentation-only unless explicitly noted.
