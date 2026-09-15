@@ -142,11 +142,11 @@ theorem majority3_redundancy_gain
 section SelectedVsSufficient
 
 /-- Minimal private objective for investment in alignment/correction effort. -/
-def alignmentObjective (v cost e : ℝ) : ℝ :=
+noncomputable def alignmentObjective (v cost e : ℝ) : ℝ :=
   v * e - (cost / 2) * e^2
 
 /-- Interior selected effort in the quadratic toy model. -/
-def selectedAlignment (v cost : ℝ) : ℝ :=
+noncomputable def selectedAlignment (v cost : ℝ) : ℝ :=
   v / cost
 
 /-- Completing the square gives a global optimum certificate when cost > 0. -/
