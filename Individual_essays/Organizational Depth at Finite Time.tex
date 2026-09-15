@@ -576,7 +576,7 @@ oscillations, or unsuccessful transformations, provided the stated
 physical inequalities apply to the counted transitions.
 
 
-\section{The fixed-resolution no-go corollary}
+\section{The fixed-resolution transition-count corollary}
 
 For $\delta>0$, let
 \[
@@ -637,8 +637,10 @@ K_{\delta}^{\rm op}(T)
 }
 \label{eq:operational-count}
 \end{equation}
-where $K_{\delta}^{\rm op}(T)$ counts completed transitions with
-$d_{\rm op}(x_n,x_{n+1})\ge\delta$.
+where $K_{\delta}^{\rm op}(T)$ counts completed \emph{consecutive}
+transitions with $d_{\rm op}(x_n,x_{n+1})\ge\delta$. This is a path-length
+or transition-count quantity; Section~\ref{sec:packing-depth} shows why it
+must not be identified directly with retained organizational depth.
 \end{corollary}
 
 \begin{proof}
@@ -660,6 +662,12 @@ uniform-coefficient case, grouping adjacent transitions preserves
 the corresponding bound by the triangle inequality and
 Cauchy--Schwarz. Arbitrary subdivision therefore does not create
 an unlimited number of fixed-resolution changes.
+
+The converse interpretation requires care. A large number of
+fixed-resolution consecutive changes need not correspond to a large number
+of distinct retained organizations: a trajectory may revisit the same
+states. The transition-count corollary is therefore retained as a sharp
+dynamical bound, but retained depth is defined separately below.
 
 \section{Variable kinetic coefficients and the remaining boundary}
 
@@ -843,33 +851,198 @@ independent samples can amplify arbitrarily small single-shot differences;
 therefore fixed operational resolution means fixed measurement resources
 as well as a fixed discrimination threshold.
 
-\begin{definition}[Resolution-robust organizational escape]
-A retained-transition sequence exhibits resolution-robust
-organizational escape if there exist $\delta>0$ and $T_*<\infty$
-such that infinitely many completed retained transitions before
-$T_*$ satisfy
+\begin{definition}[Fixed-resolution transition activity]
+For $\delta>0$, the consecutive fixed-resolution count up to time $T$ is
 \[
-d_{\rm op}(x_n,x_{n+1})\ge\delta
+K_\delta^{\rm consec}(T)
+=
+\#\{n:t_{n+1}\le T,\ d_{\rm op}(x_n,x_{n+1})\ge\delta\}.
 \]
-under one fixed admissible measurement standard.
+This measures resolved path activity. It does not require a counted state to
+be new relative to states visited earlier.
 \end{definition}
 
-\begin{definition}[Vanishing-resolution infinite depth]
-An infinitely indexed retained-transition sequence has
-vanishing-resolution depth if
+\begin{definition}[Retained packing depth]
+Let $V(T)=\{x_n:t_n\le T\}$ be the visited retained states up to time $T$.
+For a fixed operational resolution $\delta>0$, define
+\begin{equation}
+\boxed{
+D_\delta(T)
+=
+\sup\left\{
+|Y|:Y\subseteq V(T),\;
+d_{\rm op}(x,y)\ge\delta
+\text{ for all distinct }x,y\in Y
+\right\}.
+}
+\label{eq:packing-depth}
+\end{equation}
+Thus revisiting an old state can add transition activity without increasing
+retained depth.
+\end{definition}
+
+\begin{definition}[Resolution-robust organizational escape]
+A retained process exhibits resolution-robust organizational escape if there
+exist $\delta>0$ and $T_*<\infty$ such that $D_\delta(T)$ is unbounded as
+$T\uparrow T_*$ under one fixed admissible measurement standard.
+\end{definition}
+
+\begin{definition}[Vanishing-resolution infinite indexing]
+An infinitely indexed retained-transition sequence has vanishing-resolution
+indexing if
 \[
 d_{\rm op}(x_n,x_{n+1})\to0.
 \]
 \end{definition}
 
-Vanishing-resolution depth may describe refinement toward a finite
-state, as in Example~\ref{ex:refinement}. This is a possibility,
-not a universal conclusion about all infinite-dimensional systems.
+Vanishing-resolution indexing may describe refinement toward a finite state,
+as in Example~\ref{ex:refinement}. A different pathology is recurrence:
+a two-state shuttle can maintain
+$d_{\rm op}(x_n,x_{n+1})=\delta$ forever while
+$D_\delta(T)=2$. The packing-depth definition excludes both failures for
+different reasons.
 
 Operational distinguishability does not require every admissible
 test to be performed. If measurement, verification, or record
 updates are actually used to generate or retain the sequence,
 however, their costs and timing belong inside the physical model.
+
+\section{Transition count versus retained packing depth}
+\label{sec:packing-depth}
+
+The distinction between $K_\delta^{\rm consec}$ and $D_\delta$ is not
+cosmetic. It is exposed by the construction that makes the finite-state
+activity--entropy bound sharp.
+
+Consider a driven edge with forward and reverse probability fluxes
+\[
+a=\frac{A(1+\epsilon)}2,
+\qquad
+b=\frac{A(1-\epsilon)}2,
+\qquad
+0<\epsilon<1.
+\]
+Then the net probability flux is $J=\epsilon A$, while the
+entropy-production rate is
+\[
+\sigma
+=
+(a-b)\log\frac ab
+=
+2\epsilon A\,\operatorname{artanh}\epsilon.
+\]
+Over a constant-flux interval of duration $\tau$,
+\[
+d_{\rm TV}=\epsilon A\tau,
+\qquad
+\mathcal N=A\tau,
+\qquad
+\Sigma
+=
+2\epsilon A\tau\,\operatorname{artanh}\epsilon.
+\]
+Hence
+\begin{equation}
+\boxed{
+\frac{d_{\rm TV}}{\sqrt{\mathcal N\Sigma/2}}
+=
+\sqrt{\frac{\epsilon}{\operatorname{artanh}\epsilon}}
+\longrightarrow1
+\quad(\epsilon\to0).
+}
+\label{eq:sfs-tightness}
+\end{equation}
+The Shiraishi--Funo--Saito form used here is therefore asymptotically sharp.
+At fixed resolved displacement $d_{\rm TV}=\delta$,
+\[
+\mathcal N=\frac\delta\epsilon\to\infty,
+\qquad
+\Sigma=2\delta\,\operatorname{artanh}\epsilon\to0.
+\]
+Vanishing entropy production per distinction is bought by diverging activity.
+
+A two-state shuttle can repeat this transition indefinitely. It therefore
+makes $K_\delta^{\rm consec}$ arbitrarily large while visiting only two
+mutually distinguishable states. Conversely, sharpness is not peculiar to a
+depthless shuttle. For an $m$-state simplex choose
+\[
+q=\frac{1-\delta}{m},
+\qquad
+p^{(j)}=q\mathbf 1+\delta e_j.
+\]
+For $i\ne j$,
+$d_{\rm TV}(p^{(i)},p^{(j)})=\delta$. Driving exactly $\delta$
+probability mass from one peak to the next along the same constant-asymmetry
+edge yields the same ratio \eqref{eq:sfs-tightness} while cycling through
+$m$ mutually $\delta$-separated retained states. Thus saturation of the
+transition bound diagnoses neither the presence nor the absence of retained
+depth.
+
+This leads to two independent bounds on $D_\delta$.
+
+First, if $D_\delta(T)=D<\infty$, choose $D$ pairwise-separated visited
+representatives and order their visit times. Every one of the $D-1$
+chronological gaps has endpoint distance at least $\delta$. The gaps are
+disjoint, so the same path-length argument used for
+Theorem~\ref{thm:markov-operational} gives
+\begin{equation}
+\boxed{
+D_\delta(T)
+\le
+1+
+\frac1\delta
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:thermo-depth}
+\end{equation}
+
+Second, by definition,
+\begin{equation}
+\boxed{
+D_\delta(T)
+\le
+\mathcal P_\delta(\mathcal X_T),
+}
+\label{eq:packing-general}
+\end{equation}
+where $\mathcal P_\delta$ is the $\delta$-packing number of the accessible
+operational state space $\mathcal X_T$. This is a geometric constraint rather
+than a thermodynamic one.
+
+For probability distributions on a fixed finite state space
+$|S|=m$, the simplex has dimension $m-1$ and diameter one in total variation.
+The standard disjoint-ball volume argument for a normed finite-dimensional
+space yields the coarse bound
+\begin{equation}
+\boxed{
+\mathcal P_\delta(\Delta_{m-1})
+\le
+\left(1+\frac{2}{\delta}\right)^{m-1}.
+}
+\label{eq:simplex-packing}
+\end{equation}
+For two states the exact value is
+$\lfloor1/\delta\rfloor+1$.
+
+Combining \eqref{eq:thermo-depth} and \eqref{eq:packing-general},
+\begin{equation}
+\boxed{
+D_\delta(T)
+\le
+\min\left\{
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
+\;
+\mathcal P_\delta(\mathcal X_T)
+\right\}.
+}
+\label{eq:combined-depth}
+\end{equation}
+
+The first term is a dynamical-resource bound: can the trajectory traverse
+enough operational distance? The second is a repertoire bound: does the
+accessible state space contain enough mutually distinguishable places to go?
+For a fixed finite-state simplex, no increase in entropy-production or
+activity budget can make $D_\delta$ infinite.
 
 \section{Physical versus organizational metrics}
 \label{sec:metrics}
