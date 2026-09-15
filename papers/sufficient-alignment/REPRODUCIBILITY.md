@@ -19,6 +19,7 @@ The file checks:
 - 2-out-of-3 reliability monotonicity;
 - the exact half-threshold;
 - redundancy gain above \(p=1/2\);
+- the quadratic selected-alignment global optimum and exact (2v\ge c) sufficiency boundary;
 - protocol reproduction monotonicity and exact scalar threshold;
 - expected carrier growth/decline around \(R=1\);
 - weak and strict repair boundaries.
