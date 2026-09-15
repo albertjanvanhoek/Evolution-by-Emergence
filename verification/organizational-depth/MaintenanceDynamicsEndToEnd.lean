@@ -217,6 +217,148 @@ theorem critical_gain_implies_jacobian_hurwitz
 
 end CubicHurwitz
 
+section EndToEndSpectral
+
+/-- Visible-health/capital equilibrium implied by the behavioral balance. -/
+noncomputable def maintenanceHStar (α c : ℝ) : ℝ := 1 - c / α
+
+/-- Interior maintenance effort required to replace capital at the equilibrium stock. -/
+noncomputable def maintenanceXStar (δ a α c : ℝ) : ℝ :=
+  (δ / a) * maintenanceHStar α c
+
+/-- Replicator curvature factor at the interior equilibrium. -/
+noncomputable def maintenanceBStar (δ a α c : ℝ) : ℝ :=
+  maintenanceXStar δ a α c * (1 - maintenanceXStar δ a α c)
+
+/-- Coordinatewise statement that the nonlinear flow has exactly the
+debt-aware Jacobian used in the characteristic-matrix calculation. -/
+def HasDebtJacobianAt
+    (α c a δ ε γ x₀ K₀ h₀ : ℝ) : Prop :=
+  HasDerivAt (fun x => debtXFlow α c a δ γ x K₀ h₀)
+      (-a * γ * (x₀ * (1 - x₀))) x₀ ∧
+  HasDerivAt (fun K => debtXFlow α c a δ γ x₀ K h₀)
+      (δ * γ * (x₀ * (1 - x₀))) K₀ ∧
+  HasDerivAt (fun h => debtXFlow α c a δ γ x₀ K₀ h)
+      (-α * (x₀ * (1 - x₀))) h₀ ∧
+  HasDerivAt (fun x => debtKFlow a δ x K₀) a x₀ ∧
+  HasDerivAt (fun K => debtKFlow a δ x₀ K) (-δ) K₀ ∧
+  HasDerivAt (fun K => debtHFlow ε K h₀) ε K₀ ∧
+  HasDerivAt (fun h => debtHFlow ε K₀ h) (-ε) h₀
+
+/-- The closed-form equilibrium satisfies both balance equations. -/
+theorem maintenance_equilibrium_balances
+    {α c a δ : ℝ} (hα : α ≠ 0) (ha : a ≠ 0) :
+    α * (1 - maintenanceHStar α c) - c = 0 ∧
+    δ * maintenanceHStar α c
+      - a * maintenanceXStar δ a α c = 0 := by
+  constructor
+  · unfold maintenanceHStar
+    field_simp [hα]
+    ring
+  · unfold maintenanceXStar
+    field_simp [ha]
+    ring
+
+/-- The closed-form state is an equilibrium of the full debt-aware nonlinear flow. -/
+theorem maintenance_equilibrium_flow_zero
+    {α c a δ ε γ : ℝ} (hα : α ≠ 0) (ha : a ≠ 0) :
+    debtXFlow α c a δ γ
+        (maintenanceXStar δ a α c)
+        (maintenanceHStar α c)
+        (maintenanceHStar α c) = 0 ∧
+    debtKFlow a δ
+        (maintenanceXStar δ a α c)
+        (maintenanceHStar α c) = 0 ∧
+    debtHFlow ε
+        (maintenanceHStar α c)
+        (maintenanceHStar α c) = 0 := by
+  obtain ⟨hbase, hdebt⟩ := maintenance_equilibrium_balances hα ha
+  constructor
+  · unfold debtXFlow
+    rw [hbase, hdebt]
+    ring
+  constructor
+  · unfold debtKFlow
+    linarith
+  · unfold debtHFlow
+    ring
+
+/-- The coordinate derivatives of the nonlinear flow at the closed-form
+equilibrium are exactly the entries of the debt-aware Jacobian. -/
+theorem maintenance_equilibrium_has_jacobian
+    {α c a δ ε γ : ℝ} (hα : α ≠ 0) (ha : a ≠ 0) :
+    HasDebtJacobianAt α c a δ ε γ
+      (maintenanceXStar δ a α c)
+      (maintenanceHStar α c)
+      (maintenanceHStar α c) := by
+  obtain ⟨hbase, hdebt⟩ := maintenance_equilibrium_balances hα ha
+  have hx :=
+    debtXFlow_dx_at_equilibrium (γ := γ) hbase hdebt
+  have hK :=
+    debtXFlow_dK_at_equilibrium (γ := γ) hbase hdebt
+  have hh :=
+    debtXFlow_dh_at_equilibrium (γ := γ) hbase hdebt
+  have hk := debtKFlow_partials
+    (a := a) (δ := δ)
+    (x₀ := maintenanceXStar δ a α c)
+    (K₀ := maintenanceHStar α c)
+  have hv := debtHFlow_partials
+    (ε := ε)
+    (K₀ := maintenanceHStar α c)
+    (h₀ := maintenanceHStar α c)
+  exact ⟨hx, hK, hh, hk.1, hk.2, hv.1, hv.2⟩
+
+/-- **End-to-end spectral stability theorem.**
+From primitive model parameters and an interior equilibrium, a debt-response gain
+above the exact critical value gives: (i) an actual equilibrium of the nonlinear
+flow, (ii) the claimed Jacobian obtained by differentiation of that flow, and
+(iii) every characteristic root of that Jacobian in the open left half-plane.
+
+The final generic nonlinear theorem “Hurwitz Jacobian of a C¹ vector field
+implies local asymptotic stability” is not bundled here; Mathlib currently has
+no such theorem available. -/
+theorem maintenance_end_to_end_spectral
+    {α c a δ ε γ : ℝ}
+    (hα : 0 < α) (ha : 0 < a) (hδ : 0 < δ) (hε : 0 < ε)
+    (hγ0 : 0 ≤ γ)
+    (hx0 : 0 < maintenanceXStar δ a α c)
+    (hx1 : maintenanceXStar δ a α c < 1)
+    (hγcrit :
+      MaintenanceDynamics.criticalGamma δ ε a α
+        (maintenanceBStar δ a α c) < γ) :
+    (debtXFlow α c a δ γ
+        (maintenanceXStar δ a α c)
+        (maintenanceHStar α c)
+        (maintenanceHStar α c) = 0 ∧
+     debtKFlow a δ
+        (maintenanceXStar δ a α c)
+        (maintenanceHStar α c) = 0 ∧
+     debtHFlow ε
+        (maintenanceHStar α c)
+        (maintenanceHStar α c) = 0) ∧
+    HasDebtJacobianAt α c a δ ε γ
+      (maintenanceXStar δ a α c)
+      (maintenanceHStar α c)
+      (maintenanceHStar α c) ∧
+    ∀ z : ℂ,
+      Matrix.det
+        (debtCharMatrix z δ ε a α
+          (maintenanceBStar δ a α c) γ) = 0 →
+      z.re < 0 := by
+  have hflow :=
+    maintenance_equilibrium_flow_zero (γ := γ) (ε := ε) hα.ne' ha.ne'
+  have hjac :=
+    maintenance_equilibrium_has_jacobian (γ := γ) (ε := ε) hα.ne' ha.ne'
+  have hb : 0 < maintenanceBStar δ a α c := by
+    unfold maintenanceBStar
+    exact mul_pos hx0 (sub_pos.mpr hx1)
+  refine ⟨hflow, hjac, ?_⟩
+  intro z hz
+  exact critical_gain_implies_jacobian_hurwitz
+    hδ hε ha hα hb hγ0 hγcrit z hz
+
+end EndToEndSpectral
+
 section PeriodicODE
 
 open Set MeasureTheory intervalIntegral
@@ -338,6 +480,10 @@ theorem periodic_maintenance_cycle_averages
 
 end PeriodicODE
 
+#print axioms maintenance_equilibrium_balances
+#print axioms maintenance_equilibrium_flow_zero
+#print axioms maintenance_equilibrium_has_jacobian
+#print axioms maintenance_end_to_end_spectral
 #print axioms debtXFlow_dx_at_equilibrium
 #print axioms debtXFlow_dK_at_equilibrium
 #print axioms debtXFlow_dh_at_equilibrium
