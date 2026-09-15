@@ -1177,6 +1177,44 @@ Every transition counted by $K_\delta^{\rm op}$ contributes at least
 $\delta$ to the left-hand side, giving \eqref{eq:markov-count}.
 \end{proof}
 
+\begin{corollary}[Thermodynamic retained-depth bound]
+\label{cor:markov-depth}
+Under the hypotheses of Theorem~\ref{thm:markov-operational}, let
+$y_0,\ldots,y_{D-1}$ be retained states encountered in chronological order,
+with
+\[
+d_{\rm op}(y_i,y_j)\ge\delta>0
+\qquad(i\ne j).
+\]
+Then
+\begin{equation}
+\boxed{
+D
+\le
+1+\frac1\delta
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+}
+\label{eq:markov-depth}
+\end{equation}
+Consequently the retained packing depth obeys the same bound.
+\end{corollary}
+
+\begin{proof}
+There are $D-1$ disjoint chronological intervals between successive selected
+representatives. Pairwise separation implies that each such interval has
+endpoint operational distance at least $\delta$. Apply
+Theorem~\ref{thm:markov-operational} to those aggregated intervals:
+\[
+(D-1)\delta
+\le
+\sqrt{\Sigma_*\mathcal N_*/2}.
+\]
+Rearranging gives \eqref{eq:markov-depth}. The corresponding finite-prefix
+statement is machine-checked in
+\texttt{OperationalBridge.lean} as
+\texttt{pairwise\_depth\_resource\_bound}.
+\end{proof}
+
 This result has a useful interpretation in the notation of the general
 finite-action theorem. If $I_n$ has duration $\tau_n$ and average activity
 $\bar A_n=\mathcal N_n/\tau_n$, then \eqref{eq:sfs-tv} implies
