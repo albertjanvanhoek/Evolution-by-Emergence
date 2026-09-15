@@ -178,8 +178,8 @@ The paper is deliberately narrow about novelty: Perron-Frobenius theory and the 
 
 - **Paper package:** [papers/when-does-maintenance-debt-stabilize/](papers/when-does-maintenance-debt-stabilize/) — *When Does Maintenance Debt Stabilize? Exact Thresholds in a Slow-Fast Feedback System*.
 - **Core distinction:** current visible state is not the same object as current replacement balance.
-- **Maintenance debt:** (D=delta K-ax=-dot K).
-- **Main threshold:** debt-sensitive feedback stabilizes the interior spectrum above the exact (gamma_{m crit}) derived in the paper.
+- **Maintenance debt:** \(D=\delta K-ax=-\dot K\).
+- **Main threshold:** debt-sensitive feedback stabilizes the interior spectrum above the exact \(\gamma_{\rm crit}\) derived in the paper.
 - **Formalization:** [verification/organizational-depth/MaintenanceDynamics.lean](verification/organizational-depth/MaintenanceDynamics.lean) and [verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean](verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean).
 - **Scope:** environmental-feedback oscillations are established in prior literature; the contribution is the replacement-balance signal, exact threshold, zero-mean cycle accounting, and machine-checked model-to-spectrum chain.
 
