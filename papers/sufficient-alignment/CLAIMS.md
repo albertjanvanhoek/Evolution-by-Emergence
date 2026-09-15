@@ -35,4 +35,4 @@ The paper does not claim:
 - SCAP is uniquely correct;
 - alignment should eliminate disagreement;
 - moral obligations have been deduced from mathematics;
-- the four toy models exhaust collective intelligence.
+- the five toy-model modules exhaust collective intelligence.
