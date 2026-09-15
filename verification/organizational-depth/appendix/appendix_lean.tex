@@ -140,6 +140,32 @@ The Lean declarations
 implication. The separate finite-dimensional packing-number estimate for a
 probability simplex is standard geometry and is not formalized here.
 
+\paragraph{A.9 The independent two-factor module.}
+A second Lean file, \nolinkurl{PackingDepth.lean}, independently reconstructs
+the finite-block argument behind the combined retained-depth theorem. It proves
+the finite Cauchy--Schwarz gap bound, the thermodynamic depth factor,
+\[
+D
+\le
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
+\]
+and its conjunction with an externally supplied geometric ceiling
+$D\le\mathcal P_\delta(X)$:
+\[
+D
+\le
+\min\left\{
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
+\mathcal P_\delta(X)
+\right\}.
+\]
+It also proves that a uniform ceiling on the activity--entropy product gives a
+uniform ceiling on depth, and supplies an explicit satisfiable equality witness
+showing that the thermodynamic factor is neither vacuous nor loose.
+
+The geometric packing theorem for a particular state space remains external to
+Lean in this development, as does the physical speed-limit premise.
+
 \subsection{What is not verified}
 
 The following remain physical or modelling claims and are not certified by Lean:
@@ -164,8 +190,9 @@ stated physical and stochastic-process premises.
 \subsection{Reproduction}
 
 The checked sources are
-\nolinkurl{OrganizationalDepth.lean} and
-\nolinkurl{OperationalBridge.lean}. They use Lean~4.33.0 and
+\nolinkurl{OrganizationalDepth.lean},
+\nolinkurl{OperationalBridge.lean}, and
+\nolinkurl{PackingDepth.lean}. They use Lean~4.33.0 and
 \texttt{Mathlib} commit \texttt{db584cd} (10 August 2026). From the
 verification directory, the check is reproduced with
 \begin{verbatim}
@@ -180,10 +207,12 @@ manuscript-facing declarations reports only
 
 The manuscript-facing declarations in \nolinkurl{OrganizationalDepth.lean}
 cover stochastic-route closure, the weighted and uniform finite-action
-bounds, and the fixed-resolution counting/finiteness results. The
-declarations in \nolinkurl{OperationalBridge.lean} cover total-variation
+bounds, and the fixed-resolution counting/finiteness results. The declarations in \nolinkurl{OperationalBridge.lean} cover total-variation
 data processing, identity-channel sharpness, transfer of a TV speed-limit
 hypothesis to operational distance, the operational consecutive-transition
 counting bound, and the pairwise retained-depth resource bound.
+The declarations in \nolinkurl{PackingDepth.lean} provide an independent
+finite-block proof of the thermodynamic factor, the abstract two-factor
+minimum, a uniform budget-ceiling corollary, and explicit sharpness witnesses.
 
 \endgroup
