@@ -172,8 +172,7 @@ theorem periodic_maintenance_cycle_averages
   have hIhBal' := hIhBal
   have hIKBal' := hIKBal
   simp only [intervalIntegral.integral_sub, intervalIntegral.integral_const_mul,
-    intervalIntegral.integral_const, sub_zero, smul_eq_mul, mul_one] at
-    hILog' hIhBal' hIKBal'
+    intervalIntegral.integral_const, sub_zero, smul_eq_mul, mul_one] at hILog' hIhBal' hIKBal'
 
   have hTne : T ≠ 0 := ne_of_gt hT
   have hH : (∫ t in 0..T, h t) = T * (1 - c / α) := by
