@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - 'verification/organizational-depth/**'
+      - 'papers/when-does-maintenance-debt-stabilize/**'
       - '.github/workflows/lean-fixed-resolution.yml'
   pull_request:
     paths:
       - 'verification/organizational-depth/**'
+      - 'papers/when-does-maintenance-debt-stabilize/**'
       - '.github/workflows/lean-fixed-resolution.yml'
   workflow_dispatch:
 
@@ -46,3 +48,9 @@ jobs:
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
           lake build
+
+
+      - name: Check maintenance-debt worked example
+        shell: bash
+        run: |
+          python ../../papers/when-does-maintenance-debt-stabilize/verify_maintenance_dynamics.py
