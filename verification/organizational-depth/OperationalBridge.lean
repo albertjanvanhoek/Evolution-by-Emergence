@@ -177,6 +177,72 @@ theorem operational_fixed_resolution
         exact mul_le_mul_of_nonneg_left hcard (le_of_lt h2)
     _ ≤ Real.sqrt SigTot * Real.sqrt NactTot := hsum
 
+/-! ## §5  Pairwise retained depth
+
+The fixed-resolution transition count can be large even when the trajectory
+revisits the same few states.  A stronger depth notion selects retained
+representatives that are pairwise distinguishable.  If k+1 representatives
+are pairwise separated by delta, then the k chronological gaps between
+successive representatives are each separated by delta.  Applying the same
+activity--entropy argument to those disjoint gaps bounds retained depth by
+one plus the transition-length budget.
+-/
+
+section PairwiseDepth
+
+variable {X : Type*}
+
+/-- Pairwise separation of the first `k+1` chronological retained
+representatives implies separation of each adjacent representative pair. -/
+theorem pairwise_separated_adjacent
+    (x : ℕ → X) (d : X → X → ℝ) (k : ℕ) (delta : ℝ)
+    (hpair :
+      ∀ i j, i ≤ k → j ≤ k → i ≠ j → delta ≤ d (x i) (x j)) :
+    ∀ n ∈ Finset.range k, delta ≤ d (x n) (x (n + 1)) := by
+  intro n hn
+  have hnlt : n < k := Finset.mem_range.mp hn
+  have hni : n ≤ k := Nat.le_of_lt hnlt
+  have hnj : n + 1 ≤ k := by
+    simpa [Nat.succ_eq_add_one] using (Nat.succ_le_iff.mpr hnlt)
+  have hne : n ≠ n + 1 := by
+    exact Nat.ne_of_lt (by simpa [Nat.succ_eq_add_one] using Nat.lt_succ_self n)
+  exact hpair n (n + 1) hni hnj hne
+
+-- `hdelta` is retained because the manuscript interprets delta as a
+-- strictly positive operational resolution.
+set_option linter.unusedVariables false in
+/-- **Thermodynamic bound on pairwise retained depth.**
+Suppose `x 0, ..., x k` are chronological retained representatives and every
+two distinct representatives are operationally separated by at least
+`delta`.  Let `Sig n` and `Nact n` be the entropy production and activity
+accumulated over the disjoint interval between representative `n` and
+representative `n+1`.  If the operational speed-limit hypothesis holds on
+each such gap and the total budgets are bounded, then
+
+`k * delta ≤ sqrt(SigTot * NactTot / 2)`.
+
+Thus a pairwise-separated retained set of cardinality `k+1` obeys the
+manuscript bound `D_delta - 1 ≤ delta^{-1} sqrt(SigTot*NactTot/2)`. -/
+theorem pairwise_depth_resource_bound
+    (x : ℕ → X) (d : X → X → ℝ)
+    (Sig Nact : ℕ → ℝ) (SigTot NactTot delta : ℝ) (k : ℕ)
+    (hdelta : 0 < delta)
+    (hd0 : ∀ n, 0 ≤ d (x n) (x (n + 1)))
+    (hS0 : ∀ n, 0 ≤ Sig n) (hN0 : ∀ n, 0 ≤ Nact n)
+    (hSL : ∀ n, 2 * (d (x n) (x (n + 1))) ^ 2 ≤ Sig n * Nact n)
+    (hSsum : ∀ s : Finset ℕ, ∑ n ∈ s, Sig n ≤ SigTot)
+    (hNsum : ∀ s : Finset ℕ, ∑ n ∈ s, Nact n ≤ NactTot)
+    (hpair :
+      ∀ i j, i ≤ k → j ≤ k → i ≠ j → delta ≤ d (x i) (x j)) :
+    (k : ℝ) * delta
+      ≤ (1 / Real.sqrt 2) * (Real.sqrt SigTot * Real.sqrt NactTot) := by
+  apply operational_fixed_resolution
+    (fun n => d (x n) (x (n + 1))) Sig Nact SigTot NactTot delta
+    hdelta hd0 hS0 hN0 hSL hSsum hNsum (Finset.range k)
+  exact pairwise_separated_adjacent x d k delta hpair
+
+end PairwiseDepth
+
 /-! ## Axiom audit -/
 
 #print axioms l1_push_le
@@ -184,5 +250,7 @@ theorem operational_fixed_resolution
 #print axioms dTV_push_idChannel
 #print axioms speed_limit_operational
 #print axioms operational_fixed_resolution
+#print axioms pairwise_separated_adjacent
+#print axioms pairwise_depth_resource_bound
 
 end OrgBridge
