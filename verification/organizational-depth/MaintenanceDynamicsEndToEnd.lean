@@ -15,6 +15,113 @@ This file closes two previously explicit seams:
 No external Routh--Hurwitz theorem is assumed.
 -/
 
+section JacobianFromVectorField
+
+/-- Debt-aware maintenance flow for the behavioral coordinate. -/
+def debtXFlow (α c a δ γ x K h : ℝ) : ℝ :=
+  x * (1 - x) * (α * (1 - h) - c + γ * (δ * K - a * x))
+
+/-- Capital-stock coordinate. -/
+def debtKFlow (a δ x K : ℝ) : ℝ := a * x - δ * K
+
+/-- Visible-health coordinate. -/
+def debtHFlow (ε K h : ℝ) : ℝ := ε * (K - h)
+
+/-- The x-partial of the nonlinear behavioral flow at an equilibrium satisfying
+both the visible-balance and maintenance-debt balance equations. -/
+theorem debtXFlow_dx_at_equilibrium
+    {α c a δ γ x₀ K₀ h₀ : ℝ}
+    (hbase : α * (1 - h₀) - c = 0)
+    (hdebt : δ * K₀ - a * x₀ = 0) :
+    HasDerivAt (fun x => debtXFlow α c a δ γ x K₀ h₀)
+      (-a * γ * (x₀ * (1 - x₀))) x₀ := by
+  have hg0 := (hasDerivAt_id x₀).mul
+    ((hasDerivAt_const x₀ (1 : ℝ)).sub (hasDerivAt_id x₀))
+  have hg : HasDerivAt (fun x : ℝ => x * (1 - x)) (1 - 2*x₀) x₀ := by
+    exact hg0.congr_deriv (by ring)
+  have hlin0 := (hasDerivAt_const x₀ (δ*K₀)).sub
+    (HasDerivAt.const_mul a (hasDerivAt_id x₀))
+  have hlin : HasDerivAt (fun x : ℝ => δ*K₀ - a*x) (-a) x₀ := by
+    exact hlin0.congr_deriv (by ring)
+  have hq0 := (hasDerivAt_const x₀ (α*(1-h₀)-c)).add
+    (HasDerivAt.const_mul γ hlin)
+  have hq : HasDerivAt
+      (fun x : ℝ => α*(1-h₀)-c + γ*(δ*K₀-a*x)) (-γ*a) x₀ := by
+    exact hq0.congr_deriv (by ring)
+  have hqeq : α*(1-h₀)-c + γ*(δ*K₀-a*x₀) = 0 := by
+    rw [hbase, hdebt]
+    ring
+  unfold debtXFlow
+  refine (hg.mul hq).congr_deriv ?_
+  rw [hqeq]
+  ring
+
+/-- The K-partial of the nonlinear behavioral flow at equilibrium. -/
+theorem debtXFlow_dK_at_equilibrium
+    {α c a δ γ x₀ K₀ h₀ : ℝ}
+    (hbase : α * (1 - h₀) - c = 0)
+    (hdebt : δ * K₀ - a * x₀ = 0) :
+    HasDerivAt (fun K => debtXFlow α c a δ γ x₀ K h₀)
+      (δ * γ * (x₀ * (1 - x₀))) K₀ := by
+  have hlin : HasDerivAt (fun K : ℝ => δ*K - a*x₀) δ K₀ := by
+    have h := (HasDerivAt.const_mul δ (hasDerivAt_id K₀)).sub
+      (hasDerivAt_const K₀ (a*x₀))
+    exact h.congr_deriv (by ring)
+  have hq0 := (hasDerivAt_const K₀ (α*(1-h₀)-c)).add
+    (HasDerivAt.const_mul γ hlin)
+  have hq : HasDerivAt
+      (fun K : ℝ => α*(1-h₀)-c + γ*(δ*K-a*x₀)) (γ*δ) K₀ := by
+    exact hq0.congr_deriv (by ring)
+  have hb := HasDerivAt.const_mul (x₀*(1-x₀)) hq
+  unfold debtXFlow
+  exact hb.congr_deriv (by ring)
+
+/-- The h-partial of the nonlinear behavioral flow at equilibrium. -/
+theorem debtXFlow_dh_at_equilibrium
+    {α c a δ γ x₀ K₀ h₀ : ℝ}
+    (hbase : α * (1 - h₀) - c = 0)
+    (hdebt : δ * K₀ - a * x₀ = 0) :
+    HasDerivAt (fun h => debtXFlow α c a δ γ x₀ K₀ h)
+      (-α * (x₀ * (1 - x₀))) h₀ := by
+  have hone := (hasDerivAt_const h₀ (1 : ℝ)).sub (hasDerivAt_id h₀)
+  have hbasefun0 := HasDerivAt.const_mul α hone
+  have hbasefun : HasDerivAt (fun h : ℝ => α*(1-h)-c) (-α) h₀ := by
+    have h := hbasefun0.sub (hasDerivAt_const h₀ c)
+    exact h.congr_deriv (by ring)
+  have hq := hbasefun.add
+    (hasDerivAt_const h₀ (γ*(δ*K₀-a*x₀)))
+  have hb := HasDerivAt.const_mul (x₀*(1-x₀)) hq
+  unfold debtXFlow
+  exact hb.congr_deriv (by ring)
+
+/-- Remaining two nontrivial linear-coordinate derivatives. -/
+theorem debtKFlow_partials {a δ x₀ K₀ : ℝ} :
+    HasDerivAt (fun x => debtKFlow a δ x K₀) a x₀ ∧
+    HasDerivAt (fun K => debtKFlow a δ x₀ K) (-δ) K₀ := by
+  constructor
+  · unfold debtKFlow
+    exact ((HasDerivAt.const_mul a (hasDerivAt_id x₀)).sub
+      (hasDerivAt_const x₀ (δ*K₀))).congr_deriv (by ring)
+  · unfold debtKFlow
+    exact ((hasDerivAt_const K₀ (a*x₀)).sub
+      (HasDerivAt.const_mul δ (hasDerivAt_id K₀))).congr_deriv (by ring)
+
+/-- Visible-health coordinate derivatives. -/
+theorem debtHFlow_partials {ε K₀ h₀ : ℝ} :
+    HasDerivAt (fun K => debtHFlow ε K h₀) ε K₀ ∧
+    HasDerivAt (fun h => debtHFlow ε K₀ h) (-ε) h₀ := by
+  constructor
+  · unfold debtHFlow
+    have h := HasDerivAt.const_mul ε
+      ((hasDerivAt_id K₀).sub (hasDerivAt_const K₀ h₀))
+    exact h.congr_deriv (by ring)
+  · unfold debtHFlow
+    have h := HasDerivAt.const_mul ε
+      ((hasDerivAt_const h₀ K₀).sub (hasDerivAt_id h₀))
+    exact h.congr_deriv (by ring)
+
+end JacobianFromVectorField
+
 section CubicHurwitz
 
 /-- Direct cubic Hurwitz criterion. If A,B,C are positive and A*B > C,
@@ -230,6 +337,11 @@ theorem periodic_maintenance_cycle_averages
 
 end PeriodicODE
 
+#print axioms debtXFlow_dx_at_equilibrium
+#print axioms debtXFlow_dK_at_equilibrium
+#print axioms debtXFlow_dh_at_equilibrium
+#print axioms debtKFlow_partials
+#print axioms debtHFlow_partials
 #print axioms cubic_hurwitz_root_negative
 #print axioms debtCharMatrix_det
 #print axioms debt_jacobian_hurwitz
