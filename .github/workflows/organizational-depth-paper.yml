@@ -6,12 +6,12 @@ on:
       - 'Individual_essays/Organizational Depth at Finite Time.tex'
       - 'verification/organizational-depth/appendix/**'
       - 'verification/organizational-depth/tightness/**'
-      - 'verification/organizational-depth/tightness/**'
       - '.github/workflows/organizational-depth-paper.yml'
   pull_request:
     paths:
       - 'Individual_essays/Organizational Depth at Finite Time.tex'
       - 'verification/organizational-depth/appendix/**'
+      - 'verification/organizational-depth/tightness/**'
       - '.github/workflows/organizational-depth-paper.yml'
   workflow_dispatch:
 
