@@ -408,7 +408,7 @@ This is the simplest mathematical demonstration of the principle:
 
 It requires sufficient component reliability plus an architecture that converts independent or weakly correlated competence into network-level robustness.
 
-The independence assumption matters. Perfectly correlated errors remove much of the benefit.
+The independence assumption matters. Perfectly correlated errors remove much of the benefit. More generally, communication can improve individual estimates while simultaneously increasing correlation among errors; networked collective-intelligence research shows that whether social influence helps or harms depends on topology and task. The alignment target is therefore not maximum communication but an architecture that preserves enough information exchange without destroying useful diversity.
 
 ---
 
@@ -932,7 +932,9 @@ These are hypotheses to test, not consequences of a single universal equation.
 
 ## 15. Relation to existing literature
 
-The mathematical ingredients are established.
+The broader problem of collective intelligence is also established. Human-group research has reported collective-performance factors that are not reducible to the best individual performer, while network-science work shows that communication topology can either improve collective problem solving or damage the informational diversity on which crowd accuracy depends. This is important for the present framework: alignment should not be identified with maximal connectivity or maximal consensus.
+
+The mathematical ingredients used below are established.
 
 Blackwell's comparison of experiments formalizes when one information structure is more informative than another for decision making. The signal-fidelity theorem proved here is only the deterministic finite lifting direction.
 
