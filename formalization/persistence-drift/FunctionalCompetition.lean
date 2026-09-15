@@ -243,6 +243,10 @@ theorem mean_fitness_nondecreasing
     div_nonneg hvar (le_of_lt hrbar)
   linarith
 
+/-- Strict companion to mean_fitness_nondecreasing. The nonnegativity
+hypothesis on p is retained so the two theorem interfaces remain parallel;
+the explicit positive-variance hypothesis already suffices for this proof. -/
+set_option linter.unusedVariables false in
 theorem mean_fitness_strictly_increases
     (hp : ∑ i, p i = 1) (hpnn : ∀ i, 0 ≤ p i)
     (hrbar : 0 < ∑ j, p j * r j)
