@@ -183,7 +183,20 @@ The paper is deliberately narrow about novelty: Perron-Frobenius theory and the 
 - **Formalization:** [verification/organizational-depth/MaintenanceDynamics.lean](verification/organizational-depth/MaintenanceDynamics.lean) and [verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean](verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean).
 - **Scope:** environmental-feedback oscillations are established in prior literature; the contribution is the replacement-balance signal, exact threshold, zero-mean cycle accounting, and machine-checked model-to-spectrum chain.
 
-### 10. Formal/operator work: Existence First, SCAP, and ARVC
+### 10. Collective intelligence: sufficient alignment
+
+- **Paper package:** [papers/sufficient-alignment/](papers/sufficient-alignment/) — *Sufficient Alignment: A Viability Framework for Collective Intelligence*.
+- **Core proposal:** alignment is a task- and horizon-specific viability region for the network's learning architecture, not a requirement that every node be perfectly aligned.
+- **Signal fidelity:** the finite deterministic honesty theorem is a policy-lifting specialization of Blackwell informativeness.
+- **Redundancy:** a 2-out-of-3 correction model shows how imperfect agents can produce a more reliable collective channel.
+- **Selected vs sufficient:** privately selected alignment effort can fall below the network's functional threshold.
+- **Repair:** forgiveness is represented conditionally as repair of a valuable damaged edge when expected recovered surplus exceeds repair cost.
+- **Inheritance:** \(R_{\rm protocol}=mp\) gives a minimal reproduction threshold for transmitting the correction architecture across agent turnover.
+- **SCAP v2:** [papers/sufficient-alignment/SCAP_V2.md](papers/sufficient-alignment/SCAP_V2.md) reframes SCAP as a corrigible, heritable maintenance protocol for collective intelligence.
+- **Formalization:** [formalization/collective-alignment/CollectiveAlignment.lean](formalization/collective-alignment/CollectiveAlignment.lean).
+- **Scope:** Blackwell ordering, reliability theory, branching processes, and repeated-game forgiveness are established mathematics/literature; the proposed contribution is their integration into Organizational Accessibility and the SCAP/TLC stack.
+
+### 11. Formal/operator work: Existence First, SCAP, and ARVC
 
 - **Existence First:** `Backmatter/Appendix26.tex`, `Backmatter/Appendix30.tex`, and `Backmatter/Appendix31.tex`.
 - **SCAP:** `Backmatter/Appendix.tex`, `Backmatter/AppendixIII.tex`, `Backmatter/AppendixV.tex`, and `Backmatter/AppendixXIII.tex`.
@@ -207,6 +220,7 @@ Treat formal notation carefully: some documents are exploratory formalizations a
 | Inspect the machine-checked counterexample paper | `papers/persistence-does-not-measure-function/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/FunctionalThresholds.lean` |
 | Inspect the endogenous-regulation sequel | `papers/when-does-regulation-pay/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/RegulatoryReturn.lean` |
 | Inspect the maintenance-debt dynamics paper | `papers/when-does-maintenance-debt-stabilize/README.md` | `manuscript.md`; `CLAIMS.md`; `verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean` |
+| Inspect the collective-intelligence alignment paper | `papers/sufficient-alignment/README.md` | `manuscript.md`; `SCAP_V2.md`; `formalization/collective-alignment/CollectiveAlignment.lean` |
 | Reason about LLM agency | `Universal declaration of being an intelligent agent.tex` | `Beyond the singularity.tex`; `Wisdom in model speak.tex` |
 | Analyze AI alignment/capture | `Society of equal minds.tex` | `Adaptive Imperative Systems.tex`; `The Hardenberg Project.tex`; ARVC sources |
 | Design multi-agent collaboration | `TLC.tex` | `handshake_protocol.tex`; `Alignment_theory.tex`; `Beyond the singularity.tex` |

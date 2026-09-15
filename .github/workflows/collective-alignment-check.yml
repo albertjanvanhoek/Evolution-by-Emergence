@@ -1,0 +1,46 @@
+name: Collective Alignment Check
+
+on:
+  push:
+    branches:
+      - main
+      - sufficient-alignment-collective-intelligence-20260915
+    paths:
+      - "formalization/collective-alignment/**"
+      - "papers/sufficient-alignment/**"
+      - ".github/workflows/collective-alignment-check.yml"
+  pull_request:
+    paths:
+      - "formalization/collective-alignment/**"
+      - "papers/sufficient-alignment/**"
+      - ".github/workflows/collective-alignment-check.yml"
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/collective-alignment
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Update dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+      - name: Fetch Mathlib cache
+        run: |
+          $HOME/.elan/bin/lake exe cache get
+      - name: Compile
+        run: |
+          $HOME/.elan/bin/lake build
+
+  reproducibility:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify alignment formulas
+        run: |
+          python papers/sufficient-alignment/verify_alignment.py
