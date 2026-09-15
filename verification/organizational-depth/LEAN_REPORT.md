@@ -30,10 +30,12 @@ The companion `OperationalBridge.lean` verifies the purely mathematical bridge f
 - `dTV_push_idChannel`
 - `speed_limit_operational`
 - `operational_fixed_resolution`
+- `pairwise_separated_adjacent`
+- `pairwise_depth_resource_bound`
 
 The Markov-jump speed limit `2 dTV^2 <= Sigma * Nact` remains a hypothesis in Lean; the file checks the data-processing comparison and its transfer to the operational counting result.
 
-The bridge-inclusive development was re-checked unchanged in the final proofread verification run `34742856500`.
+The original bridge-inclusive development was re-checked in the final proofread verification run `34742856500`. The 15 September 2026 depth correction adds a machine-checked finite-prefix bound for pairwise-separated retained representatives. Current CI rebuilds the expanded theorem stack.
 
 ## Canonical theorem stack
 
@@ -70,3 +72,28 @@ There is no `sorry` in the canonical source.
 The formalization verifies conditional mathematical implications. It does **not** formalize or validate the physical speed-distance law, the charged-cost interpretation, the continuous-time pure-birth theorem, or material additivity in a concrete physical system. The finite-state total-variation-to-operational measurement-channel bridge is formalized in `OperationalBridge.lean`; no universal bridge for arbitrary physical metrics is claimed.
 
 The archived `FixedResolution.lean` was independently developed before adoption of the canonical file. It is retained only as a useful cross-check; manuscript theorem names should refer to `OrganizationalDepth.lean`.
+
+
+## Retained packing-depth correction
+
+A post-hoc tightness audit showed that the consecutive fixed-resolution count can be saturated by a two-state shuttle and therefore should not itself be called organizational depth. The corrected manuscript defines retained packing depth as the largest pairwise-separated retained repertoire visited at resolution delta.
+
+`OperationalBridge.lean` now proves the finite-prefix resource implication:
+
+- `pairwise_separated_adjacent`
+- `pairwise_depth_resource_bound`
+
+If `k+1` chronological retained representatives are pairwise delta-separated, then the `k` gaps between them obey
+
+```text
+k * delta <= sqrt(SigTot * NactTot / 2).
+```
+
+Equivalently, the retained depth satisfies
+`D_delta <= 1 + delta^-1 * sqrt(SigTot*NactTot/2)`.
+
+The separate finite-dimensional simplex packing bound is standard geometry and is not machine-formalized here.
+
+## Numerical tightness audit
+
+`tightness/` contains an analytic and numerical stress test. It confirms that the SFS transition bound is asymptotically sharp and that both a two-state shuttle and an interior finite-state ring can approach saturation. This demonstrates that transition-bound saturation is neutral about retained depth.

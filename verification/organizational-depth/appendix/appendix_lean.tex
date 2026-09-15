@@ -104,15 +104,41 @@ $d_{\rm op}\le d_{\rm TV}$. The Lean file
 \nolinkurl{OperationalBridge.lean} verifies the $L^1$ contraction,
 the total-variation data-processing inequality, sharpness for the identity
 channel, transfer of a total-variation speed-limit hypothesis to
-$d_{\rm op}$, and the fixed-resolution counting bound
+$d_{\rm op}$, and the consecutive fixed-resolution counting bound
 \[
-K_\delta^{\rm op}
+K_\delta^{\rm consec}
 \le
 \frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
 \]
-The stochastic-thermodynamic premise
+This is explicitly a transition-count statement, not by itself a retained-depth
+definition. The stochastic-thermodynamic premise
 $2d_{\rm TV}^2\le\Sigma\mathcal N$ is intentionally a hypothesis of the
 Lean development rather than a theorem of it.
+
+\paragraph{A.8 The pairwise retained-depth resource bound.}
+Let $x_0,\ldots,x_k$ be chronological retained representatives that are
+pairwise separated by at least $\delta$ in the operational metric. Then each
+adjacent representative pair is also separated by $\delta$. If the entropy
+production and activity accumulated over those $k$ disjoint chronological gaps
+obey the same operational speed-limit hypothesis and total budgets
+$\Sigma_*,\mathcal N_*$, then
+\[
+k\delta
+\le
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+\]
+Equivalently, a pairwise-separated retained repertoire of cardinality
+$D=k+1$ obeys
+\[
+D
+\le
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+\]
+The Lean declarations
+\texttt{pairwise\_separated\_adjacent} and
+\texttt{pairwise\_depth\_resource\_bound} machine-check this finite-prefix
+implication. The separate finite-dimensional packing-number estimate for a
+probability simplex is standard geometry and is not formalized here.
 
 \subsection{What is not verified}
 
@@ -157,7 +183,7 @@ cover stochastic-route closure, the weighted and uniform finite-action
 bounds, and the fixed-resolution counting/finiteness results. The
 declarations in \nolinkurl{OperationalBridge.lean} cover total-variation
 data processing, identity-channel sharpness, transfer of a TV speed-limit
-hypothesis to operational distance, and the operational fixed-resolution
-counting bound.
+hypothesis to operational distance, the operational consecutive-transition
+counting bound, and the pairwise retained-depth resource bound.
 
 \endgroup

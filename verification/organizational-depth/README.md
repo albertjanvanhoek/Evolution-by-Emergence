@@ -11,6 +11,7 @@ Machine-checked companion to **“Organizational Depth at Finite Time: A Fixed-R
 - `appendix/appendix_lean.tex` — paper-ready Appendix A.
 - `LEAN_REPORT.md` — verification scope and environment.
 - `compile_output.txt` — captured successful build and axiom audit.
+- `tightness/` — corrected analytic/master-equation stress test of transition-bound tightness and retained packing depth.
 - `archive/FixedResolution.lean` — an earlier independently developed formalization of the same core, retained as a cross-check rather than used as the canonical source.
 
 ## What is machine-checked
@@ -26,7 +27,9 @@ The canonical development verifies:
 7. total-variation data processing under finite measurement channels;
 8. sharpness of the universal comparison constant 1 for the identity channel;
 9. transfer of a TV speed limit to operational distinguishability;
-10. the activity--entropy fixed-resolution counting bound.
+10. the activity--entropy fixed-resolution counting bound;
+11. pairwise separation implies separation of adjacent chronological representatives;
+12. the activity--entropy resource bound on pairwise retained depth.
 
 The variable-coefficient bridge used by the manuscript is explicit in Lean:
 
@@ -66,3 +69,21 @@ Pinned environment:
 - Mathlib commit `db584cd6d46c92f209a44c0f1c829460d327499d`
 
 The final proofread version was re-verified on `main` in GitHub Actions run `34742856500` at commit `318df0da76c2ae94fa33f7b74c806b8e8451e55d`. The workflow continues to re-run the same checks whenever this verification project changes.
+
+
+## Retained packing depth
+
+The current paper distinguishes two quantities:
+
+- `K_delta^consec`: how many consecutive trajectory segments exceed the declared operational resolution;
+- `D_delta`: the largest pairwise delta-separated retained repertoire actually visited.
+
+The first is resolved path activity. The second is retained organizational depth. A two-state shuttle can make the first arbitrarily large while the second remains 2.
+
+For finite-state Markov dynamics, the machine-checked resource implication is
+
+```text
+D_delta - 1 <= delta^-1 * sqrt(Sigma_* * N_* / 2).
+```
+
+The manuscript also combines this with the independent geometric packing-number bound of the accessible operational state space.
