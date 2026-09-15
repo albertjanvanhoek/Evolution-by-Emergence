@@ -43,3 +43,37 @@ assert abs(hurwitz_lhs(gamma_crit) - rhs) < 1e-12
 assert hurwitz_lhs(0.6) > rhs
 
 print("All checks passed.")
+
+
+def cubic_roots(A: float, B: float, C: float):
+    """Durand-Kerner roots of z^3 + A z^2 + B z + C."""
+    def poly(z):
+        return z**3 + A*z**2 + B*z + C
+
+    roots = [1+0j, complex(-0.4, 0.9), complex(-0.4, -0.9)]
+    for _ in range(200):
+        new = []
+        for i, z in enumerate(roots):
+            denom = 1+0j
+            for j, w in enumerate(roots):
+                if i != j:
+                    denom *= z - w
+            new.append(z - poly(z) / denom)
+        if max(abs(new[i] - roots[i]) for i in range(3)) < 1e-14:
+            roots = new
+            break
+        roots = new
+    return sorted(roots, key=lambda z: (z.real, z.imag))
+
+def characteristic_roots(gamma: float):
+    A = delta + epsilon + a*b*gamma
+    B = delta*epsilon + a*b*epsilon*gamma
+    C = a*alpha*b*epsilon
+    return cubic_roots(A, B, C)
+
+roots0 = characteristic_roots(0.0)
+roots06 = characteristic_roots(0.6)
+print("roots(gamma=0):", roots0)
+print("roots(gamma=0.6):", roots06)
+assert max(z.real for z in roots0) > 0.0
+assert max(z.real for z in roots06) < 0.0
