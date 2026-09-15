@@ -6,6 +6,7 @@ Machine-checked companion to **“Organizational Depth at Finite Time: A Fixed-R
 
 - `OrganizationalDepth.lean` — canonical theorem stack used by the paper.
 - `OperationalBridge.lean` — finite-state Markov-jump bridge from total-variation speed limits to operational distinguishability.
+- `PackingDepth.lean` — independent machine-checked decomposition of the two-factor packing-depth theorem, including a non-vacuous sharpness witness.
 - `bridge/BRIDGE_REPORT_agent.md` — the agent's full bridge report.
 - `bridge/REVIEW.md` — independent review, corrections, and manuscript implications.
 - `appendix/appendix_lean.tex` — paper-ready Appendix A.
@@ -29,7 +30,12 @@ The canonical development verifies:
 9. transfer of a TV speed limit to operational distinguishability;
 10. the activity--entropy fixed-resolution counting bound;
 11. pairwise separation implies separation of adjacent chronological representatives;
-12. the activity--entropy resource bound on pairwise retained depth.
+12. the activity--entropy resource bound on pairwise retained depth;
+13. the finite-block Cauchy--Schwarz gap bound;
+14. the thermodynamic packing-depth factor;
+15. the abstract two-factor `min` combination;
+16. a uniform-budget ceiling on achievable depth;
+17. an explicit satisfiable equality witness showing the thermodynamic factor is not vacuous or loose.
 
 The variable-coefficient bridge used by the manuscript is explicit in Lean:
 
@@ -86,4 +92,7 @@ For finite-state Markov dynamics, the machine-checked resource implication is
 D_delta - 1 <= delta^-1 * sqrt(Sigma_* * N_* / 2).
 ```
 
-The manuscript also combines this with the independent geometric packing-number bound of the accessible operational state space.
+The manuscript combines this with the independent geometric packing-number bound of the accessible operational state space. The tightened finite-simplex estimate uses largest-remainder lattice rounding:
+`P_delta(Delta_{n-1}) <= C(k+n-1,n-1)`, with `k=floor(n/(2 delta))+1`.
+
+The second-agent re-audit that independently reconstructed and sharpened this result is preserved at `audits/2026-09-15-two-factor/`.
