@@ -18,7 +18,7 @@ For a network \(N\), collaboration architecture \(C\), target \(U\), horizon \(H
 
 A network is sufficiently aligned for the declared task when its interaction architecture lies inside that region.
 
-### Four theorem modules
+### Five theorem modules
 
 1. **Signal fidelity / honesty** — a deterministic garbling cannot expand the optimal decision set; every garbled-signal policy can be lifted to the ungarbled signal with identical value.
 2. **Redundant correction** — for independent 2-out-of-3 correction channels,
@@ -26,8 +26,9 @@ A network is sufficiently aligned for the declared task when its interaction arc
    R_3(p)=3p^2-2p^3,
    \]
    with exact half-threshold at \(p=1/2\) and redundancy gain for \(1/2<p<1\).
-3. **Protocol inheritance** — \(R_{\rm protocol}=mp\); expected carrier counts grow above one and decline below one. Full stochastic survival uses the standard Galton-Watson theorem.
-4. **Repair / forgiveness** — repair beats termination exactly when
+3. **Selected vs sufficient alignment** — in the quadratic toy model, private optimization can select effort below the network's functional threshold.
+4. **Protocol inheritance** — \(R_{\rm protocol}=mp\); expected carrier counts grow above one and decline below one. Full stochastic survival uses the standard Galton-Watson theorem.
+5. **Repair / forgiveness** — repair beats termination exactly when
    \[
    C_R\le r(V-W).
    \]
