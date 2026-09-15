@@ -154,3 +154,8 @@ It verifies mathematical implications under explicit assumptions. It does not va
 This paper does not establish a universal forward arrow of organization. It secures a reusable intermediate result:
 
 > optimizing an endogenous objective does not by itself guarantee satisfaction of an independently specified functional boundary; alignment requires sufficient marginal value at that boundary relative to the marginal cost of the control needed to hold it.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.
