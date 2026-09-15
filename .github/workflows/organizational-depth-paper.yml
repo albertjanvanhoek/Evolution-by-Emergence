@@ -1,5 +1,9 @@
 name: Build organizational-depth paper
 
+concurrency:
+  group: org-depth-paper-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     paths:
