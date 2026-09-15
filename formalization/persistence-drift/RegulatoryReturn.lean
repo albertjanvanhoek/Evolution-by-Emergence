@@ -150,7 +150,7 @@ theorem growthObjective_reducedCost
   field_simp [hbeta, hden]
   ring
 
-/-- Exact square factorization around any positive stationary denominator d0
+/- Exact square factorization around any positive stationary denominator d0
 satisfying eta*A = c0*d0^2. The nonzero d0 hypothesis is retained for
 faithfulness to the paper's stationary-denominator interpretation; with Lean's
 division convention the algebraic identity itself also survives d0 = 0. -/
