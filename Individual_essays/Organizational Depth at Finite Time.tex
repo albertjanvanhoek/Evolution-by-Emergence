@@ -73,14 +73,17 @@ D_\delta
 \]
 Independently,
 $D_\delta$ is bounded by the $\delta$-packing number of the accessible
-operational state space. For a finite $m$-state probability simplex a standard
-volumetric estimate gives
+operational state space. For a finite $m$-state probability simplex,
+largest-remainder lattice rounding gives
 \[
-D_\delta\le
-\left(1+\frac{2}{\delta}\right)^{m-1}.
+D_\delta
+\le
+\binom{k+m-1}{m-1},
+\qquad
+k=\left\lfloor\frac{m}{2\delta}\right\rfloor+1.
 \]
 Thus finite-state retained depth is constrained both by dynamical resources
-and by geometric repertoire. A bounded-power refinement example still shows
+and by geometric repertoire, and both factors can become the active bound. A bounded-power refinement example still shows
 why infinite labels can accumulate when resolved scale shrinks.
 
 These are conditional physical boundaries, not a universal prohibition of
