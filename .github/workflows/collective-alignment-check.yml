@@ -3,6 +3,7 @@ name: Collective Alignment Check
 on:
   push:
     branches:
+      - main
       - sufficient-alignment-collective-intelligence-20260915
     paths:
       - "formalization/collective-alignment/**"
