@@ -5,7 +5,7 @@ namespace CollectiveAlignment
 /-!
 # Collective alignment: machine-checked algebraic core
 
-This file formalizes four narrow results used in the paper
+This file formalizes five narrow results used in the paper
 "Sufficient Alignment: A Viability Framework for Collective Intelligence".
 
 1. Signal fidelity: a policy acting on a deterministic garbling of a signal
@@ -13,9 +13,11 @@ This file formalizes four narrow results used in the paper
 2. Redundant correction: a 2-out-of-3 independent reliability model has
    reliability R(p)=3p^2-2p^3, is monotone on [0,1], crosses 1/2 exactly
    at p=1/2, and strictly improves on individual reliability for p>1/2.
-3. Protocol inheritance: R_protocol=m*p has exact threshold p>1/m for
+3. Selected vs sufficient alignment: a quadratic private objective has
+   selected optimum e=v/c, which can fall below the network viability threshold.
+4. Protocol inheritance: R_protocol=m*p has exact threshold p>1/m for
    R_protocol>1, and expected carrier counts grow/decline on the two sides.
-4. Repair: restoring a damaged edge weakly dominates termination exactly
+5. Repair: restoring a damaged edge weakly dominates termination exactly
    when expected recovered edge surplus exceeds repair cost.
 
 The full stochastic Blackwell theorem, general k-out-of-n reliability theory,
