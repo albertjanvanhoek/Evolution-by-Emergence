@@ -35,3 +35,10 @@ Each recent paper package now contains a `FORMAL_VERIFICATION.md` file mapping m
 The historical corpus is intentionally left intact. It records the development of the research programme over time; old essays, intermediate formulations, alternative framings, and superseded arguments are evidence of that development and are not removed merely because newer formalizations exist.
 
 Cleanup in this verification layer is therefore additive and traceable: claim-to-declaration maps, audit records, comments clarifying proof assumptions, and corrections to broken current cross-references. Structural refactors that would erase the historical shape of the repository are avoided unless required for correctness.
+
+
+## Import and package policy
+
+The recent `formalization/` sources use targeted Mathlib imports rather than the root `import Mathlib`, so a sceptical reader can compile a focused project without requiring the entire Mathlib import surface.
+
+The four formalization projects remain separate Lake packages. The audit correctly notes that a unified workspace could reduce repeated dependency checkout cost, but this cleanup deliberately does **not** collapse them: the separate packages document how the formal work was developed and keep the historical repository structure intact. This is an auditability-versus-provenance tradeoff made explicitly rather than accidentally.
