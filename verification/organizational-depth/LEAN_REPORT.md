@@ -19,7 +19,7 @@ lake exe cache get
 lake build
 ```
 
-The final proofread build compiled both `OrganizationalDepth` and `OperationalBridge` successfully in the pinned environment.
+The historical final-proofread build compiled `OrganizationalDepth` and `OperationalBridge` successfully in the pinned environment. The current project additionally builds `PackingDepth.lean`, which was independently supplied during the 15 September 2026 two-factor re-audit.
 
 ## Operational bridge
 
@@ -97,3 +97,20 @@ The separate finite-dimensional simplex packing bound is standard geometry and i
 ## Numerical tightness audit
 
 `tightness/` contains an analytic and numerical stress test. It confirms that the SFS transition bound is asymptotically sharp and that both a two-state shuttle and an interior finite-state ring can approach saturation. This demonstrates that transition-bound saturation is neutral about retained depth.
+
+
+## Independent two-factor module
+
+`PackingDepth.lean` provides a second, independent formalization of the current depth theorem in namespace `OrgDepth`.
+
+It machine-checks:
+
+- `gap_sum_le` — the finite-block Cauchy--Schwarz resource bound;
+- `packing_depth_thermo` — the thermodynamic factor;
+- `packing_depth_two_factor` — conjunction with an externally supplied geometric packing ceiling;
+- `depth_le_of_budget_ceiling` — a non-vacuous uniform ceiling formulation;
+- `packing_depth_thermo_witness` and `packing_depth_thermo_sharp` — explicit satisfiable/equality witnesses.
+
+The speed-limit premise and the geometric packing-number theorem for a specific state space remain hypotheses/external mathematics rather than being smuggled into Lean.
+
+The independent source package that produced this module is archived at `audits/2026-09-15-two-factor/`.
