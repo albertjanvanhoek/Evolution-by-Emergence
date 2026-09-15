@@ -35,7 +35,7 @@ mpl.rcParams.update({
     "figure.dpi": 150, "savefig.dpi": 300,
     "pdf.fonttype": 42, "pdf.compression": 6,
 })
-OUT = Path("figures"); OUT.mkdir(exist_ok=True)
+OUT = Path(__file__).resolve().parent / "figures"; OUT.mkdir(exist_ok=True)
 
 DELTA = 0.5
 EPS = [0.5, 0.2, 0.05, 0.01]
