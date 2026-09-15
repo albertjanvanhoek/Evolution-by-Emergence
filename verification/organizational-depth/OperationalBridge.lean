@@ -236,10 +236,14 @@ theorem pairwise_depth_resource_bound
       ∀ i j, i ≤ k → j ≤ k → i ≠ j → delta ≤ d (x i) (x j)) :
     (k : ℝ) * delta
       ≤ (1 / Real.sqrt 2) * (Real.sqrt SigTot * Real.sqrt NactTot) := by
-  apply operational_fixed_resolution
-    (fun n => d (x n) (x (n + 1))) Sig Nact SigTot NactTot delta
-    hdelta hd0 hS0 hN0 hSL hSsum hNsum (Finset.range k)
-  exact pairwise_separated_adjacent x d k delta hpair
+  have hsep :
+      ∀ n ∈ Finset.range k, delta ≤ d (x n) (x (n + 1)) :=
+    pairwise_separated_adjacent x d k delta hpair
+  have hb :=
+    operational_fixed_resolution
+      (fun n => d (x n) (x (n + 1))) Sig Nact SigTot NactTot delta
+      hdelta hd0 hS0 hN0 hSL hSsum hNsum (Finset.range k) hsep
+  simpa using hb
 
 end PairwiseDepth
 
