@@ -1,6 +1,6 @@
 # Tightness, recurrence, and retained packing depth
 
-This note supersedes the exploratory tightness report supplied on 15 September 2026. The original report found the key pathology correctly—consecutive fixed-resolution transitions can be accumulated by a two-state shuttle—but overinterpreted one ring simulation. The original report is preserved in \`archive/\`.
+This note supersedes the exploratory tightness report supplied on 15 September 2026. The original report found the key pathology correctly—consecutive fixed-resolution transitions can be accumulated by a two-state shuttle—but overinterpreted one ring simulation. The original report is preserved in `archive/`.
 
 ## 1. The transition bound is asymptotically sharp
 
@@ -140,7 +140,7 @@ D_\delta(T)
 \]
 
 The finite-prefix mathematical core is machine-checked as
-\`pairwise_depth_resource_bound\` in \`OperationalBridge.lean\`.
+`pairwise_depth_resource_bound` in `OperationalBridge.lean`.
 
 ## 7. Geometry supplies an independent bound
 
