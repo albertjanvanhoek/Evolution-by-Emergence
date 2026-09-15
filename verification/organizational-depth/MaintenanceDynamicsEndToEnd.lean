@@ -41,6 +41,34 @@ theorem cubic_hurwitz_root_negative
 
 end CubicHurwitz
 
+section PeriodicODE
+
+open Set MeasureTheory intervalIntegral
+
+/-- The replicator maintenance equation implies the claimed derivative of the
+logit coordinate on the interior 0 < x < 1. -/
+theorem hasDerivAt_logit_of_maintenance
+    {x h : ℝ → ℝ} {t α c : ℝ}
+    (hxpos : 0 < x t) (hxlt : x t < 1)
+    (hxode : HasDerivAt x
+      (x t * (1 - x t) * (α * (1 - h t) - c)) t) :
+    HasDerivAt (fun s => Real.log (x s) - Real.log (1 - x s))
+      (α * (1 - h t) - c) t := by
+  have hxne : x t ≠ 0 := ne_of_gt hxpos
+  have h1pos : 0 < 1 - x t := sub_pos.mpr hxlt
+  have h1ne : 1 - x t ≠ 0 := ne_of_gt h1pos
+  have hlogx := hxode.log hxne
+  have hone : HasDerivAt (fun s => (1 : ℝ) - x s)
+      (-(x t * (1 - x t) * (α * (1 - h t) - c))) t := by
+    convert (hasDerivAt_const t (1 : ℝ)).sub hxode using 1 <;> ring
+  have hlogone := hone.log h1ne
+  convert hlogx.sub hlogone using 1
+  field_simp [hxne, h1ne]
+  ring
+
+end PeriodicODE
+
 #print axioms cubic_hurwitz_root_negative
+#print axioms hasDerivAt_logit_of_maintenance
 
 end MaintenanceDynamicsEndToEnd
