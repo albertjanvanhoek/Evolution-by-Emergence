@@ -93,6 +93,20 @@ theorem debt_jacobian_hurwitz
     exact hz
   exact cubic_hurwitz_root_negative hA hB hC hAB0 z hpoly
 
+/-- Closed-form critical-gain theorem all the way to the characteristic roots
+of the explicit debt-aware Jacobian. -/
+theorem critical_gain_implies_jacobian_hurwitz
+    {δ ε a α b γ : ℝ}
+    (hδ : 0 < δ) (hε : 0 < ε) (ha : 0 < a) (hα : 0 < α)
+    (hb : 0 < b) (hγ0 : 0 ≤ γ)
+    (hγcrit : MaintenanceDynamics.criticalGamma δ ε a α b < γ)
+    (z : ℂ)
+    (hz : Matrix.det (debtCharMatrix z δ ε a α b γ) = 0) :
+    z.re < 0 := by
+  have hstable := MaintenanceDynamics.stable_above_criticalGamma
+    (le_of_lt hε) ha (le_of_lt hα) hb hγcrit
+  exact debt_jacobian_hurwitz hδ hε ha hα hb hγ0 hstable z hz
+
 end CubicHurwitz
 
 section PeriodicODE
@@ -201,6 +215,7 @@ end PeriodicODE
 #print axioms cubic_hurwitz_root_negative
 #print axioms debtCharMatrix_det
 #print axioms debt_jacobian_hurwitz
+#print axioms critical_gain_implies_jacobian_hurwitz
 #print axioms hasDerivAt_logit_of_maintenance
 #print axioms periodic_maintenance_cycle_averages
 
