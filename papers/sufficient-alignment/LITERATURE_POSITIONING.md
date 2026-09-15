@@ -1,5 +1,15 @@
 # Literature positioning
 
+
+## Collective intelligence and network topology
+
+Woolley et al. (2010) reported evidence for a group-level collective-intelligence factor across diverse human-group tasks. The present paper does not claim to discover collective intelligence as a phenomenon.
+
+Becker, Brackbill & Centola (2017) showed experimentally that social-network interaction can improve crowd accuracy under conditions where conventional accounts would worry that social influence destroys independence. Centola (2022) reviews the broader network science of collective problem solving and crowd judgment, emphasizing that network topology can help or harm different forms of collective intelligence.
+
+**Novelty consequence:** the present framework should not say that communication, diversity, decentralization, or group cognition are new. Its proposed contribution is to connect the quality and persistence of the interaction architecture to Organizational Accessibility, explicit functional thresholds, repair, and intergenerational protocol retention.
+
+
 ## Signal fidelity
 
 David Blackwell's comparison of experiments is the direct mathematical antecedent. In the Blackwell order, a garbling cannot improve attainable expected utility across decision problems; the converse characterizes the informativeness order under the theorem's assumptions.
