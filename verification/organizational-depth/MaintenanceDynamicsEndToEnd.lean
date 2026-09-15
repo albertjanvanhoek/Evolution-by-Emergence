@@ -346,9 +346,13 @@ theorem maintenance_end_to_end_spectral
           (maintenanceBStar δ a α c) γ) = 0 →
       z.re < 0 := by
   have hflow :=
-    maintenance_equilibrium_flow_zero (γ := γ) (ε := ε) hα.ne' ha.ne'
+    maintenance_equilibrium_flow_zero
+      (α := α) (c := c) (a := a) (δ := δ) (ε := ε) (γ := γ)
+      hα.ne' ha.ne'
   have hjac :=
-    maintenance_equilibrium_has_jacobian (γ := γ) (ε := ε) hα.ne' ha.ne'
+    maintenance_equilibrium_has_jacobian
+      (α := α) (c := c) (a := a) (δ := δ) (ε := ε) (γ := γ)
+      hα.ne' ha.ne'
   have hb : 0 < maintenanceBStar δ a α c := by
     unfold maintenanceBStar
     exact mul_pos hx0 (sub_pos.mpr hx1)
