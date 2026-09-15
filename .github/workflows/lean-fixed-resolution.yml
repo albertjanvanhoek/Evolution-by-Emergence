@@ -1,5 +1,9 @@
 name: Lean organizational-depth verification
 
+concurrency:
+  group: org-depth-lean-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     paths:
