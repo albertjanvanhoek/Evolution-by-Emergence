@@ -69,7 +69,7 @@ jobs:
         run: |
           python verification/organizational-depth/tightness/analytic.py
           python verification/organizational-depth/tightness/simulate.py
-          python verification/organizational-depth/tightness/packing.py
+          python verification/organizational-depth/tightness/packing.py --ci
           python verification/organizational-depth/tightness/verify.py
           python verification/organizational-depth/tightness/make_figure.py
           test -s verification/organizational-depth/tightness/figures/tightness.pdf
