@@ -139,6 +139,67 @@ theorem majority3_redundancy_gain
   unfold majority3Reliability
   nlinarith
 
+section SelectedVsSufficient
+
+/-- Minimal private objective for investment in alignment/correction effort. -/
+def alignmentObjective (v cost e : ℝ) : ℝ :=
+  v * e - (cost / 2) * e^2
+
+/-- Interior selected effort in the quadratic toy model. -/
+def selectedAlignment (v cost : ℝ) : ℝ :=
+  v / cost
+
+/-- Completing the square gives a global optimum certificate when cost > 0. -/
+theorem alignmentObjective_gap
+    {v cost e : ℝ} (hcost : cost ≠ 0) :
+    alignmentObjective v cost (selectedAlignment v cost)
+      - alignmentObjective v cost e
+      =
+    (cost / 2) * (e - selectedAlignment v cost)^2 := by
+  unfold alignmentObjective selectedAlignment
+  field_simp [hcost]
+  ring
+
+/-- With positive convex cost, selectedAlignment is a global maximizer. -/
+theorem selectedAlignment_global_max
+    {v cost e : ℝ} (hcost : 0 < cost) :
+    alignmentObjective v cost e
+      ≤
+    alignmentObjective v cost (selectedAlignment v cost) := by
+  have hgap := alignmentObjective_gap (v := v) (cost := cost) (e := e) hcost.ne'
+  have hsq : 0 ≤ (e - selectedAlignment v cost)^2 := sq_nonneg _
+  have hc2 : 0 ≤ cost / 2 := by positivity
+  have hnonneg : 0 ≤ (cost / 2) * (e - selectedAlignment v cost)^2 :=
+    mul_nonneg hc2 hsq
+  nlinarith
+
+/-- Exact boundary: the selected private optimum reaches the 2-out-of-3
+half-viability threshold exactly when private marginal value is large enough
+relative to convex alignment cost. -/
+theorem selectedAlignment_reaches_half_iff
+    {v cost : ℝ} (hcost : 0 < cost) :
+    (1/2 : ℝ) ≤ selectedAlignment v cost
+      ↔
+    cost ≤ 2 * v := by
+  unfold selectedAlignment
+  constructor
+  · intro h
+    have hm := (le_div_iff₀ hcost).1 h
+    nlinarith
+  · intro h
+    apply (le_div_iff₀ hcost).2
+    nlinarith
+
+/-- Private selection can underprovide the network's declared half-threshold. -/
+theorem selectedAlignment_insufficient_if
+    {v cost : ℝ} (hcost : 0 < cost) (hunder : 2 * v < cost) :
+    selectedAlignment v cost < (1/2 : ℝ) := by
+  unfold selectedAlignment
+  apply (div_lt_iff₀ hcost).2
+  nlinarith
+
+end SelectedVsSufficient
+
 end RedundantCorrection
 
 section ProtocolInheritance
@@ -250,6 +311,10 @@ end RepairBoundary
 #print axioms majority3_monotone
 #print axioms majority3_half_threshold
 #print axioms majority3_redundancy_gain
+#print axioms alignmentObjective_gap
+#print axioms selectedAlignment_global_max
+#print axioms selectedAlignment_reaches_half_iff
+#print axioms selectedAlignment_insufficient_if
 #print axioms protocolR_monotone
 #print axioms protocolR_supercritical_iff
 #print axioms supercritical_expected_growth
