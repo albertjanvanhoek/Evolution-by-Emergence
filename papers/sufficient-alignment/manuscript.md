@@ -18,7 +18,7 @@ We formalize **alignment as a viability region rather than a point**. Let \(\Gam
 \]
 Alignment is sufficient when \(C\in\mathcal V_{\rm align}\); perfect agreement or perfect behavior by every node is not part of the definition.
 
-Four narrow results make this idea operational.
+Five narrow results make this idea operational.
 
 First, a **signal-fidelity result** formalizes the cooperative core of honesty. For any finite decision problem, every policy available after a deterministic garbling of a task-relevant signal can be implemented after observing the original signal with exactly the same value. Therefore optimizing over the ungarbled signal weakly dominates optimizing over the garbling. This is a finite deterministic specialization of Blackwell's comparison of experiments, not a new information theorem.
 
@@ -36,7 +36,21 @@ R_3(p)>p\qquad\text{for } \frac12<p<1.
 \]
 Thus improving the reliability of individual corrective behavior increases collective reliability without requiring \(p=1\), and redundancy can make the network more reliable than any single channel.
 
-Third, a **protocol-inheritance result** defines
+Third, a **selected-versus-sufficient alignment result** gives individual alignment effort the quadratic private objective
+\[
+g(e)=ve-\frac{c}{2}e^2.
+\]
+The selected optimum is
+\[
+e_{\rm opt}=\frac{v}{c},
+\]
+while the 2-out-of-3 half-viability target requires \(e\ge1/2\). Thus selected alignment is sufficient exactly when
+\[
+2v\ge c.
+\]
+Individual optimization can therefore underprovide a collectively necessary interaction architecture.
+
+Fourth, a **protocol-inheritance result** defines
 \[
 R_{\rm protocol}=mp,
 \]
@@ -46,7 +60,7 @@ R_{\rm protocol}>1\iff p>\frac1m.
 \]
 In the homogeneous expectation model, expected carrier counts grow above the threshold and decline below it. Under the standard nondegenerate Galton-Watson assumptions, the classical branching-process theorem strengthens this to almost-sure extinction at mean offspring \(\le1\) and positive survival probability above one.
 
-Fourth, a **repair boundary** gives a minimal formalization of forgiveness. Let a damaged collaborative edge have restored value \(V\), outside-option value \(W\), repair success probability \(r\), and repair cost \(C_R\). Attempting repair weakly dominates termination exactly when
+Fifth, a **repair boundary** gives a minimal formalization of forgiveness. Let a damaged collaborative edge have restored value \(V\), outside-option value \(W\), repair success probability \(r\), and repair cost \(C_R\). Attempting repair weakly dominates termination exactly when
 \[
 \boxed{
 C_R\le r(V-W).
