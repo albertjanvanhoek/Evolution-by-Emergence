@@ -422,41 +422,85 @@ The regulation work in this repository already established
 
 The same distinction applies here.
 
-Maintaining signal fidelity, listening, audit, redundancy, repair, and accountability has costs. An individual agent or subsystem may optimize its own objective at a level of alignment investment below what keeps the collective network inside
+Maintaining signal fidelity, listening, audit, redundancy, repair, and accountability has costs. An individual agent or subsystem can therefore optimize its own objective at a level of alignment investment below what keeps the collective network inside
 
 \[
 \mathcal V_{\rm align}.
 \]
 
-Schematically, let \(e\) denote alignment effort and let an individual maximize
+A minimal exact specialization makes the point.
+
+Let \(e\) denote individual investment in a reliable corrective protocol and suppose the private objective is
 
 \[
-g(e)=B_{\rm private}(e)-C(e).
+\boxed{
+g(e)=ve-\frac{c}{2}e^2,
+}
 \]
 
-The selected effort is
+with \(c>0\).
+
+The unconstrained selected optimum is
 
 \[
-e_{\rm opt}
+\boxed{
+e_{\rm opt}=\frac{v}{c}.
+}
+\]
+
+Indeed,
+
+\[
+\boxed{
+g(e_{\rm opt})-g(e)
 =
-\arg\max g(e).
+\frac{c}{2}(e-e_{\rm opt})^2\ge0.
+}
 \]
 
-Let
+Now identify \(e\) with the component reliability \(p\) in the 2-out-of-3 correction model and retain the declared network viability target
 
 \[
-e_{\rm func}
-=
-\inf\{e:\Gamma_H(N,C(e);U)\ge p_\star\}.
+R_3(p)\ge\frac12.
 \]
 
-Nothing in individual optimization guarantees
+Section 5 showed that this requires
 
 \[
-e_{\rm opt}\ge e_{\rm func}.
+p\ge\frac12.
 \]
 
-Hence
+Therefore the privately selected effort is functionally sufficient exactly when
+
+\[
+\frac{v}{c}\ge\frac12,
+\]
+
+or
+
+\[
+\boxed{
+2v\ge c.
+}
+\]
+
+When
+
+\[
+2v<c,
+\]
+
+we have
+
+\[
+\boxed{
+e_{\rm opt}<\frac12=e_{\rm func},
+}
+\]
+
+so the privately selected amount of alignment is below the network's declared functional threshold.
+
+This gives an explicit toy result:
 
 \[
 \boxed{
@@ -464,9 +508,11 @@ Hence
 }
 \]
 
-This is the collective-intelligence form of the public-good problem already encountered in the regulation and integration models.
+The result should not be universalized beyond its assumptions. The private benefit and cost functions are deliberately simple, and real networks distribute both costs and collective returns across heterogeneous agents.
 
-The network can produce positive collective surplus while lower-level incentives underprovide the interaction architecture that creates it.
+Its role is diagnostic: positive collective surplus does not imply that lower-level incentives maintain the interaction architecture that creates it.
+
+This is the collective-intelligence form of the public-good problem already encountered in the regulation and integration models.
 
 ---
 
