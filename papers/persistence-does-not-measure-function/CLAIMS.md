@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 This file separates the paper's mathematical deductions, classical ingredients, counterexample conclusions, and non-claims.
 
 | ID | Statement | Status | Where checked |

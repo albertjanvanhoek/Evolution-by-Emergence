@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.Tactic
 
 namespace FunctionalThresholds
 
@@ -112,10 +112,12 @@ theorem f_from_lambda
     f = lambda^2 - 1 := by
   nlinarith
 
-/-- In the worked example, B abundance strictly decreases with lambda on the
+/- In the worked example, B abundance strictly decreases with lambda on the
 physical branch 1 <= lambda < sqrt(2), encoded without square roots by
-lambda2^2 < 2. The upper-bound hypothesis keeps the statement inside the
-region corresponding to 0 <= f < 1. -/
+lambda2^2 < 2. The upper-bound hypothesis is retained for faithfulness to the
+paper's physical interpretation (0 <= f < 1); the polynomial proof itself is
+stronger and does not use that upper bound. -/
+set_option linter.unusedVariables false in
 theorem hollowB_strictly_decreases_on_physical_branch
     (lambda1 lambda2 : ℝ)
     (h1 : 1 ≤ lambda1)

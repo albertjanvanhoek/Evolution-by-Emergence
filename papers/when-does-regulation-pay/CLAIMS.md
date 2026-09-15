@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 | ID | Statement | Status |
 |---|---|---|
 | R1 | The feedback law \(u=kz\) is negative feedback because larger deviation \(z\) increases an action that enters \(\dot z\) with negative sign. | Definition/model property |

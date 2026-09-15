@@ -335,6 +335,11 @@ Use NUL-delimited paths in scripts because filenames contain spaces. Avoid assum
 - Add new empirical or formal claims to `CLAIMS.md` and machine-readable relations to `concepts.json` when appropriate.
 - Keep normative commitments visibly separate from claimed structural entailments.
 - Preserve the corpus’s own corrigibility: record counterarguments and superseding formulations rather than rewriting history as though the latest version was always the view.
+- **Preserve historical drafts as research provenance.** Earlier essays, intermediate models, and superseded formulations document how the programme developed; do not delete them merely to make the repository look cleaner. Restrict cleanup to current routing, verification, broken references, and clearly duplicated generated artifacts unless there is a correctness reason to do otherwise.
+
+## Independent formal audit
+
+The recent formal stack has an independent build/axiom/vacuity/witness audit at `verification/audits/2026-09-15-lean-audit.md`. Claim-to-declaration maps for the six recent paper ledgers are linked from each paper package and indexed in `verification/README.md`.
 
 ## Metadata
 

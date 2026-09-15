@@ -3,6 +3,7 @@ name: Affinity Layer Check
 on:
   push:
     branches:
+      - main
       - chatgpt/affinity-layer
     paths:
       - "formalization/affinity-layer/**"

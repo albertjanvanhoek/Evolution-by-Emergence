@@ -63,3 +63,8 @@ and:
 ### SCAP v2
 
 See [SCAP_V2.md](SCAP_V2.md) for the compact operational reinterpretation of the Sustainable Collaborative Alignment Protocol. It distinguishes theorem-backed functions from human-language implementations and explicitly keeps the protocol itself corrigible.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.

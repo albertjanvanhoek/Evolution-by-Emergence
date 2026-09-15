@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 | ID | Statement | Status |
 |---|---|---|
 | M1 | The base model has interior equilibrium \(h^*=K^*=1-c/\alpha\), \(x^*=(\delta/a)(1-c/\alpha)\) when \(x^*\in(0,1)\). | Exact algebra; machine checked in the end-to-end formalization |

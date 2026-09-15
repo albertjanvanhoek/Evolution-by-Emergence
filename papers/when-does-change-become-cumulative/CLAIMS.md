@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 | ID | Statement | Status |
 |---|---|---|
 | C1 | A declared operational repertoire can be induced from finite-horizon target hitting scores after fixing target family, protocol, horizon, establishment criterion, and threshold. | Definition / operational construction |

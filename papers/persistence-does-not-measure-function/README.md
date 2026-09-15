@@ -62,3 +62,8 @@ Lean verifies mathematical consequences of stated assumptions. It does not valid
 ## License
 
 The repository-level license applies.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.
