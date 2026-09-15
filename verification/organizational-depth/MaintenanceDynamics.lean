@@ -52,8 +52,9 @@ theorem cycle_average_balances
       Kbar = hbar := hK
       _ = 1 - c / α := hh
   · rw [hK, hh] at hx
-    field_simp [ha]
-    nlinarith [hx]
+    rw [div_mul_eq_mul_div]
+    apply (eq_div_iff ha).2
+    simpa [mul_comm] using hx
 
 /-- The mean maintenance debt delta*Kbar - a*xbar vanishes whenever the
 stock-balance identity a*xbar = delta*Kbar holds. -/
@@ -83,10 +84,11 @@ theorem debt_stability_lhs_monotone
     (δ + ε + a * b * γ₁) * (δ + a * b * γ₁)
       ≤ (δ + ε + a * b * γ₂) * (δ + a * b * γ₂) := by
   have hab : 0 ≤ a * b := mul_nonneg ha hb
+  have hγ₂ : 0 ≤ γ₂ := hγ₁.trans hγ
   have h1 : δ + a * b * γ₁ ≤ δ + a * b * γ₂ := by
-    nlinarith [mul_le_mul_of_nonneg_left hγ hab]
+    exact add_le_add_left (mul_le_mul_of_nonneg_left hγ hab) δ
   have h2 : δ + ε + a * b * γ₁ ≤ δ + ε + a * b * γ₂ := by
-    nlinarith [mul_le_mul_of_nonneg_left hγ hab]
+    exact add_le_add_left (mul_le_mul_of_nonneg_left hγ hab) (δ + ε)
   have hn1 : 0 ≤ δ + a * b * γ₁ := by positivity
   exact mul_le_mul h2 h1 hn1 (by positivity)
 
@@ -104,15 +106,15 @@ theorem debt_stability_upward_closed
 
 /-- Expanded characteristic polynomial coefficient identity for the debt-aware
 Jacobian. This checks the manuscript-facing coefficient formula algebraically. -/
-theorem debt_characteristic_polynomial_identity (λ : ℝ) :
-    λ^3
-      + (δ + ε + a*b*γ) * λ^2
-      + (δ*ε + a*b*ε*γ) * λ
+theorem debt_characteristic_polynomial_identity (z : ℝ) :
+    z^3
+      + (δ + ε + a*b*γ) * z^2
+      + (δ*ε + a*b*ε*γ) * z
       + a*α*b*ε
     =
-    λ^3
-      + (δ + ε + a*b*γ) * λ^2
-      + ε * (δ + a*b*γ) * λ
+    z^3
+      + (δ + ε + a*b*γ) * z^2
+      + ε * (δ + a*b*γ) * z
       + a*α*b*ε := by
   ring
 
