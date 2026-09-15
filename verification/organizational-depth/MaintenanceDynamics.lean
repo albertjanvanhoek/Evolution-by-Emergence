@@ -125,7 +125,7 @@ end DebtAwareStability
 section CriticalGain
 
 /-- Positive quadratic root of `y * (y + ε) = A`. -/
-def criticalY (ε A : ℝ) : ℝ :=
+noncomputable def criticalY (ε A : ℝ) : ℝ :=
   (Real.sqrt (ε ^ 2 + 4 * A) - ε) / 2
 
 /-- For nonnegative `ε` and `A`, the critical root is nonnegative. -/
@@ -133,8 +133,8 @@ theorem criticalY_nonneg {ε A : ℝ} (hε : 0 ≤ ε) (hA : 0 ≤ A) :
     0 ≤ criticalY ε A := by
   have hrad : 0 ≤ ε ^ 2 + 4 * A := by positivity
   have hs : ε ≤ Real.sqrt (ε ^ 2 + 4 * A) := by
-    rw [← Real.sqrt_sq hε]
-    exact Real.sqrt_le_sqrt (by nlinarith)
+    apply (Real.le_sqrt hε hrad).2
+    nlinarith
   unfold criticalY
   linarith
 
@@ -156,7 +156,7 @@ theorem stable_above_criticalY {ε A y : ℝ}
   nlinarith
 
 /-- Closed-form critical debt-response gain. -/
-def criticalGamma (δ ε a α b : ℝ) : ℝ :=
+noncomputable def criticalGamma (δ ε a α b : ℝ) : ℝ :=
   (criticalY ε (a * α * b) - δ) / (a * b)
 
 /-- If the debt-response gain is above the closed-form critical gain, then the
