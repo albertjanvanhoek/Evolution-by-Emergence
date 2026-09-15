@@ -50,25 +50,44 @@ the number of transitions at any fixed operational resolution.
 
 For finite-state continuous-time Markov jump dynamics, the metric comparison
 can be discharged rather than assumed. Total variation is the distance in an
-exact activity--entropy speed limit and contracts under every stochastic
-measurement channel. If $\Sigma_*$ is total entropy production and
-$\mathcal N_*$ the expected total number of jumps, then
+activity--entropy speed limit and contracts under every stochastic measurement
+channel. If $\Sigma_*$ is total entropy production and $\mathcal N_*$ the
+expected total number of jumps, then
 \[
-\sum_n d_{\rm op,n}\le\sqrt{\Sigma_*\mathcal N_*/2},
-\qquad
-K_\delta^{\rm op}\le
-\delta^{-1}\sqrt{\Sigma_*\mathcal N_*/2}.
+\sum_n d_{\rm op,n}\le\sqrt{\Sigma_*\mathcal N_*/2}.
 \]
-Thus finite entropy production and finite dynamical activity exclude
-finite-time infinite depth at fixed operational resolution in this model
-class. A bounded-power refinement example shows why infinite labels can
-nevertheless accumulate when the resolved physical scale shrinks.
+The associated consecutive-transition count is asymptotically sharp: a
+near-equilibrium driven edge approaches equality. But a two-state shuttle can
+saturate that count while revisiting only two states, so consecutive
+fixed-resolution transitions are not themselves organizational depth.
+
+We therefore define the retained packing depth $D_\delta$ as the largest
+number of visited retained states that are mutually separated by at least
+$\delta$ under one fixed operational metric. Chronologically ordering such a
+set creates $D_\delta-1$ disjoint gaps, each of operational distance at least
+$\delta$, and hence
+\[
+D_\delta
+\le
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
+\]
+Independently,
+$D_\delta$ is bounded by the $\delta$-packing number of the accessible
+operational state space. For a finite $m$-state probability simplex a standard
+volumetric estimate gives
+\[
+D_\delta\le
+\left(1+\frac{2}{\delta}\right)^{m-1}.
+\]
+Thus finite-state retained depth is constrained both by dynamical resources
+and by geometric repertoire. A bounded-power refinement example still shows
+why infinite labels can accumulate when resolved scale shrinks.
 
 These are conditional physical boundaries, not a universal prohibition of
 singular dynamics. The remaining challenge is constructive: any proposed
-dynamically organizing system that produces finite-time infinite
-fixed-resolution depth must expose which resource or regularity condition
-fails rather than hiding it in an organizational index.
+finite-time infinite-depth system must expose how it creates unbounded
+operational packing capacity, evades the dynamical-resource bound, or leaves
+the stated model class.
 \end{abstract}
 
 
@@ -115,11 +134,14 @@ For one important model class, however, the metric comparison is not an
 extra assumption. In finite-state Markov jump dynamics the
 Shiraishi--Funo--Saito speed limit is expressed directly in total
 variation, while total variation contracts under any stochastic
-measurement channel. This gives a model-specific operational theorem:
-finite total entropy production together with finite total dynamical
-activity bounds the number of operationally distinguishable retained
-transitions. In this setting the abstract kinetic coefficient can be
-identified with inverse average activity.
+measurement channel. This gives a model-specific operational path-length
+theorem. A subsequent tightness check shows that the resulting
+consecutive-transition count is asymptotically sharp but is not by itself a
+depth measure: repeated shuttling between two states can attain it. The paper
+therefore distinguishes transition count from retained packing depth and
+combines the thermodynamic path-length bound with a geometric packing bound.
+In this setting the abstract kinetic coefficient can be identified with
+inverse average activity.
 
 The generic mathematical ingredients are established: pure-birth
 non-explosion, Cauchy--Schwarz inequalities, stochastic thermodynamic
