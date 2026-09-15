@@ -12,6 +12,7 @@ shuttle, no structure at all.  Also re-checks the two ingredients separately:
 and the geometric factor  D_delta <= P_delta(X).
 """
 from __future__ import annotations
+import argparse
 import numpy as np
 from simulate import dTV, packing_depth
 
@@ -109,11 +110,16 @@ def check(n_trials=400, seed=1):
 
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--trials", type=int, default=400,
+                    help="number of random master equations; default reproduces the 400-run audit")
+    args = ap.parse_args()
+
     print("=" * 78)
     print("random master equations, arbitrary time-dependent rates")
     print("=" * 78)
-    wp, wi, wd, wg, fails = check()
-    print("  trials                                       400")
+    wp, wi, wd, wg, fails = check(n_trials=args.trials)
+    print("  trials                                       %d" % args.trials)
     print("  worst  ||p_dot||_1 / sqrt(2 A sigma)         %.6f   (must be <= 1)" % wp)
     print("  worst  d_TV / sqrt(N Sigma / 2)              %.6f   (must be <= 1)" % wi)
     print("  worst  D_delta / [1 + delta^-1 sqrt(N S/2)]  %.6f   (must be <= 1)" % wd)
