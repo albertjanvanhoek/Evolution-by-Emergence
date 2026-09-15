@@ -66,9 +66,86 @@ theorem hasDerivAt_logit_of_maintenance
   field_simp [hxne, h1ne]
   ring
 
+/-- End-to-end periodic-average theorem for the maintenance ODE.
+Starting from differentiable periodic trajectories satisfying the ODEs, the
+exact cycle averages are derived by the fundamental theorem of calculus. -/
+theorem periodic_maintenance_cycle_averages
+    {T α c a δ ε : ℝ} (hT : 0 < T) (hα : α ≠ 0) (ha : a ≠ 0) (hε : ε ≠ 0)
+    (x K h : ℝ → ℝ)
+    (hxint : ∀ t ∈ Set.uIcc 0 T, 0 < x t ∧ x t < 1)
+    (hxode : ∀ t ∈ Set.uIcc 0 T, HasDerivAt x
+      (x t * (1 - x t) * (α * (1 - h t) - c)) t)
+    (hKode : ∀ t ∈ Set.uIcc 0 T, HasDerivAt K (a * x t - δ * K t) t)
+    (hhode : ∀ t ∈ Set.uIcc 0 T, HasDerivAt h (ε * (K t - h t)) t)
+    (hxp : x T = x 0) (hKp : K T = K 0) (hhp : h T = h 0) :
+    (∫ t in 0..T, h t) / T = 1 - c / α ∧
+    (∫ t in 0..T, K t) / T = 1 - c / α ∧
+    (∫ t in 0..T, x t) / T = (δ / a) * (1 - c / α) := by
+  have hhcont : ContinuousOn h (Set.uIcc 0 T) := HasDerivAt.continuousOn hhode
+  have hKcont : ContinuousOn K (Set.uIcc 0 T) := HasDerivAt.continuousOn hKode
+  have hxcont : ContinuousOn x (Set.uIcc 0 T) := HasDerivAt.continuousOn hxode
+
+  have hlogderiv : ∀ t ∈ Set.uIcc 0 T,
+      HasDerivAt (fun s => Real.log (x s) - Real.log (1 - x s))
+        (α * (1 - h t) - c) t := by
+    intro t ht
+    exact hasDerivAt_logit_of_maintenance (hxint t ht).1 (hxint t ht).2 (hxode t ht)
+
+  have hlogint : IntervalIntegrable (fun t => α * (1 - h t) - c) volume 0 T := by
+    apply ContinuousOn.intervalIntegrable
+    exact (((continuousOn_const.sub hhcont).const_mul α).sub continuousOn_const)
+
+  have hftcLog := intervalIntegral.integral_eq_sub_of_hasDerivAt hlogderiv hlogint
+  have hILog : (∫ t in 0..T, α * (1 - h t) - c) = 0 := by
+    simpa [hxp] using hftcLog
+
+  have hhInt : IntervalIntegrable (fun t => ε * (K t - h t)) volume 0 T := by
+    apply ContinuousOn.intervalIntegrable
+    exact (hKcont.sub hhcont).const_mul ε
+  have hftch := intervalIntegral.integral_eq_sub_of_hasDerivAt hhode hhInt
+  have hIhBal : (∫ t in 0..T, ε * (K t - h t)) = 0 := by
+    simpa [hhp] using hftch
+
+  have hKInt : IntervalIntegrable (fun t => a * x t - δ * K t) volume 0 T := by
+    apply ContinuousOn.intervalIntegrable
+    exact (hxcont.const_mul a).sub (hKcont.const_mul δ)
+  have hftcK := intervalIntegral.integral_eq_sub_of_hasDerivAt hKode hKInt
+  have hIKBal : (∫ t in 0..T, a * x t - δ * K t) = 0 := by
+    simpa [hKp] using hftcK
+
+  have hILog' := hILog
+  have hIhBal' := hIhBal
+  have hIKBal' := hIKBal
+  simp only [intervalIntegral.integral_sub, intervalIntegral.integral_const_mul,
+    intervalIntegral.integral_const, sub_zero, smul_eq_mul, mul_one] at
+    hILog' hIhBal' hIKBal'
+
+  have hTne : T ≠ 0 := ne_of_gt hT
+  have hH : (∫ t in 0..T, h t) = T * (1 - c / α) := by
+    field_simp [hα]
+    nlinarith [hILog']
+  have hKH : (∫ t in 0..T, K t) = (∫ t in 0..T, h t) := by
+    apply sub_eq_zero.mp
+    apply mul_left_cancel₀ hε
+    nlinarith [hIhBal']
+  have hXK : (∫ t in 0..T, x t) = (δ / a) * (∫ t in 0..T, K t) := by
+    apply (eq_div_iff ha).2
+    rw [mul_comm]
+    nlinarith [hIKBal']
+
+  constructor
+  · rw [hH]
+    field_simp [hTne]
+  constructor
+  · rw [hKH, hH]
+    field_simp [hTne]
+  · rw [hXK, hKH, hH]
+    field_simp [hTne]
+
 end PeriodicODE
 
 #print axioms cubic_hurwitz_root_negative
 #print axioms hasDerivAt_logit_of_maintenance
+#print axioms periodic_maintenance_cycle_averages
 
 end MaintenanceDynamicsEndToEnd
