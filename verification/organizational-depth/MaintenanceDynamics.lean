@@ -85,10 +85,12 @@ theorem debt_stability_lhs_monotone
       ≤ (δ + ε + a * b * γ₂) * (δ + a * b * γ₂) := by
   have hab : 0 ≤ a * b := mul_nonneg ha hb
   have hγ₂ : 0 ≤ γ₂ := hγ₁.trans hγ
+  have hmul : a * b * γ₁ ≤ a * b * γ₂ :=
+    mul_le_mul_of_nonneg_left hγ hab
   have h1 : δ + a * b * γ₁ ≤ δ + a * b * γ₂ := by
-    exact add_le_add_left (mul_le_mul_of_nonneg_left hγ hab) δ
+    linarith
   have h2 : δ + ε + a * b * γ₁ ≤ δ + ε + a * b * γ₂ := by
-    exact add_le_add_left (mul_le_mul_of_nonneg_left hγ hab) (δ + ε)
+    linarith
   have hn1 : 0 ≤ δ + a * b * γ₁ := by positivity
   exact mul_le_mul h2 h1 hn1 (by positivity)
 
