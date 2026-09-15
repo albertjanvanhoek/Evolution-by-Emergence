@@ -26,7 +26,7 @@ Dependencies: `numpy`, `sympy`, and `matplotlib`.
   \qquad
   k=\left\lfloor\frac{n}{2\delta}\right\rfloor+1.
   ]
-- `verify.py` — adversarial random master-equation checks. It stores cumulative activity and entropy at every retained snapshot and tests each snapshot pair against its own subinterval budget; it also checks the geometric factor for every sampled finite state-space dimension using the exact two-state formula or the lattice upper bound.
+- `verify.py` — adversarial random master-equation checks. It stores cumulative activity and entropy at every retained snapshot and tests each snapshot pair against its own subinterval budget; it also checks the geometric factor for every sampled finite state-space dimension using the exact two-state formula or the lattice upper bound. The default reproduces the 400-run audit; CI uses a smaller randomized smoke test for runtime.
 - `make_figure.py` — regenerates `figures/tightness.pdf` used by the manuscript.
 
 The detailed derivation and correction history are in [TIGHTNESS_REPORT.md](TIGHTNESS_REPORT.md).
