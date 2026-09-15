@@ -57,3 +57,8 @@ See:
 and:
 
     papers/sufficient-alignment/verify_alignment.py
+
+
+### SCAP v2
+
+See [SCAP_V2.md](SCAP_V2.md) for the compact operational reinterpretation of the Sustainable Collaborative Alignment Protocol. It distinguishes theorem-backed functions from human-language implementations and explicitly keeps the protocol itself corrigible.
