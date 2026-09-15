@@ -51,3 +51,8 @@ The model-specific chain from nonlinear vector field to characteristic-root loca
 ### Conservative interpretation
 
 The paper does not claim that feedback-induced oscillations are new. Its contribution is the distinction between visible state and current replacement balance, the exact debt-response threshold, the zero-mean cycle accounting result, and the end-to-end formal verification.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.
