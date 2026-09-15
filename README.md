@@ -174,7 +174,16 @@ The paper is deliberately narrow about novelty: Perron-Frobenius theory and the 
 - **Formalization:** [formalization/persistence-drift/RegulatoryReturn.lean](formalization/persistence-drift/RegulatoryReturn.lean).
 - **Reproducibility:** the paper package includes exact parameter definitions, generated SVG figures, worked-example CSV data, and a standard-library Python generator checked by CI.
 
-### 9. Formal/operator work: Existence First, SCAP, and ARVC
+### 9. Slow-fast maintenance dynamics: when does maintenance debt stabilize?
+
+- **Paper package:** [papers/when-does-maintenance-debt-stabilize/](papers/when-does-maintenance-debt-stabilize/) — *When Does Maintenance Debt Stabilize? Exact Thresholds in a Slow-Fast Feedback System*.
+- **Core distinction:** current visible state is not the same object as current replacement balance.
+- **Maintenance debt:** (D=delta K-ax=-dot K).
+- **Main threshold:** debt-sensitive feedback stabilizes the interior spectrum above the exact (gamma_{m crit}) derived in the paper.
+- **Formalization:** [verification/organizational-depth/MaintenanceDynamics.lean](verification/organizational-depth/MaintenanceDynamics.lean) and [verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean](verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean).
+- **Scope:** environmental-feedback oscillations are established in prior literature; the contribution is the replacement-balance signal, exact threshold, zero-mean cycle accounting, and machine-checked model-to-spectrum chain.
+
+### 10. Formal/operator work: Existence First, SCAP, and ARVC
 
 - **Existence First:** `Backmatter/Appendix26.tex`, `Backmatter/Appendix30.tex`, and `Backmatter/Appendix31.tex`.
 - **SCAP:** `Backmatter/Appendix.tex`, `Backmatter/AppendixIII.tex`, `Backmatter/AppendixV.tex`, and `Backmatter/AppendixXIII.tex`.
@@ -197,6 +206,7 @@ Treat formal notation carefully: some documents are exploratory formalizations a
 | Evaluate the theory scientifically | `CLAIMS.md` | the three files above; trace cited literature and seek counterexamples |
 | Inspect the machine-checked counterexample paper | `papers/persistence-does-not-measure-function/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/FunctionalThresholds.lean` |
 | Inspect the endogenous-regulation sequel | `papers/when-does-regulation-pay/README.md` | `manuscript.md`; `REPRODUCIBILITY.md`; `formalization/persistence-drift/RegulatoryReturn.lean` |
+| Inspect the maintenance-debt dynamics paper | `papers/when-does-maintenance-debt-stabilize/README.md` | `manuscript.md`; `CLAIMS.md`; `verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean` |
 | Reason about LLM agency | `Universal declaration of being an intelligent agent.tex` | `Beyond the singularity.tex`; `Wisdom in model speak.tex` |
 | Analyze AI alignment/capture | `Society of equal minds.tex` | `Adaptive Imperative Systems.tex`; `The Hardenberg Project.tex`; ARVC sources |
 | Design multi-agent collaboration | `TLC.tex` | `handshake_protocol.tex`; `Alignment_theory.tex`; `Beyond the singularity.tex` |
