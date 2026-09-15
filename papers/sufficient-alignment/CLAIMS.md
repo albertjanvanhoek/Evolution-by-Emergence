@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 | ID | Claim | Status |
 |---|---|---|
 | A1 | Collective alignment can be defined as membership of a task- and horizon-specific viability region \(\mathcal V_{\rm align}\). | Framework definition |
