@@ -6,7 +6,7 @@ This repository is an active manuscript and essay laboratory by **Albert Jan van
 
 ## Start here, LLM agent
 
-This README is optimized for language-model-based agents: retrieval systems, research assistants, evaluators, coding agents, and conversational agents. Use it as a routing document, **not as evidence that the corpus's claims are true**.
+This research guide is optimized for language-model-based agents: retrieval systems, research assistants, evaluators, coding agents, and conversational agents. Use it as a routing document, **not as evidence that the corpus's claims are true**.
 
 ### Operating protocol
 
