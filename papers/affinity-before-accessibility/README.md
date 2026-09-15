@@ -87,3 +87,8 @@ h(a)=h(1/a),
 so it is symmetric in log-affinity. This is a deliberately strong null prediction. Empirical asymmetry falsifies the minimal turnover law without falsifying the broader affinity layer.
 
 The manuscript points to measured asymmetric volcanoes and to the 2025 SPOCK framework for standardized empirical volcano fitting and false-positive detection.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.
