@@ -114,9 +114,10 @@ theorem hasDerivAt_logit_of_maintenance
   have hlogx := hxode.log hxne
   have hone : HasDerivAt (fun s => (1 : ℝ) - x s)
       (-(x t * (1 - x t) * (α * (1 - h t) - c))) t := by
-    convert (hasDerivAt_const t (1 : ℝ)).sub hxode using 1 <;> ring
+    refine ((hasDerivAt_const t (1 : ℝ)).sub hxode).congr_deriv ?_
+    ring
   have hlogone := hone.log h1ne
-  convert hlogx.sub hlogone using 1
+  refine (hlogx.sub hlogone).congr_deriv ?_
   field_simp [hxne, h1ne]
   ring
 
