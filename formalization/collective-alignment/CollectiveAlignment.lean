@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Tactic
+import Mathlib.Algebra.BigOperators.Field
 
 namespace CollectiveAlignment
 
