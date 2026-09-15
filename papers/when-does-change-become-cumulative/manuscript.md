@@ -260,9 +260,17 @@ Nothing got harder.
 
 Nothing that was already affordable became unaffordable.
 
-Pointwise domination implies retention for every budget. The converse fails.
+Pointwise domination implies retention at every budget. If retention is required for **every possible budget**, the converse also holds: for any (x), choose (B=c_t(x)); then (xinmathcal F_t(B)), so retention implies (c_{t+1}(x)le c_t(x)). Thus
 
-That gap is essential in a shared-budget system.
+[
+(D)
+quadLongleftrightarrowquad
+(R)	ext{ for every budget }B.
+]
+
+The non-equivalence used below is at a **fixed declared budget**. At one fixed (B), retention is strictly weaker than pointwise domination: a cost may rise without crossing the budget threshold.
+
+That fixed-budget gap is essential in a shared-budget system.
 
 ---
 

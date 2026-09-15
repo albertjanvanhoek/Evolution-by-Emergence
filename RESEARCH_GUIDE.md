@@ -45,6 +45,21 @@ For the historical book argument, read `Instructions_to_complile_the_book.tex` a
 - **Website:** `docs/` and `mkdocs.yml`; the deployment workflow generates Markdown from much of the LaTeX corpus.
 - **No single file is canonical for every concept.** Authority is task-dependent, and later essays sometimes revise earlier formulations.
 
+## Literature contact and paradigm framing
+
+On 15 September 2026 the recent mathematical stack was subjected to two adversarial literature audits. They found extensive antecedents across next-generation/Perron theory, chemostats, backward bifurcation and Allee effects, ecological stability, burden/retroactivity, control tradeoffs, thermodynamic speed limits, cumulative culture, historical contingency, viability theory, niche construction, and catalysis.
+
+The repository accepts the conservative conclusion: **the stack is primarily a synthesis and research architecture with several exact model-specific results, not a bundle of newly discovered general mechanisms.**
+
+The audit package is preserved at:
+
+- `verification/audits/2026-09-15-literature/`
+- `verification/audits/2026-09-15-literature/FROM_SYNTHESIS_TO_PARADIGM.md`
+
+The framing consequence is important. The project does not propose replacing competition with cooperation. It proposes a more balanced explanatory picture in which competition, collaboration, maintenance, repair, inheritance, and emergence can all shape evolving organization. In that picture, a **commons** is treated as a jointly produced or maintained organizational state whose condition changes the future capabilities or accessibility of multiple participants.
+
+This is a proposed research programme, not a claim that a scientific paradigm shift has already been achieved.
+
 ## The project in one model
 
 A finite agent acts through a model of a reality it does not fully contain:

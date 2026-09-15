@@ -10,7 +10,7 @@ Machine-checked claims in this ledger are mapped to exact Lean declarations in [
 | C4 | Preservation is reflexive and transitive; strict clicks compose with preservation. | Exact set-theoretic result; machine checked |
 | C5 | Set expansion alone does not establish historical causation; historical attribution requires retained earlier structure to contribute causally to at least one newly accessible target. | Definition linking to parent causal framework |
 | C6 | Pointwise score dominance preserves thresholded accessibility, and an upward threshold crossing yields strict expansion. | Exact result; machine checked |
-| C7 | Pointwise cost domination preserves budget-feasible accessibility, but is stronger than retention. | Exact result; machine checked |
+| C7 | At a fixed declared budget, pointwise cost domination preserves budget-feasible accessibility and is strictly stronger than retention. Quantified over every possible budget, domination and retention are equivalent. | Exact order-theoretic result; fixed-budget implication machine checked |
 | C8 | Strict pointwise cost domination is achievable in general. | Exact abstract witness; machine checked |
 | C9 | A productive non-substituting network extension provides a concrete strict-domination witness; the numerical \(v=100,f=.01\) example and exact rational \(f=1/100,v=125,\lambda=3/2\) cost witness both lower inherited A and B costs. | Closed-form model calculation; rational cost inequalities and margin winding machine checked; numerical witness reproduced |
 | C10 | Uniform positive dilution cannot pointwise dominate any declared positive inherited cost. | Exact result; machine checked |
