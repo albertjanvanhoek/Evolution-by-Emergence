@@ -39,6 +39,60 @@ theorem cubic_hurwitz_root_negative
     nlinarith [hre, hAB, sq_nonneg z.re, mul_nonneg (le_of_lt hA) hx,
       mul_nonneg (le_of_lt hB) hx]
 
+/-- The explicit complex characteristic matrix lambda*I - J for the debt-aware
+maintenance Jacobian at the interior equilibrium, with b = x*(1-x). -/
+def debtCharMatrix (z : ℂ) (δ ε a α b γ : ℝ) : Matrix (Fin 3) (Fin 3) ℂ :=
+  ![
+    ![z + (a*b*γ : ℝ), -(δ*b*γ : ℝ), (α*b : ℝ)],
+    ![-(a : ℝ), z + δ, 0],
+    ![0, -(ε : ℝ), z + ε]
+  ]
+
+/-- Direct determinant calculation for the debt-aware Jacobian. -/
+theorem debtCharMatrix_det
+    (z : ℂ) (δ ε a α b γ : ℝ) :
+    Matrix.det (debtCharMatrix z δ ε a α b γ)
+      =
+    z^3
+      + ((δ + ε + a*b*γ : ℝ) : ℂ) * z^2
+      + ((δ*ε + a*b*ε*γ : ℝ) : ℂ) * z
+      + ((a*α*b*ε : ℝ) : ℂ) := by
+  rw [Matrix.det_fin_three]
+  simp [debtCharMatrix]
+  ring
+
+/-- End-to-end Hurwitz result for the actual debt-aware Jacobian characteristic
+matrix. Under the exact stability inequality, every characteristic root has
+strictly negative real part. -/
+theorem debt_jacobian_hurwitz
+    {δ ε a α b γ : ℝ}
+    (hδ : 0 < δ) (hε : 0 < ε) (ha : 0 < a) (hα : 0 < α)
+    (hb : 0 < b) (hγ : 0 ≤ γ)
+    (hstable : a * α * b <
+      (δ + ε + a*b*γ) * (δ + a*b*γ))
+    (z : ℂ)
+    (hz : Matrix.det (debtCharMatrix z δ ε a α b γ) = 0) :
+    z.re < 0 := by
+  have hA : 0 < δ + ε + a*b*γ := by positivity
+  have hD : 0 < δ + a*b*γ := by positivity
+  have hB : 0 < δ*ε + a*b*ε*γ := by
+    rw [show δ*ε + a*b*ε*γ = ε * (δ + a*b*γ) by ring]
+    positivity
+  have hC : 0 < a*α*b*ε := by positivity
+  have hAB0 : a*α*b*ε <
+      (δ + ε + a*b*γ) * (δ*ε + a*b*ε*γ) := by
+    have hm := mul_lt_mul_of_pos_right hstable hε
+    rw [show δ*ε + a*b*ε*γ = ε * (δ + a*b*γ) by ring]
+    nlinarith
+  have hpoly :
+      z^3
+        + (((δ + ε + a*b*γ) : ℝ) : ℂ) * z^2
+        + (((δ*ε + a*b*ε*γ) : ℝ) : ℂ) * z
+        + (((a*α*b*ε) : ℝ) : ℂ) = 0 := by
+    rw [← debtCharMatrix_det z δ ε a α b γ]
+    exact hz
+  exact cubic_hurwitz_root_negative hA hB hC hAB0 z hpoly
+
 end CubicHurwitz
 
 section PeriodicODE
@@ -145,6 +199,8 @@ theorem periodic_maintenance_cycle_averages
 end PeriodicODE
 
 #print axioms cubic_hurwitz_root_negative
+#print axioms debtCharMatrix_det
+#print axioms debt_jacobian_hurwitz
 #print axioms hasDerivAt_logit_of_maintenance
 #print axioms periodic_maintenance_cycle_averages
 
