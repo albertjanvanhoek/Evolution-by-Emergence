@@ -153,3 +153,8 @@ GitHub Actions runs Lean plus both reproducibility scripts.
 - verify_budget_ratchet.py — exact and numerical budget-ratchet checks.
 - verify_log_slack.py — illustrative filtered log-slack simulation.
 - formalization/cumulative-accessibility/CumulativeAccessibility.lean — machine-checked core.
+
+
+## Formal verification map
+
+See [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md) for the claim-by-claim mapping from manuscript statements to exact Lean declarations.
