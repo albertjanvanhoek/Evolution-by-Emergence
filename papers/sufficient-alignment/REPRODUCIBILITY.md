@@ -37,3 +37,26 @@ The script evaluates the 2-out-of-3 reliability curve, verifies the threshold nu
 ## Epistemic boundary
 
 Lean verifies mathematical consequences of the stated toy-model assumptions. It does not establish that honesty, forgiveness, reciprocity, or SCAP are universal moral requirements, nor that a given real network is correctly represented by these models.
+
+
+## Verified proof state
+
+The complete theorem stack was verified at commit:
+
+`7e8ff46ad629eee19e712365baa80c29ae8deea6`
+
+GitHub Actions workflow run:
+
+`34943940789`
+
+Lean job:
+
+`104298814659`
+
+That run passed `lake build`. The `#print axioms` audit reported only the standard Lean/Mathlib dependencies
+
+`propext`, `Classical.choice`, and `Quot.sound`
+
+for the reported declarations, with no `sorryAx`.
+
+Subsequent commits on the branch modify repository routing/workflow documentation only unless explicitly stated otherwise.
