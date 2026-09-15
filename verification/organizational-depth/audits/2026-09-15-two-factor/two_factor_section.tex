@@ -1,0 +1,214 @@
+% ---------------------------------------------------------------------------
+% Drop-in section for *Organizational Depth at Finite Time*.
+% Intended to follow the section containing the fixed-resolution counting bound
+% (Theorem 4 / Eq. 10.6).  Requires: amsmath, amsthm, graphicx, and the
+% manuscript's existing theorem environments.
+%
+% Cross-references left as \ref{...} with placeholder labels; wire them to the
+% manuscript's own labels before compiling:
+%   eq:dataproc   -- the data-processing inequality  d_op <= d_TV        (10.2)
+%   eq:speedlimit -- the integrated speed limit      d_TV <= sqrt(NS/2)  (10.3)
+%   thm:count     -- the fixed-resolution counting bound                 (Thm 4)
+%   sec:challenge -- the open-challenge section                          (S14)
+% ---------------------------------------------------------------------------
+
+\section{Two independent obstructions to organizational depth}
+\label{sec:twofactor}
+
+The counting bound of Theorem~\ref{thm:count} governs the number of consecutive
+transitions that are distinguishable at resolution $\delta$. That is not the same
+quantity as organizational depth, and the gap between them is not small. A system
+that oscillates between two distributions $p$ and $p'$ with
+$d_{\mathrm{op}}(p,p')=\delta$ satisfies the consecutive criterion at every step, for
+ever, while visiting exactly two operationally distinct configurations. It is
+resolution-robust in the sense of Definition~1, at fixed $\delta$, under a fixed
+measurement standard, and it accumulates nothing.
+
+This is the refinement pathology of Example~1 reappearing inside the criterion that
+was introduced to exclude it. The refinement example fails because
+$d_{\mathrm{op}}\to0$; the shuttle keeps $d_{\mathrm{op}}=\delta$ for ever and fails
+because nothing is retained. Both failures have the same cause: counting transitions
+is not counting distinctions.
+
+\subsection{Packing depth}
+
+\begin{definition}[Packing depth]
+\label{def:packingdepth}
+Let $x_0,\dots,x_n$ be the retained states observed at times $t_0<\dots<t_n$ along a
+trajectory, and let $\delta>0$ be a fixed operational resolution. The
+\emph{packing depth} of the sequence is
+\begin{equation}
+  D_\delta(x_0,\dots,x_n)
+  \;=\;
+  \max\bigl\{\,|I| \;:\; I\subseteq\{0,\dots,n\},\;\;
+    d_{\mathrm{op}}(x_i,x_j)\ge\delta\ \ \text{for all } i\ne j\in I \,\bigr\}.
+\end{equation}
+\end{definition}
+
+Packing depth counts how many mutually distinguishable configurations the trajectory
+has actually occupied. Revisits, excursions and idling are permitted; they simply do
+not enlarge $I$. The shuttle has $D_\delta=2$ for ever and an $m$-configuration cycle
+has $D_\delta=m$ for ever, which is the discrimination the consecutive criterion
+fails to make. A process that accumulates organizational depth in the sense
+\S\ref{sec:challenge} intends is one with $D_\delta\to\infty$ at fixed $\delta$.
+
+\subsection{The two-factor bound}
+
+Write $\mathcal{P}_\delta(X)$ for the $\delta$-packing number of the operational
+state space $X$ --- the largest cardinality of a pairwise $\delta$-separated subset
+of $X$, which is finite exactly when $X$ is totally bounded at scale $\delta$.
+
+\begin{theorem}[Two-factor no-go]
+\label{thm:twofactor}
+Under the hypotheses of Theorem~\ref{thm:count} on $[t_0,t_n]$, with
+$\mathcal{N}_*=\int_{t_0}^{t_n}\! A\,dt$ and
+$\Sigma_*=\int_{t_0}^{t_n}\!\sigma\,dt$,
+\begin{equation}
+\label{eq:twofactor}
+  D_\delta(x_0,\dots,x_n)
+  \;\le\;
+  \min\left[\,
+    1+\frac{1}{\delta}\sqrt{\frac{\Sigma_*\mathcal{N}_*}{2}}
+    \;,\;\;
+    \mathcal{P}_\delta(X)
+  \,\right].
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $I=\{i_1<i_2<\dots<i_D\}$ realize the maximum in
+Definition~\ref{def:packingdepth}, indexed in chronological order. Since every pair
+in $I$ is $\delta$-separated, so is every consecutive pair, and the intervals
+$J_k=[t_{i_k},t_{i_{k+1}}]$ for $k=1,\dots,D-1$ have pairwise disjoint interiors and
+lie in $[t_0,t_n]$. Applying \eqref{eq:dataproc} and then \eqref{eq:speedlimit} on
+$J_k$,
+\begin{equation}
+  \delta
+  \;\le\; d_{\mathrm{op}}(x_{i_k},x_{i_{k+1}})
+  \;\le\; d_{\mathrm{TV}}\bigl(p(t_{i_k}),p(t_{i_{k+1}})\bigr)
+  \;\le\; \sqrt{\mathcal{N}_k\Sigma_k/2},
+\end{equation}
+where $\mathcal{N}_k=\int_{J_k}\!A\,dt$ and $\Sigma_k=\int_{J_k}\!\sigma\,dt$.
+Summing over $k$ and applying the Cauchy--Schwarz inequality,
+\begin{equation}
+  (D-1)\,\delta
+  \;\le\; \sum_{k=1}^{D-1}\sqrt{\frac{\mathcal{N}_k\Sigma_k}{2}}
+  \;\le\; \frac{1}{\sqrt2}
+    \Bigl(\sum_{k}\mathcal{N}_k\Bigr)^{1/2}
+    \Bigl(\sum_{k}\Sigma_k\Bigr)^{1/2}
+  \;\le\; \sqrt{\frac{\mathcal{N}_*\Sigma_*}{2}},
+\end{equation}
+the last step because $A\ge0$ and $\sigma\ge0$ and the $J_k$ are disjoint. This gives
+the first factor. The second is immediate: $I$ is a $\delta$-separated subset of $X$,
+so $|I|\le\mathcal{P}_\delta(X)$.
+\end{proof}
+
+Three remarks on the structure of the argument.
+
+First, the two factors are \emph{independent}. The first asks whether the trajectory
+can travel far enough; the second asks whether the state space contains enough
+distinguishable places to travel to. Neither implies the other, and either one alone
+forbids unbounded depth.
+
+Second, Theorem~\ref{thm:twofactor} is not a corollary of Theorem~\ref{thm:count},
+nor the converse. The two count different things and neither dominates: a trajectory
+that drifts through many mutually distant configurations in steps all smaller than
+$\delta$ has $K_\delta=0$ and large $D_\delta$, while the shuttle has $K_\delta$
+unbounded and $D_\delta=2$. What the two share is the proof technique; what differs
+is the index set to which it is applied. Only consecutive members of $I$ enter the
+proof, which is exactly why revisits and excursions cost budget without costing
+depth.
+
+Third, the additive~$1$ is not slack. A single retained state requires no budget.
+
+\begin{corollary}[What unbounded depth requires]
+\label{cor:unbounded}
+At fixed $\delta>0$, $\sup_n D_\delta(x_0,\dots,x_n)=\infty$ requires \emph{both}
+$\mathcal{P}_\delta(X)=\infty$ \emph{and} $\mathcal{N}_*\Sigma_*=\infty$ over the
+whole history.
+\end{corollary}
+
+For distributions on a finite state space $S$ under total variation, the second
+requirement is automatically unsatisfiable: $X=\Delta_{|S|-1}$ is compact, so
+$\mathcal{P}_\delta(X)<\infty$ for every $\delta>0$ and depth is capped outright, at
+any budget, any energy, any temperature and any duration. An explicit bound follows
+from rounding to the lattice $L_k=\{m/k:\ m\in\mathbb{Z}_{\ge0}^{|S|},\ \sum_i m_i=k\}$
+by largest remainder, which achieves $d_{\mathrm{TV}}(p,L_k)\le|S|/(4k)$; two
+$\delta$-separated points cannot share a lattice point once $|S|/(4k)<\delta/2$, so
+\begin{equation}
+\label{eq:packingub}
+  \mathcal{P}_\delta\bigl(\Delta_{|S|-1}\bigr)
+  \;\le\; \binom{k+|S|-1}{|S|-1},
+  \qquad k=\Bigl\lfloor \frac{|S|}{2\delta}\Bigr\rfloor+1 ,
+\end{equation}
+which is sharp to within one point at $|S|=2$, where the exact value is
+$\lfloor1/\delta\rfloor+1$.
+
+\subsection{Where this leaves the challenge of \S\ref{sec:challenge}}
+
+The challenge asks for a system completing infinitely many retained transformations
+that remain distinguishable at one fixed operational resolution.
+Corollary~\ref{cor:unbounded} says such a system needs unbounded operational packing
+capacity --- an accessible state space that is \emph{not} totally bounded at scale
+$\delta$ --- and, separately, an unbounded activity--entropy product.
+
+The first requirement is weaker than a growing state space. A fixed countably
+infinite $S$ already fails total boundedness, since the point masses $\delta_i$ are
+pairwise at total-variation distance~$1$; so are an infinite-dimensional state space,
+a non-compact memory coordinate, and a physical record that grows without bound. What
+these have in common is an expanding operational degree of freedom, not necessarily
+more Markov states.
+
+The second requirement is where Theorem~\ref{thm:count} returns. Once the geometric
+factor is infinite it constrains nothing, and the thermodynamic factor is the only
+remaining obstruction --- the one that carries the resource accounting, and the one
+the finite-action theorem addresses directly. The question the framework should now
+pose is therefore twofold, and sharper than before:
+\begin{quote}
+What physical process creates and maintains an operational repertoire that is not
+totally bounded at resolution $\delta$, what does maintaining it cost, and how fast
+must $\mathcal{N}_*\Sigma_*$ grow to keep populating it?
+\end{quote}
+Both halves are resource questions, but they are different resource questions, and
+only the second is answered by the machinery already developed here.
+
+\subsection{Sharpness}
+
+Neither factor is decorative. Figure~\ref{fig:tightness} reports both, measured on
+integrated master equations in which the rates are reconstructed explicitly at each
+step from the instantaneous distribution.
+
+Panel~(a): driving one edge at constant asymmetry $\epsilon=J/A$ gives an
+achieved-to-bound ratio $\sqrt{\epsilon/\operatorname{artanh}\epsilon}$, strictly
+below one at every $\epsilon>0$ and tending to one as $\epsilon\to0$, with the
+activity and the duration cancelling exactly. Under the sharper form of Zhang the
+ratio is
+$r_Z(\epsilon)=\bigl[2\epsilon/(\operatorname{artanh}\epsilon\,(1+\sqrt{1-\epsilon^2}))\bigr]^{1/2}$,
+which also tends to one; the two forms coincide in precisely the near-equilibrium
+limit where saturation occurs. Saturation is therefore asymptotic, and available at
+any depth: a two-state shuttle and a six-configuration cycle
+$p^{(k)}=\frac{1-\delta}{m}\mathbf{1}+\delta e_k$ --- whose configurations are
+pairwise exactly $\delta$ apart, and whose rates stay bounded because no coordinate
+falls below $(1-\delta)/m$ --- give ratios agreeing to five significant figures at
+every $\epsilon$ tested.
+
+Panel~(b): running that cycle with $m=12$ for $K$ transitions attains
+$D_\delta=K+1$, equal to the thermodynamic factor to five figures, until
+$K=m-1$; beyond that the geometric factor takes over and $D_\delta$ pins at $12$
+while the thermodynamic factor continues to grow. Both factors of
+\eqref{eq:twofactor} are attained, and the crossover between them is the content of
+the $\min$.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/tightness.pdf}
+  \caption{Both factors of \eqref{eq:twofactor} are attained.
+  \textbf{(a)}~Achieved-to-bound ratio against drive asymmetry $\epsilon=J/A$,
+  for the SFS form and for the sharper Zhang form, with measured points from a
+  depth-2 shuttle and a depth-6 interior cycle; the two architectures land on the
+  same curve, so saturating the transition bound says nothing about depth.
+  \textbf{(b)}~Packing depth of a 12-configuration interior cycle against activity
+  budget: the thermodynamic factor grows, the geometric factor does not, and the
+  achieved depth tracks whichever is smaller.}
+  \label{fig:tightness}
+\end{figure}
