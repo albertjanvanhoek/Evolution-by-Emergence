@@ -73,14 +73,17 @@ D_\delta
 \]
 Independently,
 $D_\delta$ is bounded by the $\delta$-packing number of the accessible
-operational state space. For a finite $m$-state probability simplex a standard
-volumetric estimate gives
+operational state space. For a finite $m$-state probability simplex,
+largest-remainder lattice rounding gives
 \[
-D_\delta\le
-\left(1+\frac{2}{\delta}\right)^{m-1}.
+D_\delta
+\le
+\binom{k+m-1}{m-1},
+\qquad
+k=\left\lfloor\frac{m}{2\delta}\right\rfloor+1.
 \]
 Thus finite-state retained depth is constrained both by dynamical resources
-and by geometric repertoire. A bounded-power refinement example still shows
+and by geometric repertoire, and both factors can become the active bound. A bounded-power refinement example still shows
 why infinite labels can accumulate when resolved scale shrinks.
 
 These are conditional physical boundaries, not a universal prohibition of
@@ -912,8 +915,15 @@ however, their costs and timing belong inside the physical model.
 \label{sec:packing-depth}
 
 The distinction between $K_\delta^{\rm consec}$ and $D_\delta$ is not
-cosmetic. It is exposed by the construction that makes the finite-state
-activity--entropy bound sharp.
+cosmetic. A two-state shuttle can make the consecutive fixed-resolution count
+arbitrarily large while visiting only two operationally distinct states.
+Transition count is resolved path activity; retained depth is the size of the
+mutually distinguishable repertoire actually visited.
+
+The finite-state activity--entropy bound is nevertheless the right dynamical
+object. Its tightness can be characterized exactly.
+
+\subsection*{The transition speed limit is asymptotically sharp}
 
 Consider a driven edge with forward and reverse probability fluxes
 \[
@@ -923,8 +933,7 @@ b=\frac{A(1-\epsilon)}2,
 \qquad
 0<\epsilon<1.
 \]
-Then the net probability flux is $J=\epsilon A$, while the
-entropy-production rate is
+The net probability flux is $J=\epsilon A$ and the entropy-production rate is
 \[
 \sigma
 =
@@ -938,113 +947,260 @@ d_{\rm TV}=\epsilon A\tau,
 \qquad
 \mathcal N=A\tau,
 \qquad
-\Sigma
-=
+\Sigma=
 2\epsilon A\tau\,\operatorname{artanh}\epsilon.
 \]
 Hence
 \begin{equation}
 \boxed{
+r_{\rm SFS}(\epsilon)
+=
 \frac{d_{\rm TV}}{\sqrt{\mathcal N\Sigma/2}}
 =
 \sqrt{\frac{\epsilon}{\operatorname{artanh}\epsilon}}
-\longrightarrow1
+<1
+\quad(\epsilon>0),
+\qquad
+r_{\rm SFS}(\epsilon)\to1
 \quad(\epsilon\to0).
 }
 \label{eq:sfs-tightness}
 \end{equation}
-The Shiraishi--Funo--Saito form used here is therefore asymptotically sharp.
-At fixed resolved displacement $d_{\rm TV}=\delta$,
+The saturation is asymptotic, not exact. At fixed resolved displacement
+$d_{\rm TV}=\delta$,
 \[
-\mathcal N=\frac\delta\epsilon\to\infty,
+\mathcal N=\frac{\delta}{\epsilon}\to\infty,
 \qquad
 \Sigma=2\delta\,\operatorname{artanh}\epsilon\to0.
 \]
-Vanishing entropy production per distinction is bought by diverging activity.
+Thus entropy production per resolved distinction can approach zero only by
+paying diverging dynamical activity.
 
-A two-state shuttle can repeat this transition indefinitely. It therefore
-makes $K_\delta^{\rm consec}$ arbitrarily large while visiting only two
-mutually distinguishable states. Conversely, sharpness is not peculiar to a
-depthless shuttle. For an $m$-state simplex and $0<\delta<1$, choose
+The sharper form proposed by Zhang \cite{Zhang2018Comment} has the same
+saturating construction. Counting each unordered edge once, define
 \[
-q=\frac{1-\delta}{m},
+B=
+\left(\sqrt a+\sqrt b\right)^2
+=
+A\left(1+\sqrt{1-\epsilon^2}\right).
+\]
+The corresponding achieved-to-bound ratio is
+\begin{equation}
+\boxed{
+r_Z(\epsilon)
+=
+\sqrt{
+\frac{2\epsilon}
+{\operatorname{artanh}\epsilon\,
+\left(1+\sqrt{1-\epsilon^2}\right)}
+}
+\longrightarrow1
+\quad(\epsilon\to0).
+}
+\label{eq:zhang-tightness}
+\end{equation}
+Moreover $B/(2A)\to1$ in this same limit, so the SFS and Zhang forms coincide
+where saturation occurs.
+
+\subsection*{Saturation is independent of retained depth}
+
+A shuttle between two distributions can repeat the tight transition
+indefinitely while retaining packing depth two. Sharpness is not peculiar to
+that depthless construction. For an $m$-state simplex and $0<s<1$, let
+\[
+q=\frac{1-s}{m},
 \qquad
-p^{(j)}=q\mathbf 1+\delta e_j.
+p^{(j)}=q\mathbf 1+s e_j.
 \]
 For $i\ne j$,
-$d_{\rm TV}(p^{(i)},p^{(j)})=\delta$. Driving exactly $\delta$
-probability mass from one peak to the next along the same constant-asymmetry
-edge yields the same ratio \eqref{eq:sfs-tightness} while cycling through
-$m$ mutually $\delta$-separated retained states. Thus saturation of the
-transition bound diagnoses neither the presence nor the absence of retained
-depth.
+\[
+d_{\rm TV}(p^{(i)},p^{(j)})=s.
+\]
+Driving exactly $s$ probability mass from one peak to the next along the same
+constant-asymmetry edge gives the same thermodynamic tightness ratio. Every
+coordinate remains at least $q$, so the required rates stay finite, bounded by
+$a/q=a m/(1-s)$.
 
-This leads to two independent bounds on $D_\delta$.
+At measurement resolution $\delta\le s$, each move counts once. The
+achieved-to-counting-bound ratio is therefore
+\[
+\frac{\delta}{s}\,r_{\rm SFS}(\epsilon).
+\]
+The earlier vertex-ring value $0.50$ at $\delta=0.5$ was simply the
+$s\to1$ limit of $\delta/s$, while that same limit also drives the maximum
+required rate to infinity. Choosing the efficient step $s=\delta$ removes both
+artifacts: finite-depth rings and the depth-two shuttle lie on the same
+tightness curve.
 
-First, choose any finite set of $D$ pairwise-separated visited
-representatives and order their visit times. Every one of the $D-1$
-chronological gaps has endpoint distance at least $\delta$. The gaps are
-disjoint, so the same path-length argument used for
-Theorem~\ref{thm:markov-operational} gives the bound below for every such
-finite set, and therefore for the packing depth itself:
-\begin{equation}
-\boxed{
-D_\delta(T)
-\le
-1+
-\frac1\delta
-\sqrt{\frac{\Sigma_*\mathcal N_*}{2}}.
-}
-\label{eq:thermo-depth}
-\end{equation}
+\subsection*{Two independent obstructions to retained depth}
 
-Second, by definition,
-\begin{equation}
-\boxed{
-D_\delta(T)
-\le
-\mathcal P_\delta(\mathcal X_T),
-}
-\label{eq:packing-general}
-\end{equation}
-where $\mathcal P_\delta$ is the $\delta$-packing number of the accessible
-operational state space $\mathcal X_T$. This is a geometric constraint rather
-than a thermodynamic one.
+The previous section defined $D_\delta(T)$ as the supremum of the cardinalities
+of finite pairwise-$\delta$-separated subsets of the visited retained
+repertoire. Let $\mathcal P_\delta(\mathcal X_T)$ denote the
+$\delta$-packing number of the accessible operational state space.
 
-For probability distributions on a fixed finite state space
-$|S|=m$, the simplex has dimension $m-1$ and diameter one in total variation.
-The standard disjoint-ball volume argument for a normed finite-dimensional
-space yields the coarse bound
-\begin{equation}
-\boxed{
-\mathcal P_\delta(\Delta_{m-1})
-\le
-\left(1+\frac{2}{\delta}\right)^{m-1}.
-}
-\label{eq:simplex-packing}
-\end{equation}
-For two states the exact value is
-$\lfloor1/\delta\rfloor+1$.
-
-Combining \eqref{eq:thermo-depth} and \eqref{eq:packing-general},
+\begin{theorem}[Two-factor retained-depth bound]
+\label{thm:twofactor-depth}
+For finite-state Markov jump dynamics under the operational speed-limit
+hypotheses of Theorem~\ref{thm:markov-operational},
 \begin{equation}
 \boxed{
 D_\delta(T)
 \le
 \min\left\{
-1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
+1+\frac1\delta
+\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
 \;
 \mathcal P_\delta(\mathcal X_T)
 \right\}.
 }
 \label{eq:combined-depth}
 \end{equation}
+\end{theorem}
 
-The first term is a dynamical-resource bound: can the trajectory traverse
-enough operational distance? The second is a repertoire bound: does the
-accessible state space contain enough mutually distinguishable places to go?
-For a fixed finite-state simplex, no increase in entropy-production or
-activity budget can make $D_\delta$ infinite.
+\begin{proof}
+Choose any finite pairwise-$\delta$-separated family of $D$ visited retained
+states and order their first selected visit times chronologically. The
+$D-1$ intervals between consecutive selected representatives have pairwise
+disjoint interiors, and every such pair has operational distance at least
+$\delta$. Applying the data-processing comparison and the integrated
+activity--entropy speed limit to each interval gives
+\[
+\delta
+\le
+\sqrt{\frac{\mathcal N_k\Sigma_k}{2}}.
+\]
+Summing over the selected intervals and applying Cauchy--Schwarz,
+\[
+(D-1)\delta
+\le
+\frac1{\sqrt2}
+\left(\sum_k\mathcal N_k\right)^{1/2}
+\left(\sum_k\Sigma_k\right)^{1/2}
+\le
+\sqrt{\frac{\mathcal N_*\Sigma_*}{2}},
+\]
+because activity and entropy production are non-negative and the selected
+intervals are disjoint. This gives the thermodynamic factor. The geometric
+factor follows directly because the selected family is a
+$\delta$-separated subset of $\mathcal X_T$. Since the thermodynamic bound
+holds for every finite selected family, it bounds the packing depth itself.
+\end{proof}
+
+The finite-block mathematical implication is independently machine-checked in
+\texttt{PackingDepth.lean} as
+\texttt{packing\_depth\_thermo} and
+\texttt{packing\_depth\_two\_factor}. The speed-limit premise and the
+state-space-specific packing theorem remain external assumptions/results, not
+facts hidden inside the formalization.
+
+The two factors answer different questions. The thermodynamic factor asks
+whether the trajectory has enough activity--entropy budget to traverse enough
+resolved distance. The geometric factor asks whether the operational state
+space contains enough mutually distinguishable places to visit.
+
+\subsection*{A tighter finite-simplex packing bound}
+
+For probability distributions on a fixed finite state space $|S|=m$, total
+variation makes the simplex $\Delta_{m-1}$ compact, so
+$\mathcal P_\delta(\Delta_{m-1})$ is finite for every $\delta>0$.
+
+A useful explicit bound comes from largest-remainder rounding to the lattice
+\[
+L_k
+=
+\left\{
+\frac{z}{k}:
+z\in\mathbb Z_{\ge0}^{m},
+\ \sum_i z_i=k
+\right\}.
+\]
+For every $p\in\Delta_{m-1}$ there exists a rounded point
+$\pi_k(p)\in L_k$ with
+\[
+d_{\rm TV}(p,\pi_k(p))
+\le
+\frac{m}{4k}.
+\]
+Choose
+\[
+k=
+\left\lfloor\frac{m}{2\delta}\right\rfloor+1.
+\]
+If two $\delta$-separated simplex points rounded to the same lattice point,
+the triangle inequality would give
+$d_{\rm TV}(p,q)\le m/(2k)<\delta$, a contradiction. Therefore rounding is
+injective on every $\delta$-packing, and
+\begin{equation}
+\boxed{
+\mathcal P_\delta(\Delta_{m-1})
+\le
+\binom{k+m-1}{m-1},
+\qquad
+k=
+\left\lfloor\frac{m}{2\delta}\right\rfloor+1.
+}
+\label{eq:simplex-packing}
+\end{equation}
+For $m=2$, the exact value is
+\[
+\mathcal P_\delta(\Delta_1)
+=
+\left\lfloor\frac1\delta\right\rfloor+1.
+\]
+The lattice bound is substantially tighter than the coarse volumetric
+estimate used in the preceding draft.
+
+\subsection*{Both factors can bind}
+
+Neither factor in \eqref{eq:combined-depth} is decorative. For an interior
+ring with $m=12$, $\delta=0.5$, and $\epsilon=0.01$, the achieved packing depth
+is
+\[
+D_\delta=K+1
+\]
+for $K<m$ transitions and agrees with the thermodynamic factor to five
+figures. Once all twelve configurations have been visited, $D_\delta$ remains
+at twelve while the thermodynamic factor continues to increase. The geometric
+factor then becomes the active constraint.
+
+Figure~\ref{fig:twofactor-tightness} displays both regimes. Panel (a) shows
+that a depth-two shuttle and a depth-six interior ring have the same
+asymptotic tightness curve. Panel (b) shows the crossover from a
+thermodynamic-resource ceiling to the fixed repertoire ceiling.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{verification/organizational-depth/tightness/figures/tightness.pdf}
+\caption{Sharpness of the transition bound and the two-factor retained-depth
+boundary. \textbf{(a)} The SFS and Zhang achieved-to-bound ratios as functions
+of drive asymmetry, with measured points from a depth-two shuttle and a
+depth-six finite-rate interior ring. Saturation is asymptotic and independent
+of retained depth. \textbf{(b)} Packing depth for a twelve-configuration
+interior ring as activity budget increases. The thermodynamic factor binds
+until the finite repertoire is exhausted; the geometric factor binds
+afterward.}
+\label{fig:twofactor-tightness}
+\end{figure}
+
+\begin{corollary}[What unbounded fixed-resolution depth requires]
+\label{cor:unbounded-packing-depth}
+At fixed $\delta>0$, unbounded retained packing depth requires both
+\[
+\mathcal P_\delta(\mathcal X)=\infty
+\]
+and an unbounded activity--entropy product along the history. Either finite
+operational packing capacity or a uniform finite ceiling on
+$\mathcal N_*\Sigma_*$ forbids unbounded depth.
+\end{corollary}
+
+The geometric requirement is more general than growth of a finite-state
+alphabet. A fixed countably infinite state space, an infinite-dimensional
+state description, a non-compact memory coordinate, or a physical record that
+grows without bound can all provide infinite fixed-resolution packing
+capacity. What matters is not literally increasing $|S|$, but the physical
+creation and maintenance of an operational repertoire that is not totally
+bounded at the declared resolution.
 
 \section{Physical versus organizational metrics}
 \label{sec:metrics}
@@ -1567,14 +1723,15 @@ repertoire by the activity--entropy budget, while
 \eqref{eq:simplex-packing} caps the repertoire geometrically for every fixed
 $|S|$. Thus unbounded fixed-resolution depth requires departure from at least
 one of these conditions: unbounded activity/entropy resources, failure of the
-finite-state Markov description, or growth of the operational state space
-itself.
+finite-state Markov description, or unbounded fixed-resolution operational packing capacity.
 
 The last possibility turns the singularity question into a resource question
-rather than resolving it for free. A growing memory, record, component
-alphabet, spatial support, or other operational coordinate can enlarge the
-packing capacity, but the physical process that creates and maintains that
-capacity must then be included in the model.
+rather than resolving it for free. It need not literally be a growing finite
+state count: a fixed non-totally-bounded operational space can already have
+infinite packing capacity. A growing memory, record, component alphabet,
+spatial support, or other operational coordinate can enlarge the packing
+capacity, but the physical process that creates and maintains that capacity
+must then be included in the model.
 
 This is left deliberately open. A successful construction would be
 scientifically informative precisely because it would expose both where new
@@ -1749,6 +1906,12 @@ The maximum speed of dynamical evolution.
 \emph{Physica D}
 120 (1998), 188--195.
 \url{https://doi.org/10.1016/S0167-2789(98)00054-2}
+
+\bibitem{Zhang2018Comment}
+Y. Zhang.
+Comment on \emph{Speed Limit for Classical Stochastic Processes}.
+arXiv:1811.06978, 2018.
+\url{https://arxiv.org/abs/1811.06978}
 
 \bibitem{Zhang2001}
 J. Zhang, K. H. Johansson, J. Lygeros, and S. Sastry.

@@ -1,5 +1,9 @@
 name: Lean organizational-depth verification
 
+concurrency:
+  group: org-depth-lean-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   push:
     paths:
@@ -63,10 +67,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install numerical dependency
-        run: python -m pip install numpy
+      - name: Install numerical dependencies
+        run: python -m pip install numpy sympy matplotlib
       - name: Reproduce tightness and packing-depth checks
         run: |
           python verification/organizational-depth/tightness/analytic.py
           python verification/organizational-depth/tightness/simulate.py
-          python verification/organizational-depth/tightness/packing.py
+          python verification/organizational-depth/tightness/packing.py --ci
+          python verification/organizational-depth/tightness/verify.py --trials 40
+          python verification/organizational-depth/tightness/make_figure.py
+          test -s verification/organizational-depth/tightness/figures/tightness.pdf
