@@ -1,6 +1,6 @@
 # Independent two-factor re-audit — 15 September 2026
 
-This directory preserves the second-agent re-audit of the Organizational Depth correction as supplied.
+This directory preserves the second-agent re-audit source package of the Organizational Depth correction as supplied. The rendered figure is reproducibly regenerated from the archived `make_figure.py` rather than stored as a second binary copy.
 
 The package independently reproduced the finite-rate interior-ring construction, closed the Zhang tightness caveat, showed that the thermodynamic packing-depth factor is itself asymptotically attainable, derived a tighter simplex packing-number upper bound, and supplied an independent Lean formalization.
 
