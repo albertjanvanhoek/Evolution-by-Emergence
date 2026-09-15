@@ -5,6 +5,8 @@ on:
     paths:
       - 'Individual_essays/Organizational Depth at Finite Time.tex'
       - 'verification/organizational-depth/appendix/**'
+      - 'verification/organizational-depth/tightness/**'
+      - 'verification/organizational-depth/tightness/**'
       - '.github/workflows/organizational-depth-paper.yml'
   pull_request:
     paths:
@@ -23,6 +25,16 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended lmodern
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Generate two-factor figure
+        run: |
+          python -m pip install numpy matplotlib
+          python verification/organizational-depth/tightness/make_figure.py
+          test -s verification/organizational-depth/tightness/figures/tightness.pdf
 
       - name: Compile paper
         shell: bash
