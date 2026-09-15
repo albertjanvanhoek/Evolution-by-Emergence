@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Tactic
+import Mathlib.Analysis.Real.Sqrt
+import Mathlib.Analysis.SpecialFunctions.Exp
 
 namespace AffinityLayer
 
