@@ -60,3 +60,8 @@ That run passed `lake build`. The `#print axioms` audit reported only the standa
 for the reported declarations, with no `sorryAx`.
 
 Subsequent commits on the branch modify repository routing/workflow documentation only unless explicitly stated otherwise.
+
+
+## Repository integration
+
+The paper is routed from the top-level README and the global `CLAIMS.md`. The CI workflow is configured to run on pull requests and on `main` whenever the sufficient-alignment paper or collective-alignment formalization changes.
