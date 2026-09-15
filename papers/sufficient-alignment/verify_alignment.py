@@ -56,3 +56,25 @@ print("majority3(0.9) =", majority3(0.9))
 print("R_protocol(m=3,p=0.5) =", protocol_R(3, 0.5))
 print("repair threshold =", threshold)
 print("All sufficient-alignment checks passed.")
+
+
+# Selected versus sufficient alignment toy model.
+def selected_alignment(v, cost):
+    return v / cost
+
+def alignment_objective(v, cost, e):
+    return v*e - 0.5*cost*e*e
+
+v, cost = 0.2, 1.0
+eopt = selected_alignment(v, cost)
+assert abs(eopt - 0.2) < 1e-12
+assert 2*v < cost
+assert eopt < 0.5
+for e in [0.0, 0.1, 0.2, 0.5, 1.0]:
+    assert alignment_objective(v, cost, e) <= alignment_objective(v, cost, eopt) + 1e-12
+
+v2, cost2 = 0.4, 0.7
+assert 2*v2 >= cost2
+assert selected_alignment(v2, cost2) >= 0.5
+
+print("selected alignment insufficient example =", eopt)
