@@ -182,23 +182,41 @@ theorem periodic_maintenance_cycle_averages
   have hIKBal : (∫ t in 0..T, a * x t - δ * K t) = 0 := by
     simpa [hKp] using hftcK
 
+  have hxI : IntervalIntegrable x volume 0 T := hxcont.intervalIntegrable
+  have hKI : IntervalIntegrable K volume 0 T := hKcont.intervalIntegrable
+  have hhI : IntervalIntegrable h volume 0 T := hhcont.intervalIntegrable
+  have hOneI : IntervalIntegrable (fun _ : ℝ => (1 : ℝ)) volume 0 T :=
+    intervalIntegrable_const
+
   have hILog' := hILog
+  rw [intervalIntegral.integral_sub
+        ((hOneI.sub hhI).const_mul α) intervalIntegrable_const,
+      intervalIntegral.integral_const_mul,
+      intervalIntegral.integral_sub hOneI hhI,
+      intervalIntegral.integral_const,
+      intervalIntegral.integral_const] at hILog'
+  simp only [sub_zero, smul_eq_mul, mul_one] at hILog'
+
   have hIhBal' := hIhBal
+  rw [intervalIntegral.integral_const_mul,
+      intervalIntegral.integral_sub hKI hhI] at hIhBal'
+
   have hIKBal' := hIKBal
-  simp only [intervalIntegral.integral_sub, intervalIntegral.integral_const_mul,
-    intervalIntegral.integral_const, sub_zero, smul_eq_mul, mul_one] at hILog' hIhBal' hIKBal'
+  rw [intervalIntegral.integral_sub (hxI.const_mul a) (hKI.const_mul δ),
+      intervalIntegral.integral_const_mul,
+      intervalIntegral.integral_const_mul] at hIKBal'
 
   have hTne : T ≠ 0 := ne_of_gt hT
   have hH : (∫ t in 0..T, h t) = T * (1 - c / α) := by
     field_simp [hα]
     nlinarith [hILog']
   have hKH : (∫ t in 0..T, K t) = (∫ t in 0..T, h t) := by
-    apply sub_eq_zero.mp
-    apply mul_left_cancel₀ hε
-    nlinarith [hIhBal']
+    have hz : (∫ t in 0..T, K t) - (∫ t in 0..T, h t) = 0 :=
+      (mul_eq_zero.mp hIhBal').resolve_left hε
+    exact sub_eq_zero.mp hz
   have hXK : (∫ t in 0..T, x t) = (δ / a) * (∫ t in 0..T, K t) := by
+    rw [div_mul_eq_mul_div]
     apply (eq_div_iff ha).2
-    rw [mul_comm]
     nlinarith [hIKBal']
 
   constructor
