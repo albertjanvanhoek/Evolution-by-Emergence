@@ -122,11 +122,71 @@ theorem debt_characteristic_polynomial_identity (z : ℝ) :
 
 end DebtAwareStability
 
+section CriticalGain
+
+/-- Positive quadratic root of `y * (y + ε) = A`. -/
+def criticalY (ε A : ℝ) : ℝ :=
+  (Real.sqrt (ε ^ 2 + 4 * A) - ε) / 2
+
+/-- For nonnegative `ε` and `A`, the critical root is nonnegative. -/
+theorem criticalY_nonneg {ε A : ℝ} (hε : 0 ≤ ε) (hA : 0 ≤ A) :
+    0 ≤ criticalY ε A := by
+  have hrad : 0 ≤ ε ^ 2 + 4 * A := by positivity
+  have hs : ε ≤ Real.sqrt (ε ^ 2 + 4 * A) := by
+    rw [← Real.sqrt_sq hε]
+    exact Real.sqrt_le_sqrt (by nlinarith)
+  unfold criticalY
+  linarith
+
+/-- The closed-form critical root solves the quadratic exactly. -/
+theorem criticalY_root {ε A : ℝ} (hA : 0 ≤ A) :
+    criticalY ε A * (criticalY ε A + ε) = A := by
+  have hrad : 0 ≤ ε ^ 2 + 4 * A := by positivity
+  have hs := Real.sq_sqrt hrad
+  unfold criticalY
+  nlinarith
+
+/-- Above the critical root, the quadratic Routh--Hurwitz quantity is strictly
+above its threshold. -/
+theorem stable_above_criticalY {ε A y : ℝ}
+    (hε : 0 ≤ ε) (hA : 0 ≤ A) (hy : criticalY ε A < y) :
+    A < y * (y + ε) := by
+  have hyc : 0 ≤ criticalY ε A := criticalY_nonneg hε hA
+  have hroot := criticalY_root (ε := ε) hA
+  nlinarith
+
+/-- Closed-form critical debt-response gain. -/
+def criticalGamma (δ ε a α b : ℝ) : ℝ :=
+  (criticalY ε (a * α * b) - δ) / (a * b)
+
+/-- If the debt-response gain is above the closed-form critical gain, then the
+algebraic Routh--Hurwitz stability inequality holds. -/
+theorem stable_above_criticalGamma
+    {δ ε a α b γ : ℝ}
+    (hε : 0 ≤ ε) (ha : 0 < a) (hα : 0 ≤ α) (hb : 0 < b)
+    (hγ : criticalGamma δ ε a α b < γ) :
+    a * α * b <
+      (δ + ε + a * b * γ) * (δ + a * b * γ) := by
+  have hab : 0 < a * b := mul_pos ha hb
+  have hA : 0 ≤ a * α * b := by positivity
+  have hy : criticalY ε (a * α * b) < δ + a * b * γ := by
+    unfold criticalGamma at hγ
+    have hdiv := (div_lt_iff₀ hab).mp hγ
+    nlinarith
+  have hs := stable_above_criticalY hε hA hy
+  nlinarith
+
+end CriticalGain
+
 #print axioms cycle_average_balances
 #print axioms mean_maintenance_debt_zero
 #print axioms debt_stability_rewrite
 #print axioms debt_stability_lhs_monotone
 #print axioms debt_stability_upward_closed
 #print axioms debt_characteristic_polynomial_identity
+#print axioms criticalY_nonneg
+#print axioms criticalY_root
+#print axioms stable_above_criticalY
+#print axioms stable_above_criticalGamma
 
 end MaintenanceDynamics
