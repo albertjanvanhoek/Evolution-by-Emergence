@@ -151,7 +151,10 @@ theorem growthObjective_reducedCost
   ring
 
 /-- Exact square factorization around any positive stationary denominator d0
-satisfying eta*A = c0*d0^2. -/
+satisfying eta*A = c0*d0^2. The nonzero d0 hypothesis is retained for
+faithfulness to the paper's stationary-denominator interpretation; with Lean's
+division convention the algebraic identity itself also survives d0 = 0. -/
+set_option linter.unusedVariables false in
 theorem reducedRegulatoryCost_sub_at_stationary
     (eta A c0 d d0 : ℝ)
     (hd : d ≠ 0)
