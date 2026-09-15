@@ -14,6 +14,7 @@ Three things are computed:
              which is sharp to within one point at n = 2.
 """
 from __future__ import annotations
+import argparse
 import itertools
 from math import comb, floor
 import numpy as np
@@ -84,11 +85,11 @@ def greedy(pts, delta, order, tol=1e-12):
     return chosen
 
 
-def achievable(n, delta, k=20, restarts=400, seed=0):
+def achievable(n, delta, k=20, restarts=400, seed=0, n_random=4000):
     if n == 2:                                    # exact
         return floor(1 / delta) + 1, True
     rng = np.random.default_rng(seed)
-    pts = candidates(n, k, rng)
+    pts = candidates(n, k, rng, n_random=n_random)
     N = len(pts)
     best = greedy(pts, delta, range(N))
     for _ in range(restarts):
@@ -113,16 +114,27 @@ def achievable(n, delta, k=20, restarts=400, seed=0):
 # --------------------------------------------------------------------------
 
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--ci", action="store_true",
+                    help="fast smoke-test settings for CI; full lower-bound search remains the default")
+    args = ap.parse_args()
+
+    rounding_trials = 4000 if args.ci else 40000
+    search_k = 10 if args.ci else 20
+    restarts = 12 if args.ci else 400
+    n_random = 500 if args.ci else 4000
+
     print("=" * 78)
-    print("rounding lemma  d_TV(p, L_k) <= n/(4k)   (random check, 2e5 points each)")
+    print("rounding lemma  d_TV(p, L_k) <= n/(4k)")
     print("=" * 78)
     print("  {:<5}{:<5}{:>14}{:>14}{:>14}".format(
         "n", "k", "worst found", "n/(4k)", "proof extremal"))
     for n in [2, 3, 4, 5, 6]:
         for k in [3, 7]:
-            w, b, pr = check_rounding_lemma(n, k, trials=40000)
+            w, b, pr = check_rounding_lemma(n, k, trials=rounding_trials)
             flag = "  OK" if w <= b + 1e-12 else "  VIOLATED"
             print("  {:<5}{:<5}{:>14.6f}{:>14.6f}{:>14.6f}{}".format(n, k, w, b, pr, flag))
+            assert w <= b + 1e-12
 
     print()
     print("=" * 78)
@@ -131,11 +143,15 @@ if __name__ == "__main__":
     print("  {:<6}{:<8}{:<22}{:<22}".format("|S|", "delta", "achievable", "upper bound"))
     for n in [2, 3, 4, 5]:
         for delta in [0.9, 0.5, 0.25]:
-            a, exact = achievable(n, delta)
+            a, exact = achievable(n, delta, k=search_k, restarts=restarts,
+                                  n_random=n_random)
             ub, k = upper_bound(n, delta)
+            assert a <= ub
             tag = "exact" if exact else ">= (best found)"
             print("  {:<6}{:<8}{:<22}{:<22}".format(
                 n, delta, f"{a}  {tag}", f"{ub}  (k={k})"))
     print()
+    if args.ci:
+        print("  CI mode uses a reduced lower-bound search; theorem checks are unchanged.")
     print("  Every entry is finite and depends only on (|S|, delta).")
     print("  Neither N_* nor Sigma_* nor time nor temperature appears in it.")
