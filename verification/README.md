@@ -19,6 +19,12 @@ The verification directory is deliberately self-contained: it has its own pinned
 
 Headline result: **146 audited declarations, zero errors, zero `sorry`, no vacuous theorem, and independently reproduced exact witnesses.**
 
+## Literature and novelty audit
+
+- [2026-09-15 literature audit package](./audits/2026-09-15-literature/) — two adversarial literature audits, the repository's response, and the framing note [From synthesis to paradigm](./audits/2026-09-15-literature/FROM_SYNTHESIS_TO_PARADIGM.md).
+
+The audits converge on a conservative status: most component mechanisms have substantial antecedents, so the recent stack is better presented as a **synthesis/research architecture with exact model-specific results** than as a collection of new general theorems. The audits are preserved as dated judgments rather than treated as exhaustive proof of priority.
+
 ## Paper-to-declaration maps
 
 Each recent paper package now contains a `FORMAL_VERIFICATION.md` file mapping manuscript-facing claims to the exact Lean declarations that support them:
