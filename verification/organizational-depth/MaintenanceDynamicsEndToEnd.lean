@@ -38,7 +38,9 @@ theorem debtXFlow_dx_at_equilibrium
   have hg0 := (hasDerivAt_id x₀).mul
     ((hasDerivAt_const x₀ (1 : ℝ)).sub (hasDerivAt_id x₀))
   have hg : HasDerivAt (fun x : ℝ => x * (1 - x)) (1 - 2*x₀) x₀ := by
-    exact hg0.congr_deriv (by ring)
+    exact hg0.congr_deriv (by
+      change (1 - x₀) - x₀ = 1 - x₀ * 2
+      ring)
   have hlin0 := (hasDerivAt_const x₀ (δ*K₀)).sub
     (HasDerivAt.const_mul a (hasDerivAt_id x₀))
   have hlin : HasDerivAt (fun x : ℝ => δ*K₀ - a*x) (-a) x₀ := by
