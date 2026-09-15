@@ -864,13 +864,14 @@ be new relative to states visited earlier.
 
 \begin{definition}[Retained packing depth]
 Let $V(T)=\{x_n:t_n\le T\}$ be the visited retained states up to time $T$.
-For a fixed operational resolution $\delta>0$, define
+For a fixed operational resolution $\delta>0$, define the packing depth as
+the supremum over finite mutually separated subfamilies
 \begin{equation}
 \boxed{
 D_\delta(T)
 =
 \sup\left\{
-|Y|:Y\subseteq V(T),\;
+|Y|:Y\subseteq V(T),\;Y\text{ finite},\;
 d_{\rm op}(x,y)\ge\delta
 \text{ for all distinct }x,y\in Y
 \right\}.
@@ -980,11 +981,12 @@ depth.
 
 This leads to two independent bounds on $D_\delta$.
 
-First, if $D_\delta(T)=D<\infty$, choose $D$ pairwise-separated visited
+First, choose any finite set of $D$ pairwise-separated visited
 representatives and order their visit times. Every one of the $D-1$
 chronological gaps has endpoint distance at least $\delta$. The gaps are
 disjoint, so the same path-length argument used for
-Theorem~\ref{thm:markov-operational} gives
+Theorem~\ref{thm:markov-operational} gives the bound below for every such
+finite set, and therefore for the packing depth itself:
 \begin{equation}
 \boxed{
 D_\delta(T)
