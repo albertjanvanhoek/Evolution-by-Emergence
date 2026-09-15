@@ -1469,21 +1469,28 @@ costs, physical distances, and operational distinctions.
 The stationary ratio $e_n/\Phi_n$ supplies none of these
 identifications automatically.
 
+The packing-depth correction sharpens that requirement. Repeated transition
+activity through a fixed repertoire is not cumulative organizational depth.
+A process contributes to $D_\delta$ only by adding a retained state that
+remains distinguishable from the selected repertoire at the declared
+operational resolution. In this sense, retained depth is a property of the
+reachable operational repertoire, not of the number of transitions executed.
+
 Reuse, templating, catalytic machinery, recombination, and
 horizontal transfer can reduce the work that remains to be
-performed. They do not establish a fixed-resolution escape
-unless the resulting transformations satisfy the full physical
-accounting. Access, transport, integration, control, and
-retention can remain consequential even when reconstruction
-of prior structure is avoided.
+performed. They may enlarge the accessible packing repertoire, reduce the
+resources needed to traverse it, or both. But neither high turnover nor a
+large transition count establishes depth unless new retained distinctions
+are actually added.
 
-The ordinary cumulative claim is not threatened by this
-boundary. Retained structure can improve access to later
-targets without generating infinitely many targets in finite
-time. The interventional criterion for cumulative contribution
-in Organizational Accessibility remains a separate question
-from finite-time organizational escape.
-
+The ordinary cumulative claim is not threatened by this boundary. Retained
+structure can improve access to later targets without generating infinitely
+many targets in finite time. Indeed the corrected formulation makes the link
+cleaner: cumulative emergence changes the repertoire of retained distinctions,
+whereas repeated circulation through an unchanged repertoire does not.
+The interventional criterion for cumulative contribution in Organizational
+Accessibility remains a separate causal question from finite-time
+organizational escape.
 
 \section{Novelty boundary}
 
@@ -1491,8 +1498,8 @@ None of the following is claimed as new generic mathematics:
 the pure-birth criterion, bounded-rate non-explosion,
 geometric-series tests for stationary cascades,
 Cauchy--Schwarz bounds, total-variation data processing,
-finite-length Cauchy convergence, thermodynamic speed limits,
-optimal transport, or Zeno accumulation
+finite-dimensional packing bounds, finite-length Cauchy convergence,
+thermodynamic speed limits, optimal transport, or Zeno accumulation
 \cite{Feller1971,Shiraishi2018,Aurell2011,VuSaito2023,Nagayama2025,Zhang2001}.
 Nor is finite material alongside stronger-norm divergence a new
 singularity mechanism \cite{KatzPavlovic2005}.
@@ -1503,24 +1510,30 @@ The proposed contribution is an application and clarification:
       the sequential stochastic accessibility route;
 \item bounded aggregate throughput and bounded specific turnover
       answer different questions;
-\item physically meaningful organizational escape requires an
-      operational resolution standard rather than an index alone;
+\item consecutive fixed-resolution transition count and retained
+      organizational depth are different quantities;
+\item retained depth can be operationalized as the packing depth of the
+      visited retained repertoire at a fixed measurement resolution;
 \item for finite-state Markov jump dynamics the physical-to-operational
       bridge is exact because the speed-limit metric is total variation
       and measurement channels contract total variation;
-\item the resulting model-specific boundary is controlled by two
-      cumulative resources---entropy production and dynamical activity---so
-      loss of the uniform kinetic coefficient has a concrete activity
-      interpretation;
-\item outside that class, transport/readout comparison and kinetic
-      coercivity remain explicit assumptions whose failure modes must be
-      identified rather than hidden.
+\item the activity--entropy path-length bound is asymptotically sharp, but
+      sharpness alone does not diagnose depth because both recurrent and
+      finite-depth trajectories can approach it;
+\item retained packing depth is constrained independently by dynamical
+      resources and by the packing capacity of the accessible operational
+      state space;
+\item outside that class, transport/readout comparison, kinetic coercivity,
+      and growth of operational packing capacity remain explicit issues whose
+      failure modes must be identified rather than hidden.
 \end{enumerate}
 
-No priority claim is made for the component inequalities. The proposed
-novelty lies in assembling them into a fixed-resolution criterion for
-organizational depth and using that criterion to identify which resource
-must fail in a claimed finite-time escape.
+No priority claim is made for the component inequalities, packing arguments,
+or thermodynamic speed limits. The proposed novelty lies in assembling them
+into a distinction between path activity and retained organizational depth,
+and in identifying the two independent requirements for unbounded depth:
+enough dynamical resources to traverse distinctions and enough operational
+state-space capacity to contain them.
 
 \section{Challenge to a dynamically organizing system}
 
@@ -1528,95 +1541,103 @@ The paper therefore ends with a constructive challenge rather than a
 conjecture.
 
 \begin{quote}
-Produce a physically specified autonomous system that completes infinitely
-many retained transformations in finite time while those transformations
-remain distinguishable at one fixed operational resolution, and provide a
-complete accounting of the kinetic, energetic, control, memory, and
-measurement resources that make this possible.
+Produce a physically specified autonomous system whose retained packing depth
+$D_\delta(T)$ becomes unbounded before a finite time $T_*$ at one fixed
+operational resolution $\delta>0$, and provide a complete accounting of the
+kinetic, energetic, control, memory, measurement, and state-space resources
+that make this possible.
 \end{quote}
 
-For the general speed--distance framework, any such construction must evade
-the sufficient conditions established above by losing uniform kinetic
-coercivity, losing physical-to-operational metric control, leaving the
-finite-cost/finite-time regime, or moving to a model class in which the
-assumed inequality is inapplicable.
+This is stricter than asking for infinitely many resolved transitions. A
+two-state shuttle already supplies those. A successful construction must add
+unboundedly many mutually distinguishable retained states, or identify an
+operational state variable in which such distinctions accumulate.
 
-For finite-state Markov jump dynamics the challenge is sharper.
-If total entropy production remains finite and
-$d_{{\rm op},n}\ge\delta>0$ for infinitely many retained transitions,
-Theorem~\ref{thm:markov-operational} forces
-\[
-\mathcal N_*=
-\sum_n\int_{I_n}A(t)\,dt
-=
-\infty.
-\]
-Thus the bridge does not fail: the required escape resource is unbounded total
-dynamical activity, or else departure from the finite-state Markov model.
-Equivalently, in the time-based form \eqref{eq:activity-coefficient}, the
-effective coefficient can collapse only through diverging average activity
-(or through failure of the thermodynamic interpretation itself).
+For the general speed--distance framework, such a construction must evade the
+sufficient conditions established above by losing uniform kinetic coercivity,
+losing physical-to-operational metric control, leaving the finite-cost/finite-
+time regime, or moving to a state space whose fixed-resolution packing
+capacity grows without bound.
+
+For finite-state Markov jump dynamics the challenge is sharper still.
+Corollary~\ref{cor:markov-depth} bounds any pairwise-separated retained
+repertoire by the activity--entropy budget, while
+\eqref{eq:simplex-packing} caps the repertoire geometrically for every fixed
+$|S|$. Thus unbounded fixed-resolution depth requires departure from at least
+one of these conditions: unbounded activity/entropy resources, failure of the
+finite-state Markov description, or growth of the operational state space
+itself.
+
+The last possibility turns the singularity question into a resource question
+rather than resolving it for free. A growing memory, record, component
+alphabet, spatial support, or other operational coordinate can enlarge the
+packing capacity, but the physical process that creates and maintains that
+capacity must then be included in the model.
 
 This is left deliberately open. A successful construction would be
-scientifically informative precisely because it would have to expose the
-resource that supports the claimed depth. A stronger no-go theorem would be
-equally informative if it derived an activity or mobility bound from a more
-specific physical architecture.
+scientifically informative precisely because it would expose both where new
+distinguishable states live and what resources make them reachable and
+retainable.
 
 \section{Conclusion}
 
-Infinite labelled depth does not establish infinite physical
-change. Infinite physical variation, when present, does not
-automatically establish infinitely many retained organizational
-distinctions at a fixed operational resolution.
+Infinite labels do not establish infinite physical change. Infinite resolved
+transitions do not establish infinite retained depth. The distinction matters
+because a trajectory can shuttle forever between a finite set of states while
+remaining separated at fixed operational resolution on every step.
 
-The stochastic accessibility route is closed under the stated
-material and per-realization rate bounds. The continuum cascade
-survives bounded aggregate throughput through a shrinking
-inventory and imposed increasing specific turnover, without
-thereby establishing a physical transient escape.
+The stochastic accessibility route is closed under the stated material and
+per-realization rate bounds. The continuum cascade survives bounded aggregate
+throughput through a shrinking inventory and imposed increasing specific
+turnover, without thereby establishing a physical transient escape.
 
-The general conditional result is
+The finite-action results remain valid as path-length and transition-count
+bounds. For finite-state Markov jump dynamics the activity--entropy bound is
+asymptotically sharp:
+\[
+\frac{d_{\rm TV}}{\sqrt{\mathcal N\Sigma/2}}
+\to1
+\]
+for a weakly driven edge. But this sharpness is neutral about depth: both a
+two-state shuttle and an interior finite-state ring can approach it.
+
+The corrected depth quantity is the fixed-resolution packing depth
+$D_\delta$, the size of the largest mutually distinguishable retained
+repertoire visited by the process. It obeys two independent constraints:
 \[
 \boxed{
-\begin{gathered}
-\text{finite time and finite charged cost}\\
-+\ \text{uniform speed--distance control}\\
-+\ \text{uniform physical--operational metric comparison}\\
-\Longrightarrow\\
-\text{finitely many fixed-resolution organizational transitions}.
-\end{gathered}
+D_\delta(T)
+\le
+\min\left\{
+1+\frac1\delta\sqrt{\frac{\Sigma_*\mathcal N_*}{2}},
+\;
+\mathcal P_\delta(\mathcal X_T)
+\right\}.
 }
 \]
-
-For finite-state Markov jump dynamics a stronger model-specific result is
-available:
+The first term is dynamical: enough operational path length must be paid for.
+The second is geometric: enough distinguishable states must exist. For a fixed
+$m$-state probability simplex,
 \[
-\boxed{
-\begin{gathered}
-\text{finite entropy production}\\
-+\ \text{finite expected total jump count}\\
-\Longrightarrow\\
-\text{finite fixed-resolution operational depth}.
-\end{gathered}
-}
+\mathcal P_\delta
+\le
+\left(1+\frac2\delta\right)^{m-1},
 \]
-Here the physical-to-operational bridge is exact because total variation is
-both the stochastic speed-limit distance and an upper bound on all
-channel-based operational distinguishability. The remaining kinetic resource
-is dynamical activity.
+so finite-state retained depth is capped regardless of how much transition
+activity is spent.
 
-The bounded-power refinement example shows why the resolution condition is
-essential. The weak-versus-strong norm example shows why finite metric length
-must not be mistaken for a universal regularity theorem. The transport example
-shows why an operational comparison cannot be inferred from a physical metric
-without specifying the readout.
+The bounded-power refinement example shows why resolution is essential. The
+shuttle shows why recurrence must also be excluded. The weak-versus-strong norm
+example shows why finite metric length must not be mistaken for a universal
+regularity theorem. The transport example shows why an operational comparison
+cannot be inferred from a physical metric without specifying the readout.
 
 A physically meaningful counterexample must therefore do more than assign an
-increasing level number or prescribe increasing rates. It must expose the
-resource that supports infinitely many retained, fixed-resolution distinctions.
-That construction is left as a challenge to any proposed dynamically
-organizing system.
+increasing level number, prescribe increasing rates, or accumulate resolved
+motion. It must create and maintain unbounded operational packing capacity and
+supply the resources needed to reach new retained distinctions. That sharper
+construction is left as a challenge to any proposed dynamically organizing
+system.
 
 \paragraph{Reference status.}
 The supplied Organizational Accessibility v8 manuscript is the source context
