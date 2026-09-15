@@ -1,5 +1,7 @@
 # Claim ledger
 
+Machine-checked claims in this ledger are mapped to exact Lean declarations in [FORMAL_VERIFICATION.md](FORMAL_VERIFICATION.md).
+
 | ID | Claim | Status |
 |---|---|---|
 | A1 | The current production-network stack takes effective couplings \(B_{ij}\) as given and therefore does not itself model encounter or association persistence. | Framework observation |
