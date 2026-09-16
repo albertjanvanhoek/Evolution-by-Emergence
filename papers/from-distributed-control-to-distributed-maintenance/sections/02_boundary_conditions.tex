@@ -1,0 +1,247 @@
+\section{Boundary condition I: selected control is not sufficient control}
+
+Suppose individual process \(i\) chooses effort \(a_i\) according to a local objective \(U_i(a_i,z)\). Let \(a_i^{\rm sel}\) denote a locally selected action, while collective viability requires
+\[
+a\in\A_{\V}(z).
+\]
+Nothing in optimization guarantees
+\[
+a^{\rm sel}\in\A_{\V}(z).
+\]
+
+This is not peculiar to biological selection or economic incentives. It is a general mismatch between two optimization problems:
+\[
+\boxed{
+\text{what persists locally}
+\quad\text{and}\quad
+\text{what suffices globally}.
+}
+\]
+This distinction was the organizing result of the companion regulation paper and also appears in the initial distributed-control models.
+
+Its importance for distributed maintenance is methodological. Observing that a behaviour is stable, common, rewarded, individually rational, evolutionarily retained, or protocol-compatible does not establish that it supplies enough of the function required by the wider system. The viability requirement must be specified independently.
+
+\section{Boundary condition II: participant presence is not participant contribution}
+
+Distributed systems tempt us to treat the existence of a component as evidence of its contribution. But contribution is a counterfactual relation.
+
+For participant \(i\), architecture \(A\), state \(z\), and viability component \(j\), write
+\[
+\boxed{
+C_{ij}(z,A)
+=
+M_j(z',A')
+-
+M_j(z,A),
+}
+\]
+where the first term represents a declared counterfactual in which participant \(i\) is added, removed, modified, or reassigned and all relevant downstream consequences are included.
+
+The notation intentionally leaves the counterfactual specification explicit. Different attribution schemes answer different questions. A leave-one-out calculation asks whether \(i\) is currently necessary. A Shapley allocation asks about average marginal contribution over coalition orderings. An interaction decomposition asks where non-additivity resides. None is a universal measure of intrinsic value.
+
+\subsection{Contribution depends on network response}
+
+A participant can have a positive direct effect but a negative post-adjustment effect if other processes re-equilibrate in response. Thus
+\[
+C_i^{\rm direct}>0
+\]
+does not imply
+\[
+C_i^{\rm equilibrium}>0.
+\]
+
+This is familiar in ecological interaction networks, economics and game theory, but it is a crucial safeguard for any theory of distributed maintenance. Contribution belongs to a relation:
+\[
+\boxed{
+\text{participant}
+\times
+\text{network state}
+\times
+\text{architecture}
+\times
+\text{viability criterion}.
+}
+\]
+
+\subsection{Sampling adds another architecture dependence}
+
+A companion analysis of JAM/ELVES develops an important engineered instance in detail: when correction is supplied by all available participants, adding another corrective participant is structurally monotone; when correction is allocated through a constrained sample, addition can alter which other corrective processes gain access to the sample.
+
+The synthesis point is broader:
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\centering
+Contribution depends not only on what a participant can do,
+but on how the architecture gives it causal access to the relevant function.}}
+\end{center}
+The technical JAM result belongs in the companion protocol paper; here it serves only as evidence that the architecture must be part of the definition of contribution.
+
+\section{Boundary condition III: present state is not corrective capacity}
+
+Two systems can occupy the same visible state while possessing very different abilities to survive the next disturbance.
+
+Let \(X_t\) denote present performance or shared state and \(C_t\) a slower stock of corrective capacity. A minimal shock model is
+\[
+X_{\rm after}=X-s+\kappa C,
+\]
+with viability condition
+\[
+X-s+\kappa C\ge V.
+\]
+The corresponding disturbance margin is
+\[
+\boxed{
+M(X,C)=X-V+\kappa C.
+}
+\]
+At fixed \(X\),
+\[
+\frac{\partial M}{\partial C}=\kappa.
+\]
+
+Hence two systems can have identical observed performance, \(X_1=X_2\), while \(C_1\neq C_2\) gives \(M_1\neq M_2\).
+
+This is elementary algebra, but it exposes a major diagnostic problem. A system may look stable because it has not yet been challenged. Or it may look stable because substantial corrective machinery exists but remains dormant. Those states are observationally similar under quiet conditions and dynamically different under disturbance.
+
+Therefore:
+\[
+\boxed{
+\text{current state is not a sufficient statistic for future viability.}
+}
+\]
+
+\section{Boundary condition IV: maintenance capacity must itself be maintained}
+
+Corrective capacity is not automatically permanent. Consider
+\[
+C_{t+1}=(1-\delta)C_t+R_t,
+\]
+where \(R_t\) denotes renewal of capacity. At a required capacity \(C=V_C\),
+\[
+V_C\le(1-\delta)V_C+R
+\]
+is equivalent to
+\[
+\boxed{
+R\ge\delta V_C.
+}
+\]
+
+This replacement condition is almost definitional. Its importance lies not in mathematical novelty but in recursion. Once a process is necessary for maintaining another variable, its own replacement and renewal become part of the viability problem:
+\[
+\text{maintained state}
+\leftarrow
+\text{corrective process}
+\leftarrow
+\text{corrective capacity}
+\leftarrow
+\text{capacity renewal}.
+\]
+
+This resembles the organizational closure described in biological autonomy theory, where constraints participate in the production and maintenance of other constraints. Biological regulation has likewise been characterized as second-order control because it modulates constitutive processes rather than merely acting on an external target \citep{bich2016}. The present framework does not claim this recursion as new. Its extension is to use the same bookkeeping in systems that need not be organisms and need not realize organizational closure in the biological sense.
+
+\section{Boundary condition V: the signal receiving renewal is not necessarily the function that matters}
+
+A process can persist because something causes resources, structure, opportunity or reward to return to it.
+
+Let \(F_i\) denote the function of process \(i\) that contributes to a declared viability condition. Let \(Y_i\) denote the locally available signal that actually drives reinforcement or renewal. Let
+\[
+R_i=G(Y_i)
+\]
+be the resulting return.
+
+The maintenance loop is then
+\[
+\boxed{
+F_i
+\longrightarrow
+Y_i
+\longrightarrow
+R_i
+\longrightarrow
+C_i
+\longrightarrow
+F_i'.
+}
+\]
+
+A common but unsafe simplification is \(Y_i=F_i\). In many real systems, \(Y_i\) is only a proxy. The important question is therefore not simply whether a return loop exists, but whether the return-driving signal remains sufficiently informative about the function whose continuation matters.
+
+\subsection{A function--renewal proxy gap}
+
+We use \emph{function--renewal proxy gap} as a diagnostic term for the mismatch between \(F_i\) and \(Y_i\).
+
+No universal scalar measure is proposed. Depending on the system, the gap could be operationalized by classification error, conditional mutual information, predictive loss, calibration error, causal intervention, or the difference between function-conditioned and proxy-conditioned return.
+
+The important structural possibility is
+\[
+Y_i\uparrow
+\quad\text{while}\quad
+F_i\downarrow.
+\]
+Then the system can increasingly reinforce a process whose actual viability contribution is deteriorating. This creates a general route to lock-in.
+
+\subsection{Engineered illustration}
+
+In distributed verification, a positive judgment is not logically identical to having performed independent expensive verification. The architecture therefore faces a discrimination problem:
+\[
+\text{performed useful verification}
+\neq
+\text{observable evidence rewarded as verification}.
+\]
+If the latter becomes cheap to imitate, return may detach from function. The detailed incentive implications are protocol-specific and are not established here.
+
+\subsection{Biological illustration}
+
+Adaptive transport networks provide a very different implementation. In fungal mycelial networks, growth-induced flow can contain information about the network role of a cord, and cords predicted to carry larger or faster flows are more likely to increase in size \citep{heaton2010}. But current flow is also partly a consequence of existing structure. Thus
+\[
+\text{existing conductance}
+\rightarrow
+\text{flow}
+\rightarrow
+\text{further reinforcement}
+\]
+can create path dependence.
+
+Similar flux-reinforcement mathematics is established in adaptive transport models such as \emph{Physarum} networks \citep{tero2007}. The point here is therefore not that a sublinear-versus-superlinear reinforcement threshold is new. The cross-substrate lesson is different:
+\begin{center}
+\fbox{\parbox{0.88\linewidth}{\centering
+The signal that allocates future structure can be informative about function
+while simultaneously being endogenous to past allocation.}}
+\end{center}
+
+\section{Boundary condition VI: there is no intrinsic scalar contribution in a multi-viability system}
+
+Real systems maintain more than one condition.
+
+Suppose participant \(i\) changes two viability margins by
+\[
+\Delta\Mvec_i=(a,b)
+\]
+with \(a>0\) and \(b<0\). Any scalar score
+\[
+S_i=w_1a+w_2b,
+\qquad
+w_1,w_2>0,
+\]
+depends on the weighting. Weights can be chosen such that \(S_i>0\) or \(S_i<0\). Therefore:
+\[
+\boxed{
+\text{mixed-sign contribution has no weight-independent global sign.}
+}
+\]
+
+This prevents an important category error: replacing multiple viability requirements with an implicit scalar notion of what is \`\`good for the system.''
+
+The correct object is therefore a feasible region:
+\[
+\boxed{
+\A
+=
+\bigcap_{j=1}^{k}\A_j.
+}
+\]
+Three possibilities follow: the intersection is broad; it is narrow; or it is empty. If
+\[
+\bigcap_j\A_j=\varnothing,
+\]
+then no parameter tuning inside the present architecture can satisfy all declared requirements simultaneously. The intervention must move to a higher architectural level.
