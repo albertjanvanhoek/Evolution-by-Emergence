@@ -1,0 +1,31 @@
+\begin{tikzpicture}[
+  font=\small,
+  >=Latex,
+  box/.style={draw, rounded corners, align=center, minimum height=10mm, text width=28mm, inner sep=3pt},
+  wide/.style={draw, rounded corners, align=center, minimum height=10mm, text width=34mm, inner sep=3pt},
+  note/.style={draw, dashed, rounded corners, align=center, text width=34mm, inner sep=3pt},
+  arr/.style={->, thick}
+]
+\node[wide] (V) at (0,3.4) {Declared viability condition \(\V\)\\and disturbance class \(\D\)};
+\node[box] (S) at (4,3.4) {Shared enabling\\state};
+\node[box] (F) at (8,3.4) {Viability-relevant\\local function \(F_i\)};
+\node[box] (Y) at (8,1.15) {Locally available\\signal / proxy \(Y_i\)};
+\node[box] (R) at (4,1.15) {Return / renewal\\\(R_i=G(Y_i)\)};
+\node[box] (C) at (0,1.15) {Future corrective\\capacity \(C_i\)};
+
+\draw[arr] (V) -- node[above]{defines} (S);
+\draw[arr] (S) -- (F);
+\draw[arr] (F) -- (Y);
+\draw[arr] (Y) -- (R);
+\draw[arr] (R) -- (C);
+\draw[arr] (C.north) |- (S.west);
+
+\node[note] (D) at (0,-1.65) {\textbf{Failure domains}\\Nominal multiplicity need not supply independent correction};
+\node[note] (M) at (4,-1.65) {\textbf{Multiple margins}\\\(\A=\bigcap_j\A_j\) may be broad, narrow, or empty};
+\node[note] (P) at (8,-1.65) {\textbf{Proxy gap}\\\(Y_i\) may remain high while viability contribution \(F_i\) falls};
+
+\draw[arr,dashed] (D.north) -- (C.south);
+\draw[arr,dashed] (P.north) -- (Y.south);
+
+\node[fit=(S)(F)(Y)(R)(C), draw, densely dotted, rounded corners, inner sep=6pt] {};
+\end{tikzpicture}
