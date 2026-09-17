@@ -227,7 +227,10 @@ theorem no_infinite_strict_expansion_in_finite_universe
   have hEq : S (n + 1) = S n := by
     simpa using hFix 1
   have hStrict := hStrictAll n
-  exact hStrict.2 hEq.symm
+  have hCard : (S n).card < (S (n + 1)).card :=
+    strict_finset_step_card_lt hStrict
+  rw [hEq] at hCard
+  exact (Nat.lt_irrefl _ hCard)
 
 end DeterministicFixation
 
@@ -307,7 +310,7 @@ theorem finite_generative_closure_saturates
     (hClosed := by
       intro A hA
       exact Finset.subset_univ _)
-  simpa using h
+  simpa [FiniteGenerativeClosureN] using h
 
 /-- Therefore a fixed finite retained generative closure cannot produce a
 strictly larger distinguishable repertoire at every round forever. -/
@@ -322,7 +325,7 @@ theorem finite_generative_closure_not_strict_forever
     (step := finiteGenerativeStep Generate)
     (S := FiniteGenerativeClosureN Generate initial)
   · exact finiteGenerativeClosureN_succ Generate initial
-  · simp
+  · simp [FiniteGenerativeClosureN]
   · intro A hA
     exact finiteGenerativeStep_inflationary Generate A
   · intro A hA
