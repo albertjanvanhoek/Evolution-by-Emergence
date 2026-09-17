@@ -98,7 +98,9 @@ Between learners,
 
 truth is infrastructure.
 
----
+Evolutionary persistence in far-from-equilibrium systems drives the emergence of layered feedback structures. Intelligence is substrate-dependent:
+
+`INTELLIGENCE (I) -> BODY (B) -> RESOURCES (R) -> PLANET (P)`
 
 But no channel is perfect.
 
