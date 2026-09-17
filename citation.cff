@@ -20,7 +20,10 @@ affiliation: "Public Health / Complexity Science / Evolution"
 doi: 10.5281/zenodo.15209136
 
 # ——— Licence ———
-license: "CC-BY-4.0"
+# CFF 1.2 interprets multiple license entries as alternatives (OR).
+license:
+  - "CC-BY-4.0"
+  - "Apache-2.0"
 
 # ——— Keywords ———
 keywords:
