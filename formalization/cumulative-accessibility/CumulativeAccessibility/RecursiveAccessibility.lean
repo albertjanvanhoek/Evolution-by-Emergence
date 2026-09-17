@@ -38,7 +38,7 @@ model: each viable instance produces `nu` candidate variations and expected
 instance count at generation `t` is proportional to `R^t`. -/
 noncomputable def finiteSearchOpportunity
     (nu R : ℝ) (H : ℕ) : ℝ :=
-  nu * ∑ t in Finset.range (H + 1), R ^ t
+  nu * ∑ t ∈ Finset.range (H + 1), R ^ t
 
 /-- Powers are monotone in the nonnegative base. Proved here directly so the
 search-opportunity theorem does not depend on a specialized library lemma. -/
