@@ -78,3 +78,57 @@ assert 2*v2 >= cost2
 assert selected_alignment(v2, cost2) >= 0.5
 
 print("selected alignment insufficient example =", eopt)
+
+
+# Recurrent-maintenance extension.
+def deficit(r):
+    return 1.0 - r
+
+def cycle3_witness(rB, rC, kAB, kBC):
+    """Canonical witness used by the Lean theorem."""
+    xA = deficit(rB) * deficit(rC)
+    xB = kAB * deficit(rC)
+    xC = kAB * kBC
+    return xA, xB, xC
+
+def cycle3_step(rA, rB, rC, kAB, kBC, kCA, x):
+    xA, xB, xC = x
+    return (
+        rA*xA + kCA*xC,
+        rB*xB + kAB*xA,
+        rC*xC + kBC*xB,
+    )
+
+# Example from the derivation: all nodes are individually subcritical,
+# every two-node subgraph lacks a closed return cycle, but the full directed
+# three-cycle lies above its canonical product threshold.
+rA, rB, rC = 0.7, 0.6, 0.5
+kAB, kBC, kCA = 0.5, 0.5, 0.3
+loop_gain = kAB*kBC*kCA
+deficit_product = deficit(rA)*deficit(rB)*deficit(rC)
+assert abs(loop_gain - 0.075) < 1e-12
+assert abs(deficit_product - 0.06) < 1e-12
+assert loop_gain > deficit_product
+
+x = cycle3_witness(rB, rC, kAB, kBC)
+x_next = cycle3_step(rA, rB, rC, kAB, kBC, kCA, x)
+assert all(v > 0 for v in x)
+assert x_next[0] > x[0]
+assert abs(x_next[1] - x[1]) < 1e-12
+assert abs(x_next[2] - x[2]) < 1e-12
+
+# Exact critical return-edge value for the same other parameters.
+kCA_critical = deficit_product / (kAB*kBC)
+assert abs(kCA_critical - 0.24) < 1e-12
+x_critical_next = cycle3_step(rA, rB, rC, kAB, kBC, kCA_critical, x)
+assert all(abs(a-b) < 1e-12 for a, b in zip(x_critical_next, x))
+
+# Delete the return edge C -> A: positive subcritical A declines immediately.
+x_deleted_next = cycle3_step(rA, rB, rC, kAB, kBC, 0.0, x)
+assert x_deleted_next[0] < x[0]
+
+print("three-cycle loop gain =", loop_gain)
+print("three-cycle deficit product =", deficit_product)
+print("critical k_CA =", kCA_critical)
+print("recurrent-maintenance witness =", x)
+print("recurrent-maintenance next state =", x_next)
