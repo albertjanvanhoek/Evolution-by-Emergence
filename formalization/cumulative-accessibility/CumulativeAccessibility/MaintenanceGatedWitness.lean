@@ -184,6 +184,14 @@ def concreteStrictMaintenanceOpportunity : ℕ → Prop :=
   cycle3MaintenanceOpportunity
     (1 / 2 : ℝ) (1 / 2 : ℝ) (1 / 2 : ℝ) 1 1 1
 
+/-- The concrete maintenance predicate is classically decidable.  This instance
+is used only to define the finite gated repertoire; it adds no mathematical
+assumption to the maintenance theorem. -/
+noncomputable instance concreteStrictMaintenanceOpportunity_decidable :
+    DecidablePred concreteStrictMaintenanceOpportunity := by
+  classical
+  exact inferInstance
+
 /-- The concrete strict three-cycle supplies recurrent opportunities. -/
 theorem concreteStrictMaintenanceOpportunity_recurring :
     RecurringOpportunity concreteStrictMaintenanceOpportunity := by
@@ -212,6 +220,12 @@ theorem concreteMaintenanceGatedNoveltyWitness :
 
 /-- No-opportunity ablation used as the counterfactual control. -/
 def noOpportunity (_n : ℕ) : Prop := False
+
+/-- The no-opportunity predicate has a direct constructive decidability
+instance. -/
+instance noOpportunity_decidable : DecidablePred noOpportunity := by
+  intro n
+  simp [noOpportunity]
 
 /-- With the opportunity stream removed, the same architecture family stays at
 its initial repertoire forever. -/
