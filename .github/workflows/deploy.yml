@@ -3,13 +3,14 @@
 # • Trigger: push to main
 # • Reads version from RELEASE_VERSION when present, otherwise last Git tag
 # • Converts publication/book LaTeX sources to docs/<source-path>.md
-# • Generates web-safe figure assets used by converted sources
+# • Generates web-safe figure assets in the build workspace
 # • Builds MkDocs in strict mode and deploys to GitHub Pages
+# • Does not write generated assets back to main
 
 name: Build & Deploy Site
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -70,11 +71,11 @@ jobs:
             docs/figures/tightness.svg
           test -s docs/figures/tightness.svg
 
-      # Keep generated shared web assets synchronized with the repository.
-      - uses: EndBug/add-and-commit@v9
-        with:
-          add: 'docs/figures/*.pdf docs/figures/*.svg'
-          message: 'ci: auto-update figures'
+      # Generated figures are deployment artifacts. Do not commit them from CI:
+      # renderer metadata and generated SVG IDs can be nondeterministic, and a
+      # workflow-side commit makes the tested/released SHA ambiguous and creates
+      # unnecessary history/race conditions. The site below uses the freshly
+      # generated files directly from this workspace.
 
       - name: Compute release/book version
         shell: bash
