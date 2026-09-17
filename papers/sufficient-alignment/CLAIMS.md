@@ -27,8 +27,9 @@ Machine-checked claims in this ledger are mapped to exact Lean declarations in [
 | A21 | For the directed triad \(A\to B\to C\to A\), the normalized loop ratio exceeds one iff \(k_{AB}k_{BC}k_{CA}>(1-r_A)(1-r_B)(1-r_C)\). | Exact algebra; machine checked |
 | A22 | There exists an explicit three-agent witness in which the full directed triad is super-unit while every induced dyad is open-loop, and the corresponding finite directed-cycle product threshold holds for arbitrary finite cycle length. | Exact theorem; machine checked |
 | A23 | For the arbitrary nonnegative linear maintenance system \(x_{t+1}=(R+K)x_t\) with \(r_i<1\), defining \(G=(I-R)^{-1}K\), the threshold \(\rho(G)=1\) separates subcritical and supercritical maintenance in the standard next-generation/Perron--Frobenius formulation. | Classical external matrix theorem; not re-proved in Lean |
-| A24 | In an all-subcritical system, recurrent/strongly connected return structure is the natural carrier of self-maintenance; acyclic one-way support cannot by itself create indefinite closed-loop reproduction. | Corollary/interpretation of standard graph and nonnegative-matrix theory; not yet machine checked here |
-| A25 | Current task viability and maintenance viability are distinct: a system may currently satisfy \(\Gamma_H\ge p_\star\) while losing future corrective capacity, or maintain correction architecture while failing the declared external task. | Framework distinction / empirical hypothesis |
+| A24 | A recurrent module need not contain any individually super-unit simple cycle: in an explicit normalized three-node example every two-edge and three-edge simple-cycle product is below one, while the uniform positive state expands by factor \(6/5\). Conversely, an explicit three-node acyclic chain loses all pure cross-maintenance contribution after three steps. | Exact finite witnesses; machine checked |
+| A25 | The general interpretation of A24 is that recurrent/strongly connected return structure, rather than edge count or a single privileged cycle, is the natural carrier of self-maintenance in all-subcritical networks. | Corollary/interpretation of standard graph and nonnegative-matrix theory; general theorem not re-proved in Lean |
+| A26 | Current task viability and maintenance viability are distinct: a system may currently satisfy \(\Gamma_H\ge p_\star\) while losing future corrective capacity, or maintain correction architecture while failing the declared external task. | Framework distinction / empirical hypothesis |
 
 ## Non-claims
 
@@ -45,4 +46,5 @@ The paper does not claim:
 - moral obligations have been deduced from mathematics;
 - the six toy-model modules exhaust collective intelligence;
 - maintenance reproduction by itself implies truth, benevolence, or external task success;
+- every useful recurrent module contains an individually supercritical simple cycle;
 - the arbitrary-network Perron--Frobenius threshold has been re-proved in Lean in this package.
