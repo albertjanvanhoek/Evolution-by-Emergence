@@ -2,15 +2,21 @@
 function Image (img)
   local p = img.src
   if p:match("%.pdf$") then
-    p = p:gsub("%.pdf$", ".svg")
-
-    -- LaTeX sources are converted to docs/<source-dir>/*.md, while shared
-    -- figures live in docs/figures. A source reference such as
-    -- figures/example.pdf therefore needs to move one level up in Markdown.
-    if p:match("^figures/") then
-      p = "../" .. p
+    -- The organizational-depth manuscript references its reproducible figure
+    -- by repository path. The Pages workflow regenerates that figure and
+    -- publishes a browser-safe copy in docs/figures.
+    if p:match("^verification/organizational%-depth/tightness/figures/tightness%.pdf$") then
+      p = "../figures/tightness.svg"
     else
-      p = p:gsub("^docs/", "../")
+      p = p:gsub("%.pdf$", ".svg")
+
+      -- Publication/book sources are mirrored under docs/<source-dir>, while
+      -- their shared figures live in docs/figures.
+      if p:match("^figures/") then
+        p = "../" .. p
+      else
+        p = p:gsub("^docs/", "../")
+      end
     end
 
     img.src = p
