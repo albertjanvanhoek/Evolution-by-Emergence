@@ -6,17 +6,17 @@ Machine verification for:
 
 ## Scope
 
-The formalization now has five connected layers.
+The formalization now has seven connected layers.
 
-### General operational layer
+### 1. General operational layer
 
 Accessibility is represented as a declared predicate over a target family. This checks the order-theoretic logic without replacing the stochastic accessibility kernel.
 
-### Shared-budget cost specialization
+### 2. Shared-budget cost specialization
 
-A scalar real-valued cost representation is used to prove the exact uniform-dilution budget boundary, margin dynamics, and a rational two-click witness.
+A scalar real-valued cost representation proves the exact uniform-dilution budget boundary, margin dynamics, route-level sufficient conditions, and a rational two-click witness.
 
-### Recursive-accessibility layer
+### 3. Recursive-accessibility layer
 
 `CumulativeAccessibility/RecursiveAccessibility.lean` formalizes:
 
@@ -28,7 +28,7 @@ A scalar real-valued cost representation is used to prove the exact uniform-dilu
 - historical composition of preserved ancestral search with later generator expansion;
 - independence of reachable depth and search-operator expansion.
 
-### Evolvability and generative-structure layer
+### 4. Evolvability and generative-structure layer
 
 Five modules sharpen what it means for future accessibility itself to change:
 
@@ -38,9 +38,9 @@ Five modules sharpen what it means for future accessibility itself to change:
 - `GenerativeClosure.lean` — retained recursive production, where generated intermediates become reusable parent material;
 - `GeneratorRuleEvolution.lean` — rule-driven search expansion at fixed repertoire, kept distinct from repertoire-driven expansion.
 
-### Finite-saturation layer
+### 5. Finite-saturation layer
 
-`CumulativeAccessibility/FiniteGenerativeSaturation.lean` proves a finite-capacity boundary for cumulative retained novelty.
+`FiniteGenerativeSaturation.lean` proves a finite-capacity boundary for cumulative retained novelty.
 
 For a monotone retained sequence `S n` inside a fixed finite declared universe `U`, Lean checks that for every horizon `N`,
 
@@ -58,11 +58,72 @@ n <= |U| - |S 0|
 
 is a true fixed point: `S (n+k) = S n` for every later `k`.
 
-The module also implements the retained finite-parent generative closure directly on a finite type and proves that this concrete closure satisfies the saturation theorem.
+The module also implements retained finite-parent generative closure directly on a finite type and proves that this concrete closure satisfies the saturation theorem.
 
-`FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. The bridge is deliberately conditional: a finite declared candidate universe is not silently identified with an operational packing number without an explicit representation/resolution map.
+### 6. Moving distinguishability-capacity layer
 
-The formalization does **not** claim that scalar cost is generally equivalent to finite-horizon hitting probability. It does not identify persistence with fitness or function, prove indefinite survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. Lean verifies consequences of the declared transition, viability, retention, projection, generative-rule, and finite-universe assumptions.
+`OpenEndedCapacity.lean` lifts the architecture to the time-varying triplet
+
+```text
+(M_t, H_t, U_t)
+```
+
+where `M_t` is retained organization, `H_t` is the current finite-parent generative rule, and `U_t` is the current finite distinguishability envelope.
+
+For every horizon `N`, Lean proves
+
+```text
+|M_0| + strictExpansionCount(M,N) <= |U_N|.
+```
+
+Therefore open-ended cumulative retained novelty forces unbounded envelope capacity. The theorem does not mention `H_t`: arbitrarily changing the generative rule cannot evade a uniformly bounded effective distinguishability capacity.
+
+The converse is false. A machine-checked witness has `|U_t| -> infinity` while `M_t = {0}` forever.
+
+### 7. Capacity-uptake layer
+
+Two new modules provide a sufficient mechanism rather than only a no-go boundary:
+
+- `CapacityUptake.lean` — explicit `U_t -> H_t -> M_{t+1}` coupling;
+- `CapacitySlack.lean` — decomposition into recurring unused capacity and local generative realization.
+
+`GenerativeCapacityUptake` requires that from every time onward there is eventually a candidate that
+
+```text
+is in U_m,
+is not yet in M_m,
+is generated from retained M_m by H_m,
+and is retained in M_{m+1}.
+```
+
+With monotone retention, Lean proves that this condition implies open-ended cumulative novelty.
+
+The stronger packaged condition is then decomposed into:
+
+```text
+RecurringCapacitySlack:
+    from every time onward, some later M_m is a strict subset of U_m;
+
+ImmediateGenerativeRealization:
+    whenever M_m is a strict subset of U_m, H_m generates at least one
+    candidate in U_m \ M_m and that candidate is retained in M_{m+1}.
+```
+
+Lean proves
+
+```text
+recurring capacity slack
++ local generative realization
++ retention
+    -> open-ended cumulative novelty
+    -> unbounded distinguishability capacity.
+```
+
+The first implication is sufficient, not claimed minimal. The second is necessary.
+
+`FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. `OPEN_ENDED_UPTAKE.md` summarizes the necessity/sufficiency scaffold and its limits.
+
+The formalization does **not** identify persistence with fitness or function, prove indefinite biological survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. The current open-endedness results concern cumulative retained novelty; adaptation, viability, and external correction remain separate conditions.
 
 ## Main definitions
 
@@ -93,121 +154,73 @@ The formalization does **not** claim that scalar cost is generally equivalent to
 - `strictExpansionCount`
 - `finiteGenerativeStep`
 - `FiniteGenerativeClosureN`
+- `OpenEndedCumulativeNovelty`
+- `UnboundedEnvelopeCapacity`
+- `EvolvingGenerativeArchitecture`
+- `EventualNovelUptake`
+- `GenerativeCapacityUptake`
+- `RecurringCapacitySlack`
+- `ImmediateGenerativeRealization`
 
 ## Checked results
 
-### Order-theoretic core
+### Order-theoretic and budget core
 
 - preservation iff subset inclusion;
 - strict expansion iff strict subset inclusion;
 - preservation reflexivity and transitivity;
 - strict-click composition;
-- loss of an old declared target rules out preservation.
-
-### Score, cost, and budget ratchet
-
-- score dominance preserves accessibility and threshold crossing can create strict expansion;
-- cost dominance preserves budget feasibility and downward cost crossing can create strict expansion;
+- score and cost dominance preserve declared accessibility;
 - exact declared-set retention under uniform dilution iff `kappa <= Margin`;
 - winding/spending margin identities and exact update;
 - a margin increase opens a nonempty future coupling interval;
 - a production increase opens a nonempty target-threshold interval;
 - exact rational two-click strict-expansion witness and direct-baseline failure of the second click;
-- route-level dominance preserves old route-feasible targets and a newly feasible route gives strict expansion.
+- route dominance preserves old route-feasible targets and a newly feasible route gives strict expansion.
 
-### Recursive accessibility
+### Recursive accessibility and evolvability
 
 - finite-horizon expected search opportunity is monotone in a nonnegative reproduction factor for fixed nonnegative variation rate;
-- exact linear search opportunity at replacement `R = 1`;
 - persistence without variation gives zero search opportunity;
-- one- and two-step retained viable reachability;
-- a retained intermediate can expose an indirect target unavailable as a direct baseline step;
+- retained intermediates can expose indirect targets unavailable as direct baseline steps;
 - second-order clicks strictly expand declared candidate sets;
-- retained history plus preservation plus a later second-order click strictly expands the descendant generator relative to the ancestor;
-- an explicit descendant candidate is produced that the ancestor's generator lacked;
-- deeper reachability can occur without search-operator expansion, and search-operator expansion can occur without realization of the newly proposed candidate.
+- retained history plus preservation plus a later second-order click can strictly expand the descendant generator relative to the ancestor;
+- deeper reachability and search-operator expansion are logically distinct;
+- evolvability inclusion is a preorder on raw organizational states;
+- strict raw candidate expansion need not create a new declared functional feature.
 
-### Evolvability order and functional projection
-
-- generator inclusion is reflexive and transitive on raw organizational states;
-- mutual weak evolvability is exactly equality of the declared candidate sets;
-- the state-level relation is a **preorder**, not generally a partial order, because distinct states can expose the same generator;
-- a strict raw candidate-set expansion can fail to expand a coarse declared functional feature repertoire;
-- the same candidate expansion can become a genuine feature-repertoire expansion under a feature map that distinguishes the new candidate.
-
-Thus candidate count and task-relevant/functional novelty are formally separated.
-
-### Recombination and generative arity
+### Recombination, arity, and recursive production
 
 - expanding retained module availability preserves existing recombination routes;
-- retaining a second distinct module can open a genuinely joint candidate;
-- a concrete `(a,b) -> c` candidate exists although neither `a` nor `b` has a unary edge to `c` in the witness;
-- ordinary unary generation lifts exactly into a finite-parent hypergenerator with singleton parent sets;
-- explicit binary recombination lifts exactly into the same finite-parent representation;
-- the concrete joint generator is not `UnaryOnly`.
+- a concrete `(a,b) -> c` candidate exists although neither `a` nor `b` has a unary edge to `c`;
+- unary generation is the cardinality-one special case of finite-parent generation;
+- the concrete joint generator is not `UnaryOnly`;
+- retained modules can derive strict expansion of the effective search operator;
+- in the chain `{a} -> b`, `{b} -> c`, candidate `c` is unavailable after one retained generative round but available after two;
+- rule-driven and repertoire-driven evolvability are formally separated.
 
-This establishes a precise representation-level claim: tree-like single-parent descent is the arity-one special case of a more general finite-parent dependency structure. A multi-parent dependency can of course be encoded in a unary graph by augmenting the state representation; the formalization does not claim otherwise.
-
-### Module-generated evolvability
-
-For
-
-`SearchFromModules Modules Generate state candidate`,
-
-the effective search operator is derived rather than assumed.
-
-Lean checks that:
-
-- retention of all old internal modules preserves all old generated candidates;
-- if the descendant contains a realizable parent set generating a declared candidate absent from the ancestor, the effective search operator strictly expands;
-- with a viable realized state transition, the same premises derive a second-order accessibility click;
-- a concrete retained-diversity witness derives the `(a,b) -> c` search expansion.
-
-### Retained generative closure
-
-Define one round as
-
-`A' = A union Generated(A)`.
-
-The formalization checks:
-
-- one retained generative round never removes an old item;
-- the closure step is monotone in the available repertoire;
-- iterated retained closure is monotone in round number;
-- a novel generated candidate gives strict expansion;
-- in the concrete chain `{a} -> b` and `{b} -> c`, candidate `c` is unavailable after one round but available after two because generated `b` is retained as reusable substrate.
-
-This is the minimal recursive-production witness in the stack.
-
-### Generator-rule evolution
-
-Repertoire-driven and rule-driven evolvability are explicitly separated.
-
-With the retained repertoire fixed, Lean checks that:
-
-- pointwise extension of a finite-parent generative rule preserves all previously generated candidates;
-- a new rule event can strictly expand the candidate repertoire;
-- a state-dependent rule change can therefore derive a second-order click without changing the retained module set;
-- a concrete fixed-repertoire witness preserves `a -> b` while adding `a -> c`.
-
-Accordingly, expansion of the effective search operator may arise from at least two distinct mechanisms:
-
-1. more/different retained parent material under a fixed rule;
-2. a changed generative rule under a fixed repertoire.
-
-### Finite generative saturation
-
-Lean checks that:
+### Finite and moving capacity
 
 - each strict inclusion of finite retained repertoires increases cardinality;
-- an uninterrupted strict chain of length `k` requires at least `k` additional states;
-- the total number of strict expansions up to any horizon, including expansions separated by idle steps, is bounded by `|U| - |S 0|`;
-- this finite novelty-count bound does not require a fixed update rule;
-- under a fixed deterministic retained update, equality of two consecutive states is permanent;
-- therefore a fixed deterministic retained process inside `U` reaches a fixed repertoire within the finite remaining capacity;
-- the finite retained hypergraph closure is a direct specialization and cannot strictly expand forever.
+- total strict expansions inside a fixed finite universe are bounded by remaining finite capacity;
+- the count bound allows idle periods and changing update rules;
+- fixed deterministic retained closure reaches a fixed repertoire;
+- finite retained hypergraph closure cannot strictly expand forever;
+- in a moving envelope, `|M_0| + strictExpansionCount(M,N) <= |U_N|`;
+- open-ended cumulative novelty implies unbounded envelope capacity;
+- a uniform finite envelope-capacity bound rules out open-ended cumulative novelty;
+- unbounded envelope capacity is not sufficient by itself.
 
-This separates two claims that should not be conflated: rule evolution can expand the effective search operator, but rule evolution alone cannot defeat a fixed finite distinguishability capacity when cumulative retention is monotone.
+### Capacity uptake
+
+- the strict-expansion counter is monotone in horizon;
+- generative capacity uptake implies eventual realized novelty uptake;
+- repeated realized uptake plus retention implies open-ended cumulative novelty;
+- generative capacity uptake therefore implies open-ended cumulative novelty;
+- with representation `M_t ⊆ U_t`, generative uptake also implies unbounded envelope capacity;
+- recurring capacity slack plus immediate generative realization implies the packaged uptake condition;
+- therefore recurring slack + local realization + retention is sufficient for open-ended cumulative novelty;
+- a concrete progressive architecture on the natural numbers satisfies the decomposed conditions and is machine-checked as open-ended.
 
 ## Reproduction
 
