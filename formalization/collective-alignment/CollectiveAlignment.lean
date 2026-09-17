@@ -1,12 +1,13 @@
 import Mathlib.Tactic
 import Mathlib.Algebra.BigOperators.Field
+import CollectiveAlignment.MaintenanceReproduction
 
 namespace CollectiveAlignment
 
 /-!
 # Collective alignment: machine-checked algebraic core
 
-This file formalizes five narrow results used in the paper
+This file formalizes six narrow result families used in the paper
 "Sufficient Alignment: A Viability Framework for Collective Intelligence".
 
 1. Signal fidelity: a policy acting on a deterministic garbling of a signal
@@ -20,9 +21,13 @@ This file formalizes five narrow results used in the paper
    R_protocol>1, and expected carrier counts grow/decline on the two sides.
 5. Repair: restoring a damaged edge weakly dominates termination exactly
    when expected recovered edge surplus exceeds repair cost.
+6. Maintenance reproduction: dyadic, triadic, and finite-cycle return loops
+   have exact product thresholds comparing cross-maintenance gain with
+   autonomous maintenance deficits.
 
 The full stochastic Blackwell theorem, general k-out-of-n reliability theory,
-Galton--Watson extinction theorem, and repeated-game forgiveness results are
+Galton--Watson extinction theorem, repeated-game forgiveness results, and the
+arbitrary-network Perron--Frobenius / next-generation-matrix threshold are
 classical external results and are not re-proved here.
 -/
 
@@ -280,7 +285,7 @@ def repairValue (r V W C : ℝ) : ℝ :=
 def terminateValue (W : ℝ) : ℝ := W
 
 /-- Exact repair/forgiveness boundary: repair weakly dominates termination
-iff expected recovered surplus exceeds repair cost. -/
+iff expected recovered edge surplus exceeds repair cost. -/
 theorem repair_weakly_better_iff
     (r V W C : ℝ) :
     terminateValue W ≤ repairValue r V W C
