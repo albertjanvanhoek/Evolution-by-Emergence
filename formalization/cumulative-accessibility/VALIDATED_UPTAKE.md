@@ -98,7 +98,7 @@ Open-ended production alone is not evidence of open-ended adaptation, truth trac
 
 This is only the first formal foothold for corrigibility. `E_t` currently says whether a candidate passes a declared external test. It does not yet model how tests themselves are revised, how contradictory evidence is resolved, or how an organization changes its generator after failed predictions.
 
-A stronger corrective architecture would therefore distinguish at least:
+A stronger corrective architecture could distinguish, for example:
 
 ```text
 M_t  retained organization / memory
@@ -108,53 +108,79 @@ E_t  external test process
 C_t  correction/update mechanism acting on M_t and/or H_t after test outcomes
 ```
 
-The scientifically important next question is then not merely whether novelty is screened, but whether external error can causally alter the future generative process while preserving enough organization for learning to accumulate.
+That would be a generalization of the present formal core, not a missing premise of the theorem proved here.
 
-## 6. Conditional bridge to maintenance reproduction
+## 6. Closed bridge to maintenance reproduction
 
-The repository's maintenance-reproduction formalization and this cumulative-accessibility stack now coexist on the same PR branch. They answer different questions:
+The maintenance-reproduction and cumulative-accessibility projects are now linked as Lean packages.
+
+`MaintenanceDynamics.lean` turns the finite three-cycle maintenance witness into a deterministic time-indexed trajectory. For nonnegative self-retention and couplings, the coordinatewise cone above the canonical witness is forward invariant once the closed-loop replacement threshold is met. Under positive deficits/couplings and the strict product threshold, the canonical trajectory is strictly positive at every time.
+
+Lean therefore proves
 
 ```text
-maintenance reproduction:
-    under what recurrent structure can a correction/maintenance organization persist?
-
-validated cumulative accessibility:
-    given continued opportunities, what conditions produce repeatedly generated,
-    externally screened, retained novelty?
+strict positive three-cycle maintenance conditions
+    -> positive maintenance availability at every time
+    -> arbitrarily late maintenance availability.
 ```
 
-`MaintenanceOpportunityBridge.lean` now formalizes the interface between those questions without claiming that one already proves the other.
-
-It defines
+`MaintenanceOpportunityBridge.lean` imports that result and discharges the formerly abstract recurrence premise:
 
 ```text
-RecurringOpportunity O:
-    from every time onward, some later time has an opportunity;
-
-OpportunityConditionedValidatedRealization O U H E M:
-    whenever an opportunity occurs, at least one genuinely new candidate is
-    distinguishable, generated, externally accepted, and retained.
+strict three-cycle maintenance
+    -> RecurringOpportunity(cycle3MaintenanceOpportunity).
 ```
 
-Lean then proves
+Together with the still-explicit response condition,
 
 ```text
-recurring opportunity
+OpportunityConditionedValidatedRealization,
+```
+
+Lean proves the cross-stack theorem
+
+```text
+strict closed maintenance loop
 + opportunity-conditioned validated realization
-    -> validated generative capacity uptake.
-```
-
-Therefore, with monotone retention,
-
-```text
-recurring opportunity
-+ validated realization
-+ retention
++ monotone retention
     -> open-ended cumulative retained novelty.
 ```
 
-And with `M_t ⊆ U_t`, the same premises imply unbounded distinguishability capacity.
+With `M_t ⊆ U_t`, the same premises imply
 
-A separation witness proves that recurring opportunity alone is not enough: even an opportunity at every time is compatible with a repertoire that never changes.
+```text
+unbounded distinguishability capacity.
+```
 
-This is the honest current bridge. The maintenance-reproduction algebra has not yet been shown to imply `RecurringOpportunity` for a concrete time-indexed correction process. Establishing that dynamical mapping is the remaining cross-project task rather than an assumption hidden inside the theorem.
+The response condition remains essential. Maintenance keeps an organization available for future interaction; it does not logically force the organization to generate novelty, pass an external test, or retain the result. A separation witness already proves that opportunities alone are insufficient.
+
+## 7. Formal-core closure and non-vacuity
+
+`FormalCoreWitness.lean` checks that the complete premise set is jointly inhabited rather than merely syntactically composable.
+
+It chooses
+
+```text
+rA = rB = rC = 1/2
+kAB = kBC = kCA = 1,
+```
+
+so that
+
+```text
+(1-rA)(1-rB)(1-rC) = 1/8 < 1 = kAB kBC kCA.
+```
+
+The progressive accessibility architecture generates and retains a new candidate at every time and the declared accept-all criterion validates those candidates. Lean machine-checks the complete route
+
+```text
+concrete maintenance dynamics
+    -> recurrent maintenance availability
+    -> validated response
+    -> open-ended cumulative retained novelty
+    -> unbounded moving-envelope capacity.
+```
+
+This is a natural **formal-core closure point**. The stated theorem chain is complete under explicit assumptions, the major converse failures are represented by counterexamples, and the assumptions are jointly non-vacuous.
+
+Further work can still generalize the maintenance network, model changing external tests, replace monotone retention with turnover/memory, or test whether real systems satisfy the assumptions. Those are new mathematical or empirical questions; they are not required to make the present implication formally complete.
