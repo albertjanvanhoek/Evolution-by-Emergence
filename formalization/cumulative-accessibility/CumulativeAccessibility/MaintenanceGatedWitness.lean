@@ -223,9 +223,8 @@ def noOpportunity (_n : ℕ) : Prop := False
 
 /-- The no-opportunity predicate has a direct constructive decidability
 instance. -/
-instance noOpportunity_decidable : DecidablePred noOpportunity := by
-  intro n
-  simp [noOpportunity]
+instance noOpportunity_decidable : DecidablePred noOpportunity :=
+  fun _ => isFalse (by simp [noOpportunity])
 
 /-- With the opportunity stream removed, the same architecture family stays at
 its initial repertoire forever. -/
