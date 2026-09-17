@@ -28,7 +28,7 @@ A scalar real-valued cost representation is used to prove the exact uniform-dilu
 
 The final item is the **historical search-generator composition result**. It formalizes the distinction between reaching farther under a fixed generator and reaching a retained descendant whose generator itself has expanded. The preservation premise is essential: without it, a candidate absent from an intermediate state could simply be something the ancestor had already possessed and then lost.
 
-The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability. The recursive-accessibility layer does not identify persistence with fitness or function, does not prove indefinite survival, and does not claim that more search is always better.
+The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability. The recursive-accessibility layer does not identify persistence with fitness or function, does not prove indefinite survival, and does not claim that more search is always better. It proves only consequences of the declared transition, viability, preservation, and search-operator assumptions.
 
 ## Main definitions
 
