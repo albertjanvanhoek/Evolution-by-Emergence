@@ -238,6 +238,21 @@ theorem retained_history_creates_ancestor_new_candidate
     Step Viable targets Search hReach hPres hClick
   exact ⟨hComp.1, hComp.2.2⟩
 
+/-- Set-theoretic corollary: under the same historical premises, the declared
+candidate set of the descendant is a strict superset of the ancestor's. -/
+theorem retained_history_strictly_expands_ancestor_candidate_set
+    (Step : α → α → Prop) (Viable : α → Prop)
+    (targets : Set α) (Search : SearchOperator α)
+    {ancestor x y : α} {H : ℕ}
+    (hReach : ViableReach Step Viable ancestor H x)
+    (hPres : PreservesOn targets (Search ancestor) (Search x))
+    (hClick : SecondOrderClick Step Viable targets Search x y) :
+    accessibleSet targets (Search ancestor) ⊂
+      accessibleSet targets (Search y) := by
+  have hComp := retained_history_secondOrderClick_expands_ancestor
+    Step Viable targets Search hReach hPres hClick
+  exact (strictExpandsOn_iff_ssubset targets (Search ancestor) (Search y)).mp hComp.2
+
 end SecondOrderAccessibility
 
 #print axioms pow_mono_nonneg
@@ -253,6 +268,7 @@ end SecondOrderAccessibility
 #print axioms secondOrderClick_reaches_new_search_state
 #print axioms retained_history_secondOrderClick_expands_ancestor
 #print axioms retained_history_creates_ancestor_new_candidate
+#print axioms retained_history_strictly_expands_ancestor_candidate_set
 
 end RecursiveAccessibility
 end CumulativeAccessibility
