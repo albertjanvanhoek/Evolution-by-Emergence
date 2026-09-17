@@ -36,6 +36,8 @@ jobs:
       - name: Compile
         run: |
           $HOME/.elan/bin/lake build
+          $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+          $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 
   budget-ratchet:
     runs-on: ubuntu-latest
