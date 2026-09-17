@@ -173,6 +173,105 @@ theorem no_infinite_strict_expansion_in_finite_universe
 
 end DeterministicFixation
 
+section FiniteGenerativeClosure
+
+variable {α : Type*} [Fintype α] [DecidableEq α]
+
+/-- Finite-set implementation of one retained generative round. The candidate
+universe is the whole finite type. -/
+noncomputable def finiteGenerativeStep
+    (Generate : HyperGenerator α)
+    (A : Finset α) : Finset α := by
+  classical
+  exact Finset.univ.filter fun z =>
+    z ∈ A ∨ GeneratedFromAvailable (fun x => x ∈ A) Generate z
+
+/-- Membership in the finite implementation is exactly the predicate-level
+retained generative closure introduced in `GenerativeClosure.lean`. -/
+theorem mem_finiteGenerativeStep_iff
+    (Generate : HyperGenerator α)
+    (A : Finset α) (z : α) :
+    z ∈ finiteGenerativeStep Generate A
+      ↔
+    GenerativeClosureStep (fun x => x ∈ A) Generate z := by
+  classical
+  simp [finiteGenerativeStep, GenerativeClosureStep]
+
+/-- The finite generative step is inflationary: retained organization is never
+removed. -/
+theorem finiteGenerativeStep_inflationary
+    (Generate : HyperGenerator α)
+    (A : Finset α) :
+    A ⊆ finiteGenerativeStep Generate A := by
+  intro z hz
+  rw [mem_finiteGenerativeStep_iff]
+  exact Or.inl hz
+
+/-- Iterated finite retained generative closure. -/
+noncomputable def FiniteGenerativeClosureN
+    (Generate : HyperGenerator α)
+    (initial : Finset α) : ℕ → Finset α
+  | 0 => initial
+  | n + 1 => finiteGenerativeStep Generate
+      (FiniteGenerativeClosureN Generate initial n)
+
+/-- The finite retained generative trajectory obeys the fixed update rule by
+definition. -/
+theorem finiteGenerativeClosureN_succ
+    (Generate : HyperGenerator α)
+    (initial : Finset α) (n : ℕ) :
+    FiniteGenerativeClosureN Generate initial (n + 1)
+      = finiteGenerativeStep Generate
+          (FiniteGenerativeClosureN Generate initial n) := by
+  rfl
+
+/-- Direct specialization: a fixed generative rule on a fixed finite universe,
+with generated organization retained as future substrate, reaches a fixed
+repertoire after at most the number of initially absent distinguishable
+states. -/
+theorem finite_generative_closure_saturates
+    (Generate : HyperGenerator α)
+    (initial : Finset α) :
+    ∃ n,
+      n ≤ Fintype.card α - initial.card ∧
+      ∀ k,
+        FiniteGenerativeClosureN Generate initial (n + k)
+          = FiniteGenerativeClosureN Generate initial n := by
+  have h := finite_retained_process_saturates
+    (universe := (Finset.univ : Finset α))
+    (step := finiteGenerativeStep Generate)
+    (S := FiniteGenerativeClosureN Generate initial)
+    (hRec := finiteGenerativeClosureN_succ Generate initial)
+    (hInitial := by simp)
+    (hInflationary := by
+      intro A hA
+      exact finiteGenerativeStep_inflationary Generate A)
+    (hClosed := by
+      intro A hA
+      exact Finset.subset_univ _)
+  simpa using h
+
+/-- Therefore a fixed finite retained generative closure cannot produce a
+strictly larger distinguishable repertoire at every round forever. -/
+theorem finite_generative_closure_not_strict_forever
+    (Generate : HyperGenerator α)
+    (initial : Finset α) :
+    ¬ (∀ n,
+      FiniteGenerativeClosureN Generate initial n
+        ⊂ FiniteGenerativeClosureN Generate initial (n + 1)) := by
+  apply no_infinite_strict_expansion_in_finite_universe
+    (universe := (Finset.univ : Finset α))
+    (step := finiteGenerativeStep Generate)
+    (S := FiniteGenerativeClosureN Generate initial)
+  · exact finiteGenerativeClosureN_succ Generate initial
+  · simp
+  · intro A hA
+    exact finiteGenerativeStep_inflationary Generate A
+  · intro A hA
+    exact Finset.subset_univ _
+
+end FiniteGenerativeClosure
+
 #print axioms strict_finset_step_card_lt
 #print axioms strict_chain_card_growth
 #print axioms strict_chain_length_le_remaining_capacity
@@ -180,6 +279,11 @@ end DeterministicFixation
 #print axioms deterministic_equal_step_stays_equal
 #print axioms finite_retained_process_saturates
 #print axioms no_infinite_strict_expansion_in_finite_universe
+#print axioms mem_finiteGenerativeStep_iff
+#print axioms finiteGenerativeStep_inflationary
+#print axioms finiteGenerativeClosureN_succ
+#print axioms finite_generative_closure_saturates
+#print axioms finite_generative_closure_not_strict_forever
 
 end RecursiveAccessibility
 end CumulativeAccessibility
