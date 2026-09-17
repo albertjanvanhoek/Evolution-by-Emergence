@@ -26,7 +26,7 @@ A scalar real-valued cost representation is used to prove the exact uniform-dilu
 - a viable transition can strictly expand the state's future search operator;
 - if retained history preserves the ancestor's candidate repertoire, a later second-order click composes into strict search-operator expansion relative to the ancestor and exposes an explicit descendant candidate that the ancestor could not generate.
 
-This is an operational formalization of the distinction between reaching farther under a fixed generator and changing the generator of future possibilities itself. The preservation premise in the historical composition theorem is essential: without it, a candidate absent from an intermediate state could simply be something the ancestor had already possessed and then lost.
+The final item is the **historical search-generator composition result**. It formalizes the distinction between reaching farther under a fixed generator and reaching a retained descendant whose generator itself has expanded. The preservation premise is essential: without it, a candidate absent from an intermediate state could simply be something the ancestor had already possessed and then lost.
 
 The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability. The recursive-accessibility layer does not identify persistence with fitness or function, does not prove indefinite survival, and does not claim that more search is always better.
 
@@ -105,7 +105,8 @@ This route result is intentionally treated as a strong sufficient condition for 
 - a retained intermediate can expose an indirect target unavailable as a direct baseline step;
 - second-order clicks strictly expand declared candidate sets;
 - retained history plus preserved ancestral search and a later second-order click strictly expands the descendant search operator relative to the ancestor;
-- the composed theorem produces an explicit candidate accessible to the descendant but absent from the ancestor's generator.
+- the composed theorem produces an explicit candidate accessible to the descendant but absent from the ancestor's generator;
+- equivalently, the descendant's declared candidate set is a strict superset of the ancestor's.
 
 ## Reproduction
 
