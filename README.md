@@ -208,6 +208,11 @@ SOURCE-FILE ACCESS: yes / no
 LEAN EXECUTION: yes / no
 LITERATURE SEARCH: yes / no
 
+SOURCE-FILE ACCESS may be reported as "yes" only after you have successfully
+opened RELEASE_NOTES.md at v14 and at least one exact Lean source from the
+core-file list below. Access in principle is not the same as successful source
+resolution.
+
 If you cannot access the repository or supplied source files, STOP.
 Do not substitute a generic review of evolutionary theory, emergence,
 open-ended evolution, cybernetics, or artificial life.
@@ -218,6 +223,41 @@ State what material or capability you need instead.
 
 If you review a version other than v14, report the exact commit SHA and say
 explicitly that you are reviewing a different repository state.
+
+CORE FILES — USE THESE EXACT v14 PATHS
+
+RELEASE_NOTES.md
+RESEARCH_GUIDE.md
+formalization/cumulative-accessibility/README.md
+formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean
+
+FILE-RESOLUTION RULE
+
+Do not infer that a file is absent because it is not in the first directory you
+inspect. In particular, the core Lean files are nested under:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/
+
+Before reporting a named source as missing:
+
+1. try the exact v14 path supplied above;
+2. if that fails, search the v14 repository recursively by filename and by a
+   distinctive theorem/definition name;
+3. inspect relevant imports and the package README for module location;
+4. distinguish "I could not resolve this file with my available tools" from
+   "this file does not exist".
+
+Only ask the human reviewer for a path after those steps have failed. Never ask
+for a path that is already supplied in this prompt.
+
+Before beginning scientific analysis, report a short resolution check:
+
+FormalCoreWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
+MaintenanceOpportunityBridge.lean: FOUND / NOT RESOLVED — <exact path or limitation>
 
 EVIDENCE RULE
 
