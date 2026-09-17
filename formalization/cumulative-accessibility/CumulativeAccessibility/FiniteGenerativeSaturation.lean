@@ -9,11 +9,15 @@ namespace RecursiveAccessibility
 This file isolates a finite-state boundary for retained cumulative change.
 The result is deliberately combinatorial.
 
-If a process evolves inside a fixed finite universe, never removes previously
-retained states, and uses a fixed deterministic update rule, then it cannot
-strictly enlarge its retained repertoire forever. The number of strict
-expansions is bounded by the number of initially absent states. Once two
-consecutive states are equal, determinism keeps all later states equal.
+If a process evolves inside a fixed finite universe and never removes
+previously retained states, then the total number of strict repertoire
+expansions is bounded by the number of initially absent states. This bound does
+not require a fixed generative rule and allows arbitrary idle periods between
+expansions.
+
+If, in addition, the process uses a fixed deterministic update rule, then once
+two consecutive repertoire states are equal, all later states remain equal.
+Thus fixed deterministic retained closure reaches a genuine fixed point.
 
 The theorem does not assert that physical reality has a finite state space.
 A finite `universe` should instead be read as a declared finite set of
@@ -66,8 +70,62 @@ theorem strict_chain_length_le_remaining_capacity
     Finset.card_le_card (hBound 0)
   omega
 
+/-- Number of strict retained expansions among the first `N` transitions.
+Equal/idling steps contribute zero. -/
+def strictExpansionCount
+    (S : ℕ → Finset α) : ℕ → ℕ
+  | 0 => 0
+  | N + 1 =>
+      strictExpansionCount S N +
+        if S N ⊂ S (N + 1) then 1 else 0
+
+/-- In any monotone retained process, repertoire cardinality has grown by at
+least the number of strict expansion events observed so far. -/
+theorem strictExpansionCount_card_growth
+    (S : ℕ → Finset α)
+    (hMono : ∀ n, S n ⊆ S (n + 1)) :
+    ∀ N,
+      (S 0).card + strictExpansionCount S N ≤ (S N).card := by
+  intro N
+  induction N with
+  | zero => simp [strictExpansionCount]
+  | succ N ih =>
+      by_cases hStrict : S N ⊂ S (N + 1)
+      · have hCard : (S N).card < (S (N + 1)).card :=
+          strict_finset_step_card_lt hStrict
+        rw [strictExpansionCount]
+        simp [hStrict]
+        omega
+      · have hCard : (S N).card ≤ (S (N + 1)).card :=
+          Finset.card_le_card (hMono N)
+        rw [strictExpansionCount]
+        simp [hStrict]
+        omega
+
+/-- Strong finite novelty bound. Even with arbitrary idle periods and even if
+the update mechanism changes over time, a retained monotone repertoire inside
+a fixed finite universe can undergo at most the initially absent number of
+strict expansions. -/
+theorem strictExpansionCount_le_remaining_capacity
+    (universe : Finset α)
+    (S : ℕ → Finset α)
+    (hBound : ∀ n, S n ⊆ universe)
+    (hMono : ∀ n, S n ⊆ S (n + 1))
+    (N : ℕ) :
+    strictExpansionCount S N
+      ≤ universe.card - (S 0).card := by
+  have hGrowth := strictExpansionCount_card_growth S hMono N
+  have hEnd : (S N).card ≤ universe.card :=
+    Finset.card_le_card (hBound N)
+  have h0 : (S 0).card ≤ universe.card :=
+    Finset.card_le_card (hBound 0)
+  omega
+
 /-- A monotone sequence of retained repertoires inside a finite universe must
-have a non-strict step no later than the initial remaining cardinal capacity. -/
+have a non-strict step no later than the initial remaining cardinal capacity.
+This is a bound on the first uninterrupted run of strict steps; the stronger
+`strictExpansionCount_le_remaining_capacity` above also handles later strict
+steps separated by idle periods. -/
 theorem exists_equal_step_within_remaining_capacity
     (universe : Finset α)
     (S : ℕ → Finset α)
@@ -275,6 +333,8 @@ end FiniteGenerativeClosure
 #print axioms strict_finset_step_card_lt
 #print axioms strict_chain_card_growth
 #print axioms strict_chain_length_le_remaining_capacity
+#print axioms strictExpansionCount_card_growth
+#print axioms strictExpansionCount_le_remaining_capacity
 #print axioms exists_equal_step_within_remaining_capacity
 #print axioms deterministic_equal_step_stays_equal
 #print axioms finite_retained_process_saturates
