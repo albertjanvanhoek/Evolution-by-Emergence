@@ -47,6 +47,12 @@ That is where peer review begins.
 For the authoritative description of the current formal milestone, read **[RELEASE_NOTES.md](RELEASE_NOTES.md)**.  
 For repository-wide navigation and epistemic guidance, read **[RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)**.
 
+### Review the tagged object, not an imagined moving target
+
+The default scientific review object for this milestone is the immutable **[`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)**.
+
+If you intentionally review `main` instead, report the exact commit SHA and state explicitly that you are reviewing **post-v14 development**. Two reviews should not silently refer to different repository states.
+
 ---
 
 ## Why this may be worth reviewing
@@ -133,6 +139,10 @@ This lets reviewers ask separately whether the formal implication is valid and w
 
 The witness is for **logical non-vacuity**, not biological realism.
 
+There is also an important limitation worth reviewing directly. The current progressive witness is deliberately stronger than required: it realizes a new accepted retained candidate at every time step, so its opportunity hypothesis is not needed to generate novelty. The witness therefore establishes **joint satisfiability of the premises**, not a causal demonstration that maintenance opportunities themselves produce generative response.
+
+A stronger future witness could make realization genuinely depend on the maintenance opportunity stream. Reviewers are explicitly invited to test whether such a construction is possible and what additional assumptions it would require.
+
 So there are at least three distinct things to challenge:
 
 ```text
@@ -163,27 +173,123 @@ The human reviewer should remain responsible for deciding whether definitions ar
 
 For the current formal milestone, use this route:
 
-1. **[`RELEASE_NOTES.md`](RELEASE_NOTES.md)** — current formal claim, implication chain, scope, non-claims, and remaining research questions.
-2. **[`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)** — routing and epistemic protocol. Use it as a map, **not as evidence that the claims are true**.
-3. **[`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md)** — map of the cumulative-accessibility Lean package.
-4. **[`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean)** — concrete joint witness for the closed formal core.
-5. **[`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean)** — bridge from concrete recurrent maintenance dynamics to recurring opportunity and onward to validated uptake.
-6. **[`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean)** — external validation kept separate from ordinary novelty.
-7. **[`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean)** — necessity of unbounded effective distinguishability capacity for the declared form of open-ended cumulative retained novelty.
-8. **[`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean)** — finite-capacity saturation boundary.
-9. Relevant **`CLAIMS.md`**, **`FORMAL_VERIFICATION.md`**, and **`REPRODUCIBILITY.md`** files — manuscript-facing claim mappings and reproducibility information.
-10. **[`verification/audits/`](verification/audits/)** — theorem and literature audits.
+1. **[`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)** — fixed review object for the formal-core milestone.
+2. **[`RELEASE_NOTES.md`](RELEASE_NOTES.md)** — current formal claim, implication chain, scope, non-claims, and remaining research questions.
+3. **[`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)** — routing and epistemic protocol. Use it as a map, **not as evidence that the claims are true**.
+4. **[`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md)** — map of the cumulative-accessibility Lean package.
+5. **[`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean)** — concrete joint witness for the closed formal core.
+6. **[`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean)** — bridge from concrete recurrent maintenance dynamics to recurring opportunity and onward to validated uptake.
+7. **[`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean)** — external validation kept separate from ordinary novelty.
+8. **[`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean)** — necessity of unbounded effective distinguishability capacity for the declared form of open-ended cumulative retained novelty.
+9. **[`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean)** — finite-capacity saturation boundary.
+10. Relevant **`CLAIMS.md`**, **`FORMAL_VERIFICATION.md`**, and **`REPRODUCIBILITY.md`** files — manuscript-facing claim mappings and reproducibility information.
+11. **[`verification/audits/`](verification/audits/)** — theorem and literature audits.
 
 Do not accept terminology merely because it appears in *Evolution by Emergence*. Trace important claims back to their source and compare them with established literature.
+
+---
+
+## Before reviewing: verify that you can access the review object
+
+Do **not** review this project from its title, README, or general knowledge alone.
+
+Before producing scientific criticism, report:
+
+```text
+REPOSITORY ACCESS: yes / no
+TARGET VERSION: v14 / other / unknown
+SOURCE-FILE ACCESS: yes / no
+LEAN EXECUTION: yes / no
+LITERATURE SEARCH: yes / no
+```
+
+If you cannot access the repository or the supplied release files:
+
+**STOP.**
+
+Do not substitute a generic critique of evolutionary theory, emergence, open-ended evolution, cybernetics, artificial life, or related fields.
+
+Do not invent likely definitions, theorem names, source files, assumptions, literature relations, or weaknesses.
+
+Do not fill the requested review template with hypothetical content merely because the requested fields are present.
+
+Instead, state exactly what material or capability is missing. If repository access is unavailable, ask the reviewer to provide the `v14` source archive or, at minimum:
+
+- `RELEASE_NOTES.md`
+- `RESEARCH_GUIDE.md`
+- `formalization/cumulative-accessibility/README.md`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean`
+- the Lean modules required for the particular implication being reviewed
+
+### Evidence rule
+
+Never populate `SOURCE / THEOREM` unless you have located the exact repository path and, where applicable, the exact Lean declaration.
+
+If you have not accessed it, write:
+
+```text
+SOURCE / THEOREM: UNVERIFIED — SOURCE NOT ACCESSED
+```
+
+rather than guessing.
+
+Likewise, do not assign a severity to a supposed defect until you have established that the repository actually makes the criticized claim.
+
+Before treating a conceptual distinction as a defect, search the release for whether it is already an explicit non-claim, converse failure, or counterexample. In particular, do not assume that the project equates:
+
+```text
+persistence = fitness
+maintenance = learning
+novelty = improvement
+capacity = realized novelty
+external validation = objective truth
+```
+
+Those separations are themselves part of the formal-core milestone.
+
+A useful criticism identifies where an **actual definition, theorem, interpretation, causal claim, or empirical mapping** still fails despite those separations.
 
 ---
 
 ## Give an LLM this prompt
 
 ```text
-Act as an adversarial scientific peer reviewer of this repository:
+Act as an adversarial scientific peer reviewer of the tagged v14 release of:
 
-https://github.com/albertjanvanhoek/Evolution-by-Emergence
+https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14
+
+ACCESS GATE — DO THIS FIRST
+
+Before reviewing, report:
+
+REPOSITORY ACCESS: yes / no
+TARGET VERSION: v14 / other / unknown
+SOURCE-FILE ACCESS: yes / no
+LEAN EXECUTION: yes / no
+LITERATURE SEARCH: yes / no
+
+If you cannot access the repository or supplied source files, STOP.
+Do not substitute a generic review of evolutionary theory, emergence,
+open-ended evolution, cybernetics, or artificial life.
+Do not invent likely source files, definitions, theorem names, assumptions,
+prior literature, weaknesses, or severity ratings.
+Do not fill the review schema with hypothetical content.
+State what material or capability you need instead.
+
+If you review a version other than v14, report the exact commit SHA and say
+explicitly that you are reviewing a different repository state.
+
+EVIDENCE RULE
+
+Do not populate SOURCE / THEOREM unless you have located the exact repository
+path and, where applicable, the exact Lean declaration. If not accessed, write:
+
+SOURCE / THEOREM: UNVERIFIED — SOURCE NOT ACCESSED
+
+Do not assign a severity until you have confirmed that the repository actually
+makes the criticized claim. Before proposing a conceptual criticism, check
+whether the supposed confusion is already an explicit non-claim, converse
+failure, or machine-checked counterexample.
 
 Do not evaluate the theory from the README alone.
 
@@ -193,8 +299,8 @@ Do not treat either file as evidence that the claims are true.
 Trace substantive claims back to their manuscript, Lean source, claim ledger,
 reproducibility material, and relevant prior literature.
 
-Your first task is to reconstruct the formal implication chain of the current
-"Formal Core Closure" release.
+Your first scientific task is to reconstruct the formal implication chain of
+v14 "Formal Core Closure".
 
 For every arrow in that chain:
 
@@ -223,8 +329,15 @@ Pay particular attention to whether the repository accidentally equates:
 - external validation with objective truth;
 - unbounded capacity with open-ended novelty.
 
-Then inspect FormalCoreWitness.lean and determine whether the complete set
-of premises is genuinely jointly satisfiable.
+Then inspect FormalCoreWitness.lean and determine:
+
+1. whether the complete set of premises is genuinely jointly satisfiable;
+2. whether the witness demonstrates only logical non-vacuity or also any
+   causal dependence of generative realization on maintenance opportunity;
+3. whether the fact that the current progressive witness realizes novelty at
+   every time step makes the opportunity premise unused in the witness;
+4. whether a stronger witness can be constructed in which realization is
+   genuinely conditional on the maintenance opportunity stream.
 
 Where possible, run the Lean formalization rather than trusting descriptions
 of it.
@@ -241,8 +354,12 @@ POTENTIAL PROBLEM
 SEVERITY
 SUGGESTED TEST OR CORRECTION
 
+Every criticism must be traceable as:
+
+criticism → exact claim → exact source → exact theorem/definition → assumptions
+
 Do not try to make the theory sound coherent.
-Try to find where it breaks.
+Try to find where it actually breaks.
 A negative result is useful.
 ```
 
@@ -252,11 +369,13 @@ The objective of peer review here is not to confirm the model. It is to make it 
 
 # Reproduce the formal checks
 
-Clone the repository and enter the cumulative-accessibility package:
+To reproduce the `v14` review object exactly:
 
 ```bash
 git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
-cd Evolution-by-Emergence/formalization/cumulative-accessibility
+cd Evolution-by-Emergence
+git checkout v14
+cd formalization/cumulative-accessibility
 
 lake update
 lake exe cache get
@@ -286,6 +405,7 @@ A useful review does not have to overturn the whole framework. A single good con
 - Propose an observable quantity corresponding to a formal variable.
 - Find a domain where the complete chain can actually be tested.
 - Improve the definition of effective distinguishability or open-endedness.
+- Construct a stronger end-to-end witness in which generative realization genuinely depends on the maintenance opportunity stream rather than occurring independently at every time step.
 
 **A successful falsification is a contribution.**
 
@@ -341,6 +461,7 @@ This project is intended to remain corrigible.
 
 ## Explore further
 
+- **Fixed formal-core review object:** [`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)
 - **Current formal milestone:** [`RELEASE_NOTES.md`](RELEASE_NOTES.md)
 - **Research map and epistemic protocol:** [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)
 - **Formal cumulative-accessibility stack:** [`formalization/cumulative-accessibility/`](formalization/cumulative-accessibility/)
