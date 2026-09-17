@@ -6,7 +6,7 @@ Machine verification for:
 
 ## Scope
 
-The formalization has two layers.
+The formalization has three layers.
 
 ### General operational layer
 
@@ -16,7 +16,19 @@ Accessibility is represented as a declared predicate over a target family. This 
 
 A scalar real-valued cost representation is used to prove the exact uniform-dilution budget boundary, margin dynamics, and a rational two-click witness.
 
-The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability.
+### Recursive-accessibility extension
+
+`CumulativeAccessibility/RecursiveAccessibility.lean` formalizes a narrow next layer:
+
+- finite-horizon search opportunity grows monotonically with a nonnegative reproduction factor when variation production is held fixed;
+- zero variation production gives zero search opportunity regardless of persistence;
+- retained viable intermediates can make an indirect target reachable even when it is not directly reachable from baseline;
+- a viable transition can strictly expand the state's future search operator;
+- if retained history preserves the ancestor's candidate repertoire, a later second-order click composes into strict search-operator expansion relative to the ancestor and exposes an explicit descendant candidate that the ancestor could not generate.
+
+This is an operational formalization of the distinction between reaching farther under a fixed generator and changing the generator of future possibilities itself.
+
+The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability. The recursive-accessibility layer does not identify persistence with fitness or function, does not prove indefinite survival, and does not claim that more search is always better.
 
 ## Main definitions
 
@@ -29,6 +41,11 @@ The formalization does not claim that scalar cost is generally equivalent to fin
 - RetainsCostOn
 - Margin
 - RouteDominatesOn
+- finiteSearchOpportunity
+- ViableReach
+- reachableWithin
+- SearchOperator
+- SecondOrderClick
 
 ## Checked results
 
@@ -78,6 +95,17 @@ The formalization does not claim that scalar cost is generally equivalent to fin
 - a newly feasible route under route dominance gives strict expansion.
 
 This route result is intentionally treated as a strong sufficient condition for separable settings, not as the generic shared-budget mechanism.
+
+### Recursive accessibility
+
+- finite-horizon expected search opportunity is monotone in a nonnegative reproduction factor for fixed nonnegative variation rate;
+- exact linear search opportunity at replacement \(R=1\);
+- persistence without variation does not generate search opportunities;
+- one- and two-step retained viable reachability;
+- a retained intermediate can expose an indirect target unavailable as a direct baseline step;
+- second-order clicks strictly expand declared candidate sets;
+- retained history plus preserved ancestral search and a later second-order click strictly expands the descendant search operator relative to the ancestor;
+- the composed theorem produces an explicit candidate accessible to the descendant but absent from the ancestor's generator.
 
 ## Reproduction
 
