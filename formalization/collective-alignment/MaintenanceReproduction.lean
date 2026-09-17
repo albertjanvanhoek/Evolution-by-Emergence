@@ -62,7 +62,7 @@ theorem dyad_threshold_fixed_point
     let xB := deficit rA
     dyadNextA rA kBA xA xB = xA ∧
     dyadNextB rB kAB xA xB = xB := by
-  dsimp [dyadNextA, dyadNextB, deficit]
+  dsimp [dyadNextA, dyadNextB, deficit] at *
   constructor
   · ring
   · nlinarith
@@ -76,7 +76,7 @@ theorem dyad_supercritical_witness
     let xB := deficit rA
     dyadNextA rA kBA xA xB = xA ∧
     xB < dyadNextB rB kAB xA xB := by
-  dsimp [dyadNextA, dyadNextB, deficit]
+  dsimp [dyadNextA, dyadNextB, deficit] at *
   constructor
   · ring
   · nlinarith
@@ -90,7 +90,7 @@ theorem dyad_subcritical_witness
     let xB := deficit rA
     dyadNextA rA kBA xA xB = xA ∧
     dyadNextB rB kAB xA xB < xB := by
-  dsimp [dyadNextA, dyadNextB, deficit]
+  dsimp [dyadNextA, dyadNextB, deficit] at *
   constructor
   · ring
   · nlinarith
@@ -137,7 +137,7 @@ theorem triad_threshold_fixed_point
     triadNextB rB kAB xA xB = xB ∧
     triadNextC rC kBC xB xC = xC := by
   dsimp [triadWitnessA, triadWitnessB, triadWitnessC,
-    triadNextA, triadNextB, triadNextC, deficit]
+    triadNextA, triadNextB, triadNextC, deficit] at *
   constructor
   · nlinarith
   constructor <;> ring
