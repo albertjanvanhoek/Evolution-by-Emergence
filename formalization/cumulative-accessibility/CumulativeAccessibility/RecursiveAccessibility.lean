@@ -8,7 +8,7 @@ variable {α : Type*}
 /-!
 # Recursive accessibility
 
-This file formalizes four narrow consequences of the cumulative-accessibility
+This file formalizes five narrow consequences of the cumulative-accessibility
 framework.
 
 1. Persistence enlarges finite-horizon search opportunity when the per-instance
@@ -20,6 +20,9 @@ framework.
 4. If retained history preserves the ancestor's candidate repertoire, a later
    second-order click composes into strict search-operator expansion relative
    to that ancestor.
+5. Deeper retained reachability and search-operator expansion are distinct:
+   explicit finite witnesses show that neither should be silently substituted
+   for the other.
 
 The results are deliberately operational. They do not identify persistence
 with fitness, function, or indefinite survival, and they do not assume that
@@ -255,6 +258,73 @@ theorem retained_history_strictly_expands_ancestor_candidate_set
 
 end SecondOrderAccessibility
 
+section IndependenceWitnesses
+
+/-- Three states suffice to separate deeper reachability from search-operator
+expansion. -/
+inductive Toy3
+  | a | b | c
+  deriving DecidableEq
+
+open Toy3
+
+/-- A two-step chain `a → b → c`, with no direct `a → c` transition. -/
+def depthOnlyStep : Toy3 → Toy3 → Prop
+  | a, b => True
+  | b, c => True
+  | _, _ => False
+
+/-- Every toy state is viable. -/
+def toyViable : Toy3 → Prop := fun _ => True
+
+/-- A fixed empty search generator: organizational depth can increase while
+the generator itself remains unchanged. -/
+def fixedEmptySearch : SearchOperator Toy3 := fun _ _ => False
+
+/-- Concrete independence witness: the retained history reaches `c` through
+`b` although `c` is not a direct baseline transition, while the search
+operator at the endpoint has not strictly expanded at all. -/
+theorem depth_expansion_without_search_operator_expansion :
+    ViableReach depthOnlyStep toyViable a 2 c ∧
+      ¬ StrictExpandsOn Set.univ (fixedEmptySearch a) (fixedEmptySearch c) := by
+  constructor
+  · exact viableReach_two_steps depthOnlyStep toyViable
+      (by simp [depthOnlyStep]) (by simp [toyViable])
+      (by simp [depthOnlyStep]) (by simp [toyViable])
+  · intro h
+    rcases h.2 with ⟨z, hzT, hzOld, hzNew⟩
+    simpa [fixedEmptySearch] using hzNew
+
+/-- A single realized state transition `a → b`; there is deliberately no
+realized `b → c` transition. -/
+def operatorOnlyStep : Toy3 → Toy3 → Prop
+  | a, b => True
+  | _, _ => False
+
+/-- State `b` can generate candidate `c`, while state `a` generates no declared
+candidate. This changes the generator without asserting realization of `c`. -/
+def expandingSearch : SearchOperator Toy3
+  | b, c => True
+  | _, _ => False
+
+/-- Concrete converse-style separation witness: a second-order click can
+strictly expand the candidate generator even though the newly generated
+candidate is not itself a realized next transition in `Step`. -/
+theorem search_operator_expansion_without_realized_candidate_step :
+    SecondOrderClick operatorOnlyStep toyViable Set.univ expandingSearch a b ∧
+      ¬ operatorOnlyStep b c := by
+  constructor
+  · refine ⟨by simp [operatorOnlyStep], by simp [toyViable], ?_⟩
+    refine ⟨?_, c, by simp, ?_, ?_⟩
+    · intro z hz hOld
+      exfalso
+      simpa [expandingSearch] using hOld
+    · simp [expandingSearch]
+    · simp [expandingSearch]
+  · simp [operatorOnlyStep]
+
+end IndependenceWitnesses
+
 #print axioms pow_mono_nonneg
 #print axioms finiteSearchOpportunity_mono
 #print axioms finiteSearchOpportunity_at_one
@@ -269,6 +339,8 @@ end SecondOrderAccessibility
 #print axioms retained_history_secondOrderClick_expands_ancestor
 #print axioms retained_history_creates_ancestor_new_candidate
 #print axioms retained_history_strictly_expands_ancestor_candidate_set
+#print axioms depth_expansion_without_search_operator_expansion
+#print axioms search_operator_expansion_without_realized_candidate_step
 
 end RecursiveAccessibility
 end CumulativeAccessibility
