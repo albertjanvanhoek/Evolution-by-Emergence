@@ -72,13 +72,13 @@ With the additional representation condition `M_t ⊆ U_t`, it also implies
 unbounded distinguishability capacity.
 ```
 
-So the previous necessity/sufficiency scaffold survives the addition of an external screen.
+The progressive natural-number architecture is also checked as a positive witness under an accept-all criterion. This shows the validated-uptake predicate is non-vacuous; it is not an argument that indiscriminate acceptance is a meaningful scientific criterion.
 
 ## 4. The separation result
 
 The important conceptual result is the converse failure.
 
-Using the already machine-checked progressive open-ended architecture together with an external criterion that rejects every candidate, Lean proves
+Using the same progressive open-ended architecture together with an external criterion that rejects every candidate, Lean proves
 
 ```text
 open-ended cumulative novelty
@@ -110,7 +110,7 @@ C_t  correction/update mechanism acting on M_t and/or H_t after test outcomes
 
 The scientifically important next question is then not merely whether novelty is screened, but whether external error can causally alter the future generative process while preserving enough organization for learning to accumulate.
 
-## 6. Relation to maintenance reproduction
+## 6. Conditional bridge to maintenance reproduction
 
 The repository's maintenance-reproduction formalization and this cumulative-accessibility stack now coexist on the same PR branch. They answer different questions:
 
@@ -123,6 +123,38 @@ validated cumulative accessibility:
     externally screened, retained novelty?
 ```
 
-No theorem currently derives the second from the first. Such a theorem would require an explicit coupling assumption between maintenance viability and the production/retention process. Keeping that missing bridge explicit prevents persistence from being silently equated with learning or correctness.
+`MaintenanceOpportunityBridge.lean` now formalizes the interface between those questions without claiming that one already proves the other.
 
-The next genuine cross-stack theorem should therefore be conditional: recurrent maintenance supplies continued correction opportunities, while validated generative uptake specifies what must happen during those opportunities for cumulative externally screened novelty to continue.
+It defines
+
+```text
+RecurringOpportunity O:
+    from every time onward, some later time has an opportunity;
+
+OpportunityConditionedValidatedRealization O U H E M:
+    whenever an opportunity occurs, at least one genuinely new candidate is
+    distinguishable, generated, externally accepted, and retained.
+```
+
+Lean then proves
+
+```text
+recurring opportunity
++ opportunity-conditioned validated realization
+    -> validated generative capacity uptake.
+```
+
+Therefore, with monotone retention,
+
+```text
+recurring opportunity
++ validated realization
++ retention
+    -> open-ended cumulative retained novelty.
+```
+
+And with `M_t ⊆ U_t`, the same premises imply unbounded distinguishability capacity.
+
+A separation witness proves that recurring opportunity alone is not enough: even an opportunity at every time is compatible with a repertoire that never changes.
+
+This is the honest current bridge. The maintenance-reproduction algebra has not yet been shown to imply `RecurringOpportunity` for a concrete time-indexed correction process. Establishing that dynamical mapping is the remaining cross-project task rather than an assumption hidden inside the theorem.
