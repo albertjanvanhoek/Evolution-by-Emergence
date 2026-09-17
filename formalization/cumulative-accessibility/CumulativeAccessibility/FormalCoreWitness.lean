@@ -1,5 +1,4 @@
 import CumulativeAccessibility.MaintenanceOpportunityBridge
-import CumulativeAccessibility.MaintenanceGatedWitness
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
