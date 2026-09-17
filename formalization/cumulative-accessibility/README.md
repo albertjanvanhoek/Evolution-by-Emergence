@@ -177,11 +177,11 @@ recurring opportunity
 
 With representation inside the moving envelope, the same premises imply unbounded distinguishability capacity. A separation witness proves that recurring opportunity alone is insufficient: opportunities may occur forever while the retained repertoire stays static.
 
-This is a conditional bridge. The separate maintenance-reproduction algebra has not yet been shown to imply `RecurringOpportunity` for a concrete time-indexed correction process.
+`MaintenanceOpportunityBridge.lean` now imports the concrete maintenance dynamics. For the strict three-cycle under the stated positivity/non-negativity and closed-loop assumptions, the machine-checked trajectory supplies recurring maintenance opportunity arbitrarily far into the future. This closes the previously conditional maintenance-to-opportunity arrow for that concrete model. It does **not** establish the corresponding result for arbitrary maintenance networks.
 
 `FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. `OPEN_ENDED_UPTAKE.md` summarizes the necessity/sufficiency scaffold. `VALIDATED_UPTAKE.md` documents the external-validation and maintenance-opportunity layers.
 
-The formalization does **not** identify persistence with fitness or function, prove indefinite biological survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. The current open-endedness results concern cumulative retained novelty. External validation is represented as an explicit declared criterion, and the maintenance bridge is conditional rather than an assertion that persistence automatically produces learning.
+The formalization does **not** identify persistence with fitness or function, prove indefinite biological survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. The current open-endedness results concern cumulative retained novelty. External validation is represented as an explicit declared criterion, and the maintenance bridge remains conditional on stated model assumptions rather than asserting that persistence automatically produces learning.
 
 ## Main definitions
 
@@ -299,6 +299,7 @@ The formalization does **not** identify persistence with fitness or function, pr
 - recurring opportunity plus opportunity-conditioned validated realization implies validated generative capacity uptake;
 - with retention, the same premises imply open-ended cumulative novelty;
 - with representation, they imply unbounded envelope capacity;
+- the strict three-cycle maintenance dynamics discharge recurring opportunity under the stated assumptions;
 - recurring opportunity alone is not sufficient for open-ended novelty.
 
 ## Reproduction
