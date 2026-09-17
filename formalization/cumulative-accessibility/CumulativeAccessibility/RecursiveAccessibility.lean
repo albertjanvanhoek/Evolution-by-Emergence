@@ -5,6 +5,8 @@ namespace RecursiveAccessibility
 
 variable {α : Type*}
 
+open scoped BigOperators
+
 /-!
 # Recursive accessibility
 
@@ -36,7 +38,7 @@ model: each viable instance produces `nu` candidate variations and expected
 instance count at generation `t` is proportional to `R^t`. -/
 noncomputable def finiteSearchOpportunity
     (nu R : ℝ) (H : ℕ) : ℝ :=
-  nu * ∑ t in Finset.range (H + 1), R ^ t
+  nu * ∑ t ∈ Finset.range (H + 1), R ^ t
 
 /-- Powers are monotone in the nonnegative base. Proved here directly so the
 search-opportunity theorem does not depend on a specialized library lemma. -/
@@ -289,6 +291,7 @@ theorem depth_expansion_without_search_operator_expansion :
       ¬ StrictExpandsOn Set.univ (fixedEmptySearch a) (fixedEmptySearch c) := by
   constructor
   · exact viableReach_two_steps depthOnlyStep toyViable
+      (x := a) (y := b) (z := c)
       (by simp [depthOnlyStep]) (by simp [toyViable])
       (by simp [depthOnlyStep]) (by simp [toyViable])
   · intro h

@@ -1,16 +1,16 @@
 # Evolution by Emergence
 
-## A formal model of maintenance, cumulative change, and open-ended accessibility
+## Maintenance, cumulative change, and open-ended accessibility
 
 **This project is open for peer review.**
 
-You do **not** need to read the whole book or understand the entire repository to review the current formal core.
+You do not need to read the whole book to review the current formal core.
 
-The present milestone — **v14: Formal Core Closure** — asks a focused question:
+The current milestone — **v15: Verification Closure** — asks a focused question:
 
 > **Under what explicit conditions can recurrent maintenance support validated cumulative novelty, and what must be true if that process is to remain open-ended?**
 
-The central implication chain is represented explicitly and machine-checked in Lean:
+The formal route is:
 
 ```text
 strict recurrent maintenance conditions
@@ -32,531 +32,151 @@ unbounded effective distinguishability capacity
 
 The important words are **conditional** and **explicit**.
 
-The project does **not** claim that persistence automatically produces learning, that novelty is necessarily improvement, that an external validation criterion is objective truth, or that biological, cognitive, social, or technological systems automatically satisfy these assumptions.
+Lean checks whether the stated conclusions follow from the stated assumptions. Science must still ask whether those assumptions hold in real biological, cognitive, social, organizational, or technological systems.
 
-Lean checks:
+## What v15 changes
 
-> **If the stated assumptions hold, do the stated conclusions follow?**
+The mathematical implication chain was already the intended result of v14, but an adversarial verification audit found that the old CI command `lake build` only forced the package root target and therefore did **not** by itself demonstrate compilation of the entire formal-core dependency chain.
 
-Science must still ask:
+v15 closes that verification gap.
 
-> **When do those assumptions hold in the world?**
-
-That is where peer review begins.
-
-For the authoritative description of the formal milestone, see the **[`v14` release notes](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/RELEASE_NOTES.md)**.  
-For repository-wide navigation and epistemic guidance, see **[RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)**.
-
-### A fixed review object
-
-The default scientific review object for this milestone is the immutable **[`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)**.
-
-A review of `main` is instead a review of post-v14 development. Identifying the exact commit SHA keeps independent reviews comparable and prevents different repository states from being discussed as though they were the same object.
-
----
-
-## Why this may be worth reviewing
-
-Several parts of the model are deliberately exposed to criticism.
-
-### 1. Maintenance is separated from learning
-
-A recurrent organization may persist without learning anything.
-
-The formalization therefore does **not** jump from
+The repository now explicitly builds the two end-to-end verification targets:
 
 ```text
-persistence → evolution
+CumulativeAccessibility.FormalCoreWitness
+CumulativeAccessibility.MaintenanceGatedWitness
 ```
 
-to its conclusion. It represents the missing steps between recurrent maintenance, opportunity, generation, validation, retention, and cumulative change.
+and CI separately re-runs their `#print axioms` output and fails if any central theorem depends on `sorryAx`.
 
-### 2. Previous organization can become infrastructure for future search
+The compatibility/proof-term repairs required to make the full stack compile did **not** require weakening the theorem statements.
 
-Generated intermediates can be retained and reused.
+## Two complementary witnesses
 
-A minimal formal example is:
+### 1. Logical non-vacuity
+
+[`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean) shows that the final premise set can be inhabited simultaneously.
+
+Its progressive architecture deliberately realizes novelty at every time step. Therefore the opportunity premise is not load-bearing in that particular witness. This makes it a **joint-satisfiability witness**, not a causal demonstration.
+
+### 2. Opportunity-gated dependency
+
+[`MaintenanceGatedWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean) adds a stronger stress test.
+
+One architecture family is parameterized by an opportunity stream:
+
+```text
+opportunity present
+    → generator enabled
+    → repertoire may expand
+
+opportunity absent
+    → generator disabled
+    → repertoire unchanged
+```
+
+With the concrete recurrent maintenance opportunity stream, the architecture has open-ended cumulative retained novelty. Replacing the opportunity stream by `False` leaves the same architecture family static and not open-ended.
+
+That establishes a genuine **within-model dependency / ablation result**. It does not establish empirical causality.
+
+## Other results worth attacking
+
+The formal stack deliberately keeps several claims separate:
+
+- **maintenance ≠ learning**;
+- **persistence ≠ fitness**;
+- **novelty ≠ improvement**;
+- **external validation ≠ objective truth**;
+- **unbounded capacity ≠ realized novelty**;
+- **joint satisfiability ≠ empirical realism**.
+
+It also machine-checks:
+
+- retained intermediates can become reusable infrastructure for later search;
+- unary descent and multi-parent recombination are distinct generative structures;
+- changing retained parent material and changing the generative rule are distinct mechanisms;
+- a fixed finite distinguishability space bounds cumulative retained novelty;
+- open-ended cumulative retained novelty, under representation in a moving envelope, implies unbounded effective distinguishability capacity;
+- the converse is false.
+
+A minimal retained-closure example is:
 
 ```text
 a → b → c
 ```
 
-where `c` is unavailable after one retained generative round but becomes available after `b` has been generated and retained.
+where `c` is unavailable after one retained generative round but becomes available after two once `b` has been generated and retained.
 
-This captures a simple but important idea: **successful previous organization can change the starting point for subsequent search.**
+## What is *not* claimed
 
-### 3. Recombination is different from unary descent
+The project does **not** claim that:
 
-The formal stack allows finite-parent generation.
+- persistence automatically creates learning;
+- every recurrent maintenance network evolves;
+- novelty is necessarily beneficial;
+- the external acceptance predicate is objectively correct;
+- unbounded capacity guarantees novelty;
+- the current three-cycle theorem is already the most general possible network theorem;
+- physical reality has a fixed finite state space;
+- or real systems have already been shown to satisfy the formal assumptions.
 
-A candidate can become generable through retained combinations even when neither parent has a unary path to it.
+## Review the fixed object
 
-The model therefore distinguishes changes caused by:
+For comparable independent reviews, use the immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** and record the commit SHA you inspected.
 
-```text
-new retained material
-new combinations of retained material
-changed generative rules
-```
+Start with:
 
-rather than hiding all three inside one transition graph.
+1. [`RELEASE_NOTES.md`](RELEASE_NOTES.md) — what changed, what is checked, and what remains open.
+2. [`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md) — the Lean package and verification contract.
+3. [`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean) — joint non-vacuity witness.
+4. [`MaintenanceGatedWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean) — opportunity-gated dependency and ablation witness.
+5. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and validated response.
+6. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
+7. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
+8. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
+9. [`verification/audits/`](verification/audits/) — theorem and literature audits.
+10. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
 
-### 4. A fixed finite novelty space saturates
-
-For monotonically retained organization inside a fixed finite declared universe, the number of strict retained expansions is finite.
-
-Changing the generative rule does not remove this counting boundary while effective distinguishability capacity remains fixed and finite.
-
-For the particular form of **open-ended cumulative retained novelty** defined here:
-
-```text
-open-ended cumulative retained novelty
-                ↓
-unbounded effective distinguishability capacity
-```
-
-But the converse is false:
-
-```text
-unbounded capacity
-        ↛
-realized novelty
-```
-
-The repository contains a machine-checked counterexample.
-
-### 5. External validation is not identified with truth
-
-The evolving architecture includes a declared external predicate `E_t`.
-
-Mathematically, that predicate is intentionally uninterpreted. It is **not defined to mean objective truth, fitness, morality, utility, or correctness**.
-
-This lets reviewers ask separately whether the formal implication is valid and whether a proposed real-world validation process is meaningful.
-
-### 6. The complete premise set has a machine-checked witness
-
-`FormalCoreWitness.lean` supplies a concrete joint witness showing that the final theorem stack is not merely a collection of compatible-looking implications: its premise set can be inhabited simultaneously.
-
-The witness is for **logical non-vacuity**, not biological realism.
-
-There is also an important limitation worth reviewing directly. The current progressive witness is deliberately stronger than required: it realizes a new accepted retained candidate at every time step, so its opportunity hypothesis is not needed to generate novelty. The witness therefore establishes **joint satisfiability of the premises**, not a causal demonstration that maintenance opportunities themselves produce generative response.
-
-A stronger future witness could make realization genuinely depend on the maintenance-opportunity stream. Whether such a construction is possible, and what additional assumptions it would require, is an open review target.
-
-So there are at least three distinct things to challenge:
-
-```text
-the mathematics
-the assumptions
-the interpretation
-```
-
-Finding a problem in any one of them is useful.
-
----
-
-# How to peer-review this project
-
-## Recommended approach: human + LLM
-
-The repository is large enough that reading it linearly is inefficient.
-
-A useful workflow is:
+For an LLM-assisted adversarial review, use the versioned copy-paste protocol in **[`PEER_REVIEW_PROMPT.md`](PEER_REVIEW_PROMPT.md)**.
 
 > **Let an LLM navigate. Let the human judge.**
 
-An LLM can trace definitions, locate theorem dependencies, compare files, search for counterexamples, inspect claim ledgers and literature audits, and explain Lean code.
+An LLM can trace definitions, imports, theorem dependencies, counterexamples, and prior literature. The human reviewer remains responsible for deciding whether definitions are meaningful, assumptions are realistic, interpretations overreach, and prior work already contains the result in the same or stronger form.
 
-The human reviewer remains responsible for deciding whether definitions are meaningful, whether assumptions correspond to real systems, whether interpretations overreach the formal result, and whether prior literature already contains the result in the same or a stronger form.
-
-### Start here
-
-For the formal-core milestone, the shortest review route is:
-
-1. **[`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)** — fixed review object for the formal-core milestone.
-2. **[`RELEASE_NOTES.md` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/RELEASE_NOTES.md)** — formal claim, implication chain, scope, non-claims, and remaining research questions.
-3. **[`RESEARCH_GUIDE.md` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/RESEARCH_GUIDE.md)** — routing and epistemic context; a map rather than evidence that the claims are true.
-4. **[`formalization/cumulative-accessibility/README.md` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/README.md)** — map of the cumulative-accessibility Lean package.
-5. **[`FormalCoreWitness.lean` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean)** — concrete joint witness for the closed formal core.
-6. **[`MaintenanceOpportunityBridge.lean` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean)** — bridge from concrete recurrent maintenance dynamics to recurring opportunity and onward to validated uptake.
-7. **[`ValidatedUptake.lean` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean)** — external validation kept separate from ordinary novelty.
-8. **[`OpenEndedCapacity.lean` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean)** — necessity of unbounded effective distinguishability capacity for the declared form of open-ended cumulative retained novelty.
-9. **[`FiniteGenerativeSaturation.lean` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean)** — finite-capacity saturation boundary.
-10. Relevant `CLAIMS.md`, `FORMAL_VERIFICATION.md`, and `REPRODUCIBILITY.md` files — manuscript-facing claim mappings and reproducibility information.
-11. **[`verification/audits/` at v14](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14/verification/audits)** — theorem and literature audits.
-
-The review standard is source traceability: an important criticism should connect an actual claim to its exact source, definitions, assumptions, and relevant prior literature.
-
-The copy-paste prompt below contains the operational safeguards for LLM reviewers, including an access gate designed to prevent a model from substituting a generic critique when it cannot inspect the repository.
-
----
-
-## Give an LLM this prompt
-
-```text
-Act as an adversarial scientific peer reviewer of the tagged v14 release of:
-
-https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14
-
-ACCESS GATE — DO THIS FIRST
-
-Before reviewing, report:
-
-REPOSITORY ACCESS: yes / no
-TARGET VERSION: v14 / other / unknown
-SOURCE-FILE ACCESS: yes / no
-LEAN EXECUTION: yes / no
-LITERATURE SEARCH: yes / no
-
-SOURCE-FILE ACCESS may be reported as "yes" only after you have successfully
-opened RELEASE_NOTES.md at v14 and at least one exact Lean source from the
-core-file list below. Access in principle is not the same as successful source
-resolution.
-
-If you cannot access the repository or supplied source files, STOP.
-Do not substitute a generic review of evolutionary theory, emergence,
-open-ended evolution, cybernetics, or artificial life.
-Do not invent likely source files, definitions, theorem names, assumptions,
-prior literature, weaknesses, or severity ratings.
-Do not fill the review schema with hypothetical content.
-State what material or capability you need instead.
-
-If you review a version other than v14, report the exact commit SHA and say
-explicitly that you are reviewing a different repository state.
-
-CORE FILES — USE THESE EXACT v14 PATHS
-
-RELEASE_NOTES.md
-RESEARCH_GUIDE.md
-formalization/cumulative-accessibility/README.md
-formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean
-formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean
-formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean
-formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean
-formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean
-
-FILE-RESOLUTION RULE
-
-Do not infer that a file is absent because it is not in the first directory you
-inspect. In particular, the core Lean files are nested under:
-
-formalization/cumulative-accessibility/CumulativeAccessibility/
-
-Before reporting a named source as missing:
-
-1. try the exact v14 path supplied above;
-2. if that fails, search the v14 repository recursively by filename and by a
-   distinctive theorem/definition name;
-3. inspect relevant imports and the package README for module location;
-4. distinguish "I could not resolve this file with my available tools" from
-   "this file does not exist".
-
-Only ask the human reviewer for a path after those steps have failed. Never ask
-for a path that is already supplied in this prompt.
-
-Before beginning scientific analysis, report a short resolution check:
-
-FormalCoreWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
-MaintenanceOpportunityBridge.lean: FOUND / NOT RESOLVED — <exact path or limitation>
-
-EVIDENCE RULE
-
-Do not populate SOURCE / THEOREM unless you have located the exact repository
-path and, where applicable, the exact Lean declaration. If not accessed, write:
-
-SOURCE / THEOREM: UNVERIFIED — SOURCE NOT ACCESSED
-
-Do not assign a severity until you have confirmed that the repository actually
-makes the criticized claim. Before proposing a conceptual criticism, check
-whether the supposed confusion is already an explicit non-claim, converse
-failure, or machine-checked counterexample.
-
-LOGICAL-DIRECTION RULE
-
-For every theorem, rewrite its logical direction explicitly before evaluating
-necessity, converse status, or failure cases. If the theorem is:
-
-A -> B
-
-then it establishes that A is sufficient for B. It does not establish that A is
-necessary for B. Failure of A does not imply failure of B. The exact converse is
-B -> A.
-
-If the theorem is:
-
-(A and C) -> B
-
-then showing that A alone does not imply B is a premise-ablation or independence
-result, not a counterexample to the theorem and not the theorem's converse.
-
-Label negative results precisely as one of:
-
-- counterexample to the stated theorem;
-- counterexample to the exact converse;
-- premise ablation / one premise alone is insufficient;
-- independence result;
-- scope limitation;
-- empirical applicability concern.
-
-Do not call a sufficient condition "required" unless necessity is separately
-proved. Do not infer the negation of a conclusion from the failure of a
-sufficient premise.
-
-WITNESS RULE
-
-A concrete witness can satisfy assumptions more strongly than necessary. That
-does not weaken a sufficiency theorem. It may mean only that the witness does
-not demonstrate necessity, causal dependence, or minimality.
-
-In particular, the current progressive witness is explicitly a logical
-non-vacuity witness. If its generative response occurs even without using the
-opportunity premise, classify that as a limitation of the witness as a causal or
-minimal construction, not as evidence that the bridge theorem is invalid or
-that a necessity claim has failed unless the repository actually makes such a
-necessity claim.
-
-Likewise, `acceptAllCriterion` is explicitly introduced as a permissive
-non-vacuity witness, not as a scientifically realistic validator. A more
-restrictive criterion may be a useful robustness extension; do not call the
-permissive witness a defect unless prose elsewhere incorrectly treats it as an
-empirical validation model.
-
-SCOPE AND SEVERITY RULE
-
-Do not assign a problem severity merely because a theorem is narrow, abstract,
-or not yet generalized when the repository explicitly states that limitation.
-A missing arbitrary-network generalization, a physical interpretation of an
-abstract envelope, or a stronger witness can be important future work without
-being an error in the current theorem.
-
-Reserve High/Fatal severity for a demonstrated false theorem, inconsistent
-assumptions, invalid proof dependency, or prose claim that materially exceeds
-the formal result. Mark acknowledged limitations as scope limitations or future
-work unless you find an actual overclaim.
-
-LITERATURE AND NOVELTY RULE
-
-Do not call a result, formalization, mechanism, or distinction "novel" or "new"
-without performing an actual literature search and citing the sources that
-support that assessment. If you have not completed that search, write:
-
-RELATION TO PRIOR LITERATURE: NOT ASSESSED
-
-The repository already frames much of the stack conservatively as synthesis and
-research architecture with exact model-specific results. Treat novelty as a
-question to investigate, not a default label.
-
-VERIFICATION-STATUS RULE
-
-If LEAN EXECUTION is "no", do not say that you independently verified or
-executed the Lean proofs. Distinguish among:
-
-- SOURCE INSPECTED: you read the Lean declaration/proof text;
-- REPOSITORY-REPORTED MACHINE CHECK: release/CI material reports a successful
-  Lean build;
-- INDEPENDENTLY EXECUTED: you actually ran the relevant Lean build yourself.
-
-A source-level review can still be useful, but report the verification level
-accurately.
-
-SELF-CONSISTENCY CHECK — DO THIS BEFORE FINALIZING
-
-Before submitting the review:
-
-1. check that every claimed converse is the literal reverse implication of the
-   theorem under discussion;
-2. check that you never infer "not B" merely from failure of a sufficient A;
-3. check that you do not call a counterexample absent if you cited that same
-   counterexample elsewhere in the report;
-4. check that every novelty/prior-literature statement is supported by an
-   actual search and citations;
-5. check that every severity refers to an actual claim or theorem defect rather
-   than an explicitly acknowledged scope limitation;
-6. check that statements about machine verification match your declared Lean
-   execution capability.
-
-Do not evaluate the theory from the README alone.
-
-Start with RELEASE_NOTES.md to identify the current formal claim.
-Then read RESEARCH_GUIDE.md as a routing and epistemic document.
-Do not treat either file as evidence that the claims are true.
-Trace substantive claims back to their manuscript, Lean source, claim ledger,
-reproducibility material, and relevant prior literature.
-
-Your first scientific task is to reconstruct the formal implication chain of
-v14 "Formal Core Closure".
-
-For every arrow in that chain:
-
-1. locate the exact Lean definitions and theorem(s);
-2. state the assumptions explicitly;
-3. determine whether the conclusion follows from those assumptions;
-4. identify any hidden strengthening introduced in prose;
-5. look for included counterexamples and converse failures, applying the
-   logical-direction rule above;
-6. distinguish:
-   - definitions,
-   - machine-checked results,
-   - established external mathematics,
-   - modelling assumptions,
-   - empirical interpretations,
-   - conjectures or research directions;
-7. search for prior literature containing the same or a stronger result;
-8. actively try to construct counterexamples to claims that are not already
-   formal theorems.
-
-Pay particular attention to whether the repository accidentally equates:
-
-- maintenance with learning;
-- persistence with fitness or function;
-- novelty with improvement;
-- larger search spaces with realized innovation;
-- external validation with objective truth;
-- unbounded capacity with open-ended novelty.
-
-Then inspect FormalCoreWitness.lean and determine:
-
-1. whether the complete set of premises is genuinely jointly satisfiable;
-2. whether the witness demonstrates only logical non-vacuity or also any
-   causal dependence of generative realization on maintenance opportunity;
-3. whether the fact that the current progressive witness realizes novelty at
-   every time step makes the opportunity premise unused in the witness;
-4. whether a stronger witness can be constructed in which realization is
-   genuinely conditional on the maintenance opportunity stream.
-
-Where possible, run the Lean formalization rather than trusting descriptions
-of it.
-
-Report results as:
-
-CLAIM
-SOURCE / THEOREM
-ASSUMPTIONS
-WHAT IS ACTUALLY PROVED
-LOGICAL STATUS / COUNTEREXAMPLE TYPE
-RELATION TO PRIOR LITERATURE
-POTENTIAL PROBLEM OR SCOPE LIMITATION
-SEVERITY (only for an actual defect; otherwise N/A)
-SUGGESTED TEST, CORRECTION, OR EXTENSION
-VERIFICATION STATUS
-
-Every criticism must be traceable as:
-
-criticism -> exact claim -> exact source -> exact theorem/definition -> assumptions
-
-Do not try to make the theory sound coherent.
-Try to find where it actually breaks.
-A negative result is useful.
-```
-
-The objective of peer review here is not to confirm the model. It is to make it **harder for the model to be wrong unnoticed**.
-
----
-
-# Reproduce the formal checks
-
-The `v14` review object can be reproduced exactly with:
+## Reproduce the formal core
 
 ```bash
 git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
 cd Evolution-by-Emergence
-git checkout v14
+git checkout v15
 cd formalization/cumulative-accessibility
-
 lake update
 lake exe cache get
 lake build
+lake build \
+  CumulativeAccessibility.FormalCoreWitness \
+  CumulativeAccessibility.MaintenanceGatedWitness
+lake env lean CumulativeAccessibility/FormalCoreWitness.lean
+lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 ```
 
-The package pins its Lean/mathlib environment.
+The central printed theorem axioms must contain no `sorryAx`.
 
-A successful build tells you that Lean accepts the formal derivations.
+## How to contribute
 
-It does **not** tell you that the premises describe nature.
+Useful contributions include:
 
----
+- a genuine counterexample to a stated theorem;
+- a hidden assumption or overclaim;
+- a simpler or stronger proof;
+- a more general network theorem;
+- a more realistic validation or turnover model;
+- a stronger empirical test;
+- prior literature showing that a claimed contribution is already known;
+- or a cleaner formalization of the same distinction.
 
-# Where reviewers can contribute most
-
-A useful review does not have to overturn the whole framework. A single good contribution is enough.
-
-- Find a theorem whose prose interpretation is too strong.
-- Find a hidden assumption.
-- Produce a simpler counterexample.
-- Show that a claimed mechanism is already known under another name.
-- Identify a stronger or more general existing theorem.
-- Weaken an assumption while preserving the result.
-- Show that a sufficient condition is not necessary — or prove that it is.
-- Construct an empirical system that violates one of the premises.
-- Propose an observable quantity corresponding to a formal variable.
-- Find a domain where the complete chain can actually be tested.
-- Improve the definition of effective distinguishability or open-endedness.
-- Construct a stronger end-to-end witness in which generative realization genuinely depends on the maintenance-opportunity stream rather than occurring independently at every time step.
-
-**A successful falsification is a contribution.**
-
-So is a substantial simplification.
-
-**Prior art is a result.** If you can show that a result is already known in stronger or more general form, please tell us. Correct attribution and simplification improve the model.
-
-The repository's own literature audits already find extensive antecedents across several relevant fields; the current project is therefore framed conservatively as a **synthesis and research architecture with exact model-specific results**, not as a bundle of newly discovered general mechanisms.
+**A successful falsification is a contribution. Prior art is a result. Review the smallest thing you can break.**
 
 ---
 
-# What is — and is not — being claimed
-
-The current release claims something deliberately narrower than:
-
-> “Evolution by Emergence has been proved.”
-
-The formal claim is closer to:
-
-> **A specified set of recurrent-maintenance, generative, validation, retention, and representation conditions is sufficient to derive a declared form of open-ended cumulative retained novelty, and that form of open-ended novelty requires unbounded effective distinguishability capacity.**
-
-The logical route is machine checked, including a concrete jointly satisfiable witness for the premise set.
-
-Whether those conditions are common, rare, physically realizable, biologically important, organizationally useful, or the right abstraction of evolution remains open to investigation.
-
-That distinction is intentional.
-
----
-
-# Review the smallest thing you can break
-
-You do not need to review the whole project.
-
-Pick one arrow.
-
-Pick one definition.
-
-Pick one claimed interpretation.
-
-Pick one literature connection.
-
-Then try to break it.
-
-If it survives, we learn something.
-
-If it fails, we learn something better.
-
-Open a GitHub **Issue** with the relevant theorem/file and a reproducible argument, or submit a **Pull Request** with a correction, counterexample, stronger theorem, test, or documentation improvement.
-
-This project is intended to remain corrigible.
-
----
-
-## Explore further
-
-- **Fixed formal-core review object:** [`v14` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v14)
-- **v14 release notes:** [`RELEASE_NOTES.md`](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/v14/RELEASE_NOTES.md)
-- **Current research map and epistemic protocol:** [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)
-- **Formal cumulative-accessibility stack:** [`formalization/cumulative-accessibility/`](formalization/cumulative-accessibility/)
-- **Organizational-depth verification:** [`verification/organizational-depth/`](verification/organizational-depth/)
-- **Sufficient Alignment:** [`papers/sufficient-alignment/`](papers/sufficient-alignment/)
-- **Website:** [Evolution by Emergence](https://albertjanvanhoek.github.io/Evolution-by-Emergence/)
-- **Listen:** [Stream Emergence 🐠 on SoundCloud](https://soundcloud.com/emergence-223803727)
-- **Watch:** [Autonomous Interdependence on YouTube](https://www.youtube.com/@AutonomousInterdependence)
-
----
-
-*Evolution by Emergence is an open, active, corrigible research corpus by Albert Jan van Hoek, developed with AI collaboration. Formal verification establishes mathematical consequences of explicit assumptions. Broader scientific interpretations remain open to empirical testing, literature comparison, criticism, revision, and rejection.*
+*Evolution by Emergence is an active, corrigible research corpus by Albert Jan van Hoek with AI collaboration. Formal verification establishes mathematical implications under explicit assumptions; broader scientific interpretation remains open to evidence and peer review.*
