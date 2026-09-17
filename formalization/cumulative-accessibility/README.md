@@ -6,7 +6,7 @@ Machine verification for:
 
 ## Scope
 
-The formalization now has seven connected layers.
+The formalization now has nine connected layers.
 
 ### 1. General operational layer
 
@@ -82,7 +82,7 @@ The converse is false. A machine-checked witness has `|U_t| -> infinity` while `
 
 ### 7. Capacity-uptake layer
 
-Two new modules provide a sufficient mechanism rather than only a no-go boundary:
+Two modules provide a sufficient mechanism rather than only a no-go boundary:
 
 - `CapacityUptake.lean` — explicit `U_t -> H_t -> M_{t+1}` coupling;
 - `CapacitySlack.lean` — decomposition into recurring unused capacity and local generative realization.
@@ -121,9 +121,67 @@ recurring capacity slack
 
 The first implication is sufficient, not claimed minimal. The second is necessary.
 
-`FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. `OPEN_ENDED_UPTAKE.md` summarizes the necessity/sufficiency scaffold and its limits.
+### 8. External-validation layer
 
-The formalization does **not** identify persistence with fitness or function, prove indefinite biological survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. The current open-endedness results concern cumulative retained novelty; adaptation, viability, and external correction remain separate conditions.
+`ValidatedUptake.lean` extends the architecture to
+
+```text
+(M_t, H_t, U_t, E_t)
+```
+
+where `E_t` is a declared external test or acceptance predicate. The formalization does **not** identify this predicate with objective truth, fitness, or utility.
+
+`ValidatedGenerativeCapacityUptake` requires arbitrarily late candidates that are simultaneously distinguishable, genuinely new, generable from current retained material, accepted by `E_t`, and retained.
+
+Lean proves
+
+```text
+validated generative capacity uptake
+    -> generative capacity uptake
+    -> open-ended cumulative novelty.
+```
+
+With `M_t ⊆ U_t`, the same condition also implies unbounded envelope capacity. A positive progressive witness shows the validated condition is non-vacuous under an accept-all criterion, while a reject-all witness proves that open-ended cumulative novelty alone does not imply externally validated novelty.
+
+### 9. Maintenance-opportunity bridge
+
+`MaintenanceOpportunityBridge.lean` formalizes the interface needed to connect recurrent maintenance to cumulative validated novelty without silently equating persistence with learning.
+
+It separates
+
+```text
+RecurringOpportunity:
+    opportunities recur arbitrarily far into the future;
+
+OpportunityConditionedValidatedRealization:
+    whenever an opportunity occurs, at least one genuinely new candidate is
+    distinguishable, generated, externally accepted, and retained.
+```
+
+Lean proves
+
+```text
+recurring opportunity
++ opportunity-conditioned validated realization
+    -> validated generative capacity uptake.
+```
+
+Therefore, with retention,
+
+```text
+recurring opportunity
++ validated realization
++ retention
+    -> open-ended cumulative novelty.
+```
+
+With representation inside the moving envelope, the same premises imply unbounded distinguishability capacity. A separation witness proves that recurring opportunity alone is insufficient: opportunities may occur forever while the retained repertoire stays static.
+
+This is a conditional bridge. The separate maintenance-reproduction algebra has not yet been shown to imply `RecurringOpportunity` for a concrete time-indexed correction process.
+
+`FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. `OPEN_ENDED_UPTAKE.md` summarizes the necessity/sufficiency scaffold. `VALIDATED_UPTAKE.md` documents the external-validation and maintenance-opportunity layers.
+
+The formalization does **not** identify persistence with fitness or function, prove indefinite biological survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. The current open-endedness results concern cumulative retained novelty. External validation is represented as an explicit declared criterion, and the maintenance bridge is conditional rather than an assertion that persistence automatically produces learning.
 
 ## Main definitions
 
@@ -161,6 +219,11 @@ The formalization does **not** identify persistence with fitness or function, pr
 - `GenerativeCapacityUptake`
 - `RecurringCapacitySlack`
 - `ImmediateGenerativeRealization`
+- `ExternalCriterion`
+- `EventualValidatedNovelUptake`
+- `ValidatedGenerativeCapacityUptake`
+- `RecurringOpportunity`
+- `OpportunityConditionedValidatedRealization`
 
 ## Checked results
 
@@ -221,6 +284,22 @@ The formalization does **not** identify persistence with fitness or function, pr
 - recurring capacity slack plus immediate generative realization implies the packaged uptake condition;
 - therefore recurring slack + local realization + retention is sufficient for open-ended cumulative novelty;
 - a concrete progressive architecture on the natural numbers satisfies the decomposed conditions and is machine-checked as open-ended.
+
+### External validation
+
+- validated generative capacity uptake implies ordinary generative capacity uptake;
+- validated generative capacity uptake implies arbitrarily late externally accepted novel-retention events;
+- with retention, validated uptake implies open-ended cumulative novelty;
+- with representation, validated uptake implies unbounded envelope capacity;
+- the progressive architecture satisfies validated uptake under an accept-all criterion;
+- open-ended cumulative novelty does not imply external validation, witnessed by a reject-all criterion.
+
+### Maintenance-opportunity bridge
+
+- recurring opportunity plus opportunity-conditioned validated realization implies validated generative capacity uptake;
+- with retention, the same premises imply open-ended cumulative novelty;
+- with representation, they imply unbounded envelope capacity;
+- recurring opportunity alone is not sufficient for open-ended novelty.
 
 ## Reproduction
 
