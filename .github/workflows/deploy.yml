@@ -1,16 +1,16 @@
-# GitHub Pages build & deploy — LaTeX ➜ Markdown *with* Lua‑front‑matter
+# GitHub Pages build & deploy — LaTeX ➜ Markdown with Lua front matter
 # ===================================================================
 # • Trigger: push to main
 # • Reads version from last Git tag → $BOOK_VERSION
-# • Converts every src/chapters/*.tex (excl. main.tex) to docs/Chapters/*.md
-#   using filters/add_yaml.lua to inject YAML front‑matter (id, title, version…)
-# • Builds MkDocs site and deploys to GitHub Pages
+# • Converts publication/book LaTeX sources to docs/<source-path>.md
+# • Generates web-safe figure assets used by converted sources
+# • Builds MkDocs in strict mode and deploys to GitHub Pages
 
 name: Build & Deploy Site
 
 permissions:
   contents: write
-  pages:    write
+  pages: write
   id-token: write
 
 on:
@@ -25,25 +25,20 @@ jobs:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
-      # --- Checkout ----------------------------------------------------
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0            # we need tags for version extraction
+          fetch-depth: 0
 
-      # --- Toolchain --------------------------------------------------
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.x'
 
-
       - name: Install documentation and scientific Python dependencies
         run: |
           pip install mkdocs-material numpy scipy matplotlib
           pip install --upgrade "pymdown-extensions>=10.5"
-
-      # --- TikZ ➜ PDF ➜ SVG -----------------------------------------
 
       # Tectonic is not packaged by Ubuntu 24.04 (the ubuntu-latest image).
       - name: Setup Tectonic
@@ -57,38 +52,41 @@ jobs:
           sudo apt-get install -y --no-install-recommends pandoc pdf2svg
           pandoc --version
           tectonic --version
-          # Zoek alle docs/figures/*.tex bestanden en zet ze om
           for tex in $(find docs/figures -name '*.tex'); do
             base="${tex%.tex}"
-            tectonic -Z shell-escape "$tex"      # → layers.pdf
-            pdf2svg "${base}.pdf" "${base}.svg"  # → layers.svg
+            tectonic -Z shell-escape "$tex"
+            pdf2svg "${base}.pdf" "${base}.svg"
           done
 
       - name: Generate organizational accessibility figures
         run: python scripts/generate_organizational_accessibility_figures.py
 
-      # (optioneel) commit nieuwe/gewijzigde figuren terug
+      - name: Generate organizational-depth web figure
+        run: |
+          python verification/organizational-depth/tightness/make_figure.py
+          test -s verification/organizational-depth/tightness/figures/tightness.pdf
+          pdf2svg \
+            verification/organizational-depth/tightness/figures/tightness.pdf \
+            docs/figures/tightness.svg
+          test -s docs/figures/tightness.svg
+
+      # Keep generated shared web assets synchronized with the repository.
       - uses: EndBug/add-and-commit@v9
         with:
           add: 'docs/figures/*.pdf docs/figures/*.svg'
-          message: 'ci: auto‑update figures'
+          message: 'ci: auto-update figures'
 
-      # --- Version info ------------------------------------------------
       - name: Compute version from last tag
         run: |
           echo "BOOK_VERSION=$(git describe --tags --abbrev=0 || echo 0.0-dev)" >> $GITHUB_ENV
           echo "Version for build: $BOOK_VERSION"
 
-      # --- LaTeX ➜ Markdown (Lua filter) -------------------------------
-      - name: Convert LaTeX to Markdown with YAML front‑matter
+      - name: Convert LaTeX to Markdown with YAML front matter
         shell: bash
         run: |
           set -euxo pipefail
-          # Vind álle .tex (behalve main.tex) in de hele repo
           while IFS= read -r -d '' tex; do
-            # strip leading "./"
             rel="${tex#./}"
-            # output path onder docs/
             out="docs/${rel%.tex}.md"
             mkdir -p "$(dirname "$out")"
             pandoc "$tex" \
@@ -103,16 +101,15 @@ jobs:
               ! -name 'main.tex' \
               ! -name 'Instructions_to_complile_the_book.tex' \
               ! -path './docs/figures/*' \
+              ! -path './verification/*' \
               ! -path './.github/*' \
               ! -path './.git/*' \
               -print0
           )
 
-      # --- MkDocs build ----------------------------------------------
       - name: Build site
         run: mkdocs build --strict
 
-      # --- GitHub Pages publish --------------------------------------
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
