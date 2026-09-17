@@ -16,13 +16,18 @@ retains a fraction r_i of its usable corrective capacity autonomously, with
 r_i < 1 in the subcritical case. Directed cross-maintenance gains k_ij can
 close return loops that compensate those autonomous deficits.
 
-This file deliberately proves only the elementary product-threshold algebra:
+This file deliberately proves only the elementary product-threshold algebra
+and explicit finite witnesses:
 
 * exact dyadic loop threshold;
 * exact three-agent loop threshold;
 * an explicit witness where the closed triad is super-unit while every
   induced dyad is open-loop;
-* the corresponding finite n-cycle product threshold.
+* the corresponding finite n-cycle product threshold;
+* an explicit recurrent-module witness in which every simple two- and
+  three-edge loop has product below one but the combined positive mode expands;
+* an explicit acyclic three-node chain whose pure cross-maintenance operator
+  vanishes after three steps.
 
 The general equivalence between a nonnegative network system
 
@@ -186,6 +191,57 @@ theorem cycleMaintenanceRatio_supercritical_iff
 
 end FiniteCycle
 
+section RecurrentModuleWitnesses
+
+/-- A normalized three-process recurrent module with gain 3/5 on every
+cross-edge and no self-loop. Written directly as a state update to avoid
+claiming that the general matrix spectral theorem is formalized here. -/
+def denseThreeStep
+    (x : ℝ × ℝ × ℝ) : ℝ × ℝ × ℝ :=
+  let a := x.1
+  let b := x.2.1
+  let c := x.2.2
+  ((3/5 : ℝ) * b + (3/5 : ℝ) * c,
+   (3/5 : ℝ) * a + (3/5 : ℝ) * c,
+   (3/5 : ℝ) * a + (3/5 : ℝ) * b)
+
+/-- Explicit witness that viability need not reside in one individually
+super-unit simple cycle. Every two-edge loop has product (3/5)^2 < 1 and every
+three-edge simple loop has product (3/5)^3 < 1, yet the combined recurrent
+module expands the uniform positive state by the factor 6/5. -/
+theorem subunit_simple_cycles_can_combine_into_expanding_module :
+    (3/5 : ℝ)^2 < 1
+      ∧
+    (3/5 : ℝ)^3 < 1
+      ∧
+    denseThreeStep (1, 1, 1)
+      = ((6/5 : ℝ), (6/5 : ℝ), (6/5 : ℝ)) := by
+  constructor
+  · norm_num
+  constructor
+  · norm_num
+  · norm_num [denseThreeStep]
+
+/-- A pure cross-maintenance chain A -> B -> C with no return edge. -/
+def openChain3Step
+    (kAB kBC : ℝ) (x : ℝ × ℝ × ℝ) : ℝ × ℝ × ℝ :=
+  (0, kAB * x.1, kBC * x.2.1)
+
+/-- In the three-node acyclic chain, cross-maintenance alone is nilpotent:
+after three steps no contribution remains. This is a concrete finite witness
+of the recurrence requirement; it is not a formal proof of the general DAG
+nilpotence theorem. -/
+theorem open_chain_three_steps_vanish
+    (kAB kBC : ℝ) (x : ℝ × ℝ × ℝ) :
+    openChain3Step kAB kBC
+      (openChain3Step kAB kBC
+        (openChain3Step kAB kBC x))
+      = (0, 0, 0) := by
+  rcases x with ⟨a, b, c⟩
+  simp [openChain3Step]
+
+end RecurrentModuleWitnesses
+
 #print axioms dyadMaintenanceRatio_supercritical_iff
 #print axioms dyad_open_loop_ratio_zero
 #print axioms dyad_open_loop_not_supercritical
@@ -194,5 +250,7 @@ end FiniteCycle
 #print axioms triad_supercritical_with_all_induced_dyads_open
 #print axioms cycleDeficit_pos
 #print axioms cycleMaintenanceRatio_supercritical_iff
+#print axioms subunit_simple_cycles_can_combine_into_expanding_module
+#print axioms open_chain_three_steps_vanish
 
 end CollectiveAlignment
