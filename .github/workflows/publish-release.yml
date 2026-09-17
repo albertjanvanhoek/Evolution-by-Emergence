@@ -1,0 +1,78 @@
+name: Publish GitHub Release
+
+permissions:
+  contents: write
+
+on:
+  workflow_run:
+    workflows: ["Build & Deploy Site"]
+    types: [completed]
+
+jobs:
+  publish-release:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exactly the tested commit
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 0
+
+      - name: Validate release metadata
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s RELEASE_VERSION
+          test -s RELEASE_TITLE
+          test -s RELEASE_NOTES.md
+
+          VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
+          TITLE="$(cat RELEASE_TITLE)"
+          SHA="${{ github.event.workflow_run.head_sha }}"
+
+          if [[ ! "$VERSION" =~ ^v[0-9]+([.][0-9]+){0,2}$ ]]; then
+            echo "Invalid release version: $VERSION" >&2
+            exit 1
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "title=$TITLE" >> "$GITHUB_OUTPUT"
+
+      - name: Create annotated tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.meta.outputs.version }}
+          RELEASE_SHA: ${{ steps.meta.outputs.sha }}
+          RELEASE_TITLE: ${{ steps.meta.outputs.title }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+
+          if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
+            TAG_SHA="$(git rev-list -n 1 "$VERSION")"
+            if [[ "$TAG_SHA" != "$RELEASE_SHA" ]]; then
+              echo "Tag $VERSION already exists at $TAG_SHA, expected $RELEASE_SHA" >&2
+              exit 1
+            fi
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a "$VERSION" "$RELEASE_SHA" -m "$RELEASE_TITLE"
+            git push origin "refs/tags/$VERSION"
+          fi
+
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists; nothing to do."
+            exit 0
+          fi
+
+          gh release create "$VERSION" \
+            --verify-tag \
+            --title "$RELEASE_TITLE" \
+            --notes-file RELEASE_NOTES.md
