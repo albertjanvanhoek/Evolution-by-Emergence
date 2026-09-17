@@ -5,6 +5,8 @@ namespace RecursiveAccessibility
 
 variable {α : Type*}
 
+open scoped BigOperators
+
 /-!
 # Recursive accessibility
 
@@ -289,6 +291,7 @@ theorem depth_expansion_without_search_operator_expansion :
       ¬ StrictExpandsOn Set.univ (fixedEmptySearch a) (fixedEmptySearch c) := by
   constructor
   · exact viableReach_two_steps depthOnlyStep toyViable
+      (x := a) (y := b) (z := c)
       (by simp [depthOnlyStep]) (by simp [toyViable])
       (by simp [depthOnlyStep]) (by simp [toyViable])
   · intro h
