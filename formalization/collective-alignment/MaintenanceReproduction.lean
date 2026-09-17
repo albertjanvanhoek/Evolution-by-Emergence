@@ -16,22 +16,22 @@ It does not establish that a real social or biological network is correctly
 represented by those rules.
 
 For each process i, `rᵢ` is autonomous retention and `1-rᵢ` is its autonomous
-maintenance deficit. Cross terms `kᵢⱼ` are nonnegative maintenance gains.
+maintenance deficit. Cross terms `kᵢⱼ` are maintenance gains.
 
 The machine-checked results below are deliberately narrow:
 
 1. In a dyad, the product threshold
       kAB*kBA > (1-rA)*(1-rB)
-   admits a positive witness whose A coordinate is exactly maintained and
+   admits an explicit witness whose A coordinate is exactly maintained and
    whose B coordinate strictly grows.
 2. At equality, that witness is an exact fixed point.
 3. In a directed three-cycle A -> B -> C -> A, the product threshold
       kAB*kBC*kCA > (1-rA)*(1-rB)*(1-rC)
-   admits a positive witness for which B and C are exactly maintained and A
+   admits an explicit witness for which B and C are exactly maintained and A
    strictly grows.
 4. At equality, the triad witness is an exact fixed point.
-5. Every proper dyad cut from the one-way three-cycle has no closed return
-   term: its characteristic polynomial factors into the autonomous terms.
+5. Deleting the return edge removes the corresponding cross-maintenance term;
+   a one-way dyad has no closed-loop characteristic cross term.
 
 The full arbitrary-network statement using the spectral radius of
     G = (I-R)^(-1) K
@@ -53,11 +53,8 @@ def dyadNextB (rB kAB xA xB : ℝ) : ℝ := rB * xB + kAB * xA
 def dyadExcess (rA rB kAB kBA : ℝ) : ℝ :=
   kAB * kBA - deficit rA * deficit rB
 
-/-- At the exact dyadic product threshold, an explicit nonzero maintenance
-witness is a fixed point.  The witness is
-    xA = kBA,
-    xB = 1-rA.
-No spectral theorem is needed for this identity. -/
+/-- At the exact dyadic product threshold, an explicit maintenance witness is
+an exact fixed point. -/
 theorem dyad_threshold_fixed_point
     {rA rB kAB kBA : ℝ}
     (hthreshold : kAB * kBA = deficit rA * deficit rB) :
@@ -115,17 +112,17 @@ def triadNextC (rC kBC xB xC : ℝ) : ℝ := rC * xC + kBC * xB
 def triadExcess (rA rB rC kAB kBC kCA : ℝ) : ℝ :=
   kAB * kBC * kCA - deficit rA * deficit rB * deficit rC
 
-/-- Canonical algebraic witness for the directed three-cycle.
-The particular scaling avoids division and therefore keeps the proof purely
-polynomial. -/
-def triadWitnessA (rB rC kCA : ℝ) : ℝ :=
-  kCA * deficit rB * deficit rC
+/-- Canonical algebraic witness for the directed three-cycle.  This scaling
+avoids division and makes the three update differences reduce directly to the
+cycle product excess. -/
+def triadWitnessA (rB rC : ℝ) : ℝ :=
+  deficit rB * deficit rC
 
-def triadWitnessB (rC kAB kCA : ℝ) : ℝ :=
-  kAB * kCA * deficit rC
+def triadWitnessB (rC kAB : ℝ) : ℝ :=
+  kAB * deficit rC
 
-def triadWitnessC (kAB kBC kCA : ℝ) : ℝ :=
-  kAB * kBC * kCA
+def triadWitnessC (kAB kBC : ℝ) : ℝ :=
+  kAB * kBC
 
 /-- At the exact three-cycle product threshold, the canonical witness is an
 exact fixed point of all three update equations. -/
@@ -133,9 +130,9 @@ theorem triad_threshold_fixed_point
     {rA rB rC kAB kBC kCA : ℝ}
     (hthreshold :
       kAB * kBC * kCA = deficit rA * deficit rB * deficit rC) :
-    let xA := triadWitnessA rB rC kCA
-    let xB := triadWitnessB rC kAB kCA
-    let xC := triadWitnessC kAB kBC kCA
+    let xA := triadWitnessA rB rC
+    let xB := triadWitnessB rC kAB
+    let xC := triadWitnessC kAB kBC
     triadNextA rA kCA xA xC = xA ∧
     triadNextB rB kAB xA xB = xB ∧
     triadNextC rC kBC xB xC = xC := by
@@ -146,60 +143,64 @@ theorem triad_threshold_fixed_point
   constructor <;> ring
 
 /-- Above the exact three-cycle product threshold, the canonical witness has
-B and C exactly maintained while A strictly grows, provided the return edge
-C -> A is positive.  This is a direct algebraic witness of network-level
-supercriticality; the stronger spectral-radius formulation is left external. -/
+B and C exactly maintained while A strictly grows. -/
 theorem triad_supercritical_witness
     {rA rB rC kAB kBC kCA : ℝ}
-    (hkCA : 0 < kCA)
     (hgain :
       deficit rA * deficit rB * deficit rC < kAB * kBC * kCA) :
-    let xA := triadWitnessA rB rC kCA
-    let xB := triadWitnessB rC kAB kCA
-    let xC := triadWitnessC kAB kBC kCA
+    let xA := triadWitnessA rB rC
+    let xB := triadWitnessB rC kAB
+    let xC := triadWitnessC kAB kBC
     xA < triadNextA rA kCA xA xC ∧
     triadNextB rB kAB xA xB = xB ∧
     triadNextC rC kBC xB xC = xC := by
   dsimp [triadWitnessA, triadWitnessB, triadWitnessC,
     triadNextA, triadNextB, triadNextC, deficit] at *
-  have hscaled := mul_lt_mul_of_pos_left hgain hkCA
   constructor
   · nlinarith
   constructor <;> ring
 
 /-- Below the exact three-cycle product threshold, the canonical witness has
-B and C exactly maintained while A strictly declines, again assuming a
-positive return edge. -/
+B and C exactly maintained while A strictly declines. -/
 theorem triad_subcritical_witness
     {rA rB rC kAB kBC kCA : ℝ}
-    (hkCA : 0 < kCA)
     (hloss :
       kAB * kBC * kCA < deficit rA * deficit rB * deficit rC) :
-    let xA := triadWitnessA rB rC kCA
-    let xB := triadWitnessB rC kAB kCA
-    let xC := triadWitnessC kAB kBC kCA
+    let xA := triadWitnessA rB rC
+    let xB := triadWitnessB rC kAB
+    let xC := triadWitnessC kAB kBC
     triadNextA rA kCA xA xC < xA ∧
     triadNextB rB kAB xA xB = xB ∧
     triadNextC rC kBC xB xC = xC := by
   dsimp [triadWitnessA, triadWitnessB, triadWitnessC,
     triadNextA, triadNextB, triadNextC, deficit] at *
-  have hscaled := mul_lt_mul_of_pos_left hloss hkCA
   constructor
   · nlinarith
   constructor <;> ring
 
+/-- Under positive autonomous deficits and positive forward gains, the triad
+witness is componentwise positive. -/
+theorem triad_witness_positive
+    {rB rC kAB kBC : ℝ}
+    (hrB : rB < 1) (hrC : rC < 1)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC) :
+    0 < triadWitnessA rB rC ∧
+    0 < triadWitnessB rC kAB ∧
+    0 < triadWitnessC kAB kBC := by
+  dsimp [triadWitnessA, triadWitnessB, triadWitnessC, deficit]
+  constructor
+  · positivity
+  constructor <;> positivity
+
 /-- If the return edge C -> A is deleted, the A-coordinate loses every
-cross-maintenance term and evolves autonomously.  This captures the exact
-edge-deletion mechanism used in the three-agent example without invoking
-spectral theory. -/
+cross-maintenance term and evolves autonomously. -/
 theorem delete_return_edge_makes_A_autonomous
     (rA xA xC : ℝ) :
     triadNextA rA 0 xA xC = rA * xA := by
   simp [triadNextA]
 
-/-- In the one-way dyad A -> B obtained from the three-cycle, the characteristic
-polynomial factors into the two autonomous factors.  Hence the one-way edge
-creates no closed-loop eigenvalue term. -/
+/-- In a one-way dyad A -> B, the characteristic polynomial has no closed-loop
+cross term and therefore factors into the autonomous factors. -/
 theorem one_way_dyad_characteristic_factor
     (rA rB kAB lambda : ℝ) :
     (lambda - rA) * (lambda - rB) - 0 * kAB
@@ -214,6 +215,7 @@ end Triad
 #print axioms triad_threshold_fixed_point
 #print axioms triad_supercritical_witness
 #print axioms triad_subcritical_witness
+#print axioms triad_witness_positive
 #print axioms delete_return_edge_makes_A_autonomous
 #print axioms one_way_dyad_characteristic_factor
 
