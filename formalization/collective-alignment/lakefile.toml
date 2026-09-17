@@ -1,6 +1,6 @@
 name = "collective_alignment"
 version = "0.1.0"
-defaultTargets = ["CollectiveAlignment", "MaintenanceReproduction"]
+defaultTargets = ["CollectiveAlignment", "MaintenanceReproduction", "MaintenanceDynamics"]
 
 [[require]]
 name = "mathlib"
@@ -12,3 +12,6 @@ name = "CollectiveAlignment"
 
 [[lean_lib]]
 name = "MaintenanceReproduction"
+
+[[lean_lib]]
+name = "MaintenanceDynamics"
