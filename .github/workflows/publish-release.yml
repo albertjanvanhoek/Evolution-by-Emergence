@@ -52,8 +52,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+
+          # Normal post-release development must not try to move an existing
+          # historical tag. If the declared version is already published,
+          # this workflow is intentionally a successful no-op until the
+          # release metadata is bumped for the next release.
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "Release $VERSION already exists; nothing to do."
+            exit 0
+          fi
+
           git fetch --tags --force
 
+          # A tag without a corresponding published release is treated as a
+          # release-integrity condition: it must identify the exact tested SHA.
           if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
             TAG_SHA="$(git rev-list -n 1 "$VERSION")"
             if [[ "$TAG_SHA" != "$RELEASE_SHA" ]]; then
@@ -65,11 +77,6 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git tag -a "$VERSION" "$RELEASE_SHA" -m "$RELEASE_TITLE"
             git push origin "refs/tags/$VERSION"
-          fi
-
-          if gh release view "$VERSION" >/dev/null 2>&1; then
-            echo "Release $VERSION already exists; nothing to do."
-            exit 0
           fi
 
           gh release create "$VERSION" \
