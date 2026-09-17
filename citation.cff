@@ -1,6 +1,6 @@
 # ─── Evolution‑by‑Emergence ─ CITATION.cff ────────────────────────────────
 cff-version: 1.2.0
-message: "If you use or build upon *Evolution‑by‑Emergence*, please cite it:"
+message: "If you use or build upon *Evolution‑by‑Emergence*, citation is appreciated but not required by the CC0 dedication."
 
 # ——— Basic work metadata ———
 title: "Evolution by Emergence"
@@ -20,10 +20,9 @@ affiliation: "Public Health / Complexity Science / Evolution"
 doi: 10.5281/zenodo.15209136
 
 # ——— Licence ———
-# CFF 1.2 interprets multiple license entries as alternatives (OR).
-license:
-  - "CC-BY-4.0"
-  - "Apache-2.0"
+# This metadata describes the scholarly work/content. Code and formal machinery
+# in the repository are licensed separately under Apache-2.0; see `License`.
+license: "CC0-1.0"
 
 # ——— Keywords ———
 keywords:
