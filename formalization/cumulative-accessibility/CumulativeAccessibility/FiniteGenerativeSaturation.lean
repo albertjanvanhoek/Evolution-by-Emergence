@@ -20,7 +20,7 @@ two consecutive repertoire states are equal, all later states remain equal.
 Thus fixed deterministic retained closure reaches a genuine fixed point.
 
 The theorem does not assert that physical reality has a finite state space.
-A finite `universe` should instead be read as a declared finite set of
+A finite `ambient` set should instead be read as a declared finite set of
 states distinguishable at the chosen representation or resolution.
 -/
 
@@ -57,16 +57,16 @@ theorem strict_chain_card_growth
 /-- Inside a fixed finite universe, the length of any initial strict chain is
 bounded by the number of states missing from the initial repertoire. -/
 theorem strict_chain_length_le_remaining_capacity
-    (universe : Finset α)
+    (ambient : Finset α)
     (S : ℕ → Finset α) {k : ℕ}
-    (hBound : ∀ n, S n ⊆ universe)
+    (hBound : ∀ n, S n ⊆ ambient)
     (hStrict : ∀ n, n < k → S n ⊂ S (n + 1)) :
-    k ≤ universe.card - (S 0).card := by
+    k ≤ ambient.card - (S 0).card := by
   have hGrowth : (S 0).card + k ≤ (S k).card :=
     strict_chain_card_growth S hStrict
-  have hEnd : (S k).card ≤ universe.card :=
+  have hEnd : (S k).card ≤ ambient.card :=
     Finset.card_le_card (hBound k)
-  have h0 : (S 0).card ≤ universe.card :=
+  have h0 : (S 0).card ≤ ambient.card :=
     Finset.card_le_card (hBound 0)
   omega
 
@@ -107,17 +107,17 @@ the update mechanism changes over time, a retained monotone repertoire inside
 a fixed finite universe can undergo at most the initially absent number of
 strict expansions. -/
 theorem strictExpansionCount_le_remaining_capacity
-    (universe : Finset α)
+    (ambient : Finset α)
     (S : ℕ → Finset α)
-    (hBound : ∀ n, S n ⊆ universe)
+    (hBound : ∀ n, S n ⊆ ambient)
     (hMono : ∀ n, S n ⊆ S (n + 1))
     (N : ℕ) :
     strictExpansionCount S N
-      ≤ universe.card - (S 0).card := by
+      ≤ ambient.card - (S 0).card := by
   have hGrowth := strictExpansionCount_card_growth S hMono N
-  have hEnd : (S N).card ≤ universe.card :=
+  have hEnd : (S N).card ≤ ambient.card :=
     Finset.card_le_card (hBound N)
-  have h0 : (S 0).card ≤ universe.card :=
+  have h0 : (S 0).card ≤ ambient.card :=
     Finset.card_le_card (hBound 0)
   omega
 
@@ -127,14 +127,14 @@ This is a bound on the first uninterrupted run of strict steps; the stronger
 `strictExpansionCount_le_remaining_capacity` above also handles later strict
 steps separated by idle periods. -/
 theorem exists_equal_step_within_remaining_capacity
-    (universe : Finset α)
+    (ambient : Finset α)
     (S : ℕ → Finset α)
-    (hBound : ∀ n, S n ⊆ universe)
+    (hBound : ∀ n, S n ⊆ ambient)
     (hMono : ∀ n, S n ⊆ S (n + 1)) :
     ∃ n,
-      n ≤ universe.card - (S 0).card ∧
+      n ≤ ambient.card - (S 0).card ∧
       S n = S (n + 1) := by
-  let K := universe.card - (S 0).card
+  let K := ambient.card - (S 0).card
   by_contra hNone
   have hStrict : ∀ n, n < K + 1 → S n ⊂ S (n + 1) := by
     intro n hn
@@ -145,7 +145,7 @@ theorem exists_equal_step_within_remaining_capacity
       exact ⟨n, hnK, heq⟩
     exact Finset.ssubset_iff_subset_ne.mpr ⟨hMono n, hneq⟩
   have hTooLong := strict_chain_length_le_remaining_capacity
-    universe S hBound hStrict
+    ambient S hBound hStrict
   dsimp [K] at hTooLong
   omega
 
@@ -183,19 +183,19 @@ properties used are:
 * boundedness: no state outside the declared finite universe is introduced.
 
 Under those assumptions, the trajectory reaches a fixed repertoire within at
-most `|universe| - |S 0|` strict-expansion opportunities. -/
+most `|ambient| - |S 0|` strict-expansion opportunities. -/
 theorem finite_retained_process_saturates
-    (universe : Finset α)
+    (ambient : Finset α)
     (step : Finset α → Finset α)
     (S : ℕ → Finset α)
     (hRec : ∀ n, S (n + 1) = step (S n))
-    (hInitial : S 0 ⊆ universe)
-    (hInflationary : ∀ A, A ⊆ universe → A ⊆ step A)
-    (hClosed : ∀ A, A ⊆ universe → step A ⊆ universe) :
+    (hInitial : S 0 ⊆ ambient)
+    (hInflationary : ∀ A, A ⊆ ambient → A ⊆ step A)
+    (hClosed : ∀ A, A ⊆ ambient → step A ⊆ ambient) :
     ∃ n,
-      n ≤ universe.card - (S 0).card ∧
+      n ≤ ambient.card - (S 0).card ∧
       ∀ k, S (n + k) = S n := by
-  have hBound : ∀ n, S n ⊆ universe := by
+  have hBound : ∀ n, S n ⊆ ambient := by
     intro n
     induction n with
     | zero => exact hInitial
@@ -207,23 +207,23 @@ theorem finite_retained_process_saturates
     rw [hRec n]
     exact hInflationary (S n) (hBound n)
   obtain ⟨n, hn, hEq⟩ :=
-    exists_equal_step_within_remaining_capacity universe S hBound hMono
+    exists_equal_step_within_remaining_capacity ambient S hBound hMono
   exact ⟨n, hn, deterministic_equal_step_stays_equal step S hRec hEq⟩
 
 /-- Corollary: under the same finite, retained, deterministic assumptions,
 strict expansion at every generation is impossible. -/
 theorem no_infinite_strict_expansion_in_finite_universe
-    (universe : Finset α)
+    (ambient : Finset α)
     (step : Finset α → Finset α)
     (S : ℕ → Finset α)
     (hRec : ∀ n, S (n + 1) = step (S n))
-    (hInitial : S 0 ⊆ universe)
-    (hInflationary : ∀ A, A ⊆ universe → A ⊆ step A)
-    (hClosed : ∀ A, A ⊆ universe → step A ⊆ universe) :
+    (hInitial : S 0 ⊆ ambient)
+    (hInflationary : ∀ A, A ⊆ ambient → A ⊆ step A)
+    (hClosed : ∀ A, A ⊆ ambient → step A ⊆ ambient) :
     ¬ (∀ n, S n ⊂ S (n + 1)) := by
   intro hStrictAll
   obtain ⟨n, hn, hFix⟩ := finite_retained_process_saturates
-    universe step S hRec hInitial hInflationary hClosed
+    ambient step S hRec hInitial hInflationary hClosed
   have hEq : S (n + 1) = S n := by
     simpa using hFix 1
   have hStrict := hStrictAll n
@@ -296,7 +296,7 @@ theorem finite_generative_closure_saturates
         FiniteGenerativeClosureN Generate initial (n + k)
           = FiniteGenerativeClosureN Generate initial n := by
   have h := finite_retained_process_saturates
-    (universe := (Finset.univ : Finset α))
+    (ambient := (Finset.univ : Finset α))
     (step := finiteGenerativeStep Generate)
     (S := FiniteGenerativeClosureN Generate initial)
     (hRec := finiteGenerativeClosureN_succ Generate initial)
@@ -318,7 +318,7 @@ theorem finite_generative_closure_not_strict_forever
       FiniteGenerativeClosureN Generate initial n
         ⊂ FiniteGenerativeClosureN Generate initial (n + 1)) := by
   apply no_infinite_strict_expansion_in_finite_universe
-    (universe := (Finset.univ : Finset α))
+    (ambient := (Finset.univ : Finset α))
     (step := finiteGenerativeStep Generate)
     (S := FiniteGenerativeClosureN Generate initial)
   · exact finiteGenerativeClosureN_succ Generate initial
