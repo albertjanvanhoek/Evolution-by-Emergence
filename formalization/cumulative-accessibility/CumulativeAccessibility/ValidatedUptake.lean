@@ -140,16 +140,41 @@ theorem validatedGenerativeCapacityUptake_implies_unboundedEnvelope
 
 end Implications
 
-section SeparationWitness
+section ConcreteWitnesses
+
+/-- A permissive criterion used only to show that the validated-uptake
+predicate is non-vacuous. -/
+def acceptAllCriterion : ExternalCriterion ℕ :=
+  fun _t _z => True
+
+/-- The existing progressive architecture satisfies validated generative uptake
+under a criterion that accepts every candidate. This is a non-vacuity witness,
+not a claim that indiscriminate acceptance is scientifically meaningful. -/
+theorem progressiveArchitecture_has_validatedGenerativeCapacityUptake :
+    ValidatedGenerativeCapacityUptake
+      progressiveEnvelope progressiveGenerator acceptAllCriterion
+      progressiveRepertoire := by
+  intro n
+  obtain ⟨m, z, hnm, hzU, hzNot, hGen, hzNext⟩ :=
+    progressiveArchitecture_has_generativeCapacityUptake n
+  exact ⟨m, z, hnm, hzU, hzNot, hGen, by simp [acceptAllCriterion], hzNext⟩
+
+/-- The progressive architecture is therefore open-ended through the validated
+sufficiency theorem when the declared criterion accepts its novel states. -/
+theorem progressiveArchitecture_openEnded_via_validation :
+    OpenEndedCumulativeNovelty progressiveRepertoire := by
+  exact validatedGenerativeCapacityUptake_implies_openEndedNovelty
+    progressiveEnvelope progressiveGenerator acceptAllCriterion
+    progressiveRepertoire progressiveRepertoire_retained
+    progressiveArchitecture_has_validatedGenerativeCapacityUptake
 
 /-- An external criterion that rejects every candidate at every time. -/
 def rejectAllCriterion : ExternalCriterion ℕ :=
   fun _t _z => False
 
 /-- Open-ended cumulative novelty does not imply externally validated novelty.
-The progressive architecture from `CapacityUptake.lean` remains open-ended, but
-under a criterion that rejects every candidate there can be no validated uptake
-event at all. -/
+The same progressive architecture remains open-ended, but under a criterion
+that rejects every candidate there can be no validated uptake event at all. -/
 theorem openEndedNovelty_without_externalValidation :
     OpenEndedCumulativeNovelty progressiveRepertoire ∧
       ¬ EventualValidatedNovelUptake rejectAllCriterion progressiveRepertoire := by
@@ -159,12 +184,14 @@ theorem openEndedNovelty_without_externalValidation :
     obtain ⟨m, z, hnm, hzNot, hEval, hzNext⟩ := hValidated 0
     simpa [rejectAllCriterion] using hEval
 
-end SeparationWitness
+end ConcreteWitnesses
 
 #print axioms validatedGenerativeCapacityUptake_implies_capacityUptake
 #print axioms validatedGenerativeCapacityUptake_implies_eventualValidatedNovelUptake
 #print axioms validatedGenerativeCapacityUptake_implies_openEndedNovelty
 #print axioms validatedGenerativeCapacityUptake_implies_unboundedEnvelope
+#print axioms progressiveArchitecture_has_validatedGenerativeCapacityUptake
+#print axioms progressiveArchitecture_openEnded_via_validation
 #print axioms openEndedNovelty_without_externalValidation
 
 end RecursiveAccessibility
