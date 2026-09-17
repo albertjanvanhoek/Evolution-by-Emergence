@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - chatgpt/cumulative-accessibility-ratchet
     paths:
       - "formalization/cumulative-accessibility/**"
       - "papers/when-does-change-become-cumulative/**"
@@ -22,27 +21,46 @@ jobs:
       run:
         working-directory: formalization/cumulative-accessibility
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
       - name: Update dependencies
         run: |
           $HOME/.elan/bin/lake update
+
       - name: Fetch Mathlib cache
         run: |
           $HOME/.elan/bin/lake exe cache get
-      - name: Compile
+
+      - name: Compile library and formal-core targets
         run: |
           $HOME/.elan/bin/lake build
-          $HOME/.elan/bin/lake build CumulativeAccessibility.MaintenanceGatedWitness
-          $HOME/.elan/bin/lake build CumulativeAccessibility.FormalCoreWitness
+          $HOME/.elan/bin/lake build \
+            CumulativeAccessibility.FormalCoreWitness \
+            CumulativeAccessibility.MaintenanceGatedWitness
+
+      - name: Reject unproven formal-core axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$({
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+          } 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Formal-core axiom audit contains sorryAx." >&2
+            exit 1
+          fi
 
   budget-ratchet:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Verify exact and numerical budget-ratchet checks
         run: |
           python papers/when-does-change-become-cumulative/verify_budget_ratchet.py
