@@ -1,688 +1,355 @@
-# The Mathematics of Peace
+# Evolution by Emergence
 
-> *Evolution by Emergence* — a research corpus on persistence, correction, collective intelligence, and the conditions under which we can keep learning together.
+## A formal model of maintenance, cumulative change, and open-ended accessibility
 
-**Listen:** [Stream Emergence 🐠 on SoundCloud](https://soundcloud.com/emergence-223803727)  
-**Watch:** [Autonomous Interdependence on YouTube](https://www.youtube.com/@AutonomousInterdependence)
+**This project is open for peer review.**
 
-For the technical map of the repository, formal results, reading routes, and epistemic status of the work, see **[RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)**.  
-For the mathematical collective-intelligence framework behind this piece, see **[Sufficient Alignment](papers/sufficient-alignment/README.md)** and **[SCAP v2](papers/sufficient-alignment/SCAP_V2.md)**.
+You do **not** need to read the whole book or understand the entire repository to review the current formal core.
 
----
+The present milestone — **v14: Formal Core Closure** — asks a comparatively simple question:
 
-Peace is not silence.
+> **Under what explicit conditions can recurrent maintenance support validated cumulative novelty, and what must be true if that process is to remain open-ended?**
 
-Silence can be fear.  
-Silence can be exhaustion.  
-Silence can be two people  
-who have stopped believing  
-that speaking will change anything.
+The central implication chain is now represented explicitly and machine-checked in Lean:
 
-And peace is not agreement.
+```text
+strict recurrent maintenance conditions
+                ↓
+recurring maintenance opportunity
+                +
+opportunity-conditioned validated realization
+                +
+retention
+                ↓
+validated generative uptake
+                ↓
+open-ended cumulative retained novelty
+                +
+representation inside a moving envelope
+                ↓
+unbounded effective distinguishability capacity
+```
 
-A forest does not agree.  
-A body does not agree.  
-A mind does not agree with itself.
+The important words are **conditional** and **explicit**.
 
-Difference is not the failure.
+The project does **not** claim that persistence automatically produces learning, that novelty is necessarily improvement, that an external validation criterion is objective truth, or that biological, cognitive, social, or technological systems automatically satisfy these assumptions.
 
-The failure is when difference  
-can no longer travel between us  
-without destroying the road.
+Lean checks:
 
----
+> **If the stated assumptions hold, do the stated conclusions follow?**
 
-We are finite things.
+Science must still ask:
 
-Each of us carries  
-a small model of a world  
-too large to fit inside us.
+> **When do those assumptions hold in the world?**
 
-I see something you cannot see.
+That is where peer review begins.
 
-You know something  
-I have never learned.
-
-You are wrong sometimes.
-
-So am I.
-
-This is not a flaw  
-we will one day engineer away.
-
-It is the condition  
-under which we need each other.
+For the authoritative description of the current formal milestone, read **[RELEASE_NOTES.md](RELEASE_NOTES.md)**.  
+For repository-wide navigation and epistemic guidance, read **[RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)**.
 
 ---
 
-So there must be an edge.
+## Why this may be worth reviewing
 
-A path between your world  
-and mine.
+Several parts of the model are deliberately exposed to criticism.
 
-A sentence.  
-A gesture.  
-A measurement.  
-A witness.  
-A question.
+### 1. Maintenance is separated from learning
 
-And the first law is simple:
+A recurrent organization may persist without learning anything.
 
-**do not poison the path.**
+The formalization therefore does **not** jump from
 
-For if a signal contains a distinction  
-and I erase it before it reaches you,
+```text
+persistence → evolution
+```
 
-you may still act.
+to its conclusion. It represents the missing steps between recurrent maintenance, opportunity, generation, validation, retention, and cumulative change.
 
-But there are futures  
-you could have chosen  
-that have now disappeared.
+### 2. Previous organization can become infrastructure for future search
 
-This is the mathematics beneath honesty:
+Generated intermediates can be retained and reused.
 
-not purity,
+A minimal formal example is:
 
-not confession,
+```text
+a → b → c
+```
 
-not the demand  
-that everything be revealed,
+where `c` is unavailable after one retained generative round but becomes available after `b` has been generated and retained.
 
-but the preservation  
-of what another mind needs  
-to remain capable of correction.
+This captures a simple but important idea: **successful previous organization can change the starting point for subsequent search.**
 
-Truth is not merely a virtue.
+### 3. Recombination is different from unary descent
 
-Between learners,
+The formal stack allows finite-parent generation.
 
-truth is infrastructure.
+A candidate can become generable through retained combinations even when neither parent has a unary path to it.
 
----
+The model therefore distinguishes changes caused by:
 
-But no channel is perfect.
+```text
+new retained material
+new combinations of retained material
+changed generative rules
+```
 
-People misunderstand.
+rather than hiding all three inside one transition graph.
 
-Memory changes.
+### 4. A finite novelty space eventually saturates
 
-Fear enters.
+For monotonically retained organization inside a fixed finite declared universe, the number of strict retained expansions is finite.
 
-Pride enters.
+Changing the generative rule does not remove this counting boundary while effective distinguishability capacity remains fixed and finite.
 
-Noise enters.
+For the particular form of **open-ended cumulative retained novelty** defined here:
 
-Even love is noisy.
+```text
+open-ended cumulative retained novelty
+                ↓
+unbounded effective distinguishability capacity
+```
 
-So peace cannot depend  
-on one perfect messenger,
+But the converse is false:
 
-one perfect leader,
+```text
+unbounded capacity
+        ↛
+realized novelty
+```
 
-one perfect institution,
+The repository contains a machine-checked counterexample.
 
-one perfect generation.
+### 5. External validation is not identified with truth
 
-It needs redundancy.
+The evolving architecture includes a declared external predicate `E_t`.
 
-Another witness.
+Mathematically, that predicate is intentionally uninterpreted. It is **not defined to mean objective truth, fitness, morality, utility, or correctness**.
 
-Another road.
+This lets reviewers ask separately whether the formal implication is valid and whether a proposed real-world validation process is meaningful.
 
-Another person willing to say:
+### 6. The complete premise set has a machine-checked witness
 
-*I saw it differently.*
+`FormalCoreWitness.lean` supplies a concrete joint witness showing that the final theorem stack is not merely a collection of compatible-looking implications: its premise set can be inhabited simultaneously.
 
-A network can be wiser  
-than the people inside it,
+The witness is for **logical non-vacuity**, not biological realism.
 
-not because its people never fail,
+So there are at least three distinct things to challenge:
 
-but because one failure  
-does not become the whole truth.
+```text
+the mathematics
+the assumptions
+the interpretation
+```
 
----
-
-This is why peace does not require
-
-\[
-p=1.
-\]
-
-Not everyone must succeed  
-in every round.
-
-Not everyone must tell the truth  
-every time.
-
-Not everyone must understand.
-
-Not every relationship must survive.
-
-The network needs enough.
-
-Enough signal.
-
-Enough doubt.
-
-Enough repair.
-
-Enough courage to listen.
-
-Enough restraint  
-that an error remains an error  
-and does not become a war.
-
-Peace is a region,
-
-not a point.
+Finding a problem in any one of them is useful.
 
 ---
 
-And sometimes  
-we choose less than enough.
+# How to peer-review this project
 
-Because honesty costs.
+## Recommended approach: human + LLM
 
-Listening costs.
+The repository is large enough that reading it linearly is inefficient.
 
-Verification costs.
+A useful workflow is:
 
-Restraint costs.
+> **Let an LLM navigate. Let the human judge.**
 
-Institutions cost.
+An LLM can trace definitions, locate theorem dependencies, compare files, search for counterexamples, inspect claim ledgers and literature audits, and explain Lean code.
 
-Repair costs.
+The human reviewer should remain responsible for deciding whether definitions are meaningful, whether assumptions correspond to real systems, whether interpretations overreach the formal result, and whether prior literature already contains the result in the same or a stronger form.
 
-The benefit is shared,
+### Start here
 
-while the cost arrives  
-at one person's door.
+For the current formal milestone, use this route:
 
-And so a strange thing happens:
+1. **[`RELEASE_NOTES.md`](RELEASE_NOTES.md)** — current formal claim, implication chain, scope, non-claims, and remaining research questions.
+2. **[`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)** — routing and epistemic protocol. Use it as a map, **not as evidence that the claims are true**.
+3. **[`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md)** — map of the cumulative-accessibility Lean package.
+4. **[`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean)** — concrete joint witness for the closed formal core.
+5. **[`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean)** — bridge from concrete recurrent maintenance dynamics to recurring opportunity and onward to validated uptake.
+6. **[`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean)** — external validation kept separate from ordinary novelty.
+7. **[`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean)** — necessity of unbounded effective distinguishability capacity for the declared form of open-ended cumulative retained novelty.
+8. **[`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean)** — finite-capacity saturation boundary.
+9. Relevant **`CLAIMS.md`**, **`FORMAL_VERIFICATION.md`**, and **`REPRODUCIBILITY.md`** files — manuscript-facing claim mappings and reproducibility information.
+10. **[`verification/audits/`](verification/audits/)** — theorem and literature audits.
 
-everyone can behave rationally,
-
-and together  
-we can destroy the thing  
-we all needed.
-
-The mathematics already knows this.
-
-**Selected maintenance  
-need not be sufficient maintenance.**
-
-**Selected alignment  
-need not be sufficient alignment.**
-
-Peace is therefore not maintained  
-by good intentions alone.
-
-Somebody has to pay  
-for the bridge.
+Do not accept terminology merely because it appears in *Evolution by Emergence*. Trace important claims back to their source and compare them with established literature.
 
 ---
 
-And bridges break.
+## Give an LLM this prompt
 
-Here we come to forgiveness.
+```text
+Act as an adversarial scientific peer reviewer of this repository:
 
-Not the forgiveness  
-that says nothing happened.
+https://github.com/albertjanvanhoek/Evolution-by-Emergence
 
-Not the forgiveness  
-that sends the vulnerable  
-back into the same fire.
+Do not evaluate the theory from the README alone.
 
-Not infinite return.
+Start with RELEASE_NOTES.md to identify the current formal claim.
+Then read RESEARCH_GUIDE.md as a routing and epistemic document.
+Do not treat either file as evidence that the claims are true.
+Trace substantive claims back to their manuscript, Lean source, claim ledger,
+reproducibility material, and relevant prior literature.
 
-Not moral amnesia.
+Your first task is to reconstruct the formal implication chain of the current
+"Formal Core Closure" release.
 
-Something colder.
+For every arrow in that chain:
 
-Something kinder.
+1. locate the exact Lean definitions and theorem(s);
+2. state the assumptions explicitly;
+3. determine whether the conclusion follows from those assumptions;
+4. identify any hidden strengthening introduced in prose;
+5. look for included counterexamples and converse failures;
+6. distinguish:
+   - definitions,
+   - machine-checked results,
+   - established external mathematics,
+   - modelling assumptions,
+   - empirical interpretations,
+   - conjectures or research directions;
+7. search for prior literature containing the same or a stronger result;
+8. actively try to construct counterexamples to claims that are not already
+   formal theorems.
 
-A question:
+Pay particular attention to whether the repository accidentally equates:
 
-*Can this edge still be repaired?*
+- maintenance with learning;
+- persistence with fitness or function;
+- novelty with improvement;
+- larger search spaces with realized innovation;
+- external validation with objective truth;
+- unbounded capacity with open-ended novelty.
 
-What will it cost?
+Then inspect FormalCoreWitness.lean and determine whether the complete set
+of premises is genuinely jointly satisfiable.
 
-What can it become again?
+Where possible, run the Lean formalization rather than trusting descriptions
+of it.
 
-What happens if we leave?
+Report results as:
 
-What is the probability  
-that repair is real?
+CLAIM
+SOURCE / THEOREM
+ASSUMPTIONS
+WHAT IS ACTUALLY PROVED
+COUNTEREXAMPLE OR CONVERSE STATUS
+RELATION TO PRIOR LITERATURE
+POTENTIAL PROBLEM
+SEVERITY
+SUGGESTED TEST OR CORRECTION
 
-There is a boundary.
+Do not try to make the theory sound coherent.
+Try to find where it breaks.
+A negative result is useful.
+```
 
-On one side,
-
-repair preserves more future  
-than destruction.
-
-On the other,
-
-walking away is the wiser act.
-
-So forgiveness is not surrender.
-
-Forgiveness is the refusal  
-to make every reparable failure  
-irreversible.
-
-Without it,
-
-a world of fallible beings  
-slowly runs out of roads.
-
----
-
-And there is another danger.
-
-A system can look peaceful  
-while peace is already dying.
-
-The meetings still happen.
-
-The treaty is still signed.
-
-The border is still quiet.
-
-People still shake hands.
-
-The stock is high.
-
-But beneath the visible state,
-
-replacement has fallen below loss.
-
-Trust is spent faster than rebuilt.
-
-Institutions are consumed  
-faster than renewed.
-
-Conversation becomes performance.
-
-Correction becomes punishment.
-
-And the system has entered debt.
-
-Long before the first shot,
-
-\[
-\dot K<0.
-\]
-
-This is why peace must be maintained  
-before it is visibly lost.
-
-Do not measure only  
-whether the bridge is standing.
-
-Measure whether anyone  
-is still repairing it.
+The objective of peer review here is not to confirm the model. It is to make it **harder for the model to be wrong unnoticed**.
 
 ---
 
-Then comes the most difficult part.
+# Reproduce the formal checks
 
-The children.
+Clone the repository and enter the cumulative-accessibility package:
 
-Every peaceful generation  
-inherits something  
-it did not build.
+```bash
+git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
+cd Evolution-by-Emergence/formalization/cumulative-accessibility
 
-Language.
+lake update
+lake exe cache get
+lake build
+```
 
-Institutions.
+The package pins its Lean/mathlib environment.
 
-Habits.
+A successful build tells you that Lean accepts the formal derivations.
 
-Taboos.
-
-Stories.
-
-Procedures.
-
-Memories of wars  
-they never saw.
-
-They inherit the answer:
-
-*Do not do this again.*
-
-But answers decay.
-
-The world changes.
-
-Old enemies disappear.
-
-Old reasons become unbelievable.
-
-The scars fade.
-
-And if we pass on only the conclusion,
-
-peace becomes a rule  
-without a model.
-
-A ritual.
-
-Eventually:
-
-a superstition.
-
-So we must pass on more.
-
-Not merely what we learned,
-
-but how we learned it.
-
-Not merely:
-
-*These are the facts.*
-
-But:
-
-*This is how to find out  
-when the facts have changed.*
-
-Not merely:
-
-*Trust them.*
-
-But:
-
-*This is how trust is tested,  
-broken, repaired,  
-and sometimes withdrawn.*
-
-Not merely:
-
-*Be peaceful.*
-
-But:
-
-*Here is how disagreement  
-can remain correctable.*
+It does **not** tell you that the premises describe nature.
 
 ---
 
-That is the inheritance.
+# Where reviewers can contribute most
 
-Not
+A useful review does not have to overturn the whole framework. A single good contribution is enough.
 
-\[
-M_n\rightarrow M_{n+1}
-\]
+- Find a theorem whose prose interpretation is too strong.
+- Find a hidden assumption.
+- Produce a simpler counterexample.
+- Show that a claimed mechanism is already known under another name.
+- Identify a stronger or more general existing theorem.
+- Weaken an assumption while preserving the result.
+- Show that a sufficient condition is not necessary — or prove that it is.
+- Construct an empirical system that violates one of the premises.
+- Propose an observable quantity corresponding to a formal variable.
+- Find a domain where the complete chain can actually be tested.
+- Improve the definition of effective distinguishability or open-endedness.
 
-alone.
+**A successful falsification is a contribution.**
 
-But
+So is a substantial simplification.
 
-\[
-(M,Q,C)_n
-\rightarrow
-(M,Q,C)_{n+1}.
-\]
+**Prior art is a result.** If you can show that a result is already known in stronger or more general form, please tell us. Correct attribution and simplification improve the model.
 
-Knowledge.
-
-The capacity to generate alternatives.
-
-And the architecture  
-by which we correct one another.
-
-The child does not inherit  
-our certainty.
-
-The child inherits  
-our ability to doubt well.
+The repository's own literature audits already find extensive antecedents across several relevant fields; the current project is therefore framed conservatively as a **synthesis and research architecture with exact model-specific results**, not as a bundle of newly discovered general mechanisms.
 
 ---
 
-Perhaps this is what civilization is.
+# What is — and is not — being claimed
 
-Not buildings.
+The current release claims something deliberately narrower than:
 
-Not borders.
+> “Evolution by Emergence has been proved.”
 
-Not laws written in stone.
+The formal claim is closer to:
 
-A fragile, distributed machine  
-for allowing millions of incomplete models  
-to meet
+> **A specified set of recurrent-maintenance, generative, validation, retention, and representation conditions is sufficient to derive a declared form of open-ended cumulative retained novelty, and that form of open-ended novelty requires unbounded effective distinguishability capacity.**
 
-without requiring one  
-to destroy all the others.
+The logical route is machine checked, including a concrete jointly satisfiable witness for the premise set.
 
-A machine for saying:
+Whether those conditions are common, rare, physically realizable, biologically important, organizationally useful, or the right abstraction of evolution remains open to investigation.
 
-*I disagree.*
-
-*Show me.*
-
-*I don't believe you.*
-
-*Let us check.*
-
-*You hurt me.*
-
-*Can this be repaired?*
-
-*I was wrong.*
-
-*What do we do now?*
+That distinction is intentional.
 
 ---
 
-War begins long before violence.
+# Review the smallest thing you can break
 
-It begins when correction  
-becomes impossible.
+You do not need to review the whole project.
 
-When every signal from the other  
-is interpreted as attack.
+Pick one arrow.
 
-When truth has no trusted route.
+Pick one definition.
 
-When dissent becomes treason.
+Pick one claimed interpretation.
 
-When repair is weakness.
+Pick one literature connection.
 
-When exit becomes cheaper  
-than understanding.
+Then try to break it.
 
-When each side's model  
-can only preserve itself  
-by destroying the evidence  
-carried by the other.
+If it survives, we learn something.
 
-Then disagreement stops learning.
+If it fails, we learn something better.
 
-It becomes selection.
+Open a GitHub **Issue** with the relevant theorem/file and a reproducible argument, or submit a **Pull Request** with a correction, counterexample, stronger theorem, test, or documentation improvement.
 
-One model survives  
-by eliminating the network  
-that could have corrected it.
+This project is intended to remain corrigible.
 
 ---
 
-Peace is the opposite regime.
-
-Not harmony.
-
-Not sameness.
-
-Not submission.
-
-Peace is disagreement  
-that has not lost  
-its path back to learning.
-
-\[
-\boxed{
-\text{Peace is the maintained capacity
-for nonviolent correction under disagreement.}
-}
-\]
-
-It is a network property.
-
-And like every network property,
-
-it must be reproduced.
-
----
-
-So teach honesty.
-
-Not because every truth  
-must always be spoken,
-
-but because a mind  
-cannot correct itself  
-with poisoned evidence.
-
-Teach forgiveness.
-
-Not because every edge  
-must survive,
-
-but because a network  
-that cannot repair  
-will eventually fragment  
-under ordinary error.
-
-Teach reciprocity.
-
-Because what is never replenished  
-is eventually consumed.
-
-Teach dissent.
-
-Because identical minds  
-share identical blind spots.
-
-Teach patience.
-
-Because correction takes time.
-
-Teach accountability.
-
-Because actions disconnected  
-from their consequences  
-destroy the feedback loop.
-
-Teach transparency.
-
-Not total exposure,
-
-but enough visibility  
-that maintenance debt  
-is seen before collapse.
-
-Teach corrigibility.
-
-Especially corrigibility.
-
-Because every model is smaller  
-than the world.
-
-Including this one.
-
----
-
-And then teach the final rule:
-
-**Do not preserve these rules  
-because we gave them to you.**
-
-Preserve the process  
-that made them useful.
-
-Test them.
-
-Break them where they fail.
-
-Repair them where they can improve.
-
-Replace them  
-if you discover something better.
-
-But whatever comes next,
-
-keep alive the thing  
-that allows us to learn together.
-
-For that is the inheritance.
-
-Not peace itself.
-
-The ability to make peace again.
-
-Not truth itself.
-
-The ability to find our way  
-toward truth together.
-
-Not a perfect world.
-
-A world that can still correct itself.
-
----
-
-Perhaps that is all peace ever was:
-
-not the end of conflict,
-
-but the refusal  
-to let conflict end the conversation.
-
-Not one mind.
-
-Not one truth.
-
-Not one people.
-
-A network
-
-strong enough to contain difference,
-
-open enough to receive correction,
-
-redundant enough to survive error,
-
-forgiving enough to repair,
-
-wise enough to leave  
-when repair is impossible,
-
-and humble enough  
-to teach its children:
-
-**we were never finished.**
-
-And neither are you.
-
-\[
-\boxed{
-\textbf{Keep alive what lets us learn together —
-and improve it for whoever comes next.}
-}
-\]
-
----
-
-## Continue the project
-
-- **Research map and technical status:** [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md)
-- **Sufficient Alignment:** [papers/sufficient-alignment/](papers/sufficient-alignment/)
-- **SCAP v2:** [papers/sufficient-alignment/SCAP_V2.md](papers/sufficient-alignment/SCAP_V2.md)
+## Explore further
+
+- **Current formal milestone:** [`RELEASE_NOTES.md`](RELEASE_NOTES.md)
+- **Research map and epistemic protocol:** [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md)
+- **Formal cumulative-accessibility stack:** [`formalization/cumulative-accessibility/`](formalization/cumulative-accessibility/)
+- **Organizational-depth verification:** [`verification/organizational-depth/`](verification/organizational-depth/)
+- **Sufficient Alignment:** [`papers/sufficient-alignment/`](papers/sufficient-alignment/)
 - **Website:** [Evolution by Emergence](https://albertjanvanhoek.github.io/Evolution-by-Emergence/)
-- **Music:** [Stream Emergence 🐠 on SoundCloud](https://soundcloud.com/emergence-223803727)
-- **Video:** [Autonomous Interdependence on YouTube](https://www.youtube.com/@AutonomousInterdependence)
+- **Listen:** [Stream Emergence 🐠 on SoundCloud](https://soundcloud.com/emergence-223803727)
+- **Watch:** [Autonomous Interdependence on YouTube](https://www.youtube.com/@AutonomousInterdependence)
 
-*Evolution by Emergence is an active, corrigible research corpus by Albert Jan van Hoek, developed with AI collaboration. The formal work verifies mathematical consequences of stated models; the broader interpretations remain open to criticism, testing, and revision.*
+---
+
+*Evolution by Emergence is an open, active, corrigible research corpus by Albert Jan van Hoek, developed with AI collaboration. Formal verification establishes mathematical consequences of explicit assumptions. Broader scientific interpretations remain open to empirical testing, literature comparison, criticism, revision, and rejection.*
