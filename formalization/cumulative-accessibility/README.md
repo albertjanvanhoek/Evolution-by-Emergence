@@ -108,6 +108,8 @@ This route result is intentionally treated as a strong sufficient condition for 
 - the composed theorem produces an explicit candidate accessible to the descendant but absent from the ancestor's generator;
 - equivalently, the descendant's declared candidate set is a strict superset of the ancestor's.
 
+The last three statements jointly formalize a precise sense in which evolution can create new ways of evolving: the reachable descendant can possess a one-step candidate generator that strictly contains the ancestor's declared generator.
+
 ## Reproduction
 
     lake update
