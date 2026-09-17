@@ -1,7 +1,7 @@
 # GitHub Pages build & deploy — LaTeX ➜ Markdown with Lua front matter
 # ===================================================================
 # • Trigger: push to main
-# • Reads version from last Git tag → $BOOK_VERSION
+# • Reads version from RELEASE_VERSION when present, otherwise last Git tag
 # • Converts publication/book LaTeX sources to docs/<source-path>.md
 # • Generates web-safe figure assets used by converted sources
 # • Builds MkDocs in strict mode and deploys to GitHub Pages
@@ -76,9 +76,16 @@ jobs:
           add: 'docs/figures/*.pdf docs/figures/*.svg'
           message: 'ci: auto-update figures'
 
-      - name: Compute version from last tag
+      - name: Compute release/book version
+        shell: bash
         run: |
-          echo "BOOK_VERSION=$(git describe --tags --abbrev=0 || echo 0.0-dev)" >> $GITHUB_ENV
+          set -euo pipefail
+          if [[ -s RELEASE_VERSION ]]; then
+            BOOK_VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
+          else
+            BOOK_VERSION="$(git describe --tags --abbrev=0 || echo 0.0-dev)"
+          fi
+          echo "BOOK_VERSION=$BOOK_VERSION" >> "$GITHUB_ENV"
           echo "Version for build: $BOOK_VERSION"
 
       - name: Convert LaTeX to Markdown with YAML front matter
