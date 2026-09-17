@@ -1,4 +1,5 @@
 import CumulativeAccessibility.ValidatedUptake
+import MaintenanceDynamics
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
@@ -8,21 +9,19 @@ namespace RecursiveAccessibility
 
 The repository's maintenance-reproduction formalization establishes finite
 algebraic conditions under which recurrent maintenance loops have positive
-replacement/growth witnesses.  Those results do not, by themselves, imply that
-a maintained organization generates, externally validates, and retains novel
-organization.
+replacement/growth witnesses. `MaintenanceDynamics.lean` promotes the concrete
+three-cycle witness to a time-indexed positive trajectory and proves arbitrarily
+late maintenance availability under explicit sign and closed-loop assumptions.
 
-This file therefore formalizes the missing *interface* rather than asserting an
-unproved cross-domain implication.
+This file connects that result to the cumulative-accessibility stack without
+identifying persistence with learning. A separate response condition states what
+the generative/validation system does when a maintenance opportunity occurs.
+Together they imply the validated-uptake condition from `ValidatedUptake.lean`.
 
-A maintenance process may supply arbitrarily late opportunities.  A separate
-response condition states what the generative/validation system does when such
-an opportunity occurs.  Together they imply the validated-uptake condition from
-`ValidatedUptake.lean`.
+The resulting architecture is
 
-This gives the conditional architecture
-
-    recurrent opportunity
+    strict closed maintenance loop
+      -> arbitrarily late maintenance availability
       + opportunity-conditioned validated realization
       -> validated generative capacity uptake
       -> open-ended cumulative retained novelty
@@ -44,9 +43,9 @@ def RecurringOpportunity (Opportunity : ℕ → Prop) : Prop :=
 least one genuinely new, distinguishable, generable, externally accepted, and
 retained candidate.
 
-This is the explicit coupling assumption that a maintenance theorem would have
-to discharge (or help discharge) before persistence can be used to infer
-cumulative learning. -/
+This remains an explicit coupling premise: maintenance keeps the organization
+available for further interaction, but does not by itself imply novelty,
+validation, or learning. -/
 def OpportunityConditionedValidatedRealization
     (Opportunity : ℕ → Prop)
     (U : ℕ → Finset α)
@@ -118,6 +117,105 @@ theorem recurringOpportunity_and_validatedRealization_imply_unboundedEnvelope
 
 end OpportunityInterface
 
+section ConcreteThreeCycleBridge
+
+variable {α : Type*} [DecidableEq α]
+
+/-- The concrete opportunity stream supplied by the maintained three-cycle
+trajectory: an opportunity is present exactly when all three maintained
+components of the canonical trajectory are strictly positive. -/
+def cycle3MaintenanceOpportunity
+    (rA rB rC kAB kBC kCA : ℝ) : ℕ → Prop :=
+  fun n => CollectiveAlignment.cycle3MaintenanceAvailable
+    rA rB rC kAB kBC kCA n
+
+/-- The strict three-cycle maintenance conditions discharge the abstract
+`RecurringOpportunity` premise.  This is the machine-checked cross-package
+bridge from maintenance dynamics to the accessibility interface. -/
+theorem strictCycle3Maintenance_supplies_recurringOpportunity
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdA : 0 < CollectiveAlignment.maintenanceDeficit rA)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC) (hkCA : 0 < kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        < kAB * kBC * kCA) :
+    RecurringOpportunity
+      (cycle3MaintenanceOpportunity rA rB rC kAB kBC kCA) := by
+  intro n
+  obtain ⟨m, hnm, havail⟩ :=
+    CollectiveAlignment.cycle3_strict_loop_has_arbitrarily_late_availability
+      hrA hrB hrC hdA hdB hdC hkAB hkBC hkCA hloop n
+  exact ⟨m, hnm, by
+    simpa [cycle3MaintenanceOpportunity] using havail⟩
+
+/-- Cross-stack theorem: a strict positive three-cycle maintenance process,
+plus a validated realization response whenever that maintained process is
+available, is sufficient for open-ended cumulative retained novelty. -/
+theorem strictCycle3Maintenance_and_validatedResponse_imply_openEndedNovelty
+    {rA rB rC kAB kBC kCA : ℝ}
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdA : 0 < CollectiveAlignment.maintenanceDeficit rA)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC) (hkCA : 0 < kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        < kAB * kBC * kCA)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hResponse : OpportunityConditionedValidatedRealization
+      (cycle3MaintenanceOpportunity rA rB rC kAB kBC kCA) U H E S) :
+    OpenEndedCumulativeNovelty S := by
+  apply recurringOpportunity_and_validatedRealization_imply_openEndedNovelty
+    (cycle3MaintenanceOpportunity rA rB rC kAB kBC kCA)
+    U H E S hRetained
+  · exact strictCycle3Maintenance_supplies_recurringOpportunity
+      hrA hrB hrC hdA hdB hdC hkAB hkBC hkCA hloop
+  · exact hResponse
+
+/-- With representation of retained organization inside the current envelope,
+the same concrete maintenance-to-validation chain also forces unbounded
+distinguishability capacity. -/
+theorem strictCycle3Maintenance_and_validatedResponse_imply_unboundedEnvelope
+    {rA rB rC kAB kBC kCA : ℝ}
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdA : 0 < CollectiveAlignment.maintenanceDeficit rA)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC) (hkCA : 0 < kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        < kAB * kBC * kCA)
+    (hRepresented : ∀ n, S n ⊆ U n)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hResponse : OpportunityConditionedValidatedRealization
+      (cycle3MaintenanceOpportunity rA rB rC kAB kBC kCA) U H E S) :
+    UnboundedEnvelopeCapacity U := by
+  apply recurringOpportunity_and_validatedRealization_imply_unboundedEnvelope
+    (cycle3MaintenanceOpportunity rA rB rC kAB kBC kCA)
+    U H E S hRepresented hRetained
+  · exact strictCycle3Maintenance_supplies_recurringOpportunity
+      hrA hrB hrC hdA hdB hdC hkAB hkBC hkCA hloop
+  · exact hResponse
+
+end ConcreteThreeCycleBridge
+
 section Separation
 
 /-- A maximally permissive opportunity stream: an opportunity is declared at
@@ -145,6 +243,9 @@ end Separation
 #print axioms recurringOpportunity_and_validatedRealization_imply_validatedUptake
 #print axioms recurringOpportunity_and_validatedRealization_imply_openEndedNovelty
 #print axioms recurringOpportunity_and_validatedRealization_imply_unboundedEnvelope
+#print axioms strictCycle3Maintenance_supplies_recurringOpportunity
+#print axioms strictCycle3Maintenance_and_validatedResponse_imply_openEndedNovelty
+#print axioms strictCycle3Maintenance_and_validatedResponse_imply_unboundedEnvelope
 #print axioms alwaysOpportunity_is_recurring
 #print axioms recurringOpportunity_alone_does_not_imply_openEndedNovelty
 
