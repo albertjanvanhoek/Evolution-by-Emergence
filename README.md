@@ -271,6 +271,110 @@ makes the criticized claim. Before proposing a conceptual criticism, check
 whether the supposed confusion is already an explicit non-claim, converse
 failure, or machine-checked counterexample.
 
+LOGICAL-DIRECTION RULE
+
+For every theorem, rewrite its logical direction explicitly before evaluating
+necessity, converse status, or failure cases. If the theorem is:
+
+A -> B
+
+then it establishes that A is sufficient for B. It does not establish that A is
+necessary for B. Failure of A does not imply failure of B. The exact converse is
+B -> A.
+
+If the theorem is:
+
+(A and C) -> B
+
+then showing that A alone does not imply B is a premise-ablation or independence
+result, not a counterexample to the theorem and not the theorem's converse.
+
+Label negative results precisely as one of:
+
+- counterexample to the stated theorem;
+- counterexample to the exact converse;
+- premise ablation / one premise alone is insufficient;
+- independence result;
+- scope limitation;
+- empirical applicability concern.
+
+Do not call a sufficient condition "required" unless necessity is separately
+proved. Do not infer the negation of a conclusion from the failure of a
+sufficient premise.
+
+WITNESS RULE
+
+A concrete witness can satisfy assumptions more strongly than necessary. That
+does not weaken a sufficiency theorem. It may mean only that the witness does
+not demonstrate necessity, causal dependence, or minimality.
+
+In particular, the current progressive witness is explicitly a logical
+non-vacuity witness. If its generative response occurs even without using the
+opportunity premise, classify that as a limitation of the witness as a causal or
+minimal construction, not as evidence that the bridge theorem is invalid or
+that a necessity claim has failed unless the repository actually makes such a
+necessity claim.
+
+Likewise, `acceptAllCriterion` is explicitly introduced as a permissive
+non-vacuity witness, not as a scientifically realistic validator. A more
+restrictive criterion may be a useful robustness extension; do not call the
+permissive witness a defect unless prose elsewhere incorrectly treats it as an
+empirical validation model.
+
+SCOPE AND SEVERITY RULE
+
+Do not assign a problem severity merely because a theorem is narrow, abstract,
+or not yet generalized when the repository explicitly states that limitation.
+A missing arbitrary-network generalization, a physical interpretation of an
+abstract envelope, or a stronger witness can be important future work without
+being an error in the current theorem.
+
+Reserve High/Fatal severity for a demonstrated false theorem, inconsistent
+assumptions, invalid proof dependency, or prose claim that materially exceeds
+the formal result. Mark acknowledged limitations as scope limitations or future
+work unless you find an actual overclaim.
+
+LITERATURE AND NOVELTY RULE
+
+Do not call a result, formalization, mechanism, or distinction "novel" or "new"
+without performing an actual literature search and citing the sources that
+support that assessment. If you have not completed that search, write:
+
+RELATION TO PRIOR LITERATURE: NOT ASSESSED
+
+The repository already frames much of the stack conservatively as synthesis and
+research architecture with exact model-specific results. Treat novelty as a
+question to investigate, not a default label.
+
+VERIFICATION-STATUS RULE
+
+If LEAN EXECUTION is "no", do not say that you independently verified or
+executed the Lean proofs. Distinguish among:
+
+- SOURCE INSPECTED: you read the Lean declaration/proof text;
+- REPOSITORY-REPORTED MACHINE CHECK: release/CI material reports a successful
+  Lean build;
+- INDEPENDENTLY EXECUTED: you actually ran the relevant Lean build yourself.
+
+A source-level review can still be useful, but report the verification level
+accurately.
+
+SELF-CONSISTENCY CHECK — DO THIS BEFORE FINALIZING
+
+Before submitting the review:
+
+1. check that every claimed converse is the literal reverse implication of the
+   theorem under discussion;
+2. check that you never infer "not B" merely from failure of a sufficient A;
+3. check that you do not call a counterexample absent if you cited that same
+   counterexample elsewhere in the report;
+4. check that every novelty/prior-literature statement is supported by an
+   actual search and citations;
+5. check that every severity refers to an actual claim or theorem defect rather
+   than an explicitly acknowledged scope limitation;
+6. check that statements about machine verification match your declared Lean
+   execution capability.
+
 Do not evaluate the theory from the README alone.
 
 Start with RELEASE_NOTES.md to identify the current formal claim.
@@ -288,7 +392,8 @@ For every arrow in that chain:
 2. state the assumptions explicitly;
 3. determine whether the conclusion follows from those assumptions;
 4. identify any hidden strengthening introduced in prose;
-5. look for included counterexamples and converse failures;
+5. look for included counterexamples and converse failures, applying the
+   logical-direction rule above;
 6. distinguish:
    - definitions,
    - machine-checked results,
@@ -328,15 +433,16 @@ CLAIM
 SOURCE / THEOREM
 ASSUMPTIONS
 WHAT IS ACTUALLY PROVED
-COUNTEREXAMPLE OR CONVERSE STATUS
+LOGICAL STATUS / COUNTEREXAMPLE TYPE
 RELATION TO PRIOR LITERATURE
-POTENTIAL PROBLEM
-SEVERITY
-SUGGESTED TEST OR CORRECTION
+POTENTIAL PROBLEM OR SCOPE LIMITATION
+SEVERITY (only for an actual defect; otherwise N/A)
+SUGGESTED TEST, CORRECTION, OR EXTENSION
+VERIFICATION STATUS
 
 Every criticism must be traceable as:
 
-criticism → exact claim → exact source → exact theorem/definition → assumptions
+criticism -> exact claim -> exact source -> exact theorem/definition -> assumptions
 
 Do not try to make the theory sound coherent.
 Try to find where it actually breaks.
