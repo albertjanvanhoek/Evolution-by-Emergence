@@ -18,11 +18,16 @@ Machine-checked claims in this ledger are mapped to exact Lean declarations in [
 | A12 | In a nondegenerate Galton-Watson process, mean offspring \(\le1\) gives almost-sure extinction and mean \(>1\) gives positive survival probability. | Classical external theorem, not re-proved |
 | A13 | In the one-step repair model, repair weakly dominates termination iff \(C_R\le r(V-W)\). | Exact theorem; machine checked |
 | A14 | Therefore forgiveness is not universally optimal; its functional core can be represented as repair of a valuable, repairable edge. | Interpretation of A13 |
-| A15 | In the quadratic private objective (g(e)=ve-ce^2/2), (e_{m opt}=v/c) is a global optimum; against the 2-out-of-3 half-viability threshold, selected alignment is sufficient iff (2v\ge c). | Exact toy result; machine checked |
+| A15 | In the quadratic private objective \(g(e)=ve-ce^2/2\), \(e_{\rm opt}=v/c\) is a global optimum; against the 2-out-of-3 half-viability threshold, selected alignment is sufficient iff \(2v\ge c\). | Exact toy result; machine checked |
 | A16 | Therefore lower-level optimization can underprovide a collectively necessary interaction architecture even when the architecture has positive network value. | Interpretation of A15 plus prior regulation/free-rider models |
 | A17 | SCAP can be interpreted as a proposed heritable maintenance protocol for collective intelligence. | Synthesis / hypothesis |
 | A18 | Protocol alignment can coexist with object-level disagreement and diversity. | Framework claim; not a universal performance theorem |
 | A19 | Retaining correction architecture can contribute to cumulative accessibility by changing future search, retention, and learning conditions. | OA synthesis; requires application-specific causal test |
+| A20 | In the declared two-process maintenance model, the canonical positive witness is componentwise nondecreasing exactly when closed-loop gain covers the product of the two autonomous maintenance deficits. | Exact finite algebra; machine checked |
+| A21 | In the directed three-process cycle \(A\to B\to C\to A\), the canonical witness is componentwise nondecreasing exactly when \(k_{AB}k_{BC}k_{CA}\ge(1-r_A)(1-r_B)(1-r_C)\). | Exact finite algebra; machine checked |
+| A22 | Above the strict three-cycle boundary, there exists an explicit positive canonical state whose A component strictly increases while B and C remain exactly at replacement after one update. | Exact witness theorem; machine checked |
+| A23 | If the return edge \(C\to A\) is deleted and \(A\) has positive state with \(r_A<1\), then A strictly declines on the next update regardless of C's current state. | Exact theorem; machine checked |
+| A24 | These finite results motivate treating recurrent return paths as part of the maintenance architecture of collective corrective capacity; the general spectral-radius criterion \(\rho((I-R)^{-1}K)>1\) is classical external matrix theory and is not machine checked in this package. | Interpretation plus external theorem boundary |
 
 ## Non-claims
 
@@ -37,4 +42,8 @@ The paper does not claim:
 - SCAP is uniquely correct;
 - alignment should eliminate disagreement;
 - moral obligations have been deduced from mathematics;
-- the five toy-model modules exhaust collective intelligence.
+- the toy-model modules exhaust collective intelligence;
+- more edges are always better;
+- every useful return path is a simple cycle;
+- the Lean development proves the general Perron-Frobenius / next-generation-matrix threshold;
+- internal self-maintenance alone establishes externally valid adaptation or epistemic correctness.
