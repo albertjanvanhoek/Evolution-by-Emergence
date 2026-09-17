@@ -6,7 +6,7 @@ Machine verification for:
 
 ## Scope
 
-The formalization now has four connected layers.
+The formalization now has five connected layers.
 
 ### General operational layer
 
@@ -30,7 +30,7 @@ A scalar real-valued cost representation is used to prove the exact uniform-dilu
 
 ### Evolvability and generative-structure layer
 
-Four additional modules sharpen what it means for future accessibility itself to change:
+Five modules sharpen what it means for future accessibility itself to change:
 
 - `EvolvabilityStructure.lean` — evolvability preorder, functional projection, and binary recombination;
 - `GenerativeArity.lean` — finite-parent hypergenerators, with unary descent as the cardinality-one special case;
@@ -38,7 +38,31 @@ Four additional modules sharpen what it means for future accessibility itself to
 - `GenerativeClosure.lean` — retained recursive production, where generated intermediates become reusable parent material;
 - `GeneratorRuleEvolution.lean` — rule-driven search expansion at fixed repertoire, kept distinct from repertoire-driven expansion.
 
-The formalization does **not** claim that scalar cost is generally equivalent to finite-horizon hitting probability. It does not identify persistence with fitness or function, prove indefinite survival, claim that larger candidate sets are better, or claim that all evolution is multi-parent. Lean verifies consequences of the declared transition, viability, retention, projection, and generative-rule assumptions.
+### Finite-saturation layer
+
+`CumulativeAccessibility/FiniteGenerativeSaturation.lean` proves a finite-capacity boundary for cumulative retained novelty.
+
+For a monotone retained sequence `S n` inside a fixed finite declared universe `U`, Lean checks that for every horizon `N`,
+
+```text
+strictExpansionCount S N <= |U| - |S 0|.
+```
+
+This count bound allows idle periods and does **not** assume a fixed generative rule. Changing the rule may change which remaining states are reached, but cannot create more strict retained additions than the finite remaining capacity of `U`.
+
+With a fixed deterministic inflationary update rule closed inside `U`, Lean proves the stronger result that some
+
+```text
+n <= |U| - |S 0|
+```
+
+is a true fixed point: `S (n+k) = S n` for every later `k`.
+
+The module also implements the retained finite-parent generative closure directly on a finite type and proves that this concrete closure satisfies the saturation theorem.
+
+`FINITE_SATURATION_BRIDGE.md` records the relation to the repository's fixed-resolution organizational-depth work. The bridge is deliberately conditional: a finite declared candidate universe is not silently identified with an operational packing number without an explicit representation/resolution map.
+
+The formalization does **not** claim that scalar cost is generally equivalent to finite-horizon hitting probability. It does not identify persistence with fitness or function, prove indefinite survival, claim that larger candidate sets are better, claim that all evolution is multi-parent, or claim that physical reality has a finite state space. Lean verifies consequences of the declared transition, viability, retention, projection, generative-rule, and finite-universe assumptions.
 
 ## Main definitions
 
@@ -66,6 +90,9 @@ The formalization does **not** claim that scalar cost is generally equivalent to
 - `GeneratorRuleLe`
 - `GeneratorRuleLt`
 - `SearchFromRules`
+- `strictExpansionCount`
+- `finiteGenerativeStep`
+- `FiniteGenerativeClosureN`
 
 ## Checked results
 
@@ -167,6 +194,20 @@ Accordingly, expansion of the effective search operator may arise from at least 
 
 1. more/different retained parent material under a fixed rule;
 2. a changed generative rule under a fixed repertoire.
+
+### Finite generative saturation
+
+Lean checks that:
+
+- each strict inclusion of finite retained repertoires increases cardinality;
+- an uninterrupted strict chain of length `k` requires at least `k` additional states;
+- the total number of strict expansions up to any horizon, including expansions separated by idle steps, is bounded by `|U| - |S 0|`;
+- this finite novelty-count bound does not require a fixed update rule;
+- under a fixed deterministic retained update, equality of two consecutive states is permanent;
+- therefore a fixed deterministic retained process inside `U` reaches a fixed repertoire within the finite remaining capacity;
+- the finite retained hypergraph closure is a direct specialization and cannot strictly expand forever.
+
+This separates two claims that should not be conflated: rule evolution can expand the effective search operator, but rule evolution alone cannot defeat a fixed finite distinguishability capacity when cumulative retention is monotone.
 
 ## Reproduction
 
