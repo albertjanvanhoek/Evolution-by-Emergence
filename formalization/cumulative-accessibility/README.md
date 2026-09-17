@@ -26,7 +26,7 @@ A scalar real-valued cost representation is used to prove the exact uniform-dilu
 - a viable transition can strictly expand the state's future search operator;
 - if retained history preserves the ancestor's candidate repertoire, a later second-order click composes into strict search-operator expansion relative to the ancestor and exposes an explicit descendant candidate that the ancestor could not generate.
 
-This is an operational formalization of the distinction between reaching farther under a fixed generator and changing the generator of future possibilities itself.
+This is an operational formalization of the distinction between reaching farther under a fixed generator and changing the generator of future possibilities itself. The preservation premise in the historical composition theorem is essential: without it, a candidate absent from an intermediate state could simply be something the ancestor had already possessed and then lost.
 
 The formalization does not claim that scalar cost is generally equivalent to finite-horizon hitting probability. The recursive-accessibility layer does not identify persistence with fitness or function, does not prove indefinite survival, and does not claim that more search is always better.
 
