@@ -22,7 +22,10 @@ This file separates those roles.
 Together they imply the earlier capacity-uptake condition, hence open-ended
 cumulative novelty under monotone retention.
 
-The result is a sufficient decomposition, not a claim of minimality.
+The result is deliberately only sufficient.  A final counterexample shows that
+open-ended cumulative novelty can occur with `M_t = U_t` at every time, so
+recurring slack is not necessary: capacity and repertoire may expand in exact
+synchrony.
 -/
 
 section SlackAndRealization
@@ -142,12 +145,41 @@ theorem progressiveArchitecture_openEnded_via_slack_realization :
 
 end ProgressiveWitness
 
+section SlackIsNotNecessary
+
+/-- Synchronous expansion: the distinguishability envelope is exactly the
+retained repertoire at every time. -/
+def synchronousEnvelope (n : ℕ) : Finset ℕ :=
+  progressiveRepertoire n
+
+/-- There is never unused capacity when envelope and repertoire coincide. -/
+theorem synchronousExpansion_has_no_recurringSlack :
+    ¬ RecurringCapacitySlack synchronousEnvelope progressiveRepertoire := by
+  intro hSlack
+  obtain ⟨m, hm, hStrict⟩ := hSlack 0
+  have hEq : progressiveRepertoire m = synchronousEnvelope m := rfl
+  exact hStrict.2 hEq
+
+/-- Counterexample to necessity of the slack premise: the retained repertoire
+is still open-ended while the envelope expands in exact synchrony, leaving no
+strict slack at any time. -/
+theorem openEndedNovelty_without_recurringSlack :
+    OpenEndedCumulativeNovelty progressiveRepertoire
+      ∧
+    ¬ RecurringCapacitySlack synchronousEnvelope progressiveRepertoire := by
+  exact ⟨progressiveArchitecture_is_openEnded,
+    synchronousExpansion_has_no_recurringSlack⟩
+
+end SlackIsNotNecessary
+
 #print axioms recurringSlack_and_realization_imply_capacityUptake
 #print axioms recurringSlack_and_realization_imply_openEndedNovelty
 #print axioms recurringSlack_and_realization_imply_unboundedEnvelope
 #print axioms progressiveArchitecture_has_recurringSlack
 #print axioms progressiveArchitecture_has_immediateRealization
 #print axioms progressiveArchitecture_openEnded_via_slack_realization
+#print axioms synchronousExpansion_has_no_recurringSlack
+#print axioms openEndedNovelty_without_recurringSlack
 
 end RecursiveAccessibility
 end CumulativeAccessibility
