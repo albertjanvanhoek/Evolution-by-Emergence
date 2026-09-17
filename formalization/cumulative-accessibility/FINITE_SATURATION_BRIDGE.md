@@ -130,3 +130,69 @@ subject to finite distinguishability capacity.
 
 Open-ended cumulative evolution additionally requires that the effective space
 of retained distinguishable possibilities itself remain open.
+
+## 6. Moving distinguishability envelopes
+
+`CumulativeAccessibility/OpenEndedCapacity.lean` makes that last sentence a
+machine-checked necessity theorem. Instead of a fixed `U`, let `U n` be the
+finite distinguishability envelope available at time `n`, and assume only
+
+```text
+S n ⊆ U n
+S n ⊆ S (n+1).
+```
+
+No monotonicity assumption on the envelopes is required. For every horizon
+`N`, Lean proves
+
+```text
+|S 0| + strictExpansionCount S N ≤ |U N|.
+```
+
+Hence if strict cumulative novelty is open-ended in the sense that every
+finite requested number of strict retained expansions is eventually attained,
+then
+
+```text
+for every K, some N satisfies |S 0| + K ≤ |U N|.
+```
+
+In particular,
+
+```text
+open-ended cumulative retained novelty
+    -> unbounded distinguishability-envelope capacity.
+```
+
+The theorem is independent of the rule sequence. The file makes the
+architecture explicit as `(M_t,H_t,U_t)` and proves that arbitrary evolution of
+`H_t` cannot evade a uniform cardinality bound on `U_t`.
+
+The converse is intentionally **not** claimed. A concrete Lean witness uses
+
+```text
+U n = {0,...,n}
+M n = {0}
+```
+
+so the distinguishability envelope grows without bound while the retained
+repertoire never changes and cumulative novelty is zero. Thus open capacity is
+a necessary resource for open-ended cumulative evolution, not an automatic
+generator of it.
+
+## 7. Boundary now exposed
+
+The combined theorem stack therefore separates three notions:
+
+1. **indefinite change** — motion or revisitation can continue without new
+   retained distinctions;
+2. **cumulative evolution in bounded capacity** — retained novelty can build up,
+   but only finitely many strict additions are possible;
+3. **open-ended cumulative evolution** — arbitrarily many retained novelty
+   events require unbounded effective distinguishability capacity, plus some
+   mechanism that actually realizes that capacity as retained organization.
+
+This is a necessity boundary, not yet a complete theory of open-endedness. The
+next missing ingredient is a coupling condition between growing capacity and
+the generative/retention process: expanding `U_t` must become causally usable by
+`H_t` and incorporated into `M_t`.
