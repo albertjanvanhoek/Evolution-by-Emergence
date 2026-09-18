@@ -316,7 +316,10 @@ C'(y)\le C(y)
 \forall y\in Y.
 \]
 
-The relation is reflexive and transitive. Lean checks both properties.
+The relation is reflexive and transitive. Lean checks both properties. It also
+checks the retained-ratchet consequence: a strict improvement followed by any
+declared non-worsening change remains strict relative to the ancestor, and
+strict improvements compose.
 
 A strict improvement adds
 
