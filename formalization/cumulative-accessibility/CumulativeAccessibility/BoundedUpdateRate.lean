@@ -79,6 +79,17 @@ section BoundedEventImplications
 
 variable {α : Type*} [DecidableEq α]
 
+/-- Persistent support plus a same-index support-to-opportunity connection
+gives the strongest possible opportunity-gap certificate: gap zero. -/
+theorem persistentSupport_and_connection_imply_zeroGapOpportunity
+    (Support Opportunity : ℕ → Prop)
+    (hSupport : ∀ n, Support n)
+    (hConnection : SupportImpliesOpportunity Support Opportunity) :
+    OpportunityGapBound 0 Opportunity := by
+  intro n
+  refine ⟨n, le_rfl, ?_, hConnection n (hSupport n)⟩
+  simp
+
 /-- A bounded opportunity gap immediately implies qualitative recurrence. -/
 theorem opportunityGapBound_implies_recurringOpportunity
     (gap : ℕ)
@@ -164,6 +175,77 @@ theorem boundedOpportunity_and_response_imply_successEveryWindow
     successGapBound_implies_everyWindow
       (opportunityGap + responseLag) Cost Budget U H E S hGap
 
+/-- The maintained canonical three-cycle supplies a zero-gap opportunity
+certificate whenever its preserved quantitative support is explicitly declared
+sufficient for the chosen opportunity predicate. -/
+theorem supportedCycle3Maintenance_supplies_zeroGapOpportunity
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (hConnection :
+      SupportImpliesOpportunity
+        (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+        Opportunity) :
+    OpportunityGapBound 0 Opportunity := by
+  exact persistentSupport_and_connection_imply_zeroGapOpportunity
+    (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+    Opportunity
+    (cycle3MaintenanceSupport_persistent
+      hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop)
+    hConnection
+
+/-- First end-to-end maintenance-to-frequency theorem.
+
+Under the exact maintained three-cycle assumptions, plus an explicit
+support-to-opportunity connection and a bounded resource-feasible validated
+response guarantee, every sliding window of width responseLag+1 contains a
+resource-validated update. -/
+theorem supportedCycle3Maintenance_and_boundedResponse_imply_successEveryWindow
+    (responseLag : ℕ)
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (Cost : ResponseCost α)
+    (Budget : ResponseBudget)
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hConnection :
+      SupportImpliesOpportunity
+        (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hResponse :
+      OpportunityConditionedResourceResponseWithin
+        responseLag Opportunity Cost Budget U H E S) :
+    ResourceValidatedSuccessEveryWindow
+      (responseLag + 1) Cost Budget U H E S := by
+  have hOpp :
+      OpportunityGapBound 0 Opportunity :=
+    supportedCycle3Maintenance_supplies_zeroGapOpportunity
+      Opportunity hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop hConnection
+  simpa using
+    boundedOpportunity_and_response_imply_successEveryWindow
+      0 responseLag Opportunity Cost Budget U H E S hOpp hResponse
+
 /-- Bounded successful-update gaps imply the earlier qualitative validated
 uptake predicate. This connects the rate layer back to the open-endedness
 stack. -/
@@ -184,6 +266,13 @@ theorem successGapBound_implies_validatedUptake
   exact ⟨r, z, hnr, hzU, hzNot, hGen, hEval, hzNext⟩
 
 end BoundedEventImplications
+
+#print axioms persistentSupport_and_connection_imply_zeroGapOpportunity
+#print axioms boundedOpportunity_and_response_imply_successGapBound
+#print axioms boundedOpportunity_and_response_imply_successEveryWindow
+#print axioms supportedCycle3Maintenance_supplies_zeroGapOpportunity
+#print axioms supportedCycle3Maintenance_and_boundedResponse_imply_successEveryWindow
+#print axioms successGapBound_implies_validatedUptake
 
 end RecursiveAccessibility
 
