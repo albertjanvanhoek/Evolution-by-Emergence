@@ -222,7 +222,7 @@ Compilation coverage and proof-dependency auditing are now separate explicit che
 sorryAx
 ```
 
-CI also retains the two end-to-end witness targets:
+CI explicitly builds the aggregate, axiom-audit, and witness targets:
 
 ```text
 CumulativeAccessibility.AuditAll
@@ -249,7 +249,8 @@ lake build \
   CumulativeAccessibility.AuditAll \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
-  CumulativeAccessibility.MaintenanceGatedWitness
+  CumulativeAccessibility.MaintenanceGatedWitness \
+  CumulativeAccessibility.BoundedResponseWitness
 ```
 
 To inspect the printed axioms directly:
@@ -261,7 +262,7 @@ lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 ```
 
-A formal-core verification should fail review if either output contains `sorryAx`.
+A formal-core verification should fail review if any audited output contains `sorryAx`.
 
 Pinned toolchain:
 
