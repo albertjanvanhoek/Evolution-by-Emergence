@@ -303,7 +303,54 @@ The scientific question for real systems is therefore not whether
 plasticity/stability trade-offs exist, but how substrate-specific mechanisms
 map onto the rate coordinates and where their joint optimum lies.
 
-## 10. Relation to the intelligent-network paper
+## 10. Speed of adaptation and cumulative cultural acquisition cost
+
+Evolutionary theory has mature rate concepts. Population-genetic and
+quantitative-genetic models study rates of fitness or trait change; traveling-
+wave models derive speeds of adaptation under mutation and selection; related
+work derives rate limits for evolutionary change.
+
+Cumulative-cultural-evolution models also study the cost of acquiring inherited
+knowledge. Mesoudi (2011), for example, models cultural acquisition costs that
+increase with accumulated cultural complexity and can eventually constrain
+further cumulative innovation. Such models also consider innovations that
+reduce acquisition or innovation costs.
+
+**Relationship to the present framework**
+
+These literatures mean the present paper must not claim either "evolution has a
+speed" or "acquisition cost constrains cumulative evolution" as new.
+
+The current EbE split is instead:
+
+```text
+7A: acquisition/transition cost of reaching future organization
+7B: current performance cost of realized functions
+7B-rate: retained change of the multi-target performance-cost profile
+```
+
+Population-genetic adaptation speed commonly tracks fitness or trait change.
+The proposed ratchet velocity is target-conditioned and can remain vector-
+valued across multiple functional targets rather than collapsing immediately to
+fitness.
+
+Cultural acquisition-cost models are especially relevant to Layer 7A and may
+provide strong application models for how inherited complexity raises or lowers
+future acquisition cost. They should be used as antecedents when the EbE
+framework is applied to science, technology, or cumulative culture.
+
+Relevant references:
+
+- Queller (2017), *The American Naturalist*, on fundamental evolutionary
+  theorems and rates of selection response.
+- traveling-wave / clonal-interference work on the speed of adaptation in
+  asexual populations.
+- García-Pintos (2024), *Scientific Reports*, on evolutionary rate limits for
+  quantitative traits.
+- Mesoudi (2011), *PLOS ONE*, "Variable cultural acquisition costs constrain
+  cumulative cultural evolution."
+
+## 11. Relation to the intelligent-network paper
 
 The companion paper on learning-maintenance processes should now be read as an
 inside specialization.
