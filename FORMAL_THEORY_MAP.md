@@ -373,6 +373,8 @@ time/resource interval yields ratchet velocity.
 - RatchetVelocityLedger.lean
 - BoundedUpdateRate.lean
 - SearchValidationTradeoff.lean
+- StateDependentAllocation.lean
+- BottleneckAllocation.lean
 
 **Core definitions**
 
@@ -395,6 +397,10 @@ time/resource interval yields ratchet velocity.
 - FunctionalGainEveryWindow
 - BoundedMechanismRateFloor
 - SearchValidationVelocity
+- BaselineValidationFraction
+- ValidationBaselineVelocity
+- TwoBaselineAllocationScore
+- TwoBaselineBalancingAllocation
 
 **Selected declarations**
 
@@ -427,6 +433,15 @@ time/resource interval yields ratchet velocity.
 - searchValidationVelocity_le_quarter
 - searchValidationVelocity_eq_quarter_iff
 - more_search_can_reduce_velocity
+- validationBaselineVelocity_le_stateDependentMaximum
+- validationBaselineVelocity_at_stateDependentOptimum
+- inherited_organization_changes_optimal_allocation
+- twoBaselineAllocationScore_le_balancedUpperBound
+- twoBaselineAllocationScore_at_balancingAllocation
+- balancingAllocation_equalizes_final_capacities
+- searchFarAhead_all_to_validation_is_optimal
+- validationFarAhead_all_to_search_is_optimal
+- inherited_capacity_moves_the_bottleneck
 
 **Key bridge**
 
