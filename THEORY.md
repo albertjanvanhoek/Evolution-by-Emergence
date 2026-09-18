@@ -718,14 +718,40 @@ indexed time. Under an explicit support→opportunity connection this gives
 also proves at least `g_{\min}` functional gain per validated update, the same
 window contains at least that gain.
 
+If the chosen retained functional target is non-worsening between
+certified successes, the window theorem sharpens to an actual block-average
+rate bound:
+
+\[
+\boxed{
+\bar v_k(f)
+\ge
+\frac{g_{\min}}{K+\Delta+1}.
+}
+\]
+
+The strong per-step functional ratchet condition supplies this nonnegative
+target-gain premise for any declared retained target.
+
+The resulting guaranteed-rate floor has machine-checked comparative statics:
+increasing `g_min`, decreasing the maximum opportunity wait `K`, or
+decreasing validated-response lag `Δ` raises the floor; the corresponding
+strict changes raise it strictly under positive gain.
+
+This is the first formal notion of mechanism-level acceleration in the stack.
+It is an acceleration of the **guaranteed lower bound**, not by itself proof
+that the realized trajectory's observed velocity increased.
+
 This produces a first genuine mechanism-to-speed bridge while preserving the
-distinction
+distinctions
 
 \[
 \boxed{
 \text{open-endedness}
 \neq
-\text{positive rate floor}.
+\text{positive rate floor}
+\neq
+\text{realized acceleration}.
 }
 \]
 
