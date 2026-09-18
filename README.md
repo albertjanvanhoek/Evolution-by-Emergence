@@ -6,9 +6,11 @@
 
 You do not need to read the whole book to review the current formal core.
 
-The current development revision builds on the immutable **v15: Verification Closure** release and asks a sharper question:
+The canonical synthesis is **[The Dynamic Core of Evolution by Emergence](DYNAMIC_OVERVIEW.md)**. It reconstructs the full resource-fed recursive accessibility loop and maps every arrow to its formal status.
 
-> **What quantitative maintenance support is actually preserved, what must be declared to turn that support into opportunity, and exactly which response assumptions are sufficient for open-ended cumulative novelty?**
+The current development revision builds on the immutable **v15: Verification Closure** release and asks a sharper compositional question:
+
+> **How do maintenance, organization-dependent slack, internally funded response, validated retention, and second-order accessibility compose into one recurring dynamic process?**
 
 The formal route is now:
 
@@ -40,6 +42,15 @@ open-ended cumulative retained novelty N
 representation P + retention R + N
                 ↓
 unbounded effective distinguishability capacity C
+
+retained organizational update
+                ↓
+reusable parent material and/or changed generative rule
+                ↓
+second-order accessibility click
+                ↓
+changed future search
+                ↺
 ```
 
 The earlier same-time coupling predicate `W` is now proved to be exactly the `Δ = 0` special case. A lag-1 even/odd witness has recurrent validated response and open-ended novelty while same-time `W` is false.
@@ -70,7 +81,11 @@ This revision therefore:
 - adds `VerificationSurface` so selected advertised theorem dependencies are explicitly checked for `sorryAx`;
 - and makes changes to the imported collective-alignment package trigger the downstream cumulative-accessibility check.
 
-The resource-budget seam is now closed: the external gradient remains exogenous, but usable response budget is generated internally from uptake minus maintenance. The repository already formalizes the complementary recursive structural step elsewhere: retained intermediates can become future parent material, retained module changes can expand the effective search operator, and retained rule changes can create second-order accessibility clicks. What is not yet packaged as one theorem is the composition of those existing recursive-accessibility results with the endogenous gradient/slack response budget.
+The resource-budget seam is now closed: the external gradient remains exogenous, but usable response budget is generated internally from uptake minus maintenance. The complementary recursive structural step was already formalized elsewhere: retained intermediates can become future parent material, retained module changes can expand the effective search operator, and retained rule changes can create second-order accessibility clicks.
+
+This revision now also packages those routes together. `DynamicVortex.lean` defines an explicit integration interface in which an internally funded validated response is accompanied by a second-order organizational update. Under recurring opportunity, retention, and representation, Lean derives open-ended cumulative retained novelty, unbounded effective distinguishability capacity, and arbitrarily late second-order updates in one theorem. `DynamicVortexWitness.lean` supplies a concrete jointly inhabited construction.
+
+The coupling from a retained response to a particular physical organizational update remains an explicit modelling assumption; the formalization does not claim that every retained novelty improves physical efficiency or expands search.
 
 ## Two complementary witnesses
 
@@ -147,20 +162,23 @@ The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolu
 
 Start with:
 
-1. [`RELEASE_NOTES.md`](RELEASE_NOTES.md) — what changed, what is checked, and what remains open.
-2. [`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md) — the Lean package and verification contract.
-3. [`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean) — joint non-vacuity witness.
-4. [`MaintenanceGatedWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean) — opportunity-gated dependency and ablation witness.
-5. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and same-time response.
-6. [`ResponseDynamics.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean) — bounded-delay and quantitative resource-feasibility layer.
-7. [`BoundedResponseWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean) — lag-1 and resource-independence witnesses.
-8. [`EndogenousBudgetBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean) — gradient/uptake/maintenance slack mapped into response budget; cumulative margin specialization.
-9. [`EndogenousBudgetWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean) — fixed-gradient and exact-margin seam witnesses.
-10. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
-11. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
-12. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
-13. [`verification/audits/`](verification/audits/) — theorem and literature audits.
-14. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
+1. [`DYNAMIC_OVERVIEW.md`](DYNAMIC_OVERVIEW.md) — the full dynamic thesis, proof-status map, physical boundary, and peer-review targets.
+2. [`RELEASE_NOTES.md`](RELEASE_NOTES.md) — what changed, what is checked, and what remains open.
+3. [`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md) — the Lean package and verification contract.
+4. [`DynamicVortex.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean) — composition theorem joining endogenous response and second-order accessibility.
+5. [`DynamicVortexWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean) — concrete full-dynamic witness.
+6. [`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean) — joint non-vacuity witness.
+7. [`MaintenanceGatedWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean) — opportunity-gated dependency and ablation witness.
+8. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and same-time response.
+9. [`ResponseDynamics.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean) — bounded-delay and quantitative resource-feasibility layer.
+10. [`BoundedResponseWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean) — lag-1 and resource-independence witnesses.
+11. [`EndogenousBudgetBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean) — gradient/uptake/maintenance slack mapped into response budget; cumulative margin specialization.
+12. [`EndogenousBudgetWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean) — fixed-gradient and exact-margin seam witnesses.
+13. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
+14. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
+15. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
+16. [`verification/audits/`](verification/audits/) — theorem and literature audits.
+17. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
 
 For an LLM-assisted adversarial review, use the versioned copy-paste protocol in **[`PEER_REVIEW_PROMPT.md`](PEER_REVIEW_PROMPT.md)**.
 
@@ -184,12 +202,15 @@ lake build \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness \
   CumulativeAccessibility.BoundedResponseWitness \
-  CumulativeAccessibility.EndogenousBudgetWitness
+  CumulativeAccessibility.EndogenousBudgetWitness \
+  CumulativeAccessibility.DynamicVortexWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
+lake env lean CumulativeAccessibility/DynamicVortex.lean
+lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
 ```
 
 The central printed theorem axioms must contain no `sorryAx`.
