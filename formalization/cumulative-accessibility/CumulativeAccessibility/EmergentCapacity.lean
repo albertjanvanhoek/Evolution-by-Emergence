@@ -275,7 +275,8 @@ theorem jointEmergentCapacity_excludes_singleton_parent
     {x : Process}
     (hx : x ∈ parents) :
     ¬ RealizesCapacity E {x} ctx φ := by
-  apply h.2.2 {x}
+  rcases h with ⟨hTwo, hMinimal⟩
+  apply hMinimal.2 {x}
   show FiniteProperSubconfig (Process := Process) {x} parents
   refine Finset.ssubset_iff_subset_ne.mpr ⟨?_, ?_⟩
   · exact Finset.singleton_subset_iff.mpr hx
