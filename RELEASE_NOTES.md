@@ -1,3 +1,32 @@
+# Unreleased — Endogenous Budget Seam
+
+This stacked revision closes the resource-budget seam exposed by the bounded-response layer.
+
+It adds a physical ledger
+
+```text
+internal slack
+  = organization-dependent captured gradient throughput
+    - recurring maintenance demand
+
+response budget
+  = reinvestment fraction * internal slack
+```
+
+while keeping the external gradient itself as a boundary condition.
+
+Lean checks that, at a fixed external gradient, increasing uptake and/or lowering maintenance cannot reduce internal slack, and with nonnegative reinvestment cannot reduce the generated response budget. A strict budget increase opens a nonempty response-cost window.
+
+The fixed-gradient witness holds the gradient at `10` and maintenance at `6`, changes organizational uptake from `10` to `11`, and therefore raises slack and response budget from `4` to `5`. A response costing `9/2` becomes feasible and finances the existing lag-1 even/odd validated-uptake construction.
+
+A second bridge reuses the existing dimensionless cumulative-accessibility margin `M=B/c*-1` as a response budget **only inside that shared-budget specialization**. The exact first click raises margin from `2/3` to `97/99`, so the already-proved `9/10` second-click load is unaffordable before and affordable afterward. This does not identify normalized margin with physical free energy.
+
+The remaining unclosed feedback is now explicit: the current witness supplies the organizational state trajectory. It does not yet prove that a retained novelty event itself causes the next state to increase uptake or reduce maintenance, nor does it model depletion/renewal of the external gradient.
+
+This revision is stacked on the bounded-response revision below.
+
+---
+
 # Unreleased — Bounded Response and Resource Feasibility
 
 This stacked post-v15 revision extends the response interface without changing the downstream open-endedness results.
