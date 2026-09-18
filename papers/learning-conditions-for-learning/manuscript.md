@@ -590,21 +590,39 @@ criterion.
 
 ### 6.4 Recursive self-improvement
 
-Let ρ(P) be a declared measure of the process state's productivity in producing
-further successful self-improvements.
+The generic formal interface permits a declared productivity functional
+`ρ(P)`. The companion functional-ratchet theory now supplies a preferred
+operational grounding.
 
-Recursive self-improvement requires both self-improvement and
+Clone or otherwise match the same starting organization. Run a held-out learning
+episode under the old process and a matched episode under the self-modified
+process. Normalize functional gains by each positive time/resource interval.
 
-\[
-\rho(P_{t+1})>\rho(P_t).
-\]
+Recursive self-improvement requires:
 
-This definition does not imply runaway acceleration. Resource limits,
-interference, rigidity, loss of diversity, or exhaustion of useful search
-directions can make ρ fall.
+1. the old process generated and applied the intervention that produced the new
+   process;
+2. declared retained functions are not made more costly at the matched starting
+   organization;
+3. the new process is not slower on any declared held-out learning target; and
+4. it is strictly faster on at least one.
 
-The point is to make recursive self-improvement measurable rather than
-rhetorical.
+Schematically,
+
+```math
+v_{P_{t+1}}(f)\ge v_{P_t}(f)
+\quad\forall f\in\Phi_L,
+```
+
+with strict inequality for at least one held-out target.
+
+This is stronger than simply becoming better at a task. It says that the system
+has changed the process responsible for acquiring further capability, and that
+the rate improvement survives a matched counterfactual test.
+
+It still does not imply runaway acceleration. Resource limits, interference,
+rigidity, loss of diversity, increasing target difficulty, or exhaustion of
+useful search directions can make later velocity plateau or fall.
 
 ---
 
