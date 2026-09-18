@@ -144,6 +144,52 @@ This profile is the **functional accessibility geometry**.
 
 It is generally directed, target-dependent, and context-dependent.
 
+### 2.1 Functional targets as operational tests
+
+To keep *function* from becoming an observer's verbal label, a functional target
+should be tied to a test specification.
+
+Let a target `f` declare:
+
+- a family or distribution of interventions/inputs `I_f`;
+- an observable success criterion `S_f`;
+- an allowed error level `\varepsilon_f`;
+- the environmental/context conditions under which the test is meaningful.
+
+At resource level `r`, organization `s` realizes `f` when, schematically,
+
+```math
+\Pr\left(
+S_f
+\mid
+do(I_f),s,r
+\right)
+\ge
+1-\varepsilon_f.
+```
+
+The functional cost can then be grounded as
+
+```math
+C_t(s,f)
+=
+\inf\left\{
+r:
+\Pr(S_f\mid do(I_f),s,r)
+\ge 1-\varepsilon_f
+\right\}.
+```
+
+This does not make the target family completely observer-independent: the
+choice of intervention alphabet, scale, and success criterion is part of the
+scientific question. But once declared, realization and cost are empirical
+rather than semantic assertions.
+
+For intelligent systems this distinction is crucial. An outside observer can
+test whether a network reliably performs linguistic transformations without
+claiming to read the network's experienced meaning directly from static
+structure.
+
 ---
 
 ## 3. Functional repertoire
