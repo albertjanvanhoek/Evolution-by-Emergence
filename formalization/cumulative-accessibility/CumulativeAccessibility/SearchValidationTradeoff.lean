@@ -90,22 +90,27 @@ theorem searchValidationVelocity_strictMono_left
   rw [searchValidationVelocity_eq, searchValidationVelocity_eq]
   have hsum : x + y < 1 := by
     nlinarith
-  have hprod : 0 < (y - x) * (1 - x - y) := by
-    positivity
+  have hdx : 0 < y - x := sub_pos.mpr hxy
+  have hrest : 0 < 1 - x - y := by
+    nlinarith [hsum]
+  have hprod : 0 < (y - x) * (1 - x - y) :=
+    mul_pos hdx hrest
   nlinarith
 
 /-- More search strictly decreases velocity on the validation-limited side. -/
 theorem searchValidationVelocity_strictAnti_right
     {x y : ℝ}
     (hx : 1 / 2 ≤ x)
-    (hxy : x < y)
-    (hy1 : y ≤ 1) :
+    (hxy : x < y) :
     SearchValidationVelocity y < SearchValidationVelocity x := by
   rw [searchValidationVelocity_eq, searchValidationVelocity_eq]
   have hsum : 1 < x + y := by
     nlinarith
-  have hprod : 0 < (y - x) * (x + y - 1) := by
-    positivity
+  have hdx : 0 < y - x := sub_pos.mpr hxy
+  have hrest : 0 < x + y - 1 := by
+    nlinarith [hsum]
+  have hprod : 0 < (y - x) * (x + y - 1) :=
+    mul_pos hdx hrest
   nlinarith
 
 /-- Pure search with no validation has zero retained ledger velocity. -/
