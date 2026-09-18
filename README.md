@@ -200,7 +200,7 @@ The repository's own literature audit recommends treating this as **primarily a 
 
 ## Review the fixed object
 
-The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support and bounded-response revisions, pin and report the exact commit SHA on `main` (or the relevant stacked pull request before merge) rather than silently mixing them with v15.
+The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the current full-theory revision, pin and report the exact commit SHA on `main` (or the relevant stacked pull request before merge) rather than silently mixing versions.
 
 Start with:
 
@@ -231,7 +231,13 @@ For an LLM-assisted adversarial review, use the versioned copy-paste protocol in
 
 An LLM can trace definitions, imports, theorem dependencies, counterexamples, and prior literature. The human reviewer remains responsible for deciding whether definitions are meaningful, assumptions are realistic, interpretations overreach, and prior work already contains the result in the same or stronger form.
 
-## Reproduce the formal core
+## Reproduce the proof surfaces
+
+The repository-wide proof map and package-specific commands are in
+[`formalization/README.md`](formalization/README.md). The meta-workflow is
+[`.github/workflows/full-theory-proof-check.yml`](.github/workflows/full-theory-proof-check.yml).
+
+For the integrated cumulative-accessibility core specifically:
 
 ```bash
 git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
