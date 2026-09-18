@@ -255,7 +255,55 @@ Key references:
 - Draghi & Ogbunugafor (2022), *Journal of Experimental Zoology B*.
 - Barnett, Meister & Rainey (2025), *Science*.
 
-## 9. Relation to the intelligent-network paper
+## 9. Stability-plasticity and exploration-exploitation trade-offs
+
+The stability-plasticity dilemma is established in both biological and
+artificial learning systems. Learning requires enough plasticity to incorporate
+new information while sufficient stability is needed to preserve prior
+function. Excess plasticity can produce forgetting; excess stability can block
+new learning. Related exploration-exploitation literatures likewise study the
+allocation of effort between generating alternatives and exploiting or
+evaluating what has already been found.
+
+Relevant antecedents include:
+
+- Mermillod et al. (2013), *Frontiers in Psychology*, "The
+  stability-plasticity dilemma: investigating the continuum from catastrophic
+  forgetting to age-limited learning effects".
+- Ajemian et al. (2013), *PNAS*, "A theory for how sensorimotor skills are
+  learned and retained in noisy and nonstationary neural circuits".
+- the broader continual-learning literature on catastrophic forgetting and
+  stability-plasticity control.
+
+**Relationship to the present framework**
+
+The present work does not claim the stability-plasticity trade-off as new.
+
+Its reduced search-validation model instead serves as an exact bridge into the
+ratchet-velocity ledger. Ceteris-paribus, increasing generation or validation
+raises ledger velocity. Under a shared unit constraint, however,
+
+```math
+p_G=x,
+\qquad
+p_V=1-x,
+```
+
+so
+
+```math
+v(x)=x(1-x).
+```
+
+This creates an interior optimum and proves that monotonicity of individual
+ledger coordinates does not survive arbitrary coupling among those
+coordinates.
+
+The scientific question for real systems is therefore not whether
+plasticity/stability trade-offs exist, but how substrate-specific mechanisms
+map onto the rate coordinates and where their joint optimum lies.
+
+## 10. Relation to the intelligent-network paper
 
 The companion paper on learning-maintenance processes should now be read as an
 inside specialization.
