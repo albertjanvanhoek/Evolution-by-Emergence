@@ -16,16 +16,15 @@ forward invariant whenever the closed-loop product threshold is met.  If the
 canonical witness is strictly positive, the resulting trajectory is positive at
 every time.
 
-Thus the finite maintenance witness is promoted to an arbitrarily-late
-availability statement:
+Thus the finite maintenance witness is promoted to a quantitative trajectory
+statement.  Under the non-strict product threshold and the required sign
+conditions, the trajectory remains above a strictly positive canonical support
+vector at every time.  A positive scalar floor follows as a corollary.
 
-    closed maintenance threshold + positivity/nonnegativity
-        -> positive maintained trajectory at every time
-        -> arbitrarily late maintenance availability.
-
-This still does not imply novelty, external validation, or learning.  It only
-supplies the recurrent-maintenance side of the interface used by the cumulative
-accessibility stack.
+The older strict-threshold positivity/availability theorems remain as compatible
+corollaries.  This module still does not imply opportunity for an arbitrary
+external predicate, novelty, validation, or learning; those connections are
+declared separately in the cumulative-accessibility package.
 -/
 
 structure Cycle3State where
