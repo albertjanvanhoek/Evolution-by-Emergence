@@ -21,7 +21,7 @@ The fixed-gradient witness holds the gradient at `10` and maintenance at `6`, ch
 
 A second bridge reuses the existing dimensionless cumulative-accessibility margin `M=B/c*-1` as a response budget **only inside that shared-budget specialization**. The exact first click raises margin from `2/3` to `97/99`, so the already-proved `9/10` second-click load is unaffordable before and affordable afterward. This does not identify normalized margin with physical free energy.
 
-The remaining unclosed feedback is now explicit: the current witness supplies the organizational state trajectory. It does not yet prove that a retained novelty event itself causes the next state to increase uptake or reduce maintenance, nor does it model depletion/renewal of the external gradient.
+A stack-wide reread shows that the recursive organizational step was already formalized elsewhere in the package: retained generated products become later parent material, viable second-order clicks change future search, retained module changes expand the effective generator, and rule changes can do the same. This revision should therefore not be read as leaving "retained novelty -> changed future organization" conceptually unsolved. The remaining task is to compose those existing recursive-accessibility results with the endogenous gradient/slack response budget in one typed end-to-end construction. Application-specific mappings from organizational changes to physical uptake/maintenance, and depletion/renewal of the external gradient, remain separate modelling questions.
 
 This revision is stacked on the bounded-response revision below.
 
