@@ -226,7 +226,11 @@ theorem viscosityToy_binary_click_at_budget_one :
   refine ⟨by simp [viscosityToyStep], by simp [viscosityToyViable], ?_⟩
   refine ⟨?_, fluid, by simp, ?_, ?_⟩
   · intro z hz hOld
-    cases z <;> norm_num [BudgetSearch, AccessibleWithin, viscosityToyCost] at hOld ⊢
+    cases z with
+    | viscous =>
+        norm_num [BudgetSearch, AccessibleWithin, viscosityToyCost]
+    | fluid =>
+        norm_num [BudgetSearch, AccessibleWithin, viscosityToyCost] at hOld
   · norm_num [BudgetSearch, AccessibleWithin, viscosityToyCost]
   · norm_num [BudgetSearch, AccessibleWithin, viscosityToyCost]
 
