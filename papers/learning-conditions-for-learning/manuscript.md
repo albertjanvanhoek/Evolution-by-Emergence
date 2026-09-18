@@ -1,11 +1,19 @@
 # Learning the Conditions for Learning
 
-## Plasticity, viscosity, and recursive accessibility in adaptive networks
+## Intelligent networks as an inside specialization of functional ratchet velocity
 
 **Status:** working theory paper, draft 0.1  
 **Framework:** Evolution by Emergence
 
 ### Abstract
+
+**Companion-paper relation.** The universal outside theory is developed
+separately in *Functional Organization and the Velocity of the Ratchet*. There,
+an organizational state and a functional target are different types of object,
+and the primitive quantity is the target-indexed cost of reliably realizing
+functions. Ratchet velocity is retained reduction of that functional cost
+profile. The present paper asks what this means from inside an intelligent
+network.
 
 Learning changes what a system knows or can do. But learning can also change how
 easily the system can learn again. A person can learn how to search, test,
@@ -40,9 +48,11 @@ This distinction yields operational definitions of learning-to-learn,
 self-improvement, and recursive self-improvement. Self-improvement occurs when a
 system endogenously modifies its own learning-maintenance process and thereby
 improves future accessibility on held-out targets while preserving required
-prior function. Recursive self-improvement additionally improves a declared
-measure of the system's capacity to generate further improvements of its own
-learning-maintenance process.
+prior function. Recursive self-improvement additionally improves the rate at which the system
+can acquire further held-out functional capability under matched time/resource
+conditions. The earlier abstract productivity functional remains a permissive
+interface, but the companion outside theory supplies a preferred operational
+grounding: improvement of future functional ratchet velocity.
 
 The framework connects metaplasticity, evolvability, adaptive networks,
 collective learning, and artificial learning while keeping their
