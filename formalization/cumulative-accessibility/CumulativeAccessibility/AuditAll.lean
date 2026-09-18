@@ -28,6 +28,7 @@ import CumulativeAccessibility.SearchValidationTradeoff
 import CumulativeAccessibility.StateDependentAllocation
 import CumulativeAccessibility.BottleneckAllocation
 import CumulativeAccessibility.AdaptiveRatePolicy
+import CumulativeAccessibility.ConstrainedRatePolicy
 
 /-!
 # Aggregate package audit target
