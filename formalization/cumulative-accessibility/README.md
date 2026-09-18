@@ -2,12 +2,15 @@
 
 Machine-checked formalization for the cumulative-accessibility and formal-core results in **Evolution by Emergence**.
 
-The package separates four questions that are easy to collapse informally:
+The package separates five questions that are easy to collapse informally:
 
 1. **Can an organization persist?**
-2. **Can retained organization change what becomes accessible next?**
-3. **Can new organization continue to be realized and retained?**
-4. **What capacity conditions are necessary for that process to remain open-ended?**
+2. **Can it generate an internally usable response budget from an external gradient?**
+3. **Can new organization continue to be realized, validated, and retained?**
+4. **Can retained organizational change alter what becomes accessible next?**
+5. **What capacity conditions are necessary for that recursive process to remain open-ended?**
+
+For the full synthesis and proof-status map, start with [`../../DYNAMIC_OVERVIEW.md`](../../DYNAMIC_OVERVIEW.md).
 
 The current formal-core route keeps maintenance support, opportunity, internally generated resource slack, response delay, retention, and representation separate:
 
@@ -130,6 +133,8 @@ capacity for novelty ≠ realized novelty
 - `BoundedResponseWitness.lean` — lag-1 even/odd witness and resource-independence counterexamples.
 - `EndogenousBudgetBridge.lean` — maps organization-dependent gradient uptake minus maintenance into internally generated response budget; separately maps cumulative-accessibility margin into the same interface within its own units.
 - `EndogenousBudgetWitness.lean` — fixed-gradient uptake-improvement witness and exact `2/3 → 97/99` margin-funded response witness.
+- `DynamicVortex.lean` — explicit composition interface joining internally funded validated response to second-order organizational/search updates.
+- `DynamicVortexWitness.lean` — concrete full-dynamic construction with open-ended retained novelty, unbounded envelope capacity, and recurring second-order updates.
 
 The external predicate is intentionally uninterpreted. It is **not** defined to mean objective truth, fitness, utility, morality, or correctness.
 
@@ -279,6 +284,7 @@ CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
 CumulativeAccessibility.BoundedResponseWitness
 CumulativeAccessibility.EndogenousBudgetWitness
+CumulativeAccessibility.DynamicVortexWitness
 ```
 
 Changes under `formalization/collective-alignment/**` now trigger the downstream cumulative-accessibility workflow because that package is a local dependency.
@@ -311,6 +317,8 @@ lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
+lake env lean CumulativeAccessibility/DynamicVortex.lean
+lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
 ```
 
 A formal-core verification should fail review if any audited output contains `sorryAx`.
@@ -337,6 +345,8 @@ Machine checking establishes that the stated conclusions follow from the stated 
 - physical reality has a fixed finite state space;
 - or empirical systems satisfy the model assumptions.
 
-The response budget is now endogenous to a declared organization/gradient ledger. Separately, the package already contains recursive structural results: `GenerativeClosureN` reuses retained products as later parent material; `SecondOrderClick` represents viable transitions that change future search; `ModuleGeneratedEvolvability` derives search expansion from retained module changes; and `GeneratorRuleEvolution` derives search expansion from retained rule changes. The remaining formal task is therefore compositional rather than conceptual: package the endogenous budget/response route and these already-proved second-order accessibility routes into one typed recursive theorem or witness. External-gradient dynamics and stochastic generation/validation remain separate modelling questions.
+The response budget is endogenous to a declared organization/gradient ledger, and the package contains recursive structural results in which retained products become later parent material and organizational changes expand future search. `DynamicVortex.lean` now packages those routes into a typed composition theorem, while `DynamicVortexWitness.lean` supplies a concrete non-vacuity witness.
+
+The key remaining modelling seam is narrower: an application must justify why a particular retained validated response produces a particular physical organizational state update, and whether that update changes measured uptake, maintenance, or future search. The generic theorem keeps that integration premise explicit. External-gradient dynamics, stochastic generation/validation, turnover/memory, and empirical identification remain separate modelling questions.
 
 Those are separate modelling, empirical, and interpretive questions.
