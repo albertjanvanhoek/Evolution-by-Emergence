@@ -9,7 +9,7 @@ The package separates four questions that are easy to collapse informally:
 3. **Can new organization continue to be realized and retained?**
 4. **What capacity conditions are necessary for that process to remain open-ended?**
 
-The current formal-core route keeps maintenance support, opportunity, response, retention, and representation separate:
+The current formal-core route keeps maintenance support, opportunity, response delay, resource feasibility, retention, and representation separate:
 
 ```text
 nonnegative three-cycle dynamics + positive canonical support vector
@@ -21,9 +21,9 @@ declared support → opportunity connection
                 ↓
 recurring opportunity Q
 
-Q + success at every opportunity V
+Q + per-opportunity resource-feasible validated response within lag Δ
                 ↓
-recurrent successful coincidence W
+recurrent validated response within lag Δ
                 ↓
 validated generative uptake G
 
@@ -36,7 +36,9 @@ representation P + retention R + N
 unbounded effective distinguishability capacity C
 ```
 
-The weaker response assumption `W` already contains recurring successful uptake; maintenance does not derive it. The next dynamical problem is to derive such recurrent success from independently specified support, resource, generation, validation, and delay mechanisms.
+The earlier same-time coupling predicate `W` is now proved to be exactly the `Δ = 0` special case. Positive bounded delay is therefore a genuine generalization: the checked even/odd witness has recurrent lag-1 response and validated uptake while same-time `W` is false.
+
+The quantitative response layer still does **not** derive resource budgets, response costs, generation, validation, or retention from maintenance dynamics. It makes those mechanisms explicit so later work can model their dynamics rather than hiding them inside `W`.
 
 This is a conditional mathematical implication chain. It is **not** a claim that persistence automatically creates learning, that novelty is improvement, or that the abstract assumptions automatically hold in real systems.
 
@@ -114,6 +116,8 @@ capacity for novelty ≠ realized novelty
 - `CapacityUptake.lean` — explicit coupling from available capacity and the current generator to retained novelty.
 - `CapacitySlack.lean` — a sufficient decomposition using recurring unused capacity plus local generative realization.
 - `ValidatedUptake.lean` — adds a declared external acceptance predicate `E_t`.
+- `ResponseDynamics.lean` — adds explicit response cost/budget, bounded response delay, and the theorem that recurrent opportunity plus bounded resource-feasible response implies validated uptake.
+- `BoundedResponseWitness.lean` — lag-1 even/odd witness and resource-independence counterexamples.
 
 The external predicate is intentionally uninterpreted. It is **not** defined to mean objective truth, fitness, utility, morality, or correctness.
 
@@ -145,36 +149,46 @@ SupportImpliesOpportunity Support Opportunity
 
 before persistent support can imply recurring opportunity. Persistent support cannot establish recurrence of an arbitrary external opportunity predicate.
 
-The response layer distinguishes four predicates:
+The response layer now distinguishes:
 
 ```text
-Q = recurring opportunity
-V = success at every opportunity
-W = recurring same-time opportunity + successful validated uptake
-G = recurring successful validated uptake
+Q      = recurring opportunity
+W      = recurring same-time opportunity + successful validated uptake
+D_Δ    = recurring opportunity answered by validated success within lag Δ
+B_Δ    = every opportunity receives a resource-feasible validated response within lag Δ
+G      = recurring successful validated uptake
 ```
+
+Response resource feasibility is quantitative:
+
+```text
+ResourceFeasibleAt(Cost, Budget, t, z)
+    := Cost(t,z) ≤ Budget(t)
+```
+
+and a resource-validated success additionally requires the same envelope, novelty, generation, external-validation, and next-step-retention conditions used by ordinary validated uptake.
 
 Lean checks:
 
 ```text
-Q ∧ V → W
-W → Q
-W → G
+W ↔ D_0
+Q ∧ B_Δ → D_Δ
+D_Δ → G
 R ∧ G → N
 P ∧ R ∧ N → C
 ```
 
-and the separation witnesses:
+The existing same-time results remain available, including `Q ∧ V → W`, `W → Q`, and `W → G`.
+
+The new regression witnesses establish:
 
 ```text
-Q ∧ ¬N
-W ∧ ¬V
-Q ∧ G ∧ ¬W
+D_1 ∧ ¬W
+validated success ∧ ¬resource-feasible validated success
+resource feasibility ∧ ¬validated success
 ```
 
-The last witness uses recurring opportunities at even times and successful uptake at odd times. It shows that separate recurrence does not imply recurring coincidence.
-
-The present `W` definition requires opportunity and success at the same indexed time. Delayed response will require an explicit relation between an earlier opportunity and a later success and is intentionally outside this revision.
+The first uses opportunities at even times and successful uptake at odd times, so every opportunity is answered exactly one step later. The other two show that the resource inequality is an independent constraint: abstract validated success does not determine an arbitrary cost/budget model, and sufficient budget alone does not create generation or success.
 
 ### Two complementary witnesses
 
@@ -208,13 +222,14 @@ Compilation coverage and proof-dependency auditing are now separate explicit che
 sorryAx
 ```
 
-CI also retains the two end-to-end witness targets:
+CI explicitly builds the aggregate, axiom-audit, and witness targets:
 
 ```text
 CumulativeAccessibility.AuditAll
 CumulativeAccessibility.VerificationSurface
 CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
+CumulativeAccessibility.BoundedResponseWitness
 ```
 
 Changes under `formalization/collective-alignment/**` now trigger the downstream cumulative-accessibility workflow because that package is a local dependency.
@@ -234,7 +249,8 @@ lake build \
   CumulativeAccessibility.AuditAll \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
-  CumulativeAccessibility.MaintenanceGatedWitness
+  CumulativeAccessibility.MaintenanceGatedWitness \
+  CumulativeAccessibility.BoundedResponseWitness
 ```
 
 To inspect the printed axioms directly:
@@ -243,9 +259,10 @@ To inspect the printed axioms directly:
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 ```
 
-A formal-core verification should fail review if either output contains `sorryAx`.
+A formal-core verification should fail review if any audited output contains `sorryAx`.
 
 Pinned toolchain:
 
@@ -269,6 +286,6 @@ Machine checking establishes that the stated conclusions follow from the stated 
 - physical reality has a fixed finite state space;
 - or empirical systems satisfy the model assumptions.
 
-The present maintenance-to-novelty architecture is still feed-forward: novelty does not consume maintenance resources, modify the support bound, change generation or validation costs, or feed back into the maintenance dynamics. Recurrent successful uptake is still assumed through V or W rather than derived from such mechanisms.
+The present maintenance-to-novelty architecture is still feed-forward: novelty does not consume maintenance resources, modify the support bound, or feed back into the maintenance dynamics. The new response layer exposes time-dependent response costs, budgets, and bounded delay, but those functions are still declared inputs rather than endogenous resource dynamics. Generation, validation, and retention success are likewise not yet derived from a stochastic or adaptive mechanism.
 
 Those are separate modelling, empirical, and interpretive questions.

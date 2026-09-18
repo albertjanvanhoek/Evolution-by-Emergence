@@ -21,9 +21,9 @@ declared support → opportunity connection
                 ↓
 recurring opportunity Q
 
-Q + success at every opportunity V
+Q + resource-feasible validated response within bounded lag Δ
                 ↓
-recurrent successful coincidence W
+recurrent validated response within lag Δ
                 ↓
 validated generative uptake G
 
@@ -36,7 +36,7 @@ representation P + retention R + N
 unbounded effective distinguishability capacity C
 ```
 
-The revision also machine-checks that `W` is a genuine coupling condition: `W ∧ ¬V` is possible, and `Q ∧ G` does not imply `W`.
+The earlier same-time coupling predicate `W` is now proved to be exactly the `Δ = 0` special case. A lag-1 even/odd witness has recurrent validated response and open-ended novelty while same-time `W` is false.
 
 The important words are **conditional** and **explicit**.
 
@@ -52,13 +52,16 @@ This revision therefore:
 - proves the support bound under the **non-strict** closed-loop replacement threshold;
 - requires an explicit `SupportImpliesOpportunity` connection before support can establish recurrence of a chosen opportunity predicate;
 - separates success at every opportunity (`V`) from recurrent successful coincidence (`W`) and recurrent validated uptake (`G`);
-- machine-checks `Q ∧ V → W → G`, plus the separation witnesses `W ∧ ¬V` and `Q ∧ G ∧ ¬W`;
+- generalizes same-time response to bounded delay `D_Δ`, proving `W ↔ D_0`;
+- adds explicit time-dependent response budget and candidate-specific response cost;
+- proves `Q ∧ B_Δ → D_Δ → G`, where `B_Δ` means every opportunity receives a resource-feasible validated response within lag `Δ`;
+- machine-checks a lag-1 witness with `D_1 ∧ ¬W`, plus resource-independence witnesses in both directions;
 - fixes two auxiliary Lean defects identified by review;
 - adds `AuditAll` so every advertised module compiles in CI;
 - adds `VerificationSurface` so selected advertised theorem dependencies are explicitly checked for `sorryAx`;
 - and makes changes to the imported collective-alignment package trigger the downstream cumulative-accessibility check.
 
-The further dynamical problem—deriving recurrent successful uptake from independently specified support, resource, generation, validation, and delay mechanisms—is deliberately left open.
+The remaining dynamical problem is now narrower: response delay and resource feasibility are explicit, but cost and budget are still exogenous functions. The next step is to make resource stock endogenous—consumed by maintenance/response and replenished by inflow or production—before adding stochastic generation/validation.
 
 ## Two complementary witnesses
 
@@ -131,7 +134,7 @@ The project does **not** claim that:
 
 ## Review the fixed object
 
-The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support/response-separation revision, pin and report the exact commit SHA on `main` (or the revision pull request before merge) rather than silently mixing it with v15.
+The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support and bounded-response revisions, pin and report the exact commit SHA on `main` (or the relevant stacked pull request before merge) rather than silently mixing them with v15.
 
 Start with:
 
@@ -139,12 +142,14 @@ Start with:
 2. [`formalization/cumulative-accessibility/README.md`](formalization/cumulative-accessibility/README.md) — the Lean package and verification contract.
 3. [`FormalCoreWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean) — joint non-vacuity witness.
 4. [`MaintenanceGatedWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean) — opportunity-gated dependency and ablation witness.
-5. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and validated response.
-6. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
-7. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
-8. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
-9. [`verification/audits/`](verification/audits/) — theorem and literature audits.
-10. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
+5. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and same-time response.
+6. [`ResponseDynamics.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean) — bounded-delay and quantitative resource-feasibility layer.
+7. [`BoundedResponseWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean) — lag-1 and resource-independence witnesses.
+8. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
+9. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
+10. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
+11. [`verification/audits/`](verification/audits/) — theorem and literature audits.
+12. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
 
 For an LLM-assisted adversarial review, use the versioned copy-paste protocol in **[`PEER_REVIEW_PROMPT.md`](PEER_REVIEW_PROMPT.md)**.
 
@@ -166,10 +171,12 @@ lake build \
   CumulativeAccessibility.AuditAll \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
-  CumulativeAccessibility.MaintenanceGatedWitness
+  CumulativeAccessibility.MaintenanceGatedWitness \
+  CumulativeAccessibility.BoundedResponseWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 ```
 
 The central printed theorem axioms must contain no `sorryAx`.
