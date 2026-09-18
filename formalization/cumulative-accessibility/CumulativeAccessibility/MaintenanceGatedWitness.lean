@@ -248,8 +248,8 @@ theorem recurringValidatedResponse_without_successAtEveryOpportunity :
   · intro hEvery
     have hAlways : alwaysOpportunity 1 := by simp [alwaysOpportunity]
     have hSuccess := hEvery 1 hAlways
-    rcases hSuccess with
-      ⟨z, hzU, hzNot, ⟨parents, hParents, hGen⟩, hEval, hzNext⟩
+    obtain ⟨z, hzU, hzNot, hGenerated, hEval, hzNext⟩ := hSuccess
+    obtain ⟨parents, hParents, hGen⟩ := hGenerated
     have hNotEven : ¬ evenOpportunity 1 := by
       intro hEven
       rcases hEven with ⟨k, hk⟩
@@ -298,9 +298,9 @@ theorem recurringOpportunity_and_uptake_without_recurringCoincidence :
       (opportunityGatedRepertoire oddOpportunity)
       hOddResponse
   · intro hCoincide
-    obtain
-      ⟨m, hnm, hEven, z, hzU, hzNot, ⟨parents, hParents, hGen⟩, hEval, hzNext⟩ :=
-      hCoincide 0
+    obtain ⟨m, hnm, hEven, hSuccess⟩ := hCoincide 0
+    obtain ⟨z, hzU, hzNot, hGenerated, hEval, hzNext⟩ := hSuccess
+    obtain ⟨parents, hParents, hGen⟩ := hGenerated
     exact evenOpportunity_disjoint_odd hEven hGen.1
 
 end ResponseSeparations
