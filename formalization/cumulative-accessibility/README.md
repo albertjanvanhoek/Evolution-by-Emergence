@@ -61,6 +61,8 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 
 - `CumulativeAccessibility.lean` — basic accessibility, preservation, strict expansion, costs, margins, and route-level results.
 - `RecursiveAccessibility.lean` — finite search opportunity, retained stepping stones, second-order clicks, and separation of reachable depth from search-operator expansion.
+- `QuantitativeAccessibility.lean` — directed accessibility-cost geometry, plasticity/viscosity order, and recovery of a binary second-order click from strict quantitative improvement at a suitable budget.
+- `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states and endogenous self-improvement into the outside accessibility geometry.
 - `EvolvabilityStructure.lean` — candidate-set ordering, functional projection, and recombination.
 - `GenerativeArity.lean` — finite-parent generators and unary versus multi-parent generation.
 - `ModuleGeneratedEvolvability.lean` — search expansion from retained parent material.
@@ -73,7 +75,43 @@ A minimal checked example is:
 a → b → c
 ```
 
-where `c` is unavailable after one retained generative round but becomes available after two once `b` has been generated and retained.
+where c is unavailable after one retained generative round but becomes available after two once b has been generated and retained.
+
+### Quantitative accessibility and viscosity
+
+QuantitativeAccessibility.lean lifts binary accessibility to a declared
+directed cost geometry:
+
+    AccessibilityCost x z = cost of future transition x -> z
+    AccessibleWithin Cost B x z := Cost x z <= B
+
+A new condition is **no more viscous** than an old one on a target set when all
+declared future costs weakly decrease. It is **strictly less viscous** when at
+least one declared target becomes strictly cheaper.
+
+Lean checks:
+
+    strict quantitative cost improvement
+            ↓
+    some target becomes affordable at a budget where it was previously unaffordable
+            ↓
+    strict expansion of the budget-thresholded search family
+
+For a single state-dependent cost geometry this yields:
+
+    QuantitativeSecondOrderClick
+            ↓
+    exists B, SecondOrderClick at budget B
+
+Thus the weighted geometry strictly generalizes the existing binary
+second-order-accessibility interface.
+
+IntelligentLearningMaintenance.lean is deliberately separate. It introduces an
+internal process state P, a map from process state to accessibility geometry,
+labelled learning verbs, endogenous self-improvement, and recursive
+self-improvement. The labels do not carry universal monotonic effects: an
+application must justify how its process state changes the external cost
+geometry.
 
 ### Finite saturation
 
@@ -307,7 +345,9 @@ lake build \
   CumulativeAccessibility.MaintenanceGatedWitness \
   CumulativeAccessibility.BoundedResponseWitness \
   CumulativeAccessibility.EndogenousBudgetWitness \
-  CumulativeAccessibility.DynamicVortexWitness
+  CumulativeAccessibility.DynamicVortexWitness \
+  CumulativeAccessibility.QuantitativeAccessibility \
+  CumulativeAccessibility.IntelligentLearningMaintenance
 ```
 
 To inspect the printed axioms directly:
@@ -320,6 +360,8 @@ lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
 lake env lean CumulativeAccessibility/DynamicVortex.lean
 lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
+lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
 ```
 
 A formal-core verification should fail review if any audited output contains `sorryAx`.
