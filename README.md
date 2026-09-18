@@ -21,7 +21,13 @@ declared support → opportunity connection
                 ↓
 recurring opportunity Q
 
-Q + resource-feasible validated response within bounded lag Δ
+external gradient + organization-dependent uptake - maintenance
+                ↓
+internal slack
+                ↓
+endogenous response budget
+
+Q + internally financed validated response within bounded lag Δ
                 ↓
 recurrent validated response within lag Δ
                 ↓
@@ -54,14 +60,17 @@ This revision therefore:
 - separates success at every opportunity (`V`) from recurrent successful coincidence (`W`) and recurrent validated uptake (`G`);
 - generalizes same-time response to bounded delay `D_Δ`, proving `W ↔ D_0`;
 - adds explicit time-dependent response budget and candidate-specific response cost;
-- proves `Q ∧ B_Δ → D_Δ → G`, where `B_Δ` means every opportunity receives a resource-feasible validated response within lag `Δ`;
+- then closes the budget seam by defining internal slack as organization-dependent captured throughput minus maintenance demand and routing a declared fraction of that slack into response budget;
+- proves `Q ∧ B_Δ → D_Δ → G`, where `B_Δ` can now be instantiated by an internally generated response budget;
+- machine-checks a fixed-gradient witness in which uptake improves `10 → 11`, slack/budget rises `4 → 5`, and a `9/2` response becomes feasible;
+- connects the existing cumulative-accessibility margin `2/3 → 97/99` to the same response interface, making the existing `9/10` second-click load newly feasible;
 - machine-checks a lag-1 witness with `D_1 ∧ ¬W`, plus resource-independence witnesses in both directions;
 - fixes two auxiliary Lean defects identified by review;
 - adds `AuditAll` so every advertised module compiles in CI;
 - adds `VerificationSurface` so selected advertised theorem dependencies are explicitly checked for `sorryAx`;
 - and makes changes to the imported collective-alignment package trigger the downstream cumulative-accessibility check.
 
-The remaining dynamical problem is now narrower: response delay and resource feasibility are explicit, but cost and budget are still exogenous functions. The next step is to make resource stock endogenous—consumed by maintenance/response and replenished by inflow or production—before adding stochastic generation/validation.
+The resource-budget seam is now closed: the external gradient remains exogenous, but usable response budget is generated internally from uptake minus maintenance. The repository already formalizes the complementary recursive structural step elsewhere: retained intermediates can become future parent material, retained module changes can expand the effective search operator, and retained rule changes can create second-order accessibility clicks. What is not yet packaged as one theorem is the composition of those existing recursive-accessibility results with the endogenous gradient/slack response budget.
 
 ## Two complementary witnesses
 
@@ -145,11 +154,13 @@ Start with:
 5. [`MaintenanceOpportunityBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean) — recurrent maintenance to recurring opportunity and same-time response.
 6. [`ResponseDynamics.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean) — bounded-delay and quantitative resource-feasibility layer.
 7. [`BoundedResponseWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean) — lag-1 and resource-independence witnesses.
-8. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
-9. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
-10. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
-11. [`verification/audits/`](verification/audits/) — theorem and literature audits.
-12. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
+8. [`EndogenousBudgetBridge.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean) — gradient/uptake/maintenance slack mapped into response budget; cumulative margin specialization.
+9. [`EndogenousBudgetWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean) — fixed-gradient and exact-margin seam witnesses.
+10. [`ValidatedUptake.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean) — external validation kept separate from ordinary novelty.
+11. [`OpenEndedCapacity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean) — open-ended novelty and capacity boundary.
+12. [`FiniteGenerativeSaturation.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean) — fixed finite-capacity saturation.
+13. [`verification/audits/`](verification/audits/) — theorem and literature audits.
+14. [`RESEARCH_GUIDE.md`](RESEARCH_GUIDE.md) — broader corpus navigation and epistemic guidance.
 
 For an LLM-assisted adversarial review, use the versioned copy-paste protocol in **[`PEER_REVIEW_PROMPT.md`](PEER_REVIEW_PROMPT.md)**.
 
@@ -172,11 +183,13 @@ lake build \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness \
-  CumulativeAccessibility.BoundedResponseWitness
+  CumulativeAccessibility.BoundedResponseWitness \
+  CumulativeAccessibility.EndogenousBudgetWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
+lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
 ```
 
 The central printed theorem axioms must contain no `sorryAx`.

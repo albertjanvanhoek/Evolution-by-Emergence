@@ -207,9 +207,44 @@ W -> G
 
 but `W` is now understood as the zero-delay member of the larger bounded-response family.
 
-## 8. Verification status and current stopping point
+## 8. Internally generated response budget
 
-`FormalCoreWitness.lean` remains the joint-satisfiability witness, and `MaintenanceGatedWitness.lean` remains the opportunity-gated dependency/ablation witness. `BoundedResponseWitness.lean` adds the lag-1 response witness and the resource-independence regressions.
+`EndogenousBudgetBridge.lean` removes the independent response-budget input from the resource side of the response interface.
+
+The physical specialization keeps the external gradient separate from the organization:
+
+```text
+G_t                     external gradient / supplied disequilibrium
+s_t                     organizational state
+U(s_t,G_t)              captured throughput
+M(s_t)                  recurring maintenance demand
+L_t = U(s_t,G_t)-M(s_t) internal slack
+B_t^resp = beta_t L_t   reinvested response budget
+```
+
+The system therefore does **not** create its own gradient. What it can change is how much of that gradient it captures and how much throughput maintenance consumes. At fixed `G_t`, an organizational change that raises uptake and/or lowers maintenance weakly raises slack; with `beta_t >= 0`, it weakly raises response budget.
+
+The concrete witness fixes the gradient at `10`, holds maintenance at `6`, and changes uptake from `10` to `11`. This changes internally available slack from `4` to `5`. A response costing `9/2` is therefore inaccessible before the organizational change and accessible afterward. That internally financed response is then used in the existing one-step delayed even/odd architecture, yielding recurrent validated uptake and—under retention—open-ended cumulative novelty.
+
+A second, deliberately separate specialization uses the existing cumulative-accessibility margin
+
+```text
+M = B/c* - 1
+```
+
+as a response budget in its own dimensionless units. The exact first cumulative click changes
+
+```text
+2/3 -> 97/99,
+```
+
+so the already-proved `9/10` second-click load lies outside the old budget and inside the new one. This closes the formal seam to the existing budget-ratchet result without claiming that normalized accessibility margin is literally free energy.
+
+The repository already contains the abstract recursive organizational transition one layer away from this ledger. `GenerativeClosure.lean` proves that retained generated organization becomes reusable parent material in later rounds; `RecursiveAccessibility.lean` defines `SecondOrderClick` as a viable transition that strictly changes the future search operator; `ModuleGeneratedEvolvability.lean` and `GeneratorRuleEvolution.lean` give concrete retained-module and rule-change mechanisms for such second-order clicks. The remaining seam is therefore a composition seam: connect an internally funded validated response to one of those existing state/search updates in a single end-to-end recursive construction, rather than inventing a new recursion principle.
+
+## 9. Verification status and current stopping point
+
+`FormalCoreWitness.lean` remains the joint-satisfiability witness, and `MaintenanceGatedWitness.lean` remains the opportunity-gated dependency/ablation witness. `BoundedResponseWitness.lean` adds the lag-1 response witness and the resource-independence regressions. `EndogenousBudgetWitness.lean` adds the fixed-gradient internally funded response witness and the exact cumulative-margin crossing witness.
 
 Verification is split into two explicit surfaces:
 
@@ -223,6 +258,4 @@ VerificationSurface.lean
 
 The new response modules are included in both surfaces. CI compiles them and rejects `sorryAx` in the selected declaration audits.
 
-The architecture is still deliberately incomplete as a resource dynamical model. `Cost(t,z)` and `Budget(t)` are declared functions; successful generation, validation, and retention remain explicit conditions. Novelty does not yet consume budget, replenish it, alter maintenance demand, or feed back into the maintenance trajectory.
-
-The next genuinely dynamical step is therefore narrower than before: make resource availability endogenous. A useful target would be a state equation for resource stock or slack in which maintenance and response consume resources, inflow or production replenishes them, and one can state conditions under which recurrent response remains feasible. Stochastic generation/validation can then be layered on that resource process rather than folded into a single success predicate.
+Resource availability is now endogenous to the declared uptake-minus-maintenance ledger. The recursive effect of retained organization on later generative accessibility is already formalized in separate modules. What remains incomplete is their end-to-end composition with this resource-financed response layer, plus any application-specific mapping from a changed retained organization to changed physical uptake or maintenance. Response cost, generation, validation, and retention also remain explicit inputs/conditions rather than stochastic consequences of that physical state.

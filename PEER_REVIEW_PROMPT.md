@@ -45,6 +45,8 @@ formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedW
 formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean
@@ -172,6 +174,7 @@ CumulativeAccessibility.VerificationSurface
 CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
 CumulativeAccessibility.BoundedResponseWitness
+CumulativeAccessibility.EndogenousBudgetWitness
 
 AuditAll must import every module advertised by the package README.
 VerificationSurface explicitly prints the axiom dependencies of the declarations
@@ -195,7 +198,13 @@ Q + success at every opportunity V
         -> recurrent successful coincidence W
 
 bounded-delay route:
-Q + per-opportunity resource-feasible validated response within lag Δ (B_Δ)
+external gradient G_t
+        + organization-dependent uptake U(s_t,G_t)
+        - maintenance demand M(s_t)
+        -> internal slack L_t
+        -> endogenous response budget B_t^resp
+
+Q + per-opportunity internally financed validated response within lag Δ (B_Δ)
         -> recurrent validated response within lag Δ (D_Δ)
 D_Δ -> validated generative uptake G
 
@@ -312,8 +321,21 @@ Then inspect ResponseDynamics.lean and BoundedResponseWitness.lean. Check that:
 6. the lag-1 even/odd witness really has D_1 while W is false;
 7. neither ordinary validated success nor resource feasibility implies the
    other in the supplied separation witnesses;
-8. Cost and Budget are still exogenous functions, so the repository does not
-   yet claim an endogenous resource-flow theorem.
+8. inspect EndogenousBudgetBridge.lean and confirm that the external gradient
+   remains an input while usable response budget is generated as a function of
+   organizational uptake minus maintenance;
+9. verify that fixed-gradient higher uptake and/or lower maintenance only imply
+   nondecreasing slack/budget under the stated nonnegative reinvestment
+   assumptions;
+10. verify the fixed-gradient witness: gradient 10, maintenance 6, uptake
+    10 -> 11, internal budget 4 -> 5, and response cost 9/2;
+11. inspect the cumulative-margin specialization and confirm it does not identify
+    dimensionless Margin with physical free energy;
+12. verify that the exact 2/3 -> 97/99 margin winding makes response/load cost
+    9/10 infeasible before and feasible after;
+13. confirm that the organizational state trajectory is still supplied rather
+    than derived from the retained novelty event, so the final feedback
+    novelty -> organization -> future uptake/maintenance remains open.
 
 SCIENTIFIC TASK 6 — TEST BOTH WITNESSES
 
@@ -343,11 +365,12 @@ cd formalization/cumulative-accessibility
 lake update
 lake exe cache get
 lake build
-lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness CumulativeAccessibility.BoundedResponseWitness
+lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness CumulativeAccessibility.BoundedResponseWitness CumulativeAccessibility.EndogenousBudgetWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
+lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
 
 Report whether any central printed theorem depends on sorryAx.
 
@@ -395,8 +418,12 @@ Check that:
 9. you do not infer W from separate recurrence of Q and G;
 10. you do not treat resource feasibility as sufficient for generation,
     validation, or retention;
-11. you distinguish explicit cost/budget inputs from endogenous resource
-    dynamics.
+11. you distinguish the external gradient from the internally generated
+    response budget;
+12. you distinguish physical slack from the dimensionless cumulative-accessibility
+    margin;
+13. you do not claim that retained novelty already causes the next organizational
+    state transition.
 
 OUTPUT FORMAT
 
