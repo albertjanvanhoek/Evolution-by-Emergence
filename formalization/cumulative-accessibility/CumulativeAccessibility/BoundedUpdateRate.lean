@@ -460,9 +460,9 @@ def BlockFunctionalGain
     (trajectory : ℕ → σ)
     (target : φ)
     (k : ℕ) : ℝ :=
-  ∑ j in Finset.range window,
+  (Finset.range window).sum (fun j =>
     TrajectoryFunctionalVelocity
-      CostFunctional trajectory (k * window + j) target
+      CostFunctional trajectory (k * window + j) target)
 
 /-- Mean functional gain per indexed step on one block. -/
 noncomputable def BlockAverageFunctionalRate
@@ -510,7 +510,8 @@ theorem functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
   let j : ℕ := r - k * window
   have hjlt : j < window := by
     dsimp [j]
-    omega
+    rw [Nat.sub_lt_iff_lt_add' hStart]
+    simpa [Nat.add_mul] using hEnd
   have hjeq : k * window + j = r := by
     dsimp [j]
     exact Nat.add_sub_of_le hStart
