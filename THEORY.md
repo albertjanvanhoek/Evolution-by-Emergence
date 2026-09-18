@@ -755,11 +755,55 @@ distinctions
 }
 \]
 
+The ceteris-paribus monotonicity of individual ledger coordinates does not mean
+that system velocity is monotone in every underlying control parameter.
+Mechanisms can couple ledger coordinates through shared constraints.
+
+A minimal exact specialization allocates a unit processing budget between
+candidate generation/search and validation. Let \(x\in[0,1]\) be the search
+share and \(1-x\) the validation share, with all other ledger factors fixed.
+Then
+
+\[
+v(x)=x(1-x).
+\]
+
+Lean proves
+
+\[
+0\le v(x)\le\frac14
+\]
+
+on the feasible interval, with a unique maximum at
+
+\[
+x=\frac12.
+\]
+
+Velocity increases with search allocation below the midpoint and decreases
+above it. At pure search \(x=1\), retained ledger velocity is zero because
+nothing is allocated to validation.
+
+This is not a universal law or a new statement of the established
+stability--plasticity dilemma. It is an exact reduced-model witness inside the
+EbE rate ledger showing:
+
+\[
+\boxed{
+\text{more search/plasticity}
+\not\Rightarrow
+\text{faster retained functional change}
+}
+\]
+
+when search competes with another necessary stage.
+
 Formal sources:
 
 - formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/SearchValidationTradeoff.lean
 
 Working paper:
 
