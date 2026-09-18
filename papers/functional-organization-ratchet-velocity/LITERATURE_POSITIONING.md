@@ -350,7 +350,59 @@ Relevant references:
 - Mesoudi (2011), *PLOS ONE*, "Variable cultural acquisition costs constrain
   cumulative cultural evolution."
 
-## 11. Relation to the intelligent-network paper
+## 11. Bottleneck allocation, water-filling, and path dependence
+
+Resource allocation to bottlenecks is a classical problem in operations
+research, production, communications, and network throughput. Water-filling and
+max-min/bottleneck-aware allocation methods explicitly redirect limited
+resources toward constrained stages. Production-function optimization likewise
+studies optimal input allocation under fixed budgets.
+
+Organization and innovation research separately contains mature literatures on
+path dependence, dynamic capabilities, absorptive capacity, and the idea that
+accumulated capabilities shape subsequent investment and innovation.
+
+Relevant antecedents include:
+
+- classical water-filling and constrained resource-allocation results;
+- bottleneck-aware service-process allocation that seeks to equalize or
+  approximately equalize stage service rates;
+- Cobb--Douglas and related production-function allocation results;
+- Schreyögg & Sydow (2011) on organizational path dependence;
+- Vergne & Durand (2011) on path dependence and dynamic capabilities;
+- Nerkar & Paruchuri (2005) on path-dependent evolution of R&D capabilities;
+- Redding (2002) on path-dependent endogenous innovation and the pace of
+  future technological change.
+
+**Relationship to the present framework**
+
+The present paper does not claim bottleneck equalization, water-filling, or
+path-dependent capability accumulation as new.
+
+Its narrower use of these results is to connect them to the functional-ratchet
+state:
+
+```math
+\text{retained organization}
+\to
+\text{rate-producing response functions}
+\to
+\text{optimal next allocation}
+\to
+\text{new retained organization}.
+```
+
+The Lean two-baseline witness makes this dependence explicit. In the interior
+regime the next unit of resource equalizes final search and validation
+capacities; sufficiently large inherited imbalance moves the optimum to a
+boundary where the whole new unit is allocated to the bottleneck.
+
+The candidate contribution is therefore not the optimizer. It is the
+cross-domain architecture in which **organization is simultaneously retained
+functional capacity and a state variable that reshapes the velocity landscape
+of subsequent adaptation**.
+
+## 12. Relation to the intelligent-network paper
 
 The companion paper on learning-maintenance processes should now be read as an
 inside specialization.
