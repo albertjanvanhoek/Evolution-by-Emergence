@@ -31,6 +31,7 @@ import CumulativeAccessibility.AdaptiveRatePolicy
 import CumulativeAccessibility.ConstrainedRatePolicy
 import CumulativeAccessibility.ClosedLoopRateControl
 import CumulativeAccessibility.FunctionalRatePolicy
+import CumulativeAccessibility.PolicyImprovement
 
 /-!
 # Aggregate package audit target
