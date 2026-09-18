@@ -1,3 +1,123 @@
+# Unreleased — Full Theory Integration
+
+This stacked revision turns the current research stack into one accessible,
+traceable Evolution by Emergence theory surface.
+
+It does **not** add a new universal physical law. It integrates the already
+developed formal and conceptual layers and makes their evidence status explicit.
+
+## Canonical theory
+
+Adds \`THEORY.md\` as the primary human-facing statement of the current theory.
+
+It joins:
+
+\`\`\`text
+encounter / association
+    → productive coupling
+    → recurrent maintenance
+    → resource solvency and slack
+    → response / generation
+    → validation and retention
+    → reusable historical organization
+    → changed generator / second-order accessibility
+    → changed organization
+    → changed future uptake, maintenance, and search
+    ↺
+\`\`\`
+
+The theory document also integrates:
+
+- selection and implementation-efficiency drift;
+- persistence/function and selected/sufficient separations;
+- the budgeted cumulative-accessibility ratchet;
+- collective corrective architecture;
+- open-ended distinguishability requirements;
+- finite-time/fixed-resolution physical bounds;
+- commons, capture, intelligence, and corrigibility as explicitly labelled
+  interpretive extensions;
+- the repository's conservative novelty status;
+- open empirical and formal interfaces.
+
+The historical LaTeX book remains the intellectual history of the project.
+\`THEORY.md\` is the current theory surface.
+
+## Formal theory map
+
+Adds \`FORMAL_THEORY_MAP.md\`.
+
+It maps the prose theory to exact Lean declarations across:
+
+- \`formalization/affinity-layer\`;
+- \`formalization/collective-alignment\`;
+- \`formalization/persistence-drift\`;
+- \`formalization/cumulative-accessibility\`;
+- \`verification/organizational-depth\`.
+
+Every major claim is labelled as machine checked, concrete witness, external
+mathematics, modelling interface, or interpretive extension.
+
+The map explicitly records the remaining interfaces rather than hiding them:
+support→opportunity, retained response→physical update, external validation,
+empirical state/distance mapping, and cross-domain universality.
+
+## Repository-wide formalization guide
+
+Adds \`formalization/README.md\` with the role of each Lean package and local
+reproduction commands.
+
+## Full-theory CI
+
+Adds \`.github/workflows/full-theory-proof-check.yml\`.
+
+The workflow builds and source-audits the major supporting proof packages as one
+meta-verification surface:
+
+1. affinity layer;
+2. collective alignment and recurrent maintenance;
+3. persistence/selection/slack;
+4. cumulative accessibility and the dynamic vortex;
+5. organizational depth and the operational bridge.
+
+Selected source-level outputs are rejected if they contain \`sorryAx\`.
+
+Package-specific workflows remain responsible for their additional numerical
+and manuscript-specific reproducibility checks.
+
+## Claim ledger and peer review
+
+\`CLAIMS.md\` now contains a current core claim ledger with twelve explicit
+theory claims and a compact non-claim list while preserving the older stable
+application claim IDs.
+
+\`PEER_REVIEW_PROMPT.md\` now requires reviewers to:
+
+- locate \`THEORY.md\` and \`FORMAL_THEORY_MAP.md\`;
+- trace machine-backed arrows to exact Lean declarations;
+- separate structural core, mechanistic specializations, and interpretive
+  extensions;
+- read the literature audit before assigning novelty;
+- test the explicit model interfaces for identifiability and non-tautology.
+
+## Novelty framing
+
+This revision adopts the repository's own adversarial literature-audit result:
+
+\[
+\boxed{
+\text{primarily a synthesis/architecture}
++
+\text{some exact model-specific results}.
+}
+\]
+
+The audit found no high-confidence new general theorem among the twelve claims
+it examined. The full theory therefore invites review of the architecture,
+interfaces, bookkeeping, and cross-domain testability rather than claiming that
+its component mechanisms were discovered here.
+
+---
+
 # Unreleased — Full Dynamic Vortex Integration
 
 This stacked revision makes the repository's distributed dynamic thesis explicit as one peer-review target.
