@@ -798,12 +798,61 @@ EbE rate ledger showing:
 
 when search competes with another necessary stage.
 
+The symmetric optimum is itself state-dependent. Let `s` and `v` denote
+retained search/generation and validation capacity already present before one
+new resource unit is allocated. In a reduced multiplicative throughput model,
+
+\[
+Q(s,v,x)=(s+x)(v+1-x).
+\]
+
+The unconstrained balancing allocation is
+
+\[
+\boxed{
+x^*(s,v)=\frac{1+v-s}{2}.
+}
+\]
+
+When this lies in `[0,1]`, Lean proves that it attains the global algebraic
+upper bound and exactly equalizes final stage capacities:
+
+\[
+s+x^*=v+1-x^*.
+\]
+
+If search is already at least one full new-resource unit ahead of validation,
+the optimum over the feasible interval is the boundary `x=0`: all new
+resource goes to validation. The converse holds symmetrically.
+
+This is classical bottleneck/water-filling mathematics, not a novelty claim.
+Its role in EbE is to expose a recursive dependence:
+
+\[
+\boxed{
+\text{retained organization}
+\to
+\text{changed rate landscape}
+\to
+\text{changed next allocation}
+\to
+\text{new retained organization}.
+}
+\]
+
+Organization is therefore not only an accumulated output of the ratchet. It can
+be installed capacity that changes the marginal value of the next adaptive
+investment. The rate-maximizing control variable is a function of state, not a
+universal constant.
+
 Formal sources:
 
 - formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/SearchValidationTradeoff.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/StateDependentAllocation.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/BottleneckAllocation.lean
 
 Working paper:
 
