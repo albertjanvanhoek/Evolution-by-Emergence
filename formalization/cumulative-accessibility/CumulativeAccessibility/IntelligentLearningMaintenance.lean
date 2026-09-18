@@ -1,9 +1,10 @@
-import CumulativeAccessibility.QuantitativeAccessibility
+import CumulativeAccessibility.FunctionalRatchetVelocity
 
 namespace CumulativeAccessibility
 namespace IntelligentLearning
 
 open RecursiveAccessibility
+open FunctionalOrganization
 
 variable {α P I : Type*}
 
@@ -210,6 +211,122 @@ theorem recursiveSelfImprovement_increases_productivity
   h.2
 
 /-!
+## Functional-rate grounding
+
+The generic `ImprovementProductivity` interface above is intentionally
+permissive. The functional-ratchet layer now supplies a stronger operational
+specialization.
+
+To test whether a process change improves the *speed of learning*, start matched
+episodes from the same organizational state, use the same held-out functional
+target family, normalize by each episode's declared positive duration/resource
+interval, and compare the resulting rate profiles.
+
+This is a counterfactual experimental definition, not a theorem that any named
+learning verb has the desired effect.
+-/
+
+section FunctionalRateGrounding
+
+variable {σ φ : Type*}
+
+/-- An intelligent process state induces a cost geometry over functional
+targets, which need not be the same type as organizational states. -/
+abbrev FunctionalProcessGeometry (P σ φ : Type*) :=
+  P → FunctionalCost σ φ
+
+/-- The new process learns faster on a matched held-out episode: both episodes
+start from the same organization, use positive declared intervals, and the new
+process's normalized functional-rate profile strictly dominates the old one. -/
+def MatchedLearningRateImprovementOn
+    (learningTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (start oldEnd newEnd : σ)
+    (oldDuration newDuration : ℝ)
+    (oldProcess newProcess : P) : Prop :=
+  0 < oldDuration ∧
+  0 < newDuration ∧
+  StrictlyFasterFunctionalRateOn learningTargets
+    (Γ oldProcess) (Γ oldProcess)
+    (Γ newProcess) (Γ newProcess)
+    start oldEnd start newEnd
+    oldDuration newDuration
+
+/-- Rate-grounded recursive self-improvement.
+
+The old process must generate and apply the intervention that creates the new
+process. At the common starting organization, the process change must preserve
+the declared retained functions, and on matched held-out learning episodes the
+new process must achieve a strictly better normalized functional acquisition
+rate profile.
+
+The environmental matching needed for a real experiment remains
+application-specific and is not encoded by the bare state type. -/
+def RateGroundedRecursiveSelfImprovementOn
+    (retainedTargets learningTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (start oldEnd newEnd : σ)
+    (oldDuration newDuration : ℝ)
+    (oldProcess newProcess : P) : Prop :=
+  ∃ intervention,
+    Generate oldProcess intervention ∧
+    Apply oldProcess intervention newProcess ∧
+    NoMoreFunctionallyViscousOn retainedTargets
+      (Γ oldProcess) (Γ newProcess) start start ∧
+    MatchedLearningRateImprovementOn learningTargets Γ
+      start oldEnd newEnd
+      oldDuration newDuration
+      oldProcess newProcess
+
+theorem rateGroundedRecursiveSelfImprovement_preserves_retained_functions
+    (retainedTargets learningTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (start oldEnd newEnd : σ)
+    (oldDuration newDuration : ℝ)
+    (oldProcess newProcess : P)
+    (h : RateGroundedRecursiveSelfImprovementOn
+      retainedTargets learningTargets Γ Generate Apply
+      start oldEnd newEnd oldDuration newDuration
+      oldProcess newProcess) :
+    NoMoreFunctionallyViscousOn retainedTargets
+      (Γ oldProcess) (Γ newProcess) start start := by
+  rcases h with ⟨intervention, hGen, hApply, hRetain, hRate⟩
+  exact hRetain
+
+theorem rateGroundedRecursiveSelfImprovement_has_faster_learning_target
+    (retainedTargets learningTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (start oldEnd newEnd : σ)
+    (oldDuration newDuration : ℝ)
+    (oldProcess newProcess : P)
+    (h : RateGroundedRecursiveSelfImprovementOn
+      retainedTargets learningTargets Γ Generate Apply
+      start oldEnd newEnd oldDuration newDuration
+      oldProcess newProcess) :
+    ∃ target, target ∈ learningTargets ∧
+      FunctionalStepRate
+          (Γ oldProcess) (Γ oldProcess)
+          start oldEnd oldDuration target <
+        FunctionalStepRate
+          (Γ newProcess) (Γ newProcess)
+          start newEnd newDuration target := by
+  rcases h with ⟨intervention, hGen, hApply, hRetain, hRate⟩
+  exact strictlyFasterFunctionalRate_has_target
+    learningTargets
+    (Γ oldProcess) (Γ oldProcess)
+    (Γ newProcess) (Γ newProcess)
+    start oldEnd start newEnd
+    oldDuration newDuration hRate.2.2
+
+end FunctionalRateGrounding
+
+/-!
 The mathematical content of this specialization is intentionally modest. Its
 purpose is to preserve the two-level architecture:
 
@@ -230,6 +347,8 @@ those processes into Γ; they are not universal consequences of EbE.
 #print axioms selfImprovement_has_cheaper_future
 #print axioms recursiveSelfImprovement_implies_selfImprovement
 #print axioms recursiveSelfImprovement_increases_productivity
+#print axioms rateGroundedRecursiveSelfImprovement_preserves_retained_functions
+#print axioms rateGroundedRecursiveSelfImprovement_has_faster_learning_target
 
 end IntelligentLearning
 end CumulativeAccessibility
