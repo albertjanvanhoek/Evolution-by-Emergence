@@ -21,6 +21,7 @@ import CumulativeAccessibility.DynamicVortex
 import CumulativeAccessibility.DynamicVortexWitness
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
+import CumulativeAccessibility.FunctionalRatchetVelocity
 
 /-!
 # Aggregate package audit target
