@@ -451,11 +451,107 @@ theorem functionalGainEveryWindow_implies_everyBlock
   refine ⟨r, hkr, ?_, hGain⟩
   simpa [Nat.add_mul] using hrUpper
 
+/-- Total functional gain on one non-overlapping block. -/
+def BlockFunctionalGain
+    (window : ℕ)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (k : ℕ) : ℝ :=
+  ∑ j in Finset.range window,
+    TrajectoryFunctionalVelocity
+      CostFunctional trajectory (k * window + j) target
+
+/-- Mean functional gain per indexed step on one block. -/
+noncomputable def BlockAverageFunctionalRate
+    (window : ℕ)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (k : ℕ) : ℝ :=
+  BlockFunctionalGain window CostFunctional trajectory target k /
+    (window : ℝ)
+
+/-- If every per-step gain on the target is nonnegative, then the one certified
+gain of at least minGain in each block forces the total block gain to be at
+least minGain. -/
+theorem functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
+    (window : ℕ)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (minGain : ℝ)
+    (hWindow :
+      FunctionalGainEveryWindow
+        window CostFunctional trajectory target minGain)
+    (hNonnegative :
+      ∀ t : ℕ,
+        0 ≤ TrajectoryFunctionalVelocity
+          CostFunctional trajectory t target) :
+    ∀ k : ℕ,
+      minGain ≤
+        BlockFunctionalGain
+          window CostFunctional trajectory target k := by
+  intro k
+  obtain ⟨r, hStart, hEnd, hGain⟩ :=
+    functionalGainEveryWindow_implies_everyBlock
+      window CostFunctional trajectory target minGain hWindow k
+  let j : ℕ := r - k * window
+  have hjlt : j < window := by
+    dsimp [j]
+    omega
+  have hjeq : k * window + j = r := by
+    dsimp [j]
+    omega
+  have hTerm :
+      minGain ≤
+        TrajectoryFunctionalVelocity
+          CostFunctional trajectory (k * window + j) target := by
+    simpa [hjeq] using hGain
+  calc
+    minGain ≤
+        TrajectoryFunctionalVelocity
+          CostFunctional trajectory (k * window + j) target := hTerm
+    _ ≤ BlockFunctionalGain
+          window CostFunctional trajectory target k := by
+      unfold BlockFunctionalGain
+      apply Finset.single_le_sum
+      · intro i hi
+        exact hNonnegative (k * window + i)
+      · simpa using hjlt
+
+/-- Under nonnegative per-step target gain, the block certificate now becomes a
+genuine average-rate lower bound on every non-overlapping block. -/
+theorem certifiedBlockGainRate_le_blockAverageFunctionalRate
+    (window : ℕ)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (minGain : ℝ)
+    (hWindow :
+      FunctionalGainEveryWindow
+        window CostFunctional trajectory target minGain)
+    (hNonnegative :
+      ∀ t : ℕ,
+        0 ≤ TrajectoryFunctionalVelocity
+          CostFunctional trajectory t target) :
+    ∀ k : ℕ,
+      CertifiedBlockGainRate minGain window ≤
+        BlockAverageFunctionalRate
+          window CostFunctional trajectory target k := by
+  intro k
+  have hDen : 0 < (window : ℝ) := by
+    exact_mod_cast hWindow.1
+  unfold CertifiedBlockGainRate BlockAverageFunctionalRate
+  exact (div_le_div_iff_of_pos_right hDen).2
+    (functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
+      window CostFunctional trajectory target minGain
+      hWindow hNonnegative k)
+
 /-- Conservative scalar attached to a block certificate: minimum gain divided
-by block width. This number is meaningful as an average-rate floor only when an
-application also rules out offsetting negative gains between certified events.
-The formal core therefore keeps the block certificate as the stronger primitive
-statement. -/
+by block width. Before the preceding nonnegative-gain theorem is assumed, this
+number is only a certificate scale; with nonnegative per-step gain it is a
+machine-checked lower bound on each block's actual average functional rate. -/
 noncomputable def CertifiedBlockGainRate
     (minGain : ℝ)
     (window : ℕ) : ℝ :=
@@ -473,6 +569,8 @@ theorem certifiedBlockGainRate_positive
 #print axioms boundedMechanism_implies_functionalGainEveryWindow
 #print axioms supportedCycle3Maintenance_boundedResponse_and_minGain_imply_functionalGainEveryWindow
 #print axioms functionalGainEveryWindow_implies_everyBlock
+#print axioms functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
+#print axioms certifiedBlockGainRate_le_blockAverageFunctionalRate
 #print axioms certifiedBlockGainRate_positive
 
 end FunctionalGainBridge
