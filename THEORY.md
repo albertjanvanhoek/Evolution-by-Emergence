@@ -597,8 +597,11 @@ denote a declared functional target. Define
 C_t(s_t,f)
 \]
 
-as the resource cost of reliably realizing function \(f\) from organization
-\(s_t\), under declared environmental and retention conditions.
+as the performance/evaluation cost of reliably realizing function \(f\) with
+the current organization \(s_t\), under declared environmental conditions.
+By default this does **not** include the future training or reorganization cost
+needed to acquire \(f\). That separate acquisition problem belongs to the
+organizational accessibility geometry in Layer 7A.
 
 This separation matters. A neural configuration is not the same object as
 "understand this French sentence". An ecological community is not the same
