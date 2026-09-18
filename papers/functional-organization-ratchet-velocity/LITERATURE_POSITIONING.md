@@ -67,7 +67,79 @@ The paper should not equate functional diversity with ratchet velocity.
 Functional diversity describes a state/property; ratchet velocity describes a
 retained change in the cost profile of functional realization.
 
-## 3. Neural functional repertoire and expertise
+## 3. Functional information and increasing functional information
+
+Hazen, Griffin, Carothers and Szostak (2007) define functional information for
+a specified function and degree of function as
+
+```math
+I(E_x)=-\log_2 F(E_x),
+```
+
+where `F(E_x)` is the fraction of possible system configurations achieving
+function at least at level `E_x`. Functional information therefore measures
+the rarity/information content of function-achieving configurations in a
+declared ensemble.
+
+Wong et al. (2023) broaden this direction and propose a "law of increasing
+functional information": systems containing many possible configurations can
+increase functional information when configurations undergo selection for one
+or more functions.
+
+These are major antecedents and should be central to the positioning of the
+present paper.
+
+**Relationship to the present framework**
+
+The objects are related but not identical.
+
+Functional information asks, for a function and performance threshold, how
+rare qualifying configurations are in an ensemble:
+
+```math
+\text{ensemble rarity of function-achieving configurations}.
+```
+
+The present functional performance-cost geometry asks, for the actual current
+organization `s` and a family of declared functional targets, the resource
+cost of reliably performing each target:
+
+```math
+f\mapsto C^{\mathrm{perf}}(s,f).
+```
+
+Its velocity is the time/resource-normalized change of that current-system
+profile.
+
+Thus:
+
+```math
+I(E_f)
+\neq
+C^{\mathrm{perf}}(s,f)
+\neq
+\frac{\Delta C^{\mathrm{perf}}(s,f)}{\Delta t}.
+```
+
+Functional information may nevertheless become an important complementary
+coordinate. For example, it can characterize target difficulty or the rarity
+of organizations attaining a declared performance threshold, while the present
+cost profile characterizes the realized organization's current capability.
+
+The paper should therefore not claim to introduce function as a universal
+coordinate of evolution, nor that function tends to increase in evolving
+systems. Its candidate contribution is the state-conditioned,
+multi-target, resource-sensitive **rate geometry** and its bridge to retained
+organization and intelligent learning.
+
+Key references:
+
+- Hazen, Griffin, Carothers & Szostak (2007), *PNAS*, "Functional information
+  and the emergence of biocomplexity", doi:10.1073/pnas.0701744104.
+- Wong et al. (2023), *PNAS*, "On the roles of function and selection in
+  evolving systems", doi:10.1073/pnas.2310223120.
+
+## 4. Neural functional repertoire and expertise
 
 Neuroscience already documents structural and functional reorganization during
 skill acquisition and expertise. Network models of the connectome explicitly
@@ -91,7 +163,7 @@ Relevant references:
 - Yin et al. (2009), *Nature Neuroscience*.
 
 
-## 4. Cybernetics and requisite variety
+## 5. Cybernetics and requisite variety
 
 Ashby's law of requisite variety is a major antecedent for any claim linking
 adaptive capacity to the repertoire of possible responses. A regulator must
@@ -113,7 +185,7 @@ Key reference:
 
 - W. Ross Ashby (1956), *An Introduction to Cybernetics*.
 
-## 5. Form/function degeneracy in regulatory networks
+## 6. Form/function degeneracy in regulatory networks
 
 Payne and Wagner (2015) exhaustively studied small gene-regulatory circuits and
 showed that circuit form does not uniquely determine function, and that the
@@ -135,7 +207,7 @@ Key reference:
 - Payne & Wagner (2015), *Scientific Reports*, "Function does not follow form
   in gene regulatory circuits".
 
-## 6. Causal emergence and effective information
+## 7. Causal emergence and effective information
 
 Effective-information approaches quantify causal organization by perturbing
 system states and asking how selectively and deterministically states constrain
@@ -159,7 +231,7 @@ Relevant references:
 - Hoel et al. (2013), *PNAS*.
 - Klein & Hoel (2020), *Complexity*.
 
-## 7. Evolvability
+## 8. Evolvability
 
 Evolvability research studies the capacity of biological systems to generate
 heritable, evolutionarily relevant variation and has long emphasized the role
@@ -183,7 +255,7 @@ Key references:
 - Draghi & Ogbunugafor (2022), *Journal of Experimental Zoology B*.
 - Barnett, Meister & Rainey (2025), *Science*.
 
-## 8. Relation to the intelligent-network paper
+## 9. Relation to the intelligent-network paper
 
 The companion paper on learning-maintenance processes should now be read as an
 inside specialization.
