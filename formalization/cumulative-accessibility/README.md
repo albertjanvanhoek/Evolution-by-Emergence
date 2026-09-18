@@ -337,6 +337,6 @@ Machine checking establishes that the stated conclusions follow from the stated 
 - physical reality has a fixed finite state space;
 - or empirical systems satisfy the model assumptions.
 
-The response budget is now endogenous to a declared organization/gradient ledger, but the architecture is not yet fully closed dynamically. The organizational state trajectory, external-gradient trajectory, response costs, generation, validation, and retention success are still supplied rather than derived from the retained novelty event. In particular, the current theorem does not yet prove that a successful retained response changes organization in a way that raises future uptake or lowers future maintenance.
+The response budget is now endogenous to a declared organization/gradient ledger. Separately, the package already contains recursive structural results: `GenerativeClosureN` reuses retained products as later parent material; `SecondOrderClick` represents viable transitions that change future search; `ModuleGeneratedEvolvability` derives search expansion from retained module changes; and `GeneratorRuleEvolution` derives search expansion from retained rule changes. The remaining formal task is therefore compositional rather than conceptual: package the endogenous budget/response route and these already-proved second-order accessibility routes into one typed recursive theorem or witness. External-gradient dynamics and stochastic generation/validation remain separate modelling questions.
 
 Those are separate modelling, empirical, and interpretive questions.
