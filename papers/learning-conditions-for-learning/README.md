@@ -1,5 +1,15 @@
 # Learning the Conditions for Learning
 
+> **Companion/inside paper.** The universal outside object has now been split
+> into the companion paper
+> `../functional-organization-ratchet-velocity/`. That paper treats
+> organization state, functional repertoire, functional cost, ratchet velocity,
+> and ratchet acceleration without requiring intelligence. This paper now
+> specializes that architecture to intelligent networks: knowledge,
+> understanding, capability, learning-maintenance processes, and endogenous
+> improvement of learning velocity.
+
+
 Working theory paper on the two-level extension of Evolution by Emergence:
 
 **Outside:** a substrate-independent accessibility-cost geometry describing
