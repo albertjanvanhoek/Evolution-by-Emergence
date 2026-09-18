@@ -493,8 +493,85 @@ from
 }
 ```
 
-The first is supplied by the functional cost geometry. The second is the next
-domain-specific research programme.
+The first is supplied by the functional performance-cost geometry. The second
+is the next domain-specific research programme.
+
+### 7.2 Open-endedness is not speed
+
+The existing EbE recurrence condition says that successful retained updates
+occur arbitrarily late. That is enough to rule out permanent termination, but
+it places no upper bound on the waiting time between successive opportunities
+or successes.
+
+Therefore:
+
+```math
+\boxed{
+\text{open-ended retained change}
+\not\Rightarrow
+\text{positive rate floor}.
+}
+```
+
+A sequence of successful updates at times
+
+```math
+1,2,4,8,16,\ldots
+```
+
+continues indefinitely while its event frequency tends toward zero.
+
+To obtain a speed statement we introduce a bounded-opportunity condition. Let
+`K` be such that, from every starting index, a usable opportunity appears
+within at most `K` steps. Let `\Delta` be the maximum delay with which every
+such opportunity receives a resource-feasible validated response.
+
+Then every starting point is followed by a validated retained update within
+
+```math
+K+\Delta
+```
+
+steps. Equivalently, every sliding window of width
+
+```math
+K+\Delta+1
+```
+
+contains a validated update.
+
+This is now machine checked.
+
+The maintained three-cycle provides a particularly strong specialization. Its
+positive support vector is preserved at every indexed time. If that support is
+explicitly sufficient for the chosen opportunity predicate, then
+
+```math
+K=0.
+```
+
+Hence:
+
+```math
+\boxed{
+\text{maintained support}
++
+\text{support}\to\text{opportunity}
++
+\text{response lag }\Delta
+\Rightarrow
+\text{validated update in every }(\Delta+1)\text{-window}.
+}
+```
+
+Finally suppose every such validated update produces at least `g_{\min}>0`
+functional gain on a declared target. Then every `\Delta+1` window contains
+at least `g_{\min}` gain on that target.
+
+This is the first derived mechanism-to-speed result in the EbE stack. It is a
+local deterministic rate certificate, not yet a universal theorem about
+long-run average velocity. To turn it into an average-rate theorem one must
+also control any negative functional changes between certified gains.
 
 ---
 
