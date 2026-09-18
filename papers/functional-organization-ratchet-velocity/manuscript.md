@@ -667,7 +667,43 @@ acceleration of the ratchet.
 
 ## 12. Relation to neighboring theories
 
-### 12.1 Ecosystem multifunctionality
+### 12.1 Functional information
+
+Hazen et al. define functional information for a specified function and
+performance threshold by the rarity of configurations that reach that
+threshold:
+
+```math
+I(E_f)=-\log_2 F(E_f).
+```
+
+Wong et al. later propose increasing functional information as a general
+feature of evolving systems in which many configurations are generated and
+selected for one or more functions.
+
+This is a close and important antecedent. The present framework does not claim
+to introduce function as a coordinate of complexity or evolution.
+
+The distinction is in the measured object. Functional information is an
+ensemble-level property: how rare are configurations achieving a specified
+degree of function? The present framework is state-conditioned: for this actual
+organization, what is the current performance cost across a family of declared
+functions?
+
+```math
+I(E_f)
+\quad\text{versus}\quad
+f\mapsto C^{\mathrm{perf}}(s,f).
+```
+
+Ratchet velocity then concerns the normalized change of the latter profile.
+
+These quantities may be complementary rather than competing. Functional
+information can describe how difficult or rare a functional threshold is in a
+configuration ensemble, while performance-cost geometry describes the
+capability of the realized organization and its trajectory through time.
+
+### 12.2 Ecosystem multifunctionality
 
 This literature already treats ecosystems as simultaneously realizing multiple
 functions and has developed several competing aggregation methods.
@@ -677,7 +713,7 @@ The present framework uses this as an antecedent, not as a novelty claim.
 Its distinct move is to treat the cost profile of functional realization and
 its retained rate of change as the primitive object.
 
-### 12.2 Functional repertoire in neuroscience
+### 12.3 Functional repertoire in neuroscience
 
 Network neuroscience has used functional repertoire to describe the diverse
 functional configurations supported by structural architecture.
@@ -685,7 +721,7 @@ functional configurations supported by structural architecture.
 The present framework generalizes the repertoire concept by attaching
 operational resource cost and retained velocity to declared functional targets.
 
-### 12.3 Evolvability
+### 12.4 Evolvability
 
 Evolvability theory already studies how current biological organization changes
 the distribution of future adaptive variation.
@@ -696,7 +732,7 @@ adaptive capacity.
 Its proposed contribution is a cross-domain functional cost geometry and an
 explicit rate variable over retained functional change.
 
-### 12.4 Causal emergence
+### 12.5 Causal emergence
 
 Effective-information approaches quantify the selectivity and determinism of
 causal structure and can identify macro scales with stronger causal
