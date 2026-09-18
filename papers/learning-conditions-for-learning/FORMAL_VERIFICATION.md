@@ -26,15 +26,18 @@ Lean checks:
 
 1. NoMoreViscousOn is reflexive.
 2. NoMoreViscousOn composes transitively across changing geometries and states.
-3. A no-more-viscous transition preserves every target already affordable at a
+3. Strict improvement followed by a non-worsening retained change remains
+   strict relative to the ancestor; the converse ordering and strict+strict
+   composition are also checked.
+4. A no-more-viscous transition preserves every target already affordable at a
    fixed budget.
-4. Any strict quantitative improvement contains an explicit target and budget
+5. Any strict quantitative improvement contains an explicit target and budget
    for which the target is unaffordable before and affordable after.
-5. Any strict quantitative improvement therefore induces strict binary
+6. Any strict quantitative improvement therefore induces strict binary
    candidate expansion at some budget threshold.
-6. A state-dependent QuantitativeSecondOrderClick implies an existing v16
+7. A state-dependent QuantitativeSecondOrderClick implies an existing v16
    SecondOrderClick at some budget.
-7. An explicit two-state viscosity witness inhabits both the quantitative and
+8. An explicit two-state viscosity witness inhabits both the quantitative and
    thresholded binary forms.
 
 The key theorem is:
