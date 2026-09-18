@@ -258,6 +258,7 @@ To inspect the printed axioms directly:
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 ```
 
 A formal-core verification should fail review if either output contains `sorryAx`.
