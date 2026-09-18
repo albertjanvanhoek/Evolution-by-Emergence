@@ -92,8 +92,10 @@ def StrictlyLessFunctionallyViscousOn
     ∃ target, target ∈ targets ∧
       newCost newState target < oldCost oldState target
 
-/-- Signed per-step gain in a functional target. Positive means that the target
-became cheaper over the step. -/
+/-- Signed gain in a functional target over one declared step. Positive means
+that the target became cheaper over the step. When steps are unit-duration this
+is also the unit-step velocity; an explicit duration-normalized rate is defined
+below. -/
 def FunctionalStepVelocity
     (oldCost newCost : FunctionalCost σ φ)
     (oldState newState : σ)
@@ -149,6 +151,95 @@ theorem strictlyLessFunctionallyViscous_iff_positiveVelocity
     refine ⟨(noMoreFunctionallyViscous_iff_nonnegativeVelocity
       targets oldCost newCost oldState newState).mpr hweak, ?_⟩
     exact ⟨target, htarget, sub_pos.mp hpositive⟩
+
+/-- Duration- or resource-normalized functional rate. The denominator is an
+application-declared positive interval such as elapsed time, energy budget, or
+number of update opportunities. -/
+def FunctionalStepRate
+    (oldCost newCost : FunctionalCost σ φ)
+    (oldState newState : σ)
+    (duration : ℝ)
+    (target : φ) : ℝ :=
+  FunctionalStepVelocity oldCost newCost oldState newState target / duration
+
+/-- A positive functional rate over a positive interval. -/
+def PositiveFunctionalRateOn
+    (targets : Set φ)
+    (oldCost newCost : FunctionalCost σ φ)
+    (oldState newState : σ)
+    (duration : ℝ) : Prop :=
+  0 < duration ∧
+  (∀ target, target ∈ targets →
+    0 ≤ FunctionalStepRate
+      oldCost newCost oldState newState duration target) ∧
+  ∃ target, target ∈ targets ∧
+    0 < FunctionalStepRate
+      oldCost newCost oldState newState duration target
+
+/-- Positive unit-step functional velocity remains positive after normalization
+by any positive duration/resource interval. -/
+theorem positiveFunctionalVelocity_implies_positiveRate
+    (targets : Set φ)
+    (oldCost newCost : FunctionalCost σ φ)
+    (oldState newState : σ)
+    (duration : ℝ)
+    (hduration : 0 < duration)
+    (h : PositiveFunctionalVelocityOn
+      targets oldCost newCost oldState newState) :
+    PositiveFunctionalRateOn
+      targets oldCost newCost oldState newState duration := by
+  refine ⟨hduration, ?_, ?_⟩
+  · intro target htarget
+    exact div_nonneg (h.1 target htarget) (le_of_lt hduration)
+  · rcases h.2 with ⟨target, htarget, hpositive⟩
+    exact ⟨target, htarget, div_pos hpositive hduration⟩
+
+/-- Rate-profile dominance between two arbitrary episodes. This is the
+comparison needed for matched counterfactual experiments: the episodes may have
+different endpoints and different durations. -/
+def FunctionalRateDominatesOn
+    (targets : Set φ)
+    (CostA₀ CostA₁ CostB₀ CostB₁ : FunctionalCost σ φ)
+    (stateA₀ stateA₁ stateB₀ stateB₁ : σ)
+    (durationA durationB : ℝ) : Prop :=
+  ∀ target, target ∈ targets →
+    FunctionalStepRate
+        CostA₀ CostA₁ stateA₀ stateA₁ durationA target ≤
+      FunctionalStepRate
+        CostB₀ CostB₁ stateB₀ stateB₁ durationB target
+
+/-- Strict matched rate improvement: no declared target has a lower normalized
+rate in episode B and at least one target has a strictly higher rate. -/
+def StrictlyFasterFunctionalRateOn
+    (targets : Set φ)
+    (CostA₀ CostA₁ CostB₀ CostB₁ : FunctionalCost σ φ)
+    (stateA₀ stateA₁ stateB₀ stateB₁ : σ)
+    (durationA durationB : ℝ) : Prop :=
+  FunctionalRateDominatesOn targets
+      CostA₀ CostA₁ CostB₀ CostB₁
+      stateA₀ stateA₁ stateB₀ stateB₁
+      durationA durationB ∧
+  ∃ target, target ∈ targets ∧
+    FunctionalStepRate
+        CostA₀ CostA₁ stateA₀ stateA₁ durationA target <
+      FunctionalStepRate
+        CostB₀ CostB₁ stateB₀ stateB₁ durationB target
+
+theorem strictlyFasterFunctionalRate_has_target
+    (targets : Set φ)
+    (CostA₀ CostA₁ CostB₀ CostB₁ : FunctionalCost σ φ)
+    (stateA₀ stateA₁ stateB₀ stateB₁ : σ)
+    (durationA durationB : ℝ)
+    (h : StrictlyFasterFunctionalRateOn targets
+      CostA₀ CostA₁ CostB₀ CostB₁
+      stateA₀ stateA₁ stateB₀ stateB₁
+      durationA durationB) :
+    ∃ target, target ∈ targets ∧
+      FunctionalStepRate
+          CostA₀ CostA₁ stateA₀ stateA₁ durationA target <
+        FunctionalStepRate
+          CostB₀ CostB₁ stateB₀ stateB₁ durationB target := by
+  exact h.2
 
 /-- Non-worsening functional costs preserve every declared function already
 available at a fixed budget. -/
@@ -356,6 +447,8 @@ theorem commons_repertoire_expands_at_budget_one :
 #print axioms strictlyLessFunctionallyViscous_opens_budget_window
 #print axioms strictlyLessFunctionallyViscous_induces_repertoire_expansion
 #print axioms positiveFunctionalVelocity_induces_repertoire_expansion
+#print axioms positiveFunctionalVelocity_implies_positiveRate
+#print axioms strictlyFasterFunctionalRate_has_target
 #print axioms acceleratingFunctionalRatchet_has_faster_target
 #print axioms commons_positive_functional_velocity
 #print axioms commons_repertoire_expands_at_budget_one
