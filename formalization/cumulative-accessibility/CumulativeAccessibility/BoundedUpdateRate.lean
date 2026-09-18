@@ -472,6 +472,15 @@ noncomputable def BlockAverageFunctionalRate
   BlockFunctionalGain window CostFunctional trajectory target k /
     (window : ℝ)
 
+/-- Conservative scalar attached to a block certificate: minimum gain divided
+by block width. Before a nonnegative-gain condition is assumed, this number is
+only a certificate scale; with nonnegative per-step gain it becomes a
+machine-checked lower bound on each block's actual average functional rate. -/
+noncomputable def CertifiedBlockGainRate
+    (minGain : ℝ)
+    (window : ℕ) : ℝ :=
+  minGain / (window : ℝ)
+
 /-- If every per-step gain on the target is nonnegative, then the one certified
 gain of at least minGain in each block forces the total block gain to be at
 least minGain. -/
@@ -547,15 +556,6 @@ theorem certifiedBlockGainRate_le_blockAverageFunctionalRate
     (functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
       window CostFunctional trajectory target minGain
       hWindow hNonnegative k)
-
-/-- Conservative scalar attached to a block certificate: minimum gain divided
-by block width. Before the preceding nonnegative-gain theorem is assumed, this
-number is only a certificate scale; with nonnegative per-step gain it is a
-machine-checked lower bound on each block's actual average functional rate. -/
-noncomputable def CertifiedBlockGainRate
-    (minGain : ℝ)
-    (window : ℕ) : ℝ :=
-  minGain / (window : ℝ)
 
 theorem certifiedBlockGainRate_positive
     (minGain : ℝ)
