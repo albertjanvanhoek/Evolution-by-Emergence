@@ -19,7 +19,7 @@ Instead it separates:
 - the **cost profile** of realizing those targets;
 - the retained change of that profile through time.
 
-The fundamental object is therefore a functional accessibility geometry.
+The fundamental object is therefore a functional performance-cost geometry.
 
 For organizational state `s` and functional target `f`:
 
