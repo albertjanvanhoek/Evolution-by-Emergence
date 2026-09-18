@@ -68,7 +68,6 @@ def PreferenceReversal
 structure TwoStageOrganization where
   searchBase : ℝ
   validationBase : ℝ
-deriving Repr
 
 /-- Feasible fraction of one new resource unit assigned to search. -/
 def UnitAllocationFeasible (x : ℝ) : Prop :=
@@ -168,12 +167,30 @@ theorem optimalActionAt_interior_eq_balancing
     twoBaselineAllocationScore_at_balancingAllocation
       state.searchBase state.validationBase
   unfold TwoStageRateLandscape at hLower
+  have hLower' :
+      ((1 + state.searchBase + state.validationBase) ^ 2) / 4
+        ≤
+      TwoBaselineAllocationScore
+        state.searchBase state.validationBase action := by
+    calc
+      ((1 + state.searchBase + state.validationBase) ^ 2) / 4
+        =
+      TwoBaselineAllocationScore
+        state.searchBase state.validationBase
+        (TwoBaselineBalancingAllocation
+          state.searchBase state.validationBase) := by
+          symm
+          exact hBalEq
+      _ ≤
+      TwoBaselineAllocationScore
+        state.searchBase state.validationBase action := by
+          simpa [BalancingRatePolicy] using hLower
   have hEq :
       TwoBaselineAllocationScore
           state.searchBase state.validationBase action
         =
-      ((1 + state.searchBase + state.validationBase) ^ 2) / 4 := by
-    nlinarith
+      ((1 + state.searchBase + state.validationBase) ^ 2) / 4 :=
+    le_antisymm hUpper hLower'
   exact (twoBaselineAllocationScore_eq_upperBound_iff_balancing
     state.searchBase state.validationBase action).1 hEq
 
@@ -182,7 +199,7 @@ def symmetricOrganization : TwoStageOrganization where
   searchBase := 0
   validationBase := 0
 
-def validationRichOrganization : TwoStageOrganization where
+noncomputable def validationRichOrganization : TwoStageOrganization where
   searchBase := 0
   validationBase := 1 / 2
 
