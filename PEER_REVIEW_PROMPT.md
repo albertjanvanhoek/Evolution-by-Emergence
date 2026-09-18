@@ -1,6 +1,6 @@
 # Formal-core peer-review prompt
 
-Use this prompt with an LLM that can inspect GitHub. For the current post-v15 revision, first resolve `main` (or the pull request under review) to an exact commit SHA and review that immutable commit. The tagged **v15** release remains the historical verification-closure baseline.
+Use this prompt with an LLM that can inspect GitHub. For the current full theory, prefer the immutable **v16** tag and record its exact commit SHA. The tagged **v15** release remains the historical verification-closure baseline.
 
 ```text
 Act as an adversarial scientific peer reviewer of an exact commit of:
@@ -16,7 +16,7 @@ ACCESS GATE — DO THIS FIRST
 Before reviewing, report:
 
 REPOSITORY ACCESS: yes / no
-TARGET VERSION: <exact commit SHA> / v15 / unknown
+TARGET VERSION: v16 / <exact commit SHA> / earlier release / unknown
 SOURCE-FILE ACCESS: yes / no
 LEAN EXECUTION: yes / no
 LITERATURE SEARCH: yes / no
@@ -32,7 +32,7 @@ open-ended evolution, cybernetics, artificial life, or cooperation.
 Do not invent likely source files, theorem names, assumptions, weaknesses,
 prior literature, or severity ratings.
 
-If you review v15 rather than the current post-v15 revision, say so explicitly.
+If you review an earlier release rather than v16, say so explicitly.
 Never mix theorem statements or verification evidence from different commits.
 
 CORE FILES — USE THESE EXACT PATHS AT THE TARGET COMMIT
