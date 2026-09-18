@@ -143,7 +143,9 @@ jobs:
           $HOME/.elan/bin/lake build \
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
-            CumulativeAccessibility.DynamicVortexWitness
+            CumulativeAccessibility.DynamicVortexWitness \
+            CumulativeAccessibility.QuantitativeAccessibility \
+            CumulativeAccessibility.IntelligentLearningMaintenance
       - name: Audit integrated theory axioms
         shell: bash
         run: |
@@ -152,6 +154,8 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
