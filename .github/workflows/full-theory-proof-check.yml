@@ -145,7 +145,7 @@ jobs:
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
-            CumulativeAccessibility.IntelligentLearningMaintenance \\
+            CumulativeAccessibility.IntelligentLearningMaintenance \
             CumulativeAccessibility.FunctionalRatchetVelocity
       - name: Audit integrated theory axioms
         shell: bash
