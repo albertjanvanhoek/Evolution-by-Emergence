@@ -34,6 +34,8 @@ every domain." The final universality claim remains a research programme.
 | CLM_EBE_CORE_010 | A fixed finite distinguishability universe saturates; open-ended cumulative retained novelty requires unbounded effective distinguishability capacity in the stated representation model. | \`FiniteGenerativeSaturation.lean\`; \`OpenEndedCapacity.lean\` | Machine checked | Find a counterexample under the exact definitions or identify a weaker capacity condition sufficient for the same open-endedness notion. |
 | CLM_EBE_CORE_011 | Under explicit physical speed/action assumptions, bounded finite-time resources bound fixed-resolution organizational depth; recursive accessibility does not imply finite-time physical explosion. | \`verification/organizational-depth/OrganizationalDepth.lean\`; \`OperationalBridge.lean\`; \`PackingDepth.lean\` | Machine checked conditional physical theorem | Challenge the speed-law hypothesis, operational metric bridge, budget decomposition, or fixed-resolution definition. |
 | CLM_EBE_CORE_012 | EbE's broad cross-domain claim is best treated as a synthesis/architecture research programme, not as a machine-checked universality theorem or a collection of wholly novel mechanisms. | \`THEORY.md\`; \`verification/audits/2026-09-15-literature/\` | Literature-audited synthesis / interpretive claim | Identify a stronger antecedent for the integrated architecture, or domains where the architecture adds no explanatory or predictive value over established formulations. |
+| CLM_EBE_CORE_013 | Accessibility has a quantitative directed cost geometry: if a retained organizational change weakly lowers every declared target cost and strictly lowers at least one, then some budget threshold exhibits strict binary accessibility expansion. | `QuantitativeAccessibility.lean`; `papers/learning-conditions-for-learning/` | Machine checked + concrete witness | Challenge the cost-order formalization, exhibit a counterexample under the exact definitions, or show that an alternative quantitative object captures the intended accessibility concept with fewer assumptions. |
+| CLM_EBE_CORE_014 | For intelligent networks, an internal learning-maintenance process state can be separated from the outside accessibility geometry through an application-specific map; endogenous self-improvement requires a system-generated process change that measurably improves that geometry. | `IntelligentLearningMaintenance.lean`; `papers/learning-conditions-for-learning/` | Machine-checked interface + modelling/empirical programme | Show that the process/geometry separation is tautological or unidentifiable in useful systems, or that self-improvement cannot be operationally distinguished from ordinary task learning under the proposed held-out tests. |
 
 ### Current core non-claims
 
@@ -47,7 +49,9 @@ The current theory does not infer:
 - physical free energy from dimensionless accessibility margin;
 - moral obligation from persistence;
 - universality from cross-domain analogy;
-- or novelty of individual mechanisms merely because they are placed in EbE notation.
+- novelty of individual mechanisms merely because they are placed in EbE notation;
+- value from lower transition cost without a declared target criterion;
+- or universal causal effects from intelligent-network labels such as honesty, repair, forgiveness, or diversity.
 
 ---
 
