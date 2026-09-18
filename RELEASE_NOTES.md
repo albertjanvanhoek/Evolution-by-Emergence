@@ -1,3 +1,33 @@
+# Unreleased — Quantitative Support and Response Separation
+
+This post-v15 revision implements findings from adversarial review without changing the established direction of the central sufficient-condition chain.
+
+The revision has a deliberately bounded scope:
+
+- **complete package verification:** `AuditAll.lean` imports every module advertised by the cumulative-accessibility README, `VerificationSurface.lean` explicitly audits selected advertised theorem dependencies for `sorryAx`, and downstream CI now triggers on changes to the imported collective-alignment package;
+- **positive quantitative maintenance support:** the three-cycle trajectory is proved to remain above a strictly positive canonical support vector under the non-strict product threshold, with a positive scalar floor as a corollary;
+- **explicit support-to-opportunity connection:** persistent support yields recurring opportunity only through a declared `SupportImpliesOpportunity` relation;
+- **response separation:** a complete successful event `F`, success-at-every-opportunity `V`, recurrent successful coincidence `W`, recurring opportunity `Q`, and recurring validated uptake `G` are separated explicitly;
+- **checked logical boundaries:** Lean checks `Q ∧ V → W`, `W → Q`, `W → G`, together with witnesses for `Q ∧ ¬N`, `W ∧ ¬V`, and `Q ∧ G ∧ ¬W`;
+- **auxiliary repairs:** the generator-rule witness now imports its actual dependency and the synchronous capacity-slack counterexample uses the correct strict-subset conversion.
+
+Retention and representation remain explicit in the downstream arrows:
+
+```text
+R ∧ G → N
+P ∧ R ∧ N → C
+```
+
+The canonical support vector is a mathematically explicit lower bound inside the model. Calling it an empirically operational threshold would still require an application-specific interpretation of units, normalization, and what those component levels enable.
+
+This revision does **not** derive recurrent successful uptake from maintenance. `W` already assumes arbitrarily late same-time coincidence of opportunity and success. The next dynamical problem is to derive such recurrence from independent mechanisms governing support, resources, generation, validation, and, when needed, response delay.
+
+The contribution being evaluated is the common formal architecture, its explicit implication boundaries, and its verified constructions. Whether that particular integration is novel remains a literature question.
+
+The immutable v15 tag remains the historical verification-closure release described below.
+
+---
+
 # Evolution by Emergence v15 — Verification Closure
 
 `v15` is a verification-focused release of the formal core.
