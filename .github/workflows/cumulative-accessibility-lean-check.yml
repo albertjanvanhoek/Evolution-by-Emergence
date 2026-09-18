@@ -51,7 +51,8 @@ jobs:
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.IntelligentLearningMaintenance \
-            CumulativeAccessibility.FunctionalRatchetVelocity
+            CumulativeAccessibility.FunctionalRatchetVelocity \
+            CumulativeAccessibility.RatchetVelocityLedger
 
       - name: Reject unproven formal-core axioms
         shell: bash
@@ -68,6 +69,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RatchetVelocityLedger.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
