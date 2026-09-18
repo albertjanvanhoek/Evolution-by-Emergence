@@ -637,24 +637,24 @@ location is unchanged.
 
 **Formal status:** MC for the model-to-spectrum route.
 
-**Lean sources**
+**Lean sources and declarations**
 
-- \`verification/organizational-depth/MaintenanceDynamics.lean\`
-- \`verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean\`
+\`verification/organizational-depth/MaintenanceDynamics.lean\`:
 
-**Selected declarations**
+- \`criticalY_nonneg\`
+- \`criticalY_root\`
+- \`stable_above_criticalGamma\`
+- \`debt_stability_lhs_monotone\`
+- \`debt_stability_upward_closed\`
+
+\`verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean\`:
 
 - \`maintenance_equilibrium_balances\`
 - \`maintenance_equilibrium_flow_zero\`
 - \`maintenance_equilibrium_has_jacobian\`
 - \`debtCharMatrix_det\`
-- \`criticalY_nonneg\`
-- \`criticalY_root\`
-- \`stable_above_criticalGamma\`
 - \`critical_gain_implies_jacobian_hurwitz\`
 - \`maintenance_end_to_end_spectral\`
-- \`debt_stability_lhs_monotone\`
-- \`debt_stability_upward_closed\`
 
 Paper-level map:
 \`papers/when-does-maintenance-debt-stabilize/FORMAL_VERIFICATION.md\`.
