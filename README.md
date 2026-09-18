@@ -87,7 +87,7 @@ This revision now also packages those routes together. `DynamicVortex.lean` defi
 
 The coupling from a retained response to a particular physical organizational update remains an explicit modelling assumption; the formalization does not claim that every retained novelty improves physical efficiency or expands search.
 
-## Two complementary witnesses
+## Three complementary witnesses
 
 ### 1. Logical non-vacuity
 
@@ -114,6 +114,22 @@ opportunity absent
 With the concrete recurrent maintenance opportunity stream, the architecture has open-ended cumulative retained novelty. Replacing the opportunity stream by `False` leaves the same architecture family static and not open-ended.
 
 That establishes a genuine **within-model dependency / ablation result**. It does not establish empirical causality.
+
+### 3. Full dynamic composition
+
+[`DynamicVortexWitness.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean) is the **integrated composition witness**.
+
+It uses an internally generated response budget, validated retained novelty, and a state-dependent search operator in one architecture. Its endpoint `vortex_full_dynamic_witness` jointly certifies:
+
+```text
+open-ended cumulative retained novelty
++
+unbounded effective distinguishability capacity
++
+recurring second-order organizational/search updates
+```
+
+The integration premise remains explicit: the model declares that the retained response is accompanied by the relevant organizational state update. This witness establishes joint dynamic realizability inside the formal model, not a universal empirical law.
 
 ## Other results worth attacking
 
