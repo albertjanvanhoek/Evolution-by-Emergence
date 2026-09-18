@@ -90,7 +90,52 @@ Relevant references:
 - Senden et al. (2014), *NeuroImage*.
 - Yin et al. (2009), *Nature Neuroscience*.
 
-## 4. Causal emergence and effective information
+
+## 4. Cybernetics and requisite variety
+
+Ashby's law of requisite variety is a major antecedent for any claim linking
+adaptive capacity to the repertoire of possible responses. A regulator must
+possess sufficient variety relative to the disturbances it must control.
+
+Relationship:
+
+The present paper should not claim that adaptive systems require a repertoire
+of responses. The proposed distinction is that raw response variety is not yet
+functional ratchet velocity. The latter is target-conditioned, resource-
+sensitive, retention-sensitive, and explicitly dynamic: it asks how the cost
+profile of reliable functions changes through time.
+
+Ashby's variety is therefore a conceptual ancestor for the repertoire side of
+the theory, while the cost geometry and retained velocity are the candidate
+extensions.
+
+Key reference:
+
+- W. Ross Ashby (1956), *An Introduction to Cybernetics*.
+
+## 5. Form/function degeneracy in regulatory networks
+
+Payne and Wagner (2015) exhaustively studied small gene-regulatory circuits and
+showed that circuit form does not uniquely determine function, and that the
+same function can be realized by multiple circuit structures. They explicitly
+describe the set of functions a circuit can realize as its functional
+repertoire.
+
+Relationship:
+
+This is particularly close to the present structure/function separation. It
+argues strongly against treating topology alone as the moving quantity.
+
+The proposed framework adds an operational cost to realizing functions and then
+asks how retained organizational change alters that cost profile and its rate
+of change.
+
+Key reference:
+
+- Payne & Wagner (2015), *Scientific Reports*, "Function does not follow form
+  in gene regulatory circuits".
+
+## 6. Causal emergence and effective information
 
 Effective-information approaches quantify causal organization by perturbing
 system states and asking how selectively and deterministically states constrain
@@ -114,7 +159,7 @@ Relevant references:
 - Hoel et al. (2013), *PNAS*.
 - Klein & Hoel (2020), *Complexity*.
 
-## 5. Evolvability
+## 7. Evolvability
 
 Evolvability research studies the capacity of biological systems to generate
 heritable, evolutionarily relevant variation and has long emphasized the role
@@ -138,7 +183,7 @@ Key references:
 - Draghi & Ogbunugafor (2022), *Journal of Experimental Zoology B*.
 - Barnett, Meister & Rainey (2025), *Science*.
 
-## 6. Relation to the intelligent-network paper
+## 8. Relation to the intelligent-network paper
 
 The companion paper on learning-maintenance processes should now be read as an
 inside specialization.
