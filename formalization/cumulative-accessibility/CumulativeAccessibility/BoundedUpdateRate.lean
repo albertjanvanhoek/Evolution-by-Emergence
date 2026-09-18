@@ -528,7 +528,12 @@ theorem functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
     _ ≤ BlockFunctionalGain
           window CostFunctional trajectory target k := by
       unfold BlockFunctionalGain
-      apply Finset.single_le_sum
+      refine Finset.single_le_sum
+        (s := Finset.range window)
+        (f := fun i =>
+          TrajectoryFunctionalVelocity
+            CostFunctional trajectory (k * window + i) target)
+        ?_ ?_
       · intro i hi
         exact hNonnegative (k * window + i)
       · simpa using hjlt
