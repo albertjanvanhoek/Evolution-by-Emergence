@@ -568,10 +568,60 @@ Finally suppose every such validated update produces at least `g_{\min}>0`
 functional gain on a declared target. Then every `\Delta+1` window contains
 at least `g_{\min}` gain on that target.
 
-This is the first derived mechanism-to-speed result in the EbE stack. It is a
-local deterministic rate certificate, not yet a universal theorem about
-long-run average velocity. To turn it into an average-rate theorem one must
-also control any negative functional changes between certified gains.
+This is the first derived mechanism-to-speed result in the EbE stack.
+
+If the chosen functional target is additionally non-worsening between certified
+gains,
+
+```math
+g_t(f)\ge0
+\quad\text{for all }t,
+```
+
+then the local certificate becomes an actual block-average rate bound. Every
+non-overlapping block of width
+
+```math
+W=K+\Delta+1
+```
+
+has total gain at least `g_{\min}`, hence
+
+```math
+\boxed{
+\bar v_k(f)
+\ge
+\frac{g_{\min}}{K+\Delta+1}.
+}
+```
+
+The strong trajectory-ratchet condition already supplies this nonnegative-gain
+premise for every retained target in its declared family.
+
+This yields immediate comparative statics for the **guaranteed** rate floor:
+
+```math
+g_{\min}\uparrow
+\Rightarrow v_{\min}\uparrow,
+```
+
+```math
+K\downarrow
+\Rightarrow v_{\min}\uparrow,
+```
+
+```math
+\Delta\downarrow
+\Rightarrow v_{\min}\uparrow.
+```
+
+All three strict versions are now machine checked.
+
+This is the first mechanism-level form of ratchet acceleration in the stack.
+It should be interpreted carefully: a higher lower bound is not identical to a
+proof that the realized trajectory itself accelerated. It says that, under the
+declared mechanism guarantees, the minimum rate the system can sustain has
+increased.
 
 ---
 
