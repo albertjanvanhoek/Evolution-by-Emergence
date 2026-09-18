@@ -2,6 +2,8 @@ import CumulativeAccessibility.ResponseDynamics
 import CumulativeAccessibility.FunctionalRatchetVelocity
 import CumulativeAccessibility.RatchetVelocityLedger
 
+open scoped BigOperators
+
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
 
@@ -511,12 +513,13 @@ theorem functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
     omega
   have hjeq : k * window + j = r := by
     dsimp [j]
-    omega
+    exact Nat.add_sub_of_le hStart
   have hTerm :
       minGain ≤
         TrajectoryFunctionalVelocity
           CostFunctional trajectory (k * window + j) target := by
-    simpa [hjeq] using hGain
+    rw [hjeq]
+    exact hGain
   calc
     minGain ≤
         TrajectoryFunctionalVelocity
