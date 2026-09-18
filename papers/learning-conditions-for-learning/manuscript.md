@@ -346,52 +346,132 @@ and the criterion by which it is selected remain external to the mathematics.
 
 ## 4. Learning velocity
 
-Quantitative accessibility permits a distinction between present capability and
-the rate at which future capability becomes accessible.
+The companion functional-ratchet paper now separates three quantities that are
+easy to conflate.
 
-Suppose potentially informative opportunities arrive at rate λ_t. Let p_t be
-the conditional probability that an opportunity produces a successful retained
-change. If a successful event produces expected accessibility improvement
+First, a current organization has a functional performance-cost profile
 
-\[
-E[\Delta A_t\mid\text{success}],
-\]
+```math
+f\mapsto C_t^{\mathrm{perf}}(s_t,f).
+```
 
-then a generic modelling scaffold is
+Second, a learning episode changes that profile. For a functional target
+`f`, let
 
-\[
-v_t
+```math
+g_t(f)
 =
-\lambda_t p_t
-E[\Delta A_t\mid\text{success}].
-\]
+C_t^{\mathrm{perf}}(s_t,f)
+-
+C_{t+1}^{\mathrm{perf}}(s_{t+1},f)
+```
 
-We call v_t **learning velocity** when the relevant accessibility measure is
-learnability.
+be functional gain.
 
-This expression is not proposed as a universal dynamical law. Its role is to
-separate three causes of slow collective change:
+Third, for a positive time or resource interval `\Delta_t`, define learning
+velocity
 
-1. potentially useful events are rarely sampled;
-2. sampled events rarely survive the learning process;
-3. successful events have little effect on future accessibility.
+```math
+v_t(f)
+=
+\frac{g_t(f)}{\Delta_t}.
+```
 
-For an intelligent network p_t itself can be decomposed into conditional
-processes. A typical path might require:
+Thus "the system learned" and "the system became faster at learning" are
+different empirical statements.
 
-\[
-\begin{aligned}
-p_t={}&p(\text{usable edge}\mid\text{encounter})\\
-&\times p(\text{informative signal}\mid\text{edge})\\
-&\times p(\text{error detected}\mid\text{signal})\\
-&\times p(\text{revision}\mid\text{detection})\\
-&\times p(\text{edge survives}\mid\text{revision})\\
-&\times p(\text{retention}\mid\text{successful correction}).
-\end{aligned}
-\]
+### 4.1 A learning-rate ledger
 
-As a chain of conditional probabilities this factorization does not require
-independence.
+For one declared scalar projection of the target family, a useful mechanism
+ledger is
+
+```math
+v_{\mathrm{ledger}}
+=
+\lambda\,
+p_G\,
+p_R\,
+p_V\,
+p_T\,
+\bar g.
+```
+
+Here:
+
+- `\lambda` is the rate of potentially informative opportunities;
+- `p_G` is conditional candidate generation;
+- `p_R` is conditional resource feasibility;
+- `p_V` is conditional validation;
+- `p_T` is conditional retention;
+- `\bar g` is mean retained functional gain per retained success.
+
+If the `p` terms are conditional probabilities, this is a chain-rule
+factorization rather than an independence assumption.
+
+The equation remains a modelling seam. The theory does not assert that every
+intelligent system is exactly described by this product.
+
+### 4.2 Continuation is not speed
+
+Qualitative recurrence is not enough to establish a positive learning-rate
+floor. Successful learning events can occur forever while the waiting times
+between them grow without bound.
+
+The outside formalization therefore introduces:
+
+- `K`: a maximum wait for a usable opportunity;
+- `\Delta`: a maximum validated-response lag;
+- `g_{\min}`: a guaranteed functional gain per declared successful update.
+
+Under those conditions, every window of width
+
+```math
+K+\Delta+1
+```
+
+contains a validated update. If the chosen retained target never moves
+backward between such events, the block-average functional rate is bounded by
+
+```math
+\boxed{
+\bar v(f)
+\ge
+\frac{g_{\min}}{K+\Delta+1}.
+}
+```
+
+This gives an operational language for learning-maintenance interventions:
+they may improve the guaranteed learning rate by reducing opportunity wait,
+reducing response delay, increasing the probability that useful signals survive
+the pipeline, or increasing the gain produced by successful correction.
+
+### 4.3 Coupled processes create trade-offs
+
+The ledger is ceteris-paribus monotone in each nonnegative coordinate. But
+inside processes compete for attention, time, memory, energy, and coordination
+capacity.
+
+A minimal formal example splits a unit budget between search and validation:
+
+```math
+p_G=x,
+\qquad
+p_V=1-x.
+```
+
+Then
+
+```math
+v(x)=x(1-x),
+```
+
+which is maximized at an interior allocation rather than at maximum search.
+
+The important lesson is not the toy optimum one-half. It is that an intelligent
+system should not identify **more change**, **more openness**, or **more search**
+with faster retained learning. Those processes are beneficial only through
+their net effect on the complete learning-maintenance pipeline.
+
 
 ---
 
@@ -455,7 +535,40 @@ change to Γ.
 The corresponding Lean interface is
 formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean.
 
-### 5.3 Honesty as an example
+### 5.3 From verbs to rate coordinates
+
+The rate framework provides a more disciplined interpretation of the inside
+verbs. A verb should not be assigned a universal positive sign. Instead, an
+application can state a specific causal hypothesis about which rate coordinate
+it changes.
+
+| Inside process | Candidate rate-coordinate hypothesis |
+|---|---|
+| seek / encounter | reduce opportunity wait `K` or increase `\lambda` |
+| listen | increase probability that sampled evidence enters the usable pipeline |
+| signal faithfully | increase signal fidelity and conditional validation probability |
+| expose uncertainty | increase detectability of informative discrepancy |
+| test | increase discrimination/validation quality, possibly at a time cost |
+| revise | reduce justified response lag `\Delta` |
+| maintain disagreement | preserve alternative hypotheses/candidates for later validation |
+| repair | restore opportunity-producing or validation-producing edges |
+| re-engage | reduce persistent loss of useful future opportunities after repaired failure |
+| retain | increase `p_T` and reduce backward functional movement |
+| recombine | alter candidate generation and potentially the gain distribution `\bar g` |
+
+Every row is a **hypothesis template**, not a theorem.
+
+The same process can affect several coordinates with opposite signs. More
+testing may improve validation but lengthen response time. More searching may
+increase candidate generation while reducing resources available for checking
+or retention. More stability may protect old function while increasing the
+cost of justified revision.
+
+This is where the outside/inside duality becomes experimentally useful: the
+outside rate coordinates specify what to measure, while the inside verbs
+propose mechanisms whose net effects can be estimated.
+
+### 5.4 Honesty as an example
 
 For an intelligent information network, truthful or faithful signalling can be
 interpreted as increasing the correspondence between transmitted signal and
@@ -477,7 +590,7 @@ to cross an edge, be misunderstood, or concern an irrelevant target.
 The universal statement is only that a change in process state that lowers the
 measured target-transition costs is an accessibility improvement.
 
-### 5.4 Corrigibility
+### 5.5 Corrigibility
 
 Corrigibility concerns how readily sufficiently informative discrepancy causes
 a justified update.
@@ -494,7 +607,7 @@ The relevant target is **selective plasticity**:
 
 while retaining sufficient resistance against unsupported change.
 
-### 5.5 Repair and forgiveness
+### 5.6 Repair and forgiveness
 
 Let an informative edge suffer a failure. Repair concerns restoring the edge's
 productive function. Forgiveness or re-engagement concerns whether the
