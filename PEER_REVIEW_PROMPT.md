@@ -343,10 +343,11 @@ cd formalization/cumulative-accessibility
 lake update
 lake exe cache get
 lake build
-lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness
+lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness CumulativeAccessibility.BoundedResponseWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 
 Report whether any central printed theorem depends on sorryAx.
 
