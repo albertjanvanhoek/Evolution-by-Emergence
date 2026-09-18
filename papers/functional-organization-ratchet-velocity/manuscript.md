@@ -696,6 +696,99 @@ This supplies a minimal bridge to established stability--plasticity and
 exploration--exploitation literatures. EbE's narrower contribution is to place
 such trade-offs inside an explicit retained functional-rate architecture.
 
+### 7.4 Inherited organization moves the bottleneck
+
+The symmetric optimum above assumes that search and validation begin with no
+inherited difference in capacity. That is precisely the assumption we should
+drop if organization is itself the accumulated result of previous ratchet
+turns.
+
+Let `s` denote inherited search/generation capacity and `v` inherited
+validation capacity. Allocate a fraction `x` of one new resource unit to
+search and `1-x` to validation. Consider the reduced throughput score
+
+```math
+Q(s,v,x)
+=
+(s+x)(v+1-x).
+```
+
+The final sum of the two stage capacities is fixed:
+
+```math
+(s+x)+(v+1-x)=1+s+v.
+```
+
+The unconstrained product-maximizing allocation is therefore
+
+```math
+\boxed{
+x^*(s,v)
+=
+\frac{1+v-s}{2}.
+}
+```
+
+Lean proves that this allocation attains
+
+```math
+Q_{\max}
+=
+\frac{(1+s+v)^2}{4}
+```
+
+and exactly equalizes the final capacities,
+
+```math
+s+x^*
+=
+v+1-x^*.
+```
+
+When the inherited capacities differ by no more than one new-resource unit,
+this balancing point lies in the feasible interval. If search is already at
+least one full unit ahead, all new resource goes to validation. If validation
+is at least one full unit ahead, all new resource goes to search.
+
+The previous state-dependent validation example is a normalized special case.
+With no inherited capacity the optimum is `x^*=1/2`. If validation has
+already accumulated one-half unit while search has not, the optimum moves to
+
+```math
+x^*=\frac34.
+```
+
+Thus:
+
+```math
+\boxed{
+\text{the organization already present changes the intervention that
+maximizes future retained velocity}.
+}
+```
+
+The optimization mathematics is classical bottleneck or water-filling logic.
+The proposed theoretical use is recursive. A retained improvement changes
+installed stage capacity; installed capacity changes the next rate landscape;
+the changed landscape changes the next allocation; and that allocation changes
+future retained organization.
+
+Schematically,
+
+```math
+s_t
+\longrightarrow
+F_{s_t}(r)
+\longrightarrow
+r_t^*
+\longrightarrow
+s_{t+1}.
+```
+
+This makes path dependence operational without requiring that path dependence
+always produce lock-in. History can instead move the active bottleneck and
+therefore redirect adaptive effort.
+
 ---
 
 ## 8. Ecology as an outside test domain
