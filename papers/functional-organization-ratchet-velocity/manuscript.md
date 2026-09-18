@@ -424,6 +424,66 @@ is positive, negative, or changes sign.
 This predicts phase structure rather than slogans such as "more diversity is
 always better" or "more connectivity is always better".
 
+### 7.1 A first velocity ledger
+
+A useful intermediate representation separates the rate of potentially useful
+events from the conditional conversion stages that turn such events into
+retained functional gain.
+
+For one declared scalar projection of the functional geometry, write
+
+```math
+v
+=
+\lambda\,
+p_G\,
+p_R\,
+p_V\,
+p_T\,
+\bar g,
+```
+
+where:
+
+- `\lambda` is opportunity rate;
+- `p_G` is the conditional fraction generating a candidate;
+- `p_R` is the conditional fraction that is resource-feasible;
+- `p_V` is the conditional fraction that validates;
+- `p_T` is the conditional fraction of validated changes that is retained;
+- `\bar g` is mean retained functional gain per retained success.
+
+If the fractions are conditional probabilities, the product is a chain-rule
+factorization and does not require independence.
+
+This equation is **not** asserted as a universal law of cumulative evolution.
+It is a mechanism ledger. An application must justify that the observed
+functional rate is represented by these stages.
+
+Lean verifies the conditional implications of the ledger: with all other
+factors held nonnegative and fixed, increasing opportunity, generation,
+resource feasibility, validation, retention, or mean gain cannot lower the
+ledger rate. A zero bottleneck at any required stage forces the corresponding
+ledger rate to zero.
+
+This distinction separates two questions:
+
+```math
+\boxed{
+\text{What is ratchet velocity?}
+}
+```
+
+from
+
+```math
+\boxed{
+\text{What mechanisms determine its ledger coordinates?}
+}
+```
+
+The first is supplied by the functional cost geometry. The second is the next
+domain-specific research programme.
+
 ---
 
 ## 8. Ecology as an outside test domain
