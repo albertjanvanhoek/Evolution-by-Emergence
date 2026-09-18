@@ -18,8 +18,12 @@ It defines:
 - AccessibilityCost;
 - AccessibleWithin;
 - BudgetSearch;
+- CostGeometryChangesOn;
+- HasCheaperFutureOn;
 - NoMoreViscousOn;
 - StrictlyLessViscousOn;
+- QuantitativeSecondOrderChange;
+- QuantitativeSecondOrderOpening;
 - QuantitativeSecondOrderClick.
 
 Lean checks:
@@ -31,14 +35,21 @@ Lean checks:
    composition are also checked.
 4. A no-more-viscous transition preserves every target already affordable at a
    fixed budget.
-5. Any strict quantitative improvement contains an explicit target and budget
-   for which the target is unaffordable before and affordable after.
-6. Any strict quantitative improvement therefore induces strict binary
-   candidate expansion at some budget threshold.
-7. A state-dependent QuantitativeSecondOrderClick implies an existing v16
-   SecondOrderClick at some budget.
-8. An explicit two-state viscosity witness inhabits both the quantitative and
-   thresholded binary forms.
+5. Any directional cheaper-future event opens an exact budget threshold for
+   that target, without assuming preservation of other targets.
+6. QuantitativeSecondOrderOpening is weaker than Pareto-like viscosity
+   improvement; a checked trade-off witness makes one target cheaper while
+   making another more expensive.
+7. That trade-off opening need not be a v16 binary SecondOrderClick because an
+   old affordable target may be lost.
+8. A strict Pareto-like quantitative improvement contains an explicit target
+   and budget for which the target is unaffordable before and affordable after.
+9. A strict Pareto-like improvement therefore induces strict binary candidate
+   expansion at some budget threshold.
+10. A state-dependent QuantitativeSecondOrderClick implies an existing v16
+    SecondOrderClick at some budget.
+11. An explicit two-state viscosity witness inhabits both the quantitative and
+    thresholded binary forms.
 
 The key theorem is:
 
