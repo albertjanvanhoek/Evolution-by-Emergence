@@ -315,3 +315,56 @@ v(1)<v(1/2).
 The numerical optimum `1/2` is specific to the symmetric unit-budget toy
 model. The reusable claim is only that shared constraints can couple
 rate-producing stages and create an interior optimum.
+
+
+## State-dependent allocation and moving bottlenecks
+
+Two additional verified modules make the resource-allocation toy explicitly
+state-dependent:
+
+- `StateDependentAllocation.lean`
+- `BottleneckAllocation.lean`
+
+The one-baseline model introduces retained validation infrastructure `b` and
+proves that the global optimum of the normalized reduced velocity moves from
+`1/2` to
+
+```math
+x^*(b)=\frac{1+b}{2}
+```
+
+for `0\le b\le1`. A checked witness gives `b=1/2\Rightarrow x^*=3/4`.
+
+The two-baseline model then lets both search and validation have inherited
+capacity:
+
+```math
+Q(s,v,x)=(s+x)(v+1-x).
+```
+
+Lean proves the global algebraic bound
+
+```math
+Q(s,v,x)
+\le
+\frac{(1+s+v)^2}{4},
+```
+
+attained at
+
+```math
+x^*(s,v)=\frac{1+v-s}{2}.
+```
+
+At this point the two final stage capacities are exactly equal. Lean also
+checks the feasibility conditions and both boundary regimes:
+
+- if validation plus the new unit is still no larger than inherited search
+  capacity, allocating all new resource to validation is optimal;
+- symmetrically, if search plus the new unit is still no larger than inherited
+  validation capacity, allocating all new resource to search is optimal.
+
+The formal result is an optimization witness, not a claim that real biological,
+neural, ecological, or organizational systems literally optimize this product.
+Its role is to machine-check the narrower statement that inherited organization
+can change the velocity-maximizing next allocation.
