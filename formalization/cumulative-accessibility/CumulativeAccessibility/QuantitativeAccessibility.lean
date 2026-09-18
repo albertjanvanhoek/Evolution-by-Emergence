@@ -83,6 +83,48 @@ theorem noMoreViscousOn_trans
   intro z hz
   exact le_trans (h12 z hz) (h01 z hz)
 
+/-- A strict viscosity improvement followed by a weakly non-worsening change
+remains strict relative to the ancestor. This is the quantitative retained
+ratchet in one direction. -/
+theorem strictlyLessViscousOn_trans_noMoreViscousOn
+    (targets : Set α)
+    (Cost₀ Cost₁ Cost₂ : AccessibilityCost α)
+    (x₀ x₁ x₂ : α)
+    (h01 : StrictlyLessViscousOn targets Cost₀ Cost₁ x₀ x₁)
+    (h12 : NoMoreViscousOn targets Cost₁ Cost₂ x₁ x₂) :
+    StrictlyLessViscousOn targets Cost₀ Cost₂ x₀ x₂ := by
+  constructor
+  · exact noMoreViscousOn_trans
+      targets Cost₀ Cost₁ Cost₂ x₀ x₁ x₂ h01.1 h12
+  · rcases h01.2 with ⟨z, hz, hStrict⟩
+    exact ⟨z, hz, lt_of_le_of_lt (h12 z hz) hStrict⟩
+
+/-- A weakly non-worsening change followed by a strict viscosity improvement is
+also strict relative to the ancestor. -/
+theorem noMoreViscousOn_trans_strictlyLessViscousOn
+    (targets : Set α)
+    (Cost₀ Cost₁ Cost₂ : AccessibilityCost α)
+    (x₀ x₁ x₂ : α)
+    (h01 : NoMoreViscousOn targets Cost₀ Cost₁ x₀ x₁)
+    (h12 : StrictlyLessViscousOn targets Cost₁ Cost₂ x₁ x₂) :
+    StrictlyLessViscousOn targets Cost₀ Cost₂ x₀ x₂ := by
+  constructor
+  · exact noMoreViscousOn_trans
+      targets Cost₀ Cost₁ Cost₂ x₀ x₁ x₂ h01 h12.1
+  · rcases h12.2 with ⟨z, hz, hStrict⟩
+    exact ⟨z, hz, lt_of_lt_of_le hStrict (h01 z hz)⟩
+
+/-- Strict quantitative accessibility improvement composes transitively. -/
+theorem strictlyLessViscousOn_trans
+    (targets : Set α)
+    (Cost₀ Cost₁ Cost₂ : AccessibilityCost α)
+    (x₀ x₁ x₂ : α)
+    (h01 : StrictlyLessViscousOn targets Cost₀ Cost₁ x₀ x₁)
+    (h12 : StrictlyLessViscousOn targets Cost₁ Cost₂ x₁ x₂) :
+    StrictlyLessViscousOn targets Cost₀ Cost₂ x₀ x₂ :=
+  strictlyLessViscousOn_trans_noMoreViscousOn
+    targets Cost₀ Cost₁ Cost₂ x₀ x₁ x₂ h01 h12.1
+
 /-- Weak viscosity improvement preserves every candidate already affordable at
 a fixed budget. -/
 theorem noMoreViscousOn_preserves_budget_access
@@ -236,6 +278,9 @@ theorem viscosityToy_binary_click_at_budget_one :
 
 #print axioms noMoreViscousOn_refl
 #print axioms noMoreViscousOn_trans
+#print axioms strictlyLessViscousOn_trans_noMoreViscousOn
+#print axioms noMoreViscousOn_trans_strictlyLessViscousOn
+#print axioms strictlyLessViscousOn_trans
 #print axioms noMoreViscousOn_preserves_budget_access
 #print axioms strictlyLessViscousOn_opens_budget_window
 #print axioms strictlyLessViscousOn_induces_strictExpansionAtBudget
