@@ -19,6 +19,8 @@ import CumulativeAccessibility.BoundedResponseWitness
 import CumulativeAccessibility.EndogenousBudgetWitness
 import CumulativeAccessibility.DynamicVortex
 import CumulativeAccessibility.DynamicVortexWitness
+import CumulativeAccessibility.QuantitativeAccessibility
+import CumulativeAccessibility.IntelligentLearningMaintenance
 
 /-!
 # Aggregate package audit target
