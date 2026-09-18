@@ -310,6 +310,88 @@ logically separate.
 
 ---
 
+## T7A — quantitative accessibility geometry
+
+**Theory statement.** Future organization has a directed, application-declared
+transition-cost geometry. Retained change can improve future accessibility by
+lowering costs even when the same future state was already possible.
+
+**Formal status:** MC + concrete witness.
+
+**Lean source**
+
+QuantitativeAccessibility.lean
+
+**Core definitions**
+
+- AccessibilityCost
+- AccessibleWithin
+- BudgetSearch
+- NoMoreViscousOn
+- StrictlyLessViscousOn
+- QuantitativeSecondOrderClick
+
+**Selected declarations**
+
+- noMoreViscousOn_refl
+- noMoreViscousOn_trans
+- noMoreViscousOn_preserves_budget_access
+- strictlyLessViscousOn_opens_budget_window
+- strictlyLessViscousOn_induces_strictExpansionAtBudget
+- quantitativeSecondOrderClick_implies_secondOrderClick_at_some_budget
+- quantitativeSecondOrderClick_has_cheaper_future
+- viscosityToy_quantitative_click
+- viscosityToy_binary_click_at_budget_one
+
+**Key bridge**
+
+A strict quantitative improvement always creates some budget threshold at
+which at least one declared future target is newly accessible. Hence the v16
+binary SecondOrderClick is recovered as a thresholded special case.
+
+**Modelling boundary.** Lean does not choose the empirical unit of cost or the
+target set. Lower cost is not automatically synonymous with greater value.
+
+---
+
+## T7B — intelligent learning-maintenance specialization
+
+**Theory statement.** Intelligent networks can be described internally by a
+learning-maintenance process state whose substrate-specific dynamics induce an
+external accessibility-cost geometry.
+
+**Formal status:** MC interface + MODEL/INT interpretation.
+
+**Lean source**
+
+IntelligentLearningMaintenance.lean
+
+**Core definitions**
+
+- LearningVerb
+- ProcessGeometry
+- AppliesVerb
+- ProcessImprovementOn
+- VerbImprovementOn
+- SelfImprovementOn
+- ImprovementProductivity
+- RecursiveSelfImprovementOn
+
+**Selected declarations**
+
+- processImprovement_has_cheaper_future
+- verbImprovement_opens_budget_window
+- selfImprovement_has_cheaper_future
+- recursiveSelfImprovement_implies_selfImprovement
+- recursiveSelfImprovement_increases_productivity
+
+**Interpretive boundary.** The verb names are not universal causal axioms.
+Claims such as honesty lowering corrective viscosity, repair preserving an
+informative edge, or re-engagement improving long-run learning require an
+application-specific map from process state to geometry and empirical support.
+
+---
+
 ## T8 — the dynamic vortex composes the resource and search routes
 
 **Theory statement.** A supportive organizational transition can
