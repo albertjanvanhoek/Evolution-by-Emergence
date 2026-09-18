@@ -62,7 +62,8 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 - `CumulativeAccessibility.lean` — basic accessibility, preservation, strict expansion, costs, margins, and route-level results.
 - `RecursiveAccessibility.lean` — finite search opportunity, retained stepping stones, second-order clicks, and separation of reachable depth from search-operator expansion.
 - `QuantitativeAccessibility.lean` — directed accessibility-cost geometry, plasticity/viscosity order, and recovery of a binary second-order click from strict quantitative improvement at a suitable budget.
-- `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states and endogenous self-improvement into the outside accessibility geometry.
+- `FunctionalRatchetVelocity.lean` — separates organizational states from functional targets, defines functional repertoire, target-wise functional gain and duration/resource-normalized ratchet rates, and connects strict functional cost improvement to thresholded repertoire expansion.
+- `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states into the outside geometry, including a matched held-out rate-grounded definition of recursive self-improvement.
 - `EvolvabilityStructure.lean` — candidate-set ordering, functional projection, and recombination.
 - `GenerativeArity.lean` — finite-parent generators and unary versus multi-parent generation.
 - `ModuleGeneratedEvolvability.lean` — search expansion from retained parent material.
@@ -106,12 +107,36 @@ For a single state-dependent cost geometry this yields:
 Thus the weighted geometry strictly generalizes the existing binary
 second-order-accessibility interface.
 
+FunctionalRatchetVelocity.lean then separates the organizational-state type
+from the functional-target type:
+
+    FunctionalCost sigma phi := sigma -> phi -> Real
+
+This allows a network state to be distinguished from what the network can do.
+The primitive outside object is a target-indexed functional cost profile rather
+than a universal scalar complexity measure. Lean checks:
+
+    strict retained functional cost improvement
+            ↓
+    positive target-wise functional gain
+            ↓
+    strict functional-repertoire expansion at some budget
+
+For positive declared duration/resource interval Δ, the gain is normalized into
+a functional rate. Matched episodes can therefore be compared even when their
+durations differ.
+
 IntelligentLearningMaintenance.lean is deliberately separate. It introduces an
 internal process state P, a map from process state to accessibility geometry,
 labelled learning verbs, endogenous self-improvement, and recursive
 self-improvement. The labels do not carry universal monotonic effects: an
 application must justify how its process state changes the external cost
 geometry.
+
+The stronger rate-grounded recursive interface starts old and self-modified
+learning episodes from the same organization, preserves declared prior
+functions, and requires the new process's normalized held-out functional-rate
+profile to weakly dominate the old one with at least one strict improvement.
 
 ### Finite saturation
 
