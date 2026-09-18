@@ -520,6 +520,34 @@ theorem endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImpr
     Certificate oldProcess newProcess
     hOpportunity hGain hGainPos hLag
 
+/-- Concrete certificate with guaranteed rate floor one. -/
+def lowRateFloorCertificate : LearningMechanismCertificate where
+  opportunityGap := 0
+  responseLag := 0
+  minGain := 1
+
+/-- Concrete certificate with guaranteed rate floor two. -/
+def highRateFloorCertificate : LearningMechanismCertificate where
+  opportunityGap := 0
+  responseLag := 0
+  minGain := 2
+
+/-- Separation witness: even when both realized rates respect their respective
+mechanism lower bounds, a higher certified floor need not imply a higher
+realized rate.
+
+This formalizes the epistemic distinction between "the guaranteed minimum rate
+rose" and "the observed rate rose". -/
+theorem higher_certified_floor_can_coexist_with_lower_realized_rate :
+    lowRateFloorCertificate.rateFloor <
+        highRateFloorCertificate.rateFloor ∧
+      lowRateFloorCertificate.rateFloor ≤ (10 : ℝ) ∧
+      highRateFloorCertificate.rateFloor ≤ (3 : ℝ) ∧
+      (3 : ℝ) < 10 := by
+  norm_num [LearningMechanismCertificate.rateFloor,
+    BoundedMechanismRateFloor, CertifiedBlockGainRate,
+    lowRateFloorCertificate, highRateFloorCertificate]
+
 end MechanismRateGrounding
 
 /-!
@@ -550,6 +578,7 @@ those processes into Γ; they are not universal consequences of EbE.
 #print axioms shorterOpportunityGap_improves_processRateCertificate
 #print axioms largerMinimumGain_improves_processRateCertificate
 #print axioms endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImprovement
+#print axioms higher_certified_floor_can_coexist_with_lower_realized_rate
 
 end IntelligentLearning
 end CumulativeAccessibility
