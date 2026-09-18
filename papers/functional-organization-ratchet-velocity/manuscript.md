@@ -274,28 +274,40 @@ without being identified.
 The previous section describes a step. The central object of this paper is its
 rate.
 
-For equal-duration or otherwise matched intervals, define target-wise
-functional ratchet velocity
+First define the signed functional gain over an interval:
 
 ```math
-v_t(f)
+g_t(f)
 =
 C_t(s_t,f)-C_{t+1}(s_{t+1},f).
 ```
 
-Positive `v_t(f)` means that functional target `f` has become cheaper.
+Positive `g_t(f)` means that functional target `f` has become cheaper.
+
+If the interval has positive duration or declared resource width
+`\Delta_t`, define normalized ratchet velocity
+
+```math
+v_t(f)
+=
+\frac{g_t(f)}{\Delta_t}.
+```
+
+For equal-duration unit steps, `g_t` and `v_t` differ only by the common
+scale factor. Explicit normalization is required when comparing episodes with
+different durations or resource windows.
 
 A strong positive functional ratchet step satisfies
 
 ```math
-v_t(f)\ge0
+g_t(f)\ge0
 \quad\forall f\in\Phi_R
 ```
 
 on the declared retained target family `\Phi_R`, with
 
 ```math
-v_t(f^\star)>0
+g_t(f^\star)>0
 ```
 
 for at least one target.
@@ -329,16 +341,16 @@ Compare two matched intervals:
 s_0\rightarrow s_1\rightarrow s_2.
 ```
 
-Define
+Define the normalized rates
 
 ```math
-v_{01}(f)=C_0(s_0,f)-C_1(s_1,f),
+v_{01}(f)=\frac{C_0(s_0,f)-C_1(s_1,f)}{\Delta_{01}},
 ```
 
 and
 
 ```math
-v_{12}(f)=C_1(s_1,f)-C_2(s_2,f).
+v_{12}(f)=\frac{C_1(s_1,f)-C_2(s_2,f)}{\Delta_{12}}.
 ```
 
 A strong acceleration condition is
