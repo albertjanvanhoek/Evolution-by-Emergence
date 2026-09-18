@@ -10,7 +10,53 @@ Machine-readable-oriented claim ledger for agentic evaluation.
 - **falsification_path**: concrete way to challenge/test the claim
 - **evaluation_prompt**: reusable prompt skeleton for autonomous evaluators
 
-## Claim ledger
+
+## Current theory core ledger — September 2026
+
+The canonical prose statement is [THEORY.md](THEORY.md). Exact theorem names,
+formal status, and proof boundaries are in
+[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md).
+
+These claims are intentionally narrower than "Evolution by Emergence is true in
+every domain." The final universality claim remains a research programme.
+
+| claim_id | claim | source_files | evidence_type | falsification / review path |
+|---|---|---|---|---|
+| CLM_EBE_CORE_001 | Productive organization is downstream of encounter, association persistence, and conversion; reduced affinity models can have exact intermediate optima under stated mechanisms. | \`THEORY.md\`; \`papers/affinity-before-accessibility/\`; \`formalization/affinity-layer/AffinityLayer.lean\` | Machine-checked reduced models + interpretation | Find empirical/model classes where the proposed affinity mechanisms fail, or show the pre-accessibility decomposition hides the relevant causal variable. |
+| CLM_EBE_CORE_002 | Recurrent interaction can maintain a positive organization even when components are individually subcritical; exact finite dyad/three-cycle thresholds are machine checked. | \`formalization/collective-alignment/MaintenanceReproduction.lean\`; \`MaintenanceDynamics.lean\` | Machine checked | Produce a counterexample to the exact finite theorem or show the finite-cycle abstraction is inappropriate for the target system. |
+| CLM_EBE_CORE_003 | For a declared organization/gradient ledger, internal slack is captured throughput minus maintenance; higher uptake and/or lower maintenance cannot reduce slack. | \`EndogenousBudgetBridge.lean\`; \`DYNAMIC_OVERVIEW.md\` | Machine checked conditional ledger | Challenge the uptake/maintenance decomposition or its empirical measurability in an application. |
+| CLM_EBE_CORE_004 | Recurring opportunity plus bounded resource-feasible validated response can produce recurrent validated uptake; opportunity, resource feasibility, validation, and retention are logically distinct. | \`ResponseDynamics.lean\`; \`BoundedResponseWitness.lean\`; \`ValidatedUptake.lean\` | Machine checked + separation witnesses | Find a hidden implication between predicates or a missing causal variable that invalidates the chosen interface. |
+| CLM_EBE_CORE_005 | Retained generated organization can become parent material for later generation, making history causally relevant to later accessibility. | \`GenerativeClosure.lean\` | Machine checked witness | Show the retained-history interpretation does not survive turnover/recovery models, or construct an equivalent nonhistorical representation. |
+| CLM_EBE_CORE_006 | Retained module change or generator-rule change can strictly expand future search; viable state transitions can therefore be second-order accessibility clicks. | \`ModuleGeneratedEvolvability.lean\`; \`GeneratorRuleEvolution.lean\`; \`RecursiveAccessibility.lean\` | Machine checked | Attack the mapping from model state to search operator or show the strict-expansion criterion is insufficient for evolvability. |
+| CLM_EBE_CORE_007 | The integrated dynamic-vortex interface composes endogenous resource-funded response with recurring second-order organizational updates; under explicit retention/representation assumptions it yields open-ended retained novelty, unbounded envelope capacity, and recurring second-order updates. | \`DynamicVortex.lean\`; \`DynamicVortexWitness.lean\` | Machine checked + concrete witness | Test whether the response→physical-state-update premise is tautological, overly strong, or mechanistically unjustified in useful applications. |
+| CLM_EBE_CORE_008 | Under specific competition/cost assumptions, cheaper functionally equivalent implementations release slack and can increase search; state-dependent return paths can nevertheless overwhelm the ordinary positive selection component. | \`PersistenceDrift.lean\`; \`FunctionalCompetition.lean\`; \`ReturnPathPrice.lean\` | Machine checked toy models | Relax equivalence/cost laws or introduce state feedback and test whether the directional result survives. |
+| CLM_EBE_CORE_009 | Persistence, function, selected control, sufficient control, capacity, and realized novelty are distinct quantities; persistence or selection alone does not define success. | \`EquilibriumExposure.lean\`; \`FunctionalThresholds.lean\`; \`RegulatoryReturn.lean\`; \`CollectiveAlignment.lean\`; \`OpenEndedCapacity.lean\` | Machine-checked separations + declared functional criteria | Provide a theorem or empirical domain in which the coordinates collapse under justified assumptions. |
+| CLM_EBE_CORE_010 | A fixed finite distinguishability universe saturates; open-ended cumulative retained novelty requires unbounded effective distinguishability capacity in the stated representation model. | \`FiniteGenerativeSaturation.lean\`; \`OpenEndedCapacity.lean\` | Machine checked | Find a counterexample under the exact definitions or identify a weaker capacity condition sufficient for the same open-endedness notion. |
+| CLM_EBE_CORE_011 | Under explicit physical speed/action assumptions, bounded finite-time resources bound fixed-resolution organizational depth; recursive accessibility does not imply finite-time physical explosion. | \`verification/organizational-depth/OrganizationalDepth.lean\`; \`OperationalBridge.lean\`; \`PackingDepth.lean\` | Machine checked conditional physical theorem | Challenge the speed-law hypothesis, operational metric bridge, budget decomposition, or fixed-resolution definition. |
+| CLM_EBE_CORE_012 | EbE's broad cross-domain claim is best treated as a synthesis/architecture research programme, not as a machine-checked universality theorem or a collection of wholly novel mechanisms. | \`THEORY.md\`; \`verification/audits/2026-09-15-literature/\` | Literature-audited synthesis / interpretive claim | Identify a stronger antecedent for the integrated architecture, or domains where the architecture adds no explanatory or predictive value over established formulations. |
+
+### Current core non-claims
+
+The current theory does not infer:
+
+- function from persistence;
+- truth from external validation;
+- improvement from novelty;
+- progress from selection;
+- empirical causality from a satisfiability witness;
+- physical free energy from dimensionless accessibility margin;
+- moral obligation from persistence;
+- universality from cross-domain analogy;
+- or novelty of individual mechanisms merely because they are placed in EbE notation.
+
+---
+
+## Earlier/application claim ledger
+
+The stable claim IDs below are retained for compatibility with earlier agentic
+evaluation workflows. Some are broader application or governance hypotheses and
+should not be confused with the current machine-backed core above.
+
 
 | claim_id | claim | source_files | evidence_type | falsification_path | evaluation_prompt |
 |---|---|---|---|---|---|
