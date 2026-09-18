@@ -43,6 +43,8 @@ formalization/cumulative-accessibility/README.md
 formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean
@@ -169,6 +171,7 @@ CumulativeAccessibility.AuditAll
 CumulativeAccessibility.VerificationSurface
 CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
+CumulativeAccessibility.BoundedResponseWitness
 
 AuditAll must import every module advertised by the package README.
 VerificationSurface explicitly prints the axiom dependencies of the declarations
@@ -187,10 +190,16 @@ persistent support
         + explicit SupportImpliesOpportunity connection
         -> recurring opportunity Q
 
+same-time route:
 Q + success at every opportunity V
         -> recurrent successful coincidence W
 
-W -> validated generative uptake G
+bounded-delay route:
+Q + per-opportunity resource-feasible validated response within lag Δ (B_Δ)
+        -> recurrent validated response within lag Δ (D_Δ)
+D_Δ -> validated generative uptake G
+
+W <-> D_0
 
 retention R + G
         -> open-ended cumulative retained novelty N
@@ -202,6 +211,9 @@ Also verify the separation results:
 Q and not N
 W and not V
 Q and G and not W
+D_1 and not W
+validated success and not resource-feasible validated success
+resource feasibility and not validated success
 
 For every arrow:
 
@@ -287,6 +299,22 @@ representation and retention remain explicit in P and R and N -> C.
 Confirm that W is a weaker sufficient coupling assumption than V, not a
 derivation of successful innovation from maintenance.
 
+Then inspect ResponseDynamics.lean and BoundedResponseWitness.lean. Check that:
+
+1. ResourceFeasibleAt is exactly a declared cost <= budget inequality at a
+   specific time and candidate;
+2. ResourceValidatedSuccessAt retains all ordinary validated-success premises
+   and adds, rather than replaces them with, resource feasibility;
+3. RecurringValidatedResponseWithin Δ keeps opportunity time q and success time
+   r distinct and enforces q <= r <= q + Δ;
+4. W is literally equivalent to the Δ=0 case;
+5. Q plus the local bounded resource-response premise B_Δ implies D_Δ and then G;
+6. the lag-1 even/odd witness really has D_1 while W is false;
+7. neither ordinary validated success nor resource feasibility implies the
+   other in the supplied separation witnesses;
+8. Cost and Budget are still exogenous functions, so the repository does not
+   yet claim an endogenous resource-flow theorem.
+
 SCIENTIFIC TASK 6 — TEST BOTH WITNESSES
 
 For FormalCoreWitness.lean:
@@ -360,10 +388,14 @@ Check that:
    limitation;
 6. statements about machine verification match your declared execution level;
 7. you distinguish the original non-vacuity witness from the gated dependency
-   witness;
+   witness and the bounded-delay response witness;
 8. you distinguish compilation coverage (AuditAll) from declaration-level axiom
    auditing (VerificationSurface);
-9. you do not infer W from separate recurrence of Q and G.
+9. you do not infer W from separate recurrence of Q and G;
+10. you do not treat resource feasibility as sufficient for generation,
+    validation, or retention;
+11. you distinguish explicit cost/budget inputs from endogenous resource
+    dynamics.
 
 OUTPUT FORMAT
 
