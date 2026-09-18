@@ -81,8 +81,14 @@ theorem fixedHalfPolicy_optimal_at_symmetric_state :
       FixedHalfRatePolicy symmetricOrganization := by
   have hAdaptive :=
     bottleneckRatePolicy_optimalAt symmetricOrganization
-  have hSame := bottleneckRatePolicy_on_witness_states.1
-  simpa [FixedHalfRatePolicy, hSame] using hAdaptive
+  have hSame :
+      BottleneckRatePolicy symmetricOrganization =
+        FixedHalfRatePolicy symmetricOrganization := by
+    rw [bottleneckRatePolicy_on_witness_states.1]
+    rfl
+  unfold PolicyOptimalAt at hAdaptive ⊢
+  rw [← hSame]
+  exact hAdaptive
 
 /-- The same fixed rule is not optimal after validation capacity has
 accumulated. -/
