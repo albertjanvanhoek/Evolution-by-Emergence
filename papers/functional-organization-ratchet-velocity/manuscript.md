@@ -20,7 +20,7 @@ We formalize this idea by separating organizational states from functional
 targets. Let `s_t` denote the current organization of a network and let
 `f` denote a functional target. We define `C_t^{\mathrm{perf}}(s_t,f)` as the declared cost
 of reliably realizing `f` from `s_t`. The vector
-`f ↦ C_t^{\mathrm{perf}}(s_t,f)` is the functional accessibility geometry of the
+`f ↦ C_t^{\mathrm{perf}}(s_t,f)` is the functional performance-cost geometry of the
 organization. It is the primitive moving object; no universal scalar complexity
 measure is assumed.
 
@@ -152,7 +152,7 @@ The primitive object is the profile
 \left(C_t^{\mathrm{perf}}(s_t,f)\right)_{f\in\Phi}.
 ```
 
-This profile is the **functional accessibility geometry**.
+This profile is the **functional performance-cost geometry**.
 
 It is generally directed, target-dependent, and context-dependent.
 
@@ -183,7 +183,7 @@ do(I_f),s,r
 The functional cost can then be grounded as
 
 ```math
-C_t(s,f)
+C_t^{\mathrm{perf}}(s,f)
 =
 \inf\left\{
 r:
