@@ -503,6 +503,76 @@ Retained history allows those changes to compose across multiple steps.
 
 ---
 
+# 11A. Layer 7A — quantitative accessibility geometry
+
+Binary accessibility records whether a future state is exposed. But organization
+can change the **cost** of future change even when the same future state was
+already possible.
+
+The quantitative extension assigns a directed transition cost
+
+\[
+C_t(x,y\mid R_t,E_t)
+\]
+
+to realizing future organization \(y\) from current organization \(x\), under
+environment \(E_t\), while preserving a declared retained repertoire \(R_t\).
+
+The cost is application-specific. It may represent time, energy, information,
+training updates, coordination burden, relationship risk, or another operational
+resource. It need not be symmetric and need not satisfy a triangle inequality.
+
+For budget \(B\), define the thresholded accessible set
+
+\[
+\mathcal A_t(x;B)
+=
+\{y:C_t(x,y)\le B\}.
+\]
+
+A quantitative second-order improvement occurs when a retained organizational
+change makes every declared target no more costly and at least one target
+strictly cheaper:
+
+\[
+C_{t+1}(y)\le C_t(y)
+\]
+
+for all declared targets, with
+
+\[
+C_{t+1}(y^\star)<C_t(y^\star)
+\]
+
+for at least one \(y^\star\).
+
+Lean proves that any such strict cost improvement creates a budget threshold at
+which the cheaper target is inaccessible before and accessible afterward.
+Therefore the existing binary SecondOrderClick is recovered as a thresholded
+special case of the quantitative geometry.
+
+This adds a distinction that is important throughout the theory:
+
+\[
+\boxed{
+\text{same logical possibility}
+\neq
+\text{same practical accessibility}.
+}
+\]
+
+It also gives a substrate-independent meaning to **plasticity** and
+**viscosity**. Plasticity concerns low-cost adaptive reconfiguration; viscosity
+concerns resistance or cost of reconfiguration. These are directional and
+target-dependent properties, not necessarily single scalar properties of an
+entire system.
+
+Formal source:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/QuantitativeAccessibility.lean
+
+---
+
 # 12. Layer 8 — the full vortex
 
 The current integrated formal core joins the resource route to the
@@ -842,6 +912,66 @@ It is not a theorem that every persistent system is intelligent, or that
 corrigibility is morally obligatory.
 
 The descriptive and normative steps must remain separate.
+
+## Inside translation: intelligent learning-maintenance processes
+
+Quantitative accessibility supplies the **outside** description of learning:
+the current organization induces a directed plasticity/viscosity geometry over
+future organization.
+
+Intelligent networks permit a complementary **inside** description. Let \(P_t\)
+denote the state of processes through which a learning network encounters,
+tests, corrects, repairs, retains, and recombines information. An
+application-specific map
+
+\[
+\boxed{
+C_t=\Gamma(P_t,X_t,E_t)
+}
+\]
+
+connects those internal processes to the outside accessibility geometry.
+
+For human or artificial learning networks, useful internal verbs can include:
+
+- seek and encounter;
+- listen;
+- signal faithfully;
+- expose uncertainty;
+- test;
+- revise;
+- maintain informative disagreement;
+- repair;
+- re-engage after demonstrated repair;
+- retain;
+- recombine.
+
+These verbs are **not** added to the universal EbE theorem as moral or causal
+axioms. Their effects require substrate-specific models or empirical tests.
+
+The two descriptions serve different roles:
+
+\[
+\boxed{
+\text{OUTSIDE: plasticity / viscosity geometry}
+\quad\Longleftrightarrow\quad
+\text{INSIDE: processes that alter that geometry}.
+}
+\]
+
+Ordinary learning changes current organization \(X_t\). Learning-to-learn
+changes \(P_t\) so that future transition costs improve. Self-improvement
+requires the system itself to generate the process intervention that produces
+that improvement. Recursive self-improvement additionally improves a declared
+measure of the system's capacity to generate further process improvements.
+
+Formal specialization:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean
+
+Working paper:
+
+papers/learning-conditions-for-learning/
 
 ---
 
