@@ -9,19 +9,29 @@ The package separates four questions that are easy to collapse informally:
 3. **Can new organization continue to be realized and retained?**
 4. **What capacity conditions are necessary for that process to remain open-ended?**
 
-The current formal-core route keeps maintenance support, opportunity, response delay, resource feasibility, retention, and representation separate:
+The current formal-core route keeps maintenance support, opportunity, internally generated resource slack, response delay, retention, and representation separate:
 
 ```text
+external gradient G_t
+        +
+organization-dependent uptake U(s_t,G_t)
+        -
+maintenance demand M(s_t)
+                ↓
+internal slack L_t
+                ↓  reinvestment beta_t
+endogenous response budget B_t^resp
+
 nonnegative three-cycle dynamics + positive canonical support vector
 + non-strict closed-loop replacement threshold
                 ↓
-persistent positive quantitative support bound
+persistent quantitative support
                 +
 declared support → opportunity connection
                 ↓
 recurring opportunity Q
 
-Q + per-opportunity resource-feasible validated response within lag Δ
+Q + internally financed validated response within lag Δ
                 ↓
 recurrent validated response within lag Δ
                 ↓
@@ -36,9 +46,9 @@ representation P + retention R + N
 unbounded effective distinguishability capacity C
 ```
 
-The earlier same-time coupling predicate `W` is now proved to be exactly the `Δ = 0` special case. Positive bounded delay is therefore a genuine generalization: the checked even/odd witness has recurrent lag-1 response and validated uptake while same-time `W` is false.
+The external gradient remains a boundary condition; the **usable response budget is endogenous to organization**. At fixed gradient, increasing uptake and/or reducing maintenance demand cannot reduce internal slack, and a nonnegative reinvestment coupling therefore cannot reduce response budget.
 
-The quantitative response layer still does **not** derive resource budgets, response costs, generation, validation, or retention from maintenance dynamics. It makes those mechanisms explicit so later work can model their dynamics rather than hiding them inside `W`.
+The earlier same-time predicate `W` remains exactly the `Δ = 0` special case. The exact shared-budget cumulative-accessibility margin `M=B/c*-1` is also connected to the response interface as a separate mechanism-level specialization; it is not identified with physical free-energy slack.
 
 This is a conditional mathematical implication chain. It is **not** a claim that persistence automatically creates learning, that novelty is improvement, or that the abstract assumptions automatically hold in real systems.
 
@@ -118,6 +128,8 @@ capacity for novelty ≠ realized novelty
 - `ValidatedUptake.lean` — adds a declared external acceptance predicate `E_t`.
 - `ResponseDynamics.lean` — adds explicit response cost/budget, bounded response delay, and the theorem that recurrent opportunity plus bounded resource-feasible response implies validated uptake.
 - `BoundedResponseWitness.lean` — lag-1 even/odd witness and resource-independence counterexamples.
+- `EndogenousBudgetBridge.lean` — maps organization-dependent gradient uptake minus maintenance into internally generated response budget; separately maps cumulative-accessibility margin into the same interface within its own units.
+- `EndogenousBudgetWitness.lean` — fixed-gradient uptake-improvement witness and exact `2/3 → 97/99` margin-funded response witness.
 
 The external predicate is intentionally uninterpreted. It is **not** defined to mean objective truth, fitness, utility, morality, or correctness.
 
@@ -190,6 +202,42 @@ resource feasibility ∧ ¬validated success
 
 The first uses opportunities at even times and successful uptake at odd times, so every opportunity is answered exactly one step later. The other two show that the resource inequality is an independent constraint: abstract validated success does not determine an arbitrary cost/budget model, and sufficient budget alone does not create generation or success.
 
+### Endogenous budget bridge
+
+`EndogenousBudgetBridge.lean` closes the resource seam left by the bounded-response layer.
+
+For organizational state `s_t`, external gradient `G_t`, uptake function `U`, maintenance demand `M`, and reinvestment fraction `beta_t`, it defines
+
+```text
+InternalSlackAt(t) = U(s_t,G_t) - M(s_t)
+
+EndogenousResponseBudget(t)
+    = beta_t * InternalSlackAt(t).
+```
+
+Lean checks that viability is equivalent to nonnegative internal slack, and that at fixed external gradient
+
+```text
+higher uptake + no larger maintenance
+        → no lower internal slack
+        → no lower response budget        (beta >= 0).
+```
+
+A strict response-budget increase opens a nonempty interval of response costs that were unaffordable before and affordable afterward.
+
+The concrete fixed-gradient witness keeps `G=10` and maintenance `=6`, changes organizational uptake from `10` to `11`, and therefore raises slack/budget from `4` to `5`. A response cost `9/2` crosses that window and finances the existing lag-1 even/odd response architecture. With recurrent opportunity this yields `G`; with retention it yields `N`.
+
+The same interface is also instantiated by the existing cumulative-accessibility margin without equating it to physical energy:
+
+```text
+M_0 = 2/3
+M_1 = 97/99
+response/load cost = 9/10
+```
+
+so the exact first retained click makes the same `9/10` second-click load infeasible before and feasible afterward.
+
+
 ### Two complementary witnesses
 
 `FormalCoreWitness.lean` is the original **logical non-vacuity witness**. It shows that the premise set of the cross-stack theorem can be inhabited simultaneously. Its progressive architecture is deliberately stronger than necessary and realizes novelty at every time step; therefore it does not make maintenance opportunity load-bearing in that particular construction.
@@ -230,6 +278,7 @@ CumulativeAccessibility.VerificationSurface
 CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
 CumulativeAccessibility.BoundedResponseWitness
+CumulativeAccessibility.EndogenousBudgetWitness
 ```
 
 Changes under `formalization/collective-alignment/**` now trigger the downstream cumulative-accessibility workflow because that package is a local dependency.
@@ -250,7 +299,8 @@ lake build \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness \
-  CumulativeAccessibility.BoundedResponseWitness
+  CumulativeAccessibility.BoundedResponseWitness \
+  CumulativeAccessibility.EndogenousBudgetWitness
 ```
 
 To inspect the printed axioms directly:
@@ -260,6 +310,7 @@ lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
+lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
 ```
 
 A formal-core verification should fail review if any audited output contains `sorryAx`.
@@ -286,6 +337,6 @@ Machine checking establishes that the stated conclusions follow from the stated 
 - physical reality has a fixed finite state space;
 - or empirical systems satisfy the model assumptions.
 
-The present maintenance-to-novelty architecture is still feed-forward: novelty does not consume maintenance resources, modify the support bound, or feed back into the maintenance dynamics. The new response layer exposes time-dependent response costs, budgets, and bounded delay, but those functions are still declared inputs rather than endogenous resource dynamics. Generation, validation, and retention success are likewise not yet derived from a stochastic or adaptive mechanism.
+The response budget is now endogenous to a declared organization/gradient ledger, but the architecture is not yet fully closed dynamically. The organizational state trajectory, external-gradient trajectory, response costs, generation, validation, and retention success are still supplied rather than derived from the retained novelty event. In particular, the current theorem does not yet prove that a successful retained response changes organization in a way that raises future uptake or lowers future maintenance.
 
 Those are separate modelling, empirical, and interpretive questions.
