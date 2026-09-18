@@ -145,7 +145,8 @@ jobs:
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
-            CumulativeAccessibility.IntelligentLearningMaintenance
+            CumulativeAccessibility.IntelligentLearningMaintenance \\
+            CumulativeAccessibility.FunctionalRatchetVelocity
       - name: Audit integrated theory axioms
         shell: bash
         run: |
@@ -156,6 +157,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
