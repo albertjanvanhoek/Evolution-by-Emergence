@@ -123,7 +123,6 @@ theorem vortexOpportunity_recurring :
   intro n
   refine ⟨n + 1, by omega, ?_⟩
   simp [vortexOpportunity]
-  omega
 
 /-- After the initial improvement, the internally generated response budget is
 exactly 5 at every opportunity time. -/
