@@ -33,6 +33,10 @@ layer, where organization states and future targets share one type.
 - `NoMoreFunctionallyViscousOn`
 - `StrictlyLessFunctionallyViscousOn`
 - `FunctionalStepVelocity`
+- `FunctionalStepRate`
+- `PositiveFunctionalRateOn`
+- `FunctionalRateDominatesOn`
+- `StrictlyFasterFunctionalRateOn`
 - `NonnegativeFunctionalVelocityOn`
 - `PositiveFunctionalVelocityOn`
 - `NoLessFunctionalVelocityOn`
@@ -55,9 +59,13 @@ layer, where organization states and future targets share one type.
    repertoire at some budget.
 6. Positive functional velocity therefore induces strict repertoire expansion
    at some budget.
-7. A strong accelerating ratchet contains an explicit target whose functional
+7. Positive unit-step velocity remains positive after normalization by any
+   positive duration/resource interval.
+8. Strict matched rate improvement contains an explicit functional target whose
+   normalized acquisition rate is higher in the comparison episode.
+9. A strong accelerating ratchet contains an explicit target whose functional
    cost falls faster in the second matched interval.
-8. A concrete two-state/two-function witness shows repertoire expansion without
+10. A concrete two-state/two-function witness shows repertoire expansion without
    changing the type or number of components.
 
 ## Important boundary
