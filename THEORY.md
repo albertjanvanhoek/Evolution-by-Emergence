@@ -573,6 +573,124 @@ formalization/cumulative-accessibility/CumulativeAccessibility/QuantitativeAcces
 
 ---
 
+# 11B. Layer 7B — functional organization and ratchet velocity
+
+The quantitative geometry above treats future organizations as targets. For
+many applications, however, the organization and what that organization can
+**do** are different kinds of object.
+
+Let
+
+\[
+s_t\in\Sigma
+\]
+
+denote organizational state and let
+
+\[
+f\in\Phi
+\]
+
+denote a declared functional target. Define
+
+\[
+C_t(s_t,f)
+\]
+
+as the resource cost of reliably realizing function \(f\) from organization
+\(s_t\), under declared environmental and retention conditions.
+
+This separation matters. A neural configuration is not the same object as
+"understand this French sentence". An ecological community is not the same
+object as "cycle nitrogen". A scientific institution is not the same object as
+"detect this class of error".
+
+A functional target should therefore be operationalized by a declared test:
+an intervention/input family, an observable success criterion, an allowed error
+level, and the context in which the test applies. Schematically,
+
+\[
+C_t(s,f)
+=
+\inf\left\{
+r:
+\Pr(S_f\mid do(I_f),s,r)\ge 1-\varepsilon_f
+\right\}.
+\]
+
+For budget \(B\), the functional repertoire is
+
+\[
+\mathcal F_t(B)
+=
+\{f:C_t(s_t,f)\le B\}.
+\]
+
+The primitive moving object is not a universal scalar "amount of organization".
+It is the target-indexed **functional cost profile**
+
+\[
+\mathbf C_t
+=
+\big(C_t(s_t,f)\big)_{f\in\Phi}.
+\]
+
+For one interval define functional gain
+
+\[
+g_t(f)
+=
+C_t(s_t,f)-C_{t+1}(s_{t+1},f).
+\]
+
+For a positive declared time or resource interval \(\Delta_t\), define
+normalized ratchet velocity
+
+\[
+\boxed{
+v_t(f)=\frac{g_t(f)}{\Delta_t}.
+}
+\]
+
+A strong positive ratchet step is Pareto-like on a declared retained target
+family: no target becomes more costly and at least one becomes strictly cheaper.
+Lean proves that such a step necessarily creates a budget threshold at which
+the declared functional repertoire strictly expands.
+
+Ratchet acceleration is then a statement about **rates**, not merely about a
+later state being better. Across matched or explicitly normalized episodes, the
+later rate profile must weakly dominate the earlier one and strictly dominate it
+for at least one declared target.
+
+This formulation deliberately keeps the fundamental object vector-valued.
+Scalar summaries are allowed, but only after an application declares its target
+family, measure, weights, budget, and aggregation rule.
+
+The outside research question is therefore:
+
+\[
+\boxed{
+\text{What determines the velocity at which a commons acquires retained
+functional organization?}
+}
+\]
+
+Candidate control parameters include resource throughput, proposal/variation
+rate, recombination, validation fidelity, retention, modularity, differentiation,
+interaction topology, delay, repair, diversity, and coordination cost. Their
+effects need not be monotone; the target is a regime-dependent theory of
+ratchet velocity.
+
+Formal source:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
+
+Working paper:
+
+papers/functional-organization-ratchet-velocity/
+
+---
+
 # 12. Layer 8 — the full vortex
 
 The current integrated formal core joins the resource route to the
@@ -953,17 +1071,34 @@ The two descriptions serve different roles:
 
 \[
 \boxed{
-\text{OUTSIDE: plasticity / viscosity geometry}
+\text{OUTSIDE: functional accessibility geometry and ratchet velocity}
 \quad\Longleftrightarrow\quad
-\text{INSIDE: processes that alter that geometry}.
+\text{INSIDE: processes that alter that velocity}.
 }
 \]
 
-Ordinary learning changes current organization \(X_t\). Learning-to-learn
-changes \(P_t\) so that future transition costs improve. Self-improvement
-requires the system itself to generate the process intervention that produces
-that improvement. Recursive self-improvement additionally improves a declared
-measure of the system's capacity to generate further process improvements.
+Ordinary learning changes current capability. Learning-to-learn changes
+\(P_t\) so that future functional acquisition becomes cheaper or faster.
+Self-improvement requires the system itself to generate and apply the process
+intervention that produces the improvement.
+
+The preferred operational form of **recursive self-improvement** is stronger.
+Start matched learning episodes from the same organization, hold the declared
+held-out target family fixed, normalize by positive time/resource intervals,
+and compare the old and self-modified learning processes. The new process must
+preserve declared prior functions, be no slower on the declared held-out
+targets, and be strictly faster on at least one:
+
+\[
+v_{P_{t+1}}(f)\ge v_{P_t}(f)
+\quad\forall f\in\Phi_L,
+\]
+
+with strict inequality somewhere.
+
+This does not imply runaway acceleration. Resource limits, interference,
+increasing target difficulty, loss of diversity, or finite physical throughput
+can make later velocity plateau or fall.
 
 Formal specialization:
 
