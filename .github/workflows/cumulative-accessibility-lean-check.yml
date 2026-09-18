@@ -45,7 +45,8 @@ jobs:
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.FormalCoreWitness \
-            CumulativeAccessibility.MaintenanceGatedWitness
+            CumulativeAccessibility.MaintenanceGatedWitness \
+            CumulativeAccessibility.BoundedResponseWitness
 
       - name: Reject unproven formal-core axioms
         shell: bash
@@ -55,6 +56,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
