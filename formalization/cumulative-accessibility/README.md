@@ -9,25 +9,34 @@ The package separates four questions that are easy to collapse informally:
 3. **Can new organization continue to be realized and retained?**
 4. **What capacity conditions are necessary for that process to remain open-ended?**
 
-The current formal-core route is:
+The current formal-core route keeps maintenance support, opportunity, response, retention, and representation separate:
 
 ```text
-strict recurrent maintenance conditions
+nonnegative three-cycle dynamics + positive canonical support vector
++ non-strict closed-loop replacement threshold
                 ↓
-recurring maintenance opportunity
+persistent positive quantitative support bound
                 +
-opportunity-conditioned validated realization
-                +
-retention
+declared support → opportunity connection
                 ↓
-validated generative uptake
+recurring opportunity Q
+
+Q + success at every opportunity V
                 ↓
-open-ended cumulative retained novelty
-                +
-representation inside a moving envelope
+recurrent successful coincidence W
                 ↓
-unbounded effective distinguishability capacity
+validated generative uptake G
+
+retention R + G
+                ↓
+open-ended cumulative retained novelty N
+
+representation P + retention R + N
+                ↓
+unbounded effective distinguishability capacity C
 ```
+
+The weaker response assumption `W` already contains recurring successful uptake; maintenance does not derive it. The next dynamical problem is to derive such recurrent success from independently specified support, resource, generation, validation, and delay mechanisms.
 
 This is a conditional mathematical implication chain. It is **not** a claim that persistence automatically creates learning, that novelty is improvement, or that the abstract assumptions automatically hold in real systems.
 
@@ -112,21 +121,60 @@ With retention, repeated validated generative uptake implies open-ended cumulati
 
 ### Maintenance bridge
 
-`MaintenanceOpportunityBridge.lean` separates:
+`MaintenanceDynamics.lean` now preserves the quantitative information that the earlier Boolean interface discarded. It defines a state `x` as supported by a lower-bound vector `b` only when `b` is itself strictly positive and `x ≥ b` componentwise.
+
+For the canonical three-cycle witness, Lean proves under nonnegative coefficients, positivity of the canonical witness, and the **non-strict** product threshold:
 
 ```text
-RecurringOpportunity
+∀ n, Supported(canonicalVector, trajectory n).
 ```
 
-from
+The scalar
 
 ```text
-OpportunityConditionedValidatedRealization.
+ε = min(canonicalVector.a, canonicalVector.b, canonicalVector.c)
 ```
 
-The concrete strict three-cycle maintenance dynamics discharge the recurring-opportunity premise under their stated assumptions. Combined with validated response and retention, Lean derives open-ended cumulative retained novelty.
+is therefore positive and lower-bounds every trajectory component at every time. The vector remains the primary object; the scalar floor is only a summary. This is a mathematical reference level inside the construction, not by itself an empirically calibrated operational threshold.
 
-A control theorem shows that recurring opportunity alone is insufficient.
+`MaintenanceOpportunityBridge.lean` then requires an explicit declared connection
+
+```text
+SupportImpliesOpportunity Support Opportunity
+```
+
+before persistent support can imply recurring opportunity. Persistent support cannot establish recurrence of an arbitrary external opportunity predicate.
+
+The response layer distinguishes four predicates:
+
+```text
+Q = recurring opportunity
+V = success at every opportunity
+W = recurring same-time opportunity + successful validated uptake
+G = recurring successful validated uptake
+```
+
+Lean checks:
+
+```text
+Q ∧ V → W
+W → Q
+W → G
+R ∧ G → N
+P ∧ R ∧ N → C
+```
+
+and the separation witnesses:
+
+```text
+Q ∧ ¬N
+W ∧ ¬V
+Q ∧ G ∧ ¬W
+```
+
+The last witness uses recurring opportunities at even times and successful uptake at odd times. It shows that separate recurrence does not imply recurring coincidence.
+
+The present `W` definition requires opportunity and success at the same indexed time. Delayed response will require an explicit relation between an earlier opportunity and a later success and is intentionally outside this revision.
 
 ### Two complementary witnesses
 
@@ -150,24 +198,28 @@ This demonstrates a genuine dependency inside the formal model. It does **not** 
 
 ## Verification contract
 
-The CI workflow no longer treats plain `lake build` as sufficient evidence for the formal core.
+Compilation coverage and proof-dependency auditing are now separate explicit checks.
 
-It explicitly builds:
+`CumulativeAccessibility.AuditAll` imports every module advertised in this README. CI builds that aggregate target so an auxiliary advertised module cannot remain outside the verification surface merely because the central witness import graph does not reach it.
 
-```text
-CumulativeAccessibility.FormalCoreWitness
-CumulativeAccessibility.MaintenanceGatedWitness
-```
-
-These targets recursively force the finite-saturation, open-ended-capacity, uptake, validation, maintenance-dynamics, and bridge dependencies through Lean.
-
-Both witness files also contain `#print axioms` statements for their central theorems. CI re-runs those source files and fails if the output contains:
+`CumulativeAccessibility.VerificationSurface` contains an explicit reviewed list of advertised declarations and prints their axiom dependencies. CI fails if any printed dependency contains:
 
 ```text
 sorryAx
 ```
 
-The checked theorems use standard Lean/Mathlib axioms such as `propext`, `Classical.choice`, and `Quot.sound`; the release criterion is that no formal-core result depends on an unproven `sorry` placeholder.
+CI also retains the two end-to-end witness targets:
+
+```text
+CumulativeAccessibility.AuditAll
+CumulativeAccessibility.VerificationSurface
+CumulativeAccessibility.FormalCoreWitness
+CumulativeAccessibility.MaintenanceGatedWitness
+```
+
+Changes under `formalization/collective-alignment/**` now trigger the downstream cumulative-accessibility workflow because that package is a local dependency.
+
+The checked theorems may use standard Lean/Mathlib axioms such as `propext`, `Classical.choice`, and `Quot.sound`; the verification criterion is that no selected advertised result depends on an unproved `sorry` placeholder. Adding a result to the advertised verification surface therefore requires both importing its module through `AuditAll` and adding its declaration to the explicit axiom-audit list.
 
 ## Reproduce locally
 
@@ -179,6 +231,8 @@ lake update
 lake exe cache get
 lake build
 lake build \
+  CumulativeAccessibility.AuditAll \
+  CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness
 ```
@@ -186,6 +240,7 @@ lake build \
 To inspect the printed axioms directly:
 
 ```bash
+lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 ```
@@ -213,5 +268,7 @@ Machine checking establishes that the stated conclusions follow from the stated 
 - the strict three-cycle result already generalizes to arbitrary networks;
 - physical reality has a fixed finite state space;
 - or empirical systems satisfy the model assumptions.
+
+The present maintenance-to-novelty architecture is still feed-forward: novelty does not consume maintenance resources, modify the support bound, change generation or validation costs, or feed back into the maintenance dynamics. Recurrent successful uptake is still assumed through V or W rather than derived from such mechanisms.
 
 Those are separate modelling, empirical, and interpretive questions.
