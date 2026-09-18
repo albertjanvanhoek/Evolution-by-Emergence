@@ -25,26 +25,29 @@ The immutable **v15** release remains the historical verification-closure object
 
 Start with:
 
-1. `DYNAMIC_OVERVIEW.md` — canonical statement of the full dynamic thesis, proof-status map, physical boundary, and peer-review targets.
-2. `RELEASE_NOTES.md` — current stacked revisions plus the historical v15 record.
-3. `formalization/cumulative-accessibility/README.md` — map of the Lean package and the verification contract.
-4. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean` — composition theorem joining endogenous response to second-order accessibility.
-5. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean` — concrete full-dynamic witness.
-6. `formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean` — concrete joint-satisfiability witness.
-7. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean` — opportunity-gated dependency and ablation witness.
-8. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean` — maintenance-to-opportunity and same-time response bridge.
-9. `formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean` — bounded response delay and quantitative resource feasibility.
-10. `formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean` — lag-1 and resource-independence witnesses.
-11. `formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean` — internally generated gradient-slack response budget and cumulative-margin specialization.
-12. `formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean` — fixed-gradient and exact-margin seam witnesses.
-13. `formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean` — external validation kept separate from ordinary generative novelty.
-14. `formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean` — open-ended novelty and unbounded distinguishability capacity.
-15. `formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean` — finite-capacity saturation boundary.
-16. `formalization/cumulative-accessibility/CumulativeAccessibility/GenerativeClosure.lean` — retained generative stepping stones.
-17. `formalization/cumulative-accessibility/CumulativeAccessibility/AuditAll.lean` — aggregate advertised-module compilation target.
-18. `formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean` — explicit advertised-result axiom audit.
-19. `verification/audits/` — theorem and literature audits.
-20. `PEER_REVIEW_PROMPT.md` — operational protocol for LLM-assisted adversarial review.
+1. `THEORY.md` — canonical accessible statement of the current full theory.
+2. `DYNAMIC_OVERVIEW.md` — detailed resource-fed recursive accessibility dynamics.
+3. `FORMAL_THEORY_MAP.md` — theory claim → exact Lean declaration map.
+4. `formalization/README.md` — all Lean packages and local reproduction commands.
+5. `RELEASE_NOTES.md` — current stacked revisions plus the historical v15 record.
+9. `formalization/cumulative-accessibility/README.md` — integrated cumulative-accessibility package and verification contract.
+10. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean` — composition theorem joining endogenous response to second-order accessibility.
+11. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean` — concrete full-dynamic witness.
+9. `formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean` — concrete joint-satisfiability witness.
+10. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean` — opportunity-gated dependency and ablation witness.
+11. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean` — maintenance-to-opportunity and same-time response bridge.
+12. `formalization/cumulative-accessibility/CumulativeAccessibility/ResponseDynamics.lean` — bounded response delay and quantitative resource feasibility.
+13. `formalization/cumulative-accessibility/CumulativeAccessibility/BoundedResponseWitness.lean` — lag-1 and resource-independence witnesses.
+14. `formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean` — internally generated gradient-slack response budget and cumulative-margin specialization.
+15. `formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetWitness.lean` — fixed-gradient and exact-margin seam witnesses.
+16. `formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.lean` — external validation kept separate from ordinary generative novelty.
+17. `formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean` — open-ended novelty and unbounded distinguishability capacity.
+18. `formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean` — finite-capacity saturation boundary.
+19. `formalization/cumulative-accessibility/CumulativeAccessibility/GenerativeClosure.lean` — retained generative stepping stones.
+20. `formalization/cumulative-accessibility/CumulativeAccessibility/AuditAll.lean` — aggregate advertised-module compilation target.
+21. `formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean` — explicit advertised-result axiom audit.
+22. `verification/audits/` — theorem and literature audits.
+23. `PEER_REVIEW_PROMPT.md` — operational protocol for LLM-assisted adversarial review.
 
 Treat this route as a **map, not evidence**.
 
@@ -128,7 +131,7 @@ For a high-fidelity conceptual overview with limited context, read:
 7. `CLAIMS.md` — compact claim ledger and falsification prompts.
 8. `concepts.json` — machine-readable vocabulary; verify it against newer sources because it may lag the prose corpus.
 
-For the historical book argument, start from `Instructions_to_complile_the_book.tex` and its included chapters.
+For the historical book argument, start from `Instructions_to_complile_the_book.tex` and its included chapters. The historical book records the development of the project; `THEORY.md` is the current theory surface.
 
 ## Corpus status and authority
 
