@@ -25,6 +25,7 @@ import CumulativeAccessibility.FunctionalRatchetVelocity
 import CumulativeAccessibility.RatchetVelocityLedger
 import CumulativeAccessibility.BoundedUpdateRate
 import CumulativeAccessibility.SearchValidationTradeoff
+import CumulativeAccessibility.StateDependentAllocation
 
 /-!
 # Aggregate package audit target
