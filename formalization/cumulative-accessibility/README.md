@@ -63,6 +63,7 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 - `RecursiveAccessibility.lean` — finite search opportunity, retained stepping stones, second-order clicks, and separation of reachable depth from search-operator expansion.
 - `QuantitativeAccessibility.lean` — directed accessibility-cost geometry, plasticity/viscosity order, and recovery of a binary second-order click from strict quantitative improvement at a suitable budget.
 - `FunctionalRatchetVelocity.lean` — separates organizational states from functional targets, defines functional repertoire, target-wise functional gain and duration/resource-normalized ratchet rates, and connects strict functional cost improvement to thresholded repertoire expansion.
+- `RatchetVelocityLedger.lean` — optional mechanism ledger separating opportunity rate, generation, resource feasibility, validation, retention, and mean retained gain; its match to an empirical rate remains an explicit modelling assumption.
 - `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states into the outside geometry, including a matched held-out rate-grounded definition of recursive self-improvement.
 - `EvolvabilityStructure.lean` — candidate-set ordering, functional projection, and recombination.
 - `GenerativeArity.lean` — finite-parent generators and unary versus multi-parent generation.
@@ -125,6 +126,20 @@ than a universal scalar complexity measure. Lean checks:
 For positive declared duration/resource interval Δ, the gain is normalized into
 a functional rate. Matched episodes can therefore be compared even when their
 durations differ.
+
+RatchetVelocityLedger.lean adds the conditional specialization
+
+    v_ledger = opportunityRate
+               * pGenerate
+               * pResource
+               * pValidate
+               * pRetain
+               * meanGain
+
+with an explicit `VelocityLedgerMatches` predicate separating the measured rate
+from the ledger. Lean checks zero-bottleneck and ceteris-paribus monotonicity
+results; it does not infer that this product is the correct empirical model in
+every domain.
 
 IntelligentLearningMaintenance.lean is deliberately separate. It introduces an
 internal process state P, a map from process state to accessibility geometry,
