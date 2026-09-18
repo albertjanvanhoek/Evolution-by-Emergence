@@ -50,7 +50,7 @@ def TwoBaselineAllocationScore
 
 /-- Unconstrained balancing allocation: the resource split that makes final
 search and validation capacities equal. -/
-def TwoBaselineBalancingAllocation
+noncomputable def TwoBaselineBalancingAllocation
     (searchBase validationBase : ℝ) : ℝ :=
   (1 + validationBase - searchBase) / 2
 
