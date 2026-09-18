@@ -65,6 +65,9 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 - `FunctionalRatchetVelocity.lean` — separates organizational states from functional targets, defines functional repertoire, target-wise functional gain and duration/resource-normalized ratchet rates, and connects strict functional cost improvement to thresholded repertoire expansion.
 - `RatchetVelocityLedger.lean` — optional mechanism ledger separating opportunity rate, generation, resource feasibility, validation, retention, and mean retained gain; its match to an empirical rate remains an explicit modelling assumption.
 - `BoundedUpdateRate.lean` — first derived speed bridge: bounded opportunity gaps plus bounded validated-response lag imply bounded successful-update gaps; maintained three-cycle support yields the zero-opportunity-gap specialization and, with a minimum-gain seam, a functional-gain guarantee in every finite response window.
+- `SearchValidationTradeoff.lean` — exact unit-budget search/validation trade-off showing an interior optimum rather than monotonic benefit from more search.
+- `StateDependentAllocation.lean` — retained validation infrastructure changes the velocity-maximizing allocation of the next resource unit.
+- `BottleneckAllocation.lean` — symmetric inherited search/validation capacities, interior bottleneck equalization, and boundary all-to-bottleneck allocation regimes.
 - `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states into the outside geometry, including a matched held-out rate-grounded definition of recursive self-improvement.
 - `EvolvabilityStructure.lean` — candidate-set ordering, functional projection, and recombination.
 - `GenerativeArity.lean` — finite-parent generators and unary versus multi-parent generation.
@@ -127,6 +130,13 @@ than a universal scalar complexity measure. Lean checks:
 For positive declared duration/resource interval Δ, the gain is normalized into
 a functional rate. Matched episodes can therefore be compared even when their
 durations differ.
+
+The allocation modules then make one source of non-monotonicity and
+state-dependence explicit. Under a shared unit resource, search and validation
+cannot both be increased independently. The symmetric reduced model has
+`v(x)=x(1-x)`; inherited stage capacities shift the optimizer, and the
+two-baseline model proves a classical bottleneck-equalization rule. These are
+toy mechanism models, not universal optimization laws.
 
 RatchetVelocityLedger.lean adds the conditional specialization
 
