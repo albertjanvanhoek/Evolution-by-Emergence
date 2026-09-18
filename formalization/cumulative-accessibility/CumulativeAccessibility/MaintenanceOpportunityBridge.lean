@@ -7,27 +7,33 @@ namespace RecursiveAccessibility
 /-!
 # Maintenance opportunity bridge
 
-The repository's maintenance-reproduction formalization establishes finite
-algebraic conditions under which recurrent maintenance loops have positive
-replacement/growth witnesses. `MaintenanceDynamics.lean` promotes the concrete
-three-cycle witness to a time-indexed positive trajectory and proves arbitrarily
-late maintenance availability under explicit sign and closed-loop assumptions.
+The maintenance package supplies a quantitative lower-bound result for the
+canonical three-cycle trajectory.  Under nonnegative update coefficients,
+positivity of the canonical support vector, and the non-strict closed-loop
+replacement threshold, every trajectory state remains componentwise above that
+strictly positive vector.
 
-This file connects that result to the cumulative-accessibility stack without
-identifying persistence with learning. A separate response condition states what
-the generative/validation system does when a maintenance opportunity occurs.
-Together they imply the validated-uptake condition from `ValidatedUptake.lean`.
+This file deliberately separates that support fact from the opportunity and
+response layers.  Persistent support yields recurrence of a chosen opportunity
+predicate only through an explicit SupportImpliesOpportunity connection.
 
-The resulting architecture is
+On the response side, F(m) is a complete successful validated uptake event,
+Q is recurring opportunity, V requires success at every opportunity, W requires
+arbitrarily late same-time opportunity/success coincidence, and G is recurring
+validated generative uptake.  The checked route is
 
-    strict closed maintenance loop
-      -> arbitrarily late maintenance availability
-      + opportunity-conditioned validated realization
-      -> validated generative capacity uptake
-      -> open-ended cumulative retained novelty
-      -> unbounded distinguishability capacity
+    persistent quantitative support
+      + declared support -> opportunity connection
+      -> Q
+    Q + V -> W
+    W -> G
+    R + G -> N
+    P + R + N -> C
 
-under the same retention and representation assumptions as before.
+The separation witnesses show that recurring opportunity alone need not produce
+novelty, W need not imply V, and separate recurrence of Q and G need not imply
+W.  No theorem here derives recurrent successful innovation from maintenance
+alone.
 -/
 
 section OpportunityInterface
