@@ -682,13 +682,32 @@ connectivity, trust, diversity, or plasticity as monotonically beneficial.
 ### 8.5 Meta-learning and artificial systems
 
 Meta-learning supplies an engineered example of optimizing a system for future
-learnability rather than present task performance alone. The paper does not
-depend on a specific meta-learning algorithm. Its relevance is conceptual: two
-systems with similar current capability can differ in the cost of acquiring
-future capability.
+learnability rather than present task performance alone. Finn, Abbeel and Levine
+(2017), for example, explicitly optimize parameters so that new tasks can be
+learned with few gradient steps and little data. The paper does not depend on a
+specific meta-learning algorithm. Its relevance is conceptual: two systems with
+similar current capability can differ in the cost of acquiring future
+capability.
 
-This motivates artificial neural systems as an experimental workbench for the
-more general accessibility theory.
+### 8.6 Plasticity loss
+
+Dohare et al. (2024) show that standard deep-learning systems can progressively
+lose their ability to learn in continual-learning settings. This provides the
+important reverse direction: accumulated learning can make the future
+accessibility geometry worse rather than better.
+
+This supports a central distinction:
+
+\[
+\text{current competence}
+\neq
+\text{future learnability}.
+\]
+
+Together, meta-learning and plasticity-loss results make artificial neural
+systems an unusually useful experimental workbench: the outside geometry can
+both improve and degrade, and the direction can be measured under controlled
+conditions.
 
 ---
 
@@ -964,6 +983,14 @@ effect of network structure on group performance. *Nature Communications*, 7,
 Baumann, F., Czaplicka, A., & Rahwan, I. (2024). Network structure shapes the
 impact of diversity in collective learning. *Scientific Reports*, 14, 2491.
 doi:10.1038/s41598-024-52837-3.
+
+Dohare, S., Hernandez-Garcia, J. F., Lan, Q., Rahman, P., Mahmood, A. R., &
+Sutton, R. S. (2024). Loss of plasticity in deep continual learning. *Nature*,
+632, 768–774. doi:10.1038/s41586-024-07711-7.
+
+Finn, C., Abbeel, P., & Levine, S. (2017). Model-Agnostic Meta-Learning for
+Fast Adaptation of Deep Networks. *Proceedings of Machine Learning Research*,
+70, 1126–1135.
 
 Gross, T., & Blasius, B. (2008). Adaptive coevolutionary networks: a review.
 *Journal of the Royal Society Interface*, 5(20), 259–271.
