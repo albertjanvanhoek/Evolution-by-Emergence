@@ -99,9 +99,11 @@ The preferred review strategy is adversarial: locate the smallest claim that can
 
 ## Verification status
 
-The current cumulative-accessibility CI separates package compilation coverage from declaration-level proof-dependency auditing.
+Verification now has two levels.
 
-It explicitly builds:
+### Integrated cumulative-accessibility surface
+
+The cumulative-accessibility workflow explicitly builds:
 
 ```text
 CumulativeAccessibility.AuditAll
@@ -110,13 +112,33 @@ CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
 CumulativeAccessibility.BoundedResponseWitness
 CumulativeAccessibility.EndogenousBudgetWitness
+CumulativeAccessibility.DynamicVortexWitness
 ```
 
-`AuditAll` imports every module advertised by the package README. `VerificationSurface` prints the axiom dependencies of an explicit reviewed declaration list, and CI fails if the output contains `sorryAx`. The two end-to-end witness audits are retained.
+`AuditAll` imports every module advertised by the package README.
+`VerificationSurface` prints axiom dependencies for an explicit reviewed
+declaration list, and CI rejects `sorryAx`.
 
-Because cumulative accessibility imports the local collective-alignment package, changes under `formalization/collective-alignment/**` also trigger the downstream check.
+### Full-theory meta surface
 
-Historical note: v14 declared formal-core closure but its plain `lake build` did not force every downstream module. v15 repaired the central end-to-end verification surface. The current revision extends that protection to advertised auxiliary modules and theorem-level axiom auditing without rewriting either historical tag.
+`.github/workflows/full-theory-proof-check.yml` additionally builds and
+source-audits the main supporting Lean packages together:
+
+```text
+affinity layer
+collective alignment / recurrent maintenance
+persistence drift / selection / slack
+cumulative accessibility / dynamic vortex
+organizational depth / operational bridge
+```
+
+Package-specific workflows remain responsible for additional numerical and
+paper-specific reproduction.
+
+Historical note: v14 declared formal-core closure but its plain `lake build`
+did not force every downstream module. v15 repaired the central end-to-end
+verification surface. The current revision adds repository-wide theory
+traceability without rewriting either historical tag.
 
 ## Minimal context pack
 
