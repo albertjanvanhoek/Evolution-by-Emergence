@@ -184,3 +184,40 @@ maintained three-cycle
 
 This is a deterministic local rate certificate. The formal core does not yet
 identify it with a universal long-run stochastic average.
+
+
+## From a window certificate to an actual average-rate floor
+
+The window theorem by itself guarantees at least one gain event in every block.
+That does not yet rule out offsetting losses between those events.
+
+The formal layer therefore adds the explicit condition
+
+```text
+∀ t, 0 ≤ TrajectoryFunctionalVelocity ... t target
+```
+
+for the chosen target.
+
+Under that condition, Lean defines the actual total functional gain in each
+non-overlapping block and proves
+
+```math
+\mathrm{BlockGain}_k \ge g_{\min}.
+```
+
+Dividing by the positive block width `W` gives the machine-checked average
+rate bound
+
+```math
+\frac{g_{\min}}{W}
+\le
+\mathrm{BlockAverageRate}_k.
+```
+
+For the maintained three-cycle specialization, `W=\Delta+1` once
+support→opportunity is declared and the response lag is bounded by `\Delta`.
+
+This makes the role of monotonic retention/per-target non-worsening explicit:
+without it, positive certified events do not by themselves imply a positive
+average functional velocity.
