@@ -1,4 +1,4 @@
-import CumulativeAccessibility.FunctionalRatchetVelocity
+import CumulativeAccessibility.BoundedUpdateRate
 
 namespace CumulativeAccessibility
 namespace IntelligentLearning
@@ -327,6 +327,202 @@ theorem rateGroundedRecursiveSelfImprovement_has_faster_learning_target
 end FunctionalRateGrounding
 
 /-!
+## Mechanism-level rate grounding
+
+Observed held-out learning-rate improvement is the strongest operational test,
+but the bounded-update layer also permits a mechanism-level certificate.
+
+A process can be associated with three application-estimated quantities:
+
+* maximum opportunity wait K;
+* maximum validated-response lag Δ;
+* minimum retained functional gain g_min.
+
+The resulting conservative rate floor is
+
+    g_min / (K + Δ + 1).
+
+This does not replace observed learning velocity. It records a mechanistic
+guarantee whose premises can be attacked separately.
+-/
+
+section MechanismRateGrounding
+
+variable {σ φ : Type*}
+
+/-- Application-level certificate for a learning-maintenance process. -/
+structure LearningMechanismCertificate where
+  opportunityGap : ℕ
+  responseLag : ℕ
+  minGain : ℝ
+
+/-- A process state is mapped to the rate certificate justified for that
+process by the application. -/
+abbrev ProcessRateCertificate (P : Type*) :=
+  P → LearningMechanismCertificate
+
+/-- Guaranteed rate floor associated with one process certificate. -/
+noncomputable def LearningMechanismCertificate.rateFloor
+    (certificate : LearningMechanismCertificate) : ℝ :=
+  BoundedMechanismRateFloor
+    certificate.opportunityGap
+    certificate.responseLag
+    certificate.minGain
+
+/-- Mechanism-grounded recursive self-improvement.
+
+The old process must endogenously generate and apply the process intervention,
+the new process must preserve declared retained functions at the matched
+starting organization, and its justified mechanism certificate must have a
+strictly larger guaranteed rate floor.
+
+This is deliberately weaker than the observed matched-episode definition:
+raising a conservative lower bound does not prove that realized learning
+velocity increased. -/
+def MechanismGroundedRecursiveSelfImprovementOn
+    (retainedTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (Certificate : ProcessRateCertificate P)
+    (start : σ)
+    (oldProcess newProcess : P) : Prop :=
+  ∃ intervention,
+    Generate oldProcess intervention ∧
+    Apply oldProcess intervention newProcess ∧
+    NoMoreFunctionallyViscousOn retainedTargets
+      (Γ oldProcess) (Γ newProcess) start start ∧
+    (Certificate oldProcess).rateFloor <
+      (Certificate newProcess).rateFloor
+
+theorem mechanismGroundedRecursiveSelfImprovement_increases_rateFloor
+    (retainedTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (Certificate : ProcessRateCertificate P)
+    (start : σ)
+    (oldProcess newProcess : P)
+    (h :
+      MechanismGroundedRecursiveSelfImprovementOn
+        retainedTargets Γ Generate Apply Certificate
+        start oldProcess newProcess) :
+    (Certificate oldProcess).rateFloor <
+      (Certificate newProcess).rateFloor := by
+  rcases h with ⟨intervention, hGen, hApply, hRetain, hRate⟩
+  exact hRate
+
+/-- If opportunity access and minimum gain are unchanged, positive minimum gain
+plus a strictly shorter response lag strictly raises the process certificate's
+guaranteed rate floor. -/
+theorem shorterResponseLag_improves_processRateCertificate
+    (Certificate : ProcessRateCertificate P)
+    (oldProcess newProcess : P)
+    (hOpportunity :
+      (Certificate oldProcess).opportunityGap =
+        (Certificate newProcess).opportunityGap)
+    (hGain :
+      (Certificate oldProcess).minGain =
+        (Certificate newProcess).minGain)
+    (hGainPos : 0 < (Certificate oldProcess).minGain)
+    (hLag :
+      (Certificate newProcess).responseLag <
+        (Certificate oldProcess).responseLag) :
+    (Certificate oldProcess).rateFloor <
+      (Certificate newProcess).rateFloor := by
+  unfold LearningMechanismCertificate.rateFloor
+  rw [← hOpportunity, ← hGain]
+  exact shorterResponseLag_strictlyRaises_rateFloor
+    (Certificate oldProcess).opportunityGap
+    (Certificate oldProcess).minGain
+    hGainPos hLag
+
+/-- If response lag and minimum gain are unchanged, positive minimum gain plus a
+strictly shorter opportunity wait strictly raises the process certificate's
+guaranteed rate floor. -/
+theorem shorterOpportunityGap_improves_processRateCertificate
+    (Certificate : ProcessRateCertificate P)
+    (oldProcess newProcess : P)
+    (hLag :
+      (Certificate oldProcess).responseLag =
+        (Certificate newProcess).responseLag)
+    (hGain :
+      (Certificate oldProcess).minGain =
+        (Certificate newProcess).minGain)
+    (hGainPos : 0 < (Certificate oldProcess).minGain)
+    (hOpportunity :
+      (Certificate newProcess).opportunityGap <
+        (Certificate oldProcess).opportunityGap) :
+    (Certificate oldProcess).rateFloor <
+      (Certificate newProcess).rateFloor := by
+  unfold LearningMechanismCertificate.rateFloor
+  rw [← hLag, ← hGain]
+  exact shorterOpportunityGap_strictlyRaises_rateFloor
+    (Certificate oldProcess).responseLag
+    (Certificate oldProcess).minGain
+    hGainPos hOpportunity
+
+/-- If both delay coordinates are unchanged, a strictly larger guaranteed
+functional gain strictly raises the process certificate's rate floor. -/
+theorem largerMinimumGain_improves_processRateCertificate
+    (Certificate : ProcessRateCertificate P)
+    (oldProcess newProcess : P)
+    (hOpportunity :
+      (Certificate oldProcess).opportunityGap =
+        (Certificate newProcess).opportunityGap)
+    (hLag :
+      (Certificate oldProcess).responseLag =
+        (Certificate newProcess).responseLag)
+    (hGain :
+      (Certificate oldProcess).minGain <
+        (Certificate newProcess).minGain) :
+    (Certificate oldProcess).rateFloor <
+      (Certificate newProcess).rateFloor := by
+  unfold LearningMechanismCertificate.rateFloor
+  rw [← hOpportunity, ← hLag]
+  exact largerMinimumGain_strictlyRaises_rateFloor
+    (Certificate oldProcess).opportunityGap
+    (Certificate oldProcess).responseLag
+    hGain
+
+/-- Endogenous process change with preserved prior function and a certified
+response-lag improvement is sufficient for mechanism-grounded recursive
+self-improvement. -/
+theorem endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImprovement
+    (retainedTargets : Set φ)
+    (Γ : FunctionalProcessGeometry P σ φ)
+    (Generate : P → I → Prop)
+    (Apply : P → I → P → Prop)
+    (Certificate : ProcessRateCertificate P)
+    (start : σ)
+    (oldProcess newProcess : P)
+    (intervention : I)
+    (hGenerate : Generate oldProcess intervention)
+    (hApply : Apply oldProcess intervention newProcess)
+    (hRetain :
+      NoMoreFunctionallyViscousOn retainedTargets
+        (Γ oldProcess) (Γ newProcess) start start)
+    (hOpportunity :
+      (Certificate oldProcess).opportunityGap =
+        (Certificate newProcess).opportunityGap)
+    (hGain :
+      (Certificate oldProcess).minGain =
+        (Certificate newProcess).minGain)
+    (hGainPos : 0 < (Certificate oldProcess).minGain)
+    (hLag :
+      (Certificate newProcess).responseLag <
+        (Certificate oldProcess).responseLag) :
+    MechanismGroundedRecursiveSelfImprovementOn
+      retainedTargets Γ Generate Apply Certificate
+      start oldProcess newProcess := by
+  refine ⟨intervention, hGenerate, hApply, hRetain, ?_⟩
+  exact shorterResponseLag_improves_processRateCertificate
+    Certificate oldProcess newProcess
+    hOpportunity hGain hGainPos hLag
+
+end MechanismRateGrounding
+
+/-!
 The mathematical content of this specialization is intentionally modest. Its
 purpose is to preserve the two-level architecture:
 
@@ -349,6 +545,11 @@ those processes into Γ; they are not universal consequences of EbE.
 #print axioms recursiveSelfImprovement_increases_productivity
 #print axioms rateGroundedRecursiveSelfImprovement_preserves_retained_functions
 #print axioms rateGroundedRecursiveSelfImprovement_has_faster_learning_target
+#print axioms mechanismGroundedRecursiveSelfImprovement_increases_rateFloor
+#print axioms shorterResponseLag_improves_processRateCertificate
+#print axioms shorterOpportunityGap_improves_processRateCertificate
+#print axioms largerMinimumGain_improves_processRateCertificate
+#print axioms endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImprovement
 
 end IntelligentLearning
 end CumulativeAccessibility
