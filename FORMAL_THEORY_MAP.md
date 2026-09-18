@@ -335,6 +335,9 @@ QuantitativeAccessibility.lean
 
 - noMoreViscousOn_refl
 - noMoreViscousOn_trans
+- strictlyLessViscousOn_trans_noMoreViscousOn
+- noMoreViscousOn_trans_strictlyLessViscousOn
+- strictlyLessViscousOn_trans
 - noMoreViscousOn_preserves_budget_access
 - strictlyLessViscousOn_opens_budget_window
 - strictlyLessViscousOn_induces_strictExpansionAtBudget
