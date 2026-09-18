@@ -240,7 +240,7 @@ as a response budget in its own dimensionless units. The exact first cumulative 
 
 so the already-proved `9/10` second-click load lies outside the old budget and inside the new one. This closes the formal seam to the existing budget-ratchet result without claiming that normalized accessibility margin is literally free energy.
 
-The remaining open loop is now narrower: retained novelty does not yet cause the organizational state transition `s_t -> s_{t+1}`. The present witness supplies that state trajectory. Closing that final feedback would require a model in which retained organization changes uptake and/or maintenance, thereby changing future internally generated slack.
+The repository already contains the abstract recursive organizational transition one layer away from this ledger. `GenerativeClosure.lean` proves that retained generated organization becomes reusable parent material in later rounds; `RecursiveAccessibility.lean` defines `SecondOrderClick` as a viable transition that strictly changes the future search operator; `ModuleGeneratedEvolvability.lean` and `GeneratorRuleEvolution.lean` give concrete retained-module and rule-change mechanisms for such second-order clicks. The remaining seam is therefore a composition seam: connect an internally funded validated response to one of those existing state/search updates in a single end-to-end recursive construction, rather than inventing a new recursion principle.
 
 ## 9. Verification status and current stopping point
 
@@ -258,4 +258,4 @@ VerificationSurface.lean
 
 The new response modules are included in both surfaces. CI compiles them and rejects `sorryAx` in the selected declaration audits.
 
-Resource availability is now endogenous to the declared uptake-minus-maintenance ledger. What remains incomplete is the feedback from successful retained novelty into the organizational state that determines later uptake and maintenance. Response cost, generation, validation, and retention also remain explicit inputs/conditions rather than stochastic consequences of that state.
+Resource availability is now endogenous to the declared uptake-minus-maintenance ledger. The recursive effect of retained organization on later generative accessibility is already formalized in separate modules. What remains incomplete is their end-to-end composition with this resource-financed response layer, plus any application-specific mapping from a changed retained organization to changed physical uptake or maintenance. Response cost, generation, validation, and retention also remain explicit inputs/conditions rather than stochastic consequences of that physical state.
