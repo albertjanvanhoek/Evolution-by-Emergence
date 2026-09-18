@@ -18,9 +18,9 @@ commons into reliable, differentiated transformations.
 
 We formalize this idea by separating organizational states from functional
 targets. Let `s_t` denote the current organization of a network and let
-`f` denote a functional target. We define `C_t(s_t,f)` as the declared cost
+`f` denote a functional target. We define `C_t^{\mathrm{perf}}(s_t,f)` as the declared cost
 of reliably realizing `f` from `s_t`. The vector
-`f ↦ C_t(s_t,f)` is the functional accessibility geometry of the
+`f ↦ C_t^{\mathrm{perf}}(s_t,f)` is the functional accessibility geometry of the
 organization. It is the primitive moving object; no universal scalar complexity
 measure is assumed.
 
@@ -28,7 +28,7 @@ For a matched time or resource interval, functional ratchet velocity is the
 target-wise cost reduction
 
 ```math
-v_t(f)=C_t(s_t,f)-C_{t+1}(s_{t+1},f).
+v_t(f)=C_t^{\mathrm{perf}}(s_t,f)-C_{t+1}^{\mathrm{perf}}(s_{t+1},f).
 ```
 
 A strong positive ratchet step preserves the cost of every declared retained
@@ -121,23 +121,35 @@ An institution is not itself the function "detect a false claim".
 Define
 
 ```math
-C_t(s,f)
+C_t^{\mathrm{perf}}(s,f)
 ```
 
-as the minimum declared resource cost of reliably realizing functional target
-`f` from organization `s` under the relevant environment and retention
-constraints.
+as the minimum declared **performance/evaluation cost** of reliably realizing
+functional target `f` with the current organization `s`, under the relevant
+environment and evaluation protocol.
 
-Cost may represent time, energy, material, training updates, samples,
-coordination effort, communication burden, error probability transformed to a
-loss scale, or another operational resource.
+Cost may represent execution time, energy, material, inference/processing
+budget, coordination effort, communication burden, or error probability
+transformed to a loss scale.
+
+This is deliberately distinct from an **acquisition cost**
+
+```math
+C_t^{\mathrm{acq}}(s,f),
+```
+
+the resource required to reorganize or train `s` until it becomes capable of
+`f`. Acquisition cost belongs to the earlier accessibility geometry. The
+present paper asks what the organization can reliably do *now*. Without this
+separation, a novice with a sufficiently large future training budget would
+already count as possessing expert capability.
 
 The primitive object is the profile
 
 ```math
 \mathbf C_t
 =
-\left(C_t(s_t,f)\right)_{f\in\Phi}.
+\left(C_t^{\mathrm{perf}}(s_t,f)\right)_{f\in\Phi}.
 ```
 
 This profile is the **functional accessibility geometry**.
@@ -199,7 +211,7 @@ For budget `B`, define
 ```math
 \mathcal F_t(B)
 =
-\{f\in\Phi:C_t(s_t,f)\le B\}.
+\{f\in\Phi:C_t^{\mathrm{perf}}(s_t,f)\le B\}.
 ```
 
 This is the functional repertoire available within the declared budget.
@@ -237,14 +249,14 @@ The weakest second-order statement is that the functional geometry changes:
 
 ```math
 \exists f:
-C_{t+1}(s_{t+1},f)\neq C_t(s_t,f).
+C_{t+1}^{\mathrm{perf}}(s_{t+1},f)\neq C_t^{\mathrm{perf}}(s_t,f).
 ```
 
 A directional opening requires only
 
 ```math
 \exists f:
-C_{t+1}(s_{t+1},f)<C_t(s_t,f).
+C_{t+1}^{\mathrm{perf}}(s_{t+1},f)<C_t^{\mathrm{perf}}(s_t,f).
 ```
 
 This allows trade-offs: another function may become more expensive.
@@ -252,7 +264,7 @@ This allows trade-offs: another function may become more expensive.
 A strong retained improvement requires
 
 ```math
-C_{t+1}(s_{t+1},f)\le C_t(s_t,f)
+C_{t+1}^{\mathrm{perf}}(s_{t+1},f)\le C_t^{\mathrm{perf}}(s_t,f)
 ```
 
 for every declared retained target, with strict inequality for at least one.
@@ -279,7 +291,7 @@ First define the signed functional gain over an interval:
 ```math
 g_t(f)
 =
-C_t(s_t,f)-C_{t+1}(s_{t+1},f).
+C_t^{\mathrm{perf}}(s_t,f)-C_{t+1}^{\mathrm{perf}}(s_{t+1},f).
 ```
 
 Positive `g_t(f)` means that functional target `f` has become cheaper.
@@ -344,13 +356,13 @@ s_0\rightarrow s_1\rightarrow s_2.
 Define the normalized rates
 
 ```math
-v_{01}(f)=\frac{C_0(s_0,f)-C_1(s_1,f)}{\Delta_{01}},
+v_{01}(f)=\frac{C_0^{\mathrm{perf}}(s_0,f)-C_1^{\mathrm{perf}}(s_1,f)}{\Delta_{01}},
 ```
 
 and
 
 ```math
-v_{12}(f)=\frac{C_1(s_1,f)-C_2(s_2,f)}{\Delta_{12}}.
+v_{12}(f)=\frac{C_1^{\mathrm{perf}}(s_1,f)-C_2^{\mathrm{perf}}(s_2,f)}{\Delta_{12}}.
 ```
 
 A strong acceleration condition is
