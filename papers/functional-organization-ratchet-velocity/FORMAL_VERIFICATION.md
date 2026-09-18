@@ -122,3 +122,65 @@ retention, and mean retained functional gain.
 These are conditional algebraic consequences of the ledger. The formal theory
 does not prove that a biological, ecological, neural, social, or technological
 system is correctly represented by this factorization.
+
+
+## First derived mechanism-to-speed bridge
+
+`BoundedUpdateRate.lean` closes the first nontrivial route from existing EbE
+maintenance/response machinery into the new speed layer.
+
+The qualitative predicate `RecurringOpportunity` is intentionally too weak to
+imply a positive frequency floor: opportunity gaps may grow without bound.
+
+The new premise
+
+```text
+OpportunityGapBound K Opportunity
+```
+
+requires an opportunity within at most `K` indexed steps from every starting
+point. Combined with the existing bounded response premise
+
+```text
+OpportunityConditionedResourceResponseWithin Δ ...
+```
+
+Lean proves
+
+```text
+ResourceValidatedSuccessEveryWindow (K + Δ + 1)
+```
+
+so every sliding window of that width contains a complete resource-feasible
+validated retained update.
+
+For the canonical maintained three-cycle, the support theorem is stronger:
+quantitative support is present at **every** indexed time. Therefore an explicit
+support→opportunity connection yields `K = 0`, and Lean proves:
+
+```text
+maintained three-cycle
++ support → opportunity
++ bounded response lag Δ
+→ validated update in every window of width Δ+1
+```
+
+A final application seam
+
+```text
+ValidatedSuccessImpliesMinimumFunctionalGain ... g_min
+```
+
+connects each validated update to a chosen functional target. The end-to-end
+theorem then yields:
+
+```text
+maintained three-cycle
++ support → opportunity
++ bounded response lag Δ
++ minimum functional gain g_min per validated update
+→ at least g_min functional gain in every Δ+1 window
+```
+
+This is a deterministic local rate certificate. The formal core does not yet
+identify it with a universal long-run stochastic average.
