@@ -371,6 +371,8 @@ time/resource interval yields ratchet velocity.
 
 - FunctionalRatchetVelocity.lean
 - RatchetVelocityLedger.lean
+- BoundedUpdateRate.lean
+- SearchValidationTradeoff.lean
 
 **Core definitions**
 
@@ -388,6 +390,11 @@ time/resource interval yields ratchet velocity.
 - RetainedSuccessFraction
 - MechanisticRatchetVelocity
 - VelocityLedgerMatches
+- OpportunityGapBound
+- ResourceValidatedSuccessEveryWindow
+- FunctionalGainEveryWindow
+- BoundedMechanismRateFloor
+- SearchValidationVelocity
 
 **Selected declarations**
 
@@ -410,6 +417,16 @@ time/resource interval yields ratchet velocity.
 - mechanisticRatchetVelocity_mono_retention
 - mechanisticRatchetVelocity_mono_meanGain
 - matchedLedger_zero_retention_implies_zero_measuredRate
+- boundedOpportunity_and_response_imply_successEveryWindow
+- supportedCycle3Maintenance_and_boundedResponse_imply_successEveryWindow
+- boundedMechanism_implies_blockAverageRateFloor
+- supportedCycle3Maintenance_implies_blockAverageRateFloor
+- shorterResponseLag_strictlyRaises_rateFloor
+- shorterOpportunityGap_strictlyRaises_rateFloor
+- largerMinimumGain_strictlyRaises_rateFloor
+- searchValidationVelocity_le_quarter
+- searchValidationVelocity_eq_quarter_iff
+- more_search_can_reduce_velocity
 
 **Key bridge**
 
@@ -450,6 +467,9 @@ IntelligentLearningMaintenance.lean
 - FunctionalProcessGeometry
 - MatchedLearningRateImprovementOn
 - RateGroundedRecursiveSelfImprovementOn
+- LearningMechanismCertificate
+- ProcessRateCertificate
+- MechanismGroundedRecursiveSelfImprovementOn
 
 **Selected declarations**
 
@@ -460,6 +480,11 @@ IntelligentLearningMaintenance.lean
 - recursiveSelfImprovement_increases_productivity
 - rateGroundedRecursiveSelfImprovement_preserves_retained_functions
 - rateGroundedRecursiveSelfImprovement_has_faster_learning_target
+- mechanismGroundedRecursiveSelfImprovement_increases_rateFloor
+- shorterResponseLag_improves_processRateCertificate
+- shorterOpportunityGap_improves_processRateCertificate
+- largerMinimumGain_improves_processRateCertificate
+- endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImprovement
 
 **Interpretive boundary.** The verb names are not universal causal axioms.
 Claims such as honesty lowering corrective viscosity, repair preserving an
