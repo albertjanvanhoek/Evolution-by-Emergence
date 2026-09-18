@@ -145,11 +145,11 @@ SupportImpliesOpportunity Support Opportunity.
 
 Thus maintenance does not constrain an arbitrary external opportunity predicate.
 
-## 7. Response assumptions: Q, V, W, and G
+## 7. Response timing and resource feasibility
 
 Let `F(m)` denote a complete successful event at time `m`: a candidate is inside the envelope, fresh, generable from retained material, externally accepted, and retained at the next step.
 
-The bridge distinguishes:
+The original bridge distinguished:
 
 ```text
 Q := from every horizon, an opportunity occurs later
@@ -158,33 +158,58 @@ W := from every horizon, a later time has both opportunity and F
 G := from every horizon, a later time has F
 ```
 
+`ResponseDynamics.lean` now separates opportunity time from response time. It introduces:
+
+```text
+D_Δ := from every horizon, there is a later opportunity q
+       and a validated success r with q ≤ r ≤ q + Δ
+
+B_Δ := every opportunity q receives a resource-feasible
+       validated response r with q ≤ r ≤ q + Δ
+```
+
+Resource feasibility is quantitative:
+
+```text
+Cost(t,z) ≤ Budget(t).
+```
+
+The cost is time- and candidate-specific; the budget is time-specific. A resource-validated success still has to satisfy the ordinary envelope, novelty, generation, external-validation, and next-step-retention conditions.
+
 Lean checks:
+
+```text
+W <-> D_0
+Q and B_Δ -> D_Δ
+D_Δ -> G
+R and G -> N
+P and R and N -> C
+```
+
+Thus same-time coincidence is not required once delayed response is represented explicitly. The concrete lag-1 witness places opportunities at even times and successful uptake at odd times. Every opportunity is answered exactly one step later, so `D_1` and `G` hold while `W` is false.
+
+The resource term is also kept independent. Lean checks examples with:
+
+```text
+validated success AND not resource-feasible validated success
+resource feasibility AND not validated success
+```
+
+so neither ordinary success nor a budget inequality silently determines the other.
+
+The earlier same-time theorems remain valid:
 
 ```text
 Q and V -> W
 W -> Q
 W -> G
-R and G -> N
-P and R and N -> C
 ```
 
-The distinction matters because `W` already contains recurring successful uptake. It is a weaker sufficient coupling assumption than `V`; it is not a derivation of successful innovation from maintenance.
+but `W` is now understood as the zero-delay member of the larger bounded-response family.
 
-The regression witnesses establish three separate boundaries:
+## 8. Verification status and current stopping point
 
-```text
-Q and not N
-W and not V
-Q and G and not W
-```
-
-The final witness places opportunities at even times and successful uptake at odd times. Both recur arbitrarily late, but they never coincide. Therefore separate recurrence of opportunity and success does not imply `W`.
-
-The current `W` is same-indexed: opportunity and success occur at the same time step. If generation or validation takes several steps, a future dynamical model must introduce an explicit relation between an earlier opportunity and a later success.
-
-## 8. Verification closure and stopping point
-
-`FormalCoreWitness.lean` remains the joint-satisfiability witness, and `MaintenanceGatedWitness.lean` remains the within-model dependency/ablation witness. The latter now also hosts the response-separation constructions.
+`FormalCoreWitness.lean` remains the joint-satisfiability witness, and `MaintenanceGatedWitness.lean` remains the opportunity-gated dependency/ablation witness. `BoundedResponseWitness.lean` adds the lag-1 response witness and the resource-independence regressions.
 
 Verification is split into two explicit surfaces:
 
@@ -196,8 +221,8 @@ VerificationSurface.lean
     -> prints axiom dependencies for the explicit advertised theorem list
 ```
 
-CI compiles both and rejects `sorryAx` in the selected declaration audits. Changes to the imported collective-alignment package also trigger the downstream cumulative-accessibility check.
+The new response modules are included in both surfaces. CI compiles them and rejects `sorryAx` in the selected declaration audits.
 
-This revision stops at a deliberate boundary. The maintenance-to-novelty architecture remains feed-forward: novelty does not consume support resources, change maintenance demand, alter generation or validation cost, or feed back into the maintenance dynamics.
+The architecture is still deliberately incomplete as a resource dynamical model. `Cost(t,z)` and `Budget(t)` are declared functions; successful generation, validation, and retention remain explicit conditions. Novelty does not yet consume budget, replenish it, alter maintenance demand, or feed back into the maintenance trajectory.
 
-The next dynamical achievement would be to derive recurrent successful uptake from independently specified mechanisms governing support, resources, generation, validation, and—when needed—response delay. That is future work rather than an implicit claim of the present formal core.
+The next genuinely dynamical step is therefore narrower than before: make resource availability endogenous. A useful target would be a state equation for resource stock or slack in which maintenance and response consume resources, inflow or production replenishes them, and one can state conditions under which recurrent response remains feasible. Stochastic generation/validation can then be layered on that resource process rather than folded into a single success predicate.
