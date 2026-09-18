@@ -30,9 +30,9 @@ Start with:
 3. `FORMAL_THEORY_MAP.md` — theory claim → exact Lean declaration map.
 4. `formalization/README.md` — all Lean packages and local reproduction commands.
 5. `RELEASE_NOTES.md` — current stacked revisions plus the historical v15 record.
-9. `formalization/cumulative-accessibility/README.md` — integrated cumulative-accessibility package and verification contract.
-10. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean` — composition theorem joining endogenous response to second-order accessibility.
-11. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean` — concrete full-dynamic witness.
+6. `formalization/cumulative-accessibility/README.md` — integrated cumulative-accessibility package and verification contract.
+7. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean` — composition theorem joining endogenous response to second-order accessibility.
+8. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean` — concrete full-dynamic witness.
 9. `formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean` — concrete joint-satisfiability witness.
 10. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean` — opportunity-gated dependency and ablation witness.
 11. `formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean` — maintenance-to-opportunity and same-time response bridge.
