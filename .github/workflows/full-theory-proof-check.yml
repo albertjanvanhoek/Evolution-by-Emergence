@@ -147,7 +147,8 @@ jobs:
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.IntelligentLearningMaintenance \
             CumulativeAccessibility.FunctionalRatchetVelocity \
-            CumulativeAccessibility.RatchetVelocityLedger
+            CumulativeAccessibility.RatchetVelocityLedger \
+            CumulativeAccessibility.BoundedUpdateRate
       - name: Audit integrated theory axioms
         shell: bash
         run: |
@@ -160,6 +161,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RatchetVelocityLedger.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedUpdateRate.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
