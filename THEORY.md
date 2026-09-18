@@ -1220,6 +1220,34 @@ This does not imply runaway acceleration. Resource limits, interference,
 increasing target difficulty, loss of diversity, or finite physical throughput
 can make later velocity plateau or fall.
 
+A complementary **mechanism-level** test is now formalized. An application can
+associate each learning-maintenance process state with a certificate
+
+\[
+(K,\Delta,g_{\min}),
+\]
+
+where \(K\) bounds opportunity wait, \(\Delta\) bounds validated-response
+lag, and \(g_{\min}\) lower-bounds retained functional gain per declared
+success. Its conservative rate floor is
+
+\[
+v_{\min}
+=
+\frac{g_{\min}}{K+\Delta+1}.
+\]
+
+A self-generated process change is mechanism-grounded recursive
+self-improvement when it preserves declared prior function and strictly raises
+this justified floor. Lean checks three elementary sufficient routes when the
+other coordinates are held fixed: shorter \(K\), shorter \(\Delta\), or
+larger \(g_{\min}\).
+
+This is not interchangeable with the matched held-out-rate test. The certificate
+test concerns a guaranteed lower bound implied by a mechanism model; the
+matched-episode test concerns realized learning performance. Their agreement is
+an empirical question.
+
 Formal specialization:
 
 formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean
