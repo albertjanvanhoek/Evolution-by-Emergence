@@ -70,7 +70,7 @@ This revision therefore:
 - adds `VerificationSurface` so selected advertised theorem dependencies are explicitly checked for `sorryAx`;
 - and makes changes to the imported collective-alignment package trigger the downstream cumulative-accessibility check.
 
-The resource-budget seam is now closed: the external gradient remains exogenous, but usable response budget is generated internally from uptake minus maintenance. The remaining dynamical gap is narrower: the retained novelty event does not yet generate the next organizational state that changes future uptake or maintenance.
+The resource-budget seam is now closed: the external gradient remains exogenous, but usable response budget is generated internally from uptake minus maintenance. The repository already formalizes the complementary recursive structural step elsewhere: retained intermediates can become future parent material, retained module changes can expand the effective search operator, and retained rule changes can create second-order accessibility clicks. What is not yet packaged as one theorem is the composition of those existing recursive-accessibility results with the endogenous gradient/slack response budget.
 
 ## Two complementary witnesses
 
