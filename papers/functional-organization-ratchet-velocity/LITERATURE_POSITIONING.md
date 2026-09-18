@@ -1,0 +1,174 @@
+# Literature positioning
+
+## Status
+
+Targeted positioning note for a new universal paper. This is not yet a
+systematic review.
+
+The candidate contribution is **not** the discovery of function,
+multifunctionality, evolvability, neural repertoire, causal organization, or
+innovation rate.
+
+The candidate contribution under review is the conjunction:
+
+```math
+\boxed{
+\text{organization/function type separation}
++
+\text{functional cost geometry}
++
+\text{retained target-wise ratchet velocity}
++
+\text{matched-step ratchet acceleration}
+}
+```
+
+inside the broader Evolution by Emergence retention/resource architecture.
+
+## 1. Ecosystem multifunctionality
+
+Ecology already studies the capacity of ecosystems to provide multiple
+functions simultaneously. A major literature also debates how those functions
+should be selected and whether aggregation into one multifunctionality index is
+scientifically justified.
+
+Closest relevance:
+
+- the object of interest is explicitly a multi-function repertoire;
+- different functions can respond differently to the same biodiversity or
+  network change;
+- scalar aggregation can hide trade-offs and target-selection assumptions.
+
+Relationship to the present framework:
+
+The present proposal keeps the primitive quantity vector-valued: a cost profile
+over declared functional targets. Ecosystem multifunctionality can therefore
+be treated as one possible ecological scalarization or projection of a richer
+functional geometry.
+
+Key references to retain in the manuscript:
+
+- Byrnes et al. (2014), *Methods in Ecology and Evolution*.
+- Manning et al. (2018), *Nature Ecology & Evolution*.
+- Garland et al. (2021), *Journal of Ecology*.
+
+## 2. Functional diversity and niche differentiation
+
+Functional-diversity research distinguishes species identity/count from the
+traits and ecological roles through which organisms contribute to ecosystem
+processes.
+
+Relationship:
+
+This is close to the proposed intuition that a commons can become more
+functionally differentiated without a simple increase in component count.
+
+The paper should not equate functional diversity with ratchet velocity.
+Functional diversity describes a state/property; ratchet velocity describes a
+retained change in the cost profile of functional realization.
+
+## 3. Neural functional repertoire and expertise
+
+Neuroscience already documents structural and functional reorganization during
+skill acquisition and expertise. Network models of the connectome explicitly
+use the term *functional repertoire* for the set/diversity of functional
+configurations supported by structural organization.
+
+A particularly close antecedent is Senden et al. (2014), who model how rich-club
+network architecture supports a larger and more diverse functional repertoire.
+
+Relationship:
+
+This strongly supports separating physical structure from the repertoire of
+functions it supports. The present proposal differs by making the cost of
+realizing declared functional targets, and the retained change of that cost,
+the primitive object.
+
+Relevant references:
+
+- Chang (2014), *Frontiers in Human Neuroscience*.
+- Senden et al. (2014), *NeuroImage*.
+- Yin et al. (2009), *Nature Neuroscience*.
+
+## 4. Causal emergence and effective information
+
+Effective-information approaches quantify causal organization by perturbing
+system states and asking how selectively and deterministically states constrain
+future states. Work on causal emergence shows that a macro description can
+sometimes carry more effective information than a micro description.
+
+Relationship:
+
+This is an important neighboring formalism because it treats organization as
+causal structure rather than raw component count.
+
+It is not identical to the present proposal. Effective information measures
+properties of the system's transition structure; functional ratchet velocity
+is target-conditioned and resource-sensitive. A system could have high
+effective information yet be poor at a declared function, or acquire a new
+functional capability without a simple monotonic change in effective
+information.
+
+Relevant references:
+
+- Hoel et al. (2013), *PNAS*.
+- Klein & Hoel (2020), *Complexity*.
+
+## 5. Evolvability
+
+Evolvability research studies the capacity of biological systems to generate
+heritable, evolutionarily relevant variation and has long emphasized the role
+of genotype-phenotype organization, modularity, integration, and mechanisms
+that alter future variation.
+
+Relationship:
+
+Evolvability is a close biological antecedent for a present organization
+changing future adaptive possibilities. The present framework should not claim
+that the rate or capacity of future evolution is new.
+
+The narrower proposed bridge is to express future functional possibilities as a
+directed cost profile, preserve trade-offs instead of collapsing them
+immediately, and define ratchet velocity as the retained change of that profile.
+
+Key references:
+
+- Wagner & Altenberg (1996), *Evolution*.
+- Earl & Deem (2004), *PNAS*.
+- Draghi & Ogbunugafor (2022), *Journal of Experimental Zoology B*.
+- Barnett, Meister & Rainey (2025), *Science*.
+
+## 6. Relation to the intelligent-network paper
+
+The companion paper on learning-maintenance processes should now be read as an
+inside specialization.
+
+For intelligent systems, functional targets may be tasks, discriminations,
+predictions, explanations, skills, or other operational capabilities.
+
+Knowledge and understanding are not assumed to be directly visible in static
+structure. They are inferred through reliable counterfactual performance under
+appropriate probes and environments.
+
+The central experimental quantity is then learning velocity on held-out
+functional targets under matched resource/time windows.
+
+Recursive self-improvement becomes the stronger claim that an endogenous change
+to the learning-maintenance process raises that future learning velocity.
+
+## Working novelty boundary
+
+The paper may currently claim:
+
+1. a formal separation between organization-state type and functional-target
+   type;
+2. a target-indexed, directed cost geometry for functional realization;
+3. a vector-valued definition of retained ratchet velocity;
+4. a matched-step definition of ratchet acceleration;
+5. a threshold theorem connecting positive velocity to strict functional
+   repertoire expansion;
+6. a cross-domain programme in which scalar "organization" measures are treated
+   as declared projections rather than primitives.
+
+It should **not** yet claim that this exact conjunction is absent from all prior
+literature. That remains a dedicated prior-art question.
