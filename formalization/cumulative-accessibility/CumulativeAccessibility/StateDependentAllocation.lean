@@ -86,8 +86,12 @@ theorem validationBaselineVelocity_le_stateDependentMaximum
     ValidationBaselineVelocity b x ≤ (1 + b) / 4 := by
   have hd : 0 < 1 + b := by linarith
   rw [ValidationBaselineVelocity, BaselineValidationFraction]
-  apply (div_le_iff₀ hd).2
-  nlinarith [sq_nonneg (2 * x - (1 + b))]
+  calc
+    x * ((b + 1 - x) / (1 + b)) =
+        (x * (b + 1 - x)) / (1 + b) := by ring
+    _ ≤ (1 + b) / 4 := by
+      apply (div_le_iff₀ hd).2
+      nlinarith [sq_nonneg (2 * x - (1 + b))]
 
 /-- The upper bound is attained at the state-dependent allocation
 x* = (1+b)/2. -/
