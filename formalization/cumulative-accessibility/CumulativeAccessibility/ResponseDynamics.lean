@@ -168,6 +168,61 @@ theorem recurringValidatedResponseWithin_zero_iff
   · exact recurringValidatedResponse_implies_within_zero
       Opportunity U H E S
 
+/-- Allowing a larger response window preserves any recurrent bounded-response
+witness.  Thus the D_lag family is monotone in lag. -/
+theorem recurringValidatedResponseWithin_mono
+    {lag₁ lag₂ : ℕ}
+    (hLag : lag₁ ≤ lag₂)
+    (Opportunity : ℕ → Prop)
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (h : RecurringValidatedResponseWithin lag₁ Opportunity U H E S) :
+    RecurringValidatedResponseWithin lag₂ Opportunity U H E S := by
+  intro n
+  obtain ⟨q, r, hnq, hOpportunity, hqr, hrBound, hSuccess⟩ := h n
+  refine ⟨q, r, hnq, hOpportunity, hqr, ?_, hSuccess⟩
+  exact le_trans hrBound (Nat.add_le_add_left hLag q)
+
+/-- The local per-opportunity resource-response guarantee is likewise monotone
+in the permitted response lag. -/
+theorem opportunityConditionedResourceResponseWithin_mono
+    {lag₁ lag₂ : ℕ}
+    (hLag : lag₁ ≤ lag₂)
+    (Opportunity : ℕ → Prop)
+    (Cost : ResponseCost α)
+    (Budget : ResponseBudget)
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (h :
+      OpportunityConditionedResourceResponseWithin
+        lag₁ Opportunity Cost Budget U H E S) :
+    OpportunityConditionedResourceResponseWithin
+      lag₂ Opportunity Cost Budget U H E S := by
+  intro q hOpportunity
+  obtain ⟨r, hqr, hrBound, hSuccess⟩ := h q hOpportunity
+  refine ⟨r, hqr, ?_, hSuccess⟩
+  exact le_trans hrBound (Nat.add_le_add_left hLag q)
+
+/-- Same-time response W is therefore contained in every nonnegative bounded
+response window. -/
+theorem recurringValidatedResponse_implies_within
+    (lag : ℕ)
+    (Opportunity : ℕ → Prop)
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (h : RecurringValidatedResponse Opportunity U H E S) :
+    RecurringValidatedResponseWithin lag Opportunity U H E S := by
+  apply recurringValidatedResponseWithin_mono
+    (lag₁ := 0) (lag₂ := lag) (by omega)
+    Opportunity U H E S
+  exact recurringValidatedResponse_implies_within_zero Opportunity U H E S h
+
 /-- Any recurrent bounded response stream contains arbitrarily late validated
 uptake.  Positive response delay does not obstruct G because the response time
 is constrained to occur after the recurrent opportunity time. -/
@@ -279,6 +334,9 @@ end Implications
 
 #print axioms resourceValidatedSuccessAt_implies_validatedSuccessAt
 #print axioms recurringValidatedResponseWithin_zero_iff
+#print axioms recurringValidatedResponseWithin_mono
+#print axioms opportunityConditionedResourceResponseWithin_mono
+#print axioms recurringValidatedResponse_implies_within
 #print axioms recurringValidatedResponseWithin_implies_validatedUptake
 #print axioms recurringOpportunity_and_resourceResponseWithin_imply_recurringResponseWithin
 #print axioms recurringOpportunity_and_resourceResponseWithin_imply_validatedUptake
