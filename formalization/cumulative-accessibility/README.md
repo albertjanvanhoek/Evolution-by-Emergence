@@ -306,7 +306,8 @@ lake build \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness \
   CumulativeAccessibility.BoundedResponseWitness \
-  CumulativeAccessibility.EndogenousBudgetWitness
+  CumulativeAccessibility.EndogenousBudgetWitness \
+  CumulativeAccessibility.DynamicVortexWitness
 ```
 
 To inspect the printed axioms directly:
