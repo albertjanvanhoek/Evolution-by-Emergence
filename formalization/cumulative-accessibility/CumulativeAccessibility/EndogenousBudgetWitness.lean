@@ -74,7 +74,7 @@ def gradientRobotResponseBudget : ResponseBudget :=
 
 /-- Response cost chosen strictly between the baseline and improved internal
 budgets: 4 < 9/2 <= 5. -/
-def gradientFundedResponseCost : ResponseCost ℕ :=
+noncomputable def gradientFundedResponseCost : ResponseCost ℕ :=
   fun _ _ => 9 / 2
 
 theorem gradientRobot_baseline_slack :
@@ -229,7 +229,7 @@ noncomputable def exactMarginFundedResponseBudget : ResponseBudget :=
 
 /-- The same 9/10 load used as the exact second click is read here as a response
 cost in margin units. -/
-def exactSecondClickResponseCost : ResponseCost Unit :=
+noncomputable def exactSecondClickResponseCost : ResponseCost Unit :=
   fun _ _ => 9 / 10
 
 theorem exactMarginFundedResponseBudget_baseline :
