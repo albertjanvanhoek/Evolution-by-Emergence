@@ -4,7 +4,7 @@
 
 **This project is open for peer review.**
 
-You do not need to read the whole book to review the current formal core.
+You do not need to read the whole historical book to review the current theory.
 
 The canonical entry point is **[Evolution by Emergence — The Current Theory](THEORY.md)**.
 
