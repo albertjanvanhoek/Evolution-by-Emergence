@@ -23,6 +23,7 @@ import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
 import CumulativeAccessibility.FunctionalRatchetVelocity
 import CumulativeAccessibility.RatchetVelocityLedger
+import CumulativeAccessibility.BoundedUpdateRate
 
 /-!
 # Aggregate package audit target
