@@ -357,7 +357,61 @@ target set. Lower cost is not automatically synonymous with greater value.
 
 ---
 
-## T7B — intelligent learning-maintenance specialization
+## T7B — functional organization and ratchet velocity
+
+**Theory statement.** Organizational state and functional target are distinct
+types. An organization induces a target-indexed functional cost geometry; a
+positive retained ratchet step lowers no declared retained target cost and
+strictly lowers at least one. Normalizing functional gain by a positive
+time/resource interval yields ratchet velocity.
+
+**Formal status:** MC + concrete witness.
+
+**Lean source**
+
+FunctionalRatchetVelocity.lean
+
+**Core definitions**
+
+- FunctionalCost
+- FunctionAccessibleWithin
+- FunctionalRepertoireWithin
+- NoMoreFunctionallyViscousOn
+- StrictlyLessFunctionallyViscousOn
+- FunctionalStepVelocity
+- FunctionalStepRate
+- PositiveFunctionalRateOn
+- FunctionalRateDominatesOn
+- StrictlyFasterFunctionalRateOn
+- AcceleratingFunctionalRatchetOn
+
+**Selected declarations**
+
+- noMoreFunctionallyViscous_iff_nonnegativeVelocity
+- strictlyLessFunctionallyViscous_iff_positiveVelocity
+- noMoreFunctionallyViscous_preserves_budget_access
+- strictlyLessFunctionallyViscous_opens_budget_window
+- strictlyLessFunctionallyViscous_induces_repertoire_expansion
+- positiveFunctionalVelocity_induces_repertoire_expansion
+- positiveFunctionalVelocity_implies_positiveRate
+- strictlyFasterFunctionalRate_has_target
+- acceleratingFunctionalRatchet_has_faster_target
+- commons_positive_functional_velocity
+- commons_repertoire_expands_at_budget_one
+
+**Key bridge**
+
+A strict target-wise reduction in functional cost implies strict functional
+repertoire expansion at some budget. The primitive object remains the
+vector-valued functional cost/rate profile; no universal scalar complexity or
+amount-of-organization measure is assumed.
+
+**Modelling boundary.** Functional targets, success criteria, resource units,
+environmental matching, and scalar aggregation are application-declared.
+
+---
+
+## T7C — intelligent learning-maintenance specialization
 
 **Theory statement.** Intelligent networks can be described internally by a
 learning-maintenance process state whose substrate-specific dynamics induce an
@@ -379,6 +433,9 @@ IntelligentLearningMaintenance.lean
 - SelfImprovementOn
 - ImprovementProductivity
 - RecursiveSelfImprovementOn
+- FunctionalProcessGeometry
+- MatchedLearningRateImprovementOn
+- RateGroundedRecursiveSelfImprovementOn
 
 **Selected declarations**
 
@@ -387,11 +444,16 @@ IntelligentLearningMaintenance.lean
 - selfImprovement_has_cheaper_future
 - recursiveSelfImprovement_implies_selfImprovement
 - recursiveSelfImprovement_increases_productivity
+- rateGroundedRecursiveSelfImprovement_preserves_retained_functions
+- rateGroundedRecursiveSelfImprovement_has_faster_learning_target
 
 **Interpretive boundary.** The verb names are not universal causal axioms.
 Claims such as honesty lowering corrective viscosity, repair preserving an
 informative edge, or re-engagement improving long-run learning require an
 application-specific map from process state to geometry and empirical support.
+The rate-grounded recursive definition additionally requires matched starting
+organization, held-out functional targets, positive duration/resource windows,
+and preservation of declared prior function.
 
 ---
 
