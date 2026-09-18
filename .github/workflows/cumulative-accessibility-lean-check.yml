@@ -58,7 +58,8 @@ jobs:
             CumulativeAccessibility.StateDependentAllocation \
             CumulativeAccessibility.BottleneckAllocation \
             CumulativeAccessibility.AdaptiveRatePolicy \
-            CumulativeAccessibility.ConstrainedRatePolicy
+            CumulativeAccessibility.ConstrainedRatePolicy \
+            CumulativeAccessibility.ClosedLoopRateControl
 
       - name: Reject unproven formal-core axioms
         shell: bash
@@ -82,6 +83,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/BottleneckAllocation.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/AdaptiveRatePolicy.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ConstrainedRatePolicy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ClosedLoopRateControl.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then
