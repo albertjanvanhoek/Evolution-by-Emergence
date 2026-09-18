@@ -193,6 +193,110 @@ theorem validationRich_bottleneckPolicy_gain_over_fixedHalf_is_one_sixteenth :
   norm_num [TwoStageRateLandscape, validationRichOrganization,
     FixedHalfRatePolicy, TwoBaselineAllocationScore]
 
+/-- Regret written directly in terms of inherited stage imbalance d=s-v. -/
+noncomputable def FixedAllocationRegretFromImbalance
+    (imbalance allocationToSearch : ℝ) : ℝ :=
+  (imbalance + 2 * allocationToSearch - 1) ^ 2 / 4
+
+/-- The inherited-imbalance representation is exactly the same regret object. -/
+theorem allocationRateRegret_eq_imbalanceForm
+    (searchBase validationBase allocationToSearch : ℝ) :
+    AllocationRateRegret
+        searchBase validationBase allocationToSearch
+      =
+      FixedAllocationRegretFromImbalance
+        (searchBase - validationBase) allocationToSearch := by
+  rw [allocationRateRegret_eq_residualImbalance_sq_div_four]
+  unfold ResidualStageImbalance FixedAllocationRegretFromImbalance
+  ring
+
+/-- Equal-weight average regret of one fixed allocation across two
+organizational imbalance states. -/
+noncomputable def TwoStateMeanFixedRegret
+    (imbalance₀ imbalance₁ allocationToSearch : ℝ) : ℝ :=
+  (FixedAllocationRegretFromImbalance
+      imbalance₀ allocationToSearch
+    +
+    FixedAllocationRegretFromImbalance
+      imbalance₁ allocationToSearch) / 2
+
+/-- Best unconstrained fixed allocation for the equal-weight two-state regret
+problem. -/
+noncomputable def BestTwoStateFixedAllocation
+    (imbalance₀ imbalance₁ : ℝ) : ℝ :=
+  (2 - imbalance₀ - imbalance₁) / 4
+
+/-- Exact decomposition of two-state fixed-policy regret into irreducible
+state heterogeneity plus avoidable mean-mismatch error. -/
+theorem twoStateMeanFixedRegret_decomposition
+    (imbalance₀ imbalance₁ allocationToSearch : ℝ) :
+    TwoStateMeanFixedRegret
+        imbalance₀ imbalance₁ allocationToSearch
+      =
+      (imbalance₀ - imbalance₁) ^ 2 / 16
+      +
+      (imbalance₀ + imbalance₁ +
+        4 * allocationToSearch - 2) ^ 2 / 16 := by
+  unfold TwoStateMeanFixedRegret FixedAllocationRegretFromImbalance
+  ring
+
+/-- Every single fixed allocation therefore pays at least the heterogeneity
+penalty (d₀-d₁)^2/16 across the two states. -/
+theorem twoStateMeanFixedRegret_lowerBound
+    (imbalance₀ imbalance₁ allocationToSearch : ℝ) :
+    (imbalance₀ - imbalance₁) ^ 2 / 16
+      ≤
+    TwoStateMeanFixedRegret
+      imbalance₀ imbalance₁ allocationToSearch := by
+  rw [twoStateMeanFixedRegret_decomposition]
+  positivity
+
+/-- The best fixed allocation attains exactly the irreducible heterogeneity
+penalty. -/
+theorem bestTwoStateFixedAllocation_attains_heterogeneityFloor
+    (imbalance₀ imbalance₁ : ℝ) :
+    TwoStateMeanFixedRegret
+        imbalance₀ imbalance₁
+        (BestTwoStateFixedAllocation imbalance₀ imbalance₁)
+      =
+      (imbalance₀ - imbalance₁) ^ 2 / 16 := by
+  rw [twoStateMeanFixedRegret_decomposition]
+  unfold BestTwoStateFixedAllocation
+  ring
+
+/-- Concrete witness for the paper's two organizational states.
+
+Their inherited imbalances are 0 and -1/2. The best single fixed allocation is
+5/8 search and its unavoidable equal-weight average regret is 1/64. -/
+theorem witnessStates_bestFixedAllocation_and_irreducibleRegret :
+    BestTwoStateFixedAllocation 0 (-1 / 2) = 5 / 8
+    ∧
+    TwoStateMeanFixedRegret 0 (-1 / 2) (5 / 8) = 1 / 64 := by
+  constructor
+  · norm_num [BestTwoStateFixedAllocation]
+  · norm_num [TwoStateMeanFixedRegret,
+      FixedAllocationRegretFromImbalance]
+
+/-- In the two-state witness, the state-sensitive balancing policy has zero
+statewise algebraic regret, whereas every fixed allocation has mean regret at
+least 1/64. -/
+theorem witnessStates_stateSensitivity_eliminates_fixedPolicy_floor
+    (allocationToSearch : ℝ) :
+    1 / 64 ≤
+      TwoStateMeanFixedRegret 0 (-1 / 2) allocationToSearch := by
+  have h :=
+    twoStateMeanFixedRegret_lowerBound
+      (0 : ℝ) (-1 / 2 : ℝ) allocationToSearch
+  norm_num at h ⊢
+  exact h
+
+#print axioms allocationRateRegret_eq_imbalanceForm
+#print axioms twoStateMeanFixedRegret_decomposition
+#print axioms twoStateMeanFixedRegret_lowerBound
+#print axioms bestTwoStateFixedAllocation_attains_heterogeneityFloor
+#print axioms witnessStates_bestFixedAllocation_and_irreducibleRegret
+#print axioms witnessStates_stateSensitivity_eliminates_fixedPolicy_floor
+
 #print axioms allocationRateRegret_eq_residualImbalance_sq_div_four
 #print axioms allocationRateRegret_nonnegative
 #print axioms allocationRateRegret_eq_zero_iff_final_balance
