@@ -177,6 +177,73 @@ This provides a strong empirical reason to separate current competence from
 future learnability and to allow the accessibility geometry to worsen as well as
 improve.
 
+
+## 8. Absorptive capacity and organizational knowledge accumulation
+
+Cohen and Levinthal (1990) define absorptive capacity as a firm's ability to
+recognize the value of new external information, assimilate it, and apply it.
+Crucially for the present paper, they argue that absorptive capacity depends
+substantially on prior related knowledge. Later work extends the construct to
+organizational forms and combinative capabilities.
+
+This is a very close antecedent for the inside story.
+
+Relationship to this paper:
+
+Absorptive-capacity theory already contains the core observation that retained
+knowledge can change the ability to acquire further knowledge. The present
+paper should therefore not claim this as novel.
+
+The candidate extension is to connect this process to the outside functional
+cost geometry: absorptive capacity should manifest as a lower cost or higher
+rate of acquiring specified held-out functional capabilities, and changes in
+absorptive capacity can therefore be represented as changes in functional
+ratchet velocity.
+
+Key references:
+
+- Cohen & Levinthal (1990), *Administrative Science Quarterly*.
+- Van den Bosch, Volberda & de Boer (1999), *Organization Science*.
+
+## 9. Organizational learning curves
+
+A large economics, operations, and organizational-learning literature studies
+how performance or unit cost changes with cumulative experience and why
+organizations differ in their learning rates.
+
+Relationship:
+
+This literature is directly about velocity, but usually for a repeated task or
+performance dimension. The present framework asks whether the same rate concept
+can be lifted to a *family of held-out functional targets* and whether process
+changes alter the velocity of acquiring new capabilities rather than merely
+improving repeated execution.
+
+Key references:
+
+- Thompson (2012), *Journal of Economic Perspectives*.
+- Lapré & Nembhard (2011), *Foundations and Trends in Technology,
+  Information and Operations Management*.
+- Argote and colleagues' organizational-learning programme.
+
+## 10. Knowledge production and research productivity
+
+Growth economics often represents idea growth as a function of research input
+and research productivity. Bloom, Jones, Van Reenen and Webb (2020), for
+example, separate effective research effort from the productivity with which
+that effort generates new ideas.
+
+Relationship:
+
+This is a direct antecedent for treating knowledge accumulation as a rate and
+for asking whether that rate changes over time.
+
+The present framework should not claim novelty for a knowledge-production
+function. Its proposed contribution is to replace a single idea-output scalar
+with a target-indexed functional acquisition geometry and connect that inside
+quantity to the same outside ratchet formalism used for non-intelligent
+networks.
+
 ## Working novelty boundary
 
 The paper should currently claim:
