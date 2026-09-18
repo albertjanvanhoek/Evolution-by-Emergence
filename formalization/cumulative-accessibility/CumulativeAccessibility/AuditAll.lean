@@ -2,6 +2,7 @@ import CumulativeAccessibility
 import CumulativeAccessibility.RecursiveAccessibility
 import CumulativeAccessibility.EvolvabilityStructure
 import CumulativeAccessibility.GenerativeArity
+import CumulativeAccessibility.EmergentCapacity
 import CumulativeAccessibility.GenerativeClosure
 import CumulativeAccessibility.ModuleGeneratedEvolvability
 import CumulativeAccessibility.GeneratorRuleEvolution
