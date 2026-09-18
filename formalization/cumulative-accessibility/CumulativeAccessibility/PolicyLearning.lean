@@ -1,4 +1,5 @@
 import CumulativeAccessibility.PolicyImprovement
+import CumulativeAccessibility.ClosedLoopRateControl
 
 namespace CumulativeAccessibility
 namespace FunctionalOrganization
@@ -31,6 +32,33 @@ validation-rich state.
 This is a minimal generalization witness. It does not prove that a real learner
 can infer the bottleneck policy from data.
 -/
+
+/-- A policy can adapt its selected action across organizational states without
+the policy rule itself changing. This is ordinary state-dependent control, not
+policy learning. -/
+def ActionAdaptsAcrossStates
+    (policy : RatePolicy State Action)
+    (oldState newState : State) : Prop :=
+  policy oldState ≠ policy newState
+
+/-- Concrete separation witness: the same bottleneck-aware policy selects
+three-quarters search in the validation-rich state, then one-half after its own
+closed-loop update has rebalanced installed capacities.
+
+No policy function is replaced in this theorem. -/
+theorem bottleneckPolicy_action_adapts_without_policy_rule_change :
+    ActionAdaptsAcrossStates
+      BottleneckRatePolicy
+      validationRichOrganization
+      (BottleneckClosedLoopStep validationRichOrganization) := by
+  unfold ActionAdaptsAcrossStates
+  have hNow := bottleneckRatePolicy_on_witness_states.2
+  have hInterior := witness_states_are_interior.2
+  have hNext :=
+    interior_step_makes_next_policy_half
+      validationRichOrganization hInterior
+  rw [hNow, hNext]
+  norm_num
 
 /-- Policy improvement that preserves declared previously handled states and
 strictly improves on a declared held-out state family. -/
@@ -200,6 +228,7 @@ theorem endogenous_bottleneckPolicy_learning_of_generated_update
     bottleneckPolicy_is_heldOut_learning_improvement
   ⟩
 
+#print axioms bottleneckPolicy_action_adapts_without_policy_rule_change
 #print axioms fixedHalf_and_bottleneck_agree_at_symmetric
 #print axioms bottleneckPolicy_preserves_fixedHalf_on_retained_state
 #print axioms bottleneckPolicy_strictlyImproves_fixedHalf_on_heldOut_state
