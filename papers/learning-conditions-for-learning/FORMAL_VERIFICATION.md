@@ -78,7 +78,10 @@ It defines:
 - RecursiveSelfImprovementOn;
 - FunctionalProcessGeometry;
 - MatchedLearningRateImprovementOn;
-- RateGroundedRecursiveSelfImprovementOn.
+- RateGroundedRecursiveSelfImprovementOn;
+- LearningMechanismCertificate;
+- ProcessRateCertificate;
+- MechanismGroundedRecursiveSelfImprovementOn.
 
 Lean checks:
 
@@ -94,6 +97,17 @@ Lean checks:
 7. RateGroundedRecursiveSelfImprovementOn contains an explicit held-out target
    whose duration/resource-normalized learning rate is strictly higher under
    the self-modified process.
+8. A LearningMechanismCertificate maps a process to the application-justified
+   tuple (K, Δ, g_min) and hence to a conservative guaranteed rate floor.
+9. Holding opportunity access and minimum gain fixed, a strictly shorter
+   validated-response lag raises that rate floor.
+10. Holding response lag and minimum gain fixed, a strictly shorter maximum
+    opportunity wait raises that rate floor.
+11. Holding both delay coordinates fixed, a strictly larger minimum retained
+    gain raises that rate floor.
+12. An endogenous process change that preserves declared prior function and
+    satisfies the shorter-response-lag route is sufficient for
+    MechanismGroundedRecursiveSelfImprovementOn.
 
 ## Important non-claims
 
@@ -161,3 +175,40 @@ old process generated and applied the intervention, declared retained functions
 are not made more costly at the starting organization, and the new process
 strictly dominates the old process on held-out functional learning rate for at
 least one target without being slower on the others in the declared set.
+
+
+## Two complementary recursive-improvement tests
+
+The formalization now contains two non-equivalent tests.
+
+**Observed-rate test**
+
+`RateGroundedRecursiveSelfImprovementOn` compares matched held-out learning
+episodes and requires the self-modified process to have a strictly better
+normalized functional-rate profile.
+
+**Mechanism-certificate test**
+
+`MechanismGroundedRecursiveSelfImprovementOn` uses an application-justified
+certificate
+
+```math
+(K,\Delta,g_{\min})
+```
+
+with conservative rate floor
+
+```math
+v_{\min}
+=
+\frac{g_{\min}}{K+\Delta+1}.
+```
+
+The old process must generate and apply the intervention, declared retained
+functions must remain no more costly at the matched starting organization, and
+the new process's certified rate floor must be strictly larger.
+
+The mechanism test is intentionally weaker epistemically. Improving a justified
+lower bound does not by itself prove that realized held-out learning velocity
+increased. Agreement between the mechanism certificate and the observed-rate
+test is therefore a substantive empirical prediction rather than a definition.
