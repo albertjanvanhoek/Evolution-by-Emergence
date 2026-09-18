@@ -1,3 +1,74 @@
+# Unreleased — Full Dynamic Vortex Integration
+
+This stacked revision makes the repository's distributed dynamic thesis explicit as one peer-review target.
+
+The new canonical overview is `DYNAMIC_OVERVIEW.md`. It reconstructs the resource-fed recursive accessibility loop:
+
+```text
+external gradient
+    → organization-dependent uptake - maintenance
+    → internal slack
+    → endogenous response budget
+    → validated retained response
+    → reusable organization / changed generative rule
+    → second-order accessibility
+    → changed future search
+    → changed organization
+    ↺
+```
+
+The revision adds two Lean modules.
+
+### `DynamicVortex.lean`
+
+`DynamicVortexTurn` couples two effects of the same declared organizational transition:
+
+1. net internal slack strictly increases at a fixed external gradient;
+2. the transition is a `SecondOrderClick`.
+
+Lean proves that such a turn simultaneously opens:
+
+- a nonempty interval of newly affordable response costs; and
+- at least one future-search candidate unavailable to the old organization.
+
+The recurrent interface `OpportunityConditionedEndogenousVortexResponseWithin` then requires an internally funded resource-feasible validated response together with a second-order organizational update at the response time.
+
+Under recurring opportunity, retention, and representation, Lean proves in one theorem:
+
+```text
+open-ended cumulative retained novelty
++
+unbounded effective distinguishability capacity
++
+arbitrarily late second-order organizational/search updates.
+```
+
+The retained-response → physical-organizational-update connection remains an explicit modelling premise. The theorem does not assert that every novelty event is supportive.
+
+### `DynamicVortexWitness.lean`
+
+A concrete natural-number architecture jointly inhabits the composition:
+
+- fixed external gradient `10`;
+- maintenance demand `6`;
+- baseline uptake `10`, later uptake `11`;
+- endogenous response budget `4 → 5`;
+- response cost `9/2`;
+- progressive validated retained novelty;
+- prefix search in which every successor state is a second-order click.
+
+The first `0 → 1` turn is both slack-improving and second-order. Thereafter opportunities recur and the internally funded architecture realizes validated retained novelty together with recurring second-order updates.
+
+The concrete endpoint is `vortex_full_dynamic_witness`.
+
+### Verification surface
+
+Both new modules are imported by `AuditAll`, selected declarations are included in `VerificationSurface`, and `DynamicVortexWitness` is an explicit CI build/axiom-audit target.
+
+This is a composition and exposition revision, not a claim that a new physical law has been discovered. The scientific target is the common architecture, its explicit interfaces, its boundaries, and whether real systems instantiate those interfaces.
+
+---
+
 # Unreleased — Endogenous Budget Seam
 
 This stacked revision closes the resource-budget seam exposed by the bounded-response layer.
