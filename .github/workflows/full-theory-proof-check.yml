@@ -5,6 +5,9 @@ on:
     paths:
       - "THEORY.md"
       - "FORMAL_THEORY_MAP.md"
+      - "RELEASE_VERSION"
+      - "RELEASE_TITLE"
+      - "RELEASE_NOTES.md"
       - "formalization/**"
       - "verification/organizational-depth/**"
       - ".github/workflows/full-theory-proof-check.yml"
@@ -14,6 +17,9 @@ on:
     paths:
       - "THEORY.md"
       - "FORMAL_THEORY_MAP.md"
+      - "RELEASE_VERSION"
+      - "RELEASE_TITLE"
+      - "RELEASE_NOTES.md"
       - "formalization/**"
       - "verification/organizational-depth/**"
       - ".github/workflows/full-theory-proof-check.yml"
