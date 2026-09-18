@@ -681,9 +681,26 @@ interaction topology, delay, repair, diversity, and coordination cost. Their
 effects need not be monotone; the target is a regime-dependent theory of
 ratchet velocity.
 
-Formal source:
+A first optional mechanism ledger separates one scalar projection of that
+velocity into
 
-formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
+\[
+v_{\mathrm{ledger}}
+=
+\lambda\,p_G\,p_R\,p_V\,p_T\,\bar g,
+\]
+
+where the factors represent opportunity rate, conditional generation, resource
+feasibility, validation, retention, and mean retained functional gain. If the
+fractions are conditional probabilities, no independence assumption is needed.
+The ledger has an explicit modelling seam: the universal theory does **not**
+assert that every real system is represented by this product. Its purpose is to
+expose candidate bottlenecks that domain models can derive or estimate.
+
+Formal sources:
+
+- formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean
 
 Working paper:
 
