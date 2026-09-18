@@ -372,6 +372,63 @@ theorem boundedMechanism_implies_functionalGainEveryWindow
   obtain ⟨r, hnr, hrWindow, hSuccess⟩ := hWindow.2 n
   exact ⟨r, hnr, hrWindow, hGain r hSuccess⟩
 
+/-- End-to-end maintenance-to-functional-speed theorem.
+
+The exact maintained three-cycle supplies support at every indexed time. If
+that support is declared sufficient for opportunities, every opportunity is
+answered within responseLag, and every resource-validated update produces at
+least minGain on the chosen functional target, then every sliding window of
+width responseLag+1 contains at least that functional gain. -/
+theorem supportedCycle3Maintenance_boundedResponse_and_minGain_imply_functionalGainEveryWindow
+    (responseLag : ℕ)
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (CostResponse : RecursiveAccessibility.ResponseCost α)
+    (Budget : RecursiveAccessibility.ResponseBudget)
+    (U : ℕ → Finset α)
+    (H : ℕ → RecursiveAccessibility.HyperGenerator α)
+    (E : RecursiveAccessibility.ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (minGain : ℝ)
+    (hConnection :
+      RecursiveAccessibility.SupportImpliesOpportunity
+        (RecursiveAccessibility.cycle3MaintenanceSupport
+          rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hResponse :
+      RecursiveAccessibility.OpportunityConditionedResourceResponseWithin
+        responseLag Opportunity CostResponse Budget U H E S)
+    (hGain :
+      ValidatedSuccessImpliesMinimumFunctionalGain
+        CostResponse Budget U H E S
+        CostFunctional trajectory target minGain) :
+    FunctionalGainEveryWindow
+      (responseLag + 1)
+      CostFunctional trajectory target minGain := by
+  have hOpp :
+      RecursiveAccessibility.OpportunityGapBound 0 Opportunity :=
+    RecursiveAccessibility.supportedCycle3Maintenance_supplies_zeroGapOpportunity
+      Opportunity hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop hConnection
+  simpa using
+    boundedMechanism_implies_functionalGainEveryWindow
+      0 responseLag Opportunity
+      CostResponse Budget U H E S
+      CostFunctional trajectory target minGain
+      hOpp hResponse hGain
+
 /-- Sliding-window gain immediately yields the same gain guarantee on each
 non-overlapping block of that width. This is the deterministic block-rate
 interpretation. -/
@@ -414,6 +471,7 @@ theorem certifiedBlockGainRate_positive
   exact div_pos hGain (by exact_mod_cast hWindow)
 
 #print axioms boundedMechanism_implies_functionalGainEveryWindow
+#print axioms supportedCycle3Maintenance_boundedResponse_and_minGain_imply_functionalGainEveryWindow
 #print axioms functionalGainEveryWindow_implies_everyBlock
 #print axioms certifiedBlockGainRate_positive
 
