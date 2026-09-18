@@ -34,7 +34,15 @@ No claim is made that all functional targets are valuable, commensurable, or
 independent.
 -/
 
-/-- Directed cost from an organizational state to a functional target. -/
+/-- Resource/performance cost of realizing a functional target with the
+current organization under a declared evaluation protocol.
+
+By default this is **not** the cost of training or reorganizing the system until
+it acquires the function. That acquisition problem belongs to the
+organizational transition/accessibility layer. Keeping performance cost and
+acquisition cost distinct prevents a currently incapable state from being
+credited with a function merely because enough future training could make it
+capable. -/
 abbrev FunctionalCost (σ φ : Type*) := σ → φ → ℝ
 
 /-- A functional target is realizable within budget `B`. -/
