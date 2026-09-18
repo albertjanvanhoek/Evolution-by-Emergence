@@ -102,7 +102,7 @@ theorem validationBaselineVelocity_at_stateDependentOptimum
       (1 + b) / 4 := by
   have hd : 0 < 1 + b := by linarith
   rw [ValidationBaselineVelocity, BaselineValidationFraction]
-  field_simp
+  field_simp [ne_of_gt hd]
   ring
 
 /-- When inherited validation capacity lies between zero and one, the exact
