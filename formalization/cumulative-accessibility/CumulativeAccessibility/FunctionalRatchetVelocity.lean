@@ -155,7 +155,7 @@ theorem strictlyLessFunctionallyViscous_iff_positiveVelocity
 /-- Duration- or resource-normalized functional rate. The denominator is an
 application-declared positive interval such as elapsed time, energy budget, or
 number of update opportunities. -/
-def FunctionalStepRate
+noncomputable def FunctionalStepRate
     (oldCost newCost : FunctionalCost σ φ)
     (oldState newState : σ)
     (duration : ℝ)
