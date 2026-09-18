@@ -39,7 +39,10 @@ CORE FILES — USE THESE EXACT PATHS AT THE TARGET COMMIT
 
 RELEASE_NOTES.md
 RESEARCH_GUIDE.md
+DYNAMIC_OVERVIEW.md
 formalization/cumulative-accessibility/README.md
+formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/FormalCoreWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceGatedWitness.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/MaintenanceOpportunityBridge.lean
@@ -76,6 +79,9 @@ Never ask the human for a path already supplied in this prompt.
 
 Before beginning scientific analysis, report:
 
+DYNAMIC_OVERVIEW.md: FOUND / NOT RESOLVED — <exact path or limitation>
+DynamicVortex.lean: FOUND / NOT RESOLVED — <exact path or limitation>
+DynamicVortexWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
 FormalCoreWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
 MaintenanceGatedWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
 MaintenanceOpportunityBridge.lean: FOUND / NOT RESOLVED — <exact path or limitation>
