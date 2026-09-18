@@ -21,7 +21,7 @@ Whether you are a human reviewer or an LLM-based research agent:
 
 ## Current review route — full Evolution by Emergence theory
 
-The immutable **v15** release remains the historical verification-closure object. For the current revision, review an exact commit SHA from `main` (or the revision pull request before merge) so theorem statements and CI evidence come from one fixed repository state.
+The immutable **v16** release is the recommended fixed object for full-theory peer review. The **v15** release remains the historical verification-closure baseline. Record the exact v16 commit SHA used for any review so theorem statements and CI evidence come from one fixed repository state.
 
 Start with:
 
@@ -29,7 +29,7 @@ Start with:
 2. `DYNAMIC_OVERVIEW.md` — detailed resource-fed recursive accessibility dynamics.
 3. `FORMAL_THEORY_MAP.md` — theory claim → exact Lean declaration map.
 4. `formalization/README.md` — all Lean packages and local reproduction commands.
-5. `RELEASE_NOTES.md` — current stacked revisions plus the historical v15 record.
+5. `RELEASE_NOTES.md` — v16 release scope, verification boundary, and release lineage.
 6. `formalization/cumulative-accessibility/README.md` — integrated cumulative-accessibility package and verification contract.
 7. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean` — composition theorem joining endogenous response to second-order accessibility.
 8. `formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean` — concrete full-dynamic witness.
@@ -137,8 +137,9 @@ paper-specific reproduction.
 
 Historical note: v14 declared formal-core closure but its plain `lake build`
 did not force every downstream module. v15 repaired the central end-to-end
-verification surface. The current revision adds repository-wide theory
-traceability without rewriting either historical tag.
+verification surface. v16 adds repository-wide theory integration,
+traceability, and full-theory meta-verification without rewriting the earlier
+historical tags.
 
 ## Minimal context pack
 
