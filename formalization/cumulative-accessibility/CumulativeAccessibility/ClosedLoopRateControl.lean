@@ -122,7 +122,7 @@ theorem closedLoop_interior_equalizes_capacities
       state.searchBase state.validationBase
   unfold StageImbalance BottleneckClosedLoopStep ApplyUnitAllocation
   rw [hPolicy]
-  linarith
+  exact sub_eq_zero.mpr hEqual
 
 /-- Full piecewise imbalance law for the reduced closed-loop model. -/
 theorem bottleneckClosedLoop_imbalance_law
