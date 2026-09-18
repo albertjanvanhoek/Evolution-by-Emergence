@@ -277,3 +277,41 @@ strictly higher guaranteed functional-rate floor.
 This is intentionally weaker than asserting that the observed trajectory's
 realized average rate must strictly increase. A stronger empirical or dynamical
 model would be needed to identify the lower bound with realized velocity.
+
+
+## Coupled search-validation trade-off
+
+`SearchValidationTradeoff.lean` provides a deliberately minimal exact model
+showing why ceteris-paribus monotonicity of ledger coordinates does not imply
+monotonicity of the coupled system.
+
+With a unit processing budget, let `x` be candidate-generation/search
+allocation and `1-x` validation allocation. Holding the other ledger factors
+at one gives
+
+```math
+v(x)=x(1-x).
+```
+
+Lean checks:
+
+```math
+0\le v(x)\le\frac14
+```
+
+on `0\le x\le1`, with the global upper bound attained iff
+
+```math
+x=\frac12.
+```
+
+It also checks strict increase on the left half, strict decrease on the right
+half, and the explicit counterexample
+
+```math
+v(1)<v(1/2).
+```
+
+The numerical optimum `1/2` is specific to the symmetric unit-budget toy
+model. The reusable claim is only that shared constraints can couple
+rate-producing stages and create an interior optimum.
