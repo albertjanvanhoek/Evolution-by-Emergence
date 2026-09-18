@@ -4,6 +4,10 @@
 
 `formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean`
 
+Mechanism-ledger specialization:
+
+`formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean`
+
 ## Type separation
 
 The formal layer uses two types:
@@ -92,3 +96,29 @@ An application may introduce a measure or weighting over functional targets,
 but any resulting scalar inherits the assumptions of that target family and
 aggregation rule. The vector-valued cost and velocity profiles remain the
 primitive objects.
+
+
+## Mechanism-ledger layer
+
+`RatchetVelocityLedger.lean` deliberately does not redefine the measured
+functional rate. It introduces an explicit modelling seam:
+
+```text
+VelocityLedgerMatches measuredRate ledgerFactors
+```
+
+with
+
+```math
+v_{ledger}
+=
+\lambda p_G p_R p_V p_T \bar g.
+```
+
+Lean checks nonnegativity, zero-bottleneck cases, and ceteris-paribus
+monotonicity in opportunity rate, generation, resource feasibility, validation,
+retention, and mean retained functional gain.
+
+These are conditional algebraic consequences of the ledger. The formal theory
+does not prove that a biological, ecological, neural, social, or technological
+system is correctly represented by this factorization.
