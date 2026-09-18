@@ -367,9 +367,10 @@ time/resource interval yields ratchet velocity.
 
 **Formal status:** MC + concrete witness.
 
-**Lean source**
+**Lean sources**
 
-FunctionalRatchetVelocity.lean
+- FunctionalRatchetVelocity.lean
+- RatchetVelocityLedger.lean
 
 **Core definitions**
 
@@ -384,6 +385,9 @@ FunctionalRatchetVelocity.lean
 - FunctionalRateDominatesOn
 - StrictlyFasterFunctionalRateOn
 - AcceleratingFunctionalRatchetOn
+- RetainedSuccessFraction
+- MechanisticRatchetVelocity
+- VelocityLedgerMatches
 
 **Selected declarations**
 
@@ -398,6 +402,14 @@ FunctionalRatchetVelocity.lean
 - acceleratingFunctionalRatchet_has_faster_target
 - commons_positive_functional_velocity
 - commons_repertoire_expands_at_budget_one
+- mechanisticRatchetVelocity_nonneg
+- mechanisticRatchetVelocity_mono_opportunity
+- mechanisticRatchetVelocity_mono_generation
+- mechanisticRatchetVelocity_mono_resource
+- mechanisticRatchetVelocity_mono_validation
+- mechanisticRatchetVelocity_mono_retention
+- mechanisticRatchetVelocity_mono_meanGain
+- matchedLedger_zero_retention_implies_zero_measuredRate
 
 **Key bridge**
 
@@ -407,7 +419,9 @@ vector-valued functional cost/rate profile; no universal scalar complexity or
 amount-of-organization measure is assumed.
 
 **Modelling boundary.** Functional targets, success criteria, resource units,
-environmental matching, and scalar aggregation are application-declared.
+environmental matching, and scalar aggregation are application-declared. The
+mechanism ledger is an optional scalar projection with an explicit
+`VelocityLedgerMatches` seam; it is not a universal probabilistic law.
 
 ---
 
