@@ -116,8 +116,8 @@ theorem recurringValidatedResponse_implies_validatedUptake
     (hResponse : RecurringValidatedResponse Opportunity U H E S) :
     ValidatedGenerativeCapacityUptake U H E S := by
   intro n
-  obtain ⟨m, hnm, hOpportunity, z, hzU, hzNot, hGen, hEval, hzNext⟩ :=
-    hResponse n
+  obtain ⟨m, hnm, hOpportunity, hSuccess⟩ := hResponse n
+  obtain ⟨z, hzU, hzNot, hGen, hEval, hzNext⟩ := hSuccess
   exact ⟨m, z, hnm, hzU, hzNot, hGen, hEval, hzNext⟩
 
 /-- Recurring opportunity plus success at every opportunity implies recurrent
@@ -322,6 +322,108 @@ theorem supportedCycle3Maintenance_supplies_recurringOpportunity
       hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop)
     hConnection
 
+/-- Quantitative support plus an explicit support-to-opportunity connection
+and success at every opportunity imply recurrent successful coincidence.  This
+packages the revised maintenance-side route without claiming that maintenance
+derives successful uptake. -/
+theorem supportedCycle3Maintenance_and_validatedResponse_imply_recurringValidatedResponse
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (hConnection :
+      SupportImpliesOpportunity
+        (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hResponse :
+      OpportunityConditionedValidatedRealization Opportunity U H E S) :
+    RecurringValidatedResponse Opportunity U H E S := by
+  exact
+    recurringOpportunity_and_validatedRealization_imply_recurringValidatedResponse
+      Opportunity U H E S
+      (supportedCycle3Maintenance_supplies_recurringOpportunity
+        Opportunity hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop hConnection)
+      hResponse
+
+/-- With monotone retention, the same revised support/connection/response route
+implies open-ended cumulative novelty. -/
+theorem supportedCycle3Maintenance_and_validatedResponse_imply_openEndedNovelty
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (hConnection :
+      SupportImpliesOpportunity
+        (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hResponse :
+      OpportunityConditionedValidatedRealization Opportunity U H E S) :
+    OpenEndedCumulativeNovelty S := by
+  exact recurringValidatedResponse_implies_openEndedNovelty
+    Opportunity U H E S hRetained
+    (supportedCycle3Maintenance_and_validatedResponse_imply_recurringValidatedResponse
+      Opportunity U H E S
+      hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop hConnection hResponse)
+
+/-- With representation and retention, the revised route also implies
+unbounded envelope capacity. -/
+theorem supportedCycle3Maintenance_and_validatedResponse_imply_unboundedEnvelope
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (U : ℕ → Finset α)
+    (H : ℕ → HyperGenerator α)
+    (E : ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (hConnection :
+      SupportImpliesOpportunity
+        (cycle3MaintenanceSupport rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hRepresented : ∀ n, S n ⊆ U n)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hResponse :
+      OpportunityConditionedValidatedRealization Opportunity U H E S) :
+    UnboundedEnvelopeCapacity U := by
+  exact recurringValidatedResponse_implies_unboundedEnvelope
+    Opportunity U H E S hRepresented hRetained
+    (supportedCycle3Maintenance_and_validatedResponse_imply_recurringValidatedResponse
+      Opportunity U H E S
+      hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop hConnection hResponse)
+
 /-- The existing positivity opportunity stream is therefore recurrent already
 under the non-strict replacement threshold, because the support-to-opportunity
 connection is proved explicitly. -/
@@ -464,6 +566,9 @@ end Separation
 #print axioms cycle3MaintenanceSupport_persistent
 #print axioms cycle3MaintenanceSupport_implies_opportunity
 #print axioms supportedCycle3Maintenance_supplies_recurringOpportunity
+#print axioms supportedCycle3Maintenance_and_validatedResponse_imply_recurringValidatedResponse
+#print axioms supportedCycle3Maintenance_and_validatedResponse_imply_openEndedNovelty
+#print axioms supportedCycle3Maintenance_and_validatedResponse_imply_unboundedEnvelope
 #print axioms cycle3Maintenance_supplies_recurringOpportunity
 #print axioms strictCycle3Maintenance_supplies_recurringOpportunity
 #print axioms strictCycle3Maintenance_and_validatedResponse_imply_openEndedNovelty
