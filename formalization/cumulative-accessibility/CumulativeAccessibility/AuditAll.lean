@@ -12,9 +12,11 @@ import CumulativeAccessibility.CapacitySlack
 import CumulativeAccessibility.ValidatedUptake
 import CumulativeAccessibility.MaintenanceOpportunityBridge
 import CumulativeAccessibility.ResponseDynamics
+import CumulativeAccessibility.EndogenousBudgetBridge
 import CumulativeAccessibility.FormalCoreWitness
 import CumulativeAccessibility.MaintenanceGatedWitness
 import CumulativeAccessibility.BoundedResponseWitness
+import CumulativeAccessibility.EndogenousBudgetWitness
 
 /-!
 # Aggregate package audit target
