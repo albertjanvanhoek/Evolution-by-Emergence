@@ -75,7 +75,10 @@ It defines:
 - VerbImprovementOn;
 - SelfImprovementOn;
 - ImprovementProductivity;
-- RecursiveSelfImprovementOn.
+- RecursiveSelfImprovementOn;
+- FunctionalProcessGeometry;
+- MatchedLearningRateImprovementOn;
+- RateGroundedRecursiveSelfImprovementOn.
 
 Lean checks:
 
@@ -86,6 +89,11 @@ Lean checks:
 4. RecursiveSelfImprovementOn implies SelfImprovementOn;
 5. RecursiveSelfImprovementOn implies increased declared improvement
    productivity.
+6. RateGroundedRecursiveSelfImprovementOn preserves declared retained
+   functional targets at the matched starting organization.
+7. RateGroundedRecursiveSelfImprovementOn contains an explicit held-out target
+   whose duration/resource-normalized learning rate is strictly higher under
+   the self-modified process.
 
 ## Important non-claims
 
@@ -128,7 +136,7 @@ The universal theorem is on the outside:
 \text{larger thresholded accessibility at some budget}.
 \]
 
-The inside translation is conditional:
+The generic inside translation is conditional:
 
 \[
 P_t \xrightarrow{\Gamma} C_t.
@@ -136,3 +144,20 @@ P_t \xrightarrow{\Gamma} C_t.
 
 An application must justify the map Γ. The formal theory deliberately does not
 define intelligent-network verbs so that improvement is true by construction.
+
+
+## Preferred rate-grounded recursive test
+
+The earlier scalar `ImprovementProductivity ρ` remains a generic interface.
+The preferred operational specialization now uses the companion
+`FunctionalRatchetVelocity.lean` layer.
+
+Clone or otherwise match the starting organization, hold the functional target
+family fixed, normalize each episode by its positive duration/resource
+interval, and compare the old and new process rate profiles.
+
+A process change counts as rate-grounded recursive self-improvement only if the
+old process generated and applied the intervention, declared retained functions
+are not made more costly at the starting organization, and the new process
+strictly dominates the old process on held-out functional learning rate for at
+least one target without being slower on the others in the declared set.
