@@ -6,50 +6,59 @@
 
 You do not need to read the whole book to review the current formal core.
 
-The current milestone — **v15: Verification Closure** — asks a focused question:
+The current development revision builds on the immutable **v15: Verification Closure** release and asks a sharper question:
 
-> **Under what explicit conditions can recurrent maintenance support validated cumulative novelty, and what must be true if that process is to remain open-ended?**
+> **What quantitative maintenance support is actually preserved, what must be declared to turn that support into opportunity, and exactly which response assumptions are sufficient for open-ended cumulative novelty?**
 
-The formal route is:
+The formal route is now:
 
 ```text
-strict recurrent maintenance conditions
+positive canonical support + non-strict maintenance threshold
                 ↓
-recurring maintenance opportunity
+persistent quantitative support
                 +
-opportunity-conditioned validated realization
-                +
-retention
+declared support → opportunity connection
                 ↓
-validated generative uptake
+recurring opportunity Q
+
+Q + success at every opportunity V
                 ↓
-open-ended cumulative retained novelty
-                +
-representation inside a moving envelope
+recurrent successful coincidence W
                 ↓
-unbounded effective distinguishability capacity
+validated generative uptake G
+
+retention R + G
+                ↓
+open-ended cumulative retained novelty N
+
+representation P + retention R + N
+                ↓
+unbounded effective distinguishability capacity C
 ```
+
+The revision also machine-checks that `W` is a genuine coupling condition: `W ∧ ¬V` is possible, and `Q ∧ G` does not imply `W`.
 
 The important words are **conditional** and **explicit**.
 
 Lean checks whether the stated conclusions follow from the stated assumptions. Science must still ask whether those assumptions hold in real biological, cognitive, social, organizational, or technological systems.
 
-## What v15 changes
+## What the post-v15 revision changes
 
-The mathematical implication chain was already the intended result of v14, but an adversarial verification audit found that the old CI command `lake build` only forced the package root target and therefore did **not** by itself demonstrate compilation of the entire formal-core dependency chain.
+The v15 central implication chain survived adversarial review, but the review exposed a lossy interface and incomplete auxiliary verification coverage.
 
-v15 closes that verification gap.
+This revision therefore:
 
-The repository now explicitly builds the two end-to-end verification targets:
+- preserves the **positive quantitative canonical support vector** instead of reducing maintenance immediately to mere positivity;
+- proves the support bound under the **non-strict** closed-loop replacement threshold;
+- requires an explicit `SupportImpliesOpportunity` connection before support can establish recurrence of a chosen opportunity predicate;
+- separates success at every opportunity (`V`) from recurrent successful coincidence (`W`) and recurrent validated uptake (`G`);
+- machine-checks `Q ∧ V → W → G`, plus the separation witnesses `W ∧ ¬V` and `Q ∧ G ∧ ¬W`;
+- fixes two auxiliary Lean defects identified by review;
+- adds `AuditAll` so every advertised module compiles in CI;
+- adds `VerificationSurface` so selected advertised theorem dependencies are explicitly checked for `sorryAx`;
+- and makes changes to the imported collective-alignment package trigger the downstream cumulative-accessibility check.
 
-```text
-CumulativeAccessibility.FormalCoreWitness
-CumulativeAccessibility.MaintenanceGatedWitness
-```
-
-and CI separately re-runs their `#print axioms` output and fails if any central theorem depends on `sorryAx`.
-
-The compatibility/proof-term repairs required to make the full stack compile did **not** require weakening the theorem statements.
+The further dynamical problem—deriving recurrent successful uptake from independently specified support, resource, generation, validation, and delay mechanisms—is deliberately left open.
 
 ## Two complementary witnesses
 
@@ -122,7 +131,7 @@ The project does **not** claim that:
 
 ## Review the fixed object
 
-For comparable independent reviews, use the immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** and record the commit SHA you inspected.
+The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support/response-separation revision, pin and report the exact commit SHA on `main` (or the revision pull request before merge) rather than silently mixing it with v15.
 
 Start with:
 
@@ -148,14 +157,17 @@ An LLM can trace definitions, imports, theorem dependencies, counterexamples, an
 ```bash
 git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
 cd Evolution-by-Emergence
-git checkout v15
+# optionally checkout an exact commit SHA for a fixed review object
 cd formalization/cumulative-accessibility
 lake update
 lake exe cache get
 lake build
 lake build \
+  CumulativeAccessibility.AuditAll \
+  CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.FormalCoreWitness \
   CumulativeAccessibility.MaintenanceGatedWitness
+lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 ```

@@ -1,0 +1,23 @@
+import CumulativeAccessibility
+import CumulativeAccessibility.RecursiveAccessibility
+import CumulativeAccessibility.EvolvabilityStructure
+import CumulativeAccessibility.GenerativeArity
+import CumulativeAccessibility.GenerativeClosure
+import CumulativeAccessibility.ModuleGeneratedEvolvability
+import CumulativeAccessibility.GeneratorRuleEvolution
+import CumulativeAccessibility.FiniteGenerativeSaturation
+import CumulativeAccessibility.OpenEndedCapacity
+import CumulativeAccessibility.CapacityUptake
+import CumulativeAccessibility.CapacitySlack
+import CumulativeAccessibility.ValidatedUptake
+import CumulativeAccessibility.MaintenanceOpportunityBridge
+import CumulativeAccessibility.FormalCoreWitness
+import CumulativeAccessibility.MaintenanceGatedWitness
+
+/-!
+# Aggregate package audit target
+
+This module intentionally imports every module advertised by the cumulative
+accessibility package README. Its role is verification coverage, not theorem
+composition: if an advertised module stops compiling, this target must fail.
+-/

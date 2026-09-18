@@ -16,16 +16,15 @@ forward invariant whenever the closed-loop product threshold is met.  If the
 canonical witness is strictly positive, the resulting trajectory is positive at
 every time.
 
-Thus the finite maintenance witness is promoted to an arbitrarily-late
-availability statement:
+Thus the finite maintenance witness is promoted to a quantitative trajectory
+statement.  Under the non-strict product threshold and the required sign
+conditions, the trajectory remains above a strictly positive canonical support
+vector at every time.  A positive scalar floor follows as a corollary.
 
-    closed maintenance threshold + positivity/nonnegativity
-        -> positive maintained trajectory at every time
-        -> arbitrarily late maintenance availability.
-
-This still does not imply novelty, external validation, or learning.  It only
-supplies the recurrent-maintenance side of the interface used by the cumulative
-accessibility stack.
+The older strict-threshold positivity/availability theorems remain as compatible
+corollaries.  This module still does not imply opportunity for an arbitrary
+external predicate, novelty, validation, or learning; those connections are
+declared separately in the cumulative-accessibility package.
 -/
 
 structure Cycle3State where
@@ -59,6 +58,54 @@ def cycle3AtOrAboveCanonical
 /-- Strict positivity of all three maintained components. -/
 def cycle3Positive (x : Cycle3State) : Prop :=
   0 < x.a ∧ 0 < x.b ∧ 0 < x.c
+
+/-- A trajectory state is supported by a declared quantitative lower-bound
+vector when the lower bound itself is strictly positive and every component of
+the state remains at or above it.  This keeps positivity of the support
+threshold explicit rather than encoding maintenance as mere nonzero state. -/
+def cycle3SupportedBy (b x : Cycle3State) : Prop :=
+  cycle3Positive b ∧
+  b.a ≤ x.a ∧
+  b.b ≤ x.b ∧
+  b.c ≤ x.c
+
+/-- Scalar summary of a three-component support vector.  The vector remains the
+primary quantitative object; this minimum is only a convenient common floor. -/
+def cycle3SupportFloor (b : Cycle3State) : ℝ :=
+  min b.a (min b.b b.c)
+
+/-- A positive support vector has a strictly positive scalar floor. -/
+theorem cycle3SupportFloor_pos
+    {b : Cycle3State}
+    (hb : cycle3Positive b) :
+    0 < cycle3SupportFloor b := by
+  simpa [cycle3Positive, cycle3SupportFloor, lt_min_iff] using hb
+
+/-- Quantitative support implies positivity of the supported state. -/
+theorem cycle3SupportedBy_implies_positive
+    {b x : Cycle3State}
+    (h : cycle3SupportedBy b x) :
+    cycle3Positive x := by
+  rcases h with ⟨hb, hA, hB, hC⟩
+  rcases hb with ⟨hbA, hbB, hbC⟩
+  exact ⟨lt_of_lt_of_le hbA hA,
+    lt_of_lt_of_le hbB hB,
+    lt_of_lt_of_le hbC hC⟩
+
+/-- The scalar floor of a support vector is below every component of any state
+supported by that vector. -/
+theorem cycle3SupportedBy_floor_bounds
+    {b x : Cycle3State}
+    (h : cycle3SupportedBy b x) :
+    cycle3SupportFloor b ≤ x.a ∧
+    cycle3SupportFloor b ≤ x.b ∧
+    cycle3SupportFloor b ≤ x.c := by
+  rcases h with ⟨hb, hA, hB, hC⟩
+  constructor
+  · exact le_trans (min_le_left _ _) hA
+  constructor
+  · exact le_trans (le_trans (min_le_right _ _) (min_le_left _ _)) hB
+  · exact le_trans (le_trans (min_le_right _ _) (min_le_right _ _)) hC
 
 /-- The order cone above the canonical witness is forward invariant under a
 nonnegative cycle update once the closed-loop product threshold is met. -/
@@ -163,6 +210,71 @@ theorem cycle3Trajectory_stays_above_canonical
       exact cycle3StateStep_preserves_canonical_lower_bound
         hrA hrB hrC hkAB hkBC hkCA hloop ih
 
+/-- Under nonnegative update coefficients, a positive canonical witness, and
+the non-strict closed-loop replacement threshold, the complete trajectory is
+supported by that same strictly positive canonical vector at every time.
+
+This is stronger than mere positivity: it preserves an explicit non-vanishing
+componentwise lower bound.  No strict product inequality is required for this
+invariance result. -/
+theorem cycle3Trajectory_supported_by_canonical
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < maintenanceDeficit rB)
+    (hdC : 0 < maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      maintenanceDeficit rA * maintenanceDeficit rB * maintenanceDeficit rC
+        ≤ kAB * kBC * kCA) :
+    ∀ n : ℕ,
+      cycle3SupportedBy
+        (cycle3CanonicalState rB rC kAB kBC)
+        (cycle3Trajectory rA rB rC kAB kBC kCA n) := by
+  intro n
+  have hpositiveRaw :=
+    cycle3_canonical_witness_positive hdB hdC hkAB hkBC
+  have hpositive :
+      cycle3Positive (cycle3CanonicalState rB rC kAB kBC) := by
+    simpa [cycle3Positive, cycle3CanonicalState] using hpositiveRaw
+  have habove :=
+    cycle3Trajectory_stays_above_canonical
+      hrA hrB hrC (le_of_lt hkAB) (le_of_lt hkBC) hkCA hloop n
+  rcases habove with ⟨hA, hB, hC⟩
+  exact ⟨hpositive, hA, hB, hC⟩
+
+/-- Scalar corollary of the retained vector bound.  The canonical vector remains
+available as the primary quantitative support object; ε is its common positive
+component floor. -/
+theorem cycle3Trajectory_has_positive_support_floor
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < maintenanceDeficit rB)
+    (hdC : 0 < maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      maintenanceDeficit rA * maintenanceDeficit rB * maintenanceDeficit rC
+        ≤ kAB * kBC * kCA) :
+    let ε := cycle3SupportFloor (cycle3CanonicalState rB rC kAB kBC)
+    0 < ε ∧
+      ∀ n : ℕ,
+        ε ≤ (cycle3Trajectory rA rB rC kAB kBC kCA n).a ∧
+        ε ≤ (cycle3Trajectory rA rB rC kAB kBC kCA n).b ∧
+        ε ≤ (cycle3Trajectory rA rB rC kAB kBC kCA n).c := by
+  dsimp
+  have hpositiveRaw :=
+    cycle3_canonical_witness_positive hdB hdC hkAB hkBC
+  have hpositive :
+      cycle3Positive (cycle3CanonicalState rB rC kAB kBC) := by
+    simpa [cycle3Positive, cycle3CanonicalState] using hpositiveRaw
+  constructor
+  · exact cycle3SupportFloor_pos hpositive
+  · intro n
+    exact cycle3SupportedBy_floor_bounds
+      (cycle3Trajectory_supported_by_canonical
+        hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop n)
+
 /-- Under the physically natural sign conditions and a strict closed-loop
 threshold, the canonical trajectory is strictly positive at every time. -/
 theorem cycle3_strict_loop_trajectory_positive
@@ -219,6 +331,11 @@ theorem cycle3_strict_loop_has_arbitrarily_late_availability
 
 #print axioms cycle3StateStep_preserves_canonical_lower_bound
 #print axioms cycle3Trajectory_stays_above_canonical
+#print axioms cycle3SupportFloor_pos
+#print axioms cycle3SupportedBy_implies_positive
+#print axioms cycle3SupportedBy_floor_bounds
+#print axioms cycle3Trajectory_supported_by_canonical
+#print axioms cycle3Trajectory_has_positive_support_floor
 #print axioms cycle3_strict_loop_trajectory_positive
 #print axioms cycle3_strict_loop_has_arbitrarily_late_availability
 

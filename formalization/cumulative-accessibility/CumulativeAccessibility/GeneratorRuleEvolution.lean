@@ -1,4 +1,5 @@
 import CumulativeAccessibility.GenerativeArity
+import CumulativeAccessibility.GenerativeClosure
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
@@ -129,7 +130,10 @@ def toyRule1 : HyperGenerator Toy3
 theorem toyRule0_le_toyRule1 :
     GeneratorRuleLe toyRule0 toyRule1 := by
   intro parents z h
-  cases z <;> simp [toyRule0, toyRule1] at h ⊢
+  cases z with
+  | a => exact False.elim h
+  | b => exact h
+  | c => exact False.elim h
 
 /-- At the unchanged repertoire `{a}`, the new rule strictly expands the
 candidate set by making `c` generable. -/

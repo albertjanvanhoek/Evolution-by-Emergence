@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - "formalization/cumulative-accessibility/**"
+      - "formalization/collective-alignment/**"
       - "papers/when-does-change-become-cumulative/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
   pull_request:
     paths:
       - "formalization/cumulative-accessibility/**"
+      - "formalization/collective-alignment/**"
       - "papers/when-does-change-become-cumulative/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
 
@@ -40,6 +42,8 @@ jobs:
         run: |
           $HOME/.elan/bin/lake build
           $HOME/.elan/bin/lake build \
+            CumulativeAccessibility.AuditAll \
+            CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.FormalCoreWitness \
             CumulativeAccessibility.MaintenanceGatedWitness
 
@@ -48,6 +52,7 @@ jobs:
         run: |
           set -euo pipefail
           output="$({
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
           } 2>&1)"

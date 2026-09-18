@@ -110,77 +110,94 @@ C_t  correction/update mechanism acting on M_t and/or H_t after test outcomes
 
 That would be a generalization of the present formal core, not a missing premise of the theorem proved here.
 
-## 6. Closed bridge to maintenance reproduction
+## 6. Quantitative maintenance support and the opportunity bridge
 
-The maintenance-reproduction and cumulative-accessibility projects are now linked as Lean packages.
+The maintenance-reproduction and cumulative-accessibility projects are linked as Lean packages, but the bridge now preserves more of the maintenance result.
 
-`MaintenanceDynamics.lean` turns the finite three-cycle maintenance witness into a deterministic time-indexed trajectory. For nonnegative self-retention and couplings, the coordinatewise cone above the canonical witness is forward invariant once the closed-loop replacement threshold is met. Under positive deficits/couplings and the strict product threshold, the canonical trajectory is strictly positive at every time.
-
-Lean therefore proves
+`MaintenanceDynamics.lean` defines a quantitative support relation
 
 ```text
-strict positive three-cycle maintenance conditions
-    -> positive maintenance availability at every time
-    -> arbitrarily late maintenance availability.
+Supported(b, x)
+    := b is strictly positive
+       AND
+       x is componentwise at or above b.
 ```
 
-`MaintenanceOpportunityBridge.lean` imports that result and discharges the formerly abstract recurrence premise:
+For the canonical three-cycle vector `b`, Lean proves under nonnegative update coefficients, positivity of the canonical witness, and the **non-strict** product threshold that
 
 ```text
-strict three-cycle maintenance
-    -> RecurringOpportunity(cycle3MaintenanceOpportunity).
+forall n, Supported(b, trajectory(n)).
 ```
 
-Together with the still-explicit response condition,
+The scalar
 
 ```text
-OpportunityConditionedValidatedRealization,
+epsilon = min(b_A, b_B, b_C)
 ```
 
-Lean proves the cross-stack theorem
+is therefore strictly positive and lower-bounds every trajectory component. The vector bound is retained as the primary result. The canonical vector is a mathematically explicit reference level inside this construction; interpreting it as an operational physical threshold still requires application-specific units, normalization, and a model of what those quantities enable.
+
+`MaintenanceOpportunityBridge.lean` keeps support separate from opportunity. Persistent support implies recurring opportunity only when a connection is explicitly declared:
 
 ```text
-strict closed maintenance loop
-+ opportunity-conditioned validated realization
-+ monotone retention
-    -> open-ended cumulative retained novelty.
+SupportImpliesOpportunity Support Opportunity.
 ```
 
-With `M_t ⊆ U_t`, the same premises imply
+Thus maintenance does not constrain an arbitrary external opportunity predicate.
+
+## 7. Response assumptions: Q, V, W, and G
+
+Let `F(m)` denote a complete successful event at time `m`: a candidate is inside the envelope, fresh, generable from retained material, externally accepted, and retained at the next step.
+
+The bridge distinguishes:
 
 ```text
-unbounded distinguishability capacity.
+Q := from every horizon, an opportunity occurs later
+V := every opportunity time has F
+W := from every horizon, a later time has both opportunity and F
+G := from every horizon, a later time has F
 ```
 
-The response condition remains essential. Maintenance keeps an organization available for future interaction; it does not logically force the organization to generate novelty, pass an external test, or retain the result. A separation witness already proves that opportunities alone are insufficient.
-
-## 7. Formal-core closure and non-vacuity
-
-`FormalCoreWitness.lean` checks that the complete premise set is jointly inhabited rather than merely syntactically composable.
-
-It chooses
+Lean checks:
 
 ```text
-rA = rB = rC = 1/2
-kAB = kBC = kCA = 1,
+Q and V -> W
+W -> Q
+W -> G
+R and G -> N
+P and R and N -> C
 ```
 
-so that
+The distinction matters because `W` already contains recurring successful uptake. It is a weaker sufficient coupling assumption than `V`; it is not a derivation of successful innovation from maintenance.
+
+The regression witnesses establish three separate boundaries:
 
 ```text
-(1-rA)(1-rB)(1-rC) = 1/8 < 1 = kAB kBC kCA.
+Q and not N
+W and not V
+Q and G and not W
 ```
 
-The progressive accessibility architecture generates and retains a new candidate at every time and the declared accept-all criterion validates those candidates. Lean machine-checks the complete route
+The final witness places opportunities at even times and successful uptake at odd times. Both recur arbitrarily late, but they never coincide. Therefore separate recurrence of opportunity and success does not imply `W`.
+
+The current `W` is same-indexed: opportunity and success occur at the same time step. If generation or validation takes several steps, a future dynamical model must introduce an explicit relation between an earlier opportunity and a later success.
+
+## 8. Verification closure and stopping point
+
+`FormalCoreWitness.lean` remains the joint-satisfiability witness, and `MaintenanceGatedWitness.lean` remains the within-model dependency/ablation witness. The latter now also hosts the response-separation constructions.
+
+Verification is split into two explicit surfaces:
 
 ```text
-concrete maintenance dynamics
-    -> recurrent maintenance availability
-    -> validated response
-    -> open-ended cumulative retained novelty
-    -> unbounded moving-envelope capacity.
+AuditAll.lean
+    -> imports every module advertised by the package README
+
+VerificationSurface.lean
+    -> prints axiom dependencies for the explicit advertised theorem list
 ```
 
-This is a natural **formal-core closure point**. The stated theorem chain is complete under explicit assumptions, the major converse failures are represented by counterexamples, and the assumptions are jointly non-vacuous.
+CI compiles both and rejects `sorryAx` in the selected declaration audits. Changes to the imported collective-alignment package also trigger the downstream cumulative-accessibility check.
 
-Further work can still generalize the maintenance network, model changing external tests, replace monotone retention with turnover/memory, or test whether real systems satisfy the assumptions. Those are new mathematical or empirical questions; they are not required to make the present implication formally complete.
+This revision stops at a deliberate boundary. The maintenance-to-novelty architecture remains feed-forward: novelty does not consume support resources, change maintenance demand, alter generation or validation cost, or feed back into the maintenance dynamics.
+
+The next dynamical achievement would be to derive recurrent successful uptake from independently specified mechanisms governing support, resources, generation, validation, and—when needed—response delay. That is future work rather than an implicit claim of the present formal core.

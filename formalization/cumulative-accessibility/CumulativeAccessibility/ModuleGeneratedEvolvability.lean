@@ -117,9 +117,13 @@ theorem retained_module_diversity_expands_generator :
   · exact ⟨Toy3.a, Toy3.b, by simp, rfl, by simp [jointRecombine]⟩
   · simp
   · intro hOld
+    have hModulesA : toyModules Toy3.a = availableA := by
+      funext m
+      rfl
     have hOld' : GeneratedFromAvailable availableA
         (BinaryLift jointRecombine) Toy3.c := by
-      simpa [SearchFromModules, toyModules] using hOld
+      rw [← hModulesA]
+      exact hOld
     have hRec :=
       (generatedFromAvailable_binaryLift_iff
         availableA jointRecombine Toy3.c).1 hOld'

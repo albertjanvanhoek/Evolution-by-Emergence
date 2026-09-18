@@ -1,11 +1,13 @@
 # Formal-core peer-review prompt
 
-Use this prompt with an LLM that can inspect GitHub. The default review object is the immutable **v15** release.
+Use this prompt with an LLM that can inspect GitHub. For the current post-v15 revision, first resolve `main` (or the pull request under review) to an exact commit SHA and review that immutable commit. The tagged **v15** release remains the historical verification-closure baseline.
 
 ```text
-Act as an adversarial scientific peer reviewer of the tagged v15 release of:
+Act as an adversarial scientific peer reviewer of an exact commit of:
 
-https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15
+https://github.com/albertjanvanhoek/Evolution-by-Emergence
+
+Resolve the target branch or pull request to an exact commit SHA before analysis and report it.
 
 Your task is to test the formal-core claims, not to defend or attack the broader philosophy of Evolution by Emergence.
 
@@ -14,13 +16,13 @@ ACCESS GATE — DO THIS FIRST
 Before reviewing, report:
 
 REPOSITORY ACCESS: yes / no
-TARGET VERSION: v15 / other / unknown
+TARGET VERSION: <exact commit SHA> / v15 / unknown
 SOURCE-FILE ACCESS: yes / no
 LEAN EXECUTION: yes / no
 LITERATURE SEARCH: yes / no
 
 SOURCE-FILE ACCESS may be reported as "yes" only after you have successfully
-opened RELEASE_NOTES.md at v15 and at least one exact Lean source from the
+opened RELEASE_NOTES.md at the target commit and at least one exact Lean source from the
 core-file list below. Access in principle is not the same as successful source
 resolution.
 
@@ -30,10 +32,10 @@ open-ended evolution, cybernetics, artificial life, or cooperation.
 Do not invent likely source files, theorem names, assumptions, weaknesses,
 prior literature, or severity ratings.
 
-If you review a version other than v15, report the exact commit SHA and say
-explicitly that you are reviewing a different repository state.
+If you review v15 rather than the current post-v15 revision, say so explicitly.
+Never mix theorem statements or verification evidence from different commits.
 
-CORE FILES — USE THESE EXACT v15 PATHS
+CORE FILES — USE THESE EXACT PATHS AT THE TARGET COMMIT
 
 RELEASE_NOTES.md
 RESEARCH_GUIDE.md
@@ -45,6 +47,10 @@ formalization/cumulative-accessibility/CumulativeAccessibility/ValidatedUptake.l
 formalization/cumulative-accessibility/CumulativeAccessibility/OpenEndedCapacity.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/FiniteGenerativeSaturation.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/GenerativeClosure.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/GeneratorRuleEvolution.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/CapacitySlack.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/AuditAll.lean
+formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean
 
 FILE-RESOLUTION RULE
 
@@ -55,8 +61,8 @@ formalization/cumulative-accessibility/CumulativeAccessibility/
 
 Before reporting a named source as missing:
 
-1. try the exact v15 path supplied above;
-2. if that fails, search the v15 repository recursively by filename and a
+1. try the exact target-commit path supplied above;
+2. if that fails, search the target commit recursively by filename and a
    distinctive theorem/definition name;
 3. inspect imports and the package README;
 4. distinguish "I could not resolve this file with my available tools" from
@@ -157,26 +163,45 @@ Distinguish three levels:
 
 If LEAN EXECUTION is "no", do not claim independent execution.
 
-The v15 verification contract explicitly builds:
+The current verification contract explicitly builds:
 
+CumulativeAccessibility.AuditAll
+CumulativeAccessibility.VerificationSurface
 CumulativeAccessibility.FormalCoreWitness
 CumulativeAccessibility.MaintenanceGatedWitness
 
-and checks the printed theorem axioms for sorryAx. If you can execute Lean,
+AuditAll must import every module advertised by the package README.
+VerificationSurface explicitly prints the axiom dependencies of the declarations
+selected for the advertised verification surface. CI rejects sorryAx in that
+output and retains the two end-to-end witness audits. If you can execute Lean,
 reproduce this rather than relying only on the badge.
 
 SCIENTIFIC TASK 1 — RECONSTRUCT THE FORMAL CHAIN
 
-Reconstruct the exact implication chain:
+Reconstruct the exact implication architecture:
 
-strict recurrent maintenance conditions
-        -> recurring maintenance opportunity
-        + opportunity-conditioned validated realization
-        + retention
-        -> validated generative uptake
-        -> open-ended cumulative retained novelty
-        + representation inside a moving envelope
-        -> unbounded effective distinguishability capacity
+positive canonical support + nonnegative dynamics + non-strict product threshold
+        -> persistent quantitative support
+
+persistent support
+        + explicit SupportImpliesOpportunity connection
+        -> recurring opportunity Q
+
+Q + success at every opportunity V
+        -> recurrent successful coincidence W
+
+W -> validated generative uptake G
+
+retention R + G
+        -> open-ended cumulative retained novelty N
+
+representation P + retention R + N
+        -> unbounded effective distinguishability capacity C
+
+Also verify the separation results:
+Q and not N
+W and not V
+Q and G and not W
 
 For every arrow:
 
@@ -232,16 +257,35 @@ Check whether the formalization really distinguishes:
 - changes in the generative rule;
 - actual realized novelty.
 
-SCIENTIFIC TASK 5 — TEST THE MAINTENANCE BRIDGE
+SCIENTIFIC TASK 5 — TEST QUANTITATIVE SUPPORT AND THE MAINTENANCE BRIDGE
 
-Inspect MaintenanceOpportunityBridge.lean and the maintenance dynamics it
-imports.
+Inspect MaintenanceOpportunityBridge.lean and MaintenanceDynamics.lean.
 
-Check whether the concrete strict three-cycle result really supplies recurring
-opportunity under the stated assumptions, and whether novelty still requires a
-separate response premise.
+Check that:
 
-Confirm that recurring opportunity alone is not asserted to imply novelty.
+1. cycle3SupportedBy requires the lower-bound vector itself to be strictly
+   positive and the trajectory state to remain componentwise above it;
+2. the canonical support theorem uses the non-strict product threshold;
+3. the scalar epsilon floor is derived from, rather than substituted for, the
+   retained vector bound;
+4. persistent support implies recurring opportunity only through an explicit
+   SupportImpliesOpportunity connection;
+5. no theorem claims recurrence of an arbitrary opportunity predicate from
+   support alone;
+6. the repository does not call the mathematical canonical vector an empirically
+   calibrated operational threshold without an additional modelling argument.
+
+Then inspect Q, V, W, and G. Verify exactly:
+
+Q and V -> W
+W -> Q
+W -> G
+
+and verify that retention remains an explicit premise in R and G -> N, while
+representation and retention remain explicit in P and R and N -> C.
+
+Confirm that W is a weaker sufficient coupling assumption than V, not a
+derivation of successful innovation from maintenance.
 
 SCIENTIFIC TASK 6 — TEST BOTH WITNESSES
 
@@ -258,8 +302,10 @@ For MaintenanceGatedWitness.lean:
   repertoire update;
 - verify the recurrent-maintenance positive construction;
 - verify the no-opportunity ablation;
-- determine exactly what dependency statement follows and what causal claims do
-  not follow.
+- verify the W and not V witness;
+- verify the Q and G and not W even/odd witness;
+- determine exactly what dependency/coupling statements follow and what causal
+  claims do not follow.
 
 SCIENTIFIC TASK 7 — AXIOM AUDIT
 
@@ -269,7 +315,8 @@ cd formalization/cumulative-accessibility
 lake update
 lake exe cache get
 lake build
-lake build CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness
+lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface CumulativeAccessibility.FormalCoreWitness CumulativeAccessibility.MaintenanceGatedWitness
+lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 
@@ -312,8 +359,11 @@ Check that:
 5. every severity refers to an actual defect rather than an acknowledged scope
    limitation;
 6. statements about machine verification match your declared execution level;
-7. you distinguish the original non-vacuity witness from the newer gated
-   dependency witness.
+7. you distinguish the original non-vacuity witness from the gated dependency
+   witness;
+8. you distinguish compilation coverage (AuditAll) from declaration-level axiom
+   auditing (VerificationSurface);
+9. you do not infer W from separate recurrence of Q and G.
 
 OUTPUT FORMAT
 
