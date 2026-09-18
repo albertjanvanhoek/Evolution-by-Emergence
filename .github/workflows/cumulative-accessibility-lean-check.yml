@@ -50,7 +50,7 @@ jobs:
             CumulativeAccessibility.EndogenousBudgetWitness \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
-            CumulativeAccessibility.IntelligentLearningMaintenance \\
+            CumulativeAccessibility.IntelligentLearningMaintenance \
             CumulativeAccessibility.FunctionalRatchetVelocity
 
       - name: Reject unproven formal-core axioms
