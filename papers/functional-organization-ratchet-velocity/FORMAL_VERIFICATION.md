@@ -221,3 +221,59 @@ support→opportunity is declared and the response lag is bounded by `\Delta`.
 This makes the role of monotonic retention/per-target non-worsening explicit:
 without it, positive certified events do not by themselves imply a positive
 average functional velocity.
+
+
+## Guaranteed-rate acceleration
+
+The derived block-average result makes it possible to distinguish an increase
+in a **guaranteed rate floor** from an increase in the realized rate itself.
+
+Define the mechanism certificate
+
+```math
+v_{\min}(K,\Delta,g_{\min})
+=
+\frac{g_{\min}}{K+\Delta+1}.
+```
+
+Lean now checks three strict comparative-statics results:
+
+```math
+g_{\min}\uparrow
+\quad\Rightarrow\quad
+v_{\min}\uparrow,
+```
+
+```math
+\Delta\downarrow
+\quad\Rightarrow\quad
+v_{\min}\uparrow,
+```
+
+and
+
+```math
+K\downarrow
+\quad\Rightarrow\quad
+v_{\min}\uparrow,
+```
+
+under the stated positivity conditions.
+
+It also proves that strong `TrajectoryRatchetStepOn` at every step supplies
+the target-wise nonnegative-gain premise for every retained target in the
+declared family.
+
+Thus the first formal mechanism-level acceleration statement is now:
+
+```text
+faster opportunity access
+or faster validated response
+or larger guaranteed gain per retained update
+        ↓
+strictly higher guaranteed functional-rate floor.
+```
+
+This is intentionally weaker than asserting that the observed trajectory's
+realized average rate must strictly increase. A stronger empirical or dynamical
+model would be needed to identify the lower bound with realized velocity.
