@@ -7,7 +7,10 @@ title: Home
 **Authors:** Albert Jan van Hoek & ChatGPT & Gemini  
 **Version:** 0.88 (April 13, 2025)
 
-Welcome to the online edition of *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind*.  
+Welcome to the online edition of *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind*.
+
+> **Current theory (September 2026):** this online book is the historical conceptual edition. The current scientific theory, proof map, and verification surface are maintained in the repository root: [THEORY.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/THEORY.md), [DYNAMIC_OVERVIEW.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/DYNAMIC_OVERVIEW.md), and [FORMAL_THEORY_MAP.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/FORMAL_THEORY_MAP.md).
+  
 
 [**This webpage is automatically compiled from the LaTeX code for the book**](https://github.com/albertjanvanhoek/Evolution-by-Emergence)
 

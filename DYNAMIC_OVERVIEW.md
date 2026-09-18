@@ -2,8 +2,11 @@
 
 ## A resource-fed recursive accessibility vortex
 
-This document is the canonical overview of the dynamic thesis currently being
-formalized and peer reviewed in **Evolution by Emergence**.
+This document is the canonical overview of the **dynamic core** of Evolution by
+Emergence. For the full theory—including affinity, selection/persistence drift,
+collective alignment, interpretive extensions, novelty status, and the research
+agenda—start with **[THEORY.md](THEORY.md)**. Exact theorem traceability is in
+**[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)**.
 
 The central object is not a static organization. It is a maintained process
 whose present organization changes the conditions of its own continuation.

@@ -1,0 +1,198 @@
+name: Full Theory Proof Check
+
+on:
+  pull_request:
+    paths:
+      - "THEORY.md"
+      - "FORMAL_THEORY_MAP.md"
+      - "RELEASE_VERSION"
+      - "RELEASE_TITLE"
+      - "RELEASE_NOTES.md"
+      - "formalization/**"
+      - "verification/organizational-depth/**"
+      - ".github/workflows/full-theory-proof-check.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "THEORY.md"
+      - "FORMAL_THEORY_MAP.md"
+      - "RELEASE_VERSION"
+      - "RELEASE_TITLE"
+      - "RELEASE_NOTES.md"
+      - "formalization/**"
+      - "verification/organizational-depth/**"
+      - ".github/workflows/full-theory-proof-check.yml"
+  workflow_dispatch:
+
+jobs:
+  affinity:
+    name: Affinity layer
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/affinity-layer
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake build
+          output="$($HOME/.elan/bin/lake env lean AffinityLayer.lean 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Affinity theory surface contains sorryAx." >&2
+            exit 1
+          fi
+
+  collective-alignment:
+    name: Collective alignment and maintenance
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/collective-alignment
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake build
+          output="$({
+            $HOME/.elan/bin/lake env lean CollectiveAlignment.lean
+            $HOME/.elan/bin/lake env lean MaintenanceReproduction.lean
+            $HOME/.elan/bin/lake env lean MaintenanceDynamics.lean
+          } 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Collective-alignment theory surface contains sorryAx." >&2
+            exit 1
+          fi
+
+  persistence-drift:
+    name: Persistence, selection, and slack
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/persistence-drift
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake build
+          output="$({
+            $HOME/.elan/bin/lake env lean PersistenceDrift.lean
+            $HOME/.elan/bin/lake env lean FunctionalCompetition.lean
+            $HOME/.elan/bin/lake env lean ReturnPathPrice.lean
+            $HOME/.elan/bin/lake env lean RegulatoryReturn.lean
+            $HOME/.elan/bin/lake env lean EquilibriumExposure.lean
+            $HOME/.elan/bin/lake env lean FunctionalThresholds.lean
+          } 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Persistence-drift theory surface contains sorryAx." >&2
+            exit 1
+          fi
+
+  cumulative-accessibility:
+    name: Cumulative accessibility and dynamic vortex
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/cumulative-accessibility
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build integrated theory surface
+        run: |
+          $HOME/.elan/bin/lake build
+          $HOME/.elan/bin/lake build \
+            CumulativeAccessibility.AuditAll \
+            CumulativeAccessibility.VerificationSurface \
+            CumulativeAccessibility.DynamicVortexWitness
+      - name: Audit integrated theory axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          output="$({
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
+          } 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Cumulative-accessibility theory surface contains sorryAx." >&2
+            exit 1
+          fi
+
+  organizational-depth:
+    name: Physical depth and operational bridge
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: verification/organizational-depth
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        shell: bash
+        run: |
+          curl --retry 5 --retry-all-errors --connect-timeout 20 -sSf \
+            https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          "$HOME/.elan/bin/elan" toolchain install leanprover/lean4:v4.33.0
+          "$HOME/.elan/bin/elan" default leanprover/lean4:v4.33.0
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build and audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake build
+          output="$({
+            $HOME/.elan/bin/lake env lean OrganizationalDepth.lean
+            $HOME/.elan/bin/lake env lean OperationalBridge.lean
+            $HOME/.elan/bin/lake env lean PackingDepth.lean
+            $HOME/.elan/bin/lake env lean MaintenanceDynamicsEndToEnd.lean
+          } 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo "Organizational-depth theory surface contains sorryAx." >&2
+            exit 1
+          fi
