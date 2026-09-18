@@ -1,4 +1,5 @@
 import CumulativeAccessibility.GenerativeArity
+import CumulativeAccessibility.GenerativeClosure
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
