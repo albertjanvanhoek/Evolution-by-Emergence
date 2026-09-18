@@ -15,7 +15,7 @@ For different levels of detail:
 - **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — exact theory-claim → Lean-declaration traceability;
 - **[formalization/README.md](formalization/README.md)** — all proof packages and reproduction commands.
 
-The current development revision builds on the immutable **v15: Verification Closure** release and asks a sharper compositional question:
+The current fixed peer-review milestone is **v16: Full Theory Peer-Review Release**. It builds on the immutable **v15: Verification Closure** release and asks a broader compositional question:
 
 > **How do maintenance, organization-dependent slack, internally funded response, validated retention, and second-order accessibility compose into one recurring dynamic process?**
 
@@ -66,9 +66,9 @@ The important words are **conditional** and **explicit**.
 
 Lean checks whether the stated conclusions follow from the stated assumptions. Science must still ask whether those assumptions hold in real biological, cognitive, social, organizational, or technological systems.
 
-## What the post-v15 revision changes
+## What v16 adds beyond v15
 
-The v15 central implication chain survived adversarial review, but the review exposed a lossy interface and incomplete auxiliary verification coverage.
+The v15 central implication chain survived adversarial review. v16 preserves that verified route while adding quantitative support, bounded-delay response, endogenous budget, dynamic-vortex composition, repository-wide theory integration, and a full claim-to-Lean proof map.
 
 This revision therefore:
 
@@ -200,7 +200,7 @@ The repository's own literature audit recommends treating this as **primarily a 
 
 ## Review the fixed object
 
-The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the current full-theory revision, pin and report the exact commit SHA on `main` (or the relevant stacked pull request before merge) rather than silently mixing versions.
+For comparable independent reviews, use the immutable **[`v16` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v16)** and record the commit SHA you inspected. The **[`v15` tag](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure baseline.
 
 Start with:
 
