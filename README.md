@@ -134,7 +134,7 @@ The project does **not** claim that:
 
 ## Review the fixed object
 
-The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support/response-separation revision, pin and report the exact commit SHA on `main` (or the revision pull request before merge) rather than silently mixing it with v15.
+The immutable **[`v15` tagged release](https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/v15)** remains the historical verification-closure object. To review the newer quantitative-support and bounded-response revisions, pin and report the exact commit SHA on `main` (or the relevant stacked pull request before merge) rather than silently mixing them with v15.
 
 Start with:
 
