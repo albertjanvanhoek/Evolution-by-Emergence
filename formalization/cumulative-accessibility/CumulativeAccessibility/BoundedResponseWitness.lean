@@ -157,6 +157,43 @@ theorem unitDelayedResponse_without_sameTimeCoincidence :
   · exact evenOpportunity_has_recurring_unitDelayedResponse
   · exact recurringOpportunity_and_uptake_without_recurringCoincidence.2.2
 
+/-- The bounded-response hierarchy is genuinely strict in this witness:
+lag one is sufficient, while lag zero is impossible. -/
+theorem unitDelayedResponse_without_zeroDelay :
+    RecurringValidatedResponseWithin
+        1
+        evenOpportunity
+        progressiveEnvelope
+        (opportunityGatedGenerator oddOpportunity)
+        acceptAllCriterion
+        (opportunityGatedRepertoire oddOpportunity)
+      ∧
+    ¬ RecurringValidatedResponseWithin
+        0
+        evenOpportunity
+        progressiveEnvelope
+        (opportunityGatedGenerator oddOpportunity)
+        acceptAllCriterion
+        (opportunityGatedRepertoire oddOpportunity) := by
+  constructor
+  · exact evenOpportunity_has_recurring_unitDelayedResponse
+  · intro hZero
+    have hSame :
+        RecurringValidatedResponse
+          evenOpportunity
+          progressiveEnvelope
+          (opportunityGatedGenerator oddOpportunity)
+          acceptAllCriterion
+          (opportunityGatedRepertoire oddOpportunity) :=
+      recurringValidatedResponseWithin_zero_implies_recurringValidatedResponse
+        evenOpportunity
+        progressiveEnvelope
+        (opportunityGatedGenerator oddOpportunity)
+        acceptAllCriterion
+        (opportunityGatedRepertoire oddOpportunity)
+        hZero
+    exact unitDelayedResponse_without_sameTimeCoincidence.2 hSame
+
 /-- Ordinary validated success does not imply feasibility under an independently
 declared resource model.  The odd-gated architecture succeeds at time 1, but a
 unit response cost does not fit inside a zero budget. -/
@@ -213,6 +250,7 @@ theorem resourceFeasibility_without_validatedSuccess :
 #print axioms evenOpportunity_unitDelayedResponse_implies_validatedUptake
 #print axioms evenOpportunity_unitDelayedResponse_implies_openEndedNovelty
 #print axioms unitDelayedResponse_without_sameTimeCoincidence
+#print axioms unitDelayedResponse_without_zeroDelay
 #print axioms validatedSuccess_without_declaredResourceFeasibility
 #print axioms resourceFeasibility_without_validatedSuccess
 
