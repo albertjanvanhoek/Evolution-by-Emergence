@@ -176,6 +176,7 @@ lake build \
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
+lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 ```
 
 The central printed theorem axioms must contain no `sorryAx`.
