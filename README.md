@@ -1,6 +1,6 @@
 # Evolution by Emergence
 
-## Maintenance, cumulative change, and open-ended accessibility
+## Maintained organization, cumulative accessibility, and recursive evolution
 
 **This project is open for peer review.**
 
@@ -19,7 +19,7 @@ The current development revision builds on the immutable **v15: Verification Clo
 
 > **How do maintenance, organization-dependent slack, internally funded response, validated retention, and second-order accessibility compose into one recurring dynamic process?**
 
-The formal route is now:
+At the center of the full theory is the following machine-supported dynamic route:
 
 ```text
 positive canonical support + non-strict maintenance threshold
