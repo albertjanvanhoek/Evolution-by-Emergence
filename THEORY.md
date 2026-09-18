@@ -700,10 +700,40 @@ The ledger has an explicit modelling seam: the universal theory does **not**
 assert that every real system is represented by this product. Its purpose is to
 expose candidate bottlenecks that domain models can derive or estimate.
 
+A first part of that derivation is now explicit. Qualitative recurring
+opportunity does not imply a positive speed floor because waiting times can grow
+without bound. If instead opportunities have a maximum waiting time `K`, and
+every opportunity receives a resource-feasible validated response within lag
+`Δ`, then Lean proves that every window of width
+
+\[
+K+\Delta+1
+\]
+
+contains a validated retained update.
+
+For the canonical maintained three-cycle, quantitative support holds at every
+indexed time. Under an explicit support→opportunity connection this gives
+`K=0`, hence one validated update in every `Δ+1` window. If an application
+also proves at least `g_{\min}` functional gain per validated update, the same
+window contains at least that gain.
+
+This produces a first genuine mechanism-to-speed bridge while preserving the
+distinction
+
+\[
+\boxed{
+\text{open-endedness}
+\neq
+\text{positive rate floor}.
+}
+\]
+
 Formal sources:
 
 - formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
 - formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean
 
 Working paper:
 
