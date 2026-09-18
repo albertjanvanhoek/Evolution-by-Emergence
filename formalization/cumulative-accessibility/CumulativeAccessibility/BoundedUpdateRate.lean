@@ -569,12 +569,222 @@ theorem certifiedBlockGainRate_positive
   unfold CertifiedBlockGainRate
   exact div_pos hGain (by exact_mod_cast hWindow)
 
+/-- Strong ratchet steps on a retained target family supply the nonnegative
+per-step premise needed by the block-average theorem for every member of that
+family. -/
+theorem trajectoryRatchetSteps_imply_target_nonnegative
+    (targets : Set φ)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (hTarget : target ∈ targets)
+    (hSteps :
+      ∀ t : ℕ,
+        TrajectoryRatchetStepOn targets CostFunctional trajectory t) :
+    ∀ t : ℕ,
+      0 ≤ TrajectoryFunctionalVelocity
+        CostFunctional trajectory t target := by
+  intro t
+  exact (hSteps t).1 target hTarget
+
+/-- The conservative rate floor certified by opportunity-gap bound K,
+response-lag bound Δ, and minimum functional gain g. -/
+noncomputable def BoundedMechanismRateFloor
+    (opportunityGap responseLag : ℕ)
+    (minGain : ℝ) : ℝ :=
+  CertifiedBlockGainRate
+    minGain (opportunityGap + responseLag + 1)
+
+/-- Full generic mechanism-to-average-rate theorem.
+
+Once bounded opportunity and response produce the gain-window certificate, and
+the chosen target never moves backward between certified gains, the mechanism
+rate floor is a lower bound on every actual non-overlapping block average. -/
+theorem boundedMechanism_implies_blockAverageRateFloor
+    (opportunityGap responseLag : ℕ)
+    (Opportunity : ℕ → Prop)
+    (CostResponse : RecursiveAccessibility.ResponseCost α)
+    (Budget : RecursiveAccessibility.ResponseBudget)
+    (U : ℕ → Finset α)
+    (H : ℕ → RecursiveAccessibility.HyperGenerator α)
+    (E : RecursiveAccessibility.ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (minGain : ℝ)
+    (hOpportunity :
+      RecursiveAccessibility.OpportunityGapBound opportunityGap Opportunity)
+    (hResponse :
+      RecursiveAccessibility.OpportunityConditionedResourceResponseWithin
+        responseLag Opportunity CostResponse Budget U H E S)
+    (hGain :
+      ValidatedSuccessImpliesMinimumFunctionalGain
+        CostResponse Budget U H E S
+        CostFunctional trajectory target minGain)
+    (hNonnegative :
+      ∀ t : ℕ,
+        0 ≤ TrajectoryFunctionalVelocity
+          CostFunctional trajectory t target) :
+    ∀ k : ℕ,
+      BoundedMechanismRateFloor opportunityGap responseLag minGain ≤
+        BlockAverageFunctionalRate
+          (opportunityGap + responseLag + 1)
+          CostFunctional trajectory target k := by
+  have hWindow :
+      FunctionalGainEveryWindow
+        (opportunityGap + responseLag + 1)
+        CostFunctional trajectory target minGain :=
+    boundedMechanism_implies_functionalGainEveryWindow
+      opportunityGap responseLag Opportunity
+      CostResponse Budget U H E S
+      CostFunctional trajectory target minGain
+      hOpportunity hResponse hGain
+  simpa [BoundedMechanismRateFloor] using
+    (certifiedBlockGainRate_le_blockAverageFunctionalRate
+      (opportunityGap + responseLag + 1)
+      CostFunctional trajectory target minGain
+      hWindow hNonnegative)
+
+/-- Canonical-maintenance specialization of the generic rate floor. -/
+noncomputable def MaintainedCycleRateFloor
+    (responseLag : ℕ)
+    (minGain : ℝ) : ℝ :=
+  CertifiedBlockGainRate minGain (responseLag + 1)
+
+/-- Under the maintained three-cycle route, nonnegative target gain turns the
+Δ+1 window certificate into an actual block-average rate floor. -/
+theorem supportedCycle3Maintenance_implies_blockAverageRateFloor
+    (responseLag : ℕ)
+    (Opportunity : ℕ → Prop)
+    {rA rB rC kAB kBC kCA : ℝ}
+    (hrA : 0 ≤ rA) (hrB : 0 ≤ rB) (hrC : 0 ≤ rC)
+    (hdB : 0 < CollectiveAlignment.maintenanceDeficit rB)
+    (hdC : 0 < CollectiveAlignment.maintenanceDeficit rC)
+    (hkAB : 0 < kAB) (hkBC : 0 < kBC)
+    (hkCA : 0 ≤ kCA)
+    (hloop :
+      CollectiveAlignment.maintenanceDeficit rA *
+          CollectiveAlignment.maintenanceDeficit rB *
+          CollectiveAlignment.maintenanceDeficit rC
+        ≤ kAB * kBC * kCA)
+    (CostResponse : RecursiveAccessibility.ResponseCost α)
+    (Budget : RecursiveAccessibility.ResponseBudget)
+    (U : ℕ → Finset α)
+    (H : ℕ → RecursiveAccessibility.HyperGenerator α)
+    (E : RecursiveAccessibility.ExternalCriterion α)
+    (S : ℕ → Finset α)
+    (CostFunctional : FunctionalCost σ φ)
+    (trajectory : ℕ → σ)
+    (target : φ)
+    (minGain : ℝ)
+    (hConnection :
+      RecursiveAccessibility.SupportImpliesOpportunity
+        (RecursiveAccessibility.cycle3MaintenanceSupport
+          rA rB rC kAB kBC kCA)
+        Opportunity)
+    (hResponse :
+      RecursiveAccessibility.OpportunityConditionedResourceResponseWithin
+        responseLag Opportunity CostResponse Budget U H E S)
+    (hGain :
+      ValidatedSuccessImpliesMinimumFunctionalGain
+        CostResponse Budget U H E S
+        CostFunctional trajectory target minGain)
+    (hNonnegative :
+      ∀ t : ℕ,
+        0 ≤ TrajectoryFunctionalVelocity
+          CostFunctional trajectory t target) :
+    ∀ k : ℕ,
+      MaintainedCycleRateFloor responseLag minGain ≤
+        BlockAverageFunctionalRate
+          (responseLag + 1)
+          CostFunctional trajectory target k := by
+  have hWindow :
+      FunctionalGainEveryWindow
+        (responseLag + 1)
+        CostFunctional trajectory target minGain :=
+    supportedCycle3Maintenance_boundedResponse_and_minGain_imply_functionalGainEveryWindow
+      responseLag Opportunity
+      hrA hrB hrC hdB hdC hkAB hkBC hkCA hloop
+      CostResponse Budget U H E S
+      CostFunctional trajectory target minGain
+      hConnection hResponse hGain
+  simpa [MaintainedCycleRateFloor] using
+    (certifiedBlockGainRate_le_blockAverageFunctionalRate
+      (responseLag + 1)
+      CostFunctional trajectory target minGain
+      hWindow hNonnegative)
+
+/-- Increasing the guaranteed minimum gain at fixed delays strictly raises the
+certified mechanism rate floor. -/
+theorem largerMinimumGain_strictlyRaises_rateFloor
+    (opportunityGap responseLag : ℕ)
+    {oldGain newGain : ℝ}
+    (hGain : oldGain < newGain) :
+    BoundedMechanismRateFloor opportunityGap responseLag oldGain <
+      BoundedMechanismRateFloor opportunityGap responseLag newGain := by
+  unfold BoundedMechanismRateFloor CertifiedBlockGainRate
+  have hDen :
+      0 < ((opportunityGap + responseLag + 1 : ℕ) : ℝ) := by
+    exact_mod_cast (show 0 < opportunityGap + responseLag + 1 by omega)
+  exact div_lt_div_of_pos_right hGain hDen
+
+/-- At fixed opportunity gap and positive minimum gain, a strictly shorter
+validated-response lag strictly raises the guaranteed rate floor. -/
+theorem shorterResponseLag_strictlyRaises_rateFloor
+    (opportunityGap : ℕ)
+    {oldLag newLag : ℕ}
+    (minGain : ℝ)
+    (hGain : 0 < minGain)
+    (hLag : newLag < oldLag) :
+    BoundedMechanismRateFloor opportunityGap oldLag minGain <
+      BoundedMechanismRateFloor opportunityGap newLag minGain := by
+  unfold BoundedMechanismRateFloor CertifiedBlockGainRate
+  have hNewDen :
+      0 < ((opportunityGap + newLag + 1 : ℕ) : ℝ) := by
+    exact_mod_cast (show 0 < opportunityGap + newLag + 1 by omega)
+  have hDenLt :
+      ((opportunityGap + newLag + 1 : ℕ) : ℝ) <
+        ((opportunityGap + oldLag + 1 : ℕ) : ℝ) := by
+    exact_mod_cast
+      (show opportunityGap + newLag + 1 <
+          opportunityGap + oldLag + 1 by omega)
+  exact div_lt_div_of_pos_left hGain hNewDen hDenLt
+
+/-- At fixed response lag and positive minimum gain, a strictly shorter maximum
+wait for opportunity strictly raises the guaranteed rate floor. -/
+theorem shorterOpportunityGap_strictlyRaises_rateFloor
+    (responseLag : ℕ)
+    {oldGap newGap : ℕ}
+    (minGain : ℝ)
+    (hGain : 0 < minGain)
+    (hGap : newGap < oldGap) :
+    BoundedMechanismRateFloor oldGap responseLag minGain <
+      BoundedMechanismRateFloor newGap responseLag minGain := by
+  unfold BoundedMechanismRateFloor CertifiedBlockGainRate
+  have hNewDen :
+      0 < ((newGap + responseLag + 1 : ℕ) : ℝ) := by
+    exact_mod_cast (show 0 < newGap + responseLag + 1 by omega)
+  have hDenLt :
+      ((newGap + responseLag + 1 : ℕ) : ℝ) <
+        ((oldGap + responseLag + 1 : ℕ) : ℝ) := by
+    exact_mod_cast
+      (show newGap + responseLag + 1 <
+          oldGap + responseLag + 1 by omega)
+  exact div_lt_div_of_pos_left hGain hNewDen hDenLt
+
 #print axioms boundedMechanism_implies_functionalGainEveryWindow
 #print axioms supportedCycle3Maintenance_boundedResponse_and_minGain_imply_functionalGainEveryWindow
 #print axioms functionalGainEveryWindow_implies_everyBlock
 #print axioms functionalGainEveryWindow_and_nonnegative_imply_blockGainLowerBound
 #print axioms certifiedBlockGainRate_le_blockAverageFunctionalRate
 #print axioms certifiedBlockGainRate_positive
+#print axioms trajectoryRatchetSteps_imply_target_nonnegative
+#print axioms boundedMechanism_implies_blockAverageRateFloor
+#print axioms supportedCycle3Maintenance_implies_blockAverageRateFloor
+#print axioms largerMinimumGain_strictlyRaises_rateFloor
+#print axioms shorterResponseLag_strictlyRaises_rateFloor
+#print axioms shorterOpportunityGap_strictlyRaises_rateFloor
 
 end FunctionalGainBridge
 
