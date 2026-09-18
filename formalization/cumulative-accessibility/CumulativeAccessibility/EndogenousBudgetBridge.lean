@@ -93,7 +93,7 @@ theorem internallyViableAt_iff_internalSlack_nonneg
     InternallyViableAt state gradient uptake maintenance t
       ↔ 0 ≤ InternalSlackAt state gradient uptake maintenance t := by
   unfold InternallyViableAt InternalSlackAt
-  linarith
+  constructor <;> intro h <;> linarith
 
 /-- If the organization is viable and the reinvestment fraction is
 nonnegative, the internally generated response budget is nonnegative. -/
