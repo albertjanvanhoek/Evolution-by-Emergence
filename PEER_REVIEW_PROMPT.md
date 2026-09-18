@@ -37,9 +37,20 @@ Never mix theorem statements or verification evidence from different commits.
 
 CORE FILES — USE THESE EXACT PATHS AT THE TARGET COMMIT
 
+THEORY.md
+DYNAMIC_OVERVIEW.md
+FORMAL_THEORY_MAP.md
+CLAIMS.md
 RELEASE_NOTES.md
 RESEARCH_GUIDE.md
-DYNAMIC_OVERVIEW.md
+formalization/README.md
+formalization/affinity-layer/AffinityLayer.lean
+formalization/collective-alignment/CollectiveAlignment.lean
+formalization/collective-alignment/MaintenanceReproduction.lean
+formalization/collective-alignment/MaintenanceDynamics.lean
+formalization/persistence-drift/PersistenceDrift.lean
+formalization/persistence-drift/FunctionalCompetition.lean
+formalization/persistence-drift/ReturnPathPrice.lean
 formalization/cumulative-accessibility/README.md
 formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean
@@ -58,6 +69,12 @@ formalization/cumulative-accessibility/CumulativeAccessibility/GeneratorRuleEvol
 formalization/cumulative-accessibility/CumulativeAccessibility/CapacitySlack.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/AuditAll.lean
 formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean
+verification/organizational-depth/OrganizationalDepth.lean
+verification/organizational-depth/OperationalBridge.lean
+verification/organizational-depth/PackingDepth.lean
+verification/organizational-depth/MaintenanceDynamicsEndToEnd.lean
+verification/audits/2026-09-15-literature/P1_LITERATURE_AUDIT.md
+verification/audits/2026-09-15-literature/FROM_SYNTHESIS_TO_PARADIGM.md
 
 FILE-RESOLUTION RULE
 
@@ -79,6 +96,9 @@ Never ask the human for a path already supplied in this prompt.
 
 Before beginning scientific analysis, report:
 
+THEORY.md: FOUND / NOT RESOLVED — <exact path or limitation>
+FORMAL_THEORY_MAP.md: FOUND / NOT RESOLVED — <exact path or limitation>
+formalization/README.md: FOUND / NOT RESOLVED — <exact path or limitation>
 DYNAMIC_OVERVIEW.md: FOUND / NOT RESOLVED — <exact path or limitation>
 DynamicVortex.lean: FOUND / NOT RESOLVED — <exact path or limitation>
 DynamicVortexWitness.lean: FOUND / NOT RESOLVED — <exact path or limitation>
