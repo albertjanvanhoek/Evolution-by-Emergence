@@ -623,6 +623,79 @@ proof that the realized trajectory itself accelerated. It says that, under the
 declared mechanism guarantees, the minimum rate the system can sustain has
 increased.
 
+### 7.3 Coupled mechanisms can create an interior optimum
+
+The ledger is monotone in each nonnegative factor when all other factors are
+held fixed. But actual mechanisms can couple those factors through a shared
+resource constraint.
+
+Consider the smallest possible reduced example. Normalize a processing budget
+to one and let
+
+```math
+x\in[0,1]
+```
+
+be the fraction devoted to candidate generation/search. Let the remaining
+
+```math
+1-x
+```
+
+be devoted to validation. Hold opportunity, resource feasibility, retention,
+and mean gain at one.
+
+The ledger becomes
+
+```math
+v(x)=x(1-x).
+```
+
+Lean proves exactly
+
+```math
+0\le v(x)\le\frac14,
+```
+
+with equality only at
+
+```math
+x=\frac12.
+```
+
+It is strictly increasing on the search-limited half and strictly decreasing on
+the validation-limited half. Both extremes have zero retained velocity:
+
+```math
+v(0)=v(1)=0.
+```
+
+Thus the statement
+
+```math
+\text{more search}
+\Rightarrow
+\text{faster retained change}
+```
+
+is false even though the general ledger is ceteris-paribus monotone in its
+generation coordinate.
+
+The point is not the numerical optimum one-half. That follows entirely from the
+symmetric toy allocation. The general lesson is structural:
+
+```math
+\boxed{
+\text{optimizing one rate-producing mechanism}
+\neq
+\text{optimizing retained ratchet velocity}.
+}
+```
+
+This supplies a minimal bridge to established stability--plasticity and
+exploration--exploitation literatures. EbE's narrower contribution is to place
+such trade-offs inside an explicit retained functional-rate architecture.
+
 ---
 
 ## 8. Ecology as an outside test domain
@@ -940,7 +1013,7 @@ The ratchet does not have to be described as the accumulation of more matter,
 more nodes, more edges, or an unspecified scalar complexity.
 
 It can instead be described as retained change in the **functional
-accessibility geometry** of an organized commons.
+performance-cost geometry** of an organized commons.
 
 The organization is the substrate.
 
