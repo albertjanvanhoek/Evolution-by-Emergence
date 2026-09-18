@@ -158,7 +158,7 @@ theorem synchronousExpansion_has_no_recurringSlack :
   intro hSlack
   obtain ⟨m, hm, hStrict⟩ := hSlack 0
   have hEq : progressiveRepertoire m = synchronousEnvelope m := rfl
-  exact hStrict.2 hEq
+  exact (Finset.ssubset_iff_subset_ne.mp hStrict).2 hEq
 
 /-- Counterexample to necessity of the slack premise: the retained repertoire
 is still open-ended while the envelope expands in exact synchrony, leaving no
