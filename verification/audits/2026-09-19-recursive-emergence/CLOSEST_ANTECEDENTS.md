@@ -339,8 +339,7 @@ equate its result with strong unprestatability.
 
 Steel M, Hordijk W.
 *Tractable models of self-sustaining autocatalytic networks.*
-J Math Biol / related preprint lineage, 2018.
-arXiv:1801.03953.
+arXiv:1801.03953 (2018).
 
 Huson DH, Xavier JC, Steel M.
 *Self-generating autocatalytic networks: structural results, algorithms and
