@@ -245,22 +245,25 @@ Only after A-D:
    for satisfying local continuation;
 8. move any shared definitions downward so the import graph follows the
    conceptual dependency graph;
-9. replace or rename the globally finite `EvolutionByEmergenceCoreCertificate`
-   so it is not presented as the open-ended master theory;
-10. expose one corrected canonical master surface with no hidden global
-    finiteness assumption.
+9. retain the globally finite `EvolutionByEmergenceCoreCertificate` as a clearly labelled historical/finite diagnostic surface rather than deleting or renaming it in a way that destabilizes dependencies;
+10. expose one corrected canonical master surface with no hidden global finiteness assumption in `EvolutionByEmergenceV17Core.lean`.
 
-Target dependency direction:
+Target conceptual direction:
 
 ```text
 EmergentCapacity
     -> VocabularyEmergence
     -> EmergencePersistenceBridge
     -> RecursiveEmergence
+       -> optional ConstructiveRecursiveEmergence strengthening
     -> LocalEmergenceReproduction
     -> EndogenousEnvelopePromotion
-    -> corrected EvolutionByEmergenceCore
+    -> EvolutionByEmergenceV17Core
+
+plus ActiveHistory as the separate historical-accumulation branch.
 ```
+
+The code import graph may retain `EvolutionByEmergenceCore.lean` below `LocalEmergenceReproduction.lean` for compatibility; the public/canonical theory direction is defined by the v17 surface rather than by historical import order.
 
 The exact module order can change if needed to avoid circular imports; the
 scientific direction should not.
