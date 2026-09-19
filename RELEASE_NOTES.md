@@ -103,6 +103,12 @@ The v17 object is not ready to tag merely because CI is green. Broad review requ
 Until those gates are closed, **v16 remains the latest immutable release**.
 
 ---
+
+**Historical v16 note.** The text below is preserved as the release description
+for v16. References below to the "current" or "canonical" theory are relative to
+that frozen v16 release. For the present candidate v17 authority hierarchy, use
+README.md, THEORY_CORE_V17.md, and EvolutionByEmergenceV17Core.lean.
+
 # Evolution by Emergence v16 — Full Theory Peer-Review Release
 
 `v16` is the first fixed release in which the current **Evolution by Emergence**
