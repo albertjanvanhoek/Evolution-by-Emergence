@@ -357,6 +357,32 @@ theorem recursiveToy_c_emergent_integrated :
         AccessibleByCost]
     · simp [recursiveToyCriterion]
 
+/-- The initial primitive `a` explicitly participates in generation of the
+first emergent product `b`. -/
+theorem recursiveToy_a_generates_b_using_a :
+    GeneratedUsingParent
+      (fun x => x ∈ recursiveToyRepertoire 0)
+      (recursiveToyGenerator 0) a b := by
+  refine ⟨{a}, by simp, ?_, ?_⟩
+  · intro x hx
+    have hxa : x = a := by simpa using hx
+    subst x
+    simp [recursiveToyRepertoire]
+  · simp [recursiveToyGenerator, chainHyper]
+
+/-- First full recursive-emergence link: existing primitive `a` participates
+in generation of emergent product `b`, which passes the declared filters and
+is retained. -/
+theorem recursiveToy_a_to_b_is_recursiveEmergenceStep :
+    RecursiveEmergenceStepAt
+      boolProper recursiveToyRealizes
+      recursiveToyCost recursiveToyBudget recursiveToyCriterion
+      recursiveToyRepertoire recursiveToyGenerator
+      0 a b := by
+  refine ⟨?_, recursiveToy_a_generates_b_using_a, ?_⟩
+  · simp [recursiveToyRepertoire]
+  · exact ⟨true, 0, recursiveToy_b_emergent_integrated⟩
+
 /-- The retained first product `b` is an explicit parent of the second
 candidate `c`. -/
 theorem recursiveToy_b_generates_c_using_b :
@@ -370,9 +396,9 @@ theorem recursiveToy_b_generates_c_using_b :
     simp [recursiveToyRepertoire]
   · simp [recursiveToyGenerator, chainHyper]
 
-/-- The second event is therefore a genuine recursive-emergence step: the
-product retained by the first event is reused as parent material for the next
-emergent, filtered, retained product. -/
+/-- Second full recursive-emergence link: the product retained by the first
+link is reused as parent material for the next emergent, filtered, retained
+product. -/
 theorem recursiveToy_b_to_c_is_recursiveEmergenceStep :
     RecursiveEmergenceStepAt
       boolProper recursiveToyRealizes
@@ -383,59 +409,54 @@ theorem recursiveToy_b_to_c_is_recursiveEmergenceStep :
   · simp [recursiveToyRepertoire]
   · exact ⟨true, 1, recursiveToy_c_emergent_integrated⟩
 
-/-- Concrete two-event recursive process:
-first `b` crosses the emergence/persistence bridge at time 0; then, at time 1,
-that retained product is reused to generate the next emergent retained product
-`c`. -/
+/-- Concrete depth-two recursive emergence process:
+`a -> b -> c`, where both links satisfy the same machine-checked recursive
+emergence predicate and the first emergent product becomes parent material for
+the second event. -/
 theorem recursiveToy_two_event_recursive_emergence :
-    ResourceValidatedEmergentEventAt
-      boolProper recursiveToyRealizes
-      recursiveToyCost recursiveToyBudget recursiveToyCriterion
-      recursiveToyRepertoire 0 b
-    ∧
     ResourceValidatedRecursiveEmergenceChain
       boolProper recursiveToyRealizes
       recursiveToyCost recursiveToyBudget recursiveToyCriterion
       recursiveToyRepertoire recursiveToyGenerator
-      1 b 1 c := by
-  constructor
-  · exact ⟨true, 0, recursiveToy_b_emergent_integrated⟩
-  · exact TimedRecursiveChain.step
-      (TimedRecursiveChain.base
-        (Link := RecursiveEmergenceStepAt
-          boolProper recursiveToyRealizes
-          recursiveToyCost recursiveToyBudget recursiveToyCriterion
-          recursiveToyRepertoire recursiveToyGenerator)
-        (start := 1) (seed := b))
-      recursiveToy_b_to_c_is_recursiveEmergenceStep
+      0 a 2 c := by
+  have h0 :
+      ResourceValidatedRecursiveEmergenceChain
+        boolProper recursiveToyRealizes
+        recursiveToyCost recursiveToyBudget recursiveToyCriterion
+        recursiveToyRepertoire recursiveToyGenerator
+        0 a 0 a :=
+    TimedRecursiveChain.base
+      (Link := RecursiveEmergenceStepAt
+        boolProper recursiveToyRealizes
+        recursiveToyCost recursiveToyBudget recursiveToyCriterion
+        recursiveToyRepertoire recursiveToyGenerator)
+      (start := 0) (seed := a)
+  have h1 :
+      ResourceValidatedRecursiveEmergenceChain
+        boolProper recursiveToyRealizes
+        recursiveToyCost recursiveToyBudget recursiveToyCriterion
+        recursiveToyRepertoire recursiveToyGenerator
+        0 a 1 b :=
+    TimedRecursiveChain.step h0
+      recursiveToy_a_to_b_is_recursiveEmergenceStep
+  exact TimedRecursiveChain.step h1
+    recursiveToy_b_to_c_is_recursiveEmergenceStep
 
-/-- The concrete recursive process contains two strict repertoire expansions:
-`{a} -> {a,b}` for the seed event and `{a,b} -> {a,b,c}` for the recursive
-step. -/
+/-- The generic finite-chain theorem applied to the depth-two witness certifies
+both strict repertoire expansions: `{a} -> {a,b} -> {a,b,c}`. -/
 theorem recursiveToy_two_strict_expansions :
     recursiveToyRepertoire 0 ⊂ recursiveToyRepertoire 1
     ∧ recursiveToyRepertoire 1 ⊂ recursiveToyRepertoire 2 := by
+  have hAll :=
+    recursiveEmergenceChain_strict_at_each_link
+      boolProper recursiveToyRealizes
+      recursiveToyCost recursiveToyBudget recursiveToyCriterion
+      recursiveToyRepertoire recursiveToyGenerator
+      0 a recursiveToyRepertoire_retained
+      recursiveToy_two_event_recursive_emergence
   constructor
-  · exact recursiveEmergenceStep_strictly_expands_repertoire
-      boolProper recursiveToyRealizes
-      recursiveToyCost recursiveToyBudget recursiveToyCriterion
-      recursiveToyRepertoire recursiveToyGenerator 0
-      recursiveToyRepertoire_retained
-      ⟨by simp [recursiveToyRepertoire],
-       ⟨by
-          refine ⟨{a}, by simp, ?_, ?_⟩
-          · intro x hx
-            have hxa : x = a := by simpa using hx
-            subst x
-            simp [recursiveToyRepertoire]
-          · simp [recursiveToyGenerator, chainHyper],
-        ⟨true, 0, recursiveToy_b_emergent_integrated⟩⟩⟩
-  · exact recursiveEmergenceStep_strictly_expands_repertoire
-      boolProper recursiveToyRealizes
-      recursiveToyCost recursiveToyBudget recursiveToyCriterion
-      recursiveToyRepertoire recursiveToyGenerator 1
-      recursiveToyRepertoire_retained
-      recursiveToy_b_to_c_is_recursiveEmergenceStep
+  · simpa using hAll 0 (by omega)
+  · simpa using hAll 1 (by omega)
 
 end ConcreteRecursiveWitness
 
