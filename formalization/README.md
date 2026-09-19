@@ -5,9 +5,11 @@ This directory contains the machine-checked components that support the current
 
 Start with:
 
-- [../THEORY.md](../THEORY.md) — accessible full theory.
+- [../THEORY_CORE_V17.md](../THEORY_CORE_V17.md) — candidate self-standing formal theory.
+- [../FORMAL_THEORY_ENDPOINT.md](../FORMAL_THEORY_ENDPOINT.md) — review-readiness target.
 - [../FORMAL_THEORY_MAP.md](../FORMAL_THEORY_MAP.md) — claim-to-theorem map.
-- [../DYNAMIC_OVERVIEW.md](../DYNAMIC_OVERVIEW.md) — integrated recursive core.
+- [../THEORY.md](../THEORY.md) — broader synthesis around the formal core.
+- [../DYNAMIC_OVERVIEW.md](../DYNAMIC_OVERVIEW.md) — complementary v16 resource/dynamic-vortex layer.
 
 ## Packages
 
@@ -16,7 +18,7 @@ Start with:
 | \`affinity-layer\` | encounter/association layer before productive coupling | \`AffinityLayer.lean\` |
 | \`collective-alignment\` | recurrent maintenance, correction, protocol inheritance, sufficient alignment | \`CollectiveAlignment.lean\`, \`MaintenanceReproduction.lean\`, \`MaintenanceDynamics.lean\` |
 | \`persistence-drift\` | persistence/function separation, regulation, implementation competition, slack/search drift, return-path effects | \`PersistenceDrift.lean\`, \`FunctionalCompetition.lean\`, \`ReturnPathPrice.lean\` |
-| \`cumulative-accessibility\` | retention, generative closure, open-ended capacity, endogenous response budget, full dynamic vortex | \`CumulativeAccessibility/DynamicVortex.lean\`, \`DynamicVortexWitness.lean\` |
+| `cumulative-accessibility` | retention, generative closure, recursive emergence, active/history separation, finite moving envelopes, endogenous response budget, and dynamic vortex | `CumulativeAccessibility/EvolutionByEmergenceV17Core.lean`, `ConstructiveRecursiveEmergence.lean`, `ActiveHistory.lean`, `DynamicVortex.lean` |
 | \`../verification/organizational-depth\` | finite-time/fixed-resolution physical boundary and maintenance-debt end-to-end model | \`OrganizationalDepth.lean\`, \`OperationalBridge.lean\`, \`PackingDepth.lean\`, \`MaintenanceDynamicsEndToEnd.lean\` |
 
 ## Evidence hierarchy
@@ -76,7 +78,7 @@ lake env lean EquilibriumExposure.lean
 lake env lean FunctionalThresholds.lean
 \`\`\`
 
-### Cumulative accessibility / dynamic vortex
+### Cumulative accessibility / v17 recursive core / dynamic vortex
 
 \`\`\`bash
 cd formalization/cumulative-accessibility
@@ -88,6 +90,9 @@ lake build \
   CumulativeAccessibility.VerificationSurface \
   CumulativeAccessibility.DynamicVortexWitness
 lake env lean CumulativeAccessibility/VerificationSurface.lean
+lake env lean CumulativeAccessibility/EvolutionByEmergenceV17Core.lean
+lake env lean CumulativeAccessibility/ConstructiveRecursiveEmergence.lean
+lake env lean CumulativeAccessibility/ActiveHistory.lean
 lake env lean CumulativeAccessibility/DynamicVortex.lean
 lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
 \`\`\`
@@ -128,15 +133,15 @@ and paper-specific reproducibility checks.
 
 ## Where to review first
 
-For a mathematical reviewer:
+For the candidate v17 formal theory:
 
-1. \`cumulative-accessibility/CumulativeAccessibility/DynamicVortex.lean\`
-2. \`cumulative-accessibility/CumulativeAccessibility/DynamicVortexWitness.lean\`
-3. \`collective-alignment/MaintenanceDynamics.lean\`
-4. \`persistence-drift/PersistenceDrift.lean\`
-5. \`persistence-drift/ReturnPathPrice.lean\`
-6. \`../verification/organizational-depth/OperationalBridge.lean\`
-7. \`../verification/organizational-depth/PackingDepth.lean\`
+1. `CumulativeAccessibility/EvolutionByEmergenceV17Core.lean` — canonical operational, promotion-driven, constructive-projection, historical, and finite-boundary surface.
+2. `CumulativeAccessibility/ConstructiveRecursiveEmergence.lean` — configuration-level construction bridge.
+3. `CumulativeAccessibility/ActiveHistory.lean` — active versus cumulative-history semantics and turnover witness.
+4. `CumulativeAccessibility/LocalEmergenceReproduction.lean` — moving-envelope correction and calibrated local certificate.
+5. `CumulativeAccessibility/EndogenousEnvelopePromotion.lean` — essential-parent, finite-admission, promotion-driven successor route.
+6. `CumulativeAccessibility/VerificationSurface.lean` — advertised axiom audit.
 
-Then use [../FORMAL_THEORY_MAP.md](../FORMAL_THEORY_MAP.md) to trace the
-surrounding claims and explicit non-claims.
+For the broader v16 resource/maintenance integration, then inspect `DynamicVortex.lean`, `DynamicVortexWitness.lean`, and the supporting maintenance/response modules.
+
+The globally finite `EvolutionByEmergenceCore.lean` remains part of the dependency history and finite diagnostic surface; it is not the canonical v17 open-ended certificate.
