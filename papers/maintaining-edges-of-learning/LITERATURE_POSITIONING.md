@@ -4,6 +4,8 @@
 
 This note records the closest neighboring literatures and the intended novelty boundary for the paper.
 
+**Targeted closest-prior-art audit updated 19 September 2026.** This is not an exhaustive systematic review, but the closest conceptual collisions identified so far are now recorded explicitly below.
+
 The paper does **not** claim priority for the individual mechanisms it uses. Its candidate contribution is the integration of:
 
 \[
@@ -80,7 +82,21 @@ Sala and Pratt (2022) studied organizational practices supporting interpersonal 
 
 ---
 
-## 6. Metaplasticity, continual learning, and loss of plasticity
+## 6. Strategic learning options in network relationships
+
+Katsamakas (2007) is a particularly close antecedent. In an organizational-network case study, he argues that relationships can possess **strategic learning option value** because investment in a relationship preserves rights to potential future learning benefits. The account is explicitly path-dependent: trust can expand future learning opportunities, while loss of trust can destroy learning option value.
+
+This directly anticipates the present paper's claim that the value of an interaction channel can exceed the value of information currently crossing it.
+
+**Boundary:** the present paper must not claim the option-value interpretation of learning relationships as new. Its narrower extension is to place that idea inside a directed correction-cost geometry, distinguish L0 content from L1 channel maintenance, model repair/re-engagement as changes in future edge viscosity, and connect those changes to retained functional-learning velocity.
+
+Reference:
+
+- Katsamakas, E. (2007). Knowledge processes and learning options in networks: Evidence from telecommunications. *Human Systems Management, 26*(3), 181–192. https://doi.org/10.3233/HSM-2007-26304
+
+---
+
+## 7. Metaplasticity, continual learning, and loss of plasticity
 
 Metaplasticity research shows that prior activity can change the future susceptibility of synapses to plastic change.
 
@@ -98,7 +114,7 @@ The present paper applies that distinction to interaction networks among agents,
 
 ---
 
-## 7. Adaptive and temporal networks
+## 8. Adaptive and temporal networks
 
 Adaptive-network theory studies mutual feedback between node states and network topology. Temporal-network research studies the timing and persistence of edges.
 
@@ -106,7 +122,7 @@ Adaptive-network theory studies mutual feedback between node states and network 
 
 ---
 
-## 8. Closest candidate contribution
+## 9. Closest candidate contribution
 
 The strongest candidate contribution is therefore not any individual verb, nor plasticity, network diversity, trust repair, or collective learning alone.
 
@@ -144,6 +160,7 @@ This allows a disagreement about content to be distinguished formally from destr
 - Dohare, S., Hernandez-Garcia, J. F., Lan, Q., Rahman, P., Mahmood, A. R., & Sutton, R. S. (2024). Loss of plasticity in deep continual learning. *Nature, 632*, 768–774. https://doi.org/10.1038/s41586-024-07711-7
 - Edmondson, A. C. (1999). Psychological safety and learning behavior in work teams. *Administrative Science Quarterly, 44*(2), 350–383.
 - Edmondson, A. C., & Lei, Z. (2014). Psychological safety: The history, renaissance, and future of an interpersonal construct. *Annual Review of Organizational Psychology and Organizational Behavior, 1*, 23–43.
+- Katsamakas, E. (2007). Knowledge processes and learning options in networks: Evidence from telecommunications. *Human Systems Management, 26*(3), 181–192. https://doi.org/10.3233/HSM-2007-26304
 - Kähkönen, T. (2021). Repairing trust within teams after organizational change. *Journal of Organizational Change Management*. https://doi.org/10.1108/JOCM-11-2020-0348
 - Lazer, D., & Friedman, A. (2007). The network structure of exploration and exploitation. *Administrative Science Quarterly, 52*(4), 667–694. https://doi.org/10.2189/asqu.52.4.667
 - Lewicki, R. J., & Brinsfield, C. (2017). Trust repair. *Annual Review of Organizational Psychology and Organizational Behavior, 4*, 287–313. https://doi.org/10.1146/annurev-orgpsych-032516-113147
