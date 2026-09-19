@@ -341,7 +341,6 @@ theorem progressive_promotion_is_generatively_consequential
       subst x
       simp [progressiveRepertoire]
     · simp [progressiveGenerator]
-      omega
   · intro hGenerated
     rcases hGenerated with ⟨parents, hAvailable, hRule⟩
     have hParents : parents = {n + 1} := hRule.1
@@ -360,7 +359,6 @@ theorem progressive_has_promotionResponsiveEnvelope :
   have hNext : next = (m + 1) + 1 := hRule.2
   subst next
   simp [progressiveEnvelope]
-  omega
 
 /-- The progressive architecture satisfies promotion-driven continuation at
 every event. -/
