@@ -507,31 +507,44 @@ It is **review maturity**.
 
 ## 14. Current status against the endpoint
 
-As of the PR #60 audit:
+As of the current PR #60 integration:
 
-**Already strong**
+### Internally closed or substantially closed
 
 - machine-checked event and recursion surfaces;
-- explicit no-`sorryAx` CI;
-- non-vacuity witnesses;
-- multiple separation countermodels;
+- explicit no-`sorryAx` audit contract;
+- non-vacuity witnesses and separation countermodels;
 - finite-global saturation correction;
-- corrected moving local envelope;
+- corrected finite moving local envelope;
 - operational versus representational vocabulary distinction;
 - explicit finite admission seam;
 - essential-parent counterfactual under fixed generator;
-- conservative literature positioning.
+- **configuration-level construction bridge** linking parent construction to the exact configuration witnessing emergent realization;
+- **active repertoire versus cumulative history split**, including a checked turnover witness with active cardinality one;
+- canonical `EvolutionByEmergenceV17Core.lean` surface selecting the corrected operational and historical endpoints;
+- self-standing `THEORY_CORE_V17.md`;
+- worked cross-domain mappings plus a deliberate partial non-mapping;
+- first- and second-pass literature audits including OEE, adjacent possible, changing phase spaces, generative RAFs, cumulative culture, and technological evolution;
+- rewritten reviewer entry path and broad-review protocol.
 
-**Still open before broad review**
+### Still required before a frozen 100-reviewer release
 
-1. decide whether to add the generated-configuration bridge;
-2. decide how to handle active repertoire versus cumulative history;
-3. finish the closest-antecedent search for the exact full factorization;
-4. refactor the canonical Lean dependency/core surface;
-5. write the short self-standing theory core;
-6. provide at least two worked domain mappings and one limitation/failure case;
-7. rewrite the repository entry points around the final stable core;
-8. freeze and tag the exact review object.
+1. **Exact-head verification.** The final frozen commit—not an earlier intermediate commit—must pass the full advertised CI and no-`sorryAx` surface.
+2. **Repository consistency pass.** No entry document should still present the globally finite PR57 master certificate or v16 Dynamic Vortex as the canonical v17 recursive core.
+3. **External prior-art challenge.** At least one independent specialist/agent should be tasked specifically with finding an equal-or-stronger antecedent to the full factorization. Internal search cannot establish priority.
+4. **External semantic preflight.** At least a small number of readers who did not participate in construction should try to reconstruct the theory from the reviewer path without conversational context.
+5. **Freeze.** Stop changing core definitions, tag the exact commit, and archive known open questions so all broad reviewers inspect the same object.
+
+### Research seams that do not block review if stated explicitly
+
+- event-wise continuation remains a strong premise rather than a theorem from primitive promotion alone;
+- the finite admission mechanism remains application specific;
+- mechanism ledgers require calibration to actual successors;
+- the ambient `Capacity` type is weaker than strong unprestatable ontology creation;
+- self-maintenance/resource slack does not automatically imply recursive innovation;
+- empirical mappings and normative conclusions remain outside the proof kernel.
+
+These are no longer reasons to keep inventing internally. They are precisely the kinds of assumptions the broad review should attack.
 
 ## 15. The endpoint in one sentence
 
