@@ -1,37 +1,56 @@
 # Evolution by Emergence
 
-## The current theory
+## The broader theory around the v17 formal core
 
-**Evolution by Emergence (EbE)** is a theory architecture about how organized
-processes can arise, persist, accumulate history, and change the space of what
-can happen next.
+The canonical **candidate formal core** for the current integration is
+[THEORY_CORE_V17.md](THEORY_CORE_V17.md).
 
-Its central question is:
+This file is deliberately broader. It connects that minimal recursive-organization
+core to the repository's existing work on maintenance, resource slack, response,
+accessibility, functional change, learning, and the Dynamic Vortex.
 
-> **How does organization that exists now change the distribution of
-> organization that can exist next?**
+The authority hierarchy for review is therefore:
 
-The theory is broader than biological evolution but does not claim that every
+```text
+EvolutionByEmergenceV17Core.lean
+    + audited supporting Lean modules
+        -> THEORY_CORE_V17.md
+            -> this broader THEORY.md synthesis
+                -> domain mappings / papers
+                    -> essays / implications / normative arguments
+```
+
+A conclusion stated higher in that stack must not be read back into the formal
+core unless its premises are explicitly present there.
+
+**Evolution by Emergence (EbE)** asks:
+
+> **How does organization that exists now change the distribution of organization that can exist next?**
+
+The project is broader than biological evolution but does not claim that every
 domain uses the same mechanism. Biological selection, learning, technological
 change, institutional adaptation, and chemical self-organization can be very
-different processes. The proposed unity is **structural**, not mechanical.
+different processes. The proposed unity is structural and conditional.
 
-The current scientific position of the repository is deliberately conservative:
+The repository's literature position is deliberately conservative:
 
-> **EbE is primarily a synthesis and formal architecture, with several exact
-> model-specific results.**
+> **EbE is primarily a synthesis and formal architecture, with exact
+> machine-checked specializations and countermodels.**
 
-The literature audits in this repository found strong antecedents for most
-individual ingredients. The contribution under review is therefore the way
-maintenance, resources, retention, accessibility, generation, selection, and
-physical limits are put into one explicit recursive architecture.
+The v17 review does not seek a priority claim. It asks whether a common
+factorization of generation, emergence, feasibility, validation, retention,
+reuse, finite search, and recursive accessibility is correct and useful.
 
-For theorem-level traceability, see **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)**.
-For the central recursive dynamics alone, see
-**[DYNAMIC_OVERVIEW.md](DYNAMIC_OVERVIEW.md)**.
+For the formal endpoint and review gates see
+[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md).
+
+For worked mappings and the application firewall see
+[APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md).
+
+For prior-art positioning see
+[verification/audits/2026-09-19-recursive-emergence/](verification/audits/2026-09-19-recursive-emergence/).
 
 ---
-
 # 1. The idea in one page
 
 Everything realized has a finite material history.

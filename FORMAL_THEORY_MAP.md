@@ -2,8 +2,7 @@
 
 ## Claim-to-Lean traceability for the current theory
 
-This file connects the prose theory in **[THEORY.md](THEORY.md)** to the exact
-formal objects that support it.
+This file connects the candidate formal theory in **[THEORY_CORE_V17.md](THEORY_CORE_V17.md)**, and the broader synthesis in **[THEORY.md](THEORY.md)**, to the exact formal objects that support them.
 
 It is not a claim that every sentence in the theory is machine proved.
 
@@ -27,43 +26,108 @@ The central rule is:
 
 ---
 
-## T0 — association filters productive couplings
+## MASTER — v17 canonical recursive-organization surface
 
-**Theory statement.** Encounter alone is not productive coupling. Association
-persistence and conversion can filter which interactions reach the production
-network.
+**Theory statement.** The canonical v17 surface no longer uses a globally finite
+`Capacity` type as the master open-ended universe. It exposes two distinct
+cumulative endpoints and two optional strengthening layers.
 
-**Formal status:** MC for two reduced affinity models; INT/MODEL for the general
-pre-accessibility interpretation.
+### Operational accumulation
 
-**Lean source**
+The corrected operational certificate uses finite moving local envelopes:
 
-\`formalization/affinity-layer/AffinityLayer.lean\`
+```text
+seed recursive-emergence event
++ monotone active retention
++ local finite-envelope representation
++ event-wise locally certified effective successor reproduction
+    -> OpenEndedCumulativeNovelty Active
+    -> UnboundedEnvelopeCapacity U.
+```
 
-**Selected declarations**
+The ambient `Capacity` type need not be finite.
 
-- \`costScore_difference_of_stationary\`
-- \`costScore_le_of_stationary\`
-- \`costAStar_pos\`
-- \`costAStar_stationary\`
-- \`costAStar_global_max\`
-- \`turnoverShape_pos\`
-- \`turnoverShape_le_one\`
-- \`turnoverShape_eq_one_iff\`
-- \`turnoverLambda_le_peak\`
-- \`turnoverMass_le_peak\`
-- \`turnover_exact_witness\`
-- \`turnover_exact_two_sided_failure\`
-- \`turnoverShape_inv\`
-- \`turnoverShape_exp_neg\`
+### Promotion-driven strengthening
 
-**What is proved.** Conditional global optima and exact symmetry/witness results
-for the declared reduced laws.
+A stronger sufficient route replaces abstract local criticality with:
 
-**Not proved.** A universal microscopic affinity law.
+```text
+operational primitive promotion
++ essential downstream generated-access contribution
++ finite admission
++ promotion-responsive envelope
++ full next-event filtering
+    -> actual local successor
+    -> local critical reproduction.
+```
 
-Paper-level map:
-\`papers/affinity-before-accessibility/FORMAL_VERIFICATION.md\`.
+This is still a sufficient-condition architecture: promotion alone does not
+derive continuation.
+
+### Constructive strengthening
+
+`ConstructiveRecursiveEmergenceStepAt` can additionally require the parent set
+to construct the **same configuration** that witnesses the child capacity's
+compositional emergence and filtered retention. The constructive event projects
+to the generic capacity-level recursive event.
+
+### Historical accumulation
+
+The weaker historical endpoint separates current operational availability from
+cumulative trace:
+
+```text
+Active_t
+History_t.
+```
+
+Recurring history-new recursive events plus monotone `History` imply
+`OpenEndedCumulativeNovelty History` without monotone `Active`. A checked
+turnover witness keeps the active repertoire at cardinality one forever while
+history expands.
+
+**Formal status:** MC for all displayed implications; CW for operational and
+historical non-vacuity witnesses; MODEL for application-specific construction,
+admission, validation, resource, and calibration interfaces.
+
+**Canonical Lean source**
+
+- `EvolutionByEmergenceV17Core.lean`
+
+**Supporting Lean sources**
+
+- `LocalEmergenceReproduction.lean`
+- `EndogenousEnvelopePromotion.lean`
+- `ConstructiveRecursiveEmergence.lean`
+- `ActiveHistory.lean`
+- `FiniteGenerativeSaturation.lean`
+- `OpenEndedCapacity.lean`
+
+**Canonical declarations**
+
+- `EvolutionByEmergenceV17OperationalCertificate`
+- `evolutionByEmergenceV17_operational_openEnded`
+- `evolutionByEmergenceV17_operational_unboundedEnvelope`
+- `PromotionDrivenEvolutionByEmergenceV17Certificate`
+- `evolutionByEmergenceV17_promotionDriven_openEnded`
+- `evolutionByEmergenceV17_promotionDriven_unboundedEnvelope`
+- `evolutionByEmergenceV17_constructiveEvent_projects`
+- `HistoricalEvolutionByEmergenceV17Certificate`
+- `evolutionByEmergenceV17_historical_openEnded`
+- `evolutionByEmergenceV17_historical_turnover_witness`
+- `evolutionByEmergenceV17_fixedFiniteOperationalCriticality_impossible`
+
+### Status of the earlier finite master certificate
+
+`EvolutionByEmergenceCore.lean` is retained for compatibility, finite
+specialization, calibration/separation results, and historical traceability.
+Its `[Fintype Capacity]` `EvolutionByEmergenceCoreCertificate` is **not** the
+canonical open-ended v17 certificate. `LocalEmergenceReproduction.lean` proves
+`evolutionByEmergenceCoreCertificate_impossible`: under the indefinite seed,
+retention, and uniform criticality premises, the globally finite specialization
+conflicts with finite retained-repertoire saturation.
+
+That correction is part of the theory's evidence, not something to hide.
 
 ---
 
@@ -183,6 +247,67 @@ and a response cost \(9/2\) crosses the feasibility boundary.
 
 ---
 
+## T3A — self-maintenance leverage: slack, buffer, and future access
+
+**Theory statement.** In a declared resource-solvency ledger, higher internal
+slack has a double role: with positive reinvestment it raises response budget,
+and the same extra margin increases the energetic burden the organization can
+absorb while remaining solvent. If future target costs are also non-worsening,
+the slack-funded feasible target family cannot shrink; an explicit crossing
+witness makes it strictly expand.
+
+**Formal status:** MC + CW.
+
+**Lean source**
+
+- \`SelfMaintenanceLeverage.lean\`
+
+**Selected declarations**
+
+- \`slack_improvement_preserves_energetic_tolerance\`
+- \`strict_slack_improvement_opens_energetic_buffer\`
+- \`strict_slack_gain_is_budget_and_buffer_gain\`
+- \`selfMaintenanceLeverage_preserves_slackFundedAccess\`
+- \`selfMaintenanceLeverage_strictly_expands_with_witness\`
+- \`slack_and_cost_leverage_open_target\`
+- \`lifetimeAdaptiveBudget_mono\`
+- \`lifetimeAdaptiveBudget_strict_of_slack_gain\`
+- \`leverageToy_strict_access_expansion\`
+- \`leverageToy_budget_and_buffer_gain\`
+
+**Logical core**
+
+For state-local slack
+
+\[
+L(s)=\mathcal U(s,g)-\mathcal M(s),
+\]
+
+positive reinvestment \(\beta>0\), and
+
+\[
+L(s_0)<L(s_1),
+\]
+
+the checked ledger gives both
+
+\[
+\beta L(s_0)<\beta L(s_1)
+\]
+
+and a nonempty interval of additional energetic burdens tolerated at \(s_1\)
+but not at \(s_0\).
+
+If additionally no declared future target becomes more costly, every target
+affordable from old slack remains affordable from new slack.
+
+**Boundary.** This is not a theorem that all forms of robustness increase with
+energetic efficiency. The stability result is explicitly restricted to the
+same resource-solvency ledger. Generation, validation, and retention remain
+separate.
+
+---
+
 ## T4 — opportunity and success are distinct
 
 **Theory statement.** Recurring opportunities do not by themselves imply
@@ -245,6 +370,380 @@ while \(c\) is unavailable after one retained generative round and available
 after two.
 
 This is the formal retained-history stepping-stone result.
+
+---
+
+## T5A — local recursive-emergence reproduction is sufficient for recurrence
+
+**Theory statement.** Global recurrence need not be assumed directly. One seed
+recursive-emergence event plus a local rule guaranteeing that every realized
+event has a later successor that reuses its child as parent is sufficient for
+arbitrarily late recursive-emergence events. With monotone retention, this
+implies open-ended cumulative novelty.
+
+**Formal status:** MC + progressive non-vacuity witness.
+
+**Lean source**
+
+- \`SelfMaintenanceLeverage.lean\`
+
+**Selected declarations**
+
+- \`RecursiveEmergenceSuccessorWithin\`
+- \`recursiveEmergenceSuccessorWithin_iterates\`
+- \`seed_and_successorWithin_imply_recurringRecursiveEmergence\`
+- \`seed_and_successorWithin_imply_openEndedNovelty\`
+- \`progressive_has_recursiveEmergenceSuccessorWithin_zero\`
+- \`progressive_openEnded_via_local_chainReaction\`
+
+**Logical direction**
+
+\[
+\text{seed}
++
+\bigl(\text{every recursive event has a later child-reusing successor}\bigr)
+\Rightarrow
+\text{recurrent recursive emergence}
+\Rightarrow
+\text{open-ended retained novelty}.
+\]
+
+**Boundary.** Slack gain and cheaper future access do not by themselves prove
+the successor rule. The rule still contains generation, external validation,
+and retention. Closing that empirical/mechanistic seam is the next research
+problem.
+
+---
+
+## T5B — emergence reproduction number and criticality
+
+**Theory statement.** In a finite declared capacity universe, the deterministic
+effective emergence reproduction number \(R_E\) is the actual number of
+distinct immediate recursive-emergence successors of one retained child.
+
+\[
+R_E=0
+\]
+
+means no immediate effective successor,
+
+\[
+R_E\ge 1
+\]
+
+is exactly the continuation threshold, and
+
+\[
+R_E>1
+\]
+
+guarantees at least two distinct immediate successor branches.
+
+**Formal status:** MC for the deterministic finite-capacity specialization;
+MODEL/EXT for stochastic and arbitrary-type next-generation interpretations.
+
+**Lean source**
+
+- \`EmergenceReproduction.lean\`
+
+**Selected declarations**
+
+- \`ImmediateRecursiveEmergenceSuccessors\`
+- \`EffectiveEmergenceSuccessorCount\`
+- \`EffectiveEmergenceReproductionNumber\`
+- \`one_le_effectiveEmergenceSuccessorCount_iff_exists\`
+- \`one_le_effectiveEmergenceReproductionNumber_iff_exists\`
+- \`supercritical_effectiveEmergenceReproduction_has_two_successors\`
+- \`UniformCriticalEmergenceReproduction\`
+- \`uniformCriticalEmergenceReproduction_implies_successorWithin_zero\`
+- \`seed_and_uniformCriticalEmergenceReproduction_imply_openEndedNovelty\`
+
+The mechanism ledger is kept separate:
+
+\[
+R_E^{\rm ledger}
+=
+\tau\lambda p_Gp_Rp_Vp_T,
+\]
+
+where \(\tau\) is a declared persistence/search window, \(\lambda\) is
+opportunity rate, and the \(p\)'s are conditional generation, resource,
+validation, and retention fractions.
+
+The ledger is not identified with the actual successor count. A separate
+\`ReproductionLedgerCertifiedLowerBound\` seam is required before
+\(R_E^{\rm ledger}\ge1\) can certify an actual deterministic successor.
+
+**Boundary.** In a stochastic branching interpretation, an expected
+reproduction number greater than one does not imply deterministic continuation.
+The corresponding positive-survival-probability theorem requires explicit
+branching/independence or conditional-law assumptions and is not yet
+machine-checked here. The general multitype spectral-radius threshold is
+classical external next-generation-operator mathematics rather than a new EbE
+claim.
+
+---
+
+## T5C — local emergence reproduction closes the recursive theory without a finite global vocabulary
+
+**Theory statement.** The finite-capacity successor count in T5B is a valid
+finite specialization, but it cannot be the global state space of an
+open-ended retained process. With a fixed finite global capacity type, one
+seed, monotone retention, and uniform critical reproduction are jointly
+impossible over an unbounded horizon.
+
+The corrected reproduction object counts actual effective successors only
+inside the finite next-step candidate envelope \(U_{t+1}\):
+
+\[
+R_E^{\mathrm{local}}(t,\phi)
+=
+\#\{\psi\in U_{t+1}:
+\phi\to\psi
+\text{ completes a recursive-emergence step}\}.
+\]
+
+The underlying capacity type need not be finite. Each local envelope is finite,
+while the sequence of envelopes may have unbounded cardinality.
+
+**Formal status:** MC + explicit non-vacuity witness.
+
+**Lean source**
+
+- `LocalEmergenceReproduction.lean`
+
+**Selected declarations**
+
+- `finiteCapacity_uniformCriticalEmergenceReproduction_impossible`
+- `LocalEffectiveEmergenceReproductionNumber`
+- `one_le_localEffectiveEmergenceReproductionNumber_iff_exists`
+- `UniformLocalCriticalEmergenceReproduction`
+- `seed_and_uniformLocalCriticalEmergenceReproduction_imply_openEndedNovelty`
+- `seed_and_uniformLocalCriticalEmergenceReproduction_imply_unboundedEnvelope`
+- `uniformlyBoundedEnvelope_rules_out_uniformLocalCriticalEmergenceReproduction`
+- `evolutionByEmergenceCoreCertificate_impossible`
+- `LocalEvolutionByEmergenceCoreCertificate`
+- `evolutionByEmergenceLocalCore_openEnded`
+- `evolutionByEmergenceLocalCore_unboundedEnvelope`
+- `progressiveLocalEvolutionByEmergenceCoreCertificate`
+
+**Logical direction**
+
+\[
+\text{seed}
++
+\text{uniform local }R_E\ge 1
++
+\text{retention}
+\Rightarrow
+\text{open-ended retained novelty}.
+\]
+
+If retained organization is represented inside the moving envelope,
+
+\[
+S_t\subseteq U_t,
+\]
+
+then
+
+\[
+\text{open-ended retained novelty}
+\Rightarrow
+\sup_t |U_t|=\infty.
+\]
+
+Conversely, a uniform finite bound on \(|U_t|\) rules out sustained uniform
+local critical reproduction under the same seed, retention, and representation
+premises.
+
+**Boundary.** This does not prove that an empirical system has
+\(R_E^{\mathrm{local}}\ge1\). The mechanism ledger still requires an
+application-specific calibration to actual effective successors. What is
+closed here is the logical recursive architecture once that calibration is
+supplied.
+
+
+---
+
+## T5D — primitive promotion can endogenize movement of the local envelope
+
+**Theory statement.** A recursive-emergence child may already be represented in
+the current candidate envelope before realization, so realizing the child is
+not itself envelope expansion. The causal change is operational: retention
+promotes the child from unavailable candidate to reusable parent material.
+
+If the promoted child is essential for a downstream candidate relative to the
+next retained repertoire, and that candidate was not generable from the
+pre-promotion retained repertoire under the same next-step generator,
+and a finite promotion-admission policy selects it for local representation,
+then a responsive envelope places that downstream capacity in the next local
+envelope. If it also passes emergence, resource, validation, and retention
+filtering, it becomes an actual local
+\(R_E\) successor.
+
+**Formal status:** MC for the implication architecture and progressive witness;
+MODEL for the envelope-response policy and for the empirical frequency of
+generatively consequential promotions.
+
+**Lean source**
+
+- \`EndogenousEnvelopePromotion.lean\`
+
+**Selected declarations**
+
+- \`recursiveEmergenceStep_is_operationalPromotion\`
+- \`GenerativelyConsequentialPromotionAt\`
+- \`PromotionResponsiveEnvelope\`
+- \`promotionResponsiveEnvelope_exposes_new_entry\`
+- \`promotion_new_entry_strictly_expands_monotone_envelope\`
+- \`PromotionDrivenFilteredSuccessorAt\`
+- \`promotionDrivenFilteredSuccessor_implies_local_successor\`
+- \`UniformPromotionDrivenContinuation\`
+- \`uniformPromotionDrivenContinuation_implies_uniformLocalCritical\`
+- \`seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty\`
+- \`seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope\`
+- \`oneShot_promotion_has_no_generativelyConsequential_downstream\`
+- \`progressive_openEnded_via_endogenousEnvelopePromotion\`
+
+**Causal decomposition**
+
+\[
+\boxed{
+\begin{aligned}
+\text{recursive-emergence event}
+&\to \text{operational primitive promotion}\\
+&\to \text{new downstream generability}\\
+&\to \text{representation in }U_{t+1}\\
+&\to \text{filtered retained successor}\\
+&\to R_E^{\rm local}\ge 1.
+\end{aligned}}
+\]
+
+The generativity comparison intentionally holds the next-step generator fixed.
+It also checks that the promoted primitive is essential relative to the full
+next-step repertoire:
+
+\[
+\neg\operatorname{Generated}(S_{t+1}\setminus\{\phi\},H_{t+1},\psi),
+\]
+
+while
+
+\[
+\operatorname{GeneratedUsingParent}(S_{t+1},H_{t+1},\phi,\psi).
+\]
+
+In addition,
+
+\[
+\neg\operatorname{Generated}(S_t,H_{t+1},\psi).
+\]
+
+Together these conditions isolate the effect of the promoted parent from both
+simultaneous generator-rule change and other contemporaneous repertoire
+additions.
+
+**Boundary.** Primitive promotion is not sufficient by itself. A checked
+one-shot counterexample has a valid retained emergence event but no
+generatively consequential downstream candidate because the next-step
+generator is empty. A finite envelope is also not required to represent every
+possibility opened by a promoted primitive: `PromotionAdmissionPolicy` is an
+explicit application-specific compression/attention seam selecting which
+possibilities become local candidates. Admitted generated candidates still
+need not pass the later feasibility/validation/retention filters.
+
+This layer therefore explains one endogenous source of moving-envelope change
+without claiming that every emergence event expands the search horizon.
+
+---
+
+## T5E — generated configuration can be the emergent configuration
+
+**Theory statement.** Capacity-level generation and configuration-level
+emergence need not remain merely conjoined. Under the stronger construction
+interface, the parent set constructs a specific configuration for a specific
+child, and that same configuration is required to witness the child's
+compositional emergence and filtered retention.
+
+**Formal status:** MC + CW.
+
+**Lean source**
+
+- `ConstructiveRecursiveEmergence.lean`
+
+**Selected declarations**
+
+- `ConfigurationConstructionRule`
+- `ConstructiveRecursiveEmergenceStepAt`
+- `constructiveRecursiveEmergenceStep_same_configuration`
+- `constructiveRecursiveEmergenceStep_implies_recursiveEmergenceStep`
+- `recursiveToy_a_to_b_is_constructiveRecursiveEmergenceStep`
+- `recursiveToy_b_to_c_is_constructiveRecursiveEmergenceStep`
+
+**Boundary.** The stronger construction relation is not derived for every
+capacity-level generator. Applications that cannot identify the constructed
+configuration should use the weaker recursive event rather than assume the
+stronger bridge.
+
+---
+
+## T5F — active repertoire and cumulative history are distinct
+
+**Theory statement.** Open-ended historical accumulation does not require
+monotone growth of the currently operational repertoire.
+
+With separate `Active_t` and cumulative `History_t`, recurring recursive events
+whose children are genuinely new to history imply open-ended cumulative history
+when history is monotone. Parent reuse still requires current activity.
+
+**Formal status:** MC + explicit turnover CW/SEP.
+
+**Lean source**
+
+- `ActiveHistory.lean`
+
+**Selected declarations**
+
+- `ActiveHistoryConsistent`
+- `HistoricalRecursiveEmergenceStepAt`
+- `RecurringHistoricalRecursiveEmergence`
+- `recurringHistoricalRecursiveEmergence_implies_openEndedHistory`
+- `activeHistoryArchitecture_recursion_implies_openEndedHistory`
+- `openEndedHistory_with_bounded_turnover_active`
+
+The concrete witness establishes:
+
+```text
+OpenEndedCumulativeNovelty History
+AND |Active_t| = 1 for every t
+AND Active is not monotone.
+```
+
+**Boundary.** Historical trace is not operational availability. A capacity that
+is only in history cannot serve as current parent material unless a separate
+reactivation/recovery mechanism makes it active again.
+
+---
+
+## T5G — v17 has operational and historical master endpoints
+
+**Theory statement.** The v17 canonical surface deliberately does not force one
+notion of cumulative organization onto every domain.
+
+- `evolutionByEmergenceV17_operational_openEnded` is the stronger endpoint for
+  monotonically accumulated operational capability;
+- `evolutionByEmergenceV17_historical_openEnded` is the weaker endpoint for
+  cumulative historical trace under active turnover;
+- promotion-driven and constructive certificates are stronger sufficient
+  interfaces feeding the operational architecture, not alternative definitions
+  of emergence.
+
+**Formal status:** MC.
+
+**Lean source**
+
+- `EvolutionByEmergenceV17Core.lean`
 
 ---
 

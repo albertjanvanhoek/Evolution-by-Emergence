@@ -1,315 +1,281 @@
-# Evolution by Emergence v16 — Full Theory Peer-Review Release
+# Evolution by Emergence v17 — Recursive Organization Core
 
-`v16` is the first fixed release in which the current **Evolution by Emergence**
-theory is presented as one accessible, formally traceable, adversarially
-reviewable research object.
+`v17` is the fixed peer-review release of the recursive-organization formal core developed through PRs #56–#60.
 
-The release does not claim that every component mechanism is new or universal.
-Its central scientific claim is architectural:
+The purpose of this release is not to claim a new universal law or priority over established mechanisms. It is to provide a **self-standing, machine-auditable, literature-positioned descriptive architecture** that can underpin the larger Evolution by Emergence corpus.
 
-> **Existing organization uses environmental throughput to maintain and modify
-> itself; retained modifications change resources, reusable structure, or
-> generative possibilities, thereby changing which organizations can exist
-> next.**
+## 1. Canonical review object
 
-The repository now exposes that claim through one theory document, one dynamic
-overview, one claim-to-Lean map, explicit non-claims, and a repository-wide
-verification workflow.
+Start with:
 
-## 1. The full theory is now one review surface
+1. `THEORY_CORE_V17.md` — self-standing theory core;
+2. `FORMAL_THEORY_ENDPOINT.md` — formal endpoint and review-readiness criteria;
+3. `APPLICATION_MAPPINGS_V17.md` — worked cross-domain mappings and a partial non-mapping;
+4. `FORMAL_THEORY_MAP.md` — exact prose-to-Lean traceability;
+5. `CLAIMS.md` — claim ledger and non-claims;
+6. `verification/audits/2026-09-19-recursive-emergence/` — theorem, adversarial, prior-art, and cold-reader audits;
+7. `formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean` — canonical v17 theorem surface;
+8. `PEER_REVIEW_PROMPT.md` — broad-review protocol.
 
-The canonical entry point is:
+## 2. Core descriptive architecture
 
-- `THEORY.md` — accessible full theory;
-- `DYNAMIC_OVERVIEW.md` — the resource-fed recursive accessibility vortex;
-- `FORMAL_THEORY_MAP.md` — exact theory-claim → Lean-declaration map;
-- `formalization/README.md` — proof packages and local reproduction commands;
-- `CLAIMS.md` — current core claim ledger and explicit non-claims;
-- `PEER_REVIEW_PROMPT.md` — adversarial review protocol.
-
-The historical 2025 book remains part of the repository as the intellectual
-history of the project. It is no longer presented as the most precise statement
-of the current scientific theory.
-
-## 2. The integrated dynamic thesis
-
-The central causal architecture is:
+The v17 core keeps the following distinctions explicit:
 
 ```text
-encounter / association
-    → productive coupling
-    → recurrent maintenance
-    → resource solvency and internal slack
-    → response / search
-    → validation and retention
-    → reusable historical organization
-    → changed generator / second-order accessibility
-    → changed organization
-    → changed future uptake, maintenance, and search
-    ↺
+possible
+!= generated
+!= realized
+!= emergent
+!= feasible
+!= validated / selected
+!= retained
+!= operationally reusable
+!= admitted to future search
+!= recursively cumulative.
 ```
 
-The integrated formal core preserves the distinctions:
+The main recursive motif is:
 
-- maintenance ≠ innovation;
-- opportunity ≠ successful response;
-- resource feasibility ≠ validation;
-- novelty ≠ improvement;
-- retention ≠ function;
-- capacity ≠ realized novelty;
-- selection ≠ global progress;
-- external validation predicate ≠ objective truth.
+```text
+existing operational organization
+    -> generation / construction
+    -> candidate configuration
+    -> capacity realization
+    -> compositional emergence
+    -> resource feasibility
+    -> external/domain validation or selection
+    -> retention
+    -> operational reuse
+    -> changed downstream generability
+    -> finite admission to local search
+    -> later recursive successor.
+```
 
-## 3. New end-to-end dynamic composition
+Every arrow remains a process that can fail.
 
-The release includes `DynamicVortex.lean` and
-`DynamicVortexWitness.lean`.
+## 3. Corrected moving-envelope operational core
 
-A `DynamicVortexTurn` is one declared organizational transition that:
+The first recursive master specialization used a globally finite `Capacity` type.
 
-1. strictly increases internal slack at the same external gradient; and
-2. is a genuine second-order accessibility click.
+The later audit proved that a monotonically accumulating repertoire cannot sustain indefinitely many strict retained expansions inside one fixed finite global capacity universe.
 
-Lean proves that such a turn opens both:
+The corrected v17 operational core therefore uses:
 
-- a nonempty interval of newly affordable response costs; and
-- at least one future-search candidate unavailable to the old organization.
+```text
+possibly non-finite ambient Capacity
++ finite time-local candidate envelopes U_t
++ seed recursive-emergence event
++ monotone active retention
++ locally certified effective successor reproduction
+    -> open-ended cumulative operational novelty.
+```
 
-The recurrent composition theorem combines internally funded validated response
-with recurring second-order organizational updates. Under explicit opportunity,
-retention, and representation assumptions it yields:
+With repertoire representation inside the local envelopes:
 
-[
-oxed{
-	ext{open-ended cumulative retained novelty}
-land
-	ext{unbounded effective distinguishability capacity}
-land
-	ext{recurring second-order organizational updates}.
-}
-]
+```text
+open-ended cumulative operational novelty
+    -> unbounded envelope cardinality over time.
+```
 
-The concrete witness jointly inhabits these conditions.
+This does not require an infinite search set at any single time.
 
-The retained-response → physical-organizational-update connection remains an
-explicit modelling interface. The release does not assume that every novelty
-event improves physical organization.
+## 4. Primitive promotion and endogenous accessibility
 
-## 4. Endogenous resource budget
+PR #59 strengthens the recursive route by separating:
 
-The external environmental gradient remains a boundary condition, while usable
-response budget is generated internally:
+```text
+retained child
+-> operational primitive promotion
+-> essential contribution to later generability
+-> finite admission
+-> next-envelope representation
+-> independent full filtering
+-> actual recursive successor.
+```
 
-[
-L_t=mathcal U(s_t,G_t)-mathcal M(s_t),
-]
+The essential-parent test holds the next-step generator fixed and asks whether the downstream candidate ceases to be generable when the promoted child is removed.
 
-[
-B_t^{mathrm{resp}}=eta_tL_t.
-]
+This establishes **essential contribution under the declared counterfactual**, not sole historical causation.
 
-The fixed-gradient witness keeps the external gradient at 10, maintenance at 6,
-and raises organization-dependent uptake from 10 to 11:
+Primitive promotion alone does not imply another successful innovation.
 
-[
-L:4ightarrow5.
-]
+## 5. Constructive generated-configuration bridge
 
-A response of cost (9/2) crosses from infeasible to feasible.
+`ConstructiveRecursiveEmergence.lean` adds an optional stronger interface:
 
-This closes the earlier budget seam without claiming that organization creates
-the external thermodynamic gradient.
+```text
+parents construct configuration c for child
+AND
+that same c realizes the child capacity emergently
+AND
+the same event passes feasibility, validation, and retention.
+```
 
-## 5. Retained history and evolving accessibility
+The stronger constructive event projects to the existing capacity-level recursive event.
 
-The release retains and integrates the existing formal results that:
+This closes the earlier formal seam between:
 
-- retained generated intermediates can become later parent material;
-- retained module changes can expand effective search;
-- generator-rule changes can expand effective search;
-- a viable transition can be a `SecondOrderClick`;
-- retained history can expose a future candidate unavailable to an ancestor.
+```text
+parents generate capacity phi
+```
 
-Thus the formalization distinguishes movement through a fixed search space from
-change in the search-generating structure itself.
+and
 
-## 6. Selection, persistence, and function
+```text
+some unrelated configuration realizes phi.
+```
 
-The full theory now explicitly incorporates the persistence-drift and
-collective-alignment results instead of leaving them as adjacent packages.
+Applications that cannot justify configuration-level construction may continue to use the weaker capacity-level interface explicitly.
 
-Under explicit toy-model assumptions:
+## 6. Active repertoire versus cumulative history
 
-- cheaper functionally equivalent implementations can increase slack;
-- released slack can increase search;
-- state-dependent return-path effects can overwhelm the ordinary positive
-  selection component;
-- persistence and declared function can diverge;
-- privately selected control can fall below a sufficient functional threshold;
-- recurrent corrective protocols require their own maintenance and
-  reproduction.
+`ActiveHistory.lean` separates:
 
-These are conditional results, not a theorem that evolution always progresses
-or that collaboration is inherently beneficial.
+```text
+Active_t
+History_t.
+```
 
-## 7. Physical boundaries
+`Active_t` contains capacities currently available for reuse.
 
-The full theory also integrates the finite-capacity and organizational-depth
-results.
+`History_t` is a declared cumulative trace of capacities the application records as having occurred.
 
-Lean checks that:
+Lean proves a turnover witness in which:
 
-- a fixed finite distinguishability universe cannot support indefinitely many
-  strict retained expansions;
-- open-ended cumulative retained novelty requires unbounded effective
-  distinguishability capacity in the declared representation model;
-- under explicit finite-action/speed-limit assumptions, bounded finite-time
-  resources bound fixed-resolution organizational depth;
-- in the finite-state Markov/channel specialization, total-variation data
-  processing transfers the physical bound to operational distinguishability.
+```text
+|Active_t| = 1 for every t,
+Active is not monotone,
+History is open-ended.
+```
+
+Thus v17 distinguishes:
+
+- **open-ended cumulative operational novelty** — stronger; requires monotone active retention;
+- **open-ended cumulative historical novelty** — weaker; permits operational loss and turnover.
+
+Historical open-endedness is an accounting implication from recurring history-new events; it does not explain why those events continue.
+
+## 7. Deterministic local successor reproduction
+
+The v17 local effective emergence reproduction number is a deterministic count of actual full successors in the next finite local envelope.
 
 Therefore:
 
-[
-oxed{
-	ext{recursive accessibility}
-
-eq
-	ext{finite-time physical explosion}.
-}
-]
-
-## 8. Full-theory verification
-
-This release adds:
-
 ```text
-.github/workflows/full-theory-proof-check.yml
+R_E^local >= 1
+iff
+at least one actual local recursive successor exists.
 ```
 
-The workflow builds and source-audits the five major supporting proof families:
+It is not automatically:
 
-1. affinity layer;
-2. collective alignment and recurrent maintenance;
-3. persistence, selection, and slack;
-4. cumulative accessibility and the dynamic vortex;
-5. organizational depth and the physical/operational bridge.
+- an expected branching offspring count;
+- a stochastic survival probability;
+- a next-generation spectral radius;
+- an epidemiological reproduction number.
 
-The selected theory-surface source runs fail if their printed axiom
-dependencies contain `sorryAx`.
+Mechanism-factor ledgers remain separate and require explicit calibration to actual successors.
 
-Before release preparation, the exact integrated PR head passed all five jobs.
-The release workflow itself only creates the tag after the repository's
-`Build & Deploy Site` workflow succeeds on `main`, so the published tag
-identifies the tested release commit.
+## 8. Literature position
 
-## 9. Exact theory-to-proof traceability
+The v17 audit explicitly treats the following as antecedents rather than EbE discoveries:
 
-`FORMAL_THEORY_MAP.md` labels claims as:
+- Darwinian selection and inheritance;
+- open-ended-evolution frameworks and finite-system limits;
+- adjacent-possible triggering;
+- changing phase-space / enablement theories;
+- co-option and exaptation;
+- modularity and evolvability;
+- autocatalytic and generative RAF theory;
+- Self-Other Reorganization;
+- major evolutionary transitions;
+- cumulative culture and cultural loss;
+- recombinant technological evolution;
+- co-evolving technological/cultural repertoires and search spaces;
+- viability and reachability;
+- formal component construction and reuse;
+- resource-limited maintenance.
 
-- **MC — machine checked**;
-- **CW — concrete witness**;
-- **EXT — external mathematics**;
-- **MODEL — modelling interface**;
-- **INT — interpretation/research programme**.
+The targeted prior-art preflight found **no equal-or-stronger single framework containing the full v17 conjunction**, while identifying generative RAF/SOR, Soros–Stanley open-ended-evolution conditions, and Winters–Charbonneau as the strongest challenges.
 
-Every Lean declaration named in the map was resolved against its cited source
-file during release preparation. A documentation mismatch in the
-maintenance-debt section was found and corrected before release.
+That result is **not a priority proof**.
 
-## 10. Current core claim ledger
+The defensible contribution under review is narrower:
 
-`CLAIMS.md` now separates twelve current core claims from older application
-and governance hypotheses.
+> a machine-auditable cross-domain factorization of established mechanisms, with explicit theorem boundaries and countermodels preventing several common identifications.
 
-The core ledger explicitly refuses to infer:
+## 9. Cold-reader preflight
 
-- function from persistence;
-- truth from external validation;
-- improvement from novelty;
-- progress from selection;
-- empirical causality from a satisfiability witness;
-- physical free energy from dimensionless accessibility margin;
-- moral obligation from persistence;
-- universality from cross-domain analogy;
-- novelty from new notation.
+A clean-room repository-only reconstruction successfully recovered the intended theory without the PR/conversation history.
 
-## 11. Novelty status
+That preflight led to clarification of:
 
-The release adopts the conclusion of the repository's adversarial literature
-audit.
+- the domain of the persistence statement;
+- the declared rather than self-validating nature of historical trace;
+- the accounting character of the historical open-endedness theorem;
+- the distinction between local admitted envelopes and all physically possible candidates.
 
-Among the twelve claims examined in that audit:
+The reviewer path now resolves without broken internal links.
 
-- 7 were best classified as rediscoveries or elementary corollaries;
-- 5 as sharpenings of known results;
-- 0 as high-confidence new general theorems on the evidence then available.
+## 10. What v17 does not claim
 
-Accordingly, the recommended framing is:
+The formal core does not establish:
 
-[
-oxed{
-	ext{primarily a synthesis / architecture}
-+
-	ext{some exact model-specific results}.
-}
-]
+```text
+novelty -> improvement
+persistence -> function
+validation -> truth
+retention -> goodness
+possibility -> realization
+larger possibility space -> progress
+self-maintenance -> automatic innovation
+historical accumulation -> growing active repertoire
+moving envelope -> strong ontology creation
+machine proof -> empirical truth.
+```
 
-The main peer-review target is therefore the integrated architecture, its
-interfaces, its exact separations, its empirical usefulness, and whether a
-stronger antecedent already exists.
+It also does not derive moral or political objectives.
 
-## 12. What remains open
+Values and domain evidence specify goals. EbE can then analyze what organization must actually be generated, implemented, maintained, transmitted, and reused for a chosen outcome to become and remain real.
 
-Important open interfaces include:
+## 11. Machine verification
 
-- support → opportunity;
-- retained response → specific physical organizational update;
-- physical update → measured uptake/maintenance/search change;
-- endogenous response cost;
-- depletion and renewal of external gradients;
-- turnover, forgetting, redundancy, and recoverable memory;
-- stochastic generation and validation;
-- mechanistic evolution of generator rules;
-- cross-scale composition;
-- empirical operationalization of distinguishability;
-- operational definitions of capture and commons;
-- architectural prior art.
+The canonical v17 Lean surface includes:
 
-These are part of the research programme rather than hidden assumptions.
+- relative compositional emergence;
+- filtering and retained integration;
+- recursive parent reuse;
+- configuration-level constructive projection;
+- essential-parent generated-access expansion;
+- finite admission and moving local envelopes;
+- deterministic local successor counting;
+- fixed-finite saturation;
+- operational and historical cumulative endpoints;
+- non-vacuity witnesses;
+- separation countermodels.
 
-## 13. How to peer review v16
+The repository's proof workflows build the formal-core targets and reject `sorryAx` on the advertised verification surface.
 
-Review the immutable `v16` tag and record the tag's commit SHA.
+The release workflow creates `v17` only after the repository's **Build & Deploy Site** workflow succeeds on `main`, so the published tag identifies the tested release commit.
 
-Recommended route:
+## 12. Broad review target
 
-1. `THEORY.md`
-2. `DYNAMIC_OVERVIEW.md`
-3. `FORMAL_THEORY_MAP.md`
-4. `CLAIMS.md`
-5. `formalization/README.md`
-6. `PEER_REVIEW_PROMPT.md`
-7. exact Lean sources cited for any claim under review
-8. `verification/audits/`
+Reviewers are asked to attack:
 
-A successful counterexample, stronger theorem, failed empirical interface, or
-stronger prior-art identification is a useful review result.
+1. formal validity;
+2. semantic adequacy;
+3. stronger prior art;
+4. explanatory usefulness;
+5. domain mapping;
+6. empirical support;
+7. normative inference.
+
+A theorem defect, stronger antecedent, failed mapping, empirical counterexample, or successful narrowing is a useful review result.
+
+Use the immutable `v17` tag and record its commit SHA.
 
 ## Release lineage
 
-- **v12 — Sufficient Alignment and Collective Intelligence**
-- **v13 — Open for peer-review**
-- **v14 — Formal Core Closure**
 - **v15 — Verification Closure**
 - **v16 — Full Theory Peer-Review Release**
-
-Earlier tags remain immutable historical objects. `v16` is the recommended
-fixed object for review of the current full Evolution by Emergence theory.
-
-## Licensing and source
-
-The repository remains open access under its existing licensing terms. The
-release tag contains the theory documents, Lean sources, paper packages,
-audits, review protocol, release metadata, and reproducibility instructions
-needed to inspect the theory as one fixed research object.
+- **v17 — Recursive Organization Core**
