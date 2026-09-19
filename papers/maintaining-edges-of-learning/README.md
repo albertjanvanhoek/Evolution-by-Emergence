@@ -43,22 +43,22 @@ This does not imply that every relationship should be preserved, that more conta
 
 ### Files
 
-- \`manuscript.md\` — full working manuscript.
-- \`FORMAL_VERIFICATION.md\` — mapping from paper claims to the existing Lean formalization.
-- \`LITERATURE_POSITIONING.md\` — closest neighboring literatures, prior-art boundaries, and novelty claim.
-- \`../learning-conditions-for-learning/\` — broader intelligent learning-maintenance framework from which this focused agent-network paper is specialized.
-- \`../functional-organization-ratchet-velocity/\` — universal/outside functional-rate companion.
+- `manuscript.md` — full working manuscript.
+- `FORMAL_VERIFICATION.md` — mapping from paper claims to the existing Lean formalization.
+- `LITERATURE_POSITIONING.md` — closest neighboring literatures, prior-art boundaries, and novelty claim.
+- `../learning-conditions-for-learning/` — broader intelligent learning-maintenance framework from which this focused agent-network paper is specialized.
+- `../functional-organization-ratchet-velocity/` — universal/outside functional-rate companion.
 
 ### Formal sources
 
 The paper reuses existing checked results rather than creating a new universal theorem layer:
 
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/QuantitativeAccessibility.lean\`
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean\`
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean\`
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean\`
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean\`
-- \`formalization/cumulative-accessibility/CumulativeAccessibility/SearchValidationTradeoff.lean\`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/QuantitativeAccessibility.lean`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean`
+- `formalization/cumulative-accessibility/CumulativeAccessibility/SearchValidationTradeoff.lean`
 
 ### Review targets
 
