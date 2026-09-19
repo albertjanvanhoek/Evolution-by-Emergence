@@ -331,7 +331,8 @@ theorem recursiveToy_b_emergent_integrated :
   · constructor
     · simp [recursiveToyRealizes]
     · intro part hProper hPart
-      rcases hProper with ⟨rfl, rfl⟩
+      have hPartFalse : part = false := hProper.1
+      subst part
       simp [recursiveToyRealizes] at hPart
   · refine ⟨?_, ?_, ?_⟩
     · simp [RetainedIntegrationAt, recursiveToyRepertoire]
@@ -349,7 +350,8 @@ theorem recursiveToy_c_emergent_integrated :
   · constructor
     · simp [recursiveToyRealizes]
     · intro part hProper hPart
-      rcases hProper with ⟨rfl, rfl⟩
+      have hPartFalse : part = false := hProper.1
+      subst part
       simp [recursiveToyRealizes] at hPart
   · refine ⟨?_, ?_, ?_⟩
     · simp [RetainedIntegrationAt, recursiveToyRepertoire]
