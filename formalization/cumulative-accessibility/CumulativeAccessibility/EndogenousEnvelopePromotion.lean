@@ -81,19 +81,39 @@ section PromotionGeneratedCandidates
 variable {Capacity : Type*}
 variable [DecidableEq Capacity]
 
-/-- A downstream candidate is generatively consequential for the promotion of
-child at time m when child is explicitly used as parent at the next step and
-that candidate was not generable from the pre-promotion retained repertoire
-under the same next-step generator.
+/-- Generation essentially uses a designated parent when the candidate is
+generated from the full available repertoire with that parent explicitly in
+the generating parent set, but is not generable from the same repertoire after
+that parent is removed.
 
-Using the same generator H_(m+1) on both sides isolates the contribution of the
-newly available parent material from changes in the rule itself. -/
+This strengthens mere parent membership into a local causal/necessity test. -/
+def GeneratedEssentiallyUsingParent
+    (Available : Capacity → Prop)
+    (Generate : HyperGenerator Capacity)
+    (parent child : Capacity) : Prop :=
+  GeneratedUsingParent Available Generate parent child
+  ∧
+  ¬ GeneratedFromAvailable
+      (fun x => Available x ∧ x ≠ parent)
+      Generate child
+
+/-- A downstream candidate is generatively consequential for the promotion of
+child at time m when:
+
+1. the promoted child is essential for generation relative to the complete
+   next-step retained repertoire;
+2. the candidate was not generable from the pre-promotion retained repertoire;
+3. both comparisons use the same next-step generator H_(m+1).
+
+The last condition isolates parent-material change from generator-rule change;
+the essential-parent condition prevents attribution to another simultaneous
+repertoire addition. -/
 def GenerativelyConsequentialPromotionAt
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
     (m : ℕ)
     (child next : Capacity) : Prop :=
-  GeneratedUsingParent
+  GeneratedEssentiallyUsingParent
       (fun x => x ∈ S (m + 1))
       (H (m + 1))
       child next
@@ -226,7 +246,7 @@ theorem promotionDrivenFilteredSuccessor_implies_local_successor
     hResponsive m child next hPromoted hNext.2.1 hNext.1
   have hChildAvailable : child ∈ S (m + 1) :=
     hPromoted.2
-  refine ⟨hEnvelope, hChildAvailable, hNext.1.1, hNext.2.2.2⟩
+  refine ⟨hEnvelope, hChildAvailable, hNext.1.1.1, hNext.2.2.2⟩
 
 /-- Every realized event has a promotion-driven filtered successor.  This is
 stronger and more causal than directly postulating local R_E >= 1: it exposes
@@ -360,7 +380,7 @@ theorem oneShot_promotion_has_no_generativelyConsequential_downstream :
   constructor
   · exact oneShot_seed
   · intro next hConsequential
-    rcases hConsequential.1 with
+    rcases hConsequential.1.1 with
       ⟨parents, hParent, hAvailable, hRule⟩
     simpa [oneShotGenerator] using hRule
 
@@ -378,12 +398,19 @@ theorem progressive_promotion_is_generatively_consequential
       progressiveRepertoire progressiveGenerator
       n (n + 1) (n + 2) := by
   constructor
-  · refine ⟨{n + 1}, by simp, ?_, ?_⟩
-    · intro x hx
-      have hxEq : x = n + 1 := by simpa using hx
-      subst x
-      simp [progressiveRepertoire]
-    · simp [progressiveGenerator]
+  · constructor
+    · refine ⟨{n + 1}, by simp, ?_, ?_⟩
+      · intro x hx
+        have hxEq : x = n + 1 := by simpa using hx
+        subst x
+        simp [progressiveRepertoire]
+      · simp [progressiveGenerator]
+    · intro hWithoutChild
+      rcases hWithoutChild with ⟨parents, hAvailable, hRule⟩
+      have hParents : parents = {n + 1} := hRule.1
+      subst parents
+      have hParentAvailable := hAvailable (n + 1) (by simp)
+      exact hParentAvailable.2 rfl
   · intro hGenerated
     rcases hGenerated with ⟨parents, hAvailable, hRule⟩
     have hParents : parents = {n + 1} := hRule.1
@@ -404,7 +431,7 @@ theorem progressive_has_promotionResponsiveEnvelope :
       progressivePromotionAdmission
       progressiveEnvelope progressiveRepertoire progressiveGenerator := by
   intro m child next hPromoted hAdmitted hConsequential
-  rcases hConsequential.1 with
+  rcases hConsequential.1.1 with
     ⟨parents, hChildParent, hAvailable, hRule⟩
   have hNext : next = (m + 1) + 1 := hRule.2
   subst next
