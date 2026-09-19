@@ -2,8 +2,7 @@
 
 ## Claim-to-Lean traceability for the current theory
 
-This file connects the prose theory in **[THEORY.md](THEORY.md)** to the exact
-formal objects that support it.
+This file connects the candidate formal theory in **[THEORY_CORE_V17.md](THEORY_CORE_V17.md)**, and the broader synthesis in **[THEORY.md](THEORY.md)**, to the exact formal objects that support them.
 
 It is not a claim that every sentence in the theory is machine proved.
 
@@ -27,145 +26,108 @@ The central rule is:
 
 ---
 
-## MASTER — closed sufficient-condition core
+## MASTER — v17 canonical recursive-organization surface
 
-**Theory statement.** The current formal core has a single auditable sufficient
-condition surface. It deliberately keeps self-maintenance leverage and
-recursive-emergence reproduction as distinct legs until an application supplies
-the calibration connecting them.
+**Theory statement.** The canonical v17 surface no longer uses a globally finite
+`Capacity` type as the master open-ended universe. It exposes two distinct
+cumulative endpoints and two optional strengthening layers.
 
-**Formal status:** MC for the implication structure and separation witnesses;
-MODEL for the leverage-to-reproduction calibration; EXT for stochastic
-branching and general multitype spectral-radius results.
+### Operational accumulation
 
-**Lean source**
+The corrected operational certificate uses finite moving local envelopes:
 
-- \`EvolutionByEmergenceCore.lean\`
+```text
+seed recursive-emergence event
++ monotone active retention
++ local finite-envelope representation
++ event-wise locally certified effective successor reproduction
+    -> OpenEndedCumulativeNovelty Active
+    -> UnboundedEnvelopeCapacity U.
+```
 
-**Master declarations**
+The ambient `Capacity` type need not be finite.
 
-- \`SelfMaintenanceOpening\`
-- \`selfMaintenanceOpening_consequences\`
-- \`UniformCertifiedCriticalEmergenceReproduction\`
-- \`EvolutionByEmergenceCoreCertificate\`
-- \`uniformCertifiedCritical_implies_uniformCritical\`
-- \`evolutionByEmergenceCore_openEnded\`
-- \`evolutionByEmergence_master_surface\`
+### Promotion-driven strengthening
 
-The recursive certificate exposes four load-bearing ingredients:
+A stronger sufficient route replaces abstract local criticality with:
 
-\[
-\boxed{
-\text{seed}
-+
-\text{monotone retention}
-+
-\text{event-wise }R_E^{\rm ledger}\ge1
-+
-\text{certified lower bound }
-R_E^{\rm ledger}\le R_E^{\rm actual}
-}
-\]
+```text
+operational primitive promotion
++ essential downstream generated-access contribution
++ finite admission
++ promotion-responsive envelope
++ full next-event filtering
+    -> actual local successor
+    -> local critical reproduction.
+```
 
-which imply
+This is still a sufficient-condition architecture: promotion alone does not
+derive continuation.
 
-\[
-\boxed{
-\text{OpenEndedCumulativeNovelty}.
-}
-\]
+### Constructive strengthening
 
-The self-maintenance leg separately proves that a strict slack increase,
-positive reinvestment, non-worsening future target costs, and one crossing
-witness imply both
+`ConstructiveRecursiveEmergenceStepAt` can additionally require the parent set
+to construct the **same configuration** that witnesses the child capacity's
+compositional emergence and filtered retention. The constructive event projects
+to the generic capacity-level recursive event.
 
-\[
-\text{larger endogenous response budget + energetic burden buffer}
-\]
+### Historical accumulation
 
-and
+The weaker historical endpoint separates current operational availability from
+cumulative trace:
 
-\[
-\text{strict expansion of the declared slack-funded future-access set}.
-\]
+```text
+Active_t
+History_t.
+```
 
-The master theorem returns both the leverage consequences and open-ended
-recursive emergence, while leaving the cross-layer calibration visible:
+Recurring history-new recursive events plus monotone `History` imply
+`OpenEndedCumulativeNovelty History` without monotone `Active`. A checked
+turnover witness keeps the active repertoire at cardinality one forever while
+history expands.
 
-\[
-\boxed{
-\text{self-maintenance leverage}
-\not\Rightarrow_{\rm universal}
-\text{certified critical emergence reproduction}.
-}
-\]
+**Formal status:** MC for all displayed implications; CW for operational and
+historical non-vacuity witnesses; MODEL for application-specific construction,
+admission, validation, resource, and calibration interfaces.
 
-That mapping is an application/model seam, not a hidden theorem.
+**Canonical Lean source**
 
-### Checked separation witnesses
+- `EvolutionByEmergenceV17Core.lean`
 
-The master surface is accompanied by countermodels showing why its principal
-premises cannot simply be deleted:
+**Supporting Lean sources**
 
-- \`ledgerCritical_without_calibration_does_not_force_actualCritical\`:
-  a mechanism ledger equal to one can coexist with declared actual successor
-  count zero if the calibration seam is absent;
-- \`uniformCritical_and_retention_without_seed_not_enough\`:
-  criticality can hold vacuously when no seed event exists;
-- \`seed_and_retention_without_criticality_not_enough\`:
-  one valid retained emergence event can terminate after a finite innovation;
-- \`recurringRecursiveEmergence_without_retention_not_cumulative\`:
-  the turnover chain
-  \[
-  \{0\}\to\{1\}\to\{2\}\to\cdots
-  \]
-  has a valid recursive-emergence event at every step but accumulates zero
-  strict retained-set expansions.
+- `LocalEmergenceReproduction.lean`
+- `EndogenousEnvelopePromotion.lean`
+- `ConstructiveRecursiveEmergence.lean`
+- `ActiveHistory.lean`
+- `FiniteGenerativeSaturation.lean`
+- `OpenEndedCapacity.lean`
 
-This is the current formal freeze point for adversarial review. Machine
-checking establishes the implication architecture, not empirical universality,
-the correctness of a particular physical calibration, or novelty relative to
-all prior theory.
+**Canonical declarations**
 
----
+- `EvolutionByEmergenceV17OperationalCertificate`
+- `evolutionByEmergenceV17_operational_openEnded`
+- `evolutionByEmergenceV17_operational_unboundedEnvelope`
+- `PromotionDrivenEvolutionByEmergenceV17Certificate`
+- `evolutionByEmergenceV17_promotionDriven_openEnded`
+- `evolutionByEmergenceV17_promotionDriven_unboundedEnvelope`
+- `evolutionByEmergenceV17_constructiveEvent_projects`
+- `HistoricalEvolutionByEmergenceV17Certificate`
+- `evolutionByEmergenceV17_historical_openEnded`
+- `evolutionByEmergenceV17_historical_turnover_witness`
+- `evolutionByEmergenceV17_fixedFiniteOperationalCriticality_impossible`
 
-## T0 — association filters productive couplings
+### Status of the earlier finite master certificate
 
-**Theory statement.** Encounter alone is not productive coupling. Association
-persistence and conversion can filter which interactions reach the production
-network.
+`EvolutionByEmergenceCore.lean` is retained for compatibility, finite
+specialization, calibration/separation results, and historical traceability.
+Its `[Fintype Capacity]` `EvolutionByEmergenceCoreCertificate` is **not** the
+canonical open-ended v17 certificate. `LocalEmergenceReproduction.lean` proves
+`evolutionByEmergenceCoreCertificate_impossible`: under the indefinite seed,
+retention, and uniform criticality premises, the globally finite specialization
+conflicts with finite retained-repertoire saturation.
 
-**Formal status:** MC for two reduced affinity models; INT/MODEL for the general
-pre-accessibility interpretation.
-
-**Lean source**
-
-\`formalization/affinity-layer/AffinityLayer.lean\`
-
-**Selected declarations**
-
-- \`costScore_difference_of_stationary\`
-- \`costScore_le_of_stationary\`
-- \`costAStar_pos\`
-- \`costAStar_stationary\`
-- \`costAStar_global_max\`
-- \`turnoverShape_pos\`
-- \`turnoverShape_le_one\`
-- \`turnoverShape_eq_one_iff\`
-- \`turnoverLambda_le_peak\`
-- \`turnoverMass_le_peak\`
-- \`turnover_exact_witness\`
-- \`turnover_exact_two_sided_failure\`
-- \`turnoverShape_inv\`
-- \`turnoverShape_exp_neg\`
-
-**What is proved.** Conditional global optima and exact symmetry/witness results
-for the declared reduced laws.
-
-**Not proved.** A universal microscopic affinity law.
-
-Paper-level map:
-\`papers/affinity-before-accessibility/FORMAL_VERIFICATION.md\`.
+That correction is part of the theory's evidence, not something to hide.
 
 ---
 
@@ -693,6 +655,95 @@ need not pass the later feasibility/validation/retention filters.
 
 This layer therefore explains one endogenous source of moving-envelope change
 without claiming that every emergence event expands the search horizon.
+
+---
+
+## T5E — generated configuration can be the emergent configuration
+
+**Theory statement.** Capacity-level generation and configuration-level
+emergence need not remain merely conjoined. Under the stronger construction
+interface, the parent set constructs a specific configuration for a specific
+child, and that same configuration is required to witness the child's
+compositional emergence and filtered retention.
+
+**Formal status:** MC + CW.
+
+**Lean source**
+
+- `ConstructiveRecursiveEmergence.lean`
+
+**Selected declarations**
+
+- `ConfigurationConstructionRule`
+- `ConstructiveRecursiveEmergenceStepAt`
+- `constructiveRecursiveEmergenceStep_same_configuration`
+- `constructiveRecursiveEmergenceStep_implies_recursiveEmergenceStep`
+- `recursiveToy_a_to_b_is_constructiveRecursiveEmergenceStep`
+- `recursiveToy_b_to_c_is_constructiveRecursiveEmergenceStep`
+
+**Boundary.** The stronger construction relation is not derived for every
+capacity-level generator. Applications that cannot identify the constructed
+configuration should use the weaker recursive event rather than assume the
+stronger bridge.
+
+---
+
+## T5F — active repertoire and cumulative history are distinct
+
+**Theory statement.** Open-ended historical accumulation does not require
+monotone growth of the currently operational repertoire.
+
+With separate `Active_t` and cumulative `History_t`, recurring recursive events
+whose children are genuinely new to history imply open-ended cumulative history
+when history is monotone. Parent reuse still requires current activity.
+
+**Formal status:** MC + explicit turnover CW/SEP.
+
+**Lean source**
+
+- `ActiveHistory.lean`
+
+**Selected declarations**
+
+- `ActiveHistoryConsistent`
+- `HistoricalRecursiveEmergenceStepAt`
+- `RecurringHistoricalRecursiveEmergence`
+- `recurringHistoricalRecursiveEmergence_implies_openEndedHistory`
+- `activeHistoryArchitecture_recursion_implies_openEndedHistory`
+- `openEndedHistory_with_bounded_turnover_active`
+
+The concrete witness establishes:
+
+```text
+OpenEndedCumulativeNovelty History
+AND |Active_t| = 1 for every t
+AND Active is not monotone.
+```
+
+**Boundary.** Historical trace is not operational availability. A capacity that
+is only in history cannot serve as current parent material unless a separate
+reactivation/recovery mechanism makes it active again.
+
+---
+
+## T5G — v17 has operational and historical master endpoints
+
+**Theory statement.** The v17 canonical surface deliberately does not force one
+notion of cumulative organization onto every domain.
+
+- `evolutionByEmergenceV17_operational_openEnded` is the stronger endpoint for
+  monotonically accumulated operational capability;
+- `evolutionByEmergenceV17_historical_openEnded` is the weaker endpoint for
+  cumulative historical trace under active turnover;
+- promotion-driven and constructive certificates are stronger sufficient
+  interfaces feeding the operational architecture, not alternative definitions
+  of emergence.
+
+**Formal status:** MC.
+
+**Lean source**
+
+- `EvolutionByEmergenceV17Core.lean`
 
 ---
 
