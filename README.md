@@ -18,8 +18,10 @@ The goal is **not** to claim priority for mechanisms that are already known. The
 4. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — claim-to-Lean traceability.
 5. **[CLAIMS.md](CLAIMS.md)** — claim ledger and non-claims.
 6. **[verification/audits/2026-09-19-recursive-emergence/](verification/audits/2026-09-19-recursive-emergence/)** — theorem, adversarial, and literature audits.
-7. **[EvolutionByEmergenceV17Core.lean](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean)** — canonical v17 theorem surface.
-8. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — reproducible review protocol.
+7. **[PRIOR_ART_PREFLIGHT_V17.md](verification/audits/2026-09-19-recursive-emergence/PRIOR_ART_PREFLIGHT_V17.md)** — targeted search for an equal-or-stronger full antecedent.
+8. **[COLD_READER_PREFLIGHT_V17.md](verification/audits/2026-09-19-recursive-emergence/COLD_READER_PREFLIGHT_V17.md)** — repository-only semantic/navigation reconstruction.
+9. **[EvolutionByEmergenceV17Core.lean](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean)** — canonical v17 theorem surface.
+10. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — reproducible review protocol.
 
 Until v17 is frozen, **v16 remains the latest immutable historical review release**.
 
@@ -175,7 +177,7 @@ The criterion is not certainty.
 
 > **We are ready when we no longer know of an internal contradiction, hidden theorem assumption, obvious stronger antecedent, ambiguous core term, or missing distinction that would predictably waste reviewers' time.**
 
-The full gates are in [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md).
+The full gates are in [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md). The targeted prior-art and cold-reader preflights are now complete; the remaining pre-release gate is final exact-head verification followed by freezing/tagging the review object.
 
 Reviewers should attack:
 
