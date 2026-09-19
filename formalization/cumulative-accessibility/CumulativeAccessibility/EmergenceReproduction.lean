@@ -385,6 +385,125 @@ theorem emergenceReproductionLedger_mono_opportunity
   simpa [mul_assoc] using
     (mul_le_mul_of_nonneg_left hInner hW)
 
+/-- The emergence-reproduction ledger is the persistence/search window times
+the existing retained-success event-rate ledger with unit gain. This reuses the
+already-audited conversion-pipeline algebra rather than introducing a second
+probability model. -/
+theorem emergenceReproductionLedger_eq_window_mul_mechanisticRate
+    (window opportunityRate
+      pGenerate pResource pValidate pRetain : ℝ) :
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate pResource pValidate pRetain
+      =
+    window *
+      MechanisticRatchetVelocity
+        opportunityRate pGenerate pResource pValidate pRetain 1 := by
+  simp [EmergenceReproductionLedger, MechanisticRatchetVelocity]
+
+theorem emergenceReproductionLedger_mono_generation
+    {window opportunityRate g₀ g₁ pResource pValidate pRetain : ℝ}
+    (hW : 0 ≤ window)
+    (hO : 0 ≤ opportunityRate)
+    (hG : g₀ ≤ g₁)
+    (hR : 0 ≤ pResource)
+    (hV : 0 ≤ pValidate)
+    (hT : 0 ≤ pRetain) :
+    EmergenceReproductionLedger
+        window opportunityRate g₀ pResource pValidate pRetain
+      ≤
+    EmergenceReproductionLedger
+        window opportunityRate g₁ pResource pValidate pRetain := by
+  have hRate :=
+    mechanisticRatchetVelocity_mono_generation
+      (opportunityRate := opportunityRate)
+      (g₀ := g₀) (g₁ := g₁)
+      (pResource := pResource)
+      (pValidate := pValidate)
+      (pRetain := pRetain)
+      (meanGain := 1)
+      hO hG hR hV hT (by norm_num)
+  rw [emergenceReproductionLedger_eq_window_mul_mechanisticRate,
+      emergenceReproductionLedger_eq_window_mul_mechanisticRate]
+  exact mul_le_mul_of_nonneg_left hRate hW
+
+theorem emergenceReproductionLedger_mono_resource
+    {window opportunityRate pGenerate r₀ r₁ pValidate pRetain : ℝ}
+    (hW : 0 ≤ window)
+    (hO : 0 ≤ opportunityRate)
+    (hG : 0 ≤ pGenerate)
+    (hR : r₀ ≤ r₁)
+    (hV : 0 ≤ pValidate)
+    (hT : 0 ≤ pRetain) :
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate r₀ pValidate pRetain
+      ≤
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate r₁ pValidate pRetain := by
+  have hRate :=
+    mechanisticRatchetVelocity_mono_resource
+      (opportunityRate := opportunityRate)
+      (pGenerate := pGenerate)
+      (r₀ := r₀) (r₁ := r₁)
+      (pValidate := pValidate)
+      (pRetain := pRetain)
+      (meanGain := 1)
+      hO hG hR hV hT (by norm_num)
+  rw [emergenceReproductionLedger_eq_window_mul_mechanisticRate,
+      emergenceReproductionLedger_eq_window_mul_mechanisticRate]
+  exact mul_le_mul_of_nonneg_left hRate hW
+
+theorem emergenceReproductionLedger_mono_validation
+    {window opportunityRate pGenerate pResource v₀ v₁ pRetain : ℝ}
+    (hW : 0 ≤ window)
+    (hO : 0 ≤ opportunityRate)
+    (hG : 0 ≤ pGenerate)
+    (hR : 0 ≤ pResource)
+    (hV : v₀ ≤ v₁)
+    (hT : 0 ≤ pRetain) :
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate pResource v₀ pRetain
+      ≤
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate pResource v₁ pRetain := by
+  have hRate :=
+    mechanisticRatchetVelocity_mono_validation
+      (opportunityRate := opportunityRate)
+      (pGenerate := pGenerate)
+      (pResource := pResource)
+      (v₀ := v₀) (v₁ := v₁)
+      (pRetain := pRetain)
+      (meanGain := 1)
+      hO hG hR hV hT (by norm_num)
+  rw [emergenceReproductionLedger_eq_window_mul_mechanisticRate,
+      emergenceReproductionLedger_eq_window_mul_mechanisticRate]
+  exact mul_le_mul_of_nonneg_left hRate hW
+
+theorem emergenceReproductionLedger_mono_retention
+    {window opportunityRate pGenerate pResource pValidate t₀ t₁ : ℝ}
+    (hW : 0 ≤ window)
+    (hO : 0 ≤ opportunityRate)
+    (hG : 0 ≤ pGenerate)
+    (hR : 0 ≤ pResource)
+    (hV : 0 ≤ pValidate)
+    (hT : t₀ ≤ t₁) :
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate pResource pValidate t₀
+      ≤
+    EmergenceReproductionLedger
+        window opportunityRate pGenerate pResource pValidate t₁ := by
+  have hRate :=
+    mechanisticRatchetVelocity_mono_retention
+      (opportunityRate := opportunityRate)
+      (pGenerate := pGenerate)
+      (pResource := pResource)
+      (pValidate := pValidate)
+      (t₀ := t₀) (t₁ := t₁)
+      (meanGain := 1)
+      hO hG hR hV hT (by norm_num)
+  rw [emergenceReproductionLedger_eq_window_mul_mechanisticRate,
+      emergenceReproductionLedger_eq_window_mul_mechanisticRate]
+  exact mul_le_mul_of_nonneg_left hRate hW
+
 /-- Explicit calibration seam: the mechanism ledger is certified as a lower
 bound on the actual deterministic effective successor count for this event.
 This is an application assumption, not a universal theorem. -/
@@ -487,6 +606,11 @@ end CertifiedDeterministicBridge
 #print axioms emergenceReproductionLedger_nonneg
 #print axioms emergenceReproductionLedger_mono_window
 #print axioms emergenceReproductionLedger_mono_opportunity
+#print axioms emergenceReproductionLedger_eq_window_mul_mechanisticRate
+#print axioms emergenceReproductionLedger_mono_generation
+#print axioms emergenceReproductionLedger_mono_resource
+#print axioms emergenceReproductionLedger_mono_validation
+#print axioms emergenceReproductionLedger_mono_retention
 #print axioms certifiedLedger_at_least_one_implies_actual_at_least_one
 #print axioms certifiedCriticalEmergenceEvent_implies_effective_successor
 
