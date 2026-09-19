@@ -249,7 +249,12 @@ theorem twoStateMeanFixedRegret_lowerBound
     TwoStateMeanFixedRegret
       imbalance₀ imbalance₁ allocationToSearch := by
   rw [twoStateMeanFixedRegret_decomposition]
-  positivity
+  have hnonneg :
+      0 ≤
+        (imbalance₀ + imbalance₁ +
+          4 * allocationToSearch - 2) ^ 2 / 16 := by
+    positivity
+  linarith
 
 /-- The best fixed allocation attains exactly the irreducible heterogeneity
 penalty. -/
