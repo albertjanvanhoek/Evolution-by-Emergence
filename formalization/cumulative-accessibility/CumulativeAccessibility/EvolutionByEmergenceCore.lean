@@ -8,6 +8,12 @@ open FunctionalOrganization
 /-!
 # Evolution by Emergence — master formal core
 
+## v17 integration note
+
+This file is retained as the historically important finite-capacity specialization, calibration surface, and separation-test module from PR #57. Its main recursive certificate carries `[Fintype Capacity]`. PR #58 later proves that the indefinite seed + monotone-retention + uniform-criticality premises cannot all be inhabited in that fixed finite global capacity universe.
+
+The canonical open-ended review surface is now `EvolutionByEmergenceV17Core.lean`, which uses the corrected finite moving-envelope certificate from `LocalEmergenceReproduction.lean`. Do not present the finite certificate below as the canonical v17 open-ended theory.
+
 This file is intentionally a theorem surface, not another mechanism layer.
 
 It composes the now-separated parts of the formal stack into one auditable
