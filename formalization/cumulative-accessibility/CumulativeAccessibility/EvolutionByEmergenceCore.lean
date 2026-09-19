@@ -27,7 +27,7 @@ sufficient-condition architecture:
 The load-bearing non-theorem is explicit:
 
     self-maintenance leverage
-      -/-> certified emergence reproduction.
+      does not by itself imply certified emergence reproduction.
 
 The mapping from measured slack / persistence / barrier changes into the
 reproduction factors and their calibration to actual effective successors is
@@ -44,7 +44,7 @@ variable [Fintype Capacity] [DecidableEq Capacity]
 
 /-- Event-wise reproduction-factor assignment. An application may derive these
 factors analytically, empirically, or by a lower-bound argument. -/
-abbrev EmergenceFactorAssignment :=
+abbrev EmergenceFactorAssignment (Capacity : Type*) :=
   ℕ → Capacity → EmergenceReproductionFactors
 
 /-- Every realized recursive-emergence event carries a mechanism ledger at or
@@ -61,7 +61,7 @@ def UniformCertifiedCriticalEmergenceReproduction
     (E : ExternalCriterion Capacity)
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
-    (factors : EmergenceFactorAssignment) : Prop :=
+    (factors : EmergenceFactorAssignment Capacity) : Prop :=
   ∀ m parent child,
     RecursiveEmergenceStepAt
       Proper Realizes Cost Budget E S H m parent child →
@@ -79,7 +79,7 @@ theorem uniformCertifiedCritical_implies_uniformCritical
     (E : ExternalCriterion Capacity)
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
-    (factors : EmergenceFactorAssignment)
+    (factors : EmergenceFactorAssignment Capacity)
     (hCertified :
       UniformCertifiedCriticalEmergenceReproduction
         Proper Realizes Cost Budget E S H factors) :
@@ -115,7 +115,7 @@ structure EvolutionByEmergenceCoreCertificate
   seed :
     RecursiveEmergenceStepAt
       Proper Realizes Cost Budget E S H 0 seedParent seedChild
-  factors : EmergenceFactorAssignment
+  factors : EmergenceFactorAssignment Capacity
   certifiedCritical :
     UniformCertifiedCriticalEmergenceReproduction
       Proper Realizes Cost Budget E S H factors
@@ -337,7 +337,7 @@ theorem dead_has_no_recursiveEmergenceStep :
         deadRepertoire deadGenerator m parent child := by
   intro m parent child h
   rcases h.2.2 with ⟨config, ctx, hEvent⟩
-  exact hEvent.1.1 (by simp [deadRealizes])
+  simpa [deadRealizes] using hEvent.1.1
 
 theorem dead_uniformCritical_is_vacuous :
     UniformCriticalEmergenceReproduction
@@ -401,7 +401,6 @@ theorem oneShotRepertoire_retained :
   cases n with
   | zero =>
       simp [oneShotRepertoire] at hx ⊢
-      exact Or.inl hx
   | succ n =>
       simpa [oneShotRepertoire] using hx
 
