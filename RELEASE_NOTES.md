@@ -1,3 +1,108 @@
+# Evolution by Emergence v17 — Recursive Organization Core (UNRELEASED)
+
+**Status:** candidate integration and peer-review preparation on PR #60. This is not yet an immutable release.
+
+The v17 work does not seek a priority claim. Its target is a self-standing, machine-auditable, literature-positioned descriptive core that can underpin the repository's papers and essays while keeping empirical mappings and normative premises outside the proof kernel.
+
+## Candidate v17 formal endpoint
+
+The canonical candidate core is now documented in:
+
+- `THEORY_CORE_V17.md` — self-standing formal theory;
+- `FORMAL_THEORY_ENDPOINT.md` — readiness criteria for broad review;
+- `APPLICATION_MAPPINGS_V17.md` — cross-domain mappings and a partial non-mapping;
+- `EvolutionByEmergenceV17Core.lean` — canonical Lean theorem surface;
+- `verification/audits/2026-09-19-recursive-emergence/` — theorem, adversarial, and literature audits.
+
+## Formal changes since v16
+
+### Recursive emergence and moving local envelopes
+
+The #57-#59 research sequence introduced and then corrected a recursive-emergence master architecture:
+
+```text
+retained emergent child
+    -> reusable parent material
+    -> later generated candidate
+    -> resource / validation / retention filters
+    -> next retained child
+```
+
+The first deterministic reproduction specialization used a globally finite `Capacity` type. The later audit proved that an indefinitely monotonically accumulating process cannot satisfy the resulting master premises inside a fixed finite global capacity universe.
+
+The corrected v17 operational core therefore uses:
+
+```text
+possibly non-finite ambient Capacity
++ finite time-local candidate envelopes U_t
++ seed
++ monotone active retention
++ locally certified effective successor reproduction
+    -> open-ended cumulative operational novelty
+    -> with representation, unbounded envelope capacity.
+```
+
+### Endogenous envelope promotion
+
+A retained child can be promoted to operational primitive status. PR #59 strengthens later attribution by requiring the child to be essential for a downstream generated candidate under a fixed next-step generator. Newly enabled possibilities are then separated from a finite admission policy and from independent next-event filtering.
+
+This does not claim that promotion automatically produces another successful innovation.
+
+### Constructive generated-configuration bridge
+
+`ConstructiveRecursiveEmergence.lean` adds an optional stronger event semantics in which the finite parent set constructs the **same configuration** that witnesses the child capacity's compositional emergence and filtered retention.
+
+The stronger event projects to the existing capacity-level recursive event, so previous results remain available to applications that can justify the stronger construction relation.
+
+### Active repertoire versus cumulative history
+
+`ActiveHistory.lean` separates current operational availability from cumulative historical trace.
+
+Lean proves a concrete turnover architecture in which:
+
+```text
+|Active_t| = 1 for every t,
+Active is not monotone,
+History is open-ended.
+```
+
+Thus v17 distinguishes:
+
+- open-ended cumulative **operational** novelty, which uses monotone active retention;
+- open-ended cumulative **historical** novelty, which permits active loss and turnover.
+
+## Literature positioning
+
+The v17 audit explicitly treats the following as antecedents rather than discoveries:
+
+- open-ended-evolution frameworks and finite-system limits;
+- adjacent-possible triggering;
+- changing phase-space / enablement theories;
+- co-option, exaptation, modularity, and evolvability;
+- autocatalytic and generative RAF hierarchies;
+- major evolutionary transitions;
+- cumulative-cultural ratchets;
+- technological recombination and building blocks;
+- co-evolving cultural/technological repertoires and search spaces;
+- constrained reachability and resource-limited maintenance;
+- formal component construction and reuse.
+
+The candidate contribution under review is therefore the exact cross-domain factorization, theorem/countermodel surface, and machine-auditable separation of interfaces—not the broad idea that earlier organization can enable later organization.
+
+## Review readiness
+
+The v17 object is not ready to tag merely because CI is green. Broad review requires:
+
+1. final exact-head proof/no-`sorryAx` verification;
+2. semantic consistency across repository entry points;
+3. explicit literature ancestry and unresolved prior-art questions;
+4. application mappings that use stable definitions;
+5. a fixed reviewer path and review protocol;
+6. a frozen commit/release so all reviewers inspect the same object.
+
+Until those gates are closed, **v16 remains the latest immutable release**.
+
+---
 # Evolution by Emergence v16 — Full Theory Peer-Review Release
 
 `v16` is the first fixed release in which the current **Evolution by Emergence**
