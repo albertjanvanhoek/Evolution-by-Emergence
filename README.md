@@ -59,7 +59,7 @@ Active_t
 History_t
 ```
 
-Parents must be operationally active to be reused. History records capacities that genuinely occurred.
+Parents must be operationally active to be reused. `History_t` is a declared cumulative trace of capacities the application records as having occurred; the formalism does not independently validate the empirical record.
 
 Lean now contains a witness where `|Active_t| = 1` for every time, the active repertoire turns over completely, and cumulative history still expands. So open-ended historical accumulation does not imply an ever-growing current operational repertoire.
 
