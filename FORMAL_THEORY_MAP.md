@@ -604,6 +604,98 @@ supplied.
 
 ---
 
+## T5D — primitive promotion can endogenize movement of the local envelope
+
+**Theory statement.** A recursive-emergence child may already be represented in
+the current candidate envelope before realization, so realizing the child is
+not itself envelope expansion. The causal change is operational: retention
+promotes the child from unavailable candidate to reusable parent material.
+
+If the promoted child is essential for a downstream candidate relative to the
+next retained repertoire, and that candidate was not generable from the
+pre-promotion retained repertoire under the same next-step generator,
+and a finite promotion-admission policy selects it for local representation,
+then a responsive envelope places that downstream capacity in the next local
+envelope. If it also passes emergence, resource, validation, and retention
+filtering, it becomes an actual local
+\(R_E\) successor.
+
+**Formal status:** MC for the implication architecture and progressive witness;
+MODEL for the envelope-response policy and for the empirical frequency of
+generatively consequential promotions.
+
+**Lean source**
+
+- \`EndogenousEnvelopePromotion.lean\`
+
+**Selected declarations**
+
+- \`recursiveEmergenceStep_is_operationalPromotion\`
+- \`GenerativelyConsequentialPromotionAt\`
+- \`PromotionResponsiveEnvelope\`
+- \`promotionResponsiveEnvelope_exposes_new_entry\`
+- \`promotion_new_entry_strictly_expands_monotone_envelope\`
+- \`PromotionDrivenFilteredSuccessorAt\`
+- \`promotionDrivenFilteredSuccessor_implies_local_successor\`
+- \`UniformPromotionDrivenContinuation\`
+- \`uniformPromotionDrivenContinuation_implies_uniformLocalCritical\`
+- \`seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty\`
+- \`seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope\`
+- \`oneShot_promotion_has_no_generativelyConsequential_downstream\`
+- \`progressive_openEnded_via_endogenousEnvelopePromotion\`
+
+**Causal decomposition**
+
+\[
+\boxed{
+\begin{aligned}
+\text{recursive-emergence event}
+&\to \text{operational primitive promotion}\\
+&\to \text{new downstream generability}\\
+&\to \text{representation in }U_{t+1}\\
+&\to \text{filtered retained successor}\\
+&\to R_E^{\rm local}\ge 1.
+\end{aligned}}
+\]
+
+The generativity comparison intentionally holds the next-step generator fixed.
+It also checks that the promoted primitive is essential relative to the full
+next-step repertoire:
+
+\[
+\neg\operatorname{Generated}(S_{t+1}\setminus\{\phi\},H_{t+1},\psi),
+\]
+
+while
+
+\[
+\operatorname{GeneratedUsingParent}(S_{t+1},H_{t+1},\phi,\psi).
+\]
+
+In addition,
+
+\[
+\neg\operatorname{Generated}(S_t,H_{t+1},\psi).
+\]
+
+Together these conditions isolate the effect of the promoted parent from both
+simultaneous generator-rule change and other contemporaneous repertoire
+additions.
+
+**Boundary.** Primitive promotion is not sufficient by itself. A checked
+one-shot counterexample has a valid retained emergence event but no
+generatively consequential downstream candidate because the next-step
+generator is empty. A finite envelope is also not required to represent every
+possibility opened by a promoted primitive: `PromotionAdmissionPolicy` is an
+explicit application-specific compression/attention seam selecting which
+possibilities become local candidates. Admitted generated candidates still
+need not pass the later feasibility/validation/retention filters.
+
+This layer therefore explains one endogenous source of moving-envelope change
+without claiming that every emergence event expands the search horizon.
+
+---
+
 ## T6 — retained organization can change the future generator
 
 **Theory statement.** Evolvability can change through retained parent material
