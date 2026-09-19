@@ -522,6 +522,88 @@ claim.
 
 ---
 
+## T5C — local emergence reproduction closes the recursive theory without a finite global vocabulary
+
+**Theory statement.** The finite-capacity successor count in T5B is a valid
+finite specialization, but it cannot be the global state space of an
+open-ended retained process. With a fixed finite global capacity type, one
+seed, monotone retention, and uniform critical reproduction are jointly
+impossible over an unbounded horizon.
+
+The corrected reproduction object counts actual effective successors only
+inside the finite next-step candidate envelope \(U_{t+1}\):
+
+\[
+R_E^{\mathrm{local}}(t,\phi)
+=
+\#\{\psi\in U_{t+1}:
+\phi\to\psi
+\text{ completes a recursive-emergence step}\}.
+\]
+
+The underlying capacity type need not be finite. Each local envelope is finite,
+while the sequence of envelopes may have unbounded cardinality.
+
+**Formal status:** MC + explicit non-vacuity witness.
+
+**Lean source**
+
+- `LocalEmergenceReproduction.lean`
+
+**Selected declarations**
+
+- `finiteCapacity_uniformCriticalEmergenceReproduction_impossible`
+- `LocalEffectiveEmergenceReproductionNumber`
+- `one_le_localEffectiveEmergenceReproductionNumber_iff_exists`
+- `UniformLocalCriticalEmergenceReproduction`
+- `seed_and_uniformLocalCriticalEmergenceReproduction_imply_openEndedNovelty`
+- `seed_and_uniformLocalCriticalEmergenceReproduction_imply_unboundedEnvelope`
+- `uniformlyBoundedEnvelope_rules_out_uniformLocalCriticalEmergenceReproduction`
+- `evolutionByEmergenceCoreCertificate_impossible`
+- `LocalEvolutionByEmergenceCoreCertificate`
+- `evolutionByEmergenceLocalCore_openEnded`
+- `evolutionByEmergenceLocalCore_unboundedEnvelope`
+- `progressiveLocalEvolutionByEmergenceCoreCertificate`
+
+**Logical direction**
+
+\[
+\text{seed}
++
+\text{uniform local }R_E\ge 1
++
+\text{retention}
+\Rightarrow
+\text{open-ended retained novelty}.
+\]
+
+If retained organization is represented inside the moving envelope,
+
+\[
+S_t\subseteq U_t,
+\]
+
+then
+
+\[
+\text{open-ended retained novelty}
+\Rightarrow
+\sup_t |U_t|=\infty.
+\]
+
+Conversely, a uniform finite bound on \(|U_t|\) rules out sustained uniform
+local critical reproduction under the same seed, retention, and representation
+premises.
+
+**Boundary.** This does not prove that an empirical system has
+\(R_E^{\mathrm{local}}\ge1\). The mechanism ledger still requires an
+application-specific calibration to actual effective successors. What is
+closed here is the logical recursive architecture once that calibration is
+supplied.
+
+
+---
+
 ## T6 — retained organization can change the future generator
 
 **Theory statement.** Evolvability can change through retained parent material
