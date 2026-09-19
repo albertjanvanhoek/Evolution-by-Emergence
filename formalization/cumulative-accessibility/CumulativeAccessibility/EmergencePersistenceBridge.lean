@@ -147,7 +147,7 @@ theorem monotoneRetention_persistsFrom
     PersistentFrom S start φ := by
   intro n hStartLe
   exact Nat.le_induction hStart
-    (fun k hk ih => hRetained k ih) hStartLe
+    (fun k hk ih => hRetained k ih) n hStartLe
 
 /-- A resource-feasible, validated emergent integration is therefore durable
 under the repository's monotone-retention assumption. -/
