@@ -4,6 +4,8 @@ import CumulativeAccessibility.OpenEndedCapacity
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
 
+open FunctionalOrganization
+
 /-!
 # Local emergence reproduction in a moving envelope
 
