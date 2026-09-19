@@ -18,7 +18,7 @@ Status values:
 | E. canonical formal surface | **PASS-INTERNAL, exact-head CI pending** | `EvolutionByEmergenceV17Core.lean` selects corrected moving-envelope operational core, promotion-driven strengthening, constructive projection, historical endpoint and finite boundary. Final frozen head must pass CI/no-`sorryAx`. |
 | F. application firewall | **PASS-INTERNAL** | `APPLICATION_MAPPINGS_V17.md`: reaction networks, technological/cultural innovation, and fixed-operator GA partial non-mapping. |
 | G. reviewer usability | **PASS-INTERNAL / PENDING-EXTERNAL** | README, `THEORY_CORE_V17.md`, theorem map, literature matrix, formalization README and `PEER_REVIEW_PROMPT.md` provide a short reviewer path. Need readers without construction context to verify navigability. |
-| H. repository authority consistency | **PASS-INTERNAL, final scan pending** | README and THEORY now make v17 core canonical; old globally finite core is marked legacy/diagnostic; Dynamic Vortex is positioned as supporting resource layer. Run one final stale-authority search before freeze. |
+| H. repository authority consistency | **PASS-INTERNAL** | Final root/formalization entry-point scan found no live authority conflict. The only remaining `canonical entry point` wording is inside the explicitly labelled historical v16 release description. README and THEORY make v17 core canonical; the old finite core is legacy/diagnostic; Dynamic Vortex is a supporting resource layer. |
 | I. stability / immutable review object | **PENDING-FREEZE** | Do not tag until exact-head CI is green and external preflight is complete. Then freeze definitions and tag a v17 review release. |
 
 ## Blocking defects
