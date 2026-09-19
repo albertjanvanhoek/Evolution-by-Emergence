@@ -96,9 +96,9 @@ emergent capacity
 + remains operational at the next step.
 ```
 
-The external criterion is an interface.
+The external criterion is an interface. It is not assumed to mean the same thing in every domain.
 
-Depending on the domain, it may represent:
+Depending on the application, it may represent:
 
 - viability;
 - measured performance;
@@ -196,8 +196,7 @@ A newly retained primitive may make many downstream possibilities generable.
 
 A finite real system need not search all of them.
 
-The theory therefore introduces a finite **admission** or **local-horizon**
-interface.
+The theory therefore introduces a finite **admission** or **local-horizon** interface. The resulting local envelope is a finite representation of what is admitted/represented at that step; it need not be identical to every physically possible or mentally considered candidate.
 
 The sequence becomes:
 
@@ -300,11 +299,11 @@ History_t.
 
 Parents must come from Active_t.
 
-History_t is the cumulative trace of genuinely realized historical capacities.
+History_t is a declared cumulative trace of capacities that the application records as having been realized. The formal theory does not independently establish the empirical truth of that record.
 
-If genuinely history-new recursive events continue and History is monotonically
-recorded, then History can accumulate open-endedly **without monotone active
-retention**.
+If history-new recursive events continue and History is monotonically recorded, then History can accumulate open-endedly **without monotone active retention**.
+
+This theorem is deliberately an accounting implication: it does not explain why history-new events continue. That causal burden remains in the recurrence premise.
 
 The formal witness is deliberately extreme:
 
