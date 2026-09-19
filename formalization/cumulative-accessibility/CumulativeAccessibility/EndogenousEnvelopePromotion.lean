@@ -123,6 +123,37 @@ def GenerativelyConsequentialPromotionAt
       (H (m + 1))
       next
 
+/-- Essential promoted-parent use is a strict expansion of generated
+accessibility when the next-step retained repertoire is compared with and
+without the promoted child, holding the generator fixed. -/
+theorem generativelyConsequentialPromotion_strictly_expands_generated_access
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (m : ℕ)
+    {child next : Capacity}
+    (h :
+      GenerativelyConsequentialPromotionAt S H m child next) :
+    StrictExpandsOn Set.univ
+      (GeneratedFromAvailable
+        (fun x => x ∈ S (m + 1) ∧ x ≠ child)
+        (H (m + 1)))
+      (GeneratedFromAvailable
+        (fun x => x ∈ S (m + 1))
+        (H (m + 1))) := by
+  refine ⟨?_, next, by simp, h.1.2, ?_⟩
+  · exact generatedFromAvailable_mono
+      Set.univ
+      (fun x => x ∈ S (m + 1) ∧ x ≠ child)
+      (fun x => x ∈ S (m + 1))
+      (H (m + 1))
+      (by
+        intro x hx
+        exact hx.1)
+  · exact generatedUsingParent_implies_generatedFromAvailable
+      (fun x => x ∈ S (m + 1))
+      (H (m + 1))
+      h.1.1
+
 /-- A finite/local envelope need not expose every possibility opened by a
 promoted primitive.  An admission policy represents the application-specific
 compression/attention rule selecting which newly enabled capacities become
@@ -496,6 +527,7 @@ theorem progressive_unboundedEnvelope_via_endogenousEnvelopePromotion :
 end ProgressivePromotionWitness
 
 #print axioms recursiveEmergenceStep_is_operationalPromotion
+#print axioms generativelyConsequentialPromotion_strictly_expands_generated_access
 #print axioms promotionResponsiveEnvelope_exposes_new_entry
 #print axioms promotion_new_entry_strictly_expands_monotone_envelope
 #print axioms promotionDrivenFilteredSuccessor_implies_local_successor
