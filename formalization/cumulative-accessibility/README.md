@@ -12,7 +12,20 @@ The package separates five questions that are easy to collapse informally:
 
 For the candidate v17 recursive-organization theory, start with [`../../THEORY_CORE_V17.md`](../../THEORY_CORE_V17.md) and [`../../FORMAL_THEORY_MAP.md`](../../FORMAL_THEORY_MAP.md). [`../../DYNAMIC_OVERVIEW.md`](../../DYNAMIC_OVERVIEW.md) documents the complementary v16 maintenance/resource-response integration.
 
-The current formal-core route keeps maintenance support, opportunity, internally generated resource slack, response delay, retention, and representation separate:
+The candidate v17 recursive spine is:
+
+```text
+generated / constructed candidate
+    -> compositional emergence
+    -> resource + validation + retention filters
+    -> operational primitive
+    -> later parent reuse / changed generability
+    -> finite admission to local search
+    -> full recursive successor
+    -> operational or historical cumulative novelty
+```
+
+The package also retains the v16 maintenance/resource-response route as a complementary supporting layer. That route keeps maintenance support, opportunity, internally generated resource slack, response delay, retention, and representation separate:
 
 ```text
 external gradient G_t
@@ -53,7 +66,7 @@ The external gradient remains a boundary condition; the **usable response budget
 
 The earlier same-time predicate `W` remains exactly the `Δ = 0` special case. The exact shared-budget cumulative-accessibility margin `M=B/c*-1` is also connected to the response interface as a separate mechanism-level specialization; it is not identified with physical free-energy slack.
 
-This is a conditional mathematical implication chain. It is **not** a claim that persistence automatically creates learning, that novelty is improvement, or that the abstract assumptions automatically hold in real systems.
+This supporting resource chain is conditional mathematics. It is **not** the v17 recursive-emergence master theorem, and it does not claim that persistence or resource slack automatically creates a validated recursive successor.
 
 ## Main modules
 
