@@ -613,9 +613,10 @@ promotes the child from unavailable candidate to reusable parent material.
 
 If the promoted child enables a downstream candidate that was not generable
 from the pre-promotion retained repertoire under the same next-step generator,
-and the envelope policy represents newly enabled candidates, then that
-downstream capacity enters the next local envelope. If it also passes emergence,
-resource, validation, and retention filtering, it becomes an actual local
+and a finite promotion-admission policy selects it for local representation,
+then a responsive envelope places that downstream capacity in the next local
+envelope. If it also passes emergence, resource, validation, and retention
+filtering, it becomes an actual local
 \(R_E\) successor.
 
 **Formal status:** MC for the implication architecture and progressive witness;
@@ -674,8 +675,11 @@ change in the generative rule.
 **Boundary.** Primitive promotion is not sufficient by itself. A checked
 one-shot counterexample has a valid retained emergence event but no
 generatively consequential downstream candidate because the next-step
-generator is empty. Likewise, newly generated candidates still need not pass
-the later feasibility/validation/retention filters.
+generator is empty. A finite envelope is also not required to represent every
+possibility opened by a promoted primitive: `PromotionAdmissionPolicy` is an
+explicit application-specific compression/attention seam selecting which
+possibilities become local candidates. Admitted generated candidates still
+need not pass the later feasibility/validation/retention filters.
 
 This layer therefore explains one endogenous source of moving-envelope change
 without claiming that every emergence event expands the search horizon.
