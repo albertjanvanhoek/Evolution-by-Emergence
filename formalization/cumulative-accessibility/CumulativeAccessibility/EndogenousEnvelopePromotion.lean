@@ -128,7 +128,7 @@ promoted primitive.  An admission policy represents the application-specific
 compression/attention rule selecting which newly enabled capacities become
 locally represented candidates. -/
 abbrev PromotionAdmissionPolicy (Capacity : Type*) :=
-  ℕ → Capacity → Capacity → Prop
+  ℕ → Capacity → Finset Capacity
 
 /-- The moving envelope is responsive to primitive promotion when each
 *admitted* newly generable candidate is represented in the next local
@@ -143,7 +143,7 @@ def PromotionResponsiveEnvelope
     (H : ℕ → HyperGenerator Capacity) : Prop :=
   ∀ m child next,
     RetainedIntegrationAt S m child →
-    Admit m child next →
+    next ∈ Admit m child →
     GenerativelyConsequentialPromotionAt S H m child next →
     next ∈ U (m + 1)
 
@@ -157,7 +157,7 @@ theorem promotionResponsiveEnvelope_exposes_new_entry
     (m : ℕ)
     {child next : Capacity}
     (hPromoted : RetainedIntegrationAt S m child)
-    (hAdmitted : Admit m child next)
+    (hAdmitted : next ∈ Admit m child)
     (hConsequential :
       GenerativelyConsequentialPromotionAt S H m child next)
     (hOutside : next ∉ U m) :
@@ -207,7 +207,7 @@ def PromotionDrivenFilteredSuccessorAt
     (m : ℕ)
     (child next : Capacity) : Prop :=
   GenerativelyConsequentialPromotionAt S H m child next
-  ∧ Admit m child next
+  ∧ next ∈ Admit m child
   ∧ next ∉ U m
   ∧ ResourceValidatedEmergentEventAt
       Proper Realizes Cost Budget E S (m + 1) next
@@ -422,7 +422,7 @@ theorem progressive_promotion_is_generatively_consequential
 generator exposes only one relevant next candidate, but the generic theory
 allows applications to use a much more selective finite admission policy. -/
 def progressivePromotionAdmission : PromotionAdmissionPolicy ℕ :=
-  fun _ _ _ => True
+  fun _ child => {child + 1}
 
 /-- The progressive moving envelope is responsive to newly enabled candidates
 created by primitive promotion. -/
@@ -455,7 +455,7 @@ theorem progressive_has_uniformPromotionDrivenContinuation :
   subst child
   refine ⟨m + 2, ?_, ?_, ?_, ?_⟩
   · exact progressive_promotion_is_generatively_consequential m
-  · trivial
+  · simp [progressivePromotionAdmission]
   · simp [progressiveEnvelope]
   · exact (progressive_recursiveEmergenceStep (m + 1)).2.2
 
