@@ -2,7 +2,7 @@
 
 > **Companion/inside paper.** The universal outside object has now been split
 > into the companion paper
-> \`../functional-organization-ratchet-velocity/\`. That paper treats
+> `../functional-organization-ratchet-velocity/`. That paper treats
 > organization state, functional repertoire, functional cost, ratchet velocity,
 > and ratchet acceleration without requiring intelligence. This paper now
 > specializes that architecture to intelligent networks: knowledge,
@@ -10,7 +10,7 @@
 > improvement of learning velocity.
 
 > **Focused agent-network specialization.** The paper
-> \`../maintaining-edges-of-learning/\` fixes the scale at a network of
+> `../maintaining-edges-of-learning/` fixes the scale at a network of
 > intelligent agents and fixes the central meta-level at L1: the processes that
 > form, maintain, use, and restore the edges through which correction occurs.
 > It develops the inside verbs / outside geometry duality around edge viscosity,
