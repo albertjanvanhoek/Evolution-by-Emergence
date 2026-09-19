@@ -1,3 +1,22 @@
+# v17 relationship
+
+This document describes the resource/maintenance-to-response and second-order accessibility dynamics developed through v16. It remains an important supporting layer, but it is **not** the canonical v17 recursive-emergence theorem surface.
+
+For the candidate v17 core, start with [`THEORY_CORE_V17.md`](THEORY_CORE_V17.md) and [`formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean).
+
+The relationship is:
+
+```text
+Dynamic Vortex / maintenance-resource layer
+    -> conditions for feasible response and changed accessibility
+
+v17 recursive-emergence layer
+    -> conditions under which realized retained organization becomes reusable material for later organization
+```
+
+The formal theory deliberately does not infer the second chain automatically from the first.
+
+---
 # The Dynamic Core of Evolution by Emergence
 
 ## A resource-fed recursive accessibility vortex
