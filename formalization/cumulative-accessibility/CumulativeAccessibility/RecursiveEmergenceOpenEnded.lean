@@ -174,14 +174,84 @@ theorem recurringRecursiveEmergence_implies_validatedGenerativeCapacityUptake
     ⟨z, hzU, hzNot, hGen, hResource, hEval, hzNext⟩
   exact ⟨m, z, hnm, hzU, hzNot, hGen, hEval, hzNext⟩
 
+/-- Recurrent recursive emergence supplies arbitrarily late strict retained
+repertoire expansions once old repertoire is monotonically retained.
+
+No distinguishability-envelope premise is needed for this statement: novelty
+and next-step retention are already part of RecursiveEmergenceStepAt. -/
+theorem recurringRecursiveEmergence_gives_future_strict_step
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (H : ℕ → HyperGenerator Capacity)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hRecurring :
+      RecurringRecursiveEmergence
+        Proper Realizes Cost Budget E S H)
+    (n : ℕ) :
+    ∃ m, n ≤ m ∧ S m ⊂ S (m + 1) := by
+  obtain ⟨m, parent, child, hnm, hStep⟩ := hRecurring n
+  exact ⟨m, hnm,
+    recursiveEmergenceStep_strictly_expands_repertoire
+      Proper Realizes Cost Budget E S H m hRetained hStep⟩
+
 /-- Main local-to-global emergence theorem.
 
 If recursively emergent, explicitly parent-dependent, resource-feasible,
-externally validated retained products continue to appear arbitrarily late; if
-the chosen envelope represents each such new child at its event time; and if
-retained repertoire is monotone, then cumulative retained novelty is open-ended
-in the already-defined sense. -/
+externally validated retained products continue to appear arbitrarily late,
+then monotone retention alone forces open-ended cumulative retained novelty.
+
+This conclusion is stronger than the route through validated capacity uptake:
+the distinguishability envelope is not needed merely to count retained
+recursive-emergence events. -/
 theorem recurringRecursiveEmergence_implies_openEndedNovelty
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (H : ℕ → HyperGenerator Capacity)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (hRetained : ∀ n, S n ⊆ S (n + 1))
+    (hRecurring :
+      RecurringRecursiveEmergence
+        Proper Realizes Cost Budget E S H) :
+    OpenEndedCumulativeNovelty S := by
+  intro K
+  induction K with
+  | zero =>
+      exact ⟨0, by simp [strictExpansionCount]⟩
+  | succ K ih =>
+      obtain ⟨n, hCountN⟩ := ih
+      obtain ⟨m, hnm, hStrict⟩ :=
+        recurringRecursiveEmergence_gives_future_strict_step
+          Proper Realizes Cost Budget H E S hRetained hRecurring n
+      have hMonoCount :
+          strictExpansionCount S n ≤ strictExpansionCount S m :=
+        strictExpansionCount_monotone S hnm
+      have hStep :
+          strictExpansionCount S (m + 1)
+            = strictExpansionCount S m + 1 := by
+        rw [strictExpansionCount]
+        simp [hStrict]
+      refine ⟨m + 1, ?_⟩
+      rw [hStep]
+      omega
+
+/-- Compatibility corollary for the exact chain requested by the existing
+uptake stack:
+
+    recurrent recursive emergence
+      + event-time envelope coverage
+      -> ValidatedGenerativeCapacityUptake
+      -> OpenEndedCumulativeNovelty.
+
+The envelope premise is needed for the intermediate uptake predicate, not for
+open-ended retained novelty itself. -/
+theorem recurringRecursiveEmergence_via_validatedUptake_implies_openEndedNovelty
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
     (Cost : ResponseCost Capacity)
@@ -343,18 +413,19 @@ theorem progressive_openEnded_via_recursiveEmergence :
   exact recurringRecursiveEmergence_implies_openEndedNovelty
     boolProper progressiveEmergentRealizes
     progressiveEmergentCost progressiveEmergentBudget
-    progressiveEnvelope progressiveGenerator
+    progressiveGenerator
     progressiveEmergentCriterion progressiveRepertoire
     progressiveRepertoire_retained
     progressive_has_recurringRecursiveEmergence
-    progressive_has_recursiveEmergenceEnvelopeCoverage
 
 end ProgressiveRecursiveWitness
 
 #print axioms recursiveEmergenceStep_with_envelope_implies_resourceValidatedSuccessAt
 #print axioms recursiveEmergenceStep_with_envelope_implies_validatedSuccessAt
 #print axioms recurringRecursiveEmergence_implies_validatedGenerativeCapacityUptake
+#print axioms recurringRecursiveEmergence_gives_future_strict_step
 #print axioms recurringRecursiveEmergence_implies_openEndedNovelty
+#print axioms recurringRecursiveEmergence_via_validatedUptake_implies_openEndedNovelty
 #print axioms recurringRecursiveEmergence_implies_unboundedEnvelope
 #print axioms progressive_generated_using_current_parent
 #print axioms progressive_recursiveEmergenceStep
