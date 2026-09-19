@@ -2,8 +2,7 @@
 
 ## Status
 
-Targeted positioning note for a new universal paper. This is not yet a
-systematic review.
+Targeted positioning note for a new universal paper. **Closest-prior-art audit updated 19 September 2026.** This remains a targeted rather than exhaustive systematic review.
 
 The candidate contribution is **not** the discovery of function,
 multifunctionality, evolvability, neural repertoire, causal organization, or
@@ -303,23 +302,17 @@ The scientific question for real systems is therefore not whether
 plasticity/stability trade-offs exist, but how substrate-specific mechanisms
 map onto the rate coordinates and where their joint optimum lies.
 
-## 10. Speed of adaptation and cumulative cultural acquisition cost
+## 10. Capability-development rate, adaptation speed, and cumulative cultural acquisition cost
 
-Evolutionary theory has mature rate concepts. Population-genetic and
-quantitative-genetic models study rates of fitness or trait change; traveling-
-wave models derive speeds of adaptation under mutation and selection; related
-work derives rate limits for evolutionary change.
+Capability-development research already treats organizational capability as a trajectory with an explicit **rate of improvement**. Rockart and Dutt (2015) formalize capability-development trajectories in which firms differ both in the rate at which they close the gap between current and potential capability and in the potential capability level itself. This is a close antecedent to any claim that retained organization has a measurable development velocity.
 
-Cumulative-cultural-evolution models also study the cost of acquiring inherited
-knowledge. Mesoudi (2011), for example, models cultural acquisition costs that
-increase with accumulated cultural complexity and can eventually constrain
-further cumulative innovation. Such models also consider innovations that
-reduce acquisition or innovation costs.
+Evolutionary theory likewise has mature rate concepts. Population-genetic and quantitative-genetic models study rates of fitness or trait change; traveling-wave models derive speeds of adaptation under mutation and selection; related work derives rate limits for evolutionary change.
+
+Cumulative-cultural-evolution models also study the cost of acquiring inherited knowledge. Mesoudi (2011), for example, models cultural acquisition costs that increase with accumulated cultural complexity and can eventually constrain further cumulative innovation. Such models also consider innovations that reduce acquisition or innovation costs.
 
 **Relationship to the present framework**
 
-These literatures mean the present paper must not claim either "evolution has a
-speed" or "acquisition cost constrains cumulative evolution" as new.
+These literatures mean the present paper must not claim that capability development has a rate, that evolution has a speed, or that acquisition cost constrains cumulative evolution as new.
 
 The current EbE split is instead:
 
@@ -341,6 +334,7 @@ framework is applied to science, technology, or cumulative culture.
 
 Relevant references:
 
+- Rockart & Dutt (2015), *Strategic Management Journal*, "The rate and potential of capability development trajectories", doi:10.1002/smj.2202.
 - Queller (2017), *The American Naturalist*, on fundamental evolutionary
   theorems and rates of selection response.
 - traveling-wave / clonal-interference work on the speed of adaptation in
@@ -434,5 +428,4 @@ The paper may currently claim:
 6. a cross-domain programme in which scalar "organization" measures are treated
    as declared projections rather than primitives.
 
-It should **not** yet claim that this exact conjunction is absent from all prior
-literature. That remains a dedicated prior-art question.
+The targeted closest-prior-art audit did not identify a source containing this exact conjunction. That is a provisional search result, not proof of absence; the paper should claim the conjunction as its proposed synthesis/formalization rather than claim exhaustive priority.
