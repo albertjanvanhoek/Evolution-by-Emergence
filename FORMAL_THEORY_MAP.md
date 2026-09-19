@@ -27,6 +27,108 @@ The central rule is:
 
 ---
 
+## MASTER — closed sufficient-condition core
+
+**Theory statement.** The current formal core has a single auditable sufficient
+condition surface. It deliberately keeps self-maintenance leverage and
+recursive-emergence reproduction as distinct legs until an application supplies
+the calibration connecting them.
+
+**Formal status:** MC for the implication structure and separation witnesses;
+MODEL for the leverage-to-reproduction calibration; EXT for stochastic
+branching and general multitype spectral-radius results.
+
+**Lean source**
+
+- \`EvolutionByEmergenceCore.lean\`
+
+**Master declarations**
+
+- \`SelfMaintenanceOpening\`
+- \`selfMaintenanceOpening_consequences\`
+- \`UniformCertifiedCriticalEmergenceReproduction\`
+- \`EvolutionByEmergenceCoreCertificate\`
+- \`uniformCertifiedCritical_implies_uniformCritical\`
+- \`evolutionByEmergenceCore_openEnded\`
+- \`evolutionByEmergence_master_surface\`
+
+The recursive certificate exposes four load-bearing ingredients:
+
+\[
+\boxed{
+\text{seed}
++
+\text{monotone retention}
++
+\text{event-wise }R_E^{\rm ledger}\ge1
++
+\text{certified lower bound }
+R_E^{\rm ledger}\le R_E^{\rm actual}
+}
+\]
+
+which imply
+
+\[
+\boxed{
+\text{OpenEndedCumulativeNovelty}.
+}
+\]
+
+The self-maintenance leg separately proves that a strict slack increase,
+positive reinvestment, non-worsening future target costs, and one crossing
+witness imply both
+
+\[
+\text{larger endogenous response budget + energetic burden buffer}
+\]
+
+and
+
+\[
+\text{strict expansion of the declared slack-funded future-access set}.
+\]
+
+The master theorem returns both the leverage consequences and open-ended
+recursive emergence, while leaving the cross-layer calibration visible:
+
+\[
+\boxed{
+\text{self-maintenance leverage}
+\not\Rightarrow_{\rm universal}
+\text{certified critical emergence reproduction}.
+}
+\]
+
+That mapping is an application/model seam, not a hidden theorem.
+
+### Checked separation witnesses
+
+The master surface is accompanied by countermodels showing why its principal
+premises cannot simply be deleted:
+
+- \`ledgerCritical_without_calibration_does_not_force_actualCritical\`:
+  a mechanism ledger equal to one can coexist with declared actual successor
+  count zero if the calibration seam is absent;
+- \`uniformCritical_and_retention_without_seed_not_enough\`:
+  criticality can hold vacuously when no seed event exists;
+- \`seed_and_retention_without_criticality_not_enough\`:
+  one valid retained emergence event can terminate after a finite innovation;
+- \`recurringRecursiveEmergence_without_retention_not_cumulative\`:
+  the turnover chain
+  \[
+  \{0\}\to\{1\}\to\{2\}\to\cdots
+  \]
+  has a valid recursive-emergence event at every step but accumulates zero
+  strict retained-set expansions.
+
+This is the current formal freeze point for adversarial review. Machine
+checking establishes the implication architecture, not empirical universality,
+the correctness of a particular physical calibration, or novelty relative to
+all prior theory.
+
+---
+
 ## T0 — association filters productive couplings
 
 **Theory statement.** Encounter alone is not productive coupling. Association
