@@ -1,4 +1,4 @@
-import CumulativeAccessibility.EmergenceReproduction
+import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.OpenEndedCapacity
 
 namespace CumulativeAccessibility
@@ -335,6 +335,271 @@ theorem uniformlyBoundedEnvelope_rules_out_uniformLocalCriticalEmergenceReproduc
 
 end LocalRecursiveClosure
 
+section FiniteMasterCertificateBoundary
+
+variable {Config Context Capacity : Type*}
+variable [Fintype Capacity] [DecidableEq Capacity]
+
+/-- The finite master certificate currently defined in
+EvolutionByEmergenceCore.lean cannot be inhabited together with its stated
+recursive conclusion over a fixed finite global capacity type. This turns the
+finite-universe concern into an explicit theorem rather than an interpretive
+warning. -/
+theorem evolutionByEmergenceCoreCertificate_impossible
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (core :
+      EvolutionByEmergenceCoreCertificate
+        Proper Realizes Cost Budget E S H) :
+    False := by
+  exact
+    finiteCapacity_uniformCriticalEmergenceReproduction_impossible
+      Proper Realizes Cost Budget E S H
+      core.retained core.seed
+      (uniformCertifiedCritical_implies_uniformCritical
+        Proper Realizes Cost Budget E S H
+        core.factors core.certifiedCritical)
+
+end FiniteMasterCertificateBoundary
+
+section LocalCertifiedCore
+
+variable {Config Context Capacity : Type*}
+variable [DecidableEq Capacity]
+
+/-- Event-specific calibrated criticality against the local moving-envelope
+reproduction number rather than a globally finite successor universe. -/
+def LocalCertifiedCriticalEmergenceEvent
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (factors : EmergenceReproductionFactors)
+    (m : ℕ)
+    (child : Capacity) : Prop :=
+  1 ≤ emergenceReproductionLedgerOf factors ∧
+  emergenceReproductionLedgerOf factors ≤
+    LocalEffectiveEmergenceReproductionNumber
+      U Proper Realizes Cost Budget E S H m child
+
+/-- A locally certified critical ledger yields an actual effective successor in
+the next finite envelope. -/
+theorem localCertifiedCriticalEmergenceEvent_implies_effective_successor
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (factors : EmergenceReproductionFactors)
+    (m : ℕ)
+    (child : Capacity)
+    (h :
+      LocalCertifiedCriticalEmergenceEvent
+        U Proper Realizes Cost Budget E S H factors m child) :
+    ∃ next,
+      next ∈ U (m + 1) ∧
+      RecursiveEmergenceStepAt
+        Proper Realizes Cost Budget E S H (m + 1) child next := by
+  have hCritical :
+      1 ≤ LocalEffectiveEmergenceReproductionNumber
+        U Proper Realizes Cost Budget E S H m child :=
+    le_trans h.1 h.2
+  exact
+    (one_le_localEffectiveEmergenceReproductionNumber_iff_exists
+      U Proper Realizes Cost Budget E S H m child).mp hCritical
+
+/-- Every realized event receives an event-specific factor assignment whose
+ledger is critical and certified below the local actual successor count. -/
+def UniformLocalCertifiedCriticalEmergenceReproduction
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (factors : ℕ → Capacity → EmergenceReproductionFactors) : Prop :=
+  ∀ m parent child,
+    RecursiveEmergenceStepAt
+      Proper Realizes Cost Budget E S H m parent child →
+    LocalCertifiedCriticalEmergenceEvent
+      U Proper Realizes Cost Budget E S H
+      (factors m child) m child
+
+/-- Uniform local calibration implies the local deterministic criticality
+predicate needed by the recursive continuation theorem. -/
+theorem uniformLocalCertifiedCritical_implies_uniformLocalCritical
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (factors : ℕ → Capacity → EmergenceReproductionFactors)
+    (hCertified :
+      UniformLocalCertifiedCriticalEmergenceReproduction
+        U Proper Realizes Cost Budget E S H factors) :
+    UniformLocalCriticalEmergenceReproduction
+      U Proper Realizes Cost Budget E S H := by
+  intro m parent child hStep
+  obtain ⟨next, hEnvelope, hNext⟩ :=
+    localCertifiedCriticalEmergenceEvent_implies_effective_successor
+      U Proper Realizes Cost Budget E S H
+      (factors m child) m child
+      (hCertified m parent child hStep)
+  exact
+    (one_le_localEffectiveEmergenceSuccessorCount_iff_exists
+      U Proper Realizes Cost Budget E S H m child).mpr
+      ⟨next, hEnvelope, hNext⟩
+
+/-- Corrected master recursive certificate. Global capacity may be infinite;
+only the time-local envelope is finite. Representation is stored explicitly so
+that open-ended recursive novelty also forces unbounded envelope capacity. -/
+structure LocalEvolutionByEmergenceCoreCertificate
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity) where
+  retained : ∀ n, S n ⊆ S (n + 1)
+  represented : ∀ n, S n ⊆ U n
+  seedParent : Capacity
+  seedChild : Capacity
+  seed :
+    RecursiveEmergenceStepAt
+      Proper Realizes Cost Budget E S H 0 seedParent seedChild
+  factors : ℕ → Capacity → EmergenceReproductionFactors
+  certifiedCritical :
+    UniformLocalCertifiedCriticalEmergenceReproduction
+      U Proper Realizes Cost Budget E S H factors
+
+/-- Full recursive closure without global finiteness. -/
+theorem evolutionByEmergenceLocalCore_openEnded
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (core :
+      LocalEvolutionByEmergenceCoreCertificate
+        U Proper Realizes Cost Budget E S H) :
+    OpenEndedCumulativeNovelty S := by
+  exact
+    seed_and_uniformLocalCriticalEmergenceReproduction_imply_openEndedNovelty
+      U Proper Realizes Cost Budget E S H
+      core.retained core.seed
+      (uniformLocalCertifiedCritical_implies_uniformLocalCritical
+        U Proper Realizes Cost Budget E S H
+        core.factors core.certifiedCritical)
+
+/-- The same corrected certificate closes the recursive theory onto the
+necessary open-ended distinguishability condition. -/
+theorem evolutionByEmergenceLocalCore_unboundedEnvelope
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (core :
+      LocalEvolutionByEmergenceCoreCertificate
+        U Proper Realizes Cost Budget E S H) :
+    UnboundedEnvelopeCapacity U := by
+  exact
+    seed_and_uniformLocalCriticalEmergenceReproduction_imply_unboundedEnvelope
+      U Proper Realizes Cost Budget E S H
+      core.represented core.retained core.seed
+      (uniformLocalCertifiedCritical_implies_uniformLocalCritical
+        U Proper Realizes Cost Budget E S H
+        core.factors core.certifiedCritical)
+
+end LocalCertifiedCore
+
+section LocalMasterSurface
+
+variable {σ φ Config Context Capacity : Type*}
+variable [DecidableEq Capacity]
+
+/-- Corrected master surface: self-maintenance leverage and the locally
+calibrated recursive-emergence certificate remain separate premises, while the
+recursive leg now yields both open-ended retained novelty and the required
+unbounded moving envelope without assuming a globally finite capacity type. -/
+theorem evolutionByEmergence_local_master_surface
+    (targets : Set φ)
+    (oldCost newCost : FunctionalCost σ φ)
+    (uptake : UptakeFunction σ)
+    (maintenance : MaintenanceDemand σ)
+    (g beta : ℝ)
+    (oldState newState : σ)
+    (target : φ)
+    (hOpening :
+      SelfMaintenanceOpening
+        targets oldCost newCost uptake maintenance
+        g beta oldState newState target)
+    (U : ℕ → Finset Capacity)
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (core :
+      LocalEvolutionByEmergenceCoreCertificate
+        U Proper Realizes Cost Budget E S H) :
+    ((beta * StateSlack uptake maintenance g oldState
+        < beta * StateSlack uptake maintenance g newState)
+      ∧
+      ∃ burden,
+        ¬ EnergeticBurdenTolerated
+            uptake maintenance g oldState burden
+        ∧ EnergeticBurdenTolerated
+            uptake maintenance g newState burden)
+    ∧
+    StrictExpandsOn targets
+      (SlackFundedFunctionalAccess
+        oldCost uptake maintenance g beta oldState)
+      (SlackFundedFunctionalAccess
+        newCost uptake maintenance g beta newState)
+    ∧
+    OpenEndedCumulativeNovelty S
+    ∧
+    UnboundedEnvelopeCapacity U := by
+  have hLeverage :=
+    selfMaintenanceOpening_consequences
+      targets oldCost newCost uptake maintenance
+      g beta oldState newState target hOpening
+  exact ⟨hLeverage.1, hLeverage.2,
+    evolutionByEmergenceLocalCore_openEnded
+      U Proper Realizes Cost Budget E S H core,
+    evolutionByEmergenceLocalCore_unboundedEnvelope
+      U Proper Realizes Cost Budget E S H core⟩
+
+end LocalMasterSurface
+
 section ProgressiveLocalWitness
 
 /-- Existing progressive architecture witnesses non-vacuity of the corrected
@@ -393,6 +658,12 @@ theorem progressive_unboundedEnvelope_via_localEmergenceReproduction :
 end ProgressiveLocalWitness
 
 #print axioms finiteCapacity_uniformCriticalEmergenceReproduction_impossible
+#print axioms evolutionByEmergenceCoreCertificate_impossible
+#print axioms localCertifiedCriticalEmergenceEvent_implies_effective_successor
+#print axioms uniformLocalCertifiedCritical_implies_uniformLocalCritical
+#print axioms evolutionByEmergenceLocalCore_openEnded
+#print axioms evolutionByEmergenceLocalCore_unboundedEnvelope
+#print axioms evolutionByEmergence_local_master_surface
 #print axioms one_le_localEffectiveEmergenceSuccessorCount_iff_exists
 #print axioms one_le_localEffectiveEmergenceReproductionNumber_iff_exists
 #print axioms uniformLocalCriticalEmergenceReproduction_implies_successorWithin_zero
