@@ -13,9 +13,7 @@ Machine-readable-oriented claim ledger for agentic evaluation.
 
 ## Current theory core ledger — September 2026
 
-The canonical prose statement is [THEORY.md](THEORY.md). Exact theorem names,
-formal status, and proof boundaries are in
-[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md).
+The canonical candidate formal statement is [THEORY_CORE_V17.md](THEORY_CORE_V17.md). [THEORY.md](THEORY.md) is the broader synthesis around that core. Exact theorem names, formal status, and proof boundaries are in [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md).
 
 These claims are intentionally narrower than "Evolution by Emergence is true in
 every domain." The final universality claim remains a research programme.
@@ -50,6 +48,10 @@ every domain." The final universality claim remains a research programme.
 
 | CLM_EBE_CORE_023 | A retained recursive-emergence child is an operational primitive promotion. If that promoted primitive is essential for a downstream capacity relative to the next retained repertoire, and that capacity was not generable from the pre-promotion repertoire under the same next-step generator, a finite promotion-admission policy may select it for local representation and a responsive moving envelope places it in the next local envelope; if it also passes the full emergence/resource/validation/retention filter it becomes an actual local R_E successor. Primitive promotion alone does not guarantee downstream expansion, and the finite envelope need not represent every newly generable possibility. | `EndogenousEnvelopePromotion.lean`; `LocalEmergenceReproduction.lean`; `VocabularyEmergence.lean` | Machine-checked causal decomposition + progressive witness + separation witness + modelling seam | Challenge the promotion-responsive envelope policy, exhibit systems where promoted primitives rarely alter downstream generability, or show that changes attributed to new parent material are actually caused by simultaneous generator-rule change. |
 
+| CLM_EBE_CORE_024 | A stronger constructive recursive-emergence interface can require a finite parent set to construct the specific configuration that witnesses the child capacity's compositional emergence and filtered retention. Every such constructive event projects to the existing capacity-level recursive-emergence event, and the depth-two `a -> b -> c` toy inhabits the stronger interface. | `ConstructiveRecursiveEmergence.lean`; `EvolutionByEmergenceV17Core.lean` | Machine checked + concrete witness | Challenge whether a proposed domain supplies an identifiable construction relation; construct an application where only capacity-level generation is justified and show why the stronger bridge should not be used. |
+| CLM_EBE_CORE_025 | Cumulative historical novelty does not require monotone growth of the currently active repertoire. If genuinely history-new recursive-emergence events recur and cumulative History is monotone, History is open-ended even when Active turns over. A checked witness keeps `|Active_t| = 1` for all t while History expands without bound. | `ActiveHistory.lean`; `EvolutionByEmergenceV17Core.lean` | Machine checked + explicit turnover witness | Attack the active/history semantics under the exact definitions, or show that a target application cannot justify a cumulative historical trace distinct from current operational availability. |
+| CLM_EBE_CORE_026 | The canonical v17 operational core uses finite moving local envelopes rather than a globally finite capacity type; the historical core is a separate weaker endpoint. The promotion-driven and constructive layers are stronger sufficient interfaces that project into, rather than redefine, the corrected recursive architecture. | `EvolutionByEmergenceV17Core.lean`; `LocalEmergenceReproduction.lean`; `EndogenousEnvelopePromotion.lean`; `ConstructiveRecursiveEmergence.lean`; `ActiveHistory.lean` | Machine-checked integration surface + explicit non-vacuity witnesses | Find an inconsistency among the projected theorem surfaces, a hidden implication claimed in prose but absent from Lean, or an existing formal framework that already provides the same integrated factorization more directly. |
+
 ### Current core non-claims
 
 The current theory does not infer:
@@ -66,7 +68,12 @@ The current theory does not infer:
 - value from lower transition cost without a declared target criterion;
 - universal causal effects from intelligent-network labels such as honesty, repair, forgiveness, or diversity;
 - function uniquely from static network structure;
-- or a universal scalar amount of organization from the functional cost geometry.
+- a universal scalar amount of organization from the functional cost geometry;
+- sole historical causation from the essential-parent counterfactual;
+- an ever-growing active repertoire from open-ended cumulative history;
+- strong ontological or unprestatable vocabulary creation from a moving envelope inside one ambient `Capacity` type;
+- stochastic branching survival from the deterministic local successor count;
+- or empirical truth from machine-checked implication alone.
 
 ---
 
