@@ -2,7 +2,7 @@
 
 ## Status
 
-This is a targeted positioning note, not yet a systematic review.
+**Targeted closest-prior-art audit updated 19 September 2026.** This is not an exhaustive systematic review.
 
 The paper should not claim priority for metaplasticity, evolvability,
 state/topology coevolution, cultural evolvability, meta-learning, or the
@@ -158,7 +158,20 @@ Meta-learning provides an engineered demonstration that current parameter state
 can be optimized for future learnability. The present framework abstracts this
 as a change in future transition cost rather than a specific algorithm.
 
-## 7. Plasticity loss
+## 7. Learning-to-learn as acceleration
+
+Learning-to-learn is already studied explicitly as an **acceleration of future learning**, not merely as improved task performance. Goudar et al. (2023) report progressive learning speed-up across related problems and identify reusable neural population structure associated with that acceleration. Njaradi et al. (2026, preprint) formulate learning-speed control as an optimal-control problem balancing performance gains against learning effort.
+
+Relationship to this paper:
+
+These are close antecedents for the claim that future learning rate is itself a scientifically meaningful object. The present framework must therefore not claim learning acceleration or learning-rate control as new. Its narrower move is to represent held-out future acquisition as a target-indexed accessibility/functional-cost geometry, require matched resource windows and retained prior function, and connect endogenous process change to that outside geometry across substrates.
+
+Key references:
+
+- Goudar, V., Peysakhovich, B., Freedman, D. J., Buffalo, E. A., & Wang, X.-J. (2023). Schema formation in a neural population subspace underlies learning-to-learn in flexible sensorimotor problem-solving. *Nature Neuroscience, 26*, 879–890. https://doi.org/10.1038/s41593-023-01293-9
+- Njaradi, V., Carrasco-Davis, R., Latham, P. E., & Saxe, A. (2026). Optimal Learning Rate Schedule for Balancing Effort and Performance. arXiv:2601.07830 (preprint).
+
+## 8. Plasticity loss
 
 Dohare et al. (2024) show that standard deep-learning systems can progressively
 lose their capacity to learn in continual-learning settings even while they
@@ -178,7 +191,7 @@ future learnability and to allow the accessibility geometry to worsen as well as
 improve.
 
 
-## 8. Absorptive capacity and organizational knowledge accumulation
+## 9. Absorptive capacity and organizational knowledge accumulation
 
 Cohen and Levinthal (1990) define absorptive capacity as a firm's ability to
 recognize the value of new external information, assimilate it, and apply it.
@@ -205,7 +218,7 @@ Key references:
 - Cohen & Levinthal (1990), *Administrative Science Quarterly*.
 - Van den Bosch, Volberda & de Boer (1999), *Organization Science*.
 
-## 9. Organizational learning curves
+## 10. Organizational learning curves
 
 A large economics, operations, and organizational-learning literature studies
 how performance or unit cost changes with cumulative experience and why
@@ -226,7 +239,7 @@ Key references:
   Information and Operations Management*.
 - Argote and colleagues' organizational-learning programme.
 
-## 10. Knowledge production and research productivity
+## 11. Knowledge production and research productivity
 
 Growth economics often represents idea growth as a function of research input
 and research productivity. Bloom, Jones, Van Reenen and Webb (2020), for
@@ -258,7 +271,4 @@ The paper should currently claim:
 5. a cross-substrate experimental programme based on held-out future transition
    costs.
 
-It should not yet claim that this exact conjunction is absent from all prior
-literature. That requires a systematic search focused specifically on
-cost-geometric formulations of evolvability, learnability and adaptive
-networks.
+The targeted closest-prior-art audit did not identify a source containing this exact conjunction. That is a provisional search result, not proof of absence. The paper should present the conjunction as a proposed formal interface and empirical programme, while explicitly crediting metaplasticity, meta-learning, learning-to-learn acceleration, absorptive capacity, organizational learning rates, and adaptive-network antecedents.
