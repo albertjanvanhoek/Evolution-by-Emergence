@@ -180,8 +180,10 @@ theorem selfMaintenanceLeverage_preserves_slackFundedAccess
       (SlackFundedFunctionalAccess
         newCost uptake maintenance g beta newState) := by
   intro target htarget hOld
-  unfold SlackFundedFunctionalAccess
-  unfold FunctionAccessibleWithin at hOld ⊢
+  change oldCost oldState target
+      ≤ beta * StateSlack uptake maintenance g oldState at hOld
+  change newCost newState target
+      ≤ beta * StateSlack uptake maintenance g newState
   have hBudget :
       beta * StateSlack uptake maintenance g oldState
         ≤ beta * StateSlack uptake maintenance g newState :=
@@ -403,7 +405,8 @@ theorem seed_and_successorWithin_imply_recurringRecursiveEmergence
     recursiveEmergenceSuccessorWithin_iterates
       lag Proper Realizes Cost Budget E S H
       0 hSeed hSuccessor n
-  simpa using ⟨m, parent, child, hnm, hStep⟩
+  refine ⟨m, parent, child, ?_, hStep⟩
+  simpa using hnm
 
 /-- Adding monotone retention closes the deterministic chain all the way to
 open-ended cumulative novelty. -/
