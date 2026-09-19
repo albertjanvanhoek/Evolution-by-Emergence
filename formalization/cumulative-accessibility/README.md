@@ -10,7 +10,7 @@ The package separates five questions that are easy to collapse informally:
 4. **Can retained organizational change alter what becomes accessible next?**
 5. **What capacity conditions are necessary for that recursive process to remain open-ended?**
 
-For the full synthesis and proof-status map, start with [`../../DYNAMIC_OVERVIEW.md`](../../DYNAMIC_OVERVIEW.md).
+For the candidate v17 recursive-organization theory, start with [`../../THEORY_CORE_V17.md`](../../THEORY_CORE_V17.md) and [`../../FORMAL_THEORY_MAP.md`](../../FORMAL_THEORY_MAP.md). [`../../DYNAMIC_OVERVIEW.md`](../../DYNAMIC_OVERVIEW.md) documents the complementary v16 maintenance/resource-response integration.
 
 The current formal-core route keeps maintenance support, opportunity, internally generated resource slack, response delay, retention, and representation separate:
 
@@ -57,8 +57,23 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 
 ## Main modules
 
-### Accessibility and retained search
+### Canonical v17 recursive-emergence surface
 
+- `EvolutionByEmergenceV17Core.lean` — canonical v17 operational and historical theorem surface; moving-envelope operational certificate, promotion-driven strengthening, constructive projection, turnover-history endpoint, and fixed-finite boundary.
+- `EmergentCapacity.lean` — relative compositional emergence, distinct from historical novelty and surprise.
+- `VocabularyEmergence.lean` — operational versus representational vocabulary expansion.
+- `EmergencePersistenceBridge.lean` — emergence kept separate from resource feasibility, external validation, and actual retention.
+- `RecursiveEmergence.lean` — explicit retained-parent reuse in later generation.
+- `ConstructiveRecursiveEmergence.lean` — stronger optional bridge requiring parents to construct the same configuration that witnesses the child's emergent realization.
+- `ActiveHistory.lean` — separates current operational repertoire from cumulative historical trace and proves open-ended history under complete active turnover.
+- `RecursiveEmergenceOpenEnded.lean` — recurrent recursive events to cumulative retained novelty.
+- `EmergenceReproduction.lean` — finite deterministic successor-count specialization and mechanism-ledger calibration seam.
+- `LocalEmergenceReproduction.lean` — fixed-global no-go, finite moving local envelopes, corrected locally certified certificate, and non-vacuity witness.
+- `EndogenousEnvelopePromotion.lean` — operational promotion, essential-parent generated-access expansion, finite admission, and promotion-driven local successors.
+
+The older `EvolutionByEmergenceCore.lean` remains imported for finite-specialization, calibration, and separation results. Its globally finite master certificate is explicitly proved unsuitable as the canonical indefinitely open-ended universe; use `EvolutionByEmergenceV17Core.lean` for v17 review.
+
+### Accessibility and retained search
 - `CumulativeAccessibility.lean` — basic accessibility, preservation, strict expansion, costs, margins, and route-level results.
 - `RecursiveAccessibility.lean` — finite search opportunity, retained stepping stones, second-order clicks, and separation of reachable depth from search-operator expansion.
 - `QuantitativeAccessibility.lean` — directed accessibility-cost geometry, plasticity/viscosity order, and recovery of a binary second-order click from strict quantitative improvement at a suitable budget.
@@ -405,6 +420,9 @@ To inspect the printed axioms directly:
 
 ```bash
 lake env lean CumulativeAccessibility/VerificationSurface.lean
+lake env lean CumulativeAccessibility/EvolutionByEmergenceV17Core.lean
+lake env lean CumulativeAccessibility/ConstructiveRecursiveEmergence.lean
+lake env lean CumulativeAccessibility/ActiveHistory.lean
 lake env lean CumulativeAccessibility/FormalCoreWitness.lean
 lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
 lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
@@ -425,6 +443,15 @@ Lean 4.33.0
 
 Mathlib is pinned in `lakefile.toml`.
 
+
+Additional v17 boundaries:
+
+- **Operational accumulation and historical accumulation are distinct.** Open-ended history does not imply a growing active repertoire.
+- **Constructive generation is optional and stronger.** Capacity-level generation does not automatically identify the configuration that realizes the emergent capacity.
+- **Essential-parent use is not sole causation.** Other simultaneous additions can also be necessary.
+- **Finite admission is an application interface.** The theory does not universally derive which newly generable possibilities receive search effort.
+- **Moving envelopes do not prove strong ontology creation.** The corrected recursive theorem still uses one ambient `Capacity` type.
+- **Deterministic local `R_E` is not a stochastic branching theorem.**
 ## Scope boundaries
 
 Machine checking establishes that the stated conclusions follow from the stated formal assumptions. It does not establish that:
