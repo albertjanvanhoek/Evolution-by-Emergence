@@ -7,6 +7,13 @@
 
 ## Purpose
 
+The formal target for this integration is defined in [`FORMAL_THEORY_ENDPOINT.md`](FORMAL_THEORY_ENDPOINT.md).
+
+The endpoint is not a novelty claim. It is a self-standing, machine-auditable,
+literature-positioned descriptive core that can serve as the load-bearing
+foundation for the essays, applications, and implications elsewhere in the
+repository.
+
 The #57-#59 research sequence materially changes the formal core of Evolution by
 Emergence (EbE). It should therefore not be integrated by simply merging a stack
 of research PRs into `main`.
