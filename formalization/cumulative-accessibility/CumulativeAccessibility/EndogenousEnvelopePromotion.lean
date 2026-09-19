@@ -323,6 +323,30 @@ theorem seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope
 
 end PromotionToSuccessor
 
+section PromotionSeparation
+
+/-- Operational promotion does not automatically create a newly generable
+downstream capacity.  The one-shot witness has a valid recursive-emergence seed
+and therefore promotes `true`, but its next-step generator is empty. -/
+theorem oneShot_promotion_has_no_generativelyConsequential_downstream :
+    RecursiveEmergenceStepAt
+      boolProper oneShotRealizes
+      oneShotCost oneShotBudget oneShotCriterion
+      oneShotRepertoire oneShotGenerator
+      0 false true
+    ∧
+    ∀ next,
+      ¬ GenerativelyConsequentialPromotionAt
+        oneShotRepertoire oneShotGenerator 0 true next := by
+  constructor
+  · exact oneShot_seed
+  · intro next hConsequential
+    rcases hConsequential.1 with
+      ⟨parents, hParent, hAvailable, hRule⟩
+    simpa [oneShotGenerator] using hRule
+
+end PromotionSeparation
+
 section ProgressivePromotionWitness
 
 /-- In the progressive architecture, primitive promotion is genuinely
@@ -421,6 +445,7 @@ end ProgressivePromotionWitness
 #print axioms uniformPromotionDrivenContinuation_implies_uniformLocalCritical
 #print axioms seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty
 #print axioms seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope
+#print axioms oneShot_promotion_has_no_generativelyConsequential_downstream
 #print axioms progressive_promotion_is_generatively_consequential
 #print axioms progressive_has_promotionResponsiveEnvelope
 #print axioms progressive_has_uniformPromotionDrivenContinuation
