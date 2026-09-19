@@ -338,6 +338,7 @@ theorem true_vocabulary_expansion_enables_new_downstream_generation :
         trueEnabledGenerator) := by
   apply vocabulary_integration_enables_strict_downstream_expansion
     unitIntoBool trueEnabledGenerator
+    (φ := true) (ψ := true)
     true_is_vocabularyNovel_from_unit
   · refine ⟨{true}, ?_, ?_⟩
     · intro x hx
