@@ -630,6 +630,84 @@ theorem progressive_has_uniformLocalCriticalEmergenceReproduction :
   · simp [progressiveEnvelope]
   · exact progressive_recursiveEmergenceStep (m + 1)
 
+/-- Unit mechanism factors give a critical ledger exactly equal to one. -/
+def progressiveUnitEmergenceFactors : EmergenceReproductionFactors where
+  window := 1
+  opportunityRate := 1
+  pGenerate := 1
+  pResource := 1
+  pValidate := 1
+  pRetain := 1
+
+theorem progressiveUnitEmergenceFactors_ledger_eq_one :
+    emergenceReproductionLedgerOf progressiveUnitEmergenceFactors = 1 := by
+  norm_num [emergenceReproductionLedgerOf, progressiveUnitEmergenceFactors,
+    EmergenceReproductionLedger, RetainedSuccessFraction]
+
+/-- The progressive architecture also satisfies the stronger locally calibrated
+criticality condition: a unit ledger is critical and is bounded by the actual
+local successor count at every realized event. -/
+theorem progressive_has_uniformLocalCertifiedCriticalEmergenceReproduction :
+    UniformLocalCertifiedCriticalEmergenceReproduction
+      progressiveEnvelope
+      boolProper progressiveEmergentRealizes
+      progressiveEmergentCost progressiveEmergentBudget
+      progressiveEmergentCriterion
+      progressiveRepertoire progressiveGenerator
+      (fun _ _ => progressiveUnitEmergenceFactors) := by
+  intro m parent child hStep
+  constructor
+  · rw [progressiveUnitEmergenceFactors_ledger_eq_one]
+  · rw [progressiveUnitEmergenceFactors_ledger_eq_one]
+    rw [LocalEffectiveEmergenceReproductionNumber]
+    have hCount :=
+      progressive_has_uniformLocalCriticalEmergenceReproduction
+        m parent child hStep
+    exact_mod_cast hCount
+
+/-- Explicit inhabitant of the corrected master recursive certificate. -/
+def progressiveLocalEvolutionByEmergenceCoreCertificate :
+    LocalEvolutionByEmergenceCoreCertificate
+      progressiveEnvelope
+      boolProper progressiveEmergentRealizes
+      progressiveEmergentCost progressiveEmergentBudget
+      progressiveEmergentCriterion
+      progressiveRepertoire progressiveGenerator where
+  retained := progressiveRepertoire_retained
+  represented := progressiveRepertoire_represented
+  seedParent := 0
+  seedChild := 1
+  seed := progressive_recursiveEmergenceStep 0
+  factors := fun _ _ => progressiveUnitEmergenceFactors
+  certifiedCritical :=
+    progressive_has_uniformLocalCertifiedCriticalEmergenceReproduction
+
+/-- The corrected master certificate is therefore non-vacuous and directly
+produces open-ended cumulative novelty. -/
+theorem progressive_openEnded_via_localCoreCertificate :
+    OpenEndedCumulativeNovelty progressiveRepertoire := by
+  exact
+    evolutionByEmergenceLocalCore_openEnded
+      progressiveEnvelope
+      boolProper progressiveEmergentRealizes
+      progressiveEmergentCost progressiveEmergentBudget
+      progressiveEmergentCriterion
+      progressiveRepertoire progressiveGenerator
+      progressiveLocalEvolutionByEmergenceCoreCertificate
+
+/-- The same explicit certificate forces the progressive envelope to be
+unbounded, as required by the finite-saturation boundary. -/
+theorem progressive_unboundedEnvelope_via_localCoreCertificate :
+    UnboundedEnvelopeCapacity progressiveEnvelope := by
+  exact
+    evolutionByEmergenceLocalCore_unboundedEnvelope
+      progressiveEnvelope
+      boolProper progressiveEmergentRealizes
+      progressiveEmergentCost progressiveEmergentBudget
+      progressiveEmergentCriterion
+      progressiveRepertoire progressiveGenerator
+      progressiveLocalEvolutionByEmergenceCoreCertificate
+
 theorem progressive_openEnded_via_localEmergenceReproduction :
     OpenEndedCumulativeNovelty progressiveRepertoire := by
   exact
@@ -673,6 +751,10 @@ end ProgressiveLocalWitness
 #print axioms seed_and_uniformLocalCriticalEmergenceReproduction_imply_unboundedEnvelope
 #print axioms uniformlyBoundedEnvelope_rules_out_uniformLocalCriticalEmergenceReproduction
 #print axioms progressive_has_uniformLocalCriticalEmergenceReproduction
+#print axioms progressiveUnitEmergenceFactors_ledger_eq_one
+#print axioms progressive_has_uniformLocalCertifiedCriticalEmergenceReproduction
+#print axioms progressive_openEnded_via_localCoreCertificate
+#print axioms progressive_unboundedEnvelope_via_localCoreCertificate
 #print axioms progressive_openEnded_via_localEmergenceReproduction
 #print axioms progressive_unboundedEnvelope_via_localEmergenceReproduction
 
