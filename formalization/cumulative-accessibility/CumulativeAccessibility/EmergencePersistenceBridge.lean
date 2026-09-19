@@ -94,6 +94,40 @@ theorem resourceValidatedEmergentIntegration_implies_operationalExpansion
   refine ⟨h.1.1, ?_⟩
   exact h.2.1.1
 
+/-- When the same retained emergent capacity is also represented in the
+current envelope and generable from the currently retained repertoire, the
+bridge is exactly a standard `ResourceValidatedSuccessAt` event.  This theorem
+connects emergence to the existing response/uptake stack rather than defining a
+parallel success notion. -/
+theorem resourceValidatedEmergentIntegration_with_generation_implies_resourceValidatedSuccessAt
+    (Proper : Config → Config → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (U : ℕ → Finset Capacity)
+    (H : ℕ → HyperGenerator Capacity)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (m : ℕ)
+    (config : Config)
+    (ctx : Context)
+    (φ : Capacity)
+    (hEnvelope : φ ∈ U m)
+    (hGenerated :
+      GeneratedFromAvailable (fun x => x ∈ S m) (H m) φ)
+    (h :
+      ResourceValidatedEmergentIntegrationAt
+        Proper Realizes Cost Budget E S m config ctx φ) :
+    ResourceValidatedSuccessAt Cost Budget U H E S m := by
+  exact ⟨
+    φ,
+    hEnvelope,
+    h.2.1.1,
+    hGenerated,
+    h.2.2.1,
+    h.2.2.2,
+    h.2.1.2⟩
+
 /-- If the old active repertoire is retained into the next step, an actually
 integrated new capacity makes the next active repertoire a strict expansion. -/
 theorem retainedIntegration_strictly_expands_next
