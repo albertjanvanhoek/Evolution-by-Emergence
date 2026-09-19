@@ -143,7 +143,22 @@ jobs:
           $HOME/.elan/bin/lake build \
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
-            CumulativeAccessibility.DynamicVortexWitness
+            CumulativeAccessibility.DynamicVortexWitness \
+            CumulativeAccessibility.QuantitativeAccessibility \
+            CumulativeAccessibility.IntelligentLearningMaintenance \
+            CumulativeAccessibility.FunctionalRatchetVelocity \
+            CumulativeAccessibility.RatchetVelocityLedger \
+            CumulativeAccessibility.BoundedUpdateRate \
+            CumulativeAccessibility.SearchValidationTradeoff \
+            CumulativeAccessibility.StateDependentAllocation \
+            CumulativeAccessibility.BottleneckAllocation \
+            CumulativeAccessibility.AdaptiveRatePolicy \
+            CumulativeAccessibility.ConstrainedRatePolicy \
+            CumulativeAccessibility.ClosedLoopRateControl \
+            CumulativeAccessibility.FunctionalRatePolicy \
+            CumulativeAccessibility.PolicyImprovement \
+            CumulativeAccessibility.PolicyLearning \
+            CumulativeAccessibility.RateRegret
       - name: Audit integrated theory axioms
         shell: bash
         run: |
@@ -152,6 +167,21 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RatchetVelocityLedger.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedUpdateRate.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/SearchValidationTradeoff.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/StateDependentAllocation.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/BottleneckAllocation.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/AdaptiveRatePolicy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ConstrainedRatePolicy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ClosedLoopRateControl.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatePolicy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PolicyImprovement.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PolicyLearning.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RateRegret.lean
           } 2>&1)"
           printf '%s\n' "$output"
           if grep -q 'sorryAx' <<<"$output"; then

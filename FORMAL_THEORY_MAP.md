@@ -310,6 +310,207 @@ logically separate.
 
 ---
 
+## T7A — quantitative accessibility geometry
+
+**Theory statement.** Future organization has a directed, application-declared
+transition-cost geometry. Retained change can improve future accessibility by
+lowering costs even when the same future state was already possible.
+
+**Formal status:** MC + concrete witness.
+
+**Lean source**
+
+QuantitativeAccessibility.lean
+
+**Core definitions**
+
+- AccessibilityCost
+- AccessibleWithin
+- BudgetSearch
+- NoMoreViscousOn
+- StrictlyLessViscousOn
+- QuantitativeSecondOrderClick
+
+**Selected declarations**
+
+- noMoreViscousOn_refl
+- noMoreViscousOn_trans
+- strictlyLessViscousOn_trans_noMoreViscousOn
+- noMoreViscousOn_trans_strictlyLessViscousOn
+- strictlyLessViscousOn_trans
+- noMoreViscousOn_preserves_budget_access
+- strictlyLessViscousOn_opens_budget_window
+- strictlyLessViscousOn_induces_strictExpansionAtBudget
+- quantitativeSecondOrderClick_implies_secondOrderClick_at_some_budget
+- quantitativeSecondOrderClick_has_cheaper_future
+- viscosityToy_quantitative_click
+- viscosityToy_binary_click_at_budget_one
+
+**Key bridge**
+
+A strict quantitative improvement always creates some budget threshold at
+which at least one declared future target is newly accessible. Hence the v16
+binary SecondOrderClick is recovered as a thresholded special case.
+
+**Modelling boundary.** Lean does not choose the empirical unit of cost or the
+target set. Lower cost is not automatically synonymous with greater value.
+
+---
+
+## T7B — functional organization and ratchet velocity
+
+**Theory statement.** Organizational state and functional target are distinct
+types. An organization induces a target-indexed functional cost geometry; a
+positive retained ratchet step lowers no declared retained target cost and
+strictly lowers at least one. Normalizing functional gain by a positive
+time/resource interval yields ratchet velocity.
+
+**Formal status:** MC + concrete witness.
+
+**Lean sources**
+
+- FunctionalRatchetVelocity.lean
+- RatchetVelocityLedger.lean
+- BoundedUpdateRate.lean
+- SearchValidationTradeoff.lean
+- StateDependentAllocation.lean
+- BottleneckAllocation.lean
+
+**Core definitions**
+
+- FunctionalCost
+- FunctionAccessibleWithin
+- FunctionalRepertoireWithin
+- NoMoreFunctionallyViscousOn
+- StrictlyLessFunctionallyViscousOn
+- FunctionalStepVelocity
+- FunctionalStepRate
+- PositiveFunctionalRateOn
+- FunctionalRateDominatesOn
+- StrictlyFasterFunctionalRateOn
+- AcceleratingFunctionalRatchetOn
+- RetainedSuccessFraction
+- MechanisticRatchetVelocity
+- VelocityLedgerMatches
+- OpportunityGapBound
+- ResourceValidatedSuccessEveryWindow
+- FunctionalGainEveryWindow
+- BoundedMechanismRateFloor
+- SearchValidationVelocity
+- BaselineValidationFraction
+- ValidationBaselineVelocity
+- TwoBaselineAllocationScore
+- TwoBaselineBalancingAllocation
+
+**Selected declarations**
+
+- noMoreFunctionallyViscous_iff_nonnegativeVelocity
+- strictlyLessFunctionallyViscous_iff_positiveVelocity
+- noMoreFunctionallyViscous_preserves_budget_access
+- strictlyLessFunctionallyViscous_opens_budget_window
+- strictlyLessFunctionallyViscous_induces_repertoire_expansion
+- positiveFunctionalVelocity_induces_repertoire_expansion
+- positiveFunctionalVelocity_implies_positiveRate
+- strictlyFasterFunctionalRate_has_target
+- acceleratingFunctionalRatchet_has_faster_target
+- commons_positive_functional_velocity
+- commons_repertoire_expands_at_budget_one
+- mechanisticRatchetVelocity_nonneg
+- mechanisticRatchetVelocity_mono_opportunity
+- mechanisticRatchetVelocity_mono_generation
+- mechanisticRatchetVelocity_mono_resource
+- mechanisticRatchetVelocity_mono_validation
+- mechanisticRatchetVelocity_mono_retention
+- mechanisticRatchetVelocity_mono_meanGain
+- matchedLedger_zero_retention_implies_zero_measuredRate
+- boundedOpportunity_and_response_imply_successEveryWindow
+- supportedCycle3Maintenance_and_boundedResponse_imply_successEveryWindow
+- boundedMechanism_implies_blockAverageRateFloor
+- supportedCycle3Maintenance_implies_blockAverageRateFloor
+- shorterResponseLag_strictlyRaises_rateFloor
+- shorterOpportunityGap_strictlyRaises_rateFloor
+- largerMinimumGain_strictlyRaises_rateFloor
+- searchValidationVelocity_le_quarter
+- searchValidationVelocity_eq_quarter_iff
+- more_search_can_reduce_velocity
+- validationBaselineVelocity_le_stateDependentMaximum
+- validationBaselineVelocity_at_stateDependentOptimum
+- inherited_organization_changes_optimal_allocation
+- twoBaselineAllocationScore_le_balancedUpperBound
+- twoBaselineAllocationScore_at_balancingAllocation
+- balancingAllocation_equalizes_final_capacities
+- searchFarAhead_all_to_validation_is_optimal
+- validationFarAhead_all_to_search_is_optimal
+- inherited_capacity_moves_the_bottleneck
+
+**Key bridge**
+
+A strict target-wise reduction in functional cost implies strict functional
+repertoire expansion at some budget. The primitive object remains the
+vector-valued functional cost/rate profile; no universal scalar complexity or
+amount-of-organization measure is assumed.
+
+**Modelling boundary.** Functional targets, success criteria, resource units,
+environmental matching, and scalar aggregation are application-declared. The
+mechanism ledger is an optional scalar projection with an explicit
+`VelocityLedgerMatches` seam; it is not a universal probabilistic law.
+
+---
+
+## T7C — intelligent learning-maintenance specialization
+
+**Theory statement.** Intelligent networks can be described internally by a
+learning-maintenance process state whose substrate-specific dynamics induce an
+external accessibility-cost geometry.
+
+**Formal status:** MC interface + MODEL/INT interpretation.
+
+**Lean source**
+
+IntelligentLearningMaintenance.lean
+
+**Core definitions**
+
+- LearningVerb
+- ProcessGeometry
+- AppliesVerb
+- ProcessImprovementOn
+- VerbImprovementOn
+- SelfImprovementOn
+- ImprovementProductivity
+- RecursiveSelfImprovementOn
+- FunctionalProcessGeometry
+- MatchedLearningRateImprovementOn
+- RateGroundedRecursiveSelfImprovementOn
+- LearningMechanismCertificate
+- ProcessRateCertificate
+- MechanismGroundedRecursiveSelfImprovementOn
+
+**Selected declarations**
+
+- processImprovement_has_cheaper_future
+- verbImprovement_opens_budget_window
+- selfImprovement_has_cheaper_future
+- recursiveSelfImprovement_implies_selfImprovement
+- recursiveSelfImprovement_increases_productivity
+- rateGroundedRecursiveSelfImprovement_preserves_retained_functions
+- rateGroundedRecursiveSelfImprovement_has_faster_learning_target
+- mechanismGroundedRecursiveSelfImprovement_increases_rateFloor
+- shorterResponseLag_improves_processRateCertificate
+- shorterOpportunityGap_improves_processRateCertificate
+- largerMinimumGain_improves_processRateCertificate
+- endogenous_shorterResponseLag_implies_mechanismGroundedRecursiveSelfImprovement
+
+**Interpretive boundary.** The verb names are not universal causal axioms.
+Claims such as honesty lowering corrective viscosity, repair preserving an
+informative edge, or re-engagement improving long-run learning require an
+application-specific map from process state to geometry and empirical support.
+The rate-grounded recursive definition additionally requires matched starting
+organization, held-out functional targets, positive duration/resource windows,
+and preservation of declared prior function.
+
+---
+
 ## T8 — the dynamic vortex composes the resource and search routes
 
 **Theory statement.** A supportive organizational transition can

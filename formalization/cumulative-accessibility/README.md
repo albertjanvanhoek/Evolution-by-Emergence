@@ -61,6 +61,14 @@ This is a conditional mathematical implication chain. It is **not** a claim that
 
 - `CumulativeAccessibility.lean` — basic accessibility, preservation, strict expansion, costs, margins, and route-level results.
 - `RecursiveAccessibility.lean` — finite search opportunity, retained stepping stones, second-order clicks, and separation of reachable depth from search-operator expansion.
+- `QuantitativeAccessibility.lean` — directed accessibility-cost geometry, plasticity/viscosity order, and recovery of a binary second-order click from strict quantitative improvement at a suitable budget.
+- `FunctionalRatchetVelocity.lean` — separates organizational states from functional targets, defines functional repertoire, target-wise functional gain and duration/resource-normalized ratchet rates, and connects strict functional cost improvement to thresholded repertoire expansion.
+- `RatchetVelocityLedger.lean` — optional mechanism ledger separating opportunity rate, generation, resource feasibility, validation, retention, and mean retained gain; its match to an empirical rate remains an explicit modelling assumption.
+- `BoundedUpdateRate.lean` — first derived speed bridge: bounded opportunity gaps plus bounded validated-response lag imply bounded successful-update gaps; maintained three-cycle support yields the zero-opportunity-gap specialization and, with a minimum-gain seam, a functional-gain guarantee in every finite response window.
+- `SearchValidationTradeoff.lean` — exact unit-budget search/validation trade-off showing an interior optimum rather than monotonic benefit from more search.
+- `StateDependentAllocation.lean` — retained validation infrastructure changes the velocity-maximizing allocation of the next resource unit.
+- `BottleneckAllocation.lean` — symmetric inherited search/validation capacities, interior bottleneck equalization, and boundary all-to-bottleneck allocation regimes.
+- `IntelligentLearningMaintenance.lean` — separate inside specialization mapping intelligent learning-maintenance process states into the outside geometry, including a matched held-out rate-grounded definition of recursive self-improvement.
 - `EvolvabilityStructure.lean` — candidate-set ordering, functional projection, and recombination.
 - `GenerativeArity.lean` — finite-parent generators and unary versus multi-parent generation.
 - `ModuleGeneratedEvolvability.lean` — search expansion from retained parent material.
@@ -73,7 +81,88 @@ A minimal checked example is:
 a → b → c
 ```
 
-where `c` is unavailable after one retained generative round but becomes available after two once `b` has been generated and retained.
+where c is unavailable after one retained generative round but becomes available after two once b has been generated and retained.
+
+### Quantitative accessibility and viscosity
+
+QuantitativeAccessibility.lean lifts binary accessibility to a declared
+directed cost geometry:
+
+    AccessibilityCost x z = cost of future transition x -> z
+    AccessibleWithin Cost B x z := Cost x z <= B
+
+A new condition is **no more viscous** than an old one on a target set when all
+declared future costs weakly decrease. It is **strictly less viscous** when at
+least one declared target becomes strictly cheaper.
+
+Lean checks:
+
+    strict quantitative cost improvement
+            ↓
+    some target becomes affordable at a budget where it was previously unaffordable
+            ↓
+    strict expansion of the budget-thresholded search family
+
+For a single state-dependent cost geometry this yields:
+
+    QuantitativeSecondOrderClick
+            ↓
+    exists B, SecondOrderClick at budget B
+
+Thus the weighted geometry strictly generalizes the existing binary
+second-order-accessibility interface.
+
+FunctionalRatchetVelocity.lean then separates the organizational-state type
+from the functional-target type:
+
+    FunctionalCost sigma phi := sigma -> phi -> Real
+
+This allows a network state to be distinguished from what the network can do.
+The primitive outside object is a target-indexed functional cost profile rather
+than a universal scalar complexity measure. Lean checks:
+
+    strict retained functional cost improvement
+            ↓
+    positive target-wise functional gain
+            ↓
+    strict functional-repertoire expansion at some budget
+
+For positive declared duration/resource interval Δ, the gain is normalized into
+a functional rate. Matched episodes can therefore be compared even when their
+durations differ.
+
+The allocation modules then make one source of non-monotonicity and
+state-dependence explicit. Under a shared unit resource, search and validation
+cannot both be increased independently. The symmetric reduced model has
+`v(x)=x(1-x)`; inherited stage capacities shift the optimizer, and the
+two-baseline model proves a classical bottleneck-equalization rule. These are
+toy mechanism models, not universal optimization laws.
+
+RatchetVelocityLedger.lean adds the conditional specialization
+
+    v_ledger = opportunityRate
+               * pGenerate
+               * pResource
+               * pValidate
+               * pRetain
+               * meanGain
+
+with an explicit `VelocityLedgerMatches` predicate separating the measured rate
+from the ledger. Lean checks zero-bottleneck and ceteris-paribus monotonicity
+results; it does not infer that this product is the correct empirical model in
+every domain.
+
+IntelligentLearningMaintenance.lean is deliberately separate. It introduces an
+internal process state P, a map from process state to accessibility geometry,
+labelled learning verbs, endogenous self-improvement, and recursive
+self-improvement. The labels do not carry universal monotonic effects: an
+application must justify how its process state changes the external cost
+geometry.
+
+The stronger rate-grounded recursive interface starts old and self-modified
+learning episodes from the same organization, preserves declared prior
+functions, and requires the new process's normalized held-out functional-rate
+profile to weakly dominate the old one with at least one strict improvement.
 
 ### Finite saturation
 
@@ -307,7 +396,9 @@ lake build \
   CumulativeAccessibility.MaintenanceGatedWitness \
   CumulativeAccessibility.BoundedResponseWitness \
   CumulativeAccessibility.EndogenousBudgetWitness \
-  CumulativeAccessibility.DynamicVortexWitness
+  CumulativeAccessibility.DynamicVortexWitness \
+  CumulativeAccessibility.QuantitativeAccessibility \
+  CumulativeAccessibility.IntelligentLearningMaintenance
 ```
 
 To inspect the printed axioms directly:
@@ -320,6 +411,8 @@ lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
 lake env lean CumulativeAccessibility/EndogenousBudgetWitness.lean
 lake env lean CumulativeAccessibility/DynamicVortex.lean
 lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
+lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
 ```
 
 A formal-core verification should fail review if any audited output contains `sorryAx`.

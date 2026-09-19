@@ -503,6 +503,363 @@ Retained history allows those changes to compose across multiple steps.
 
 ---
 
+# 11A. Layer 7A — quantitative accessibility geometry
+
+Binary accessibility records whether a future state is exposed. But organization
+can change the **cost** of future change even when the same future state was
+already possible.
+
+The quantitative extension assigns a directed transition cost
+
+\[
+C_t(x,y\mid R_t,E_t)
+\]
+
+to realizing future organization \(y\) from current organization \(x\), under
+environment \(E_t\), while preserving a declared retained repertoire \(R_t\).
+
+The cost is application-specific. It may represent time, energy, information,
+training updates, coordination burden, relationship risk, or another operational
+resource. It need not be symmetric and need not satisfy a triangle inequality.
+
+For budget \(B\), define the thresholded accessible set
+
+\[
+\mathcal A_t(x;B)
+=
+\{y:C_t(x,y)\le B\}.
+\]
+
+A quantitative second-order improvement occurs when a retained organizational
+change makes every declared target no more costly and at least one target
+strictly cheaper:
+
+\[
+C_{t+1}(y)\le C_t(y)
+\]
+
+for all declared targets, with
+
+\[
+C_{t+1}(y^\star)<C_t(y^\star)
+\]
+
+for at least one \(y^\star\).
+
+Lean proves that any such strict cost improvement creates a budget threshold at
+which the cheaper target is inaccessible before and accessible afterward.
+Therefore the existing binary SecondOrderClick is recovered as a thresholded
+special case of the quantitative geometry.
+
+This adds a distinction that is important throughout the theory:
+
+\[
+\boxed{
+\text{same logical possibility}
+\neq
+\text{same practical accessibility}.
+}
+\]
+
+It also gives a substrate-independent meaning to **plasticity** and
+**viscosity**. Plasticity concerns low-cost adaptive reconfiguration; viscosity
+concerns resistance or cost of reconfiguration. These are directional and
+target-dependent properties, not necessarily single scalar properties of an
+entire system.
+
+Formal source:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/QuantitativeAccessibility.lean
+
+---
+
+# 11B. Layer 7B — functional organization and ratchet velocity
+
+The quantitative geometry above treats future organizations as targets. For
+many applications, however, the organization and what that organization can
+**do** are different kinds of object.
+
+Let
+
+\[
+s_t\in\Sigma
+\]
+
+denote organizational state and let
+
+\[
+f\in\Phi
+\]
+
+denote a declared functional target. Define
+
+\[
+C_t(s_t,f)
+\]
+
+as the performance/evaluation cost of reliably realizing function \(f\) with
+the current organization \(s_t\), under declared environmental conditions.
+By default this does **not** include the future training or reorganization cost
+needed to acquire \(f\). That separate acquisition problem belongs to the
+organizational accessibility geometry in Layer 7A.
+
+This separation matters. A neural configuration is not the same object as
+"understand this French sentence". An ecological community is not the same
+object as "cycle nitrogen". A scientific institution is not the same object as
+"detect this class of error".
+
+A functional target should therefore be operationalized by a declared test:
+an intervention/input family, an observable success criterion, an allowed error
+level, and the context in which the test applies. Schematically,
+
+\[
+C_t(s,f)
+=
+\inf\left\{
+r:
+\Pr(S_f\mid do(I_f),s,r)\ge 1-\varepsilon_f
+\right\}.
+\]
+
+For budget \(B\), the functional repertoire is
+
+\[
+\mathcal F_t(B)
+=
+\{f:C_t(s_t,f)\le B\}.
+\]
+
+The primitive moving object is not a universal scalar "amount of organization".
+It is the target-indexed **functional cost profile**
+
+\[
+\mathbf C_t
+=
+\big(C_t(s_t,f)\big)_{f\in\Phi}.
+\]
+
+For one interval define functional gain
+
+\[
+g_t(f)
+=
+C_t(s_t,f)-C_{t+1}(s_{t+1},f).
+\]
+
+For a positive declared time or resource interval \(\Delta_t\), define
+normalized ratchet velocity
+
+\[
+\boxed{
+v_t(f)=\frac{g_t(f)}{\Delta_t}.
+}
+\]
+
+A strong positive ratchet step is Pareto-like on a declared retained target
+family: no target becomes more costly and at least one becomes strictly cheaper.
+Lean proves that such a step necessarily creates a budget threshold at which
+the declared functional repertoire strictly expands.
+
+Ratchet acceleration is then a statement about **rates**, not merely about a
+later state being better. Across matched or explicitly normalized episodes, the
+later rate profile must weakly dominate the earlier one and strictly dominate it
+for at least one declared target.
+
+This formulation deliberately keeps the fundamental object vector-valued.
+Scalar summaries are allowed, but only after an application declares its target
+family, measure, weights, budget, and aggregation rule.
+
+The outside research question is therefore:
+
+\[
+\boxed{
+\text{What determines the velocity at which a commons acquires retained
+functional organization?}
+}
+\]
+
+Candidate control parameters include resource throughput, proposal/variation
+rate, recombination, validation fidelity, retention, modularity, differentiation,
+interaction topology, delay, repair, diversity, and coordination cost. Their
+effects need not be monotone; the target is a regime-dependent theory of
+ratchet velocity.
+
+A first optional mechanism ledger separates one scalar projection of that
+velocity into
+
+\[
+v_{\mathrm{ledger}}
+=
+\lambda\,p_G\,p_R\,p_V\,p_T\,\bar g,
+\]
+
+where the factors represent opportunity rate, conditional generation, resource
+feasibility, validation, retention, and mean retained functional gain. If the
+fractions are conditional probabilities, no independence assumption is needed.
+The ledger has an explicit modelling seam: the universal theory does **not**
+assert that every real system is represented by this product. Its purpose is to
+expose candidate bottlenecks that domain models can derive or estimate.
+
+A first part of that derivation is now explicit. Qualitative recurring
+opportunity does not imply a positive speed floor because waiting times can grow
+without bound. If instead opportunities have a maximum waiting time `K`, and
+every opportunity receives a resource-feasible validated response within lag
+`Δ`, then Lean proves that every window of width
+
+\[
+K+\Delta+1
+\]
+
+contains a validated retained update.
+
+For the canonical maintained three-cycle, quantitative support holds at every
+indexed time. Under an explicit support→opportunity connection this gives
+`K=0`, hence one validated update in every `Δ+1` window. If an application
+also proves at least `g_{\min}` functional gain per validated update, the same
+window contains at least that gain.
+
+If the chosen retained functional target is non-worsening between
+certified successes, the window theorem sharpens to an actual block-average
+rate bound:
+
+\[
+\boxed{
+\bar v_k(f)
+\ge
+\frac{g_{\min}}{K+\Delta+1}.
+}
+\]
+
+The strong per-step functional ratchet condition supplies this nonnegative
+target-gain premise for any declared retained target.
+
+The resulting guaranteed-rate floor has machine-checked comparative statics:
+increasing `g_min`, decreasing the maximum opportunity wait `K`, or
+decreasing validated-response lag `Δ` raises the floor; the corresponding
+strict changes raise it strictly under positive gain.
+
+This is the first formal notion of mechanism-level acceleration in the stack.
+It is an acceleration of the **guaranteed lower bound**, not by itself proof
+that the realized trajectory's observed velocity increased.
+
+This produces a first genuine mechanism-to-speed bridge while preserving the
+distinctions
+
+\[
+\boxed{
+\text{open-endedness}
+\neq
+\text{positive rate floor}
+\neq
+\text{realized acceleration}.
+}
+\]
+
+The ceteris-paribus monotonicity of individual ledger coordinates does not mean
+that system velocity is monotone in every underlying control parameter.
+Mechanisms can couple ledger coordinates through shared constraints.
+
+A minimal exact specialization allocates a unit processing budget between
+candidate generation/search and validation. Let \(x\in[0,1]\) be the search
+share and \(1-x\) the validation share, with all other ledger factors fixed.
+Then
+
+\[
+v(x)=x(1-x).
+\]
+
+Lean proves
+
+\[
+0\le v(x)\le\frac14
+\]
+
+on the feasible interval, with a unique maximum at
+
+\[
+x=\frac12.
+\]
+
+Velocity increases with search allocation below the midpoint and decreases
+above it. At pure search \(x=1\), retained ledger velocity is zero because
+nothing is allocated to validation.
+
+This is not a universal law or a new statement of the established
+stability--plasticity dilemma. It is an exact reduced-model witness inside the
+EbE rate ledger showing:
+
+\[
+\boxed{
+\text{more search/plasticity}
+\not\Rightarrow
+\text{faster retained functional change}
+}
+\]
+
+when search competes with another necessary stage.
+
+The symmetric optimum is itself state-dependent. Let `s` and `v` denote
+retained search/generation and validation capacity already present before one
+new resource unit is allocated. In a reduced multiplicative throughput model,
+
+\[
+Q(s,v,x)=(s+x)(v+1-x).
+\]
+
+The unconstrained balancing allocation is
+
+\[
+\boxed{
+x^*(s,v)=\frac{1+v-s}{2}.
+}
+\]
+
+When this lies in `[0,1]`, Lean proves that it attains the global algebraic
+upper bound and exactly equalizes final stage capacities:
+
+\[
+s+x^*=v+1-x^*.
+\]
+
+If search is already at least one full new-resource unit ahead of validation,
+the optimum over the feasible interval is the boundary `x=0`: all new
+resource goes to validation. The converse holds symmetrically.
+
+This is classical bottleneck/water-filling mathematics, not a novelty claim.
+Its role in EbE is to expose a recursive dependence:
+
+\[
+\boxed{
+\text{retained organization}
+\to
+\text{changed rate landscape}
+\to
+\text{changed next allocation}
+\to
+\text{new retained organization}.
+}
+\]
+
+Organization is therefore not only an accumulated output of the ratchet. It can
+be installed capacity that changes the marginal value of the next adaptive
+investment. The rate-maximizing control variable is a function of state, not a
+universal constant.
+
+Formal sources:
+
+- formalization/cumulative-accessibility/CumulativeAccessibility/FunctionalRatchetVelocity.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/RatchetVelocityLedger.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/BoundedUpdateRate.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/SearchValidationTradeoff.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/StateDependentAllocation.lean
+- formalization/cumulative-accessibility/CumulativeAccessibility/BottleneckAllocation.lean
+
+Working paper:
+
+papers/functional-organization-ratchet-velocity/
+
+---
+
 # 12. Layer 8 — the full vortex
 
 The current integrated formal core joins the resource route to the
@@ -842,6 +1199,111 @@ It is not a theorem that every persistent system is intelligent, or that
 corrigibility is morally obligatory.
 
 The descriptive and normative steps must remain separate.
+
+## Inside translation: intelligent learning-maintenance processes
+
+Quantitative accessibility supplies the **outside** description of learning:
+the current organization induces a directed plasticity/viscosity geometry over
+future organization.
+
+Intelligent networks permit a complementary **inside** description. Let \(P_t\)
+denote the state of processes through which a learning network encounters,
+tests, corrects, repairs, retains, and recombines information. An
+application-specific map
+
+\[
+\boxed{
+C_t=\Gamma(P_t,X_t,E_t)
+}
+\]
+
+connects those internal processes to the outside accessibility geometry.
+
+For human or artificial learning networks, useful internal verbs can include:
+
+- seek and encounter;
+- listen;
+- signal faithfully;
+- expose uncertainty;
+- test;
+- revise;
+- maintain informative disagreement;
+- repair;
+- re-engage after demonstrated repair;
+- retain;
+- recombine.
+
+These verbs are **not** added to the universal EbE theorem as moral or causal
+axioms. Their effects require substrate-specific models or empirical tests.
+
+The two descriptions serve different roles:
+
+\[
+\boxed{
+\text{OUTSIDE: functional accessibility geometry and ratchet velocity}
+\quad\Longleftrightarrow\quad
+\text{INSIDE: processes that alter that velocity}.
+}
+\]
+
+Ordinary learning changes current capability. Learning-to-learn changes
+\(P_t\) so that future functional acquisition becomes cheaper or faster.
+Self-improvement requires the system itself to generate and apply the process
+intervention that produces the improvement.
+
+The preferred operational form of **recursive self-improvement** is stronger.
+Start matched learning episodes from the same organization, hold the declared
+held-out target family fixed, normalize by positive time/resource intervals,
+and compare the old and self-modified learning processes. The new process must
+preserve declared prior functions, be no slower on the declared held-out
+targets, and be strictly faster on at least one:
+
+\[
+v_{P_{t+1}}(f)\ge v_{P_t}(f)
+\quad\forall f\in\Phi_L,
+\]
+
+with strict inequality somewhere.
+
+This does not imply runaway acceleration. Resource limits, interference,
+increasing target difficulty, loss of diversity, or finite physical throughput
+can make later velocity plateau or fall.
+
+A complementary **mechanism-level** test is now formalized. An application can
+associate each learning-maintenance process state with a certificate
+
+\[
+(K,\Delta,g_{\min}),
+\]
+
+where \(K\) bounds opportunity wait, \(\Delta\) bounds validated-response
+lag, and \(g_{\min}\) lower-bounds retained functional gain per declared
+success. Its conservative rate floor is
+
+\[
+v_{\min}
+=
+\frac{g_{\min}}{K+\Delta+1}.
+\]
+
+A self-generated process change is mechanism-grounded recursive
+self-improvement when it preserves declared prior function and strictly raises
+this justified floor. Lean checks three elementary sufficient routes when the
+other coordinates are held fixed: shorter \(K\), shorter \(\Delta\), or
+larger \(g_{\min}\).
+
+This is not interchangeable with the matched held-out-rate test. The certificate
+test concerns a guaranteed lower bound implied by a mechanism model; the
+matched-episode test concerns realized learning performance. Their agreement is
+an empirical question.
+
+Formal specialization:
+
+formalization/cumulative-accessibility/CumulativeAccessibility/IntelligentLearningMaintenance.lean
+
+Working paper:
+
+papers/learning-conditions-for-learning/
 
 ---
 
