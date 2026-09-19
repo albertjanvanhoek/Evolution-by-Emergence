@@ -196,37 +196,43 @@ witness makes it strictly expand.
 
 **Lean source**
 
-- `SelfMaintenanceLeverage.lean`
+- \`SelfMaintenanceLeverage.lean\`
 
 **Selected declarations**
 
-- `slack_improvement_preserves_energetic_tolerance`
-- `strict_slack_improvement_opens_energetic_buffer`
-- `strict_slack_gain_is_budget_and_buffer_gain`
-- `selfMaintenanceLeverage_preserves_slackFundedAccess`
-- `selfMaintenanceLeverage_strictly_expands_with_witness`
-- `slack_and_cost_leverage_open_target`
-- `lifetimeAdaptiveBudget_mono`
-- `lifetimeAdaptiveBudget_strict_of_slack_gain`
-- `leverageToy_strict_access_expansion`
-- `leverageToy_budget_and_buffer_gain`
+- \`slack_improvement_preserves_energetic_tolerance\`
+- \`strict_slack_improvement_opens_energetic_buffer\`
+- \`strict_slack_gain_is_budget_and_buffer_gain\`
+- \`selfMaintenanceLeverage_preserves_slackFundedAccess\`
+- \`selfMaintenanceLeverage_strictly_expands_with_witness\`
+- \`slack_and_cost_leverage_open_target\`
+- \`lifetimeAdaptiveBudget_mono\`
+- \`lifetimeAdaptiveBudget_strict_of_slack_gain\`
+- \`leverageToy_strict_access_expansion\`
+- \`leverageToy_budget_and_buffer_gain\`
 
 **Logical core**
 
 For state-local slack
-[
-L(s)=mathcal U(s,g)-mathcal M(s),
-]
-positive reinvestment (eta>0), and
-[
+
+\[
+L(s)=\mathcal U(s,g)-\mathcal M(s),
+\]
+
+positive reinvestment \(\beta>0\), and
+
+\[
 L(s_0)<L(s_1),
-]
+\]
+
 the checked ledger gives both
-[
-eta L(s_0)<eta L(s_1)
-]
-and a nonempty interval of additional energetic burdens tolerated at (s_1)
-but not at (s_0).
+
+\[
+\beta L(s_0)<\beta L(s_1)
+\]
+
+and a nonempty interval of additional energetic burdens tolerated at \(s_1\)
+but not at \(s_0\).
 
 If additionally no declared future target becomes more costly, every target
 affordable from old slack remains affordable from new slack.
@@ -315,33 +321,102 @@ implies open-ended cumulative novelty.
 
 **Lean source**
 
-- `SelfMaintenanceLeverage.lean`
+- \`SelfMaintenanceLeverage.lean\`
 
 **Selected declarations**
 
-- `RecursiveEmergenceSuccessorWithin`
-- `recursiveEmergenceSuccessorWithin_iterates`
-- `seed_and_successorWithin_imply_recurringRecursiveEmergence`
-- `seed_and_successorWithin_imply_openEndedNovelty`
-- `progressive_has_recursiveEmergenceSuccessorWithin_zero`
-- `progressive_openEnded_via_local_chainReaction`
+- \`RecursiveEmergenceSuccessorWithin\`
+- \`recursiveEmergenceSuccessorWithin_iterates\`
+- \`seed_and_successorWithin_imply_recurringRecursiveEmergence\`
+- \`seed_and_successorWithin_imply_openEndedNovelty\`
+- \`progressive_has_recursiveEmergenceSuccessorWithin_zero\`
+- \`progressive_openEnded_via_local_chainReaction\`
 
 **Logical direction**
 
-[
-	ext{seed}
+\[
+\text{seed}
 +
-igl(	ext{every recursive event has a later child-reusing successor}igr)
-Rightarrow
-	ext{recurrent recursive emergence}
-Rightarrow
-	ext{open-ended retained novelty}.
-]
+\bigl(\text{every recursive event has a later child-reusing successor}\bigr)
+\Rightarrow
+\text{recurrent recursive emergence}
+\Rightarrow
+\text{open-ended retained novelty}.
+\]
 
 **Boundary.** Slack gain and cheaper future access do not by themselves prove
 the successor rule. The rule still contains generation, external validation,
 and retention. Closing that empirical/mechanistic seam is the next research
 problem.
+
+---
+
+## T5B — emergence reproduction number and criticality
+
+**Theory statement.** In a finite declared capacity universe, the deterministic
+effective emergence reproduction number \(R_E\) is the actual number of
+distinct immediate recursive-emergence successors of one retained child.
+
+\[
+R_E=0
+\]
+
+means no immediate effective successor,
+
+\[
+R_E\ge 1
+\]
+
+is exactly the continuation threshold, and
+
+\[
+R_E>1
+\]
+
+guarantees at least two distinct immediate successor branches.
+
+**Formal status:** MC for the deterministic finite-capacity specialization;
+MODEL/EXT for stochastic and arbitrary-type next-generation interpretations.
+
+**Lean source**
+
+- \`EmergenceReproduction.lean\`
+
+**Selected declarations**
+
+- \`ImmediateRecursiveEmergenceSuccessors\`
+- \`EffectiveEmergenceSuccessorCount\`
+- \`EffectiveEmergenceReproductionNumber\`
+- \`one_le_effectiveEmergenceSuccessorCount_iff_exists\`
+- \`one_le_effectiveEmergenceReproductionNumber_iff_exists\`
+- \`supercritical_effectiveEmergenceReproduction_has_two_successors\`
+- \`UniformCriticalEmergenceReproduction\`
+- \`uniformCriticalEmergenceReproduction_implies_successorWithin_zero\`
+- \`seed_and_uniformCriticalEmergenceReproduction_imply_openEndedNovelty\`
+
+The mechanism ledger is kept separate:
+
+\[
+R_E^{\rm ledger}
+=
+\tau\lambda p_Gp_Rp_Vp_T,
+\]
+
+where \(\tau\) is a declared persistence/search window, \(\lambda\) is
+opportunity rate, and the \(p\)'s are conditional generation, resource,
+validation, and retention fractions.
+
+The ledger is not identified with the actual successor count. A separate
+\`ReproductionLedgerCertifiedLowerBound\` seam is required before
+\(R_E^{\rm ledger}\ge1\) can certify an actual deterministic successor.
+
+**Boundary.** In a stochastic branching interpretation, an expected
+reproduction number greater than one does not imply deterministic continuation.
+The corresponding positive-survival-probability theorem requires explicit
+branching/independence or conditional-law assumptions and is not yet
+machine-checked here. The general multitype spectral-radius threshold is
+classical external next-generation-operator mathematics rather than a new EbE
+claim.
 
 ---
 
