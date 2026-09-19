@@ -493,6 +493,118 @@ theorem seed_and_retention_without_criticality_not_enough :
 
 end SeparationCriticality
 
+section SeparationRetention
+
+/-- Infinite recursive turnover without accumulation: at time `n` exactly
+capacity `n` is active. -/
+def turnoverRepertoire (n : ℕ) : Finset ℕ := {n}
+
+/-- The current capacity generates the next one and then disappears from the
+active repertoire. -/
+def turnoverGenerator (n : ℕ) : HyperGenerator ℕ :=
+  fun parents child => n ∈ parents ∧ child = n + 1
+
+def turnoverRealizes : CapacityRelation Bool ℕ ℕ :=
+  fun config ctx child => config = true ∧ child = ctx + 1
+
+def turnoverCost : ResponseCost ℕ := fun _ _ => 0
+
+def turnoverBudget : ResponseBudget := fun _ => 0
+
+def turnoverCriterion : ExternalCriterion ℕ := fun _ _ => True
+
+/-- Every turnover transition is a full recursive-emergence step. -/
+theorem turnover_recursiveEmergenceStep
+    (n : ℕ) :
+    RecursiveEmergenceStepAt
+      boolProper turnoverRealizes
+      turnoverCost turnoverBudget turnoverCriterion
+      turnoverRepertoire turnoverGenerator
+      n n (n + 1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · simp [turnoverRepertoire]
+  · refine ⟨{n}, by simp, ?_, ?_⟩
+    · intro x hx
+      have hxn : x = n := by simpa using hx
+      subst x
+      simp [turnoverRepertoire]
+    · simp [turnoverGenerator]
+  · refine ⟨true, n, ?_⟩
+    constructor
+    · constructor
+      · simp [turnoverRealizes]
+      · intro part hProper hPart
+        have hPartFalse : part = false := hProper.1
+        subst part
+        simp [turnoverRealizes] at hPart
+    · refine ⟨?_, ?_, ?_⟩
+      · simp [RetainedIntegrationAt, turnoverRepertoire]
+      · simp [ResourceFeasibleAt, turnoverCost, turnoverBudget,
+          AccessibleByCost]
+      · simp [turnoverCriterion]
+
+/-- Recursive emergence occurs at every indexed time even though the repertoire
+turns over instead of retaining prior organization. -/
+theorem turnover_has_recurringRecursiveEmergence :
+    RecurringRecursiveEmergence
+      boolProper turnoverRealizes
+      turnoverCost turnoverBudget turnoverCriterion
+      turnoverRepertoire turnoverGenerator := by
+  intro n
+  exact ⟨n, n, n + 1, le_rfl, turnover_recursiveEmergenceStep n⟩
+
+/-- The turnover repertoire is not monotone retained. -/
+theorem turnover_not_retained :
+    ¬ (∀ n, turnoverRepertoire n ⊆ turnoverRepertoire (n + 1)) := by
+  intro h
+  have h0 := h 0
+  have hz : 0 ∈ turnoverRepertoire 0 := by
+    simp [turnoverRepertoire]
+  have hzNext := h0 hz
+  simp [turnoverRepertoire] at hzNext
+
+/-- No turnover transition counts as a strict retained-set expansion, because
+the singleton at time n is not a subset of the singleton at time n+1. -/
+theorem turnover_strictExpansionCount_zero :
+    ∀ N, strictExpansionCount turnoverRepertoire N = 0 := by
+  intro N
+  induction N with
+  | zero =>
+      simp [strictExpansionCount]
+  | succ N ih =>
+      have hNot :
+          ¬ turnoverRepertoire N ⊂ turnoverRepertoire (N + 1) := by
+        intro hStrict
+        have hMember : N ∈ turnoverRepertoire N := by
+          simp [turnoverRepertoire]
+        have hNext := hStrict.1 hMember
+        simp [turnoverRepertoire] at hNext
+      rw [strictExpansionCount]
+      simp [hNot, ih]
+
+theorem turnover_not_openEnded :
+    ¬ OpenEndedCumulativeNovelty turnoverRepertoire := by
+  intro hOpen
+  obtain ⟨N, hN⟩ := hOpen 1
+  rw [turnover_strictExpansionCount_zero N] at hN
+  omega
+
+/-- Dropping retention separates endless recursive emergence from cumulative
+novelty: the process can keep producing new successors forever while replacing
+rather than accumulating its operational repertoire. -/
+theorem recurringRecursiveEmergence_without_retention_not_cumulative :
+    RecurringRecursiveEmergence
+      boolProper turnoverRealizes
+      turnoverCost turnoverBudget turnoverCriterion
+      turnoverRepertoire turnoverGenerator
+    ∧ ¬ (∀ n, turnoverRepertoire n ⊆ turnoverRepertoire (n + 1))
+    ∧ ¬ OpenEndedCumulativeNovelty turnoverRepertoire := by
+  exact ⟨turnover_has_recurringRecursiveEmergence,
+    turnover_not_retained,
+    turnover_not_openEnded⟩
+
+end SeparationRetention
+
 #print axioms uniformCertifiedCritical_implies_uniformCritical
 #print axioms evolutionByEmergenceCore_openEnded
 #print axioms selfMaintenanceOpening_consequences
@@ -503,6 +615,9 @@ end SeparationCriticality
 #print axioms oneShot_seed
 #print axioms oneShot_not_uniformCritical
 #print axioms seed_and_retention_without_criticality_not_enough
+#print axioms turnover_recursiveEmergenceStep
+#print axioms turnover_has_recurringRecursiveEmergence
+#print axioms recurringRecursiveEmergence_without_retention_not_cumulative
 
 end RecursiveAccessibility
 end CumulativeAccessibility
