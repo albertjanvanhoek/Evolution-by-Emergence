@@ -1,10 +1,10 @@
-# Evolution by Emergence v17 — Recursive Organization Core (UNRELEASED)
+# Evolution by Emergence v17 — Recursive Organization Core
 
-**Status:** candidate integration and peer-review preparation on PR #60. This is not yet an immutable release.
+`v17` is the fixed peer-review release of the recursive-organization formal core developed through PRs #56–#60.
 
 The v17 work does not seek a priority claim. Its target is a self-standing, machine-auditable, literature-positioned descriptive core that can underpin the repository's papers and essays while keeping empirical mappings and normative premises outside the proof kernel.
 
-## Candidate v17 formal endpoint
+## v17 formal endpoint
 
 The canonical candidate core is now documented in:
 
@@ -100,7 +100,7 @@ The v17 object is not ready to tag merely because CI is green. Broad review requ
 5. a fixed reviewer path and review protocol;
 6. a frozen commit/release so all reviewers inspect the same object.
 
-Until those gates are closed, **v16 remains the latest immutable release**.
+The prior-art and cold-reader preflights are complete, and the release is published only from the exact `main` commit that passes the repository's deployment workflow. `v17` is therefore the recommended immutable object for review of the recursive-organization core.
 
 ---
 
@@ -424,3 +424,21 @@ The repository remains open access under its existing licensing terms. The
 release tag contains the theory documents, Lean sources, paper packages,
 audits, review protocol, release metadata, and reproducibility instructions
 needed to inspect the theory as one fixed research object.
+
+
+## Final preflight status
+
+Before release:
+
+- the targeted prior-art preflight found no equal-or-stronger full duplicate, while identifying generative RAF/SOR, open-ended-evolution opportunity creation, and co-evolving technological/search-space models as the strongest antecedents;
+- the cold-reader semantic/navigation preflight reconstructed the theory from the repository alone and prompted clarification of persistence, historical-trace, recurrence, and local-envelope semantics;
+- the canonical v17 Lean code checkpoint passed the full proof workflow and no-`sorryAx` audit;
+- the release workflow is configured to tag only the exact `main` commit whose **Build & Deploy Site** workflow succeeds.
+
+For broad review, use the immutable `v17` tag and record its commit SHA.
+
+## Release lineage
+
+- **v15 — Verification Closure**
+- **v16 — Full Theory Peer-Review Release**
+- **v17 — Recursive Organization Core**
