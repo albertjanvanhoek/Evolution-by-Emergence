@@ -254,13 +254,16 @@ adjacent possible.
 **Classification:** direct mechanism antecedent; EbE may sharpen the event
 factorization.
 
-## 7. Winters & Charbonneau 2025 — technological systems and search spaces co-evolve
+## 7. Winters & Charbonneau 2026 — cultural systems and search spaces co-evolve
 
 **Reference**
 
 Winters J, Charbonneau M.
-*Modelling the emergence of open-ended technological evolution.*
-arXiv:2508.04828 (2025).
+*Modelling the emergence of open-ended cultural evolution.*
+Philosophical Transactions of the Royal Society B. 2026;381:20250255.
+doi:10.1098/rstb.2025.0255.
+
+An earlier 2025 preprint circulated under the title *Modelling the emergence of open-ended technological evolution* (arXiv:2508.04828).
 
 **Why it matters**
 
@@ -283,7 +286,10 @@ strong novelty claim.
 
 The current EbE stack is not primarily a macro-dynamical simulation. It is a
 Lean-checked sufficient-condition architecture with explicit event interfaces
-and countermodels.
+and countermodels. The published Winters-Charbonneau model is nevertheless a
+particularly important contemporary comparison because it explicitly represents
+both the evolving cultural repertoire and the evolving search space, and embeds
+resource production and selection-like maintenance in that co-evolution.
 
 A useful future comparison is to ask whether EbE's event-level decomposition can
 be instantiated inside or used to analyze the Winters-Charbonneau model.
