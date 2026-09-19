@@ -432,6 +432,47 @@ theorem seed_and_successorWithin_imply_openEndedNovelty
 
 end RecursiveContinuation
 
+section ProgressiveContinuationWitness
+
+/-- In the existing progressive architecture, every recursive-emergence event
+has an immediate recursive-emergence successor. The generator equation forces
+the current child to be exactly `m+1`, which is then reused as parent at the
+next indexed step.
+
+This is a non-vacuity witness for the local chain-reaction premise. -/
+theorem progressive_has_recursiveEmergenceSuccessorWithin_zero :
+    RecursiveEmergenceSuccessorWithin
+      0
+      boolProper progressiveEmergentRealizes
+      progressiveEmergentCost progressiveEmergentBudget
+      progressiveEmergentCriterion
+      progressiveRepertoire progressiveGenerator := by
+  intro m parent child hStep
+  rcases hStep.2.1 with ⟨parents, hParent, hAvailable, hRule⟩
+  have hChild : child = m + 1 := hRule.2
+  subst child
+  refine ⟨m + 1, m + 2, le_rfl, ?_, ?_⟩
+  · simp
+  · simpa [Nat.add_assoc] using
+      progressive_recursiveEmergenceStep (m + 1)
+
+/-- The progressive architecture is therefore open-ended through the stronger
+local chain-reaction route: one seed event plus immediate successor realization
+at every recursive-emergence event. -/
+theorem progressive_openEnded_via_local_chainReaction :
+    OpenEndedCumulativeNovelty progressiveRepertoire := by
+  exact seed_and_successorWithin_imply_openEndedNovelty
+    0
+    boolProper progressiveEmergentRealizes
+    progressiveEmergentCost progressiveEmergentBudget
+    progressiveEmergentCriterion
+    progressiveRepertoire progressiveGenerator
+    progressiveRepertoire_retained
+    (progressive_recursiveEmergenceStep 0)
+    progressive_has_recursiveEmergenceSuccessorWithin_zero
+
+end ProgressiveContinuationWitness
+
 section MinimalLeverageWitness
 
 inductive LeverageState
@@ -534,6 +575,8 @@ end MinimalLeverageWitness
 #print axioms recursiveEmergenceSuccessorWithin_iterates
 #print axioms seed_and_successorWithin_imply_recurringRecursiveEmergence
 #print axioms seed_and_successorWithin_imply_openEndedNovelty
+#print axioms progressive_has_recursiveEmergenceSuccessorWithin_zero
+#print axioms progressive_openEnded_via_local_chainReaction
 #print axioms leverageToy_selfMaintenanceLeverage
 #print axioms leverageToy_newCapacity_opens
 #print axioms leverageToy_strict_access_expansion
