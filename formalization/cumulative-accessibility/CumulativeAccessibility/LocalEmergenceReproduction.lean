@@ -51,7 +51,7 @@ theorem finiteCapacity_uniformCriticalEmergenceReproduction_impossible
     intro n x hx
     simp
   have hBound :
-      ∀ n, ((fun _ => (Finset.univ : Finset Capacity)) n).card
+      ∀ n : ℕ, ((fun _ => (Finset.univ : Finset Capacity)) n).card
         ≤ Fintype.card Capacity := by
     intro n
     simp
