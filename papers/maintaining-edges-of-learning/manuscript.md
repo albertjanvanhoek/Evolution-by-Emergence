@@ -905,7 +905,9 @@ Whether it should fall in a particular case is an empirical and contextual quest
 
 # 14. The informational option value of an edge
 
-The strongest consequence of this framework concerns uncertainty.
+The option-value interpretation of learning relationships is not new. Katsamakas (2007) explicitly argued that network relationships can carry **strategic learning option value** because they preserve rights to potential future learning benefits, and that loss of trust can destroy that value. The present framework adopts that antecedent and makes a narrower move: it represents the option in terms of future validated functional gain enabled by a directed, repairable correction channel.
+
+A useful consequence of the framework therefore concerns uncertainty.
 
 Suppose agent \(i\) believes \(A\) and agent \(j\) believes \(B\).
 
@@ -1265,7 +1267,13 @@ It asks a different functional question:
 
 Repair thereby enters a rate theory of collective learning.
 
-## 19.6 Plasticity and metaplasticity
+## 19.6 Strategic learning options
+
+Katsamakas (2007) is a close conceptual antecedent to the present option-value argument. In his organizational-network account, investment in relationships preserves future learning opportunities, trust expands those opportunities, and loss of trust can destroy learning option value.
+
+The present paper therefore does not claim that relationships have future learning option value as a new idea. Its narrower contribution is to connect that option value to a target-dependent correction-cost geometry, explicit repair and re-engagement dynamics, and retained functional-learning velocity.
+
+## 19.7 Plasticity and metaplasticity
 
 Neural and machine-learning research distinguishes present performance from future plasticity. Learning can change the capacity for later learning, and continual-learning systems can retain current competence while progressively losing plasticity.
 
