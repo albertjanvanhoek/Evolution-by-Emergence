@@ -398,7 +398,8 @@ theorem emergenceReproductionLedger_eq_window_mul_mechanisticRate
     window *
       MechanisticRatchetVelocity
         opportunityRate pGenerate pResource pValidate pRetain 1 := by
-  simp [EmergenceReproductionLedger, MechanisticRatchetVelocity]
+  unfold EmergenceReproductionLedger MechanisticRatchetVelocity
+  ring
 
 theorem emergenceReproductionLedger_mono_generation
     {window opportunityRate g₀ g₁ pResource pValidate pRetain : ℝ}
