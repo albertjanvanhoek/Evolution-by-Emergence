@@ -382,7 +382,8 @@ theorem emergenceReproductionLedger_mono_opportunity
         ≤
       o₁ * RetainedSuccessFraction pGenerate pResource pValidate pRetain :=
     mul_le_mul_of_nonneg_right hO hSuccess
-  exact mul_le_mul_of_nonneg_left hInner hW
+  simpa [mul_assoc] using
+    (mul_le_mul_of_nonneg_left hInner hW)
 
 /-- Explicit calibration seam: the mechanism ledger is certified as a lower
 bound on the actual deterministic effective successor count for this event.
