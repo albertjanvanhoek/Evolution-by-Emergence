@@ -24,9 +24,10 @@ The endogenous envelope step therefore lives one level later:
 2. using that promoted child enables a downstream candidate next that could not
    be generated from the pre-promotion repertoire under the same next-step
    generator;
-3. an envelope policy responsive to primitive promotion represents that newly
-   enabled candidate in U_(t+1);
-4. if the candidate also passes emergence, resource, validation, and retention
+3. a finite promotion-admission policy selects which newly enabled
+   possibilities enter the local search surface, and the responsive envelope
+   represents admitted candidates in U_(t+1);
+4. if an admitted candidate also passes emergence, resource, validation, and retention
    filtering, it is an actual local R_E successor.
 
 The universal theory does not claim that every promotion is generatively
@@ -102,18 +103,27 @@ def GenerativelyConsequentialPromotionAt
       (H (m + 1))
       next
 
-/-- The moving envelope is responsive to primitive promotion when every
-candidate made newly generable by a newly retained primitive is represented in
-the next local candidate envelope.
+/-- A finite/local envelope need not expose every possibility opened by a
+promoted primitive.  An admission policy represents the application-specific
+compression/attention rule selecting which newly enabled capacities become
+locally represented candidates. -/
+abbrev PromotionAdmissionPolicy (Capacity : Type*) :=
+  ℕ → Capacity → Capacity → Prop
 
-This is an envelope-policy assumption.  It says how newly enabled possibilities
-enter the finite local search surface; it does not assert that such a candidate
-exists. -/
+/-- The moving envelope is responsive to primitive promotion when each
+*admitted* newly generable candidate is represented in the next local
+candidate envelope.
+
+The admission policy is the finite-selection/compression seam.  This definition
+does not require a finite envelope to contain every capacity a promoted
+primitive could in principle make generable. -/
 def PromotionResponsiveEnvelope
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity) : Prop :=
   ∀ m child next,
     RetainedIntegrationAt S m child →
+    Admit m child next →
     GenerativelyConsequentialPromotionAt S H m child next →
     next ∈ U (m + 1)
 
@@ -122,16 +132,18 @@ becomes a genuinely new entry of the next envelope under a responsive policy. -/
 theorem promotionResponsiveEnvelope_exposes_new_entry
     (U S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
-    (hResponsive : PromotionResponsiveEnvelope U S H)
+    (Admit : PromotionAdmissionPolicy Capacity)
+    (hResponsive : PromotionResponsiveEnvelope Admit U S H)
     (m : ℕ)
     {child next : Capacity}
     (hPromoted : RetainedIntegrationAt S m child)
+    (hAdmitted : Admit m child next)
     (hConsequential :
       GenerativelyConsequentialPromotionAt S H m child next)
     (hOutside : next ∉ U m) :
     next ∉ U m ∧ next ∈ U (m + 1) := by
   exact ⟨hOutside,
-    hResponsive m child next hPromoted hConsequential⟩
+    hResponsive m child next hPromoted hAdmitted hConsequential⟩
 
 /-- If the envelope itself is monotone, a new-entry witness becomes an ordinary
 strict finite-set expansion.  Monotone envelopes are optional; the corrected
@@ -159,10 +171,11 @@ variable [DecidableEq Capacity]
 survival filtering.
 
 The child is already newly retained by the preceding event.  The downstream
-candidate next must be newly enabled by using that child, must lie outside the
-old envelope, and must independently pass the full filtered emergent event at
-time m+1. -/
+candidate next must be newly enabled by using that child, selected by the
+finite admission policy, lie outside the old envelope, and independently pass
+the full filtered emergent event at time m+1. -/
 def PromotionDrivenFilteredSuccessorAt
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -174,6 +187,7 @@ def PromotionDrivenFilteredSuccessorAt
     (m : ℕ)
     (child next : Capacity) : Prop :=
   GenerativelyConsequentialPromotionAt S H m child next
+  ∧ Admit m child next
   ∧ next ∉ U m
   ∧ ResourceValidatedEmergentEventAt
       Proper Realizes Cost Budget E S (m + 1) next
@@ -182,6 +196,7 @@ def PromotionDrivenFilteredSuccessorAt
 that passes the full filter is an actual recursive-emergence successor in the
 next local envelope. -/
 theorem promotionDrivenFilteredSuccessor_implies_local_successor
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -190,7 +205,7 @@ theorem promotionDrivenFilteredSuccessor_implies_local_successor
     (E : ExternalCriterion Capacity)
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
-    (hResponsive : PromotionResponsiveEnvelope U S H)
+    (hResponsive : PromotionResponsiveEnvelope Admit U S H)
     (m : ℕ)
     {parent child next : Capacity}
     (hCurrent :
@@ -198,7 +213,7 @@ theorem promotionDrivenFilteredSuccessor_implies_local_successor
         Proper Realizes Cost Budget E S H m parent child)
     (hNext :
       PromotionDrivenFilteredSuccessorAt
-        U Proper Realizes Cost Budget E S H m child next) :
+        Admit U Proper Realizes Cost Budget E S H m child next) :
     next ∈ U (m + 1)
     ∧
     RecursiveEmergenceStepAt
@@ -208,16 +223,17 @@ theorem promotionDrivenFilteredSuccessor_implies_local_successor
       Proper Realizes Cost Budget E S H m hCurrent
   have hEnvelope :
       next ∈ U (m + 1) :=
-    hResponsive m child next hPromoted hNext.1
+    hResponsive m child next hPromoted hNext.2.1 hNext.1
   have hChildAvailable : child ∈ S (m + 1) :=
     hPromoted.2
-  refine ⟨hEnvelope, hChildAvailable, hNext.1.1, hNext.2.2⟩
+  refine ⟨hEnvelope, hChildAvailable, hNext.1.1, hNext.2.2.2⟩
 
 /-- Every realized event has a promotion-driven filtered successor.  This is
 stronger and more causal than directly postulating local R_E >= 1: it exposes
 the intermediate mechanism by which the promoted primitive opens a new
 candidate in the moving envelope. -/
 def UniformPromotionDrivenContinuation
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -231,11 +247,12 @@ def UniformPromotionDrivenContinuation
       Proper Realizes Cost Budget E S H m parent child →
     ∃ next,
       PromotionDrivenFilteredSuccessorAt
-        U Proper Realizes Cost Budget E S H m child next
+        Admit U Proper Realizes Cost Budget E S H m child next
 
 /-- Promotion-driven continuation plus a promotion-responsive envelope implies
 the local deterministic criticality condition of PR #58. -/
 theorem uniformPromotionDrivenContinuation_implies_uniformLocalCritical
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -244,10 +261,10 @@ theorem uniformPromotionDrivenContinuation_implies_uniformLocalCritical
     (E : ExternalCriterion Capacity)
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
-    (hResponsive : PromotionResponsiveEnvelope U S H)
+    (hResponsive : PromotionResponsiveEnvelope Admit U S H)
     (hContinuation :
       UniformPromotionDrivenContinuation
-        U Proper Realizes Cost Budget E S H) :
+        Admit U Proper Realizes Cost Budget E S H) :
     UniformLocalCriticalEmergenceReproduction
       U Proper Realizes Cost Budget E S H := by
   intro m parent child hCurrent
@@ -255,7 +272,7 @@ theorem uniformPromotionDrivenContinuation_implies_uniformLocalCritical
     hContinuation m parent child hCurrent
   have hSuccessor :=
     promotionDrivenFilteredSuccessor_implies_local_successor
-      U Proper Realizes Cost Budget E S H
+      Admit U Proper Realizes Cost Budget E S H
       hResponsive m hCurrent hNext
   exact
     (one_le_localEffectiveEmergenceSuccessorCount_iff_exists
@@ -265,6 +282,7 @@ theorem uniformPromotionDrivenContinuation_implies_uniformLocalCritical
 /-- The causal promotion route closes onto open-ended cumulative novelty without
 a global finite capacity type. -/
 theorem seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -278,22 +296,23 @@ theorem seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty
     (hSeed :
       RecursiveEmergenceStepAt
         Proper Realizes Cost Budget E S H 0 seedParent seedChild)
-    (hResponsive : PromotionResponsiveEnvelope U S H)
+    (hResponsive : PromotionResponsiveEnvelope Admit U S H)
     (hContinuation :
       UniformPromotionDrivenContinuation
-        U Proper Realizes Cost Budget E S H) :
+        Admit U Proper Realizes Cost Budget E S H) :
     OpenEndedCumulativeNovelty S := by
   exact
     seed_and_uniformLocalCriticalEmergenceReproduction_imply_openEndedNovelty
       U Proper Realizes Cost Budget E S H
       hRetained hSeed
       (uniformPromotionDrivenContinuation_implies_uniformLocalCritical
-        U Proper Realizes Cost Budget E S H
+        Admit U Proper Realizes Cost Budget E S H
         hResponsive hContinuation)
 
 /-- If retained organization is represented in the local envelope, the same
 promotion-driven route forces the moving envelope to have unbounded capacity. -/
 theorem seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope
+    (Admit : PromotionAdmissionPolicy Capacity)
     (U : ℕ → Finset Capacity)
     (Proper : Config → Config → Prop)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -308,17 +327,17 @@ theorem seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope
     (hSeed :
       RecursiveEmergenceStepAt
         Proper Realizes Cost Budget E S H 0 seedParent seedChild)
-    (hResponsive : PromotionResponsiveEnvelope U S H)
+    (hResponsive : PromotionResponsiveEnvelope Admit U S H)
     (hContinuation :
       UniformPromotionDrivenContinuation
-        U Proper Realizes Cost Budget E S H) :
+        Admit U Proper Realizes Cost Budget E S H) :
     UnboundedEnvelopeCapacity U := by
   exact
     seed_and_uniformLocalCriticalEmergenceReproduction_imply_unboundedEnvelope
       U Proper Realizes Cost Budget E S H
       hRepresented hRetained hSeed
       (uniformPromotionDrivenContinuation_implies_uniformLocalCritical
-        U Proper Realizes Cost Budget E S H
+        Admit U Proper Realizes Cost Budget E S H
         hResponsive hContinuation)
 
 end PromotionToSuccessor
@@ -372,12 +391,19 @@ theorem progressive_promotion_is_generatively_consequential
     have hParentAvailable := hAvailable (n + 1) (by simp)
     simp [progressiveRepertoire] at hParentAvailable
 
+/-- The progressive witness admits every promotion-enabled candidate.  Its
+generator exposes only one relevant next candidate, but the generic theory
+allows applications to use a much more selective finite admission policy. -/
+def progressivePromotionAdmission : PromotionAdmissionPolicy ℕ :=
+  fun _ _ _ => True
+
 /-- The progressive moving envelope is responsive to newly enabled candidates
 created by primitive promotion. -/
 theorem progressive_has_promotionResponsiveEnvelope :
     PromotionResponsiveEnvelope
+      progressivePromotionAdmission
       progressiveEnvelope progressiveRepertoire progressiveGenerator := by
-  intro m child next hPromoted hConsequential
+  intro m child next hPromoted hAdmitted hConsequential
   rcases hConsequential.1 with
     ⟨parents, hChildParent, hAvailable, hRule⟩
   have hNext : next = (m + 1) + 1 := hRule.2
@@ -388,6 +414,7 @@ theorem progressive_has_promotionResponsiveEnvelope :
 every event. -/
 theorem progressive_has_uniformPromotionDrivenContinuation :
     UniformPromotionDrivenContinuation
+      progressivePromotionAdmission
       progressiveEnvelope
       boolProper progressiveEmergentRealizes
       progressiveEmergentCost progressiveEmergentBudget
@@ -399,8 +426,9 @@ theorem progressive_has_uniformPromotionDrivenContinuation :
       ⟨parents, hParent, hAvailable, hRule⟩
     exact hRule.2
   subst child
-  refine ⟨m + 2, ?_, ?_, ?_⟩
+  refine ⟨m + 2, ?_, ?_, ?_, ?_⟩
   · exact progressive_promotion_is_generatively_consequential m
+  · trivial
   · simp [progressiveEnvelope]
   · exact (progressive_recursiveEmergenceStep (m + 1)).2.2
 
@@ -411,6 +439,7 @@ theorem progressive_openEnded_via_endogenousEnvelopePromotion :
     OpenEndedCumulativeNovelty progressiveRepertoire := by
   exact
     seed_and_uniformPromotionDrivenContinuation_imply_openEndedNovelty
+      progressivePromotionAdmission
       progressiveEnvelope
       boolProper progressiveEmergentRealizes
       progressiveEmergentCost progressiveEmergentBudget
@@ -425,6 +454,7 @@ theorem progressive_unboundedEnvelope_via_endogenousEnvelopePromotion :
     UnboundedEnvelopeCapacity progressiveEnvelope := by
   exact
     seed_and_uniformPromotionDrivenContinuation_imply_unboundedEnvelope
+      progressivePromotionAdmission
       progressiveEnvelope
       boolProper progressiveEmergentRealizes
       progressiveEmergentCost progressiveEmergentBudget
