@@ -382,14 +382,11 @@ theorem progressive_has_recursiveEmergenceEnvelopeCoverage :
       progressiveEmergentCriterion
       progressiveRepertoire progressiveEnvelope progressiveGenerator := by
   intro m parent child hStep
-  have hInt : RetainedIntegrationAt progressiveRepertoire m child :=
-    recursiveEmergenceStep_retains_new_child
-      boolProper progressiveEmergentRealizes
-      progressiveEmergentCost progressiveEmergentBudget
-      progressiveEmergentCriterion
-      progressiveRepertoire progressiveGenerator m hStep
-  simp [progressiveEnvelope, progressiveRepertoire] at hInt ⊢
-  omega
+  rcases hStep.2.1 with ⟨parents, hParent, hAvailable, hRule⟩
+  have hChild : child = m + 1 := by
+    exact hRule.2
+  subst child
+  simp [progressiveEnvelope]
 
 /-- Non-vacuity witness: the existing progressive architecture satisfies
 validated generative uptake specifically through recurrent recursive emergence,
