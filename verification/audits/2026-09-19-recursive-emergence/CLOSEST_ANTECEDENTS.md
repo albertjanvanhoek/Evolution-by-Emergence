@@ -333,7 +333,65 @@ equate its result with strong unprestatability.
 
 **Classification:** stronger conceptual neighbor on ontology/phase-space change.
 
-## 9. Existing EbE-adjacent literature already identified in the repository
+## 9. Generative RAFs — recursive enabling has a strong formal antecedent
+
+**References**
+
+Steel M, Hordijk W.
+*Tractable models of self-sustaining autocatalytic networks.*
+J Math Biol / related preprint lineage, 2018.
+arXiv:1801.03953.
+
+Huson DH, Xavier JC, Steel M.
+*Self-generating autocatalytic networks: structural results, algorithms and
+their relevance to early biochemistry.*
+J R Soc Interface. 2024;21:20230732.
+doi:10.1098/rsif.2023.0732.
+
+**Why it matters**
+
+Generative RAF theory explicitly studies autocatalytic sets that can be built
+up from simpler RAFs. The newer structural work also analyzes when certain
+reactions must occur before others in an F-generated or RAF system.
+
+This is a particularly strong formal antecedent to the broad EbE idea:
+
+```text
+earlier organized structure
+    -> supplies conditions/material for later organized structure
+    -> hierarchical recursive construction.
+```
+
+Therefore EbE should not claim priority for recursive hierarchical enabling,
+self-generating organization, or the idea that an earlier self-sustaining
+network can make a later one reachable.
+
+**Residual difference**
+
+The current EbE stack asks a differently factorized question across arbitrary
+capacity domains:
+
+- did the whole realize a declared capacity emergently?
+- was the event resource feasible?
+- did it pass an external/application criterion?
+- was it operationally retained?
+- was the retained product explicitly reused later?
+- was it essential to the later generated-access expansion under a fixed
+  generator?
+- which newly enabled candidates entered finite local search?
+- which survived the next full filter?
+- does event-wise continuation force cumulative retained novelty?
+- what finite-universe consistency boundary follows?
+
+Generative RAF theory may instantiate several of these interfaces in chemistry,
+but the EbE architecture should be presented as a cross-domain decomposition,
+not as a competing theory of autocatalytic generation.
+
+**Classification:** very strong formal antecedent for recursive enabling;
+potential EbE residue is the broader factorization and machine-checked
+separation of interfaces.
+
+## 10. Existing EbE-adjacent literature already identified in the repository
 
 The September 15 audit remains relevant:
 
@@ -347,7 +405,7 @@ The September 15 audit remains relevant:
 The v17 audit therefore **inherits**, rather than resets, the conservative
 position of the existing literature audit.
 
-## 10. Targeted search for proof-assistant antecedents
+## 11. Targeted search for proof-assistant antecedents
 
 A targeted search was run for Lean, Coq/Rocq, Isabelle, and generic proof
 assistant formalizations of:
@@ -371,7 +429,7 @@ It must **not** be converted into:
 Formal methods literature is large, terminology varies, and absence from the
 search results is not evidence of priority.
 
-## 11. Revised novelty ladder
+## 12. Revised novelty ladder
 
 After the second pass, the claims should be ordered from safest to riskiest.
 
@@ -423,7 +481,7 @@ Do not claim invention of:
 - finite closed-system limits on indefinite novelty;
 - or the general idea that state-dependent dynamics can support ongoing novelty.
 
-## 12. Revised reviewer-facing sentence
+## 13. Revised reviewer-facing sentence
 
 A stronger reviewer-safe formulation after the second pass is:
 
@@ -440,7 +498,7 @@ A stronger reviewer-safe formulation after the second pass is:
 > factorization constitutes a novel formal contribution remains a priority
 > question, not an assumption.**
 
-## 13. Immediate consequence for PR #60
+## 14. Immediate consequence for PR #60
 
 The integration PR should not yet rewrite the repository around a claim of a
 new universal theory.
