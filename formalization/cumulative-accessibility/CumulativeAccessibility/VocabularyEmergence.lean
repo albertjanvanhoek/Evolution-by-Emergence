@@ -215,6 +215,121 @@ theorem compositional_and_vocabulary_emergence_can_cooccur :
 
 end SeparationWitnesses
 
+section OperationalVocabulary
+
+variable {Config Context Capacity : Type*}
+
+/-- A capacity is operationally new when it is not yet part of the active,
+reusable capacity repertoire.  This is weaker than representational vocabulary
+novelty: a capacity may be perfectly describable before it becomes available
+as causal material for later processes. -/
+def OperationallyNovel
+    (Active : Capacity → Prop)
+    (φ : Capacity) : Prop :=
+  ¬ Active φ
+
+/-- Integrating a realized capacity into the operational vocabulary retains all
+previously active capacities and adds the new one as reusable material. -/
+def IntegrateOperationalCapacity
+    (Active : Capacity → Prop)
+    (φ : Capacity) : Capacity → Prop :=
+  fun ψ => Active ψ ∨ ψ = φ
+
+/-- A realized operational-vocabulary expansion event. -/
+def OperationalVocabularyExpansion
+    (Active : Capacity → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (config : Config) (ctx : Context) (φ : Capacity) : Prop :=
+  Realizes config ctx φ ∧ OperationallyNovel Active φ
+
+/-- Cake-like latent compositional emergence: the capacity already belongs to
+the fixed capacity type, but is not yet operationally available; a whole
+configuration now realizes it irreducibly. -/
+def LatentCompositionalEmergence
+    (Proper : Config → Config → Prop)
+    (Active : Capacity → Prop)
+    (Realizes : CapacityRelation Config Context Capacity)
+    (config : Config) (ctx : Context) (φ : Capacity) : Prop :=
+  EmergentUnder Proper Realizes config ctx φ ∧
+    OperationallyNovel Active φ
+
+/-- Integrating an operationally new capacity strictly expands the active
+repertoire. -/
+theorem operationalIntegration_strictly_expands_active
+    (Active : Capacity → Prop)
+    {φ : Capacity}
+    (hNovel : OperationallyNovel Active φ) :
+    StrictExpandsOn Set.univ
+      Active
+      (IntegrateOperationalCapacity Active φ) := by
+  refine ⟨?_, φ, by simp, hNovel, Or.inr rfl⟩
+  intro ψ hψ hActive
+  exact Or.inl hActive
+
+end OperationalVocabulary
+
+section OperationalGenerativity
+
+variable {Capacity : Type*}
+variable [DecidableEq Capacity]
+
+/-- Operational-vocabulary expansion becomes generatively consequential only
+when the integrated capacity supports an actual downstream realization that
+was unavailable before integration.
+
+This theorem deliberately does not say that every new capacity produces such a
+downstream realization. -/
+theorem operational_integration_enables_strict_downstream_expansion
+    (Active : Capacity → Prop)
+    (Generate : HyperGenerator Capacity)
+    {φ ψ : Capacity}
+    (hAfter :
+      GeneratedFromAvailable
+        (IntegrateOperationalCapacity Active φ) Generate ψ)
+    (hBefore :
+      ¬ GeneratedFromAvailable Active Generate ψ) :
+    StrictExpandsOn Set.univ
+      (GeneratedFromAvailable Active Generate)
+      (GeneratedFromAvailable
+        (IntegrateOperationalCapacity Active φ) Generate) := by
+  refine ⟨?_, ψ, by simp, hBefore, hAfter⟩
+  exact generatedFromAvailable_mono
+    Set.univ
+    Active
+    (IntegrateOperationalCapacity Active φ)
+    Generate
+    (by
+      intro x hx
+      exact Or.inl hx)
+
+/-- A genuinely new operational primitive plus a genuinely new downstream
+realization gives both levels of the ratchet step at once: strict expansion of
+the active primitive repertoire and strict expansion of generated capacity. -/
+theorem operational_vocabulary_ratchet_step
+    (Active : Capacity → Prop)
+    (Generate : HyperGenerator Capacity)
+    {φ ψ : Capacity}
+    (hNovel : OperationallyNovel Active φ)
+    (hAfter :
+      GeneratedFromAvailable
+        (IntegrateOperationalCapacity Active φ) Generate ψ)
+    (hBefore :
+      ¬ GeneratedFromAvailable Active Generate ψ) :
+    StrictExpandsOn Set.univ
+      Active
+      (IntegrateOperationalCapacity Active φ)
+    ∧
+    StrictExpandsOn Set.univ
+      (GeneratedFromAvailable Active Generate)
+      (GeneratedFromAvailable
+        (IntegrateOperationalCapacity Active φ) Generate) := by
+  exact ⟨
+    operationalIntegration_strictly_expands_active Active hNovel,
+    operational_integration_enables_strict_downstream_expansion
+      Active Generate hAfter hBefore⟩
+
+end OperationalGenerativity
+
 section VocabularyIntegration
 
 variable {OldCapacity NewCapacity : Type*}
