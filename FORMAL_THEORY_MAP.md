@@ -183,6 +183,61 @@ and a response cost \(9/2\) crosses the feasibility boundary.
 
 ---
 
+## T3A — self-maintenance leverage: slack, buffer, and future access
+
+**Theory statement.** In a declared resource-solvency ledger, higher internal
+slack has a double role: with positive reinvestment it raises response budget,
+and the same extra margin increases the energetic burden the organization can
+absorb while remaining solvent. If future target costs are also non-worsening,
+the slack-funded feasible target family cannot shrink; an explicit crossing
+witness makes it strictly expand.
+
+**Formal status:** MC + CW.
+
+**Lean source**
+
+- `SelfMaintenanceLeverage.lean`
+
+**Selected declarations**
+
+- `slack_improvement_preserves_energetic_tolerance`
+- `strict_slack_improvement_opens_energetic_buffer`
+- `strict_slack_gain_is_budget_and_buffer_gain`
+- `selfMaintenanceLeverage_preserves_slackFundedAccess`
+- `selfMaintenanceLeverage_strictly_expands_with_witness`
+- `slack_and_cost_leverage_open_target`
+- `lifetimeAdaptiveBudget_mono`
+- `lifetimeAdaptiveBudget_strict_of_slack_gain`
+- `leverageToy_strict_access_expansion`
+- `leverageToy_budget_and_buffer_gain`
+
+**Logical core**
+
+For state-local slack
+[
+L(s)=mathcal U(s,g)-mathcal M(s),
+]
+positive reinvestment (eta>0), and
+[
+L(s_0)<L(s_1),
+]
+the checked ledger gives both
+[
+eta L(s_0)<eta L(s_1)
+]
+and a nonempty interval of additional energetic burdens tolerated at (s_1)
+but not at (s_0).
+
+If additionally no declared future target becomes more costly, every target
+affordable from old slack remains affordable from new slack.
+
+**Boundary.** This is not a theorem that all forms of robustness increase with
+energetic efficiency. The stability result is explicitly restricted to the
+same resource-solvency ledger. Generation, validation, and retention remain
+separate.
+
+---
+
 ## T4 — opportunity and success are distinct
 
 **Theory statement.** Recurring opportunities do not by themselves imply
@@ -245,6 +300,48 @@ while \(c\) is unavailable after one retained generative round and available
 after two.
 
 This is the formal retained-history stepping-stone result.
+
+---
+
+## T5A — local recursive-emergence reproduction is sufficient for recurrence
+
+**Theory statement.** Global recurrence need not be assumed directly. One seed
+recursive-emergence event plus a local rule guaranteeing that every realized
+event has a later successor that reuses its child as parent is sufficient for
+arbitrarily late recursive-emergence events. With monotone retention, this
+implies open-ended cumulative novelty.
+
+**Formal status:** MC + progressive non-vacuity witness.
+
+**Lean source**
+
+- `SelfMaintenanceLeverage.lean`
+
+**Selected declarations**
+
+- `RecursiveEmergenceSuccessorWithin`
+- `recursiveEmergenceSuccessorWithin_iterates`
+- `seed_and_successorWithin_imply_recurringRecursiveEmergence`
+- `seed_and_successorWithin_imply_openEndedNovelty`
+- `progressive_has_recursiveEmergenceSuccessorWithin_zero`
+- `progressive_openEnded_via_local_chainReaction`
+
+**Logical direction**
+
+[
+	ext{seed}
++
+igl(	ext{every recursive event has a later child-reusing successor}igr)
+Rightarrow
+	ext{recurrent recursive emergence}
+Rightarrow
+	ext{open-ended retained novelty}.
+]
+
+**Boundary.** Slack gain and cheaper future access do not by themselves prove
+the successor rule. The rule still contains generation, external validation,
+and retention. Closing that empirical/mechanistic seam is the next research
+problem.
 
 ---
 
