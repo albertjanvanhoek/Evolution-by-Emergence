@@ -611,8 +611,9 @@ the current candidate envelope before realization, so realizing the child is
 not itself envelope expansion. The causal change is operational: retention
 promotes the child from unavailable candidate to reusable parent material.
 
-If the promoted child enables a downstream candidate that was not generable
-from the pre-promotion retained repertoire under the same next-step generator,
+If the promoted child is essential for a downstream candidate relative to the
+next retained repertoire, and that candidate was not generable from the
+pre-promotion retained repertoire under the same next-step generator,
 and a finite promotion-admission policy selects it for local representation,
 then a responsive envelope places that downstream capacity in the next local
 envelope. If it also passes emergence, resource, validation, and retention
@@ -657,10 +658,12 @@ generatively consequential promotions.
 \end{aligned}}
 \]
 
-The generativity comparison intentionally holds the next-step generator fixed:
+The generativity comparison intentionally holds the next-step generator fixed.
+It also checks that the promoted primitive is essential relative to the full
+next-step repertoire:
 
 \[
-\neg\operatorname{Generated}(S_t,H_{t+1},\psi)
+\neg\operatorname{Generated}(S_{t+1}\setminus\{\phi\},H_{t+1},\psi),
 \]
 
 while
@@ -669,8 +672,15 @@ while
 \operatorname{GeneratedUsingParent}(S_{t+1},H_{t+1},\phi,\psi).
 \]
 
-This isolates the effect of newly retained parent material from a simultaneous
-change in the generative rule.
+In addition,
+
+\[
+\neg\operatorname{Generated}(S_t,H_{t+1},\psi).
+\]
+
+Together these conditions isolate the effect of the promoted parent from both
+simultaneous generator-rule change and other contemporaneous repertoire
+additions.
 
 **Boundary.** Primitive promotion is not sufficient by itself. A checked
 one-shot counterexample has a valid retained emergence event but no
