@@ -214,7 +214,29 @@ not buried:
 10. **One ambient capacity type in the corrected recursive theorem.**
     Strong ontology/type creation is not part of the current closure.
 
-## 13. Circularity stress test
+## 13. Constructive configuration bridge added in PR #60
+
+| Object/result | Status | Formal content | What it does not establish |
+|---|---|---|---|
+| `ConfigurationConstructionRule` | DEF | A finite parent set constructs a specific configuration for a specific child capacity. | That every application has an identifiable construction relation. |
+| `ConstructiveRecursiveEmergenceStepAt` | DEF | The same parent-built configuration is the witness of the child capacity's filtered compositional emergence. | That every weaker capacity-level generation event has such a configuration-level witness. |
+| constructive step -> ordinary recursive step | MC | Forgetting the constructed configuration recovers the existing `HyperGenerator` recursive event. | Converse equivalence. |
+| recursive toy constructive links | CW | The existing `a -> b -> c` toy inhabits the stronger configuration-linked predicate. | Empirical realism. |
+
+This closes the earlier formal seam between 'parents generate child capacity' and 'some unrelated configuration realizes child capacity' **for applications that can justify the stronger construction rule**. The weaker generic event remains available by design.
+
+## 14. Active repertoire versus cumulative history added in PR #60
+
+| Object/result | Status | Formal content | What it does not establish |
+|---|---|---|---|
+| `ActiveHistoryConsistent` | DEF | Current active capacities are represented in a monotone cumulative historical trace. | That historical items remain operational. |
+| `HistoricalRecursiveEmergenceStepAt` | DEF | An ordinary active recursive event whose child is also genuinely new to cumulative history. | Monotone active retention. |
+| recurring historical recursion -> open-ended history | MC | Arbitrarily late genuinely history-new recursive events plus monotone history yield arbitrarily many strict historical expansions. | Growing active repertoire. |
+| turnover history witness | CW/SEP | History is open-ended while the active repertoire always has cardinality one and is not monotone. | That history alone keeps old capacities reusable. |
+
+This removes monotone **active** retention from the weaker historical endpoint while preserving it as a deliberate premise of the stronger operational-accumulation endpoint.
+
+## 15. Circularity stress test
 
 The strongest potential criticism is that
 `UniformPromotionDrivenContinuation` assumes a fully filtered successor after
@@ -244,7 +266,7 @@ The nontrivial formal contributions around that assumption are:
 Reviewers should judge whether this decomposition yields enough explanatory or
 measurement value to justify the architecture.
 
-## 14. Gate A outcome
+## 16. Gate A outcome
 
 **Gate A is provisionally passed for internal integration work, not for release.**
 
@@ -257,6 +279,8 @@ must remain prominent in v17:
 2. uniform continuation is an explicit strong premise, not derived from
    self-maintenance or promotion alone;
 3. the ambient-type/moving-envelope construction is weaker than strong
-   representational vocabulary creation.
+   representational vocabulary creation;
+4. operational open-endedness and historical open-endedness are now distinct
+   endpoints and must not be conflated.
 
 Gate B (semantic audit) and Gate C (literature/priority audit) remain open.
