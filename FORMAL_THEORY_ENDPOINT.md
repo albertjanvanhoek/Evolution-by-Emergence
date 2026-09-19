@@ -531,9 +531,9 @@ As of the current PR #60 integration:
 
 1. **Exact-head verification.** The final frozen commit—not an earlier intermediate commit—must pass the full advertised CI and no-`sorryAx` surface.
 2. **Repository consistency pass.** No entry document should still present the globally finite PR57 master certificate or v16 Dynamic Vortex as the canonical v17 recursive core.
-3. **External prior-art challenge.** At least one independent specialist/agent should be tasked specifically with finding an equal-or-stronger antecedent to the full factorization. Internal search cannot establish priority.
-4. **External semantic preflight.** At least a small number of readers who did not participate in construction should try to reconstruct the theory from the reviewer path without conversational context.
-5. **Freeze.** Stop changing core definitions, tag the exact commit, and archive known open questions so all broad reviewers inspect the same object.
+3. **Prior-art preflight.** Completed in `verification/audits/2026-09-19-recursive-emergence/PRIOR_ART_PREFLIGHT_V17.md`. No equal-or-stronger full duplicate was found, but this is explicitly not a priority proof; the broad review should keep a dedicated prior-art lane.
+4. **Semantic/navigation preflight.** Completed in `verification/audits/2026-09-19-recursive-emergence/COLD_READER_PREFLIGHT_V17.md`. Repository-only reconstruction succeeded; ambiguities found by the preflight were repaired before the pass was recorded.
+5. **Freeze.** After the final exact-head CI/no-`sorryAx` check is green, stop changing core definitions, tag the exact commit, and archive known open questions so all broad reviewers inspect the same object.
 
 ### Research seams that do not block review if stated explicitly
 
@@ -545,6 +545,8 @@ As of the current PR #60 integration:
 - empirical mappings and normative conclusions remain outside the proof kernel.
 
 These are no longer reasons to keep inventing internally. They are precisely the kinds of assumptions the broad review should attack.
+
+With the prior-art and cold-reader preflights now completed, the remaining pre-release gate is the exact frozen-head verification/freeze step rather than another theory-development cycle.
 
 ## 15. The endpoint in one sentence
 
