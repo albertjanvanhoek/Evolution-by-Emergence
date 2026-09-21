@@ -5,6 +5,7 @@ import CumulativeAccessibility.EmergenceDrivenDynamicVortex
 import CumulativeAccessibility.EmergenceDrivenOperatorEvolution
 import CumulativeAccessibility.EmergenceDrivenOperatorRecurrence
 import CumulativeAccessibility.EmergenceDrivenOperatorWitness
+import CumulativeAccessibility.EmergenceDrivenOperatorProbes
 import CumulativeAccessibility.EmergenceDrivenOperatorDynamicVortex
 
 namespace CumulativeAccessibility
@@ -76,6 +77,13 @@ The frozen v17/v18 verification surfaces remain unchanged.
 #check operatorLadder_chain
 #check operatorLadder_recurring
 #check operatorLadder_openEndedNovelty
+#check operatorProbe_nonEmergence_blocks_certification
+#check operatorProbe_gateFailure_blocks_admission
+#check operatorProbe_nonEmergent_twin_no_click_after_uncertified_admission
+#check operatorProbe_emergent_whole_irreducible
+#check operatorProbe_nonEmergent_part_reaches_product
+#check operatorProbe_recurring_is_nonvacuous
+#check operatorProbe_linked_chain_is_nonvacuous
 
 #check OpportunityConditionedEmergenceDrivenOperatorResponseWithin
 #check recurringOpportunity_and_operatorResponse_imply_openEndedNovelty
@@ -108,6 +116,13 @@ The frozen v17/v18 verification surfaces remain unchanged.
 #print axioms operatorLadder_uncertified_admission_no_click
 #print axioms operatorLadder_chain
 #print axioms operatorLadder_openEndedNovelty
+#print axioms operatorProbe_nonEmergence_blocks_certification
+#print axioms operatorProbe_gateFailure_blocks_admission
+#print axioms operatorProbe_nonEmergent_twin_no_click_after_uncertified_admission
+#print axioms operatorProbe_emergent_whole_irreducible
+#print axioms operatorProbe_nonEmergent_part_reaches_product
+#print axioms operatorProbe_recurring_is_nonvacuous
+#print axioms operatorProbe_linked_chain_is_nonvacuous
 #print axioms recurringOpportunity_and_operatorResponse_imply_openEndedNovelty
 
 end RecursiveAccessibility
