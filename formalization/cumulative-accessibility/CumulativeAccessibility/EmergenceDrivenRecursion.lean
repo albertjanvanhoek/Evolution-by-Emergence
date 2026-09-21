@@ -407,6 +407,52 @@ def EmergenceDrivenVocabularyExpansionAt
       (RuleOf (fun x => x ∈ S (m + 1)))
       (fun x => x ∈ S (m + 1))
 
+/-- A strong emergence-driven vocabulary event forces an actual change in the
+repertoire-dependent generator across the isolated retention transition.
+
+The argument is counterfactual rather than syntactic: the child was generated
+under the old rule, the next repertoire differs only by that child, and P9 says
+that if the rule were unchanged then full closure could not expand. -/
+theorem emergenceDrivenVocabularyExpansion_forces_generatorChange
+    (targets : Set Capacity)
+    (RuleOf : RepertoireDependentGenerator Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (m : ℕ)
+    {parent child : Capacity}
+    (h :
+      EmergenceDrivenVocabularyExpansionAt
+        targets RuleOf Realizes Cost Budget E S m parent child) :
+    RuleOf (fun x => x ∈ S m) ≠
+      RuleOf (fun x => x ∈ S (m + 1)) := by
+  intro hRuleEq
+  have hChild :
+      GeneratedFromAvailable
+        (fun x => x ∈ S m)
+        (RuleOf (fun x => x ∈ S m))
+        child := by
+    simpa [GeneratorFromRepertoire] using
+      (parentFaithful_implies_generated
+        (GeneratorFromRepertoire RuleOf S)
+        Realizes Cost Budget E S m h.1)
+  have hAvailabilityEq :
+      (fun x => x ∈ S (m + 1)) =
+        PromotedAvailability (fun x => x ∈ S m) child := by
+    funext x
+    apply propext
+    exact h.2.1 x
+  have hExpansion := h.2.2
+  rw [← hRuleEq, hAvailabilityEq] at hExpansion
+  exact
+    (internallyGeneratedPromotion_not_closureStrictExpansion
+      targets
+      (RuleOf (fun x => x ∈ S m))
+      (fun x => x ∈ S m)
+      hChild) hExpansion
+
 /-- If the repertoire-dependent generator is actually constant, an internally
 generated emergent child cannot satisfy the strong vocabulary-expansion clause.
 This is the fixed-generator no-go stated directly at the EbE event level. -/
@@ -726,6 +772,7 @@ theorem emergenceToy_endToEnd_emergenceDrivenRecursion :
 #print axioms parentFaithful_has_emergent_parent_configuration
 #print axioms parentFaithful_implies_recursiveEmergenceStep
 #print axioms twoGenerationRatchet_strictlyExpands_oneStepAccess
+#print axioms emergenceDrivenVocabularyExpansion_forces_generatorChange
 #print axioms constantRule_parentFaithfulPromotion_not_vocabularyExpansion
 #print axioms emergenceToy_first_parentFaithfulEmergence
 #print axioms emergenceToy_second_parentFaithfulEmergence
