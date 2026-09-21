@@ -45,6 +45,7 @@ jobs:
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.EmergenceDrivenRecursion \
+            CumulativeAccessibility.EmergenceDrivenRecursionOpenEnded \
             CumulativeAccessibility.FormalCoreWitness \
             CumulativeAccessibility.MaintenanceGatedWitness \
             CumulativeAccessibility.BoundedResponseWitness \
@@ -73,6 +74,7 @@ jobs:
           output="$({
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursion.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursionOpenEnded.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
