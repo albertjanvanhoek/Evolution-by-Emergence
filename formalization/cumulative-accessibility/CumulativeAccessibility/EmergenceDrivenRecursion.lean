@@ -270,6 +270,34 @@ theorem parentFaithful_retains_new_child
     ⟨_, _, _, _, _, _, hEvent⟩
   exact hEvent.2.1
 
+
+/-- Parent-faithful emergence also projects directly to the existing
+capacity-level recursive-emergence event under the same generator. This avoids
+using the more generic constructive projection when the causal parent set is
+already the configuration. -/
+theorem parentFaithful_implies_recursiveEmergenceStep
+    (H : ℕ → HyperGenerator Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ → Finset Capacity)
+    (m : ℕ)
+    {parent child : Capacity}
+    (h :
+      ParentFaithfulRecursiveEmergenceStepAt
+        H Realizes Cost Budget E S m parent child) :
+    RecursiveEmergenceStepAt
+      (FiniteProperSubconfig (Process := Capacity))
+      Realizes Cost Budget E S H m parent child := by
+  rcases h with
+    ⟨hParent, parents, ctx,
+      hParentIn, hAvailable, hGenerate, hEvent⟩
+  exact
+    ⟨hParent,
+      ⟨parents, hParentIn, hAvailable, hGenerate⟩,
+      ⟨parents, ctx, hEvent⟩⟩
+
 end ParentFaithfulEmergence
 
 section OperationalRatchet
@@ -696,6 +724,7 @@ theorem emergenceToy_endToEnd_emergenceDrivenRecursion :
 #print axioms internallyGeneratedPromotion_not_closureStrictExpansion
 #print axioms parentFaithful_implies_constructiveRecursiveEmergence
 #print axioms parentFaithful_has_emergent_parent_configuration
+#print axioms parentFaithful_implies_recursiveEmergenceStep
 #print axioms twoGenerationRatchet_strictlyExpands_oneStepAccess
 #print axioms constantRule_parentFaithfulPromotion_not_vocabularyExpansion
 #print axioms emergenceToy_first_parentFaithfulEmergence
