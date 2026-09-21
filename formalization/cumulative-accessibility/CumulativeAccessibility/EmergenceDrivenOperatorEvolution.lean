@@ -523,7 +523,7 @@ theorem emergent_operator_product_irreducible
       rcases hGenerate with hBaseGen | ⟨phi, hEnabled, hOp⟩
       · exact hBase _ hBaseGen
       · have hEq : phi = child := hUnique phi _ hOp
-        subst hEq
+        subst phi
         rcases hEnabled with hOld | hPart
         · exact hNew hOld
         · exact (emergent_not_partRealizedAt
