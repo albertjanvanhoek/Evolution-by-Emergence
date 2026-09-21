@@ -61,6 +61,16 @@ theorem probe_toy_c_crosses_operational_boundary :
     c ∈ emergenceToyRepertoire 1 := by
   simp [emergenceToyRepertoire]
 
+/-- Probe 4. Promotion of c without the repertoire-induced rule change is
+still insufficient to reach d. -/
+theorem probe_promoting_c_with_old_rule_still_excludes_d :
+    ¬ FixedGenerativeClosure
+        (emergenceToyGenerator 0)
+        (PromotedAvailability
+          (fun x => x ∈ emergenceToyRepertoire 0) c)
+        d := by
+  exact emergenceToy_d_stays_out_under_oldRule_after_promotion
+
 /-- Probe 4. The later product d is genuinely outside the old full generative
 closure, not merely outside the old one-step frontier. -/
 theorem probe_toy_d_really_outside_old_fullClosure :
@@ -109,6 +119,7 @@ end ToyCausalProbes
 #print axioms probe_constantRule_cannot_satisfy_strongVocabularyEvent
 #print axioms probe_toy_d_rule_requires_c
 #print axioms probe_toy_c_crosses_operational_boundary
+#print axioms probe_promoting_c_with_old_rule_still_excludes_d
 #print axioms probe_toy_d_really_outside_old_fullClosure
 #print axioms probe_second_emergence_explicitly_reuses_c
 #print axioms probe_endToEnd_has_old_new_closure_separation
