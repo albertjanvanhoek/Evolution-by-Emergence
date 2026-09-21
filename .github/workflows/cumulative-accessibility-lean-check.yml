@@ -46,6 +46,7 @@ jobs:
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.EmergenceDrivenRecursion \
             CumulativeAccessibility.EmergenceDrivenOperatorEvolution \
+            CumulativeAccessibility.EmergenceDrivenOperatorWitness \
             CumulativeAccessibility.EmergenceDrivenRecursionOpenEnded \
             CumulativeAccessibility.EmergenceDrivenRecursionProbes \
             CumulativeAccessibility.EmergenceDrivenDynamicVortex \
@@ -79,6 +80,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursion.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenOperatorEvolution.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenOperatorWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursionOpenEnded.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursionProbes.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenDynamicVortex.lean
