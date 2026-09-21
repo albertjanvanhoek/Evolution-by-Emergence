@@ -640,6 +640,31 @@ theorem emergenceToy_twoGeneration_strict_oneStepExpansion :
     emergenceToy_first_retention_preserves_old
     emergenceToy_twoGeneration_operationalRatchet
 
+/-- The first emergent product c is already generable, hence lies in the old
+fixed-rule closure before it is retained. This is important: the later closure
+expansion is not obtained by pretending c was previously impossible. -/
+theorem emergenceToy_c_generated_before_retention :
+    GeneratedFromAvailable
+      (fun x => x ∈ emergenceToyRepertoire 0)
+      (emergenceToyGenerator 0)
+      c := by
+  exact parentFaithful_implies_generated
+    emergenceToyGenerator emergenceToyRealizes
+    emergenceToyCost emergenceToyBudget emergenceToyCriterion
+    emergenceToyRepertoire 0
+    emergenceToy_first_parentFaithfulEmergence
+
+theorem emergenceToy_c_in_old_closure :
+    FixedGenerativeClosure
+      (emergenceToyGenerator 0)
+      (fun x => x ∈ emergenceToyRepertoire 0)
+      c := by
+  obtain ⟨parents, hAvailable, hGenerate⟩ :=
+    emergenceToy_c_generated_before_retention
+  exact FixedGenerativeClosure.gen
+    (fun x hx => FixedGenerativeClosure.base (hAvailable x hx))
+    hGenerate
+
 /-- Under the old repertoire-dependent rule, d is outside full generative
 closure: before c is retained, the rule that could construct d does not exist. -/
 theorem emergenceToy_d_not_in_old_closure :
@@ -654,6 +679,23 @@ theorem emergenceToy_d_not_in_old_closure :
       simpa [emergenceToyRepertoire] using hAvailable
   | gen hParents hRule =>
       simpa [emergenceToyRuleOf, emergenceToyRepertoire] using hRule
+
+/-- Merely promoting c while freezing the old generator still cannot make d
+reachable. Thus the old/new closure difference below genuinely requires the
+generator change, not just reuse of c as a primitive. -/
+theorem emergenceToy_d_stays_out_under_oldRule_after_promotion :
+    ¬ FixedGenerativeClosure
+        (emergenceToyGenerator 0)
+        (PromotedAvailability
+          (fun x => x ∈ emergenceToyRepertoire 0) c)
+        d := by
+  intro hPromoted
+  apply emergenceToy_d_not_in_old_closure
+  exact generatedPromotion_preserves_fixedGeneratorClosure
+    (emergenceToyGenerator 0)
+    (fun x => x ∈ emergenceToyRepertoire 0)
+    emergenceToy_c_generated_before_retention
+    d hPromoted
 
 /-- After c is retained, the repertoire-dependent rule exposes {b,c}->d,
 so d enters full generative closure. -/
@@ -776,6 +818,9 @@ theorem emergenceToy_endToEnd_emergenceDrivenRecursion :
 #print axioms constantRule_parentFaithfulPromotion_not_vocabularyExpansion
 #print axioms emergenceToy_first_parentFaithfulEmergence
 #print axioms emergenceToy_second_parentFaithfulEmergence
+#print axioms emergenceToy_c_generated_before_retention
+#print axioms emergenceToy_c_in_old_closure
+#print axioms emergenceToy_d_stays_out_under_oldRule_after_promotion
 #print axioms emergenceToy_twoGeneration_strict_oneStepExpansion
 #print axioms emergenceToy_closure_strictly_expands
 #print axioms emergenceToy_first_is_vocabularyExpansion
