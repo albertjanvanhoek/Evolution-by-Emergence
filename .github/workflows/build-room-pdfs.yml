@@ -1,0 +1,40 @@
+name: Build Room PDFs
+
+on:
+  push:
+    branches:
+      - paper/the-room-learning-constitution
+    paths:
+      - "papers/the-room-learning-constitution/*.tex"
+      - ".github/workflows/build-room-pdfs.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile LaTeX papers
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: papers/the-room-learning-constitution
+          root_file: |
+            the_room_problem.tex
+            procedural_corrigibility_human_rights.tex
+
+      - name: Commit rendered PDFs
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add papers/the-room-learning-constitution/the_room_problem.pdf
+          git add papers/the-room-learning-constitution/procedural_corrigibility_human_rights.pdf
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit."
+          else
+            git commit -m "Build Room paper PDFs"
+            git push
+          fi
