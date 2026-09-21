@@ -1,0 +1,50 @@
+name: Learning Constitution Check
+
+on:
+  pull_request:
+    paths:
+      - "papers/the-room-learning-constitution/**"
+      - ".github/workflows/learning-constitution-check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "papers/the-room-learning-constitution/**"
+      - ".github/workflows/learning-constitution-check.yml"
+
+jobs:
+  lean:
+    name: Lean 4.34.0
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Lean
+        shell: bash
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.34.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Check version
+        run: lean --version
+      - name: Reject placeholders
+        shell: bash
+        run: |
+          if grep -nE '(^|[^A-Za-z])(sorry|admit)([^A-Za-z]|$)' papers/the-room-learning-constitution/TheRoom.lean; then
+            echo "Proof placeholder found." >&2
+            exit 1
+          fi
+      - name: Compile formal surface
+        run: lean papers/the-room-learning-constitution/TheRoom.lean
+
+  papers:
+    name: Compile standalone papers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Compile LaTeX documents
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: papers/the-room-learning-constitution
+          root_file: |
+            the_room_problem.tex
+            the_learning_constitution.tex
+            procedural_corrigibility_human_rights.tex
+            the_elephant_and_the_agreement.tex
