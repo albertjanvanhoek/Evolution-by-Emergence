@@ -179,6 +179,42 @@ theorem operatorLadder_event (t : ℕ) :
       subst hx
       simp [operatorLadderActive, operatorLadderChild]
 
+/-- Strong attribution test: even if every capacity realized by every proper
+subassembly is granted both material availability and its operator, the new
+product remains outside full closure.  The whole assembly's emergence is
+therefore load-bearing for attribution. -/
+theorem operatorLadder_product_irreducible (t : ℕ) :
+    ¬ FixedGenerativeClosure
+      (ProperPartEnabledGenerator
+        operatorLadderBase operatorLadderOp operatorLadderRealizes
+        (operatorLadderParents t) ()
+        (fun x => x ∈ operatorLadderActive t))
+      (fun x =>
+        x ∈ operatorLadderActive t ∨
+          PartRealizedAt operatorLadderRealizes
+            (operatorLadderParents t) () x)
+      (operatorLadderProduct t) := by
+  apply emergent_operator_product_irreducible
+    operatorLadderBase operatorLadderOp operatorLadderRealizes
+    (fun x => x ∈ operatorLadderActive t)
+    (operatorLadderParents t) ()
+    (operatorLadderChild t) (operatorLadderProduct t)
+    (operatorLadder_emergent t)
+  · simp [operatorLadderActive, operatorLadderChild]
+  · intro ps hBase
+    rcases hBase with ⟨n, hChild, hParents⟩
+    cases hChild
+  · intro phi ps hOp
+    rcases phi with k | k
+    · have hk : k = t + 2 := by
+        exact (Sum.inr.inj hOp.2).symm
+      subst hk
+      rfl
+    · exact hOp.elim
+  · simp [operatorLadderActive, operatorLadderProduct]
+  · rintro ⟨sub, hProper, n, hProduct, hConfig⟩
+    cases hProduct
+
 /-- The click is derived at every step. -/
 theorem operatorLadder_click_every_step (t : ℕ) :
     ClosureStrictExpandsOn Set.univ
@@ -286,6 +322,46 @@ theorem operatorLadder_nonEmergent (t : ℕ) :
     simp at hMem
   · exact ⟨t, rfl, by simp⟩
 
+/-- In the non-emergent twin a proper part already realizes the child, so
+that part channel is sufficient to enable the child's operator and reach its
+product.  This is the matching regression test for whole-attribution. -/
+theorem operatorLadder_nonEmergent_parts_reach_product (t : ℕ) :
+    FixedGenerativeClosure
+      (ProperPartEnabledGenerator
+        operatorLadderBase operatorLadderOp operatorLadderNonEmergentRealizes
+        (operatorLadderParents t) ()
+        (fun x => x ∈ operatorLadderActive t))
+      (fun x =>
+        x ∈ operatorLadderActive t ∨
+          PartRealizedAt operatorLadderNonEmergentRealizes
+            (operatorLadderParents t) () x)
+      (operatorLadderProduct t) := by
+  have hPart :
+      PartRealizedAt operatorLadderNonEmergentRealizes
+        (operatorLadderParents t) () (operatorLadderChild t) := by
+    refine ⟨{Sum.inl t}, ?_, ?_⟩
+    · change ({Sum.inl t} : Finset OperatorLadderCap) ⊂ operatorLadderParents t
+      rw [Finset.ssubset_iff_subset_ne]
+      refine ⟨by simp [operatorLadderParents], ?_⟩
+      intro hEq
+      have hMem :
+          Sum.inl (t + 1) ∈ ({Sum.inl t} : Finset OperatorLadderCap) := by
+        rw [hEq]
+        simp [operatorLadderParents]
+      simp at hMem
+    · exact ⟨t, rfl, by simp⟩
+  apply nonEmergent_part_operator_reaches_product
+    operatorLadderBase operatorLadderOp operatorLadderNonEmergentRealizes
+    (fun x => x ∈ operatorLadderActive t)
+    (operatorLadderParents t) {operatorLadderChild t} ()
+    (operatorLadderChild t) (operatorLadderProduct t)
+    hPart
+  · simp [operatorLadderOp, operatorLadderChild, operatorLadderProduct]
+  · intro x hx
+    simp only [Finset.mem_singleton] at hx
+    subst hx
+    exact Or.inr hPart
+
 /-- Under the non-emergent twin, the certification transition used by the
 positive ladder is impossible: the child cannot acquire emergent provenance. -/
 theorem operatorLadder_nonEmergent_blocks_certification (t : ℕ) :
@@ -339,11 +415,13 @@ theorem operatorLadder_uncertified_admission_no_click (t : ℕ) :
 end NonEmergentKnockout
 
 #print axioms operatorLadder_event
+#print axioms operatorLadder_product_irreducible
 #print axioms operatorLadder_click_every_step
 #print axioms operatorLadder_recursive
 #print axioms operatorLadder_recurring
 #print axioms operatorLadder_chain
 #print axioms operatorLadder_openEndedNovelty
+#print axioms operatorLadder_nonEmergent_parts_reach_product
 #print axioms operatorLadder_nonEmergent_blocks_certification
 #print axioms operatorLadder_uncertified_admission_no_click
 
