@@ -44,6 +44,7 @@ jobs:
           $HOME/.elan/bin/lake build \
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
+            CumulativeAccessibility.EmergenceDrivenRecursion \
             CumulativeAccessibility.FormalCoreWitness \
             CumulativeAccessibility.MaintenanceGatedWitness \
             CumulativeAccessibility.BoundedResponseWitness \
@@ -71,6 +72,7 @@ jobs:
           set -euo pipefail
           output="$({
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursion.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
