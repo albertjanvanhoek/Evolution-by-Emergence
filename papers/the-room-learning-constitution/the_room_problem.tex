@@ -1,0 +1,225 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setlist{nosep}
+\setlength{\parskip}{0.6em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{The Room}\\\large From Incompatible Certainty to a Constitution for Learning}
+\author{Albert Jan van Hoek}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Three people can sincerely hold mutually incompatible beliefs. An observer does not need to know which person is right to know that the beliefs cannot all be right. This elementary fact creates a deeper problem once agents are interdependent: private certainty can be legitimate as conviction, yet certainty cannot by itself establish authority over a shared outcome. A system that makes some persons, claims, or corrective routes permanently incapable of changing its state can therefore become wrong and structurally unable to discover that it is wrong. This essay develops that problem from a minimal logical core. The proposed response is not a duty to doubt, permanent debate, or equal weight for all claims. It is a constitution for learning: shared processes should preserve challenge, revision, appeal, and re-entry in forms sufficient to keep their own error-correction machinery correctable. The accompanying Lean file formalizes the deductive skeleton while keeping empirical, psychological, and normative premises explicit.
+\end{abstract}
+
+\section{The Room}
+
+Imagine three people in a room. Alice is certain of $P$, Bob is certain of $Q$, and Claire is certain of $R$. Suppose the propositions are pairwise incompatible:
+\[
+\neg(P\land Q),\qquad \neg(P\land R),\qquad \neg(Q\land R).
+\]
+It follows that at most one of the three propositions is true. Hence at least two are false. No observer needs to know which proposition is true to establish this much.
+
+This is the first result of \emph{The Room}:
+\[
+\boxed{\text{Mutually incompatible certainties cannot all be correct.}}
+\]
+
+The result is deliberately modest. It does not prove that Alice is wrong, or Bob is wrong, or Claire is wrong. It does not prove that all human beliefs are uncertain. It establishes a structural fact: sincere certainty is compatible with error.
+
+That matters because each participant can recognize the problem when looking at the other two. Alice can see that Bob and Claire cannot both be right. Bob can make the same observation about Alice and Claire. Claire can make it about Alice and Bob. Yet each mind may still be tempted to grant itself an exemption: others can be sincerely wrong, but my own certainty is treated as if it carries a truth guarantee.
+
+Pure logic does not prohibit such self-exemption. An additional bridge is required: if two agents have the same relevant epistemic standing, and no independently justified truth-guaranteeing property distinguishes one from the other, identity alone cannot supply one with infallibility. The accompanying Lean model therefore keeps \emph{no privileged truth access} as an explicit premise rather than hiding it inside the conclusion.
+
+The resulting lesson is narrower than a duty of doubt:
+\[
+\boxed{\text{Certainty alone is not a truth certificate.}}
+\]
+
+\section{From private conviction to shared consequence}
+
+The problem becomes sharper when beliefs remain private no longer. Suppose Alice's conviction requires a shared decision $D$, while Bob's conviction requires an incompatible decision $\neg D$. If each accepts only the outcome demanded by their own conviction, no mutually acceptable outcome exists.
+
+Again, this is not yet a moral claim. It is a compatibility claim. Two exclusive requirements for different shared outcomes cannot both be satisfied.
+
+That observation separates two domains that are often conflated:
+\begin{align*}
+\textbf{private epistemic domain:}&\quad \text{what an agent believes;}\\
+\textbf{shared action domain:}&\quad \text{what happens to people who must live with one outcome.}
+\end{align*}
+
+An agent may remain absolutely convinced in the first domain. The difficulty is the attempted inference
+\[
+\text{``I am certain of }P\text{''}\quad\Longrightarrow\quad
+\text{``therefore my required shared outcome must prevail.''}
+\]
+The Room gives no warrant for that inference. Certainty does not become a truth guarantee merely because the belief now has consequences for others.
+
+This suggests a central distinction:
+\[
+\boxed{\text{freedom of conviction} \neq \text{unreviewable authority}.}
+\]
+
+\section{The deeper failure: closing the corrective edge}
+
+Consider a more general rule. Alice need not merely disagree with Bob. She may believe that Bob is so wrong, untrustworthy, offensive, or worthless that nothing originating from Bob should ever matter. In procedural form the rule becomes
+\[
+\forall e,\qquad \operatorname{Origin}(e)=B \Rightarrow \neg\operatorname{Admissible}(e).
+\]
+
+Now suppose there is some possible evidence from Bob that, if processed, would correct the system's current state. The system has then constructed the following conjunction:
+\[
+\text{corrective information is possible}
+\quad\land\quad
+\text{the route by which it could enter is permanently closed}.
+\]
+
+The accompanying Lean model makes this distinction explicit. \emph{Would correct} and \emph{is admissible} are different predicates. A source may be potentially corrective even while the current procedure refuses everything from that source. From those definitions follows a simple result:
+\[
+\boxed{
+\text{possible correction from }B
++\text{ permanent exclusion of }B
+\Rightarrow
+\text{failure of source-robust correctability}.}
+\]
+
+This does not imply that Bob is right now. It does not imply that Bob deserves equal credibility. It does not imply that every statement by Bob should be processed indefinitely. It identifies a narrower defect: a system cannot claim to preserve every potentially corrective route while categorically deleting one such route.
+
+This moves the argument away from courtesy and toward system architecture. The fundamental object is not whether Alice likes Bob or even whether she takes Bob seriously. It is whether the shared system remains able to receive information capable of correcting itself.
+
+\section{Why ``everyone must always be heard'' is the wrong rule}
+
+A learning system cannot remain maximally open to every input at every moment. Attention is finite. Some claims are irrelevant. Some interactions are repetitive or abusive. Institutions must decide, filter, prioritize, close cases, assign expertise, and sometimes exclude participants.
+
+The wrong constitutional principle is therefore
+\[
+\text{never exclude, never close, never stop listening.}
+\]
+Such a system would be unable to act.
+
+The more defensible principle is recursive:
+\[
+\boxed{\text{a decision that restricts corrective access must itself remain correctable}.}
+\]
+
+An exclusion may be legitimate, but the proposition ``exclude this person'' should not become true merely because the authority that imposed it declares itself beyond review. Re-entry may require a threshold: new evidence, changed circumstances, successful appeal, passage of time, independent review, or demonstrated repair. The important point is that the closure is conditional rather than self-sealing.
+
+This produces a useful distinction:
+\begin{center}
+\begin{tabular}{p{0.43\textwidth}p{0.43\textwidth}}
+\toprule
+\textbf{Decision} & \textbf{Epistemic closure}\\
+\midrule
+``We considered this claim and rejected it.'' & ``Nothing from this source can ever count.''\\
+``The case is closed unless new grounds arise.'' & ``No grounds can ever reopen the case.''\\
+``Access is restricted subject to review.'' & ``The restriction cannot itself be challenged.''\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The left-hand column is compatible with learning. The right-hand column creates states from which some errors are made unrecoverable by design.
+
+\section{The learning constitution}
+
+The formal model therefore represents learning not as a required conclusion but as a set of protected transformations of a shared state. Typical \emph{verbs of learning} include asserting, challenging, presenting evidence, responding, revising, reopening, repairing, appealing exclusion, and restoring access.
+
+The proposed constitution is an invariant over such processes. Its core clauses are:
+\begin{enumerate}
+  \item \textbf{Challenge access.} Affected participants who are not legitimately excluded retain a route to challenge shared claims.
+  \item \textbf{Reopening on grounds.} When the system recognizes material grounds for review, reopening is possible.
+  \item \textbf{Standing symmetry.} Equivalent procedural standing cannot become identity-based asymmetry in the basic right to challenge.
+  \item \textbf{Correctable restrictions.} Restrictions on corrective access are themselves challengeable and revisable.
+  \item \textbf{Appealable exclusion.} Exclusion of an affected participant cannot be made intrinsically unappealable.
+  \item \textbf{Recursive preservation.} Legitimate transitions of the system preserve these properties rather than permitting the system to abolish its own correctability.
+\end{enumerate}
+
+The final clause is the deepest. A constitution for learning is not useful if it protects correction at time $t$ but permits an ordinary transition to destroy all future routes of correction at $t+1$. Correctability must therefore be preserved as an invariant:
+\[
+\operatorname{Constitution}(S_0)
+\land
+\forall(S_t\to S_{t+1}),\ 
+\operatorname{Constitution}(S_t)\Rightarrow\operatorname{Constitution}(S_{t+1}).
+\]
+Then every reachable state remains inside the constitutional learning space.
+
+\section{What the logic does and does not establish}
+
+The formal argument establishes conditional implications. It does not establish an empirical psychology of human beings and does not derive a moral or legal system from logic alone.
+
+In particular, it does \emph{not} establish that:
+\begin{itemize}
+  \item every opinion is equally plausible;
+  \item every participant has equal expertise;
+  \item every challenge deserves unlimited time;
+  \item every exclusion is illegitimate;
+  \item a corrigible process necessarily reaches the truth;
+  \item a human-rights instrument must adopt the proposed constitution.
+\end{itemize}
+
+What it does establish is a constraint on a system that \emph{claims} robust correctability. If relevant correction may come from more than one source, permanently deleting such a source deletes a possible corrective route. If a system wishes its own restrictions to remain correctable, those restrictions cannot be self-sealing. If that property is required through time, it must be invariant under the system's own allowed transitions.
+
+The distinction is important because it moves the normative debate to the correct place. Logic cannot tell us that society ought to maximize correctability. But once a society decides that equal persons should share an interdependent world without making one person's current model permanently sovereign over another, the architecture of correctability becomes directly relevant.
+
+\section{The fundamental problem}
+
+The Room can now be stated in one chain:
+\[
+\begin{aligned}
+&\text{incompatible sincere certainties exist}\\
+&\Downarrow\\
+&\text{certainty alone cannot guarantee truth}\\
+&\Downarrow\\
+&\text{certainty alone cannot justify unilateral shared authority}\\
+&\Downarrow\\
+&\text{interdependent systems need procedures for resolving incompatible claims}\\
+&\Downarrow\\
+&\text{a learning procedure must preserve possible routes of correction}\\
+&\Downarrow\\
+&\boxed{\text{the correction mechanism must itself remain correctable}.}
+\end{aligned}
+\]
+
+The deepest proposal is therefore not ``everyone must doubt.'' It is not even ``everyone must listen.'' It is this:
+
+\begin{quote}
+\textbf{An interdependent learning system must not make its own possible error uncorrectable by construction.}
+\end{quote}
+
+That principle is sufficiently abstract to apply to scientific collaboration, organizations, courts, public institutions, families, multi-agent AI systems, and other networks in which fallible agents make consequential shared decisions. Its concrete implementation will differ across domains. The logical problem underneath them is the same.
+
+\section{Conclusion}
+
+The Room begins with a minimal fact: people can be sincerely certain of mutually incompatible propositions, and those propositions cannot all be true. This does not tell us who is wrong. It does not require anyone to abandon a conviction, and it does not establish that every question should remain permanently open. It establishes something more limited and more useful: certainty by itself cannot function as a guarantee of correctness.
+
+Once fallible agents are interdependent, that epistemic fact becomes a problem of institutional design. A private conviction can remain fully protected as conviction while still being insufficient, on its own, to justify unreviewable authority over a shared outcome. The central question therefore shifts from \emph{which person should be trusted absolutely?} to \emph{which rules keep the shared process capable of discovering and repairing its own errors?}
+
+The proposed answer is a constitution for learning. Such a constitution need not prevent decisions, filtering, closure, hierarchy, or exclusion. It requires instead that the mechanisms governing those acts do not become self-sealing. A claim may be rejected; a case may close; access may be restricted. But where a consequential decision can itself be wrong, the architecture should preserve an appropriate route by which relevant correction can still become possible. Most importantly, restrictions on corrective access must themselves remain within the domain of correction.
+
+This gives the argument its recursive form:
+\[
+\boxed{\text{the correction mechanism must itself remain correctable}.}
+\]
+
+A learning constitution cannot guarantee truth. No procedure can remove the possibility of collective error. What it can do is prevent present authority from converting a potentially correctable error into an error that the system has made structurally impossible to revisit.
+
+The resulting principle is therefore not a demand for agreement, compulsory doubt, or unlimited listening. It is a ground rule for coexistence among fallible and interdependent agents:
+\begin{quote}
+\textbf{A shared learning system should remain able to be corrected, including about whom, what, and which routes of correction it currently trusts.}
+\end{quote}
+
+That is the fundamental problem exposed by The Room, and the possible solution it suggests: protect not a predetermined conclusion, but the continuing possibility of correction.
+
+\end{document}

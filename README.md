@@ -6,7 +6,7 @@
 
 > **How can organization that exists now become material that changes which organization can exist next?**
 
-The repository contains a historical book, essays, papers, models, and formalizations. The current v17 integration is making one small formal core stable enough to underpin that larger corpus.
+The repository contains a historical book, essays, papers, models, and formalizations. The v17 release froze the recursive-organization formal core. The v18 release adds a separate machine-checked companion on fallible interdependent agents and the preservation of correctability; it does not redefine the v17 recursive core.
 
 The goal is **not** to claim priority for mechanisms that are already known. The goal is a self-standing, machine-auditable, literature-positioned theory that reviewers can attack precisely.
 
@@ -23,7 +23,19 @@ The goal is **not** to claim priority for mechanisms that are already known. The
 9. **[EvolutionByEmergenceV17Core.lean](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean)** — canonical v17 theorem surface.
 10. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — reproducible review protocol.
 
-Until v17 is frozen, **v16 remains the latest immutable historical review release**.
+### v18 companion route — correctable interdependence
+
+The v18 release adds a second, deliberately separate review object:
+
+1. **[The Room package README](papers/the-room-learning-constitution/README.md)** — reading order, scope, and review targets.
+2. **[The Room](papers/the-room-learning-constitution/the_room_problem.pdf)** — the fundamental problem.
+3. **[The Learning Constitution](papers/the-room-learning-constitution/the_learning_constitution.pdf)** — the logical/systemic solution.
+4. **[Formal verification map](papers/the-room-learning-constitution/FORMAL_VERIFICATION.md)** — exact prose-to-Lean traceability.
+5. **[TheRoom.lean](papers/the-room-learning-constitution/TheRoom.lean)** — machine-checked formal backbone.
+6. **[Freedom of Conscience and the Right to a Correctable Process](papers/the-room-learning-constitution/procedural_corrigibility_human_rights.pdf)** — candidate legal translation.
+7. **[The Elephant and the Agreement](papers/the-room-learning-constitution/the_elephant_and_the_agreement.pdf)** — accessible parable.
+
+The formal and normative layers are intentionally separated: Lean checks conditional implications under declared definitions; it does not derive a moral or legal obligation.
 
 ## The theory in one paragraph
 
@@ -218,6 +230,8 @@ EvolutionByEmergenceV17Core.lean
 
 ## Historical releases and wider corpus
 
+- **v18** — The Learning Constitution: Correctable Interdependence; machine-checked companion on fallibility, corrective routes, and recursive non-closure.
+- **v17** — Recursive Organization Core; corrected moving-envelope operational core.
 - **v16** — Full Theory Peer-Review Release; Dynamic Vortex integration.
 - **v15** — Verification Closure baseline.
 
