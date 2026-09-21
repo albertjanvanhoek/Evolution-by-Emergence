@@ -1,281 +1,233 @@
-# Evolution by Emergence v17 — Recursive Organization Core
+# Evolution by Emergence v18 — The Learning Constitution: Correctable Interdependence
 
-`v17` is the fixed peer-review release of the recursive-organization formal core developed through PRs #56–#60.
+`v18` adds a separate machine-checked companion to the v17 Recursive Organization Core.
 
-The purpose of this release is not to claim a new universal law or priority over established mechanisms. It is to provide a **self-standing, machine-auditable, literature-positioned descriptive architecture** that can underpin the larger Evolution by Emergence corpus.
+The new question is:
 
-## 1. Canonical review object
+> **What minimal procedural architecture prevents fallible interdependent agents from making their own possible error structurally uncorrectable?**
+
+The release does **not** change the canonical v17 recursive-organization theorems. It adds a focused formal and conceptual layer about incompatible certainty, corrective routes, self-sealing restrictions, and preservation of a declared learning constitution.
+
+## 1. Release object
 
 Start with:
 
-1. `THEORY_CORE_V17.md` — self-standing theory core;
-2. `FORMAL_THEORY_ENDPOINT.md` — formal endpoint and review-readiness criteria;
-3. `APPLICATION_MAPPINGS_V17.md` — worked cross-domain mappings and a partial non-mapping;
-4. `FORMAL_THEORY_MAP.md` — exact prose-to-Lean traceability;
-5. `CLAIMS.md` — claim ledger and non-claims;
-6. `verification/audits/2026-09-19-recursive-emergence/` — theorem, adversarial, prior-art, and cold-reader audits;
-7. `formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean` — canonical v17 theorem surface;
-8. `PEER_REVIEW_PROMPT.md` — broad-review protocol.
+1. `papers/the-room-learning-constitution/README.md` — reviewer entry, reading order, and scope.
+2. `papers/the-room-learning-constitution/the_room_problem.pdf` — **The Room**: the fundamental problem.
+3. `papers/the-room-learning-constitution/the_learning_constitution.pdf` — **The Learning Constitution**: the logical/systemic solution.
+4. `papers/the-room-learning-constitution/FORMAL_VERIFICATION.md` — exact paper-to-Lean traceability.
+5. `papers/the-room-learning-constitution/TheRoom.lean` — machine-checked formal backbone.
+6. `papers/the-room-learning-constitution/procedural_corrigibility_human_rights.pdf` — candidate human-rights translation.
+7. `papers/the-room-learning-constitution/the_elephant_and_the_agreement.pdf` — accessible parable.
+8. `papers/the-room-learning-constitution/CLAIMS.md` — local claims and non-claims.
 
-## 2. Core descriptive architecture
+The `.tex` sources for all four standalone documents are committed beside the PDFs.
 
-The v17 core keeps the following distinctions explicit:
+## 2. The Room: the problem
 
-```text
-possible
-!= generated
-!= realized
-!= emergent
-!= feasible
-!= validated / selected
-!= retained
-!= operationally reusable
-!= admitted to future search
-!= recursively cumulative.
-```
+The formal starting point is deliberately small.
 
-The main recursive motif is:
+If several propositions are pairwise incompatible, they cannot all be true. If agents are certain of incompatible propositions, their certainties cannot all carry a truth guarantee.
+
+The formal layer keeps an important bridge explicit:
 
 ```text
-existing operational organization
-    -> generation / construction
-    -> candidate configuration
-    -> capacity realization
-    -> compositional emergence
-    -> resource feasibility
-    -> external/domain validation or selection
-    -> retention
-    -> operational reuse
-    -> changed downstream generability
-    -> finite admission to local search
-    -> later recursive successor.
+incompatible certainty
+does not by itself imply
+symmetric individual fallibility.
 ```
 
-Every arrow remains a process that can fail.
+To block identity-based self-exemption, the model declares same relevant standing plus a `NoPrivilegedTruthAccess` premise.
 
-## 3. Corrected moving-envelope operational core
+This yields a disciplined conclusion:
 
-The first recursive master specialization used a globally finite `Capacity` type.
+> **certainty alone is not a truth certificate.**
 
-The later audit proved that a monotonically accumulating repertoire cannot sustain indefinitely many strict retained expansions inside one fixed finite global capacity universe.
+## 3. Interdependence
 
-The corrected v17 operational core therefore uses:
+When convictions imply incompatible exclusive requirements for one shared outcome, there may be no mutually acceptable substantive result.
+
+The formalization does not decide which participant is correct or which outcome should prevail. It isolates the need for a procedure when incompatible private models have shared consequences.
+
+The key separation is:
 
 ```text
-possibly non-finite ambient Capacity
-+ finite time-local candidate envelopes U_t
-+ seed recursive-emergence event
-+ monotone active retention
-+ locally certified effective successor reproduction
-    -> open-ended cumulative operational novelty.
+freedom of conviction
+!=
+unreviewable shared authority.
 ```
 
-With repertoire representation inside the local envelopes:
+## 4. Corrective routes
+
+The correctability layer distinguishes:
 
 ```text
-open-ended cumulative operational novelty
-    -> unbounded envelope cardinality over time.
+evidence that could correct a state
+from
+evidence that the current procedure admits.
 ```
 
-This does not require an infinite search set at any single time.
-
-## 4. Primitive promotion and endogenous accessibility
-
-PR #59 strengthens the recursive route by separating:
+Under the declared source-robust correctability model:
 
 ```text
-retained child
--> operational primitive promotion
--> essential contribution to later generability
--> finite admission
--> next-envelope representation
--> independent full filtering
--> actual recursive successor.
+potentially corrective source
++ permanent source exclusion
+-> failure of source-robust correctability.
 ```
 
-The essential-parent test holds the next-step generator fixed and asks whether the downstream candidate ceases to be generable when the promoted child is removed.
+This is a conditional theorem under the stated source-based route definition. It does not prove that every source requires direct access when equivalent information can travel through redundant or independent channels.
 
-This establishes **essential contribution under the declared counterfactual**, not sole historical causation.
+## 5. The Learning Constitution
 
-Primitive promotion alone does not imply another successful innovation.
+The local constitutional predicate `LearningConstitution.HoldsAt` declares five conditions:
 
-## 5. Constructive generated-configuration bridge
+1. **challenge access** for affected, non-excluded participants;
+2. **reopening on recognized grounds for review**;
+3. **standing symmetry** in the basic capacity to challenge shared claims;
+4. **correctability of restrictions** on affected participants;
+5. **appealability of exclusion**.
 
-`ConstructiveRecursiveEmergence.lean` adds an optional stronger interface:
+These clauses are proposed design conditions. Lean does not derive them from pure logic.
 
-```text
-parents construct configuration c for child
-AND
-that same c realizes the child capacity emergently
-AND
-the same event passes feasibility, validation, and retention.
-```
+Given those clauses, Lean proves that affected participants cannot be subject to a **self-sealing restriction**: a restriction that simultaneously removes the ability to challenge the restriction or the procedure's ability to revise it.
 
-The stronger constructive event projects to the existing capacity-level recursive event.
-
-This closes the earlier formal seam between:
-
-```text
-parents generate capacity phi
-```
-
-and
-
-```text
-some unrelated configuration realizes phi.
-```
-
-Applications that cannot justify configuration-level construction may continue to use the weaker capacity-level interface explicitly.
-
-## 6. Active repertoire versus cumulative history
-
-`ActiveHistory.lean` separates:
-
-```text
-Active_t
-History_t.
-```
-
-`Active_t` contains capacities currently available for reuse.
-
-`History_t` is a declared cumulative trace of capacities the application records as having occurred.
-
-Lean proves a turnover witness in which:
-
-```text
-|Active_t| = 1 for every t,
-Active is not monotone,
-History is open-ended.
-```
-
-Thus v17 distinguishes:
-
-- **open-ended cumulative operational novelty** — stronger; requires monotone active retention;
-- **open-ended cumulative historical novelty** — weaker; permits operational loss and turnover.
-
-Historical open-endedness is an accounting implication from recurring history-new events; it does not explain why those events continue.
-
-## 7. Deterministic local successor reproduction
-
-The v17 local effective emergence reproduction number is a deterministic count of actual full successors in the next finite local envelope.
+The formalization also defines reachability through process steps. If the constitution holds initially and every allowed step preserves it, then it holds in every reachable state.
 
 Therefore:
 
-```text
-R_E^local >= 1
-iff
-at least one actual local recursive successor exists.
-```
+> **under the declared preservation assumptions, self-sealing restrictions cannot become reachable.**
 
-It is not automatically:
-
-- an expected branching offspring count;
-- a stochastic survival probability;
-- a next-generation spectral radius;
-- an epidemiological reproduction number.
-
-Mechanism-factor ledgers remain separate and require explicit calibration to actual successors.
-
-## 8. Literature position
-
-The v17 audit explicitly treats the following as antecedents rather than EbE discoveries:
-
-- Darwinian selection and inheritance;
-- open-ended-evolution frameworks and finite-system limits;
-- adjacent-possible triggering;
-- changing phase-space / enablement theories;
-- co-option and exaptation;
-- modularity and evolvability;
-- autocatalytic and generative RAF theory;
-- Self-Other Reorganization;
-- major evolutionary transitions;
-- cumulative culture and cultural loss;
-- recombinant technological evolution;
-- co-evolving technological/cultural repertoires and search spaces;
-- viability and reachability;
-- formal component construction and reuse;
-- resource-limited maintenance.
-
-The targeted prior-art preflight found **no equal-or-stronger single framework containing the full v17 conjunction**, while identifying generative RAF/SOR, Soros–Stanley open-ended-evolution conditions, and Winters–Charbonneau as the strongest challenges.
-
-That result is **not a priority proof**.
-
-The defensible contribution under review is narrower:
-
-> a machine-auditable cross-domain factorization of established mechanisms, with explicit theorem boundaries and countermodels preventing several common identifications.
-
-## 9. Cold-reader preflight
-
-A clean-room repository-only reconstruction successfully recovered the intended theory without the PR/conversation history.
-
-That preflight led to clarification of:
-
-- the domain of the persistence statement;
-- the declared rather than self-validating nature of historical trace;
-- the accounting character of the historical open-endedness theorem;
-- the distinction between local admitted envelopes and all physically possible candidates.
-
-The reviewer path now resolves without broken internal links.
-
-## 10. What v17 does not claim
-
-The formal core does not establish:
+This is the recursive core of v18:
 
 ```text
-novelty -> improvement
-persistence -> function
-validation -> truth
-retention -> goodness
-possibility -> realization
-larger possibility space -> progress
-self-maintenance -> automatic innovation
-historical accumulation -> growing active repertoire
-moving envelope -> strong ontology creation
-machine proof -> empirical truth.
+the correction mechanism
+must itself remain correctable.
 ```
 
-It also does not derive moral or political objectives.
+## 6. Human-rights translation
 
-Values and domain evidence specify goals. EbE can then analyze what organization must actually be generated, implemented, maintained, transmitted, and reused for a chosen outcome to become and remain real.
+The legal paper asks a separate normative question: whether the architecture of correctability should receive explicit protection in human-rights law.
 
-## 11. Machine verification
+It proposes a candidate symmetry:
 
-The canonical v17 Lean surface includes:
+```text
+freedom of conscience:
+    nobody may own my mind
 
-- relative compositional emergence;
-- filtering and retained integration;
-- recursive parent reuse;
-- configuration-level constructive projection;
-- essential-parent generated-access expansion;
-- finite admission and moving local envelopes;
-- deterministic local successor counting;
-- fixed-finite saturation;
-- operational and historical cumulative endpoints;
-- non-vacuity witnesses;
-- separation countermodels.
+procedural corrigibility:
+    nobody's conviction alone should become
+    uncorrectable authority over a shared process
+```
 
-The repository's proof workflows build the formal-core targets and reject `sorryAx` on the advertised verification surface.
+The paper develops a draft **Article X — Right to a Correctable Process**.
 
-The release workflow creates `v17` only after the repository's **Build & Deploy Site** workflow succeeds on `main`, so the published tag identifies the tested release commit.
+This is a proposal for legal discussion. It is **not** machine-derived law and is not presented as a statement that existing international human-rights law already contains the proposed general right.
 
-## 12. Broad review target
+## 7. Accessible parable
 
-Reviewers are asked to attack:
+`The Elephant and the Agreement` presents the architecture as a story of blind observers encountering different parts of one elephant.
+
+Its central symmetry is:
+
+> **Protect the observer, because no collective has direct access to another person's experience.**
+
+> **Protect the relationship, because no observer has direct access to the whole truth.**
+
+The parable is explanatory, not part of the theorem surface.
+
+## 8. Machine verification
+
+The permanent workflow is:
+
+```text
+.github/workflows/learning-constitution-check.yml
+```
+
+It has two independent jobs.
+
+### Lean
+
+The workflow pins **Lean 4.34.0**, rejects `sorry` / `admit` placeholders, and compiles:
+
+```text
+papers/the-room-learning-constitution/TheRoom.lean
+```
+
+### Standalone papers
+
+The workflow independently compiles:
+
+```text
+the_room_problem.tex
+the_learning_constitution.tex
+procedural_corrigibility_human_rights.tex
+the_elephant_and_the_agreement.tex
+```
+
+The checked theorem-to-paper map is in `FORMAL_VERIFICATION.md`.
+
+## 9. What v18 does not prove
+
+The formal surface does not establish:
+
+```text
+correctability -> truth
+correctability -> moral obligation
+correctability -> legal right
+same standing -> equal expertise
+procedural standing -> equal evidential weight
+challengeability -> endless debate
+appealability -> endless reopening
+source exclusion -> loss of all correction under redundant channels
+five constitutional clauses -> unique minimal constitution
+machine proof -> empirical validity.
+```
+
+The legal and philosophical steps remain open to criticism, comparison with existing doctrine, empirical testing, and revision.
+
+## 10. Relation to v17
+
+v17 remains the canonical recursive-organization formal core:
+
+```text
+retained organization
+-> operational reuse
+-> changed generability
+-> later recursive organization.
+```
+
+v18 adds a separate agent/interdependence companion:
+
+```text
+fallible partial models
+-> incompatible consequential claims
+-> corrective procedure
+-> restrictions kept correctable
+-> recursive preservation of correctability.
+```
+
+The two surfaces should not be conflated.
+
+## 11. Review targets
+
+Reviewers are invited to attack:
 
 1. formal validity;
-2. semantic adequacy;
-3. stronger prior art;
-4. explanatory usefulness;
-5. domain mapping;
-6. empirical support;
-7. normative inference.
+2. whether `NoPrivilegedTruthAccess` is the right bridge;
+3. whether source-based correctability is too strong relative to channel/reachability formulations;
+4. whether the five constitutional clauses are redundant or incomplete;
+5. whether `ConstitutionPreserved` is substantively useful or merely restates the desired invariant;
+6. stronger prior art in epistemology, deliberative procedure, constitutional law, due process, administrative law, or human-rights doctrine;
+7. the normative bridge from correctability to rights;
+8. conflicts with finality, privacy, safety, association, expertise, disability rights, child rights, and emergency powers.
 
-A theorem defect, stronger antecedent, failed mapping, empirical counterexample, or successful narrowing is a useful review result.
-
-Use the immutable `v17` tag and record its commit SHA.
+A counterexample, narrower theorem, stronger antecedent, better legal doctrine, or cleaner formalization is a successful review result.
 
 ## Release lineage
 
-- **v15 — Verification Closure**
-- **v16 — Full Theory Peer-Review Release**
+- **v18 — The Learning Constitution: Correctable Interdependence**
 - **v17 — Recursive Organization Core**
+- **v16 — Full Theory Peer-Review Release**
+- **v15 — Verification Closure**
+
+Use the immutable `v18` tag and record its commit SHA when reviewing this release.
