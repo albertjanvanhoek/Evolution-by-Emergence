@@ -252,6 +252,30 @@ theorem operatorEvent_certifies_child
     ⟨_, _, _, hEmergent, _, _, _, _, hCertification, _⟩
   exact (hCertification child).2 (Or.inr ⟨rfl, hEmergent⟩)
 
+/-- A strong operator event gives the existing retained-integration
+bookkeeping fact as a downstream projection.  Here retention is derived through
+the admission law rather than assumed as an independent event conjunct. -/
+theorem operatorEvent_retainedIntegration
+    (Base : HyperGenerator Capacity)
+    (Op : EmergentOperatorMap Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ -> Finset Capacity)
+    (Certified : ℕ -> Capacity -> Prop)
+    (m : ℕ)
+    {parents : Finset Capacity}
+    {ctx : Context}
+    {child : Capacity}
+    (h :
+      EmergenceDrivenOperatorEventAt
+        Base Op Realizes Cost Budget E S Certified m parents ctx child) :
+    RetainedIntegrationAt S m child := by
+  rcases h with
+    ⟨_, _, _, _, hNew, _, hGate, hAdmission, _, _⟩
+  exact ⟨hNew, (hAdmission child).2 (Or.inr ⟨rfl, hGate⟩)⟩
+
 /-- Main click theorem.
 
 Full multi-step reach expands because the event's emergent realization creates
@@ -435,6 +459,7 @@ theorem uncertified_generated_promotion_no_closure_click
 
 end NoEmergenceNoClick
 
+#print axioms operatorEvent_retainedIntegration
 #print axioms emergenceDrivenOperatorEvent_click
 #print axioms emergenceDrivenOperatorEvent_forces_generatorChange
 #print axioms certifiedGenerator_unchanged_by_uncertified_promotion
