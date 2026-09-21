@@ -107,6 +107,43 @@ def IsolatedEmergenceCertificationLawAt
             (FiniteProperSubconfig (Process := Capacity))
             Realizes parents ctx child)
 
+theorem admissionLaw_gateFailure_blocks_child
+    (Cost : ResponseCost Capacity)
+    (Budget : ResponseBudget)
+    (E : ExternalCriterion Capacity)
+    (S : ℕ -> Finset Capacity)
+    (m : ℕ)
+    (child : Capacity)
+    (hNew : child ∉ S m)
+    (hLaw : IsolatedGateAdmissionLawAt Cost Budget E S m child)
+    (hFail : ¬ EmergentAdmissionGateAt Cost Budget E m child) :
+    child ∉ S (m + 1) := by
+  intro hNext
+  rcases (hLaw child).1 hNext with hOld | ⟨_, hGate⟩
+  · exact hNew hOld
+  · exact hFail hGate
+
+theorem certificationLaw_nonEmergence_blocks_child
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (Certified : ℕ -> Capacity -> Prop)
+    (m : ℕ)
+    (parents : Finset Capacity)
+    (ctx : Context)
+    (child : Capacity)
+    (hNew : ¬ Certified m child)
+    (hLaw :
+      IsolatedEmergenceCertificationLawAt
+        Realizes Certified m parents ctx child)
+    (hNotEmergent :
+      ¬ EmergentUnder
+        (FiniteProperSubconfig (Process := Capacity))
+        Realizes parents ctx child) :
+    ¬ Certified (m + 1) child := by
+  intro hNext
+  rcases (hLaw child).1 hNext with hOld | ⟨_, hEmergent⟩
+  · exact hNew hOld
+  · exact hNotEmergent hEmergent
+
 /-- The new strong EbE event.
 
 The same finite parent set:
@@ -574,6 +611,8 @@ theorem uncertified_generated_promotion_no_closure_click
 
 end NoEmergenceNoClick
 
+#print axioms admissionLaw_gateFailure_blocks_child
+#print axioms certificationLaw_nonEmergence_blocks_child
 #print axioms operatorEvent_retainedIntegration
 #print axioms emergenceDrivenOperatorEvent_click
 #print axioms emergenceDrivenOperatorEvent_forces_generatorChange
