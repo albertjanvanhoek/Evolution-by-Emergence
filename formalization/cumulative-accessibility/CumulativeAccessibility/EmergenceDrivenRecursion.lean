@@ -490,7 +490,10 @@ theorem emergenceToy_second_parentFaithfulEmergence :
   · simp [emergenceToyRepertoire]
   · simp
   · intro x hx
-    simpa [emergenceToyRepertoire] using hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · simp [emergenceToyRepertoire]
+    · simp [emergenceToyRepertoire]
   · simp [emergenceToyGenerator, GeneratorFromRepertoire,
       emergenceToyRuleOf, emergenceToyRepertoire]
   · constructor
@@ -588,8 +591,12 @@ theorem emergenceToy_d_in_new_closure :
       d := by
   refine FixedGenerativeClosure.gen (parents := {b, c}) ?_ ?_
   · intro x hx
-    exact FixedGenerativeClosure.base (by
-      simpa [emergenceToyRepertoire] using hx)
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact FixedGenerativeClosure.base (by
+        simp [emergenceToyRepertoire])
+    · exact FixedGenerativeClosure.base (by
+        simp [emergenceToyRepertoire])
   · simp [emergenceToyRuleOf, emergenceToyRepertoire]
 
 theorem emergenceToy_rule_preserves_old_generations :
@@ -599,9 +606,16 @@ theorem emergenceToy_rule_preserves_old_generations :
       (emergenceToyRuleOf
         (fun x => x ∈ emergenceToyRepertoire 1)) := by
   intro parents z h
-  cases z <;>
-    simp [emergenceToyRuleOf, emergenceToyRepertoire] at h ⊢
-  exact h
+  cases z with
+  | a =>
+      simpa [emergenceToyRuleOf] using h
+  | b =>
+      simpa [emergenceToyRuleOf] using h
+  | c =>
+      simpa [emergenceToyRuleOf] using h
+  | d =>
+      exfalso
+      simpa [emergenceToyRuleOf, emergenceToyRepertoire] using h
 
 /-- The first emergent retained module genuinely changes full generative
 closure because the generative rule is a function of retained organization. -/
