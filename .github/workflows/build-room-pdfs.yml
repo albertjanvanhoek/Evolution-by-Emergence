@@ -1,4 +1,5 @@
 name: Build Room PDFs
+# rerun after Lean source update
 
 on:
   push:
