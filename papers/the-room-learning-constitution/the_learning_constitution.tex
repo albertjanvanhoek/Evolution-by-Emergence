@@ -1,0 +1,387 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue}
+\setlist{nosep}
+\setlength{\parskip}{0.62em}
+\setlength{\parindent}{0pt}
+
+\title{\textbf{The Learning Constitution}\\\large Minimal Ground Rules for Correctable Interdependent Systems}
+\author{Albert Jan van Hoek}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A fallible system cannot guarantee that its present conclusions are correct. It can, however, be organized so that present conclusions do not make future correction structurally impossible. This paper develops a minimal ``learning constitution'' for interdependent systems whose participants may disagree, make mistakes, restrict one another, and still need to reach shared decisions. The proposal does not require permanent openness, equal weight for all claims, or compulsory doubt. It protects processes rather than conclusions. Affected participants retain routes to challenge shared claims; recognized grounds for review can reopen decisions; equivalent standing cannot be converted into identity-based privilege; restrictions on corrective access must themselves remain challengeable and revisable; and exclusions must retain an appeal route. The central recursive requirement is that the correction mechanism must itself remain correctable. A companion Lean 4 formalization makes these clauses explicit and proves that, if the constitution holds initially and is preserved by every allowed transition, no reachable state can contain a self-sealing restriction on an affected participant. The result is a logical design proposal for learning systems, not a claim that these rules are uniquely necessary or sufficient for truth.
+\end{abstract}
+
+\section{From the problem to a design question}
+
+Suppose several agents hold sincere but incompatible models of a shared situation. The fact of incompatibility is enough to establish that the models cannot all be correct. It is not enough to identify the correct model.
+
+That distinction changes the design problem. If a system had access to an infallible truth oracle, it could simply grant authority to whoever the oracle identified as correct. Human institutions, scientific groups, organizations, families, courts, and multi-agent systems generally do not possess such an oracle. Their procedures must operate while the identity of the mistaken party remains uncertain.
+
+The relevant question is therefore not
+\begin{quote}
+Who should be trusted absolutely?
+\end{quote}
+but rather
+\begin{quote}
+\textbf{Which rules allow a shared system to make decisions without making its own possible errors impossible to correct?}
+\end{quote}
+
+This is a different target from truth itself. Call it \emph{correctability}.
+
+A correctable system may still be wrong. It may even remain wrong for a long time. The defining property is weaker: some admissible route remains by which relevant reasons, evidence, objections, or review can alter a consequentially mistaken state.
+
+The distinction can be written as
+\[
+\boxed{\text{truth} \neq \text{correctability}.}
+\]
+Truth is a property of a proposition or model. Correctability is a property of the architecture through which a model can change.
+
+\section{What a learning constitution can and cannot guarantee}
+
+A constitution for learning should not be understood as a procedure that guarantees convergence to truth. Such a guarantee would require assumptions about the quality of evidence, the reliability of participants, incentives, information diversity, noise, time, and the relation between the model and the world.
+
+The more modest constitutional aim is this:
+\[
+\boxed{\text{do not protect current error merely by procedural privilege}.}
+\]
+
+That aim matters because a system can appear open while being functionally closed. Everyone may be allowed to speak while nothing they say can change the outcome. A challenge may be formally permitted while no decision can ever be revised. An appeal mechanism may exist while the authority being appealed to is itself beyond review.
+
+The constitution must therefore concern not only expression but the structure of possible state change.
+
+Let $S_t$ denote the current shared state. A learning action is a possible transition
+\[
+S_t \xrightarrow{v} S_{t+1},
+\]
+where $v$ is a procedural verb such as challenge, present evidence, revise, reopen, repair, appeal, or restore access.
+
+The constitution does not prescribe which conclusion $S_{t+1}$ must contain. It constrains which transitions must remain possible if the system is to retain its capacity for correction.
+
+\section{The verbs of learning}
+
+The companion Lean formalization represents the following verbs explicitly:
+\[
+\begin{array}{llll}
+\text{assert}, & \text{challenge}, & \text{present evidence}, & \text{respond},\\
+\text{revise}, & \text{reopen}, & \text{repair}, & \text{appeal exclusion},\\
+\multicolumn{4}{c}{\text{restore access}.}
+\end{array}
+\]
+
+These are not moral commandments. The constitution does not say that every agent must perform every verb, that every challenge succeeds, or that every item of evidence is persuasive. The verbs identify kinds of transitions that a learning system may need to preserve.
+
+This distinction is important. A system may legitimately say:
+\begin{quote}
+``Your argument was considered and rejected.''
+\end{quote}
+without saying:
+\begin{quote}
+``No argument originating from you can ever again matter.''
+\end{quote}
+
+The first is a decision. The second is a rule about the future admissibility of correction.
+
+Likewise, a system may say:
+\begin{quote}
+``This case is closed unless materially new grounds arise.''
+\end{quote}
+without saying:
+\begin{quote}
+``No possible future grounds are capable of reopening this case.''
+\end{quote}
+
+The constitution is concerned with the second kind of closure.
+
+\section{Five local constitutional clauses}
+
+The current formal model proposes five local clauses. They are deliberately minimal and should be understood as a candidate architecture rather than a final list.
+
+\subsection{Challenge access}
+
+If a claim has consequences in the shared domain, an affected participant who is not legitimately excluded retains a route to challenge it.
+
+Formally, in the Lean model:
+\[
+\operatorname{Affected}(a)
+\land
+\operatorname{SharedClaim}(c)
+\land
+\neg\operatorname{Excluded}(a)
+\Rightarrow
+\operatorname{Permitted}(\operatorname{Challenge}(a,c)).
+\]
+
+This protects standing, not success. A challenge may be weak, repetitive, irrelevant, or ultimately rejected. The constitutional property is that a current claim does not become immune from challenge merely because it is current.
+
+\subsection{Reopening on recognized grounds}
+
+If the system itself recognizes grounds for review of a shared claim, a route to reopening must exist:
+\[
+\operatorname{SharedClaim}(c)
+\land
+\operatorname{GroundsForReview}(c)
+\Rightarrow
+\operatorname{Permitted}(\operatorname{Reopen}(c)).
+\]
+
+This clause prevents a peculiar form of institutional contradiction: the system recognizes that reconsideration is warranted while simultaneously making reconsideration procedurally impossible.
+
+It does not define what counts as sufficient grounds. That threshold is domain-specific.
+
+\subsection{Standing symmetry}
+
+Where two participants have the same relevant procedural standing, identity alone should not determine whether one may challenge a shared claim and the other may not:
+\[
+\operatorname{SameStanding}(a,b)
+\Rightarrow
+\bigl(\operatorname{CanChallenge}(a,c)
+\leftrightarrow
+\operatorname{CanChallenge}(b,c)\bigr).
+\]
+
+This is procedural symmetry, not epistemic equality. Experts may possess different knowledge. Evidence may receive different weight. Roles may differ. The clause rules out an unexplained transformation from equivalent standing into asymmetric access to correction.
+
+\subsection{Correctable restrictions}
+
+A system sometimes needs to restrict participation. The critical question is what happens to the restriction itself.
+
+The proposed rule is
+\[
+\operatorname{Affected}(a)
+\land
+\operatorname{Restricts}(d,a)
+\Rightarrow
+\operatorname{CanChallengeDecision}(a,d)
+\land
+\operatorname{CanReviseDecision}(d).
+\]
+
+The restriction may stand. The challenge may fail. Revision may require a high threshold. But the restriction is not allowed to become correct merely because the restricting authority has made its own judgement immune from correction.
+
+This is the first explicitly recursive clause.
+
+\subsection{Appealable exclusion}
+
+Exclusion is a special case of restricted corrective access. If an affected participant is excluded, the model requires an appeal route:
+\[
+\operatorname{Affected}(a)
+\land
+\operatorname{Excluded}(a)
+\Rightarrow
+\operatorname{Permitted}(\operatorname{AppealExclusion}(a)).
+\]
+
+Again, appeal does not mean automatic restoration. It preserves a route by which the system can discover that the exclusion itself was mistaken, disproportionate, outdated, or no longer necessary.
+
+\section{The central forbidden state: self-sealing restriction}
+
+The key formal object is a \emph{self-sealing restriction}.
+
+A restriction is self-sealing when it restricts an affected participant and simultaneously removes either
+\begin{enumerate}
+  \item the participant's route to challenge the restriction, or
+  \item the system's own capacity to revise the restriction.
+\end{enumerate}
+
+In symbols:
+\[
+\operatorname{SelfSealing}(d,a)
+:=
+\operatorname{Restricts}(d,a)
+\land
+\bigl(
+\neg\operatorname{CanChallengeDecision}(a,d)
+\lor
+\neg\operatorname{CanReviseDecision}(d)
+\bigr).
+\]
+
+The local Learning Constitution then yields the theorem
+\[
+\boxed{
+\operatorname{Constitution}(S)
+\land
+\operatorname{Affected}(a)
+\Rightarrow
+\neg\operatorname{SelfSealing}(d,a).
+}
+\]
+
+This result is logically simple because the constitutional rule was designed precisely to exclude self-sealing restrictions. Its value is not mathematical surprise. Its value is conceptual precision: it makes explicit what a correctable process commits itself to.
+
+The constitution permits restriction. It prohibits restriction from being transformed into its own unchallengeable proof of legitimacy.
+
+\section{Why local rules are not enough}
+
+A system can satisfy all five clauses today and abolish them tomorrow. If that transition is permitted, then the constitution was only temporary.
+
+This motivates the second layer: preservation through time.
+
+Let $\operatorname{Next}(S,T)$ mean that the system can transition from state $S$ to state $T$ through one of its procedural verbs. Let $\operatorname{Reachable}(S_0,S)$ denote any state reachable through zero or more such transitions.
+
+The constitution is preserved when
+\[
+\forall S,T,
+\qquad
+\operatorname{Next}(S,T)
+\land
+\operatorname{Constitution}(S)
+\Rightarrow
+\operatorname{Constitution}(T).
+\]
+
+From an initial constitutional state and preservation at every step, the Lean model proves the familiar invariant result:
+\[
+\boxed{
+\operatorname{Constitution}(S_0)
+\land
+\operatorname{Preserved}
+\land
+\operatorname{Reachable}(S_0,S)
+\Rightarrow
+\operatorname{Constitution}(S).
+}
+\]
+
+Combining this with the local non-self-sealing result gives the global theorem:
+\[
+\boxed{
+\text{No reachable state contains a self-sealing restriction on an affected participant.}
+}
+\]
+
+This is the formal core of the Learning Constitution.
+
+\section{Correction must remain correctable}
+
+The recursive structure can now be stated plainly.
+
+A system is not corrigible merely because it accepts criticism of ordinary claims. The rules governing criticism can themselves be wrong. The classification of a source as unreliable can be wrong. The threshold for appeal can be wrong. The decision that no further evidence is needed can be wrong. The exclusion of a participant can be wrong.
+
+Therefore the architecture of correction cannot be placed completely outside the correction process.
+
+The constitution's deepest invariant is
+\[
+\boxed{\text{the correction mechanism must itself remain correctable}.}
+\]
+
+This does not imply infinite regress in practice. A system need not review every rule at every moment. Recursive correctability is a property of available routes, not continuous activity. The system may rely on thresholds, independent review, time limits, new-evidence requirements, higher courts, external auditors, replacement procedures, or other mechanisms appropriate to the domain.
+
+The point is structural: some route exists by which the system's current rules of correction can themselves become objects of correction.
+
+\section{Correctability versus maximal openness}
+
+The Learning Constitution should not be confused with maximal openness.
+
+A maximally open system can be a poor learning system. It may be overwhelmed by noise, manipulation, repetition, or strategically generated doubt. It may fail to act because every decision is reopened immediately. It may give weak claims the same attention as strongly supported ones.
+
+The target is therefore selective correctability:
+\begin{quote}
+Preserve sufficiently reliable routes for evidence-supported correction while retaining enough filtering, persistence, and closure for the system to function.
+\end{quote}
+
+This makes several distinctions essential:
+\begin{center}
+\begin{tabular}{p{0.41\textwidth}p{0.45\textwidth}}
+\toprule
+\textbf{Not required} & \textbf{Required by the proposed constitution}\\
+\midrule
+Equal credibility for all sources & No identity-based immunity from relevant challenge\\
+Unlimited speaking time & Some appropriate route to challenge consequential claims\\
+Permanent openness of every decision & Reopening when recognized review grounds arise\\
+No exclusion & Exclusion that remains appropriately appealable/revisable\\
+Agreement & Continued possibility of correction\\
+Guaranteed truth & Preservation of correctability\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This is why the constitution is better understood as a set of ground rules for learning than as a general ethic of openness.
+
+\section{What is formalized in Lean}
+
+The companion file \texttt{TheRoom.lean} contains both the problem and the proposed solution. The Learning Constitution portion introduces an abstract shared-process interface with states, claims, decisions, affected agents, exclusions, procedural permissions, grounds for review, standing, restrictions, and state transitions.
+
+The machine-checked results relevant to this paper are:
+\begin{center}
+\begin{tabular}{p{0.39\textwidth}p{0.52\textwidth}}
+\toprule
+\textbf{Lean theorem} & \textbf{Meaning}\\
+\midrule
+\path{constitution_blocks_self_sealing_restriction} & If the local constitution holds, an affected participant cannot be subject to a restriction that has made itself unchallengeable or unrevisable.\\
+\path{constitution_blocks_unappealable_exclusion} & If the local constitution holds, exclusion of an affected participant cannot simultaneously remove the constitutionally required appeal route.\\
+\path{constitution_is_reachable_invariant} & If the constitution holds initially and every allowed transition preserves it, it holds in every reachable state.\\
+\path{no_reachable_self_sealing_restriction} & Under the invariant constitution, no reachable state can contain a self-sealing restriction on an affected participant.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The file was accepted by Lean 4.34.0. That establishes deductive validity under the encoded definitions and assumptions. It does not establish that this particular constitution is uniquely correct, empirically optimal, legally required, or sufficient for every real learning system.
+
+\section{Where the formalization deliberately stops}
+
+The constitution leaves several questions open because they are not purely logical.
+
+First, it does not define when a participant is sufficiently ``affected'' to receive standing. Second, it does not specify what evidence is relevant or how much weight it should receive. Third, it does not define valid grounds for review. Fourth, it does not prescribe how burdensome an appeal route may be before it becomes practically meaningless. Fifth, it does not decide when safety, privacy, finality, or resource constraints justify temporary or durable restrictions.
+
+These are implementation questions, and different domains will answer them differently.
+
+More fundamentally, the Lean proofs do not establish that the five clauses are the unique minimal basis of learning. Some may be derivable from more primitive principles. Others may need to be weakened, strengthened, or supplemented. A mature theory would test independence by constructing countermodels: remove one clause and ask which undesirable states become reachable.
+
+The present contribution is therefore a formalized candidate architecture with a clear central invariant, not a completed axiomatization of all possible learning systems.
+
+\section{Why this constitutes a logical solution}
+
+The problem exposed by incompatible certainty is that a system can be wrong without knowing in advance who is wrong. The solution cannot therefore be ``give permanent authority to the correct participant,'' because correctness is precisely what is unresolved.
+
+The Learning Constitution changes the object of protection. It does not protect a person because that person is known to be right. It protects routes of challenge and revision because the system is not entitled to assume that its current allocation of correctness, credibility, or authority is infallible.
+
+The sequence is:
+\[
+\begin{gathered}
+\text{fallible agents can disagree}\\
+\Downarrow\\
+\text{current certainty cannot identify an infallible authority}\\
+\Downarrow\\
+\text{shared decisions still have to be made}\\
+\Downarrow\\
+\text{the process must filter and sometimes restrict}\\
+\Downarrow\\
+\text{those filters and restrictions can themselves be wrong}\\
+\Downarrow\\
+\boxed{\text{therefore correction must remain recursively correctable}.}
+\end{gathered}
+\]
+
+That is the logical solution proposed here.
+
+\section{Conclusion}
+
+A learning constitution is not a machine for producing agreement. It is a way of allowing disagreement, decision, filtering, and even exclusion without giving current judgement the power to abolish all future correction.
+
+Its central commitment is procedural rather than substantive. No conclusion is guaranteed. No participant is declared infallible. No claim receives permanent priority merely from who holds it. Instead, the system preserves a family of routes through which consequential error can still be exposed and, where justified, repaired.
+
+The deepest requirement is recursive:
+\[
+\boxed{\textbf{the correction mechanism must itself remain correctable}.}
+\]
+
+This gives a general answer to the problem created by interdependent fallible agents. We may be unable to know in advance whose model is wrong. We can nevertheless choose rules that prevent our present answer to that question from becoming permanently immune to revision.
+
+In that sense, the constitution protects neither doubt nor certainty. It protects the capacity to learn.
+
+\end{document}
