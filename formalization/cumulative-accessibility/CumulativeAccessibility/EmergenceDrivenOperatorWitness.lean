@@ -1,4 +1,4 @@
-import CumulativeAccessibility.EmergenceDrivenOperatorEvolution
+import CumulativeAccessibility.EmergenceDrivenOperatorRecurrence
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
@@ -200,18 +200,60 @@ theorem operatorLadder_recursive (t : ℕ) :
     operatorLadderChild t ∈ operatorLadderParents (t + 1) := by
   simp [operatorLadderChild, operatorLadderParents]
 
-/-- Non-vacuity of arbitrary-late recurrence. -/
+theorem operatorLadderActive_mono :
+    ∀ t, operatorLadderActive t ⊆ operatorLadderActive (t + 1) := by
+  intro t x hx
+  simp only [operatorLadderActive, Finset.mem_image, Finset.mem_range] at hx ⊢
+  obtain ⟨k, hk, rfl⟩ := hx
+  exact ⟨k, by omega, rfl⟩
+
+/-- Non-vacuity of the generic arbitrary-late recurrence predicate. -/
 theorem operatorLadder_recurring :
-    ∀ n : ℕ, ∃ t parents ctx child,
-      n ≤ t ∧
-      EmergenceDrivenOperatorEventAt
-        operatorLadderBase operatorLadderOp operatorLadderRealizes
-        operatorLadderCost operatorLadderBudget operatorLadderCriterion
-        operatorLadderActive operatorLadderCertified
-        t parents ctx child := by
+    RecurringEmergenceDrivenOperatorEvents
+      operatorLadderBase operatorLadderOp operatorLadderRealizes
+      operatorLadderCost operatorLadderBudget operatorLadderCriterion
+      operatorLadderActive operatorLadderCertified := by
   intro n
   exact ⟨n, operatorLadderParents n, (), operatorLadderChild n,
     le_rfl, operatorLadder_event n⟩
+
+/-- Stronger non-vacuity: for every finite length there is one explicit linked
+lineage in which each retained child is a parent of the next event. -/
+theorem operatorLadder_chain (n : ℕ) :
+    EmergenceDrivenOperatorChain
+      operatorLadderBase operatorLadderOp operatorLadderRealizes
+      operatorLadderCost operatorLadderBudget operatorLadderCriterion
+      operatorLadderActive operatorLadderCertified
+      0 (Sum.inl 1) n (Sum.inl (n + 1)) := by
+  induction n with
+  | zero =>
+      simpa using
+        (TimedRecursiveChain.base :
+          EmergenceDrivenOperatorChain
+            operatorLadderBase operatorLadderOp operatorLadderRealizes
+            operatorLadderCost operatorLadderBudget operatorLadderCriterion
+            operatorLadderActive operatorLadderCertified
+            0 (Sum.inl 1) 0 (Sum.inl 1))
+  | succ n ih =>
+      have hLink :
+          EmergenceDrivenOperatorStepAt
+            operatorLadderBase operatorLadderOp operatorLadderRealizes
+            operatorLadderCost operatorLadderBudget operatorLadderCriterion
+            operatorLadderActive operatorLadderCertified
+            n (Sum.inl (n + 1)) (Sum.inl (n + 2)) := by
+        exact ⟨operatorLadderParents n, (), by
+          simp [operatorLadderParents], operatorLadder_event n⟩
+      simpa [Nat.add_assoc] using
+        (TimedRecursiveChain.step ih hLink)
+
+/-- The recurring premise therefore has an actual open-ended model. -/
+theorem operatorLadder_openEndedNovelty :
+    OpenEndedCumulativeNovelty operatorLadderActive := by
+  exact recurringOperatorEvents_imply_openEndedNovelty
+    operatorLadderBase operatorLadderOp operatorLadderRealizes
+    operatorLadderCost operatorLadderBudget operatorLadderCriterion
+    operatorLadderActive operatorLadderCertified
+    operatorLadderActive_mono operatorLadder_recurring
 
 end Ladder
 
@@ -298,6 +340,8 @@ end NonEmergentKnockout
 #print axioms operatorLadder_click_every_step
 #print axioms operatorLadder_recursive
 #print axioms operatorLadder_recurring
+#print axioms operatorLadder_chain
+#print axioms operatorLadder_openEndedNovelty
 #print axioms operatorLadder_nonEmergent_blocks_certification
 #print axioms operatorLadder_uncertified_admission_no_click
 
