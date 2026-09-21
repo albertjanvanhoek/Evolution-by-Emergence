@@ -77,7 +77,7 @@ theorem pairwise_incompatible_at_least_two_false
 
 /-! ## 2. Certainty is not a truth guarantee -/
 
-/-- `Certain a P` is left abstract: agent `a` is represented as certain of `P`. -/
+/- `Certain a P` is left abstract: agent `a` is represented as certain of `P`. -/
 variable (Certain : Agent → Prop → Prop)
 
 /-- Every proposition of which `a` is certain is true. -/
@@ -422,7 +422,7 @@ theorem constitution_is_reachable_invariant
     (hReach : Reachable (Next I) s0 s) :
     HoldsAt I s := by
   induction hReach with
-  | refl _ =>
+  | refl =>
       exact hInitial
   | tail hPrev hStep ih =>
       exact hPreserved _ _ hStep ih
