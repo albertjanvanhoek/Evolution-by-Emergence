@@ -402,6 +402,121 @@ theorem emergenceDrivenOperatorEvent_forces_generatorChange
 
 end Core
 
+section IrreducibleAttribution
+
+variable {Context Capacity : Type*}
+variable [DecidableEq Capacity]
+
+/-- Capacities realized by some proper subassembly, at the same declared
+context as the whole. -/
+def PartRealizedAt
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (parents : Finset Capacity)
+    (ctx : Context)
+    (phi : Capacity) : Prop :=
+  ∃ sub, sub ⊂ parents ∧ Realizes sub ctx phi
+
+theorem emergent_not_partRealizedAt
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (parents : Finset Capacity)
+    (ctx : Context)
+    (phi : Capacity)
+    (hEmergent :
+      EmergentUnder
+        (FiniteProperSubconfig (Process := Capacity))
+        Realizes parents ctx phi) :
+    ¬ PartRealizedAt Realizes parents ctx phi := by
+  rintro ⟨sub, hProper, hRealizes⟩
+  exact hEmergent.2 sub hProper hRealizes
+
+/-- Adversarial counterfactual generator: besides Base, every capacity that is
+already available OR realized by any proper subassembly is granted its
+operator. This is intentionally more permissive than the actual certified
+generator. -/
+def ProperPartEnabledGenerator
+    (Base : HyperGenerator Capacity)
+    (Op : EmergentOperatorMap Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (parents : Finset Capacity)
+    (ctx : Context)
+    (A : Capacity -> Prop) :
+    HyperGenerator Capacity :=
+  fun ps z =>
+    Base ps z ∨
+      ∃ phi,
+        (A phi ∨ PartRealizedAt Realizes parents ctx phi) ∧
+        Op phi ps z
+
+/-- Irreducible attribution theorem.
+
+Suppose product z can only be produced by the emergent child's operator.  Then
+z remains outside full closure even after granting every proper-part-realized
+capacity both material availability and its operator.
+
+The emergence premise is load-bearing: it is what excludes the child from the
+proper-part channel. -/
+theorem emergent_operator_product_irreducible
+    (Base : HyperGenerator Capacity)
+    (Op : EmergentOperatorMap Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (A : Capacity -> Prop)
+    (parents : Finset Capacity)
+    (ctx : Context)
+    (child product : Capacity)
+    (hEmergent :
+      EmergentUnder
+        (FiniteProperSubconfig (Process := Capacity))
+        Realizes parents ctx child)
+    (hNew : ¬ A child)
+    (hBase : ∀ ps, ¬ Base ps product)
+    (hUnique : ∀ phi ps, Op phi ps product -> phi = child)
+    (hProductOld : ¬ A product)
+    (hProductParts : ¬ PartRealizedAt Realizes parents ctx product) :
+    ¬ FixedGenerativeClosure
+      (ProperPartEnabledGenerator Base Op Realizes parents ctx A)
+      (fun x => A x ∨ PartRealizedAt Realizes parents ctx x)
+      product := by
+  intro h
+  cases h with
+  | base hx =>
+      rcases hx with hOld | hPart
+      · exact hProductOld hOld
+      · exact hProductParts hPart
+  | gen hParents hGenerate =>
+      rcases hGenerate with hBaseGen | ⟨phi, hEnabled, hOp⟩
+      · exact hBase _ hBaseGen
+      · have hEq : phi = child := hUnique phi _ hOp
+        subst hEq
+        rcases hEnabled with hOld | hPart
+        · exact hNew hOld
+        · exact (emergent_not_partRealizedAt
+            Realizes parents ctx child hEmergent) hPart
+
+/-- Matching non-emergent countermodel shape: if a proper part already realizes
+the child, that part channel is sufficient to enable the child's operator. -/
+theorem nonEmergent_part_operator_reaches_product
+    (Base : HyperGenerator Capacity)
+    (Op : EmergentOperatorMap Capacity)
+    (Realizes : CapacityRelation (Finset Capacity) Context Capacity)
+    (A : Capacity -> Prop)
+    (parents operatorParents : Finset Capacity)
+    (ctx : Context)
+    (child product : Capacity)
+    (hPart : PartRealizedAt Realizes parents ctx child)
+    (hOp : Op child operatorParents product)
+    (hInputs :
+      ∀ x, x ∈ operatorParents ->
+        A x ∨ PartRealizedAt Realizes parents ctx x) :
+    FixedGenerativeClosure
+      (ProperPartEnabledGenerator Base Op Realizes parents ctx A)
+      (fun x => A x ∨ PartRealizedAt Realizes parents ctx x)
+      product := by
+  exact FixedGenerativeClosure.gen
+    (fun x hx => FixedGenerativeClosure.base (hInputs x hx))
+    (Or.inr ⟨child, Or.inr hPart, hOp⟩)
+
+end IrreducibleAttribution
+
 section NoEmergenceNoClick
 
 variable {Capacity : Type*}
@@ -462,6 +577,8 @@ end NoEmergenceNoClick
 #print axioms operatorEvent_retainedIntegration
 #print axioms emergenceDrivenOperatorEvent_click
 #print axioms emergenceDrivenOperatorEvent_forces_generatorChange
+#print axioms emergent_operator_product_irreducible
+#print axioms nonEmergent_part_operator_reaches_product
 #print axioms certifiedGenerator_unchanged_by_uncertified_promotion
 #print axioms uncertified_generated_promotion_no_closure_click
 
