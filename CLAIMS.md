@@ -52,6 +52,9 @@ every domain." The final universality claim remains a research programme.
 | CLM_EBE_CORE_025 | Cumulative historical novelty does not require monotone growth of the currently active repertoire. If genuinely history-new recursive-emergence events recur and cumulative History is monotone, History is open-ended even when Active turns over. A checked witness keeps `|Active_t| = 1` for all t while History expands without bound. | `ActiveHistory.lean`; `EvolutionByEmergenceV17Core.lean` | Machine checked + explicit turnover witness | Attack the active/history semantics under the exact definitions, or show that a target application cannot justify a cumulative historical trace distinct from current operational availability. |
 | CLM_EBE_CORE_026 | The canonical v17 operational core uses finite moving local envelopes rather than a globally finite capacity type; the historical core is a separate weaker endpoint. The promotion-driven and constructive layers are stronger sufficient interfaces that project into, rather than redefine, the corrected recursive architecture. | `EvolutionByEmergenceV17Core.lean`; `LocalEmergenceReproduction.lean`; `EndogenousEnvelopePromotion.lean`; `ConstructiveRecursiveEmergence.lean`; `ActiveHistory.lean` | Machine-checked integration surface + explicit non-vacuity witnesses | Find an inconsistency among the projected theorem surfaces, a hidden implication claimed in prose but absent from Lean, or an existing formal framework that already provides the same integrated factorization more directly. |
 
+| CLM_EBE_CORE_027 | For pairwise-incompatible claims, not all certainties can be jointly truth-guaranteed. Under an explicit same-standing plus no-privileged-truth-access bridge, incompatible certainties block a unilateral infallibility guarantee for either peer. | `papers/the-room-learning-constitution/TheRoom.lean`; `the_room_problem.tex` | Machine-checked logic + explicit bridge premise | Challenge the standing/no-privilege bridge, replace it with a weaker premise, or identify prose that overstates what incompatibility alone proves. |
+| CLM_EBE_CORE_028 | Under the declared Learning Constitution, restrictions on affected participants' corrective access remain challengeable/revisable and exclusions remain appealable; self-sealing restrictions are therefore excluded locally. If the constitution is preserved by every allowed transition, it remains an invariant over reachable states and self-sealing restrictions cannot become reachable. | `papers/the-room-learning-constitution/TheRoom.lean`; `FORMAL_VERIFICATION.md`; `the_learning_constitution.tex` | Machine-checked conditional architecture + proposed design constitution | Show that the clauses are redundant, too strong, too weak, definitionally circular, or that a more general reachability/cut-set architecture captures correctability with fewer assumptions. |
+
 ### Current core non-claims
 
 The current theory does not infer:
@@ -73,6 +76,10 @@ The current theory does not infer:
 - an ever-growing active repertoire from open-ended cumulative history;
 - strong ontological or unprestatable vocabulary creation from a moving envelope inside one ambient `Capacity` type;
 - stochastic branching survival from the deterministic local successor count;
+- a legal or moral right from the Learning Constitution;
+- equal credibility from equal procedural standing;
+- guaranteed truth from procedural correctability;
+- uniqueness or universal minimality of the five Learning Constitution clauses;
 - or empirical truth from machine-checked implication alone.
 
 ---
