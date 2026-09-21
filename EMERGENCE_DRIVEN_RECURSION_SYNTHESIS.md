@@ -132,6 +132,109 @@ Lean should check a concrete two-generation example in which:
 Only after this finite causal chain is checked should the work be lifted back
 into open-ended recurrence and Dynamic Vortex resource/maintenance results.
 
+
+## Candidate successor: emergence-driven operator evolution
+
+A second external review of PR #62 exposed one remaining weakness in the first
+synthesis route.  The generic `RuleOf(S)` model could prove that repertoire
+change and closure expansion imply generator change, but the proof did not need
+the emergence premise.  A non-emergent realization could leave the same
+`RuleOf` transition untouched.  That route is therefore retained as an
+intermediate formal comparison, not as the preferred causal core.
+
+The candidate successor is
+`EmergenceDrivenOperatorEvolution.lean`.
+
+It replaces an arbitrary repertoire-to-rule map with a derived generator:
+
+    H_t =
+      Base
+      OR
+      operators of capacities that are
+        (a) Active at t
+        AND
+        (b) certified as products of parent-faithful emergence.
+
+The strong event now has separate causal gates:
+
+    same parent set generates child
+      -> same parent set realizes child emergently
+      -> emergence certifies the child
+      -> feasibility + validation admit the child to Active
+      -> Active AND certified activates Op(child)
+      -> a local operator witness produces something outside old full closure
+      -> strict full-closure expansion is DERIVED.
+
+This changes the status of several earlier clauses.
+
+- **Emergence is load-bearing.**  If the child is admitted as a label but does
+  not receive emergent provenance, its operator is not activated.  Under the
+  fixed-rule P9 boundary, such uncertified promotion cannot create a
+  full-closure click.
+- **Feasibility and validation are load-bearing.**  They determine Active
+  admission.  If the gate fails, the child does not become active and its
+  operator cannot participate even if emergence occurred.
+- **Closure expansion is no longer assumed.**  It is a theorem of the strong
+  event.
+- **Generator change is no longer assumed.**  It follows from the derived
+  closure click plus the fixed-generator no-go.
+
+The model also contains a stronger whole-versus-parts attribution test.  In the
+counterfactual `ProperPartEnabledGenerator`, every capacity realized by any
+proper subassembly is granted both material availability and its operator.
+Under a domain-specific uniqueness condition for the chosen witness product,
+`emergent_operator_product_irreducible` proves that the product is still
+unreachable.  The matching non-emergent theorem shows that if a proper part
+already realizes the child, the part channel can enable the operator.
+
+This is the precise sense in which emergence now does formal work: it governs
+the provenance transition that licenses the new operator and, under the
+irreducibility assumptions, attributes the new operator-bearing capacity to
+the whole rather than a proper part.
+
+### Non-vacuity and recursion
+
+`EmergenceDrivenOperatorWitness.lean` supplies an infinite ladder model:
+
+    {n, n+1}
+      -> emergent n+2
+      -> n+2 is admitted and emergence-certified
+      -> Op(n+2) becomes active
+      -> a new product enters full closure.
+
+The retained child at one step is explicitly a parent of the next step.
+`EmergenceDrivenOperatorRecurrence.lean` therefore keeps two endpoints
+separate:
+
+1. `EmergenceDrivenOperatorChain`: one linked lineage;
+2. `RecurringEmergenceDrivenOperatorEvents`: strong events occur arbitrarily
+   late, without asserting one lineage.
+
+The ladder witnesses both and gives a constructive model of the recurring
+premise used for open-ended retained novelty.
+
+### Resource layer
+
+`EmergenceDrivenOperatorDynamicVortex.lean` instantiates the admission budget
+with the endogenous uptake-minus-maintenance budget.  Opportunity still does
+not imply innovation.  The response premise says that, within a bounded lag,
+an actual strong operator event occurs; inside that event the endogenous budget
+and external criterion decide Active admission, emergence decides
+certification, and the accessibility click is derived.
+
+### Remaining modelling commitments
+
+The operator model is intentionally a **minimal constructive model**, not a
+claim that all generator evolution is additive.  Real systems may include
+inhibition, suppression, context-dependent operators, or interactions among
+operators.  Loss is already representable because a capacity that is no longer
+Active stops contributing its operator.
+
+For empirical applications, Lean cannot decide whether the chosen
+`Realizes`, `Op`, capacity labels, or certification semantics are the right
+mapping.  Those remain domain-level scientific claims and should be tested
+independently.
+
 ## Non-claims
 
 The synthesis does not claim:
