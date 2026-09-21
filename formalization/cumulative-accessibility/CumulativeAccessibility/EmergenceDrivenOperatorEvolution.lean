@@ -183,8 +183,10 @@ theorem operatorEvent_active_mono
       EmergenceDrivenOperatorEventAt
         Base Op Realizes Cost Budget E S Certified m parents ctx child) :
     S m ⊆ S (m + 1) := by
+  rcases h with
+    ⟨_, _, _, _, _, _, _, hAdmission, _, _⟩
   intro x hx
-  exact (h.2.2.2.2.2.2.2.2.1 x).2 (Or.inl hx)
+  exact (hAdmission x).2 (Or.inl hx)
 
 theorem operatorEvent_certified_mono
     (Base : HyperGenerator Capacity)
@@ -203,8 +205,10 @@ theorem operatorEvent_certified_mono
       EmergenceDrivenOperatorEventAt
         Base Op Realizes Cost Budget E S Certified m parents ctx child) :
     ∀ x, Certified m x -> Certified (m + 1) x := by
+  rcases h with
+    ⟨_, _, _, _, _, _, _, _, hCertification, _⟩
   intro x hx
-  exact (h.2.2.2.2.2.2.2.2.2.1 x).2 (Or.inl hx)
+  exact (hCertification x).2 (Or.inl hx)
 
 theorem operatorEvent_retains_child
     (Base : HyperGenerator Capacity)
@@ -223,9 +227,9 @@ theorem operatorEvent_retains_child
       EmergenceDrivenOperatorEventAt
         Base Op Realizes Cost Budget E S Certified m parents ctx child) :
     child ∈ S (m + 1) := by
-  exact
-    (h.2.2.2.2.2.2.2.2.1 child).2
-      (Or.inr ⟨rfl, h.2.2.2.2.2.2.1⟩)
+  rcases h with
+    ⟨_, _, _, _, _, _, hGate, hAdmission, _, _⟩
+  exact (hAdmission child).2 (Or.inr ⟨rfl, hGate⟩)
 
 theorem operatorEvent_certifies_child
     (Base : HyperGenerator Capacity)
@@ -244,9 +248,9 @@ theorem operatorEvent_certifies_child
       EmergenceDrivenOperatorEventAt
         Base Op Realizes Cost Budget E S Certified m parents ctx child) :
     Certified (m + 1) child := by
-  exact
-    (h.2.2.2.2.2.2.2.2.2.1 child).2
-      (Or.inr ⟨rfl, h.2.2.2.1⟩)
+  rcases h with
+    ⟨_, _, _, hEmergent, _, _, _, _, hCertification, _⟩
+  exact (hCertification child).2 (Or.inr ⟨rfl, hEmergent⟩)
 
 /-- Main click theorem.
 
@@ -276,16 +280,22 @@ theorem emergenceDrivenOperatorEvent_click
       (fun x => x ∈ S m)
       (CertifiedGeneratorAt Base Op S Certified (m + 1))
       (fun x => x ∈ S (m + 1)) := by
+  rcases h with
+    ⟨hCard, hParentsActive, hGenerate, hEmergent, hNewActive, hNewCertified,
+      hGate, hAdmission, hCertification,
+      operatorParents, product, hOp, hInputs, hOldNot⟩
   have hActive :
-      ∀ x, x ∈ S m -> x ∈ S (m + 1) :=
-    fun x hx => operatorEvent_active_mono
-      Base Op Realizes Cost Budget E S Certified m h hx
+      ∀ x, x ∈ S m -> x ∈ S (m + 1) := by
+    intro x hx
+    exact (hAdmission x).2 (Or.inl hx)
   have hCertified :
-      ∀ x, Certified m x -> Certified (m + 1) x :=
-    operatorEvent_certified_mono
-      Base Op Realizes Cost Budget E S Certified m h
-  obtain ⟨operatorParents, product, hOp, hInputs, hOldNot⟩ :=
-    h.2.2.2.2.2.2.2.2.2.2
+      ∀ x, Certified m x -> Certified (m + 1) x := by
+    intro x hx
+    exact (hCertification x).2 (Or.inl hx)
+  have hChildActive : child ∈ S (m + 1) :=
+    (hAdmission child).2 (Or.inr ⟨rfl, hGate⟩)
+  have hChildCertified : Certified (m + 1) child :=
+    (hCertification child).2 (Or.inr ⟨rfl, hEmergent⟩)
   refine ⟨?_, product, by simp, hOldNot, ?_⟩
   · intro z hzTarget hzOld
     exact fixedGenerativeClosure_mono
@@ -294,19 +304,12 @@ theorem emergenceDrivenOperatorEvent_click
       (fun x => x ∈ S m)
       (fun x => x ∈ S (m + 1))
       hActive
-      (certifiedInducedGenerator_mono
-        Base Op hActive hCertified)
+      (certifiedInducedGenerator_mono Base Op hActive hCertified)
       z hzOld
   · refine FixedGenerativeClosure.gen (parents := operatorParents) ?_ ?_
     · intro x hx
       exact FixedGenerativeClosure.base (hInputs x hx)
-    · exact Or.inr
-        ⟨child,
-          operatorEvent_retains_child
-            Base Op Realizes Cost Budget E S Certified m h,
-          operatorEvent_certifies_child
-            Base Op Realizes Cost Budget E S Certified m h,
-          hOp⟩
+    · exact Or.inr ⟨child, hChildActive, hChildCertified, hOp⟩
 
 /-- A strong event also forces the certified generator itself to change.
 
@@ -331,13 +334,16 @@ theorem emergenceDrivenOperatorEvent_forces_generatorChange
         Base Op Realizes Cost Budget E S Certified m parents ctx child) :
     CertifiedGeneratorAt Base Op S Certified m ≠
       CertifiedGeneratorAt Base Op S Certified (m + 1) := by
+  rcases h with
+    ⟨hCard, hParentsActive, hGenerate, hEmergent, hNewActive, hNewCertified,
+      hGate, hAdmission, hCertification, hWitness⟩
   intro hRuleEq
   have hGenerated :
       GeneratedFromAvailable
         (fun x => x ∈ S m)
         (CertifiedGeneratorAt Base Op S Certified m)
-        child := by
-    exact ⟨parents, h.2.1, h.2.2.1⟩
+        child :=
+    ⟨parents, hParentsActive, hGenerate⟩
   have hActiveEq :
       (fun x => x ∈ S (m + 1)) =
         PromotedAvailability (fun x => x ∈ S m) child := by
@@ -345,17 +351,23 @@ theorem emergenceDrivenOperatorEvent_forces_generatorChange
     apply propext
     constructor
     · intro hx
-      rcases (h.2.2.2.2.2.2.2.2.1 x).1 hx with hxOld | ⟨hxEq, hGate⟩
+      rcases (hAdmission x).1 hx with hxOld | ⟨hxEq, _⟩
       · exact Or.inl hxOld
       · exact Or.inr hxEq
     · intro hx
       rcases hx with hxOld | hxEq
-      · exact (h.2.2.2.2.2.2.2.2.1 x).2 (Or.inl hxOld)
-      · exact (h.2.2.2.2.2.2.2.2.1 x).2
-          (Or.inr ⟨hxEq, h.2.2.2.2.2.2.1⟩)
-  have hExpansion :=
+      · exact (hAdmission x).2 (Or.inl hxOld)
+      · exact (hAdmission x).2 (Or.inr ⟨hxEq, hGate⟩)
+  have hExpansion :
+      ClosureStrictExpandsOn Set.univ
+        (CertifiedGeneratorAt Base Op S Certified m)
+        (fun x => x ∈ S m)
+        (CertifiedGeneratorAt Base Op S Certified (m + 1))
+        (fun x => x ∈ S (m + 1)) :=
     emergenceDrivenOperatorEvent_click
-      Base Op Realizes Cost Budget E S Certified m h
+      Base Op Realizes Cost Budget E S Certified m
+      ⟨hCard, hParentsActive, hGenerate, hEmergent, hNewActive, hNewCertified,
+        hGate, hAdmission, hCertification, hWitness⟩
   rw [← hRuleEq, hActiveEq] at hExpansion
   exact
     (internallyGeneratedPromotion_not_closureStrictExpansion
