@@ -1,0 +1,65 @@
+import CumulativeAccessibility.EmergenceDrivenRecursion
+import CumulativeAccessibility.EmergenceDrivenRecursionOpenEnded
+import CumulativeAccessibility.EmergenceDrivenRecursionProbes
+import CumulativeAccessibility.EmergenceDrivenDynamicVortex
+
+namespace CumulativeAccessibility
+namespace RecursiveAccessibility
+
+/-!
+# Emergence-driven recursion — research verification surface
+
+This is the compact review entry point for PR #62. It introduces no new
+mechanism. It imports the synthesis, temporal lift, adversarial probes, and
+resource-fed bridge, then exposes the declarations that carry the scientific
+claims.
+
+The frozen v17/v18 verification surfaces remain unchanged.
+-/
+
+#check FixedGenerativeClosure
+#check generatedPromotion_preserves_fixedGeneratorClosure
+#check internallyGeneratedPromotion_not_closureStrictExpansion
+
+#check ParentFaithfulRecursiveEmergenceStepAt
+#check parentFaithful_has_emergent_parent_configuration
+#check parentFaithful_implies_recursiveEmergenceStep
+
+#check EmergenceDrivenTwoGenerationRatchetAt
+#check twoGenerationRatchet_strictlyExpands_oneStepAccess
+
+#check RepertoireDependentGenerator
+#check EmergenceDrivenVocabularyExpansionAt
+#check emergenceDrivenVocabularyExpansion_forces_generatorChange
+#check constantRule_parentFaithfulPromotion_not_vocabularyExpansion
+
+#check emergenceToy_endToEnd_emergenceDrivenRecursion
+
+#check EmergenceDrivenVocabularyChain
+#check emergenceDrivenVocabularyChain_implies_recursiveEmergenceChain
+#check RecurringEmergenceDrivenVocabularyExpansion
+#check recurringEmergenceDrivenVocabularyExpansion_implies_openEndedNovelty
+
+#check OpportunityConditionedEmergenceDrivenVocabularyResponseWithin
+#check recurringOpportunity_and_emergenceDrivenResponse_imply_openEndedNovelty
+
+#check probe_constantRule_cannot_satisfy_strongVocabularyEvent
+#check probe_toy_d_rule_requires_c
+#check probe_endToEnd_has_old_new_closure_separation
+
+#print axioms generatedPromotion_preserves_fixedGeneratorClosure
+#print axioms internallyGeneratedPromotion_not_closureStrictExpansion
+#print axioms parentFaithful_has_emergent_parent_configuration
+#print axioms parentFaithful_implies_recursiveEmergenceStep
+#print axioms twoGenerationRatchet_strictlyExpands_oneStepAccess
+#print axioms emergenceDrivenVocabularyExpansion_forces_generatorChange
+#print axioms constantRule_parentFaithfulPromotion_not_vocabularyExpansion
+#print axioms emergenceToy_endToEnd_emergenceDrivenRecursion
+#print axioms emergenceDrivenVocabularyChain_implies_recursiveEmergenceChain
+#print axioms recurringEmergenceDrivenVocabularyExpansion_implies_openEndedNovelty
+#print axioms recurringOpportunity_and_emergenceDrivenResponse_imply_openEndedNovelty
+#print axioms probe_constantRule_cannot_satisfy_strongVocabularyEvent
+#print axioms probe_endToEnd_has_old_new_closure_separation
+
+end RecursiveAccessibility
+end CumulativeAccessibility
