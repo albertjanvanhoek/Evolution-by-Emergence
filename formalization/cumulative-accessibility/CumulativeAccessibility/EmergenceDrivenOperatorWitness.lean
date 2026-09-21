@@ -120,7 +120,8 @@ theorem operatorLadder_certificationLaw (t : ℕ) :
           exact Or.inr ⟨rfl, operatorLadder_emergent t⟩
       · intro h
         rcases h with hPrev | ⟨hEq, hEmergent⟩
-        · exact ⟨hPrev.1, by omega⟩
+        · change 2 ≤ n ∧ n < t + 2 at hPrev
+          exact ⟨hPrev.1, by omega⟩
         · have hEqNat : n = t + 2 := Sum.inl.inj hEq
           subst hEqNat
           exact ⟨by omega, by omega⟩
@@ -145,7 +146,7 @@ theorem operatorLadder_product_not_old_closure (t : ℕ) :
         cases hChild
       · rcases phi with k | k
         · have hk : k = t + 2 := by
-            exact Sum.inr.inj hOp.2
+            exact (Sum.inr.inj hOp.2).symm
           subst hk
           simp [operatorLadderActive] at hActive
         · exact hOp.elim
@@ -274,7 +275,8 @@ theorem operatorLadder_nonEmergent (t : ℕ) :
       (operatorLadderParents t) () (operatorLadderChild t) := by
   intro h
   apply h.2 {Sum.inl t}
-  · rw [Finset.ssubset_iff_subset_ne]
+  · change ({Sum.inl t} : Finset OperatorLadderCap) ⊂ operatorLadderParents t
+    rw [Finset.ssubset_iff_subset_ne]
     refine ⟨by simp [operatorLadderParents], ?_⟩
     intro hEq
     have hMem :
