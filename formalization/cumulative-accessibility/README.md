@@ -164,6 +164,11 @@ Maintenance is then subtracted from the same gross budget. A regression theorem
 proves that if retained and ablated organization induce the same kernel while
 retention costs at least as much, retention cannot create a paid opening.
 
+A fully constructive retained-kernel witness is included as well: without the
+retained item the toy kernel has no route to the target; retaining the item adds
+a one-step route of cost one, itself costs one unit to maintain, and at gross
+budget two Lean derives a positive item-specific paid opening.
+
 ### 2. Emergent assembly barrier
 
 `EmergentAssemblyBarrier.lean` gives strict compositional emergence an actual
