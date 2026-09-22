@@ -5,6 +5,8 @@ import Mathlib.Tactic
 namespace CumulativeAccessibility
 namespace GenerativeLeverage
 
+open scoped BigOperators
+
 /-!
 # Bounded-memory generative leverage
 
@@ -76,6 +78,88 @@ theorem accessible_card_le_memoryBound_mul_slots
     Nat.mul_le_mul_right d hR
   exact le_trans hA hRD
 
+/-- Total maintenance burden of a finite retained repertoire. -/
+def TotalMaintenance
+    (cost : ι → ℝ)
+    (R : Finset ι) : ℝ :=
+  ∑ i ∈ R, cost i
+
+/-- If every retained unit costs at least mu, total maintenance is at least
+R.card * mu. -/
+theorem retained_card_mul_minCost_le_totalMaintenance
+    (cost : ι → ℝ)
+    (R : Finset ι)
+    (mu : ℝ)
+    (hMin : ∀ i, i ∈ R → mu ≤ cost i) :
+    (R.card : ℝ) * mu ≤ TotalMaintenance cost R := by
+  unfold TotalMaintenance
+  have hSum :
+      ∑ i ∈ R, mu ≤ ∑ i ∈ R, cost i := by
+    apply Finset.sum_le_sum
+    intro i hi
+    exact hMin i hi
+  simpa using hSum
+
+/-- Physical-budget leverage inequality. If each retained unit costs at least
+mu > 0, total maintenance is at most B, and each retained unit has at most d
+single-unit support slots, then accessible repertoire satisfies
+
+    A.card * mu <= B * d.
+
+This turns bounded memory plus bounded reuse into a directly measurable
+resource-normalized constraint. -/
+theorem accessible_card_mul_minCost_le_budget_mul_slots
+    (cost : ι → ℝ)
+    (R : Finset ι)
+    (A : Finset τ)
+    (d : ℕ)
+    (mu B : ℝ)
+    (hMu : 0 ≤ mu)
+    (hMin : ∀ i, i ∈ R → mu ≤ cost i)
+    (hBudget : TotalMaintenance cost R ≤ B)
+    (enc : BoundedReuseEncoding R A d) :
+    (A.card : ℝ) * mu ≤ B * d := by
+  have hA :
+      A.card ≤ R.card * d :=
+    accessible_card_le_retained_mul_slots R A d enc
+  have hAreal :
+      (A.card : ℝ) ≤ (R.card : ℝ) * d := by
+    exact_mod_cast hA
+  have hMem :
+      (R.card : ℝ) * mu ≤ B := by
+    exact le_trans
+      (retained_card_mul_minCost_le_totalMaintenance cost R mu hMin)
+      hBudget
+  have hScaled :
+      (A.card : ℝ) * mu ≤ ((R.card : ℝ) * d) * mu :=
+    mul_le_mul_of_nonneg_right hAreal hMu
+  have hd : (0 : ℝ) ≤ d := by positivity
+  calc
+    (A.card : ℝ) * mu
+        ≤ ((R.card : ℝ) * d) * mu := hScaled
+    _ = ((R.card : ℝ) * mu) * d := by ring
+    _ ≤ B * d := mul_le_mul_of_nonneg_right hMem hd
+
+/-- If the observed resource-normalized accessibility exceeds B*d while all
+retained units cost at least mu and total maintenance is at most B, then no
+d-slot single-unit reuse encoding can explain the repertoire. -/
+theorem excess_resource_normalized_accessibility_breaks_bounded_reuse
+    (cost : ι → ℝ)
+    (R : Finset ι)
+    (A : Finset τ)
+    (d : ℕ)
+    (mu B : ℝ)
+    (hMu : 0 ≤ mu)
+    (hMin : ∀ i, i ∈ R → mu ≤ cost i)
+    (hBudget : TotalMaintenance cost R ≤ B)
+    (hExcess : B * d < (A.card : ℝ) * mu) :
+    ¬ BoundedReuseEncoding R A d := by
+  intro enc
+  have hBound :=
+    accessible_card_mul_minCost_le_budget_mul_slots
+      cost R A d mu B hMu hMin hBudget enc
+  exact (not_lt_of_ge hBound) hExcess
+
 /-- A family of finite repertoires has unbounded cardinal growth when every
 finite bound is eventually exceeded. -/
 def UnboundedCardinality
@@ -121,6 +205,9 @@ theorem excess_accessibility_breaks_bounded_single_unit_reuse
 
 #print axioms accessible_card_le_retained_mul_slots
 #print axioms accessible_card_le_memoryBound_mul_slots
+#print axioms retained_card_mul_minCost_le_totalMaintenance
+#print axioms accessible_card_mul_minCost_le_budget_mul_slots
+#print axioms excess_resource_normalized_accessibility_breaks_bounded_reuse
 #print axioms bounded_memory_and_bounded_reuse_rule_out_unbounded_accessibility
 #print axioms excess_accessibility_breaks_bounded_single_unit_reuse
 
