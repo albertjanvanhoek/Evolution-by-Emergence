@@ -379,7 +379,7 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.RecursiveAccessibility.noOpportunity_gatedArchitecture_not_openEnded
 
 
-/-! ## v20 end-to-end paid-retention and correctable-learning surface -/
+/-! ## v20 substrate-agnostic retained-organization surface -/
 
 #print axioms CumulativeAccessibility.PaidRetention.marginal_run_condition_iff_positivePaidTransfer
 #print axioms CumulativeAccessibility.PaidRetention.positivePaidTransfer_opens_sameGrossBudget_window
@@ -405,5 +405,12 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.EmergentPaidTransfer.emergentSelfSupport_leaves_nonnegative_netSlack
 #print axioms CumulativeAccessibility.EmergentPaidTransfer.emergentPaidTransfer_opens_unvisited_budget_window
 
-#print axioms CumulativeAccessibility.EndToEndV20.correctable_paid_learning_step
-#print axioms CumulativeAccessibility.EndToEndV20.emergent_correctable_learning_end_to_end
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.positiveTransfer_iff_accessibility_strictly_higher
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.sameGrossBudget_freeBudget_difference
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.cumulativePaidTransfer_has_unvisited_positive_transfer
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.transition_change_without_paid_transfer
+
+/-! ## downstream intelligent-network specialization -/
+
+#print axioms CumulativeAccessibility.LearningConstitutionSpecialization.constitution_specializes_zero_accessibility_boundary
+#print axioms CumulativeAccessibility.LearningConstitutionSpecialization.paid_learning_verb_specializes_accessibility
