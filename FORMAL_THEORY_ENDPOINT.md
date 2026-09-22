@@ -1,558 +1,143 @@
-# Formal theory endpoint for Evolution by Emergence
-
-**Date:** 19 September 2026  
-**Status:** target specification for the v17 formal theory  
-**Purpose:** define when the formal core is mature enough to stand on its own and
-be sent for broad independent peer review.
-
-## 1. The purpose of the formal theory
-
-The purpose of the formal theory is **not** to win a novelty claim.
-
-It is not necessary that the main ideas be new. In fact, a stronger outcome is
-possible when the framework can show that its component mechanisms are already
-well supported across existing literatures.
-
-The purpose is to provide a stable, explicit, auditable foundation for the
-larger Evolution by Emergence project:
-
-> **a formal account of how organized processes persist, change, generate new
-> organization, retain useful changes, and thereby alter what can be generated
-> next.**
+# Formal Theory Endpoint — v20 Peer-Review Freeze
 
-The formal core should make the essays, conceptual arguments, applications, and
-empirical proposals easier to evaluate because their descriptive assumptions
-can be traced back to a small set of explicit mechanisms.
+**Status:** v20 review specification  
+**Purpose:** define the exact theory object being frozen for broad independent review.
 
-The formal theory should therefore function like an **intellectual load-bearing
-structure**. It should not contain every implication developed elsewhere in the
-repository. It should state the minimum architecture those implications may
-legitimately build on.
+## 1. Review object
 
-## 2. What “stand on its own feet” means
+The canonical v20 object is:
 
-The theory stands on its own feet when a technically competent reader can read
-the formal core without reading the essays and answer:
+1. THEORY_CORE_V20.md
+2. FORMAL_THEORY_MAP.md
+3. PEER_REVIEW_PROMPT.md
+4. formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md
+5. formalization/cumulative-accessibility/README.md
+6. the canonical Lean modules named in THEORY_CORE_V20.md
+7. CumulativeAccessibility/AuditAll.lean
+8. CumulativeAccessibility/VerificationSurface.lean
 
-1. What are the primitive objects?
-2. What is assumed?
-3. What follows deductively?
-4. What does not follow?
-5. Which mechanisms are imported from established fields?
-6. Which parts are merely interfaces awaiting domain-specific instantiation?
-7. Why does the architecture need emergence, retention, reuse, resources,
-   validation, and changing accessibility as separate concepts?
-8. What countermodels show that tempting stronger conclusions are invalid?
-9. How can the theory be instantiated in a biological, technological,
-   cognitive, social, or engineered system without changing its logic?
-10. What observations would show that a proposed real-world mapping is wrong?
+Reviewers should resolve release/tag v20 to an exact commit SHA and review that immutable object.
 
-If those questions cannot be answered from the formal-theory package itself,
-the package is not yet self-standing.
+## 2. Descriptive thesis under review
 
-## 3. The intended descriptive thesis
+> **Retained organization can become causal structure for future change by altering transition machinery and therefore later accessibility, while finite maintenance resources constrain what can remain retained. Recursive repetition of this history-retention-accessibility process provides a substrate-agnostic architecture for cumulative evolution.**
 
-The formal theory should support the following descriptive thesis, and no
-stronger one unless a theorem explicitly warrants it:
+This is the scientific thesis to challenge. Machine checking supports conditional theorem components; it does not establish empirical universality.
 
-> **Persistent organized systems are maintained by processes. Some changes in
-> organization create capacities not realized by the declared parts alone. If a
-> new capacity passes the relevant feasibility and selection/validation filters
-> and is retained, it can become reusable material for later generation.
-> Reusable retained organization can change what is accessible next. When this
-> process recursively continues, cumulative retained novelty can occur. A fixed
-> finite effective repertoire necessarily saturates; indefinite cumulative
-> novelty therefore requires the effective space of distinguishable accessible
-> capacities not to remain uniformly bounded.**
+## 3. Minimal causal grammar
 
-This is a theory of **conditional recursive organization**, not a theorem that
-all systems evolve this way.
+    S_t = (G_t, R_t, Gamma_t, B_t^gross)
+    B_t^free = B_t^gross - M(R_t)
 
-## 4. The causal grammar the theory must make explicit
+    R_t -> K_t -> A_t -> generated organization -> retained organization R_(t+1)
 
-The core should expose the following grammar:
+with the simultaneous maintenance path
 
-```text
-existing organization
-    -> generation / recombination / transformation
-    -> candidate organization
-    -> capacity realization
-    -> compositional emergence, if the whole realizes what proper parts do not
-    -> resource feasibility
-    -> external/domain validation or selection
-    -> retention
-    -> operational availability as reusable material
-    -> changed downstream generability
-    -> finite local search / admission
-    -> next candidate event
-    -> ...
-```
+    R_t -> M(R_t) -> B_t^free -> feasible change.
 
-The important point is not that every arrow always occurs.
+Strict emergence and bounded generative leverage are separate constraints on this recursive architecture.
 
-The theory must show which arrows are:
+## 4. What is formally closed for v20
 
-- definitions;
-- checked implications;
-- sufficient conditions;
-- application-specific assumptions;
-- empirical questions.
+The v20 review surface includes checked results for:
 
-A major function of the formalization is to prevent prose from silently
-collapsing several arrows into one.
+- matched retain/ablate counterfactuals;
+- paid maintenance and free-budget accounting;
+- budget-monotone accessibility;
+- route-induced finite-horizon accessibility from weighted transition kernels;
+- transition-dominance preservation;
+- necessary kernel advantage for paid opening under non-decreasing upkeep;
+- sufficient route-saving-over-upkeep condition;
+- abstract-core to kernel-reachability bridge;
+- strict-emergence target-financing barrier;
+- positive auxiliary-support requirement;
+- transition-mediated emergence specialization and countermodels;
+- bounded single-unit reuse;
+- resource-normalized generative leverage;
+- finite-budget no-go for retaining an overfull positive-cost candidate set;
+- paid reuse / repetition specializations;
+- supporting dynamic-vortex resource-response composition.
 
-## 5. The minimum canonical theorem set
+## 5. What remains deliberately open
 
-The v17 core is sufficient when it has one small, stable theorem spine covering
-the following claims.
+v20 does not close:
 
-### T1 — relative compositional emergence
+- empirical universality;
+- a universal scalar measure of organization or function;
+- strong creation of previously unstatable ontologies;
+- a universal optimizer deciding which retained item survives;
+- stochastic generalization of every deterministic specialization;
+- empirical measurement mappings across all domains;
+- normative conclusions.
 
-A declared configuration realizes a capacity and no declared proper
-subconfiguration realizes that same capacity.
+These are review or research questions, not hidden theorem claims.
 
-The theory must make explicit that this is relative to decomposition, context,
-and realization semantics.
+## 6. Cross-domain challenge
 
-### T2 — filtered retained emergence
+The same logical architecture should be tested without changing its definitions in substantially different substrates, including at least:
 
-Compositional emergence by itself does not imply persistence.
+- cellular / biochemical organization;
+- organismal or immune memory;
+- neural learning;
+- cumulative culture / language;
+- technological evolution.
 
-A retained emergent event must separately satisfy the declared feasibility,
-validation/selection, and retention conditions.
+A failed mapping is informative. A domain should not be forced into the theory by arbitrary relabeling.
 
-### T3 — retained products can become reusable generative material
+## 7. Learning-like interpretation
 
-A retained child can later participate in generation of another capacity.
+The theory uses **learning-like** as an interpretation of the repeated history -> retention -> changed-accessibility dynamic across nested layers.
 
-The preferred strong version should distinguish:
+It does not assert that cells, societies, or technologies literally learn in the psychological sense. It does not infer intelligence or consciousness from satisfying the formal interfaces.
 
-- mere participation;
-- essential contribution under a declared counterfactual;
-- and, where possible, construction of the actual configuration witnessing the
-  later emergent capacity.
+## 8. Peer-review gates
 
-### T4 — reuse can change future accessibility
+The v20 object is suitable for broad review when:
 
-Under explicit assumptions, adding retained reusable organization can strictly
-expand a declared generated-access relation.
+- the exact release commit passes the advertised Lean workflows;
+- AuditAll imports the advertised modules;
+- VerificationSurface prints the selected theorem dependencies;
+- no audited theorem depends on sorryAx;
+- the README, theory core, map, prompt, and release notes all point to the same v20 object;
+- necessity and sufficiency are labelled in the correct direction;
+- the finite-budget result is described as a trade-off/no-go rather than an optimizer;
+- the learning-like interpretation is labelled as an empirical cross-scale hypothesis;
+- older v17-v19 material is clearly historical/supporting rather than the current canonical theory.
 
-This theorem must hold generator change and parent-material change apart unless
-their interaction is explicitly modeled.
+## 9. Freeze rule
 
-### T5 — possibility, search, and realization are distinct
+After v20 is tagged, core claims and theorem semantics are frozen for the review window.
 
-The theory must distinguish:
+Subsequent changes that alter the review object should receive a new release rather than silently moving v20.
 
-- all generable possibilities;
-- the finite set admitted to local search/attention;
-- realized candidates;
-- validated/selected candidates;
-- retained candidates.
+Typos, links, and non-semantic presentation repairs may be made only in later versions; the immutable v20 tag remains the reviewed reference.
 
-A larger possibility space alone must not imply realized progress.
+## 10. How to falsify or narrow the theory
 
-### T6 — local recursive continuation is sufficient for cumulative retained novelty
+A strong challenge can show any of the following:
 
-A seed recursive event plus monotone retained accumulation and a sufficient
-event-wise continuation condition implies arbitrarily many strict retained
-repertoire expansions.
+1. a formal theorem defect;
+2. a mismatch between prose and formal semantics;
+3. a hidden assumption doing the explanatory work;
+4. an equal or stronger antecedent in existing literature;
+5. a genuine cumulative-evolution system that cannot instantiate the interfaces non-arbitrarily;
+6. a counterexample to the proposed cross-scale universality;
+7. evidence that the factorization provides no explanatory or predictive leverage.
 
-The continuation condition must be displayed as a premise, not presented as if
-it were derived automatically from emergence.
+## 11. What counts as success
 
-### T7 — fixed finite effective capacity saturates
+The goal of the review is not endorsement.
 
-A monotonically accumulating retained repertoire inside a fixed finite declared
-capacity universe can undergo only finitely many strict expansions.
+Success means criticism becomes localizable: theorem, definition, modelling premise, prior art, mapping, empirical claim, or interpretation.
 
-This is a consistency boundary, not a claim of novel mathematics.
+A successful falsification or narrowing is a contribution.
 
-### T8 — finite local horizons can coexist with unbounded cumulative accessibility
+## 12. Exact verification commands
 
-The ambient capacity space need not be globally finite.
+    cd formalization/cumulative-accessibility
+    lake update
+    lake exe cache get
+    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
+    lake env lean CumulativeAccessibility/VerificationSurface.lean
 
-A sequence of finite local candidate envelopes can support the recursive theorem
-without assuming an infinite search surface at any one time.
-
-When the accumulated repertoire is represented in those envelopes, open-ended
-retained novelty implies that the envelope cardinalities cannot remain uniformly
-bounded.
-
-### T9 — non-vacuity
-
-At least one explicit machine-checked model must jointly satisfy the corrected
-premises.
-
-The witness proves consistency, not empirical realism.
-
-### T10 — separation results
-
-The core should retain explicit countermodels showing, at minimum:
-
-```text
-emergence            -/-> retention
-promotion            -/-> downstream generative expansion
-generability         -/-> admission
-admission             -/-> successful realization
-ledger R_E >= 1       -/-> actual successor without calibration
-expanding envelope    -/-> realized novelty
-self-maintenance      -/-> automatic recursive continuation
-novelty              -/-> improvement
-retention             -/-> truth
-```
-
-These negative results are part of the theory, not optional caveats.
-
-## 6. The two boundaries the theory must preserve
-
-### 6.1 Descriptive versus normative
-
-The formal theory should explain how organization can be maintained, changed,
-and recursively accumulated.
-
-It does **not** by itself determine what humans ought to maintain, build, or
-value.
-
-For example, the theory may support the descriptive statement:
-
-> Desired outcomes do not materialize merely because they are possible; they
-> require processes that generate, select, realize, maintain, and reproduce the
-> necessary organization.
-
-But deciding that climate stabilization, biodiversity, health, peace,
-scientific knowledge, or another goal **ought** to be pursued requires an
-explicit value or collective objective plus domain-specific evidence.
-
-The formal theory can then help analyze the organizational requirements for
-making that chosen goal real.
-
-This distinction makes the essays stronger, not weaker. It prevents the formal
-core from being asked to smuggle values out of descriptive dynamics.
-
-### 6.2 Universal architecture versus domain mechanism
-
-The formal core should be substrate-agnostic.
-
-A biological, technological, neural, institutional, or cultural application
-must still specify what counts as:
-
-- configuration;
-- capacity;
-- realization;
-- resource budget;
-- external criterion;
-- retention;
-- generator;
-- active repertoire;
-- candidate envelope;
-- admission process.
-
-A successful application is therefore a **model mapping**, not merely an
-analogy.
-
-## 7. What the formal core should borrow rather than reinvent
-
-Where established work already exists, the theory should cite and reuse it.
-
-The core does not need priority over:
-
-- Darwinian selection;
-- open-ended evolution;
-- the adjacent possible;
-- cumulative-culture ratchets;
-- co-option and exaptation;
-- evolvability and modularity;
-- autocatalytic/RAF theory;
-- major evolutionary transitions;
-- niche construction;
-- viability and reachability;
-- reproduction-number / branching mathematics;
-- technological recombination;
-- changing search-space or phase-space theories;
-- resource-limited maintenance;
-- learning and adaptive networks.
-
-The goal is to identify how these mechanisms fit together and where their
-assumptions differ.
-
-A mature EbE theory should be able to say:
-
-> **this component is standard; this theorem specializes it; this interface
-> connects it to the rest of the architecture; this is the consequence of the
-> composition.**
-
-That is sufficient scientific value even when no component is original.
-
-## 8. What should remain outside the formal core
-
-The formal core should not expand until it contains every idea in the
-repository.
-
-The following belong in application, implication, or research layers unless
-they become necessary for the core theorem spine:
-
-- ethical or political conclusions;
-- climate-policy prescriptions;
-- human relationship advice;
-- detailed theories of cooperation;
-- corrigibility norms;
-- psychological interpretations;
-- governance architectures;
-- claims about intelligence or consciousness;
-- empirical claims about specific diseases, ecosystems, economies, or
-  technologies;
-- specific “verbs” for intelligent networks;
-- claims of historical directionality or progress;
-- claims that one social arrangement is morally superior.
-
-Those works may be **underpinned** by the core when their descriptive premises
-map onto it, but they should not be embedded into the proof kernel.
-
-## 9. The role of the essays after the formal endpoint
-
-The essays should become a layered family of arguments:
-
-```text
-formal core
-    -> domain mapping
-    -> domain-specific evidence
-    -> implication
-    -> where relevant: explicit normative premise
-    -> recommendation / interpretation
-```
-
-This creates traceability.
-
-A reviewer should be able to disagree with an essay at the domain-mapping,
-empirical, interpretive, or normative layer without thereby refuting the formal
-core.
-
-Likewise, a proof in the formal core should not be used as a shortcut around a
-missing empirical or normative premise in an essay.
-
-## 10. The strongest useful interpretation
-
-If the formal core survives review, the broadest interpretation it should
-support is:
-
-> **Organization is not self-materializing. Possibility is not realization.
-> Persistence is not automatic. Retained organization must be continually
-> instantiated by processes, and future capability depends partly on which
-> organization has actually been built, maintained, made available, and reused.
-> Evolutionary and developmental change therefore acts not only on existing
-> entities but also on the accessibility structure from which later entities
-> can be generated.**
-
-This statement is intentionally compatible with established evolutionary,
-ecological, cultural, technological, and complex-systems science.
-
-It is a unifying lens, not a replacement for those fields.
-
-## 11. Readiness criterion for broad peer review
-
-The theory is ready to send to approximately 100 independent reviewers when
-**all** of the following are true.
-
-### A. Formal closure
-
-- all canonical theorems compile;
-- the formal-core CI rejects unproved axioms / `sorryAx`;
-- the canonical theorem graph has no known circular import or semantic
-  dependency problem;
-- every major forward implication has either an explicit proof or is clearly
-  labelled a modelling premise;
-- the principal certificate is inhabited by at least one concrete witness;
-- known tempting converses have explicit countermodels where feasible.
-
-### B. Semantic closure
-
-- every central term has one canonical definition;
-- "emergence", "novelty", "capacity", "retention", "validation", "reproduction",
-  "envelope", "accessibility", and "open-ended" are not used in mutually
-  incompatible senses;
-- the generated-capacity versus emergent-configuration seam has either been
-  formally bridged or prominently declared;
-- active repertoire versus historical cumulative trace has either been
-  separated or monotone retention is explicitly declared as the v17
-  idealization;
-- strong representational/ontological novelty is clearly distinguished from the
-  current ambient-type moving-envelope theorem.
-
-### C. Literature closure
-
-- the nearest antecedent is named for every central mechanism;
-- no component is claimed as new merely because it has EbE notation;
-- the exact remaining contribution is stated conservatively;
-- at least one adversarial reviewer has been asked specifically to find an
-  existing framework containing the same full factorization;
-- any discovered stronger antecedent has been incorporated rather than argued
-  away.
-
-### D. Explanatory closure
-
-A reader can understand why each layer exists.
-
-The theory should answer:
-
-```text
-Why emergence?
-Why retention?
-Why reusable parent material?
-Why resources?
-Why validation/selection?
-Why finite admission?
-Why a moving envelope?
-Why local reproduction?
-Why saturation?
-```
-
-If removing a layer changes no theorem or interpretation, that layer should be
-removed or demoted.
-
-### E. Application firewall
-
-At least two substantially different worked mappings should be documented, for
-example one biological and one technological/cultural/engineered application.
-
-The mappings need not prove the theory universally.
-
-Their purpose is to demonstrate that the abstract interfaces can be
-operationalized without changing definitions ad hoc.
-
-At least one **failed or partial mapping** is also valuable: it should show where
-a domain does not satisfy the premises.
-
-### F. Reviewer usability
-
-A reviewer landing on the repository should have a short path:
-
-```text
-README
- -> 2-5 page THEORY CORE
- -> theorem map
- -> literature positioning
- -> assumptions/non-claims
- -> machine-verification instructions
- -> applications
- -> full essays
-```
-
-A reviewer should not need to reconstruct the theory from PR history.
-
-### G. Stability
-
-Before the 100-reviewer release:
-
-- freeze the core definitions for a review window;
-- do not add another conceptual layer unless it fixes a demonstrated defect;
-- assign stable theorem/claim IDs;
-- tag the exact reviewed commit;
-- archive the literature audit and known-open-questions list;
-- make later revisions visible as revisions rather than silently changing the
-  object under review.
-
-## 12. The 100-reviewer test
-
-The question for the first broad review should not be:
-
-> “Is Evolution by Emergence true?”
-
-That is too vague.
-
-Reviewers should be asked to attack five concrete targets:
-
-1. **Internal validity:** Do the formal conclusions actually follow from the
-   stated assumptions?
-2. **Semantic adequacy:** Do the definitions capture the intended concepts
-   without hiding conclusions in premises?
-3. **Prior art:** Does an existing theory already contain the same full
-   architecture more clearly or more strongly?
-4. **Explanatory usefulness:** Does the factorization clarify anything that is
-   obscured when the parent literatures are kept separate?
-5. **Applicability:** Can the interfaces be mapped to real systems without
-   arbitrary choices or post-hoc relabeling?
-
-A strong outcome is not universal agreement.
-
-A strong outcome is that disagreement becomes **localized**:
-
-- theorem defect;
-- definition defect;
-- literature-priority correction;
-- mapping failure;
-- empirical failure;
-- interpretation dispute;
-- normative disagreement.
-
-That localization is one of the main reasons for building the formal core.
-
-## 13. Definition of “sufficient confidence”
-
-Sufficient confidence for broad peer review does **not** mean believing the
-theory is correct in every domain.
-
-It means:
-
-> **we no longer know of an internal contradiction, hidden theorem assumption,
-> obvious stronger antecedent, ambiguous core term, or missing distinction that
-> would predictably waste reviewers' time.**
-
-At that point, criticism from 100 external readers becomes more valuable than
-another internal round of refinement.
-
-The threshold is therefore not certainty.
-
-It is **review maturity**.
-
-## 14. Current status against the endpoint
-
-As of the current PR #60 integration:
-
-### Internally closed or substantially closed
-
-- machine-checked event and recursion surfaces;
-- explicit no-`sorryAx` audit contract;
-- non-vacuity witnesses and separation countermodels;
-- finite-global saturation correction;
-- corrected finite moving local envelope;
-- operational versus representational vocabulary distinction;
-- explicit finite admission seam;
-- essential-parent counterfactual under fixed generator;
-- **configuration-level construction bridge** linking parent construction to the exact configuration witnessing emergent realization;
-- **active repertoire versus cumulative history split**, including a checked turnover witness with active cardinality one;
-- canonical `EvolutionByEmergenceV17Core.lean` surface selecting the corrected operational and historical endpoints;
-- self-standing `THEORY_CORE_V17.md`;
-- worked cross-domain mappings plus a deliberate partial non-mapping;
-- first- and second-pass literature audits including OEE, adjacent possible, changing phase spaces, generative RAFs, cumulative culture, and technological evolution;
-- rewritten reviewer entry path and broad-review protocol.
-
-### Still required before a frozen 100-reviewer release
-
-1. **Exact-head verification.** The final frozen commit—not an earlier intermediate commit—must pass the full advertised CI and no-`sorryAx` surface.
-2. **Repository consistency pass.** No entry document should still present the globally finite PR57 master certificate or v16 Dynamic Vortex as the canonical v17 recursive core.
-3. **Prior-art preflight.** Completed in `verification/audits/2026-09-19-recursive-emergence/PRIOR_ART_PREFLIGHT_V17.md`. No equal-or-stronger full duplicate was found, but this is explicitly not a priority proof; the broad review should keep a dedicated prior-art lane.
-4. **Semantic/navigation preflight.** Completed in `verification/audits/2026-09-19-recursive-emergence/COLD_READER_PREFLIGHT_V17.md`. Repository-only reconstruction succeeded; ambiguities found by the preflight were repaired before the pass was recorded.
-5. **Freeze.** After the final exact-head CI/no-`sorryAx` check is green, stop changing core definitions, tag the exact commit, and archive known open questions so all broad reviewers inspect the same object.
-
-### Research seams that do not block review if stated explicitly
-
-- event-wise continuation remains a strong premise rather than a theorem from primitive promotion alone;
-- the finite admission mechanism remains application specific;
-- mechanism ledgers require calibration to actual successors;
-- the ambient `Capacity` type is weaker than strong unprestatable ontology creation;
-- self-maintenance/resource slack does not automatically imply recursive innovation;
-- empirical mappings and normative conclusions remain outside the proof kernel.
-
-These are no longer reasons to keep inventing internally. They are precisely the kinds of assumptions the broad review should attack.
-
-With the prior-art and cold-reader preflights now completed, the remaining pre-release gate is the exact frozen-head verification/freeze step rather than another theory-development cycle.
-
-## 15. The endpoint in one sentence
-
-> **Evolution by Emergence is ready for broad peer review when it is a
-> self-contained, machine-auditable, literature-positioned theory of how
-> retained organization can recursively alter future organizational
-> accessibility, with its assumptions, limits, countermodels, and application
-> interfaces explicit enough that reviewers can disagree with precise parts
-> rather than with a slogan.**
+The v20 release notes record the exact release object and its lineage.
