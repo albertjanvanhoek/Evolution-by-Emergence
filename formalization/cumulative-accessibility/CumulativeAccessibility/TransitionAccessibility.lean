@@ -251,6 +251,24 @@ theorem route_saving_exceeds_marginal_upkeep_opens_paid_window
     dsimp [grossBudget]
     linarith
 
+/-- Item-specific induced paid opening. Both retained repertoires are generated
+from the same baseline repertoire and the same retained item X. -/
+def PositivePaidOpeningForItem
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (grossBudget : ℝ)
+    (baseRetained : R)
+    (x : X)
+    (s y : σ) : Prop :=
+  PositivePaidOpening
+    Kernel M T grossBudget
+    (Lose baseRetained x)
+    (Retain baseRetained x)
+    s y
+
 /-- Item-specific form of the route-saving theorem. -/
 theorem item_route_saving_exceeds_marginal_upkeep_opens_paid_window
     (Retain : RetainedOrganizationCore.RetainItem R X)
@@ -283,24 +301,6 @@ theorem item_route_saving_exceeds_marginal_upkeep_opens_paid_window
     (Lose baseRetained x)
     (Retain baseRetained x)
     s y routePlus hn Lminus hLower hMargin
-
-/-- Item-specific induced paid opening. Both retained repertoires are generated
-from the same baseline repertoire and the same retained item X. -/
-def PositivePaidOpeningForItem
-    (Retain : RetainedOrganizationCore.RetainItem R X)
-    (Lose : RetainedOrganizationCore.LoseItem R X)
-    (Kernel : KernelOf R σ)
-    (M : RetainedOrganizationCore.Maintenance R)
-    (T : ℕ)
-    (grossBudget : ℝ)
-    (baseRetained : R)
-    (x : X)
-    (s y : σ) : Prop :=
-  PositivePaidOpening
-    Kernel M T grossBudget
-    (Lose baseRetained x)
-    (Retain baseRetained x)
-    s y
 
 /-- Route-level paid opening for one identified retained item. -/
 theorem item_route_advantage_overcomes_upkeep
