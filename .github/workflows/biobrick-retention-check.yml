@@ -1,0 +1,26 @@
+name: BioBrick Retention Reanalysis
+
+on:
+  push:
+    branches:
+      - chatgpt/biobrick-retention-test
+    paths:
+      - "papers/biobrick-retention-test/**"
+      - ".github/workflows/biobrick-retention-check.yml"
+  pull_request:
+    paths:
+      - "papers/biobrick-retention-test/**"
+      - ".github/workflows/biobrick-retention-check.yml"
+
+jobs:
+  reanalysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install analysis dependencies
+        run: pip install numpy scipy openpyxl
+      - name: Reconstruct exact cohort and run analysis
+        run: python papers/biobrick-retention-test/analyze_biobrick_margin.py
