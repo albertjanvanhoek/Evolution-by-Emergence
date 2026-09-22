@@ -617,24 +617,28 @@ In accessibility form:
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-),
 }
 \tag{NT1}
 \]
+
+with \(B^\pm=B^{\mathrm{gross}}-M(R^\pm)\).
 
 In cost form:
 
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mu_X+K^{\mathrm{run}}_{s^+}(Y)
+\mu_R(X)+K^{\mathrm{run}}_{s^+}(Y)
 <
 K_{s^-}(Y).
 }
 \tag{NT2}
 \]
+
+Here \(K^{\mathrm{run}}\) excludes the retention/upkeep amount already represented by \(\mu_R(X)\).
 
 This test can fail.
 
