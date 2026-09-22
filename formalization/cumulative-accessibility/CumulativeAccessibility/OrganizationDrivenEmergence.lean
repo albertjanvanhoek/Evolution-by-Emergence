@@ -8,37 +8,40 @@ namespace RecursiveAccessibility
 /-!
 # Organization-driven emergence
 
-This module makes organization, rather than capacity labels or certified
-operators, the primary state variable.
+Organization is the primary state variable.
+
+A configuration has whatever functions the fixed realization relation assigns
+to it.  No permission, certification, or activation label is required for a
+function to exist.
+
+Persistence is downstream: it decides whether an already-existing organization
+remains available as material for what comes next.
 
 The fixed ingredients are:
 
 * retained organizations O_t;
-* a context-dependent realization relation Realizes organization context phi;
-* a proper-part relation between organizations;
-* a fixed background assembly rule;
-* a fixed rule describing how a realized function can be used.
+* Proper: a declared proper-part relation between organizations;
+* Realizes: organization × context × capacity;
+* Base: a fixed background assembly law;
+* Use: a fixed law describing how a realized function can participate in later
+  construction.
 
-No permission or certification predicate is present.
+The effective construction relation changes when the retained organizational
+state changes, even if Base, Realizes, and Use themselves remain fixed.
 
-If an organization exists, it has every function that Realizes assigns to it.
-Persistence decides whether that organization remains available to the system.
-Once retained, all functions it realizes are automatically available for later
-construction.
+Core causal order:
 
-The causal architecture is therefore:
+    retained parts
+      -> assembled organization
+      -> function of the whole                         [realization]
+      -> function absent from proper parts             [emergence]
+      -> persistence or loss                           [downstream]
+      -> if retained: organization is reusable material
+      -> all functions it realizes are automatically available
+      -> later organizational accessibility may change.
 
-    retained organizations
-      -> assemble a new organization
-      -> the whole realizes a function
-      -> proper parts do not realize that function       [emergence]
-      -> persistence gate decides whether the whole remains
-      -> if retained, its realized function is available automatically
-      -> that function may alter later organizational accessibility.
-
-The underlying realization, assembly, and use laws may remain fixed throughout.
-A change in effective accessibility therefore need not be a mutation of a
-fundamental generator.
+Thus function exists before selection/persistence, and generator mutation is
+not part of the definition of emergence.
 -/
 
 section FunctionalState
@@ -46,13 +49,9 @@ section FunctionalState
 variable {Organization Context Capacity : Type*}
 variable [DecidableEq Organization]
 
-/-- A fixed law saying how a realized capacity can participate in later
-organization. -/
 abbrev FunctionalUseRule (Capacity Organization : Type*) :=
   Capacity -> Finset Organization -> Organization -> Prop
 
-/-- Capacity phi is functionally available when some retained organization
-realizes it in the declared context. -/
 def FunctionAvailable
     (Realizes : CapacityRelation Organization Context Capacity)
     (ctx : Context)
@@ -60,11 +59,6 @@ def FunctionAvailable
     (phi : Capacity) : Prop :=
   ∃ organization, Available organization ∧ Realizes organization ctx phi
 
-/-- The effective construction relation induced by the currently retained
-organizations.
-
-The laws Base, Realizes, and Use are fixed.  State dependence enters only
-through which organizations are currently available. -/
 def EffectiveOrganizationGenerator
     (Base : HyperGenerator Organization)
     (Realizes : CapacityRelation Organization Context Capacity)
@@ -78,7 +72,6 @@ def EffectiveOrganizationGenerator
         FunctionAvailable Realizes ctx Available phi ∧
         Use phi parents child
 
-/-- Functional availability is monotone when retained organization is added. -/
 theorem functionAvailable_mono
     (Realizes : CapacityRelation Organization Context Capacity)
     (ctx : Context)
@@ -91,8 +84,6 @@ theorem functionAvailable_mono
   rcases h with ⟨organization, hOld, hRealizes⟩
   exact ⟨organization, hAvail organization hOld, hRealizes⟩
 
-/-- Effective construction is monotone under retention when the underlying
-laws themselves are unchanged. -/
 theorem effectiveOrganizationGenerator_mono
     (Base : HyperGenerator Organization)
     (Realizes : CapacityRelation Organization Context Capacity)
@@ -118,8 +109,6 @@ section Reachability
 variable {Organization : Type*}
 variable [DecidableEq Organization]
 
-/-- Full multi-step organizational reach under one declared effective
-construction relation. -/
 inductive OrganizationReach
     (Generate : HyperGenerator Organization)
     (Available : Organization -> Prop) : Organization -> Prop
@@ -146,9 +135,9 @@ theorem organizationReach_mono
   | gen hParents hRule ih =>
       exact OrganizationReach.gen ih (hGenerate _ _ hRule)
 
-/-- Pure promotion of an organization already reachable under a fixed
-construction relation does not enlarge full transitive reach.  This is the
-organization-level form of the P9 boundary. -/
+/-- P9 at the organization level: if an organization was already reachable
+under a fixed construction relation, merely promoting it to primitive material
+does not enlarge full transitive reach under that same relation. -/
 theorem reachableOrganizationPromotion_preserves_fixedReach
     (Generate : HyperGenerator Organization)
     (Available : Organization -> Prop)
@@ -175,8 +164,7 @@ section Persistence
 variable {Organization : Type*}
 variable [DecidableEq Organization]
 
-/-- The downstream persistence gate.  Function exists before this gate;
-the gate decides only whether the organization remains available. -/
+/-- Persistence/selection is downstream of function. -/
 def OrganizationPersistenceGateAt
     (Cost : ResponseCost Organization)
     (Budget : ResponseBudget)
@@ -185,8 +173,6 @@ def OrganizationPersistenceGateAt
     (organization : Organization) : Prop :=
   ResourceFeasibleAt Cost Budget t organization ∧ Keep t organization
 
-/-- Isolated one-event persistence law: old organization remains, and the
-declared organization is added exactly when it passes the persistence gate. -/
 def IsolatedOrganizationPersistenceLawAt
     (Cost : ResponseCost Organization)
     (Budget : ResponseBudget)
@@ -250,16 +236,77 @@ theorem persistenceLaw_gateFailure_does_not_retain_new
 
 end Persistence
 
-section EmergentOrganizationEvent
+section EmergenceBeforePersistence
 
 variable {Organization Context Capacity : Type*}
 variable [DecidableEq Organization]
 
-/-- One organization-driven emergence-and-persistence event.
+/-- Emergence itself contains no persistence criterion.
 
-The causal parent organizations are declared proper parts of the constructed
-whole.  The whole realizes phi emergently.  Function realization is immediate;
-the persistence gate acts only after function exists. -/
+The same retained parent set constructs the organization; each causal parent is
+declared a proper part of the whole; and the whole realizes phi while no proper
+part does. -/
+def EmergentOrganizationAt
+    (Base : HyperGenerator Organization)
+    (Proper : Organization -> Organization -> Prop)
+    (Realizes : CapacityRelation Organization Context Capacity)
+    (Use : FunctionalUseRule Capacity Organization)
+    (O : ℕ -> Finset Organization)
+    (t : ℕ)
+    (parents : Finset Organization)
+    (organization : Organization)
+    (ctx : Context)
+    (phi : Capacity) : Prop :=
+  2 ≤ parents.card ∧
+  (∀ x, x ∈ parents -> x ∈ O t) ∧
+  (∀ x, x ∈ parents -> Proper x organization) ∧
+  EffectiveOrganizationGenerator
+      Base Realizes Use ctx (fun x => x ∈ O t)
+      parents organization ∧
+  EmergentUnder Proper Realizes organization ctx phi ∧
+  organization ∉ O t
+
+theorem emergentOrganization_function_exists
+    (Base : HyperGenerator Organization)
+    (Proper : Organization -> Organization -> Prop)
+    (Realizes : CapacityRelation Organization Context Capacity)
+    (Use : FunctionalUseRule Capacity Organization)
+    (O : ℕ -> Finset Organization)
+    (t : ℕ)
+    {parents : Finset Organization}
+    {organization : Organization}
+    {ctx : Context}
+    {phi : Capacity}
+    (h :
+      EmergentOrganizationAt
+        Base Proper Realizes Use O
+        t parents organization ctx phi) :
+    Realizes organization ctx phi := by
+  rcases h with ⟨_, _, _, _, hEmergent, _⟩
+  exact hEmergent.1
+
+theorem emergentOrganization_excludes_proper_part_function
+    (Base : HyperGenerator Organization)
+    (Proper : Organization -> Organization -> Prop)
+    (Realizes : CapacityRelation Organization Context Capacity)
+    (Use : FunctionalUseRule Capacity Organization)
+    (O : ℕ -> Finset Organization)
+    (t : ℕ)
+    {parents : Finset Organization}
+    {organization part : Organization}
+    {ctx : Context}
+    {phi : Capacity}
+    (h :
+      EmergentOrganizationAt
+        Base Proper Realizes Use O
+        t parents organization ctx phi)
+    (hProper : Proper part organization) :
+    ¬ Realizes part ctx phi := by
+  rcases h with ⟨_, _, _, _, hEmergent, _⟩
+  exact hEmergent.2 part hProper
+
+/-- Persistence is a second event layered on top of an already-functional
+emergent organization. -/
 def EmergentOrganizationPersistenceAt
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -274,19 +321,15 @@ def EmergentOrganizationPersistenceAt
     (organization : Organization)
     (ctx : Context)
     (phi : Capacity) : Prop :=
-  2 ≤ parents.card ∧
-  (∀ x, x ∈ parents -> x ∈ O t) ∧
-  (∀ x, x ∈ parents -> Proper x organization) ∧
-  EffectiveOrganizationGenerator
-      Base Realizes Use ctx (fun x => x ∈ O t)
-      parents organization ∧
-  EmergentUnder Proper Realizes organization ctx phi ∧
-  organization ∉ O t ∧
+  EmergentOrganizationAt
+      Base Proper Realizes Use O
+      t parents organization ctx phi ∧
   OrganizationPersistenceGateAt Cost Budget Keep t organization ∧
   IsolatedOrganizationPersistenceLawAt
     Cost Budget Keep O t organization
 
-theorem emergentOrganization_function_exists
+/-- The function follows from emergence alone, not from persistence. -/
+theorem emergentPersistentOrganization_function_preexists_gate
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
     (Realizes : CapacityRelation Organization Context Capacity)
@@ -305,29 +348,8 @@ theorem emergentOrganization_function_exists
         Base Proper Realizes Use Cost Budget Keep O
         t parents organization ctx phi) :
     Realizes organization ctx phi := by
-  exact h.2.2.2.2.1.1
-
-theorem emergentOrganization_excludes_proper_part_function
-    (Base : HyperGenerator Organization)
-    (Proper : Organization -> Organization -> Prop)
-    (Realizes : CapacityRelation Organization Context Capacity)
-    (Use : FunctionalUseRule Capacity Organization)
-    (Cost : ResponseCost Organization)
-    (Budget : ResponseBudget)
-    (Keep : ExternalCriterion Organization)
-    (O : ℕ -> Finset Organization)
-    (t : ℕ)
-    {parents : Finset Organization}
-    {organization part : Organization}
-    {ctx : Context}
-    {phi : Capacity}
-    (h :
-      EmergentOrganizationPersistenceAt
-        Base Proper Realizes Use Cost Budget Keep O
-        t parents organization ctx phi)
-    (hProper : Proper part organization) :
-    ¬ Realizes part ctx phi := by
-  exact h.2.2.2.2.1.2 part hProper
+  exact emergentOrganization_function_exists
+    Base Proper Realizes Use O t h.1
 
 theorem emergentOrganization_retained
     (Base : HyperGenerator Organization)
@@ -349,9 +371,7 @@ theorem emergentOrganization_retained
         t parents organization ctx phi) :
     organization ∈ O (t + 1) := by
   exact persistenceLaw_gate_retains
-    Cost Budget Keep O t organization
-    h.2.2.2.2.2.2.1
-    h.2.2.2.2.2.2.2
+    Cost Budget Keep O t organization h.2.1 h.2.2
 
 theorem emergentOrganization_old_retained
     (Base : HyperGenerator Organization)
@@ -373,11 +393,10 @@ theorem emergentOrganization_old_retained
         t parents organization ctx phi) :
     O t ⊆ O (t + 1) := by
   exact persistenceLaw_preserves_old
-    Cost Budget Keep O t organization
-    h.2.2.2.2.2.2.2
+    Cost Budget Keep O t organization h.2.2
 
-/-- Once the whole persists, its already-existing function is automatically
-available.  There is no additional authorization step. -/
+/-- Once retained, every function already realized by the organization becomes
+available automatically. -/
 theorem emergentOrganization_function_available_after_persistence
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -400,18 +419,49 @@ theorem emergentOrganization_function_available_after_persistence
   exact ⟨organization,
     emergentOrganization_retained
       Base Proper Realizes Use Cost Budget Keep O t h,
-    emergentOrganization_function_exists
+    emergentPersistentOrganization_function_preexists_gate
       Base Proper Realizes Use Cost Budget Keep O t h⟩
 
-end EmergentOrganizationEvent
+/-- Explicit separation theorem: an emergent organization can already realize
+its function while failing to persist. -/
+theorem emergent_function_can_exist_without_persistence
+    (Base : HyperGenerator Organization)
+    (Proper : Organization -> Organization -> Prop)
+    (Realizes : CapacityRelation Organization Context Capacity)
+    (Use : FunctionalUseRule Capacity Organization)
+    (Cost : ResponseCost Organization)
+    (Budget : ResponseBudget)
+    (Keep : ExternalCriterion Organization)
+    (O : ℕ -> Finset Organization)
+    (t : ℕ)
+    {parents : Finset Organization}
+    {organization : Organization}
+    {ctx : Context}
+    {phi : Capacity}
+    (hEmergent :
+      EmergentOrganizationAt
+        Base Proper Realizes Use O
+        t parents organization ctx phi)
+    (hFail :
+      ¬ OrganizationPersistenceGateAt Cost Budget Keep t organization)
+    (hLaw :
+      IsolatedOrganizationPersistenceLawAt
+        Cost Budget Keep O t organization) :
+    Realizes organization ctx phi ∧ organization ∉ O (t + 1) := by
+  constructor
+  · exact emergentOrganization_function_exists
+      Base Proper Realizes Use O t hEmergent
+  · exact persistenceLaw_gateFailure_does_not_retain_new
+      Cost Budget Keep O t organization
+      hEmergent.2.2.2.2.2 hFail hLaw
+
+end EmergenceBeforePersistence
 
 section FunctionalVocabulary
 
 variable {Organization Context Capacity : Type*}
 variable [DecidableEq Organization]
 
-/-- The emergent function is new to the currently retained system when no
-retained organization already realizes it. -/
 def FunctionallyNovelToRetainedSystem
     (Realizes : CapacityRelation Organization Context Capacity)
     (ctx : Context)
@@ -420,9 +470,6 @@ def FunctionallyNovelToRetainedSystem
     (phi : Capacity) : Prop :=
   ¬ FunctionAvailable Realizes ctx (fun x => x ∈ O t) phi
 
-/-- Strong vocabulary-emergence specialization: an emergent organization
-persists and the function it realizes was absent from every previously retained
-organization. -/
 def RetainedVocabularyEmergenceAt
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -481,13 +528,6 @@ section AccessibilityConsequence
 variable {Organization Context Capacity : Type*}
 variable [DecidableEq Organization]
 
-/-- If the retained emergent function can be used to construct a product that
-was outside the old full reach, then retaining the organization strictly
-expands organizational reach.
-
-The underlying Base, Realizes, and Use laws are unchanged.  The accessibility
-change comes from retaining a new organization with an already-realized
-function. -/
 theorem retainedEmergentFunction_can_expand_fullReach
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -558,9 +598,8 @@ theorem retainedEmergentFunction_can_expand_fullReach
           Base Proper Realizes Use Cost Budget Keep O t h,
         hUse⟩
 
-/-- The same retained organization may expand immediate one-step access even
-when the underlying construction relation itself is fixed.  This is the weaker
-operational ratchet and does not imply full-closure expansion. -/
+/-- Weaker operational ratchet: state change can expand immediate access under
+an unchanged construction rule without implying a change in full closure. -/
 theorem retainedOrganization_can_expand_oneStep_under_fixedRule
     (Generate : HyperGenerator Organization)
     (oldAvailable newAvailable : Organization -> Prop)
@@ -585,8 +624,10 @@ end AccessibilityConsequence
 #print axioms persistenceLaw_gateFailure_does_not_retain_new
 #print axioms emergentOrganization_function_exists
 #print axioms emergentOrganization_excludes_proper_part_function
+#print axioms emergentPersistentOrganization_function_preexists_gate
 #print axioms emergentOrganization_retained
 #print axioms emergentOrganization_function_available_after_persistence
+#print axioms emergent_function_can_exist_without_persistence
 #print axioms retainedVocabularyEmergence_strictly_expands_availableFunctions
 #print axioms retainedEmergentFunction_can_expand_fullReach
 #print axioms retainedOrganization_can_expand_oneStep_under_fixedRule
