@@ -7,15 +7,10 @@ namespace RecursiveAccessibility
 /-!
 # Recurrence of organization-driven emergence
 
-This file keeps two temporal claims separate:
+Linked lineage and arbitrary-late recurrence remain distinct.
 
-1. linked lineage: a retained emergent organization is explicitly reused as a
-   causal parent of a later emergent organization;
-2. recurrence: emergent persistence events occur arbitrarily late.
-
-The state variable is retained organization.  Functions remain properties of
-organizations through Realizes; no function-state or certification state is
-introduced.
+The recursive object is retained organization.  Functions do not have a
+separate temporal state: they are properties of organizations through Realizes.
 -/
 
 section LinkedLineage
@@ -23,8 +18,6 @@ section LinkedLineage
 variable {Organization Context Capacity : Type*}
 variable [DecidableEq Organization]
 
-/-- Binary recursive link: the designated retained parent participates in the
-exact parent set of the next organization-driven emergence event. -/
 def OrganizationEmergenceStepAt
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -144,8 +137,6 @@ theorem recurringVocabularyEmergence_implies_recurringOrganizationEmergence
   obtain ⟨t, parents, organization, ctx, phi, hnt, hEvent⟩ := h n
   exact ⟨t, parents, organization, ctx, phi, hnt, hEvent.1⟩
 
-/-- Recurrent emergence-and-persistence events are non-vacuously recurrent
-retained-novelty events at the organization level. -/
 theorem recurringOrganizationEmergence_implies_eventualNovelUptake
     (Base : HyperGenerator Organization)
     (Proper : Organization -> Organization -> Prop)
@@ -161,10 +152,12 @@ theorem recurringOrganizationEmergence_implies_eventualNovelUptake
     EventualNovelUptake (fun t => O (t + 1)) O := by
   intro n
   obtain ⟨t, parents, organization, ctx, phi, hnt, hEvent⟩ := h n
-  have hNew : organization ∉ O t := hEvent.2.2.2.2.2.1
+  rcases hEvent with ⟨hEmergent, hGate, hLaw⟩
+  rcases hEmergent with
+    ⟨hCard, hParents, hProper, hGenerate, hEmergence, hNew⟩
   have hNext : organization ∈ O (t + 1) :=
-    emergentOrganization_retained
-      Base Proper Realizes Use Cost Budget Keep O t hEvent
+    persistenceLaw_gate_retains
+      Cost Budget Keep O t organization hGate hLaw
   exact ⟨t, organization, hnt, hNext, hNew, hNext⟩
 
 theorem recurringOrganizationEmergence_implies_openEndedOrganization
