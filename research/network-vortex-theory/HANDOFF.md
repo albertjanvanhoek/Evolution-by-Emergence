@@ -1,178 +1,262 @@
-# Handoff: Network-First EbE / Dynamic Vortex
+# Handoff: EbE Centre — Retained Organization Becomes Causal Structure
 
-This is the short continuation guide for a researcher or LLM.
+This file is the short continuation guide for a researcher or LLM.
 
-## Do not lose this ontology
+## Core invariant
 
-EbE is currently being treated as a theory of **recursively reorganizing networks under evaluation**.
+The current centre of Evolution by Emergence is:
 
-Do not replace the network with an abstract "capacity", "certification", or pure cost model.
+> **Retained organization becomes causal structure for future change.**
 
-The reference loop is:
+Equivalent formulation:
+
+> **The system's history becomes part of its transition machinery.**
+
+The minimal recursive form is
 
 \[
 \boxed{
-\text{network reorganization}
+G_t
 \rightarrow
-\text{emergent function}
+\mathcal K[G_t,\Gamma_t]
 \rightarrow
-\text{evaluation}
+G'_t
 \rightarrow
-\text{differential persistence}
+\mathcal V(G'_t,\Gamma_t)
 \rightarrow
-\text{retained organization}
+G_{t+1}
 \rightarrow
-\text{changed future accessibility}
-\rightarrow
-\text{further reorganization}
+\mathcal K[G_{t+1},\Gamma_{t+1}]
 }
 \]
 
-## Minimal objects
+The decisive second-order condition is
 
 \[
-G_t=(V_t,E_t,\theta_t)
+\boxed{
+\mathcal K[G_{t+1},\Gamma_{t+1}]
+\neq
+\mathcal K[G_t,\Gamma_t].
+}
 \]
 
-Dynamic typed/weighted/attributed network or hypergraph.
+Here:
+
+- \(G_t\): current relational organization;
+- \(\Gamma_t\): environment/gradient/opportunity condition;
+- \(\mathcal K\): effective transition machinery generating candidate future organization;
+- \(G'_t\): candidate reorganization;
+- \(\mathcal V\): viability/selection/evaluation consequence;
+- retention/reconstruction produces historically available organization \(G_{t+1}\).
+
+## Do not lose the level of abstraction
+
+The network is the mathematical representation of relational organization, not the deepest claim.
+
+Use a network/hypergraph when appropriate:
 
 \[
-\mathcal B(G,c)
+G=(V,E,\theta).
 \]
 
-Behavior of organization \(G\) in context \(c\).
+But do not argue that EbE applies merely because something can be drawn as a graph.
 
-\[
-G\models_c\phi
-\]
+A valid mapping must identify:
 
-Functional property \(\phi\) expressed by that behavior.
+1. a relational organization;
+2. a mechanism of reorganization;
+3. system-level behavior/function;
+4. differential continuation;
+5. retention/reconstruction;
+6. a resulting change in the future transition structure.
+
+The unity claimed is structural, not mechanical.
+
+## Emergence
+
+Emergence is the creative event within the recursive process.
+
+A strict compositional-emergence test is:
 
 \[
 E(G,\phi,c)
 \iff
 G\models_c\phi
 \land
-\forall K\prec G,\;K\not\models_c\phi
+\forall K\prec G,\;K\not\models_c\phi.
 \]
 
-Emergence relative to an admissible proper-part relation.
+This is useful but should not be required for every organizational change.
+
+General route:
 
 \[
-\mathcal E(G,c)
+\text{reorganization}
+\rightarrow
+\text{changed behavior/function}.
 \]
 
-Evaluation: energy/resource balance, reward, fitness, persistence, etc.
+Special emergent route:
 
 \[
-C_G(H;c)=\inf_{\pi:G\leadsto H}\mathbb E[J_c(\pi)]
+\text{reorganization}
+\rightarrow
+\text{whole-level capability absent from declared parts}.
 \]
 
-Effective cost of realizing later organization \(H\).
+Compact interpretation:
+
+> **Emergence creates candidates; persistence writes some of them into future dynamics.**
+
+## Accessibility
+
+Accessibility is more general than cost.
+
+A generic finite-horizon object can be written
 
 \[
-\mathcal R_B(G)=\{H:C_G(H)\le B\}
+\mathcal A_T(S\mid G,\Gamma,q),
 \]
 
-Budgeted accessibility.
+where \(q\) is the current generative mechanism.
 
-## Second-order statement
+Costed reachability is a specialization:
 
 \[
-G_t\rightarrow C_{G_t}\rightarrow G_{t+1}\rightarrow C_{G_{t+1}}.
+C_G(H;c)
+=
+\inf_{\pi:G\leadsto H}\mathbb E[J_c(\pi)].
 \]
 
-Retained products of the generative process change the effective accessibility landscape of subsequent generation.
+Depending on the domain, historical retention may change:
 
-The physical generator may remain fixed.
+- probability of reaching a successor;
+- rate;
+- energy/resource requirement;
+- number of construction steps;
+- mutational/developmental distance;
+- learning effort;
+- search effort;
+- coordination/design cost.
+
+Do not promote one of these units into the universal ontology.
 
 ## Dynamic Vortex
 
-Primitive loop:
+A minimal self-maintaining loop is
 
 \[
 X\rightarrow\phi\rightarrow r\rightarrow\operatorname{maintenance}(X).
 \]
 
-Evolution acts on the organization of this self-maintaining loop.
+The vortex becomes evolutionary when alternative organizations of this loop are differentially retained and thereby alter later \(\mathcal K\).
 
-"Vortex" means self-reinforcing recursive flow through organization space, not literal geometric rotation.
+"Vortex" means a self-reinforcing recursive flow in which organization shapes the conditions of its own continuation and change; it does not mean literal geometric rotation.
+
+## Four grounding examples
+
+### Neural learning
+
+- organization: connectivity/weights/recruitment;
+- reorganization: plasticity;
+- differential consequence: reward, prediction error, task success, viability;
+- retention: stable/recruitable learned organization;
+- changed transition machinery: later tasks become easier/harder/differently learnable.
+
+### Autocatalytic chemistry
+
+- organization: reaction-catalysis hypernetwork;
+- reorganization: appearance/loss of species, catalysts, pathways;
+- differential consequence: kinetic/resource persistence;
+- retention: self-regeneration;
+- changed transition machinery: catalysts/organization alter later reaction accessibility and rates.
+
+### Biological inheritance
+
+- organization: regulatory/developmental/domain network;
+- reorganization: mutation, recombination, duplication, regulatory change;
+- differential consequence: viability/reproduction;
+- retention: inheritance and developmental reconstruction;
+- changed transition machinery: evolved architecture biases future phenotypic variation/evolvability.
+
+### Technology
+
+- organization: components, interfaces, designs, production capabilities;
+- reorganization: invention/recombination;
+- differential consequence: performance, reliability, cost, adoption;
+- retention: designs, standards, manufacturing knowledge;
+- changed transition machinery: retained technologies become building blocks for later construction.
 
 ## Cost/hierarchy findings
 
-The key retention identity is:
+The retention identity remains useful as one specialization.
+
+Let
 
 \[
-J(R\cup\{X\})-J(R)=\Delta M_R(X)-S_R(X),
+J(R)=\mathbb E[D_R(Y)]+M(R).
 \]
 
-where \(S_R(X)\) is expected future saving and \(\Delta M_R(X)\) is marginal retention/maintenance cost.
+For candidate \(X\):
 
-Retention is favored when expected reuse/compression savings exceed maintenance.
+\[
+J(R\cup\{X\})-J(R)
+=
+\Delta M_R(X)-S_R(X).
+\]
 
-For a hierarchy, lower-level modules can be retained for two reasons:
+Retention is favored when expected future savings exceed marginal maintenance.
+
+For nested reusable modules:
 
 \[
 \boxed{
 \text{direct reuse value}
 +
-\text{representation/compression value}
+\text{hierarchical compression value}
 >
 \text{maintenance cost}.
 }
 \]
 
-A pure scaffold can have zero direct task value but remain optimal because it lowers the cost of representing/maintaining later organization.
+These results explain one route by which retained organization can modify future transition machinery. They do not define EbE as a whole.
 
-## Important falsifications / corrections
+## Important corrections already learned
 
-Do **not** restore these discarded assumptions:
+Do not restore the following assumptions:
 
-- emergence requires external certification;
-- non-emergence means no function;
 - persistence determines whether function exists;
-- retained organization necessarily expands full closure;
-- every retained module helps;
-- more retained structure is always better;
-- hierarchy follows automatically from cheap caching;
-- the evaluator must be energy or any one universal unit.
+- every organizational update must be strictly emergent;
+- external validation is universal;
+- cost is the universal measure of accessibility;
+- retention always helps;
+- full closure must expand;
+- more retained modules always imply more accessibility;
+- cheap caching automatically produces hierarchy;
+- complexity must increase monotonically;
+- a fixed fundamental generator must change for second-order evolution;
+- network representability alone establishes an EbE mapping.
 
 ## Simulation status
 
-Exploratory computational results discussed during theory development suggested:
+Exploratory simulations suggested:
 
-- arbitrary retention often creates burden rather than gain;
-- repeated reuse and low maintenance predict beneficial retention;
-- path dependence and lock-in can arise with finite resources;
-- Boolean circuits can expand budgeted functional accessibility while full closure stays fixed;
-- compositional retention can generate nested reusable modules;
-- destroying cross-task repeated substructure collapses most hierarchy;
-- making references expensive weakens hierarchy.
+- retention can create gains, losses, or both;
+- recurrent substructure and maintenance burden jointly matter;
+- finite-resource histories produce path dependence and lock-in;
+- budgeted accessibility can expand while full closure stays fixed;
+- compositional retention can generate nested modules;
+- destroying shared substructure largely removes hierarchy;
+- expensive references weaken hierarchy.
 
-**These numerical results are not yet reproduced by versioned code in this repository. Do not cite them as verified results.**
-
-## Grounding status
-
-Strongest current fits:
-
-- technology;
-- inherited/recombinant biological modules.
-
-Good but more careful:
-
-- neural learning (distributed representation);
-- autocatalytic chemistry (strong for network/persistence/accessibility, weaker for generic symbolic hierarchy).
+These results are **not yet reproduced by versioned repository code** and should not be cited as verified results.
 
 ## Next theorem target
 
-Remove the pre-given hierarchy.
+The next theorem should be formulated around the centre, not around a pre-given hierarchy:
 
-Given only:
+> Given recurrent relational structure, differential retention, and finite construction/maintenance constraints, under what conditions does retained organization necessarily alter the effective transition operator for future organization?
 
-1. a distribution of recurrent network constructions;
-2. a cost of reconstructing subgraphs;
-3. a cost of retaining/referencing them;
+A stronger follow-up can ask when this induces reusable coarse-grained modules and hierarchy.
 
-derive sufficient conditions under which an optimal repertoire **discovers recurrent suborganizations** and constructs a nested hierarchy.
-
-Only after this network-level theorem and semantics are stable should Lean formalization resume.
+Only after these semantics are stable should Lean formalization resume.
