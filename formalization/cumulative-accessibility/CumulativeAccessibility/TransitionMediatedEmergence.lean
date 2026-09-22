@@ -303,6 +303,8 @@ theorem costly_not_reachable_at_budget_two :
   | step hEdge rest =>
       have hRest : 0 ≤ rest.cost :=
         Route.cost_nonneg rest
+      simp only [Route.cost] at hCost
+      change (5 / 2 : ℝ) + rest.cost ≤ 2 at hCost
       linarith
 
 /-- **Drop non-decreasing upkeep.** A subsidized retained arm can show apparent
