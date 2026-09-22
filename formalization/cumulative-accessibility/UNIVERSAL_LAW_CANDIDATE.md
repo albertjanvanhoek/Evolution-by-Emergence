@@ -37,9 +37,11 @@ Both start from the same active organization, context, and gross budget.
 The post-v19 instrument asks whether retaining X changes future accessibility
 after its own maintenance burden is paid.
 
-The older PR64 interface allows application-defined graded accessibility.
-The stronger theorem layer below derives finite-horizon budget accessibility
-from transition machinery itself.
+The abstract core still permits application-defined graded accessibility, but
+the publication-facing theorem surface now supplies a canonical
+kernel-induced implementation. Lean proves that, under this implementation,
+the core's positive-transfer predicate is exactly retained reachability plus
+ablated non-reachability at each arm's own post-maintenance budget.
 
 Paid transfer is an operational criterion. It is **not by itself a universal
 law**.
@@ -77,9 +79,11 @@ C_+ + \bigl(M(R^+)-M(R^-)\bigr) < L_-,
 then there exists a common gross budget at which the target is inaccessible
 without the retained organization and accessible with it.
 
-A regression theorem proves that if retained and ablated organization induce
-the same kernel and retention costs weakly more, retention cannot create a paid
-opening.
+A necessity theorem proves the stronger statement: if retention costs weakly
+more, positive paid opening implies that the ablated kernel cannot reproduce
+every retained transition at equal or lower cost. Thus paid transfer certifies a
+genuine transition-machinery advantage, not merely a favorable accessibility
+label.
 
 A constructive witness defines the kernels, route, upkeep and budget explicitly
 and derives an item-specific positive paid opening.
@@ -128,11 +132,28 @@ That support may be instantiated as another current function, reuse elsewhere,
 exaptation, environmental or organizational subsidy, drift / neutral
 persistence, or another application-specific mechanism.
 
+### Transition-mediated specialization
+
+`TransitionMediatedEmergence.lean` removes the free-benefit seam for one
+mechanistic specialization. The emergent function itself opens a transition.
+Because no proper subconfiguration realizes that function, proper parts do not
+receive the function-mediated transition advantage. With non-decreasing upkeep,
+Lean derives that they cannot exhibit positive paid opening through that
+mechanism.
+
+The same module includes adversarial regression witnesses: the whole emergent
+configuration can transfer; dropping emergence allows a single part to transfer;
+negative upkeep can create apparent opening without any kernel improvement; and
+a proper part can survive as a stepping stone by opening a different
+transition.
+
 ### Failure modes
 
 The theorem is not a claim that all emergent functions create an absolute
 barrier. It explicitly fails when proper intermediates already obtain partial
-target-related benefit, upkeep is zero, or another support channel exists.
+target-related benefit, upkeep is zero, or another support channel exists. The
+transition-mediated specialization makes one such alternative support route
+explicit rather than ruling it out.
 
 ## 5. Candidate invariant C: bounded-memory generative leverage
 
