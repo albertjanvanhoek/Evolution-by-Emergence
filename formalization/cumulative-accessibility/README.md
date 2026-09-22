@@ -1,4 +1,72 @@
-# Cumulative Accessibility Lean Verification
+# Cumulative Accessibility
+
+> **Post-v19 formalization status:** the retained-organization core is being
+> rebuilt here in the v19/PR63 dynamical language. This is draft formalization,
+> not yet a new numbered release.
+
+## Retained-organization verification spine
+
+The current substrate-agnostic centre is expressed as
+
+[
+S_t=(G_t,R_t,Gamma_t,B_t^{\mathrm{gross}}),
+qquad
+B_t^{\mathrm{free}}=B_t^{\mathrm{gross}}-M(R_t),
+]
+
+with abstract transition machinery (mathcal K), graded finite-horizon
+accessibility (mathcal A_T), explicit retain/ablate counterfactuals for one
+retained item (X), paid maintenance, later ablation-based reuse, and transfer
+to an unvisited target.
+
+The current Lean files include:
+
+- `RetainedOrganizationCore.lean` — item-specific retained/ablated arms,
+  positive marginal upkeep, monotone budget semantics, causal reuse, paid
+  transfer to unvisited targets, and regression guards against two false
+  certificates found during adversarial review;
+- `PaidRetentionTransfer.lean` — lower-is-better cost specialization and
+  single-entry upkeep bookkeeping;
+- `PaidReuseHierarchy.lean` — one-level repetition threshold and single-use
+  no-go;
+- `RepetitionDepth.lean` — nonseparable arbitrary-objective RD0–RD2 theorem:
+  if actual marginal objective changes obey the declared repeated-use formula
+  and worst-case structural bounds, any global minimizer retains every level;
+- `EmergentPaidTransfer.lean` — optional Law-D feedback in which the same
+  retained item is also the configuration tested for compositional emergence;
+- `V17Compatibility.lean` — reuses compatible v17 lemmas without making v17
+  recurrence/successor premises the new core;
+- `LearningConstitutionSpecialization.lean` — downstream intelligent-network
+  specialization only.
+
+### Compression / reuse test
+
+A retained representational scaffold is not explanatory merely because a free
+"saving" parameter is assigned to it. A mechanism must produce a paid
+advantage. Repetition/shared use supplies one checked mechanism:
+
+[
+(n-1)c>nr+h.
+]
+
+For the deeper theorem, the global objective is no longer assumed separable:
+the actual marginal effect of adding an omitted module may depend on the rest of
+the retained dictionary. The theorem still requires an application to justify
+the structural lower bounds on exposed occurrence count and inline cost.
+
+### Pre-statability boundary
+
+The current formalization uses fixed ambient Lean types for states,
+organizations, candidates, and targets. It can represent an expanding set of
+visited/accessible values inside those types. It does **not** prove strong
+creation of previously unstatable observables, type systems, or ontologies in
+the Kauffman/Longo sense.
+
+Claims about vocabulary emergence or changing phase spaces must therefore be
+phrased as representational/model extensions unless a stronger formal layer is
+introduced.
+
+Lean Verification
 
 Machine-checked formalization for the cumulative-accessibility and formal-core results in **Evolution by Emergence**.
 
