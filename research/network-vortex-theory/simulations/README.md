@@ -5,6 +5,12 @@
 
 The purpose of preserving them here is to retain the hypotheses, controls, and failure modes that motivated the current theorem program.
 
+The current EbE centre is broader than these simulations:
+
+> **Retained organization becomes causal structure for future change.**
+
+The simulations below test one specialization of that claim: retained organization changes later construction costs, routes, and budgeted accessibility.
+
 ## Reported exploratory findings
 
 The research discussion reported the following qualitative patterns:
