@@ -607,6 +607,37 @@ theorem core_positiveTransferForItem_requires_kernel_advantage
       (startOf base.active) y hBudget hMinusAtPlusBudget
   exact hReach.2 hMinus
 
+/-- The full retained-organization firewall certificate inherits the kernel
+advantage result once its accessibility semantics are induced by the transition
+machinery. Endogeneity, persistence, paid retention, later reuse and unvisited
+transfer remain visible in the certificate, while the transfer field can no
+longer be satisfied by an arbitrary favorable accessibility function. -/
+theorem cumulativePaidTransfer_requires_kernel_advantage
+    (Endo : RetainedOrganizationCore.Endogenous X)
+    (Slow : RetainedOrganizationCore.SlowRetained X)
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (x : X)
+    (Visited : Set σ)
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (base : RetainedOrganizationCore.State G R Γ)
+    (y : σ)
+    (h :
+      RetainedOrganizationCore.CumulativePaidTransferEvent
+        Endo Slow Retain Lose x
+        Visited
+        (kernelAccessibility KR startOf)
+        M T base y) :
+    ¬ KernelDominates
+        (KR base.active (Lose base.retained x) base.context)
+        (KR base.active (Retain base.retained x) base.context) := by
+  exact core_positiveTransferForItem_requires_kernel_advantage
+    Retain Lose KR startOf M T base x y
+    h.paid h.transfer
+
 /-! ## Fully constructive paid-transfer witness -/
 
 inductive RetainedKernelToyState
@@ -700,6 +731,7 @@ theorem retainedKernelToy_positive_item_paid_opening :
 #print axioms core_positiveTransfer_iff_kernel_reach
 #print axioms core_positiveTransferForItem_iff_kernel_reach
 #print axioms core_positiveTransferForItem_requires_kernel_advantage
+#print axioms cumulativePaidTransfer_requires_kernel_advantage
 #print axioms retainedKernelToy_ablated_not_reachable
 #print axioms retainedKernelToy_positive_item_paid_opening
 
