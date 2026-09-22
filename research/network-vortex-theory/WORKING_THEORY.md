@@ -2,7 +2,7 @@
 
 > **Status:** conceptual and mathematical research checkpoint.  
 > **Aim:** compress a recurring structure across the EbE work and across scientific domains.  
-> **Not yet:** a final universal theory, a novelty claim, or a completed Lean formalization.
+> **Not yet:** a final universal theory, a priority claim, or a completed Lean formalization.
 
 ## 1. The proposed centre
 
@@ -16,46 +16,82 @@ Equivalent formulation:
 
 This is intended as a compressed description of a recurring pattern, not as a claim that all substrates use the same mechanism.
 
-The minimal recursive architecture is
+A useful state decomposition is
 
 \[
-\boxed{
-G_t
-\longrightarrow
-\mathcal K[G_t,\Gamma_t]
-\longrightarrow
-G'_t
-\longrightarrow
-\mathcal V(G'_t,\Gamma_t)
-\longrightarrow
-G_{t+1}
-\longrightarrow
-\mathcal K[G_{t+1},\Gamma_{t+1}]
-}
-\tag{1}
+S_t=(G_t,R_t,\Gamma_t,B_t^{\mathrm{gross}}),
 \]
 
 where:
 
-- \(G_t\) is current relational organization;
-- \(\Gamma_t\) describes relevant surroundings, gradients, opportunities, or boundary conditions;
-- \(\mathcal K[G_t,\Gamma_t]\) is the **effective transition machinery** available from the current organization;
-- \(G'_t\) is candidate reorganization;
-- \(\mathcal V\) represents differential consequence for continuation;
-- retention/reconstruction/history gives \(G_{t+1}\).
+- \(G_t\): currently active relational organization;
+- \(R_t\): organization retained/reconstructibly available from history;
+- \(\Gamma_t\): relevant surroundings, gradients, opportunities, or boundary conditions;
+- \(B_t^{\mathrm{gross}}\): available resource/attention/compute/search budget when a scalar budget is meaningful.
 
-The characteristic second-order event is
+Retention is paid for. Let
+
+\[
+M(R_t)\ge0
+\]
+
+be its declared upkeep/storage/reconstruction burden. Then a scalar free budget is
 
 \[
 \boxed{
-\mathcal K[G_{t+1},\Gamma_{t+1}]
-\neq
-\mathcal K[G_t,\Gamma_t].
+B_t^{\mathrm{free}}
+=
+B_t^{\mathrm{gross}}-M(R_t).
+}
+\tag{1}
+\]
+
+The effective transition machinery is therefore written schematically as
+
+\[
+\boxed{
+\mathcal K_t
+=
+\mathcal K[G_t,R_t,\Gamma_t;B_t^{\mathrm{free}}].
 }
 \tag{2}
 \]
 
-The process has changed the conditions under which its own later change occurs.
+A candidate reorganization is generated:
+
+\[
+G'_t\sim\mathcal K_t.
+\]
+
+Its interaction with context has a continuation consequence
+
+\[
+\mathcal V(G'_t,\Gamma_t),
+\]
+
+and a retention operator produces later active/history state:
+
+\[
+\boxed{
+(G_{t+1},R_{t+1})
+=
+\operatorname{Ret}
+(G_t,R_t,G'_t,\mathcal V,\Gamma_t).
+}
+\tag{3}
+\]
+
+The process may then induce
+
+\[
+\mathcal K_{t+1}\neq\mathcal K_t.
+\]
+
+But **that inequality alone is not the informative EbE result**. Ordinary state-dependent dynamics can satisfy it.
+
+The stronger cumulative event is defined later by **paid transfer**: retained organization changes graded access to an organization not previously visited.
+
+---
 
 ## 2. Relational organization
 
@@ -89,7 +125,9 @@ The important statement is:
 
 Changing relations while keeping many components fixed can change what the whole can do.
 
-## 3. Reorganization
+---
+
+## 3. Reorganization and the transition operator
 
 A candidate transformation is
 
@@ -108,17 +146,17 @@ Depending on the substrate, \(\rho\) may:
 - change environmental relations;
 - change a generative or learning rule.
 
-The set or distribution of such transformations is summarized by
+The distribution or family of possible transformations is summarized by
 
 \[
-\mathcal K[G_t,\Gamma_t].
+\mathcal K[G_t,R_t,\Gamma_t;B_t^{\mathrm{free}}].
 \]
 
 \(\mathcal K\) is intentionally abstract.
 
 It may be:
 
-- a transition kernel;
+- a stochastic transition kernel;
 - a rewrite system;
 - a reaction-rate structure;
 - a mutation/development distribution;
@@ -128,7 +166,9 @@ It may be:
 
 The theory does not require one universal implementation.
 
-## 4. Behavior, function, and emergence
+---
+
+## 4. Behavior, function, emergence, and Law D
 
 Let
 
@@ -150,15 +190,9 @@ Function is therefore tied to what organization does in context, not merely to a
 
 ### 4.1 General functional change
 
-The universal recursion only requires that organizational change can alter behavior or future transition structure:
+The universal recursion only requires that organizational change can alter behavior or later transition structure.
 
-\[
-G_t\to G'_t
-\quad\Rightarrow\quad
-\mathcal B(G'_t,c)\neq \mathcal B(G_t,c)
-\]
-
-for relevant cases.
+A new organization need not satisfy a strict part/whole emergence predicate to matter historically.
 
 ### 4.2 Strict compositional emergence
 
@@ -170,7 +204,7 @@ E(G,\phi,c)
 G\models_c\phi
 \land
 \forall K\prec G,\;K\not\models_c\phi.
-\tag{3}
+\tag{4}
 \]
 
 This says the whole realizes \(\phi\) while no declared admissible proper part does.
@@ -179,9 +213,69 @@ The relation \(K\prec G\) must be application-specific and mechanistically meani
 
 Strict compositional emergence is **not required for every recursive update**.
 
-A useful separation is:
+The explicit theoretical decision is therefore:
 
-> **Emergence creates genuinely new whole-level candidates; persistence writes some organizational changes into future dynamics.**
+> **The centre is retention-driven change of transition machinery; emergence is one important source of candidate organization and can feed back into retention and accessibility.**
+
+### 4.3 Law D — candidate emergence feedback
+
+For a theory called *Evolution by Emergence*, the feedback route from emergent function must remain explicit.
+
+Let \(X\) realize an emergent capability \(\phi\).
+
+One route is **self-support**. Let
+
+\[
+\Delta L_\phi
+=
+\Delta I_\phi-\Delta M_\phi
+\]
+
+be the capability's net contribution to usable slack before its own retention burden \(\mu(X)\).
+
+If
+
+\[
+\boxed{
+E(X,\phi,c)
+\land
+\Delta L_\phi\ge\mu(X),
+}
+\tag{D1}
+\]
+
+then the emergent capability can pay for its own declared retention burden in that ledger.
+
+If the inequality is strict and later reorganization intensity is nondecreasing in post-maintenance slack, the capability can also increase later search/reorganization opportunity.
+
+A second route is **essential transfer**:
+
+\[
+\boxed{
+E(X,\phi,c)
+\land
+X\text{ is retained and causally reused}
+\land
+\Delta_T^{\mathrm{tr}}(X;Y)>0
+}
+\tag{D2}
+\]
+
+for some unvisited \(Y\).
+
+Then the emergent product has become causal structure for future change.
+
+These are candidate bridges, not yet universal laws.
+
+They preserve the central EbE question:
+
+\[
+\boxed{
+\text{when does emergent function alter the conditions of later emergence?}
+}
+\]
+
+---
 
 ## 5. Differential continuation
 
@@ -217,7 +311,9 @@ The minimal universal statement is:
 
 No claim is made that the consequence is good, optimal, moral, or globally beneficial.
 
-## 6. Retention and historical causation
+---
+
+## 6. Retention and the state-dependence firewall
 
 Retention means that some consequence of previous organization remains causally available.
 
@@ -235,32 +331,21 @@ Retention can occur through:
 - environmental modification;
 - cultural transmission.
 
-Let the retention/history operator be
+For this programme, an application should not call \(X\) **retained organizational memory** merely because the current state depends on the previous state.
 
-\[
-G_{t+1}
-=
-\mathcal R(G_t,G'_t,\mathcal V,\Gamma_t).
-\tag{4}
-\]
+It should identify all five of the following.
 
-The key condition is not merely
+1. **Endogenous** — \(X\) is produced by the system's own generative/reorganizational dynamics rather than inserted as a fixed external parameter.
+2. **Slow** — \(X\) persists or remains reconstructibly available beyond the fast event that created it, on a declared time-scale separation.
+3. **Paid** — maintenance, storage, reconstruction, protected capacity, or another finite burden is explicitly accounted for.
+4. **Reused** — a later transition causally depends on \(X\), established by ablation/counterfactual or equivalent mechanism.
+5. **Transferable** — the effect changes graded accessibility in a later context, episode, descendant, task, or unvisited organization rather than merely continuing the same instantaneous state.
 
-\[
-G_{t+1}\neq G_t.
-\]
+These criteria are the current operational firewall between EbE retention and generic state-dependent dynamics.
 
-It is that retained history matters to future transitions:
+They can be revised, but they cannot simply be omitted without making the theory difficult to falsify.
 
-\[
-\boxed{
-\mathcal K[G_{t+1},\Gamma_{t+1}]
-\neq
-\mathcal K[G_t,\Gamma_t].
-}
-\]
-
-This is the core second-order relation.
+---
 
 ## 7. Externalized retention and niche effects
 
@@ -284,23 +369,25 @@ Therefore the recursive state should sometimes be treated jointly:
 
 \[
 \boxed{
-(G_t,\Gamma_t)
+(G_t,R_t,\Gamma_t)
 \rightarrow
-(G_{t+1},\Gamma_{t+1}).
+(G_{t+1},R_{t+1},\Gamma_{t+1}).
 }
 \tag{5}
 \]
 
-The effective transition machinery is then conditional on both.
+The effective transition machinery is conditional on the joint state.
 
-## 8. Accessibility as a projection of transition machinery
+---
 
-The current organization induces a distribution over future possibilities.
+## 8. Accessibility and the paid transfer criterion
+
+The current organization induces a graded distribution over future possibilities.
 
 A general finite-horizon accessibility object is
 
 \[
-\mathcal A_T(S\mid G,\Gamma,q),
+\mathcal A_T(S\mid G,R,\Gamma,q,B),
 \tag{6}
 \]
 
@@ -308,38 +395,93 @@ where:
 
 - \(S\): set of successor organizations;
 - \(T\): horizon;
-- \(q\): declared generative process.
+- \(q\): declared generative mechanism;
+- \(B\): declared available budget or constraint.
 
-Depending on the application, \(\mathcal A_T\) can be probability, expected reach, feasible set, or another declared accessibility measure.
+Depending on the application, \(\mathcal A_T\) can be probability, expected reach, feasible mass, or another declared graded measure.
 
-The central recursive consequence can therefore be measured as
+### 8.1 Why binary reachability is insufficient
+
+If accessibility is only
+
+\[
+Y\in\operatorname{Reach}(G)
+\quad\text{or}\quad
+Y\notin\operatorname{Reach}(G),
+\]
+
+then retained shortcuts may change nothing whenever full closure is already fixed.
+
+That is the repository's fixed-generator closure no-go warning.
+
+The informative quantity must therefore preserve grading such as:
+
+- probability;
+- time;
+- energy;
+- path length;
+- mutation/development burden;
+- learning samples;
+- design/search effort;
+- reliability;
+- finite-budget feasibility.
+
+### 8.2 Transfer to an unvisited target
+
+Let
+
+\[
+s^+=\operatorname{Retain}(s,X),
+\qquad
+s^-=\operatorname{Lose}(s,X),
+\]
+
+and let \(\mu_s(X)\) be paid retention burden.
+
+Let \(\mathcal H_t\) be the history of already visited organizations.
+
+Define:
 
 \[
 \boxed{
-\mathcal A_T(\cdot\mid G_{t+1},\Gamma_{t+1},q_{t+1})
-\neq
-\mathcal A_T(\cdot\mid G_t,\Gamma_t,q_t).
+\Delta_T^{\mathrm{tr}}(X;Y)
+=
+\mathcal A_T(Y\mid s^+,B-\mu_s(X))
+-
+\mathcal A_T(Y\mid s^-,B).
 }
 \tag{7}
 \]
 
-Accessibility may increase in some directions and decrease in others.
-
-No monotone expansion is assumed.
-
-## 9. Costed reachability as a specialization
-
-A particularly useful specialization is the minimum expected route cost:
+A **positive transfer event** requires
 
 \[
-C_G(H;c)
-=
-\inf_{\pi:G\leadsto H}
-\mathbb E[J_c(\pi)].
+\boxed{
+\exists Y\notin\mathcal H_t:
+\Delta_T^{\mathrm{tr}}(X;Y)>0.
+}
 \tag{8}
 \]
 
-The domain decides what \(J_c\) measures:
+This can fail.
+
+That failure is essential: it separates useful historical structure from neutral or burdensome retention.
+
+---
+
+## 9. Costed reachability as a specialization
+
+A particularly useful specialization is minimum expected route cost:
+
+\[
+K_G(H;c)
+=
+\inf_{\pi:G\leadsto H}
+\mathbb E[\ell_c(\pi)].
+\tag{9}
+\]
+
+The domain decides what route functional \(\ell_c\) measures:
 
 - energy;
 - material;
@@ -352,60 +494,95 @@ The domain decides what \(J_c\) measures:
 - coordination;
 - computation.
 
-Budgeted reachability is
+Define budgeted reachability as
 
 \[
-\mathcal R_B(G)
+\operatorname{Reach}_B(G)
 =
-\{H:C_G(H)\le B\}.
-\tag{9}
-\]
-
-This resolves the fixed-closure issue:
-
-a retained organization can leave unlimited logical closure unchanged while moving targets across finite-horizon or finite-budget accessibility boundaries.
-
-## 10. Second-order evolution
-
-The ordinary first-order event is:
-
-\[
-G_t
-\xrightarrow{\mathcal K[G_t,\Gamma_t]}
-G'_t.
-\]
-
-The second-order event is:
-
-\[
-\boxed{
-G'_t\text{ is retained}
-\quad\land\quad
-\mathcal K[G_{t+1},\Gamma_{t+1}]
-\neq
-\mathcal K[G_t,\Gamma_t].
-}
+\{H:K_G(H)\le B\}.
 \tag{10}
 \]
 
-Thus the product/history of generation becomes part of future generative causation.
+The notation deliberately separates:
 
-This does not require fundamental physical law to change.
+- \(K_G(H)\): cost of **using/reaching**;
+- \(M(R)\): cost of **keeping**.
 
-The physical laws may remain fixed while:
+In the cost specialization, positive transfer to unvisited \(Y\) requires
 
-- catalysts change reaction rates;
-- modules change construction routes;
-- regulatory architecture changes variation bias;
-- learning changes later learnability;
-- technologies change later design possibilities;
-- niche construction changes later selection pressures.
+\[
+\boxed{
+\mu(X)+K_{s^+}^{\mathrm{run}}(Y)
+<
+K_{s^-}(Y).
+}
+\tag{11}
+\]
 
-A concise definition is:
+A retained organization can therefore leave unlimited logical closure unchanged while altering finite-horizon or finite-budget accessibility.
 
-> **Second-order evolution is historical change in the effective machinery that generates later change.**
+---
 
-## 11. Dynamic Vortex
+## 10. Second-order evolution: weak and strong forms
+
+### 10.1 Weak historical dependence
+
+A weak second-order change is simply
+
+\[
+\mathcal K_{t+1}\neq\mathcal K_t.
+\]
+
+This is descriptive but too easy to satisfy.
+
+### 10.2 Strong EbE transfer
+
+The stronger current criterion is:
+
+\[
+\boxed{
+\text{endogenous}
++
+\text{slow}
++
+\text{paid}
++
+\text{reused}
++
+\text{transferable retention}.
+}
+\]
+
+Operationally:
+
+\[
+\boxed{
+\exists Y\notin\mathcal H_t:
+\mathcal A_T(Y\mid s^+,B-\mu_X)
+>
+\mathcal A_T(Y\mid s^-,B).
+}
+\tag{12}
+\]
+
+Thus:
+
+> **Second-order EbE is not merely that history changes the next transition; it is that paid retained organization transfers into improved graded access to later novelty.**
+
+The physical laws need not change.
+
+The effective transition machinery can change because:
+
+- catalysts alter reaction rates;
+- modules alter construction routes;
+- regulatory architecture biases variation;
+- learning alters later learnability;
+- technologies alter later design possibilities;
+- niche construction changes later selective environments.
+
+---
+
+## 11. Dynamic Vortex and a measurable prediction
 
 The Dynamic Vortex is the self-maintaining form of this recursion.
 
@@ -418,45 +595,65 @@ X
 \rightarrow
 r
 \rightarrow
-\operatorname{maintenance}(X),
-\tag{11}
+\operatorname{maintenance}(X).
 \]
 
-where:
-
-- organization \(X\) produces behavior/function \(\phi\);
-- this changes resource/continuation conditions \(r\);
-- those conditions help maintain or reconstruct \(X\).
-
-A more explicit resource form is
+A resource specialization is:
 
 \[
-J_t=\mathcal U(G_t,\Gamma_t),
+I_t=\mathcal U(G_t,\Gamma_t),
 \]
 
 \[
-L_t=J_t-\mathcal M(G_t),
+C_t=\mathcal M(G_t,R_t),
 \]
-
-with \(L_t\) representing available slack after maintenance.
-
-Some of that slack may fund exploration/reorganization.
-
-The "vortex" becomes evolutionary when variants of the loop are differentially retained and thereby modify later \(\mathcal K\).
-
-Therefore:
 
 \[
 \boxed{
-\text{flow maintains organization}
-\quad\text{and}\quad
-\text{retained organization redirects later flow/change}.
+L_t=I_t-C_t,
 }
+\tag{13}
 \]
 
-This is not a pure gradient ascent on a fixed landscape.
+where \(L_t\) is post-maintenance slack.
 
-The landscape/transition structure is historically modified by the process.
+If a fraction \(\beta_t\) funds exploration/reorganization,
+
+\[
+B_t^{\mathrm{explore}}=\beta_tL_t.
+\tag{14}
+\]
+
+Let candidate-generation/reorganization rate be
+
+\[
+\lambda_t=f(B_t^{\mathrm{explore}},\Gamma_t),
+\]
+
+with \(f\) nondecreasing in its budget argument.
+
+Then, holding opportunity structure and allocation rule fixed,
+
+\[
+\boxed{
+\frac{\partial \lambda}{\partial L}\ge0.
+}
+\tag{15}
+\]
+
+### Testable vortex prediction
+
+> **After controlling for external opportunity and allocation fraction, greater post-maintenance slack should predict no lower rate of exploratory/reorganizational trials until saturation or another declared bottleneck is reached.**
+
+This is conditional, measurable, and falsifiable.
+
+The vortex becomes evolutionary when successful reorganizations are retained and feed back into later \(I_t\), \(C_t\), \(\beta_t\), or \(\mathcal K_t\).
+
+The system is therefore not merely climbing a fixed landscape.
+
+Its retained history can change the channel through which later flow and search occur.
+
+---
 
 ## 12. Coarse-graining and vocabulary emergence
 
@@ -500,75 +697,118 @@ Repeated recursively:
 \text{modules of modules}.
 \]
 
-## 13. Retention and hierarchy theorem layer
+But hierarchy requires a mechanism that pays for the new levels.
 
-Let \(R\) denote a retained repertoire.
+It does not follow from naming alone.
+
+---
+
+## 13. Paid retention, repetition, hierarchy, and saturation
+
+The detailed derivations are in theorem-notes/README.md.
+
+### 13.1 General retention identity
 
 Let
 
 \[
-D_R(Y)
+K_R(Y)
+=
+\text{construction/use burden of }Y
 \]
 
-be the minimum representation/construction burden for target \(Y\) using retained organization \(R\).
+and
+
+\[
+M(R)
+=
+\text{upkeep burden of retained repertoire }R.
+\]
 
 Define
 
 \[
-J(R)
+\mathcal J(R)
 =
-\mathbb E_{Y\sim P}[D_R(Y)]
-+
-M(R).
+\mathbb E[K_R(Y)]+M(R).
 \]
 
-For candidate \(X\), define expected saving
-
-\[
-S_R(X)
-=
-\mathbb E[D_R(Y)-D_{R\cup\{X\}}(Y)]
-\]
-
-and marginal maintenance
-
-\[
-\Delta M_R(X)
-=
-M(R\cup\{X\})-M(R).
-\]
-
-Then:
-
-\[
-J(R\cup\{X\})-J(R)
-=
-\Delta M_R(X)-S_R(X).
-\tag{12}
-\]
-
-Thus retention is favored in this specialization when
-
-\[
-S_R(X)>\Delta M_R(X).
-\]
-
-For nested modules, lower-level organization can be retained because of:
+For candidate \(X\):
 
 \[
 \boxed{
-\text{direct reuse value}
-+
-\text{downstream representation/compression value}
->
-\text{maintenance cost}.
+\mathcal J(R\cup\{X\})-\mathcal J(R)
+=
+\Delta M_R(X)-S_R(X).
 }
-\tag{13}
+\tag{16}
 \]
 
-This provides one mechanism by which historical organization becomes part of future transition machinery.
+Retention helps only when future saving exceeds upkeep.
 
-It is not the universal EbE mechanism.
+### 13.2 Repetition threshold
+
+If module \(A\) occurs \(n\) times, with inline cost \(c\), reference cost \(r\), and retention/definition burden \(h\), then retention is beneficial iff
+
+\[
+\boxed{
+(n-1)c>nr+h.
+}
+\tag{17}
+\]
+
+Hence
+
+\[
+\boxed{
+n>
+\frac{c+h}{c-r}.
+}
+\tag{18}
+\]
+
+For nonnegative \(r,h\),
+
+\[
+n=1
+\]
+
+can never justify a purely representational scaffold.
+
+Therefore repeated/shared use is a mechanistic requirement in the additive scaffold model.
+
+### 13.3 Repetition-depth result
+
+In a laminar nested hierarchy, if every level clears its strict repetition threshold even under its minimum inline cost, every optimum retains the full chain.
+
+Arbitrary depth is therefore possible, but not free.
+
+### 13.4 Upkeep bound
+
+If every actively retained module costs at least
+
+\[
+\mu_{\min}>0
+\]
+
+and gross budget is finite, then
+
+\[
+\boxed{
+|R_t|
+\le
+\left\lfloor
+\frac{B_t^{\mathrm{gross}}}{\mu_{\min}}
+\right\rfloor.
+}
+\tag{19}
+\]
+
+Open-ended **history** therefore does not imply unbounded simultaneously active retained structure.
+
+Turnover, reconstruction, compressed representation, growing resources, vanishing marginal upkeep, or externalized memory must relax the bound.
+
+---
 
 ## 14. Four-domain grounding
 
@@ -583,9 +823,9 @@ G_t
 \]
 
 \[
-\mathcal K[G_t]
+\mathcal K_t
 =
-\text{distribution of possible learning/update trajectories from that organization}.
+\text{distribution of possible learning/update trajectories after current memory/upkeep constraints}.
 \]
 
 Reorganization occurs through plasticity and altered recruitment.
@@ -594,15 +834,7 @@ Differential continuation can involve reward, prediction error, task success, an
 
 Retention occurs through stable/reconstructible learned organization.
 
-The second-order claim is:
-
-\[
-\boxed{
-\text{what has been learned changes what/how the system can learn next}.
-}
-\]
-
-This is broader than symbolic module reuse and permits distributed representations.
+A strong transfer test asks whether a learned structure, after its maintenance cost is accounted for, improves learning/performance on a later untrained task or representation relative to an ablated control.
 
 ### 14.2 Autocatalytic chemistry
 
@@ -615,9 +847,9 @@ G_t
 \]
 
 \[
-\mathcal K[G_t,\Gamma_t]
+\mathcal K_t
 =
-\text{effective reaction-rate/production possibilities}.
+\text{effective reaction-rate/production possibilities after maintenance/resource constraints}.
 \]
 
 Products/catalysts can alter subsequent reaction rates and reachable chemical organization.
@@ -626,15 +858,7 @@ Differential continuation is intrinsic: reaction organizations either regenerate
 
 Retention can be recurrent self-production rather than material identity.
 
-The second-order claim is:
-
-\[
-\boxed{
-\text{products/constraints generated by chemistry can modify later chemical transition structure}.
-}
-\]
-
-Deep symbolic hierarchy is not assumed.
+A transfer test asks whether a self-maintained catalyst/organization changes the finite-time probability or energetic/kinetic cost of reaching a chemical organization not already present.
 
 ### 14.3 Biological inheritance and development
 
@@ -647,7 +871,7 @@ G_t
 \]
 
 \[
-\mathcal K[G_t,\Gamma_t]
+\mathcal K_t
 =
 \text{distribution of phenotypic variation and viable developmental routes}.
 \]
@@ -658,15 +882,7 @@ Differential continuation occurs through viability/reproduction.
 
 Retention occurs through inheritance and reconstruction.
 
-The second-order claim is:
-
-\[
-\boxed{
-\text{evolved architecture changes the distribution of future heritable variation}.
-}
-\]
-
-This connects directly to evolvability and developmental bias.
+A strong transfer test asks whether retained architecture biases access to a later phenotype not already realized, after costs/constraints of maintaining that architecture are included.
 
 ### 14.4 Technology
 
@@ -679,59 +895,114 @@ G_t
 \]
 
 \[
-\mathcal K[G_t,\Gamma_t]
+\mathcal K_t
 =
-\text{effective construction/design space}.
+\text{effective construction/design space after maintenance and infrastructure cost}.
 \]
 
 New technologies are assembled and tested.
 
 Some persist through adoption, standards, design records, supply chains, and manufacturing capability.
 
-The second-order claim is nearly literal:
+A transfer test is nearly literal: does maintaining a component/standard lower the net cost or raise the probability of constructing a previously unrealized technology?
 
-\[
-\boxed{
-\text{retained technologies become building blocks that alter future constructibility}.
-}
-\]
+---
 
 ## 15. What universality would mean
 
 EbE should not claim universality because every phenomenon can be represented as a network.
 
-A serious cross-domain mapping must provide evidence for:
+A serious cross-domain mapping must identify:
 
-1. a declared relational organization \(G\);
-2. a mechanistic transition process \(\mathcal K\);
+1. declared relational organization \(G\);
+2. mechanistic transition process \(\mathcal K\);
 3. organization-dependent behavior/function;
 4. differential continuation \(\mathcal V\);
-5. a retention/reconstruction mechanism;
-6. historical dependence of later \(\mathcal K\) or \(\mathcal A_T\).
+5. endogenous, slow, paid retention;
+6. causal reuse;
+7. transfer to graded accessibility of later/unvisited organization.
 
-The proposed universality is therefore:
+The proposed universality is therefore conditional:
 
-> **Across substrates with these interfaces, retained relational organization can become causal structure for later transitions.**
+> **Across substrates with these interfaces, retained relational organization can become paid, reusable causal structure for later transitions.**
 
-This is a conditional structural claim.
+This is a structural claim, not a claim that chemistry, brains, evolution, and technology share one microscopic mechanism.
 
-## 16. Scientific neighbours
+---
 
-The current compression overlaps substantially with existing scientific traditions, including:
+## 16. Closest scientific neighbours and current differentiation
 
-- adaptive/co-evolutionary networks: state and topology coevolve;
-- autocatalytic/RAF theory: products and catalysts support self-maintaining reaction organization;
-- organizational closure/autonomy: internally produced constraints channel processes that maintain organization;
-- open-ended evolution: state-dependent dynamics can change the effective rule structure of future evolution;
-- evolvability/facilitated variation: evolved architecture biases future variation;
-- niche construction: organisms modify future selective environments;
-- modularity/coarse-graining: reusable suborganization becomes building material;
-- meta-learning: experience changes subsequent learning dynamics;
-- cumulative technological evolution: retained inventions become future building blocks.
+The current compression overlaps substantially with established work.
 
-EbE is not presently claiming priority over these results.
+### Adjacent possible
 
-The research question is whether the **common recursion and separation of interfaces** provides a useful compression across them.
+Kauffman's adjacent possible emphasizes that existing organization opens neighboring possibilities and that realized novelty can reveal further possibility.
+
+Relevant source:
+
+- Stuart Kauffman, *Investigations* (Oxford University Press, 2000), especially the adjacent-possible/coconstruction programme.
+
+### Enablement
+
+Longo, Montévil and Kauffman explicitly argue that evolution changes its own space of possibilities and use **enablement** rather than ordinary efficient causation for many such relations.
+
+- Longo G, Montévil M, Kauffman S. 2012. "No entailing laws, but enablement in the evolution of the biosphere." DOI: 10.1145/2330784.2330946.
+
+### Closure of constraints
+
+Montévil and Mossio characterize biological organization through constraints that act on processes, persist on relevant time scales, and mutually contribute to one another's maintenance.
+
+- Montévil M, Mossio M. 2015. "Biological organisation as closure of constraints." *Journal of Theoretical Biology* 372:179–191. DOI: 10.1016/j.jtbi.2015.02.029.
+
+### Autonomous Change
+
+Busseniers and Bergerot move from self-maintenance to systems that generate constraints which shape later constraint-generating behavior.
+
+- Busseniers E, Bergerot C. 2026. "Autonomous Change." *Systems Research and Behavioral Science*. DOI: 10.1002/sres.70010.
+
+### Evolvability and facilitated variation
+
+Developmental and regulatory organization can bias the distribution of later viable phenotypic variation.
+
+- Gerhart J, Kirschner M. 2007. "The theory of facilitated variation." *PNAS*. DOI: 10.1073/pnas.0701035104.
+
+### Open-ended/state-dependent dynamics
+
+State-dependent rules have been proposed as a route to scalable open-ended novelty.
+
+- Adams AM et al. 2017. "Formal Definitions of Unbounded Evolution and Innovation Reveal Universal Mechanisms for Open-Ended Evolution in Dynamical Systems." *Scientific Reports*. DOI: 10.1038/s41598-017-00810-8.
+
+### Working differentiation
+
+EbE should **not** claim that it discovered the idea that what exists changes what can exist next.
+
+That idea has close antecedents.
+
+The current defensible differentiation is narrower:
+
+\[
+\boxed{
+\text{graded accessibility}
++
+\text{paid retention}
++
+\text{counterfactual transfer to unvisited organization}.
+}
+\]
+
+That combination makes it possible to derive and test:
+
+- burden as well as benefit;
+- upkeep bounds;
+- transfer thresholds;
+- repetition-driven hierarchy;
+- single-use no-go results;
+- saturation under finite resources;
+- gain/loss and lock-in rather than assumed monotone expansion.
+
+Whether this combination is sufficiently distinctive to count as a scientific contribution remains a literature and peer-review question.
+
+---
 
 ## 17. What the current theory does not claim
 
@@ -740,6 +1011,7 @@ It does not claim that:
 - every organizational change is emergent;
 - every emergent function persists;
 - every retained organization is beneficial;
+- any change in \(\mathcal K\) is automatically an EbE transfer event;
 - retention necessarily expands all accessibility;
 - complexity must increase;
 - the same evaluator applies across domains;
@@ -749,24 +1021,75 @@ It does not claim that:
 - fundamental physical law must change;
 - the current compression is already proven universal or novel.
 
+---
+
 ## 18. Falsification targets
 
-The theory should be weakened or rejected if:
+The theory should be weakened, revised, or rejected if:
 
-1. retained organization systematically fails to alter later transition structure in domains claimed as examples;
-2. the same empirical phenomena can be explained without historical organizational dependence while EbE adds no testable distinction;
-3. \(\mathcal K\) becomes so unconstrained that any trajectory can be redescribed as satisfying the theory;
-4. "retention" cannot be distinguished operationally from ordinary state dependence;
-5. cross-domain mappings require incompatible definitions of the central objects;
-6. the recursive architecture produces no deductions beyond domain-specific theories.
+1. **No transfer:** after paid retention and counterfactual ablation, retained organization does not alter graded access to later/unvisited organization in domains claimed as examples.
+2. **No separation from state dependence:** endogenous, slow, paid, reused, transferable structure cannot be operationally distinguished from ordinary state variables.
+3. **Unconstrained operator:** \(\mathcal K\) becomes so flexible that any observed trajectory can be redescribed as satisfying the theory.
+4. **No causal reuse:** ablation of the retained organization leaves later transition probabilities/costs unchanged.
+5. **No payment:** a proposed application needs free retention to produce its result.
+6. **No cross-domain stability:** the central objects require mutually incompatible definitions across the claimed domains.
+7. **No deduction:** the recursive architecture produces no testable consequences beyond the domain-specific theories it compresses.
+8. **Hierarchy without sharing:** the hierarchy result survives even after repeated/shared substructure is removed under the additive model; that would contradict the current theorem.
+9. **Vortex prediction fails:** under controlled opportunity/allocation conditions, increased post-maintenance slack systematically lowers reorganization rate where the model predicts a nondecreasing relation.
 
-## 19. Current theorem target
+---
 
-The next mathematical target should sit directly on the centre:
+## 19. Current theorem target: paid transfer
 
-> **Given a class of relational systems with differential retention, derive sufficient conditions under which a retained reorganization necessarily changes the effective transition operator or accessibility kernel for later organization.**
+The earlier target—
 
-A subsequent theorem can ask when this change favors reusable coarse-grained modules and arbitrary-depth hierarchy.
+> when does retained reorganization change \(\mathcal K\)?
+
+—is too weak.
+
+The current mathematical target is:
+
+> **Under a graded accessibility measure, paid retention, and a declared counterfactual ablation, derive sufficient and/or necessary conditions under which an endogenously retained organization raises the probability or lowers the net cost of reaching at least one organization not previously visited.**
+
+Accessibility form:
+
+\[
+\boxed{
+\exists Y\notin\mathcal H_t:
+\mathcal A_T(Y\mid s^+,B-\mu_X)
+>
+\mathcal A_T(Y\mid s^-,B).
+}
+\tag{20}
+\]
+
+Cost form:
+
+\[
+\boxed{
+\exists Y\notin\mathcal H_t:
+\mu_X+K^{\mathrm{run}}_{s^+}(Y)
+<
+K_{s^-}(Y).
+}
+\tag{21}
+\]
+
+The theorem should identify conditions under which this succeeds **and conditions under which it fails**.
+
+A follow-up should connect the transfer theorem to Law D:
+
+\[
+\text{emergent function}
+\rightarrow
+\text{paid retention}
+\rightarrow
+\text{positive transfer}
+\rightarrow
+\text{changed conditions for later emergence}.
+\]
+
+---
 
 ## 20. Reference spine
 
@@ -774,18 +1097,21 @@ Until replaced by a stronger and better-tested compression, future EbE work in t
 
 \[
 \boxed{
-\text{relational organization}
-\rightarrow
-\text{effective transition machinery}
-\rightarrow
-\text{candidate organization}
-\rightarrow
-\text{differential continuation}
-\rightarrow
-\text{retention}
-\rightarrow
-\text{modified transition machinery}
-\rightarrow\cdots
+\begin{aligned}
+&\text{relational organization}\\
+&\rightarrow
+\text{candidate reorganization}\\
+&\rightarrow
+\text{differential continuation}\\
+&\rightarrow
+\text{paid retention}\\
+&\rightarrow
+\text{causal reuse}\\
+&\rightarrow
+\text{graded transfer to later novelty}\\
+&\rightarrow
+\text{modified future transition machinery}.
+\end{aligned}
 }
 \]
 
@@ -794,5 +1120,13 @@ The shortest statement remains:
 \[
 \boxed{
 \textbf{Retained organization becomes causal structure for future change.}
+}
+\]
+
+The falsifiable strengthening is:
+
+\[
+\boxed{
+\textbf{Paid retained organization can transfer into improved graded access to unvisited organization.}
 }
 \]
