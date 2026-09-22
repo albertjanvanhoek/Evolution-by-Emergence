@@ -204,9 +204,42 @@ The current differentiating research programme is narrower:
 
 That is where burden, upkeep bounds, repetition-driven hierarchy, saturation, gain/loss, and lock-in become testable.
 
+## Learning Constitution bridge
+
+The v18 Learning Constitution is now related explicitly to this centre as an **intelligent-network specialization**, not as a replacement universal theorem.
+
+At the agent-network scale:
+
+[
+	ext{nodes}=	ext{learning agents},
+qquad
+	ext{edges}=	ext{channels of information/correction/repair}.
+]
+
+The Learning Constitution can be represented as retained procedural organization
+
+[
+R^{mathrm{LC}}ightarrowmathcal K^{mathrm{LC}}
+]
+
+that preserves classes of corrective transitions.
+
+Its binary self-sealing failure corresponds to the limiting graded case
+
+[
+C_{mathrm{corr}}=infty
+quad	ext{or}quad
+mathcal A_T(mathrm{corr})=0.
+]
+
+SCAP and the learning verbs occupy the finite-cost interior: they are candidate maintenance mechanisms that can alter signal fidelity, edge viscosity, opportunity wait, response delay, validation, retention, and therefore learning/discovery velocity. Their effects remain empirical/model-specific and their own costs must be counted.
+
+See [LEARNING_CONSTITUTION_BRIDGE.md](LEARNING_CONSTITUTION_BRIDGE.md).
+
 ## Files
 
 - [WORKING_THEORY.md](WORKING_THEORY.md) — canonical current compression and definitions.
+- [LEARNING_CONSTITUTION_BRIDGE.md](LEARNING_CONSTITUTION_BRIDGE.md) — relation to v18, constrained local agency, SCAP, correction viscosity, and learning velocity.
 - [HANDOFF.md](HANDOFF.md) — continuation guide.
 - [theorem-notes/README.md](theorem-notes/README.md) — paid transfer, repetition threshold, chain dichotomy, repetition-depth theorem, Law D, upkeep bound.
 - [simulations/README.md](simulations/README.md) — exploratory results and reproduction plan.
