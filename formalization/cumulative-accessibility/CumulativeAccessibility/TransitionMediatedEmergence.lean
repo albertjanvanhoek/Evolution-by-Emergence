@@ -39,7 +39,6 @@ variable {Config Context Capacity σ : Type*}
 configuration realizes the declared capacity. Existing base transitions keep
 their original cost; the function can only add a previously unavailable edge in
 this specialization. -/
-open Classical in
 noncomputable def phiKernel
     (K0 : WeightedKernel σ)
     (Realizes : CapacityRelation Config Context Capacity)
@@ -48,23 +47,19 @@ noncomputable def phiKernel
     (src tgt : σ)
     (cφ : ℝ)
     (hcφ : 0 ≤ cφ)
-    (config : Config) : WeightedKernel σ where
-  allowed := fun u v =>
-    K0.allowed u v ∨
-      (Realizes config ctx φ ∧ u = src ∧ v = tgt)
-  cost := fun u v =>
-    if K0.allowed u v then K0.cost u v else cφ
-  cost_nonneg := by
-    intro u v hAllowed
-    classical
-    by_cases hBase : K0.allowed u v
-    · simpa [hBase] using K0.cost_nonneg u v hBase
-    · have hPhi :
-          Realizes config ctx φ ∧ u = src ∧ v = tgt := by
-        rcases hAllowed with h | h
-        · exact False.elim (hBase h)
-        · exact h
-      simp [hBase, hcφ]
+    (config : Config) : WeightedKernel σ := by
+  classical
+  refine
+    { allowed := fun u v =>
+        K0.allowed u v ∨
+          (Realizes config ctx φ ∧ u = src ∧ v = tgt)
+      cost := fun u v =>
+        if K0.allowed u v then K0.cost u v else cφ
+      cost_nonneg := ?_ }
+  intro u v hAllowed
+  by_cases hBase : K0.allowed u v
+  · simpa [hBase] using K0.cost_nonneg u v hBase
+  · simpa [hBase] using hcφ
 
 /-- If a configuration does not realize `φ`, its function-mediated kernel has
 only base transitions. Any other configuration's `phiKernel` therefore
@@ -185,7 +180,7 @@ noncomputable def toyNonEmergentKernel (R : Finset Bool) : WeightedKernel ToyOrg
   phiKernel toyBaseKernel realizesTrue () ()
     0 1 1 (by norm_num) R
 
-def toyRetainWholeRoute :
+noncomputable def toyRetainWholeRoute :
     Route (toyPhiKernel Finset.univ) 0 1 1 :=
   .step (by
     right
@@ -201,7 +196,10 @@ theorem toy_empty_not_reachable :
   | step hEdge rest =>
       rcases hEdge with hBase | hPhi
       · exact hBase
-      · simp [realizesBoth] at hPhi
+      · have hFalse : false ∈ (∅ : Finset Bool) := by
+          rw [hPhi.1]
+          simp
+        simp at hFalse
 
 /-- **Non-vacuity.** The whole emergent configuration opens a transition that
 still pays after its positive upkeep. -/
@@ -245,7 +243,7 @@ theorem witness_single_component_no_phi_paidOpening
     (singleton_proper_univ c)
   simp [toyUpkeep]
 
-def toyNonEmergentRoute :
+noncomputable def toyNonEmergentRoute :
     Route (toyNonEmergentKernel {true}) 0 1 1 :=
   .step (by
     right
@@ -279,21 +277,21 @@ theorem countermodel_nonEmergent_part_transfers :
       toy_nonEmergent_empty_not_reachable
 
 /-- A kernel with one transition costing 5/2. -/
-def costlyKernel : WeightedKernel ToyOrg where
+noncomputable def costlyKernel : WeightedKernel ToyOrg where
   allowed := fun u v => u = 0 ∧ v = 2
   cost := fun _ _ => 5 / 2
   cost_nonneg := by
     intro u v h
     norm_num
 
-def sameCostlyKernel (_ : Bool) : WeightedKernel ToyOrg :=
+noncomputable def sameCostlyKernel (_ : Bool) : WeightedKernel ToyOrg :=
   costlyKernel
 
 def subsidizedMaintenance : Maintenance Bool
   | false => 0
   | true => -1
 
-def costlyRoute :
+noncomputable def costlyRoute :
     Route costlyKernel 0 2 1 :=
   .step ⟨rfl, rfl⟩ (.stay 2)
 
@@ -303,7 +301,9 @@ theorem costly_not_reachable_at_budget_two :
   rcases h with ⟨n, hn, route, hCost⟩
   cases route with
   | step hEdge rest =>
-      norm_num [Route.cost, costlyKernel] at hCost
+      have hRest : 0 ≤ rest.cost :=
+        Route.cost_nonneg rest
+      linarith
 
 /-- **Drop non-decreasing upkeep.** A subsidized retained arm can show apparent
 paid opening even when retention changes no transition at all. -/
@@ -347,7 +347,10 @@ theorem stepping_empty_not_reachable :
   cases route with
   | step hEdge rest =>
       rcases hEdge with hPhi | hStep
-      · simp [realizesBoth] at hPhi
+      · have hFalse : false ∈ (∅ : Finset Bool) := by
+          rw [hPhi.1]
+          simp
+        simp at hFalse
       · simp at hStep
 
 /-- **Stepping-stone escape.** A proper part can pay for itself through another
