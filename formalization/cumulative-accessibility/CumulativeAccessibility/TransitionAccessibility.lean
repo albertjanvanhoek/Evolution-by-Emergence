@@ -168,6 +168,50 @@ def PositivePaidOpening
   ¬ PaidReachableWithin Kernel M T grossBudget rMinus s y ∧
     PaidReachableWithin Kernel M T grossBudget rPlus s y
 
+/-- **Paid opening requires a genuine retained-kernel advantage.**
+
+If the retained arm pays at least as much upkeep as the ablated arm, positive
+paid opening is impossible when the ablated kernel can reproduce every retained
+transition at equal or lower cost. This strengthens the older equality-only
+regression theorem: the kernels need not be identical for transfer to be ruled
+out. -/
+theorem positivePaidOpening_requires_kernel_advantage
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (grossBudget : ℝ)
+    (rMinus rPlus : R)
+    (s y : σ)
+    (hUpkeep : M rMinus ≤ M rPlus)
+    (hOpening :
+      PositivePaidOpening
+        Kernel M T grossBudget rMinus rPlus s y) :
+    ¬ KernelDominates (Kernel rMinus) (Kernel rPlus) := by
+  intro hDom
+  rcases hOpening with ⟨hMinusClosed, hPlusOpen⟩
+  unfold PaidReachableWithin at hMinusClosed hPlusOpen
+  have hAtPlusBudget :
+      ReachableWithin
+        (Kernel rMinus) T
+        (grossBudget - M rPlus)
+        s y :=
+    kernelDominance_preserves_accessibility
+      (Kernel rMinus)
+      (Kernel rPlus)
+      hDom T
+      (grossBudget - M rPlus)
+      s y hPlusOpen
+  have hBudget :
+      grossBudget - M rPlus ≤ grossBudget - M rMinus := by
+    linarith
+  have hMinusOpen :=
+    reachableWithin_mono_budget
+      (Kernel rMinus) T
+      (grossBudget - M rPlus)
+      (grossBudget - M rMinus)
+      s y hBudget hAtPlusBudget
+  exact hMinusClosed hMinusOpen
+
 /-- If an actual route made possible or cheap enough by the retained kernel fits
 inside the retained arm's post-maintenance budget, while the ablated kernel has
 no route within its own post-maintenance budget, then the same gross budget
@@ -363,6 +407,206 @@ theorem no_paidOpening_without_kernel_change
       s y hBudget hPlusOpen
   exact hMinusClosed hMinusOpen
 
+/-! ## Bridge back to the retained-organization core
+
+The generic core keeps `Accessibility` abstract so applications can use
+probabilities, reliabilities, or other graded observables. For the universal
+transition theorem surface, however, accessibility should be *induced* by the
+declared transition machinery rather than supplied independently.
+
+The following implementation embeds finite-horizon kernel reachability as a
+0/1-valued core accessibility measure and proves that the core's paid-transfer
+predicate is exactly retained reachability together with ablated
+non-reachability at each arm's own post-maintenance budget.
+-/
+
+variable {G Γ : Type*}
+
+/-- State-dependent weighted transition machinery for the core state variables. -/
+abbrev CoreKernel (G R Γ σ : Type*) :=
+  G → R → Γ → WeightedKernel σ
+
+/-- Starting transition-state represented by the active organization. -/
+abbrev StartOf (G σ : Type*) := G → σ
+
+open Classical in
+/-- Core accessibility induced by weighted transition reachability. -/
+noncomputable def kernelAccessibility
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ) :
+    RetainedOrganizationCore.Accessibility G R Γ σ :=
+  fun T g r γ b y =>
+    if ReachableWithin (KR g r γ) T b (startOf g) y then 1 else 0
+
+/-- Kernel-induced core accessibility is automatically monotone in free budget. -/
+theorem kernelAccessibility_budgetMonotone
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ) :
+    RetainedOrganizationCore.BudgetMonotone
+      (kernelAccessibility KR startOf) := by
+  intro T g r γ y b₁ b₂ hb
+  classical
+  unfold kernelAccessibility
+  by_cases h₁ : ReachableWithin (KR g r γ) T b₁ (startOf g) y
+  · have h₂ :
+        ReachableWithin (KR g r γ) T b₂ (startOf g) y :=
+      reachableWithin_mono_budget
+        (KR g r γ) T b₁ b₂ (startOf g) y hb h₁
+    simp [h₁, h₂]
+  · by_cases h₂ : ReachableWithin (KR g r γ) T b₂ (startOf g) y
+    · simp [h₁, h₂]
+    · simp [h₁, h₂]
+
+/-- The generic core's positive transfer, when evaluated with
+kernel-induced accessibility, is exactly a paid accessibility opening through
+the state-dependent transition machinery. -/
+theorem core_positiveTransfer_iff_kernel_reach
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (sMinus sPlus : RetainedOrganizationCore.State G R Γ)
+    (y : σ) :
+    RetainedOrganizationCore.PositiveTransferAt
+        (kernelAccessibility KR startOf)
+        M T sMinus sPlus y
+      ↔
+    (ReachableWithin
+        (KR sPlus.active sPlus.retained sPlus.context)
+        T
+        (RetainedOrganizationCore.freeBudget M sPlus)
+        (startOf sPlus.active) y ∧
+      ¬ ReachableWithin
+        (KR sMinus.active sMinus.retained sMinus.context)
+        T
+        (RetainedOrganizationCore.freeBudget M sMinus)
+        (startOf sMinus.active) y) := by
+  classical
+  unfold RetainedOrganizationCore.PositiveTransferAt
+    RetainedOrganizationCore.transferGain
+    RetainedOrganizationCore.stateAccessibility
+    kernelAccessibility
+  by_cases hp :
+      ReachableWithin
+        (KR sPlus.active sPlus.retained sPlus.context)
+        T
+        (RetainedOrganizationCore.freeBudget M sPlus)
+        (startOf sPlus.active) y <;>
+  by_cases hm :
+      ReachableWithin
+        (KR sMinus.active sMinus.retained sMinus.context)
+        T
+        (RetainedOrganizationCore.freeBudget M sMinus)
+        (startOf sMinus.active) y <;>
+  simp [hp, hm]
+
+/-- Item-specific version of the core bridge. The retained and ablated arms
+come from the same base state and the same item `x`. -/
+theorem core_positiveTransferForItem_iff_kernel_reach
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (base : RetainedOrganizationCore.State G R Γ)
+    (x : X)
+    (y : σ) :
+    RetainedOrganizationCore.PositiveTransferForItem
+        Retain Lose
+        (kernelAccessibility KR startOf)
+        M T base x y
+      ↔
+    (ReachableWithin
+        (KR base.active (Retain base.retained x) base.context)
+        T
+        (RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.retainedArm Retain base x))
+        (startOf base.active) y ∧
+      ¬ ReachableWithin
+        (KR base.active (Lose base.retained x) base.context)
+        T
+        (RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.ablatedArm Lose base x))
+        (startOf base.active) y) := by
+  simpa [RetainedOrganizationCore.PositiveTransferForItem,
+    RetainedOrganizationCore.retainedArm,
+    RetainedOrganizationCore.ablatedArm] using
+    (core_positiveTransfer_iff_kernel_reach
+      KR startOf M T
+      (RetainedOrganizationCore.ablatedArm Lose base x)
+      (RetainedOrganizationCore.retainedArm Retain base x)
+      y)
+
+/-- Once accessibility is induced by transition machinery, an item-specific
+core paid-transfer result plus positive marginal upkeep certifies that the
+ablated kernel cannot reproduce all retained transitions at equal or lower
+cost. This closes the K-to-A-to-core loop. -/
+theorem core_positiveTransferForItem_requires_kernel_advantage
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (KR : CoreKernel G R Γ σ)
+    (startOf : StartOf G σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (base : RetainedOrganizationCore.State G R Γ)
+    (x : X)
+    (y : σ)
+    (hPaid :
+      RetainedOrganizationCore.StrictlyPaidItem
+        Retain Lose M base x)
+    (hTransfer :
+      RetainedOrganizationCore.PositiveTransferForItem
+        Retain Lose
+        (kernelAccessibility KR startOf)
+        M T base x y) :
+    ¬ KernelDominates
+        (KR base.active (Lose base.retained x) base.context)
+        (KR base.active (Retain base.retained x) base.context) := by
+  intro hDom
+  have hReach :=
+    (core_positiveTransferForItem_iff_kernel_reach
+      Retain Lose KR startOf M T base x y).1 hTransfer
+  have hBudget :
+      RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.retainedArm Retain base x)
+        ≤
+      RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.ablatedArm Lose base x) :=
+    le_of_lt
+      (RetainedOrganizationCore.strictlyPaidItem_reduces_freeBudget
+        Retain Lose M base x hPaid)
+  have hMinusAtPlusBudget :
+      ReachableWithin
+        (KR base.active (Lose base.retained x) base.context)
+        T
+        (RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.retainedArm Retain base x))
+        (startOf base.active) y :=
+    kernelDominance_preserves_accessibility
+      (KR base.active (Lose base.retained x) base.context)
+      (KR base.active (Retain base.retained x) base.context)
+      hDom T
+      (RetainedOrganizationCore.freeBudget M
+        (RetainedOrganizationCore.retainedArm Retain base x))
+      (startOf base.active) y hReach.1
+  have hMinus :
+      ReachableWithin
+        (KR base.active (Lose base.retained x) base.context)
+        T
+        (RetainedOrganizationCore.freeBudget M
+          (RetainedOrganizationCore.ablatedArm Lose base x))
+        (startOf base.active) y :=
+    reachableWithin_mono_budget
+      (KR base.active (Lose base.retained x) base.context)
+      T
+      (RetainedOrganizationCore.freeBudget M
+        (RetainedOrganizationCore.retainedArm Retain base x))
+      (RetainedOrganizationCore.freeBudget M
+        (RetainedOrganizationCore.ablatedArm Lose base x))
+      (startOf base.active) y hBudget hMinusAtPlusBudget
+  exact hReach.2 hMinus
+
 /-! ## Fully constructive paid-transfer witness -/
 
 inductive RetainedKernelToyState
@@ -446,11 +690,16 @@ theorem retainedKernelToy_positive_item_paid_opening :
 #print axioms liftRoute_cost_le
 #print axioms kernelDominance_preserves_accessibility
 #print axioms retainedKernelDominance_preserves_access_at_equal_freeBudget
+#print axioms positivePaidOpening_requires_kernel_advantage
 #print axioms route_advantage_overcomes_upkeep
 #print axioms route_saving_exceeds_marginal_upkeep_opens_paid_window
 #print axioms item_route_saving_exceeds_marginal_upkeep_opens_paid_window
 #print axioms item_route_advantage_overcomes_upkeep
 #print axioms no_paidOpening_without_kernel_change
+#print axioms kernelAccessibility_budgetMonotone
+#print axioms core_positiveTransfer_iff_kernel_reach
+#print axioms core_positiveTransferForItem_iff_kernel_reach
+#print axioms core_positiveTransferForItem_requires_kernel_advantage
 #print axioms retainedKernelToy_ablated_not_reachable
 #print axioms retainedKernelToy_positive_item_paid_opening
 
