@@ -154,11 +154,13 @@ Positive net transfer in cost form requires:
 
 \[
 \boxed{
-\mu_X+K^{\mathrm{run}}_{s^+}(Y)
+\mu_R(X)+K^{\mathrm{run}}_{s^+}(Y)
 <
 K_{s^-}(Y)
 }
 \]
+
+where \(K^{\mathrm{run}}\) excludes the retention/upkeep amount already represented by \(\mu_R(X)\); never charge the same upkeep twice.
 
 for at least one unvisited \(Y\).
 
