@@ -228,10 +228,16 @@ One route is **self-support**. Let
 \[
 \Delta L_\phi
 =
-\Delta I_\phi-\Delta M_\phi
+\Delta I_\phi-\Delta C^{\mathrm{op}}_\phi
 \]
 
-be the capability's net contribution to usable slack before its own retention burden \(\mu(X)\).
+be the capability's contribution to usable slack after its incremental operating/expression burden, but **before** the marginal burden of retaining \(X\). Let
+
+\[
+\mu_R(X)=M(R\cup\{X\})-M(R)
+\]
+
+be that marginal retention burden.
 
 If
 
@@ -239,12 +245,14 @@ If
 \boxed{
 E(X,\phi,c)
 \land
-\Delta L_\phi\ge\mu(X),
+\Delta L_\phi\ge\mu_R(X),
 }
 \tag{D1}
 \]
 
-then the emergent capability can pay for its own declared retention burden in that ledger.
+then the emergent capability can pay for its own declared marginal retention burden in that ledger.
+
+The accounting is single-entry: if a domain-specific operating-cost term already includes retention upkeep, that upkeep is not added again.
 
 If the inequality is strict and later reorganization intensity is nondecreasing in post-maintenance slack, the capability can also increase later search/reorganization opportunity.
 
@@ -272,11 +280,11 @@ They preserve the central EbE question:
 \[
 \boxed{
 \text{when does emergent function alter the conditions of later emergence?}
-}
 \]
 
 ---
 
+## 5. Differential continuation
 ## 5. Differential continuation
 
 Not all candidate organizations remain equally present in later history.
@@ -433,24 +441,41 @@ Let
 \[
 s^+=\operatorname{Retain}(s,X),
 \qquad
-s^-=\operatorname{Lose}(s,X),
+s^-=\operatorname{Lose}(s,X).
 \]
 
-and let \(\mu_s(X)\) be paid retention burden.
+Let \(R^-\) be the baseline retained repertoire and \(R^+=R^-\cup\{X\}\). Using the total upkeep function \(M\), define
+
+\[
+\boxed{
+\mu_R(X)=M(R^+)-M(R^-)\ge0.
+}
+\tag{7}
+\]
+
+Both counterfactuals are compared at the same gross budget \(B^{\mathrm{gross}}\):
+
+\[
+B^- = B^{\mathrm{gross}}-M(R^-),
+\qquad
+B^+ = B^{\mathrm{gross}}-M(R^+)
+     = B^- - \mu_R(X).
+\tag{8}
+\]
 
 Let \(\mathcal H_t\) be the history of already visited organizations.
 
-Define:
+Define the paid transfer gain
 
 \[
 \boxed{
 \Delta_T^{\mathrm{tr}}(X;Y)
 =
-\mathcal A_T(Y\mid s^+,B-\mu_s(X))
+\mathcal A_T(Y\mid s^+,B^+)
 -
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-).
 }
-\tag{7}
+\tag{9}
 \]
 
 A **positive transfer event** requires
@@ -460,7 +485,15 @@ A **positive transfer event** requires
 \exists Y\notin\mathcal H_t:
 \Delta_T^{\mathrm{tr}}(X;Y)>0.
 }
-\tag{8}
+\tag{10}
+\]
+
+If \(B\) denotes the budget remaining after upkeep common to both arms, then this reduces to the shorthand
+
+\[
+\mathcal A_T(Y\mid s^+,B-\mu_R(X))
+>
+\mathcal A_T(Y\mid s^-,B).
 \]
 
 This can fail.
@@ -478,7 +511,7 @@ K_G(H;c)
 =
 \inf_{\pi:G\leadsto H}
 \mathbb E[\ell_c(\pi)].
-\tag{9}
+\tag{11}
 \]
 
 The domain decides what route functional \(\ell_c\) measures:
@@ -500,7 +533,7 @@ Define budgeted reachability as
 \operatorname{Reach}_B(G)
 =
 \{H:K_G(H)\le B\}.
-\tag{10}
+\tag{12}
 \]
 
 The notation deliberately separates:
@@ -508,21 +541,24 @@ The notation deliberately separates:
 - \(K_G(H)\): cost of **using/reaching**;
 - \(M(R)\): cost of **keeping**.
 
-In the cost specialization, positive transfer to unvisited \(Y\) requires
+In the cost specialization, let \(K_{s^+}^{\mathrm{run}}(Y)\) exclude the retention/upkeep charge already represented by \(\mu_R(X)\). Positive transfer to unvisited \(Y\) then requires
 
 \[
 \boxed{
-\mu(X)+K_{s^+}^{\mathrm{run}}(Y)
+\mu_R(X)+K_{s^+}^{\mathrm{run}}(Y)
 <
 K_{s^-}(Y).
 }
-\tag{11}
+\tag{13}
 \]
+
+This is the same resource ledger as the accessibility comparison, not a second payment. If a domain-specific \(K\) already includes retention/upkeep, \(\mu_R(X)\) must not be added again.
 
 A retained organization can therefore leave unlimited logical closure unchanged while altering finite-horizon or finite-budget accessibility.
 
 ---
 
+## 10. Second-order evolution: weak and strong forms
 ## 10. Second-order evolution: weak and strong forms
 
 ### 10.1 Weak historical dependence
@@ -553,17 +589,19 @@ The stronger current criterion is:
 }
 \]
 
-Operationally:
+Operationally, using the same gross budget in both counterfactual arms:
 
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-).
 }
-\tag{12}
+\tag{14}
 \]
+
+Equivalently, after cancelling upkeep common to both arms, \(B^+=B^- - \mu_R(X)\).
 
 Thus:
 
@@ -779,9 +817,15 @@ Therefore repeated/shared use is a mechanistic requirement in the additive scaff
 
 ### 13.3 Repetition-depth result
 
-In a laminar nested hierarchy, if every level clears its strict repetition threshold even under its minimum inline cost, every optimum retains the full chain.
+In the declared additive laminar model, let \(N_i(D)\) be the number of exposed occurrences of level \(i\) under any dictionary \(D\) that omits it. If \(N_i(D)\ge n_i\ge2\), inline cost is always at least \(c_i^{\min}>r_i\), and
 
-Arbitrary depth is therefore possible, but not free.
+\[
+(n_i-1)c_i^{\min}>n_ir_i+h_i,
+\]
+
+then adding level \(i\) strictly lowers the objective for every admissible \(D\) that omits it. Hence every global optimum retains the full declared chain.
+
+Arbitrary prescribed depth is therefore possible under these sufficient conditions, but not free.
 
 ### 13.4 Upkeep bound
 
@@ -1056,24 +1100,28 @@ Accessibility form:
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-),
 }
-\tag{20}
+\tag{21}
 \]
+
+with \(B^\pm=B^{\mathrm{gross}}-M(R^\pm)\).
 
 Cost form:
 
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mu_X+K^{\mathrm{run}}_{s^+}(Y)
+\mu_R(X)+K^{\mathrm{run}}_{s^+}(Y)
 <
-K_{s^-}(Y).
+K_{s^-}(Y),
 }
-\tag{21}
+\tag{22}
 \]
+
+where \(K^{\mathrm{run}}\) excludes the upkeep already represented by \(\mu_R(X)\).
 
 The theorem should identify conditions under which this succeeds **and conditions under which it fails**.
 
