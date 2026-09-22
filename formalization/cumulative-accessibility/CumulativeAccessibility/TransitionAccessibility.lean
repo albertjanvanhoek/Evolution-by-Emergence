@@ -275,6 +275,84 @@ theorem no_paidOpening_without_kernel_change
       s y hBudget hPlusOpen
   exact hMinusClosed hMinusOpen
 
+/-! ## Fully constructive paid-transfer witness -/
+
+inductive RetainedKernelToyState
+  | origin
+  | target
+  deriving DecidableEq
+
+open RetainedKernelToyState
+
+/-- Without the retained item there is no origin-to-target transition. With the
+item, one unit-cost transition is available. -/
+def retainedKernelToyKernel : Bool → WeightedKernel RetainedKernelToyState
+  | false =>
+      { allowed := fun _ _ => False
+        cost := fun _ _ => 0
+        cost_nonneg := by
+          intro u v h
+          contradiction }
+  | true =>
+      { allowed := fun u v => u = origin ∧ v = target
+        cost := fun u v =>
+          if u = origin ∧ v = target then 1 else 0
+        cost_nonneg := by
+          intro u v h
+          simp [h] }
+
+/-- Retaining the item costs one unit; the ablated repertoire costs zero. -/
+def retainedKernelToyMaintenance : Bool → ℝ
+  | false => 0
+  | true => 1
+
+def retainedKernelToyRetain : Bool → Unit → Bool :=
+  fun _ _ => true
+
+def retainedKernelToyLose : Bool → Unit → Bool :=
+  fun _ _ => false
+
+/-- The retained kernel has a one-step route to the target. -/
+def retainedKernelToyRoute :
+    Route (retainedKernelToyKernel true) origin target 1 :=
+  .step (by simp [retainedKernelToyKernel])
+    (.stay target)
+
+/-- The ablated kernel cannot reach the target at any finite budget within one
+step because it has no transitions at all. -/
+theorem retainedKernelToy_ablated_not_reachable :
+    ¬ ReachableWithin
+      (retainedKernelToyKernel false)
+      1 2 origin target := by
+  intro h
+  rcases h with ⟨n, hn, route, hCost⟩
+  cases route with
+  | step hEdge rest =>
+      simp [retainedKernelToyKernel] at hEdge
+
+/-- Concrete end-to-end witness: gross budget two, one unit of maintenance, and
+a one-unit retained transition yield positive paid opening to the previously
+unreachable target. -/
+theorem retainedKernelToy_positive_item_paid_opening :
+    PositivePaidOpeningForItem
+      retainedKernelToyRetain
+      retainedKernelToyLose
+      retainedKernelToyKernel
+      retainedKernelToyMaintenance
+      1 2 false () origin target := by
+  apply item_route_advantage_overcomes_upkeep
+    retainedKernelToyRetain
+    retainedKernelToyLose
+    retainedKernelToyKernel
+    retainedKernelToyMaintenance
+    1 1 2 false () origin target
+    retainedKernelToyRoute
+  · norm_num
+  · norm_num [retainedKernelToyRoute, Route.cost,
+      retainedKernelToyKernel, retainedKernelToyMaintenance]
+  · simpa [retainedKernelToyLose, retainedKernelToyMaintenance] using
+      retainedKernelToy_ablated_not_reachable
+
 #print axioms reachableWithin_mono_budget
 #print axioms liftRoute_cost_le
 #print axioms kernelDominance_preserves_accessibility
@@ -282,6 +360,8 @@ theorem no_paidOpening_without_kernel_change
 #print axioms route_advantage_overcomes_upkeep
 #print axioms item_route_advantage_overcomes_upkeep
 #print axioms no_paidOpening_without_kernel_change
+#print axioms retainedKernelToy_ablated_not_reachable
+#print axioms retainedKernelToy_positive_item_paid_opening
 
 end TransitionAccessibility
 end CumulativeAccessibility
