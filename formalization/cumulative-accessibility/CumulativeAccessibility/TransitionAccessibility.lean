@@ -22,7 +22,7 @@ own retention burden, rather than to an independently chosen accessibility
 function.
 -/
 
-variable {σ R : Type*}
+variable {σ R X : Type*}
 
 /-- Weighted directed transition machinery. The allowed relation says the
 transition exists; cost gives its one-step resource cost when it exists. -/
@@ -197,6 +197,55 @@ theorem route_advantage_overcomes_upkeep
   refine ⟨hMinusClosed, ?_⟩
   exact ⟨n, hn, routePlus, hFits⟩
 
+/-- Item-specific induced paid opening. Both retained repertoires are generated
+from the same baseline repertoire and the same retained item X. -/
+def PositivePaidOpeningForItem
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T : ℕ)
+    (grossBudget : ℝ)
+    (baseRetained : R)
+    (x : X)
+    (s y : σ) : Prop :=
+  PositivePaidOpening
+    Kernel M T grossBudget
+    (Lose baseRetained x)
+    (Retain baseRetained x)
+    s y
+
+/-- Route-level paid opening for one identified retained item. -/
+theorem item_route_advantage_overcomes_upkeep
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T n : ℕ)
+    (grossBudget : ℝ)
+    (baseRetained : R)
+    (x : X)
+    (s y : σ)
+    (routePlus :
+      Route (Kernel (Retain baseRetained x)) s y n)
+    (hn : n ≤ T)
+    (hFits :
+      routePlus.cost ≤
+        grossBudget - M (Retain baseRetained x))
+    (hMinusClosed :
+      ¬ ReachableWithin
+        (Kernel (Lose baseRetained x)) T
+        (grossBudget - M (Lose baseRetained x))
+        s y) :
+    PositivePaidOpeningForItem
+      Retain Lose Kernel M T grossBudget
+      baseRetained x s y := by
+  exact route_advantage_overcomes_upkeep
+    Kernel M T n grossBudget
+    (Lose baseRetained x)
+    (Retain baseRetained x)
+    s y routePlus hn hFits hMinusClosed
+
 /-- Regression guard: if retained and ablated organization induce exactly the
 same kernel and the retained arm has weakly less free budget, retaining cannot
 create a paid opening. -/
@@ -231,6 +280,7 @@ theorem no_paidOpening_without_kernel_change
 #print axioms kernelDominance_preserves_accessibility
 #print axioms retainedKernelDominance_preserves_access_at_equal_freeBudget
 #print axioms route_advantage_overcomes_upkeep
+#print axioms item_route_advantage_overcomes_upkeep
 #print axioms no_paidOpening_without_kernel_change
 
 end TransitionAccessibility
