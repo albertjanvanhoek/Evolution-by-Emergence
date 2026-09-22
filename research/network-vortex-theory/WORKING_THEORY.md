@@ -972,6 +972,138 @@ This is a structural claim, not a claim that chemistry, brains, evolution, and t
 
 ---
 
+## 15A. Intelligent-network specialization and the v18 Learning Constitution
+
+The universal retained-organization layer should not be conflated with an intelligent-agent network.
+
+For the intelligent specialization, fix the scale:
+
+[
+G_t=(V,E_t,	heta_t),
+]
+
+where nodes are learning agents and edges are channels through which information, criticism, evidence, coordination, and repair can occur.
+
+At this scale, an agent can have nontrivial local alternatives while remaining constrained by the shared network. If (A_i(S)) is node (i)'s locally available action set and (A_i^{mathrm{viable}}(S)) the subset compatible with a declared continuation/viability condition, then
+
+[
+A_i^{mathrm{viable}}(S)subseteq A_i(S).
+]
+
+This supplies a precise interpretation of the older phrase **forced free will** as **constrained local agency**: local alternatives are real in the model, while their consequences are not independent of the relational/substrate system in which the node remains embedded. No metaphysical free-will theorem is claimed.
+
+### 15A.1 Learning Constitution as retained meta-organization
+
+Let (R_t^{mathrm{LC}}) denote the retained procedural organization implementing the v18 Learning Constitution.
+
+Because it preserves classes of challenge, reopening, revision, appeal, and access-restoration transitions, it changes which shared-process transitions remain available:
+
+[
+oxed{
+R_t^{mathrm{LC}}
+longrightarrow
+mathcal K_t^{mathrm{LC}}.
+}
+]
+
+It therefore instantiates the current centre:
+
+[
+oxed{
+	ext{retained organization becomes causal structure for future change}.
+}
+]
+
+The constitution does not determine which substantive conclusion should prevail. It constrains the transition architecture so that a current decision cannot become correct merely by making its own possible correction structurally impossible.
+
+### 15A.2 Self-sealing as a boundary of the graded theory
+
+The v18 formalization is mainly binary: a corrective route exists or it does not.
+
+The present framework adds a graded interior.
+
+Let
+
+[
+C_{mathrm{corr},t}(S,a)
+]
+
+be a declared finite-resource cost of an effective correction route for affected agent (a), or equivalently let
+
+[
+mathcal A_T(mathrm{corr}mid S,a,B)
+]
+
+be graded corrective accessibility.
+
+A self-sealing restriction removes challenge or revision of the restriction itself. In a cost specialization this is the limiting case
+
+[
+C_{mathrm{corr}}=infty,
+]
+
+or, at the declared horizon/budget,
+
+[
+mathcal A_T(mathrm{corr})=0.
+]
+
+Thus v18 can be read as protecting against the **zero-accessibility / infinite-viscosity boundary case**, while the present framework also distinguishes costly, slow, fragile, or otherwise practically weak correction routes that remain formally reachable.
+
+This interpretation does not change the v18 Lean theorem. It supplies a graded quantitative specialization around its binary boundary.
+
+### 15A.3 SCAP and the learning verbs
+
+SCAP is treated here as a candidate retained maintenance protocol for an intelligent network, not as a universal moral law.
+
+Its mechanisms can affect edge/process properties such as signal fidelity, redundancy, observability, repairability, correction latency, and preservation of useful diversity. Its own maintenance burden must be counted, and the protocol itself remains subject to correction.
+
+The learning verbs are inside descriptions of mechanisms acting on the outside accessibility geometry.
+
+An application-specific bridge
+
+[
+Gamma:P_tightarrow C_t
+]
+
+maps process state (P_t) to the observed cost/accessibility geometry.
+
+Candidate mechanisms include:
+
+- seek/encounter (ightarrow) opportunity rate or opportunity wait;
+- listen/signal faithfully (ightarrow) usable information fidelity;
+- expose uncertainty/test (ightarrow) discrepancy detection and validation;
+- revise (ightarrow) validated-response lag;
+- maintain disagreement (ightarrow) persistence of alternative candidates;
+- repair/re-engage (ightarrow) restoration of damaged useful edges;
+- retain/recombine (ightarrow) persistence and generation of later candidates.
+
+The existing reduced rate ledger is
+
+[
+v_{mathrm{ledger}}
+=
+lambda p_G p_R p_V p_Tar g.
+]
+
+Under a bounded opportunity wait (K), bounded response lag (Delta), and minimum retained gain (g_{min}), the existing rate certificate has the form
+
+[
+oxed{
+v_{min}
+=
+rac{g_{min}}{K+Delta+1}.
+}
+]
+
+Therefore learning-maintenance processes can affect discovery/learning velocity when a domain-specific model or experiment establishes their effect on these coordinates.
+
+No named social verb is assigned a universal positive causal sign.
+
+The detailed compatibility note is [LEARNING_CONSTITUTION_BRIDGE.md](LEARNING_CONSTITUTION_BRIDGE.md).
+
+---
+
 ## 16. Closest scientific neighbours and current differentiation
 
 The current compression overlaps substantially with established work.
