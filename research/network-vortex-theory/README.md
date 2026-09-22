@@ -1,88 +1,166 @@
-# Network Vortex Theory — working EbE architecture
+# Retained Organization and the Dynamic Vortex — working EbE architecture
 
-> **Status: working mathematical architecture — not yet the formal EbE theory.**
+> **Status: working compression of the recurring EbE pattern — not yet the final formal theory.**
 >
-> This directory records the current reasoning so that later formalization cannot silently change the ontology.
+> This directory preserves the current centre of the theory so later formalization cannot silently replace it with a narrower cost, validation, or closure model.
 
-This research checkpoint preserves the current direction of **Evolution by Emergence (EbE)** after an explicit reset of the mathematical language.
+## Centre
 
-The central decision is:
+Evolution by Emergence (EbE) is currently organized around one proposed invariant:
 
-> **The network remains the universal abstraction layer.**
+> **Retained organization becomes causal structure for future change.**
 
-Costs, energy, reward, fitness, persistence, and description length are evaluative or accessibility quantities defined *over* network organization. They do not replace the network ontology.
+Equivalently:
 
-## Reference architecture
+> **The system's history becomes part of its transition machinery.**
+
+The compact recursive form is
 
 \[
 \boxed{
-\text{network reorganization}
-\rightarrow
-\text{emergent function}
-\rightarrow
-\text{evaluation}
-\rightarrow
-\text{differential persistence}
-\rightarrow
-\text{retained organization}
-\rightarrow
-\text{changed future accessibility}
-\rightarrow
-\text{further reorganization}
-}
-\]
-
-A compact second-order form is
-
-\[
 G_t
-\rightarrow
-(C_{G_t},\mathcal E_{G_t})
-\rightarrow
+\longrightarrow
+\mathcal K[G_t,\Gamma_t]
+\longrightarrow
+G'_t
+\longrightarrow
+\mathcal V(G'_t,\Gamma_t)
+\longrightarrow
 G_{t+1}
-\rightarrow
-(C_{G_{t+1}},\mathcal E_{G_{t+1}})
-\rightarrow\cdots
+\longrightarrow
+\mathcal K[G_{t+1},\Gamma_{t+1}]
+}
 \]
 
 where:
 
-- \(G_t\) is the current network organization;
-- \(\mathcal E\) is an evaluator (energy balance, reward, fitness, persistence, existence, etc.);
-- \(C_G(H)\) is the effective cost of reaching organization \(H\) from network \(G\).
+- \(G_t\) is current relational organization;
+- \(\Gamma_t\) is the relevant surrounding condition, gradient, or opportunity structure;
+- \(\mathcal K[G_t,\Gamma_t]\) is the **effective transition machinery**: the distribution/rules/costs by which future organization can be generated from the present;
+- \(G'_t\) is candidate reorganization;
+- \(\mathcal V\) is its viability/selection/evaluative consequence;
+- retention/reconstruction produces the historically available organization \(G_{t+1}\).
 
-The theory is **not** that the fundamental physical generator must change. The retained network can instead change the *effective accessibility geometry* of later reorganization.
-
-## Dynamic Vortex interpretation
-
-The "vortex" is not literal rotation. It is the feedback loop by which organization changes the landscape that in turn shapes future organization.
-
-A minimal self-maintaining loop is
+The distinctive recursive event is
 
 \[
-X \rightarrow \phi \rightarrow r \rightarrow \operatorname{maintenance}(X),
+\boxed{
+\mathcal K[G_{t+1},\Gamma_{t+1}]
+\neq
+\mathcal K[G_t,\Gamma_t].
+}
 \]
 
-where organization \(X\) produces function \(\phi\), which captures or generates resources \(r\), which maintain \(X\).
+The process has changed the conditions of its own future change.
 
-The evolutionary extension is that variants of such loops can be differentially retained, so the organization of the loop itself changes over time.
+## Why a network still matters
+
+A network or hypergraph is the minimal mathematical compression used here for **relational organization**:
+
+\[
+G=(V,E,\theta).
+\]
+
+This does **not** assert that reality is literally a graph. It asserts that when components and relations among them matter to what a system can do, network language is a compact substrate-neutral representation.
+
+Representability as a network is not enough for EbE. A real application must identify mechanistically:
+
+1. relational organization;
+2. how that organization changes;
+3. how organization affects behavior/function;
+4. what produces differential continuation;
+5. how organization is retained or reconstructed;
+6. how that retained history changes later transition possibilities.
+
+## Role of emergence
+
+Emergence is the creative event inside the loop, not the whole loop.
+
+Existing organization can combine/reorganize into a configuration with changed or new system-level capability. A strict compositional-emergence predicate is one important special case:
+
+\[
+E(G,\phi,c)
+\iff
+G\models_c\phi
+\land
+\forall K\prec G,\;K\not\models_c\phi.
+\]
+
+Not every useful organizational update must satisfy this strict predicate.
+
+A compact distinction is:
+
+> **Emergence creates candidates; persistence writes some of them into future dynamics.**
+
+## Role of accessibility, cost, and hierarchy
+
+The present organization induces a future accessibility structure. One general representation is a finite-horizon accessibility kernel
+
+\[
+\mathcal A_T(S\mid G,\Gamma,q),
+\]
+
+the chance or degree to which persistent successor organization in \(S\) can be realized within horizon \(T\).
+
+Costed reachability is an important specialization:
+
+\[
+C_G(H;c)=\inf_{\pi:G\leadsto H}\mathbb E[J_c(\pi)].
+\]
+
+Retention may therefore change future accessibility by changing probability, rate, energy, number of construction steps, mutation/developmental distance, learning effort, design effort, or another declared route measure.
+
+The recent retention and hierarchy theorems are **subresults of this accessibility change**, not the ontology of EbE.
+
+## Dynamic Vortex
+
+The Dynamic Vortex is the self-maintaining version of the recursion.
+
+A minimal loop is
+
+\[
+X\rightarrow\phi\rightarrow r\rightarrow\operatorname{maintenance}(X),
+\]
+
+where organization produces function, function affects resource/continuation conditions, and those conditions maintain or reconstruct the organization.
+
+When variants of the loop are differentially retained, the organization of the loop evolves.
+
+Thus the system is not merely moving on a fixed landscape. Its retained history can change the channel through which later movement occurs.
+
+## Cross-domain interpretation
+
+The same abstract positions can be occupied by different mechanisms:
+
+| Role | Neural learning | Chemistry | Biological inheritance | Technology |
+|---|---|---|---|---|
+| relational organization | neural connectivity/dynamics | reaction-catalysis network | regulatory/developmental/module network | component/interface/production network |
+| reorganization | plasticity/learning | reaction-network change | mutation/recombination/development | invention/recombination |
+| differential consequence | reward/error/viability | kinetic/resource persistence | reproduction/viability | performance/adoption/cost |
+| retention | learned organization | self-regeneration | heredity/reconstruction | design/standard/manufacture |
+| changed future machinery | learnability | reaction accessibility | evolvability/developmental bias | constructibility |
+
+The mechanisms differ. The proposed unity is structural.
 
 ## Files
 
-- [WORKING_THEORY.md](WORKING_THEORY.md) — canonical current architecture and equations.
-- [HANDOFF.md](HANDOFF.md) — short continuation guide for a researcher or LLM.
-- [theorem-notes/README.md](theorem-notes/README.md) — current theorem program and algebraic results.
-- [simulations/README.md](simulations/README.md) — exploratory computational findings and reproducibility status.
+- [WORKING_THEORY.md](WORKING_THEORY.md) — canonical current compression and definitions.
+- [HANDOFF.md](HANDOFF.md) — continuation guide for a researcher or LLM.
+- [theorem-notes/README.md](theorem-notes/README.md) — current retention/hierarchy theorem program.
+- [simulations/README.md](simulations/README.md) — exploratory computational results and reproduction requirements.
 
-## Discipline for future work
+## Guardrail
 
-A proposed formalization has drifted away from EbE if it loses any of the following:
+A future formalization has drifted away from the current EbE centre if it cannot still express:
 
-1. **network organization** as the primary object;
-2. **emergent behavior/function** arising from organization;
-3. **evaluation** that biases persistence;
-4. **retention/reproducibility** of organization;
-5. **changed future accessibility** caused by retained organization;
-6. **recursive feedback** from current organization into the conditions of future reorganization.
+\[
+\boxed{
+\text{retained organization}
+\rightarrow
+\text{changed effective transition machinery}
+\rightarrow
+\text{changed future organization}.
+}
+\]
 
-Lean should be used only after these semantics are fixed.
+Lean should come after that semantic relationship is fixed.
