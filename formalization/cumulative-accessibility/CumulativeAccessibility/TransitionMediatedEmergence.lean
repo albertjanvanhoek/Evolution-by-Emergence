@@ -177,11 +177,11 @@ theorem realizesBoth_emergent :
   intro P hP hRealize
   exact (Finset.ssubset_iff_subset_ne.mp hP).2 hRealize
 
-def toyPhiKernel (R : Finset Bool) : WeightedKernel ToyOrg :=
+noncomputable def toyPhiKernel (R : Finset Bool) : WeightedKernel ToyOrg :=
   phiKernel toyBaseKernel realizesBoth () ()
     0 1 1 (by norm_num) R
 
-def toyNonEmergentKernel (R : Finset Bool) : WeightedKernel ToyOrg :=
+noncomputable def toyNonEmergentKernel (R : Finset Bool) : WeightedKernel ToyOrg :=
   phiKernel toyBaseKernel realizesTrue () ()
     0 1 1 (by norm_num) R
 
