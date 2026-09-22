@@ -153,8 +153,9 @@ theorem excess_resource_normalized_accessibility_breaks_bounded_reuse
     (hMin : ∀ i, i ∈ R → mu ≤ cost i)
     (hBudget : TotalMaintenance cost R ≤ B)
     (hExcess : B * d < (A.card : ℝ) * mu) :
-    ¬ BoundedReuseEncoding R A d := by
-  intro enc
+    ¬ Nonempty (BoundedReuseEncoding R A d) := by
+  intro hEnc
+  rcases hEnc with ⟨enc⟩
   have hBound :=
     accessible_card_mul_minCost_le_budget_mul_slots
       cost R A d mu B hMu hMin hBudget enc
