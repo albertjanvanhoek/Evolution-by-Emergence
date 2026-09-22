@@ -66,6 +66,17 @@ budget B remains accessible under K-plus:
 
 Maintenance is then paid from one common gross budget.
 
+A stronger theorem derives a paid opening directly from a transition-cost
+margin. If the retained arm has a route of cost \(C_+\), every ablated route
+within the horizon costs at least \(L_-\), and
+
+\[
+C_+ + \bigl(M(R^+)-M(R^-)\bigr) < L_-,
+\]
+
+then there exists a common gross budget at which the target is inaccessible
+without the retained organization and accessible with it.
+
 A regression theorem proves that if retained and ablated organization induce
 the same kernel and retention costs weakly more, retention cannot create a paid
 opening.
