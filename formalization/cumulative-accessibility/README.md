@@ -19,6 +19,55 @@ accessibility (mathcal A_T), explicit retain/ablate counterfactuals for one
 retained item (X), paid maintenance, later ablation-based reuse, and transfer
 to an unvisited target.
 
+### Resource-constrained recursive loop
+
+The retained-organization core should be read as a recursive loop rather than
+only as the one-way relation `R -> K -> A`. Retained history has two
+simultaneous effects:
+
+1. **causal leverage:** retained organization can change transition machinery
+   and therefore future accessibility;
+2. **maintenance burden:** retained organization consumes part of the resource
+   budget needed for later maintenance, response, search, and change.
+
+A compact schematic is:
+
+```text
+generated organization
+        ↓
+budget-constrained retention
+        ↓
+R_t ─────────────→ K_t ─────────────→ A_t
+ │                                      │
+ └─ maintenance M(R_t)                  │
+        ↓                               │
+B_free = B_gross - M(R_t) ─────────────┘
+        ↑
+        └──────── next retained organization ────────
+```
+
+The finite-budget theorem in `GenerativeLeverage.lean` makes one implication
+explicit. If every member of a candidate retained set costs at least
+`mu > 0` to maintain and
+
+[
+B < |C| mu,
+]
+
+then the whole candidate set cannot satisfy the maintenance budget. Finite
+resources therefore force a **retention trade-off**. The theorem deliberately
+does not specify which structure is forgotten, replaced, compressed, made
+cheaper, or retained; those mechanisms remain application-specific.
+
+This recursive architecture motivates a scale-free **learning-like** reading.
+At different nested levels, prior interaction can leave retained organization
+that alters subsequent transition possibilities while finite resources prevent
+indiscriminate retention. Neural learning is one instance, but the universal
+claim under investigation is not that cells, organisms, people, and societies
+all literally learn in the same psychological sense. It is that they may
+instantiate the same abstract history-retention-accessibility dynamic. Whether
+that mapping is non-arbitrary is an empirical challenge for each domain.
+
 The current Lean files include:
 
 - `RetainedOrganizationCore.lean` — item-specific retained/ablated arms,
@@ -37,7 +86,7 @@ The current Lean files include:
 - `TransitionAccessibility.lean` — canonical publication-facing transition semantics: kernel-induced accessibility, necessary kernel advantage for paid opening, quantitative route-saving sufficiency, and the bridge back into the abstract core accessibility interface;
 - `EmergentAssemblyBarrier.lean` — abstract emergence barrier and auxiliary-support theorem;
 - `TransitionMediatedEmergence.lean` — mechanistic specialization deriving the emergence barrier through transition machinery, with non-vacuity and drop-one-premise countermodels;
-- `GenerativeLeverage.lean` — bounded-reuse and resource-normalized leverage constraints;
+- `GenerativeLeverage.lean` — bounded-reuse and resource-normalized leverage constraints, including a finite-budget no-go for retaining an overfull positive-cost candidate set;
 - `V17Compatibility.lean` — reuses compatible v17 lemmas without making v17
   recurrence/successor premises the new core;
 - `LearningConstitutionSpecialization.lean` — downstream intelligent-network
@@ -223,6 +272,18 @@ reuse bound (d) rule out unbounded accessible repertoire. If accessibility
 exceeds (Nd), then at least one of those restrictions fails: retained
 repertoire grows, per-unit leverage grows, or accessibility depends on
 compositional support that cannot be reduced to one retained unit/slot pair.
+
+The same resource accounting now also gives a direct retention constraint. If
+every member of a candidate retained set C costs at least mu > 0 and
+
+[
+B < |C| mu,
+]
+
+then Lean proves that retaining all of C is budget-infeasible. This is the
+minimal formal sense in which finite resources make retention selective: the
+constraint forces a trade-off, but it does not impose a universal optimization
+rule or identify which candidate should persist.
 
 These are candidate general constraints. They do not yet establish empirical
 universality across biological, neural, linguistic, and technological systems.
