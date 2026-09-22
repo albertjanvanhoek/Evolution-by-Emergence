@@ -9,6 +9,7 @@ on:
       - "RELEASE_TITLE"
       - "RELEASE_NOTES.md"
       - "formalization/**"
+      - "papers/the-room-learning-constitution/**"
       - "verification/organizational-depth/**"
       - ".github/workflows/full-theory-proof-check.yml"
   push:
@@ -21,6 +22,7 @@ on:
       - "RELEASE_TITLE"
       - "RELEASE_NOTES.md"
       - "formalization/**"
+      - "papers/the-room-learning-constitution/**"
       - "verification/organizational-depth/**"
       - ".github/workflows/full-theory-proof-check.yml"
   workflow_dispatch:
@@ -145,6 +147,12 @@ jobs:
             CumulativeAccessibility.VerificationSurface \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
+            CumulativeAccessibility.RetainedOrganizationCore \
+            CumulativeAccessibility.PaidRetentionTransfer \
+            CumulativeAccessibility.PaidReuseHierarchy \
+            CumulativeAccessibility.EmergentPaidTransfer \
+            CumulativeAccessibility.V17Compatibility \
+            CumulativeAccessibility.LearningConstitutionSpecialization \
             CumulativeAccessibility.IntelligentLearningMaintenance \
             CumulativeAccessibility.FunctionalRatchetVelocity \
             CumulativeAccessibility.RatchetVelocityLedger \
@@ -168,6 +176,12 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidRetentionTransfer.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidReuseHierarchy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergentPaidTransfer.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/V17Compatibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningConstitutionSpecialization.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RatchetVelocityLedger.lean
