@@ -34,6 +34,10 @@ The current Lean files include:
   and worst-case structural bounds, any global minimizer retains every level;
 - `EmergentPaidTransfer.lean` — optional Law-D feedback in which the same
   retained item is also the configuration tested for compositional emergence;
+- `TransitionAccessibility.lean` — canonical publication-facing transition semantics: kernel-induced accessibility, necessary kernel advantage for paid opening, quantitative route-saving sufficiency, and the bridge back into the abstract core accessibility interface;
+- `EmergentAssemblyBarrier.lean` — abstract emergence barrier and auxiliary-support theorem;
+- `TransitionMediatedEmergence.lean` — mechanistic specialization deriving the emergence barrier through transition machinery, with non-vacuity and drop-one-premise countermodels;
+- `GenerativeLeverage.lean` — bounded-reuse and resource-normalized leverage constraints;
 - `V17Compatibility.lean` — reuses compatible v17 lemmas without making v17
   recurrence/successor premises the new core;
 - `LearningConstitutionSpecialization.lean` — downstream intelligent-network
@@ -187,6 +191,20 @@ function alone. If such an intermediate remains viable, Lean proves that some
 strictly positive auxiliary support is required. This can represent another
 function, reuse/exaptation, subsidy/drift, or another application-specific
 source.
+
+### 2b. Transition-mediated emergence specialization
+
+`TransitionMediatedEmergence.lean` connects strict compositional emergence to
+the same transition-induced accessibility semantics. If the emergent function
+is what opens a transition, a proper subconfiguration does not receive that
+function-mediated transition. With non-decreasing upkeep relative to the
+ablated arm, it therefore cannot show positive paid opening through that
+mechanism.
+
+The module includes permanent QC witnesses: a whole emergent configuration that
+does transfer, a non-emergent single-part countermodel, a negative-upkeep
+countermodel, and a stepping-stone model in which a proper part pays for itself
+through a different transition.
 
 ### 3. Bounded-memory generative leverage
 
