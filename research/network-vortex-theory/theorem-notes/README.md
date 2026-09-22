@@ -119,7 +119,6 @@ This can fail. Retention can be neutral or burdensome.
 ---
 
 ## 2. Retention is not ordinary state dependence
-## 2. Retention is not ordinary state dependence
 
 For the current programme, call \(X\) a **retained organizational memory** only when the application identifies all five properties below.
 
@@ -448,7 +447,6 @@ This is a **sufficient theorem for the declared additive laminar model**, not a 
 ---
 
 ## 7. Why the earlier free-\(H_i\) scaffold theorem was too weak
-## 7. Why the earlier free-\(H_i\) scaffold theorem was too weak
 
 A coarse pairwise objective can write a generic downstream saving \(H_i\) and conclude that a scaffold is retained when
 
@@ -535,7 +533,6 @@ Their purpose is to keep the question open and explicit:
 
 ---
 
-## 9. Upkeep bound
 ## 9. Upkeep bound
 
 Let gross available budget at time \(t\) be \(B_t^{\mathrm{gross}}\).
