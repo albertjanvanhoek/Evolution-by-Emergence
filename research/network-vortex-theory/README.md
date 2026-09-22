@@ -44,16 +44,24 @@ A mere change
 
 is only weak historical dependence. Ordinary state-dependent systems can satisfy it.
 
-The stronger current EbE criterion is **paid transfer** to later novelty:
+The stronger current EbE criterion is **paid transfer** to later novelty. With \(R^+=R^-\cup\{X\}\),
+
+\[
+B^\pm=B^{\mathrm{gross}}-M(R^\pm),
+\]
+
+and the criterion is
 
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-).
 }
 \]
+
+Equivalently, after cancelling upkeep common to both arms, \(B^+=B^- - \mu_R(X)\) with \(\mu_R(X)=M(R^+)-M(R^-)\).
 
 Retention should therefore be:
 
