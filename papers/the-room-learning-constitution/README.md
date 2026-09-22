@@ -24,6 +24,38 @@ incompatible sincere certainty
 
 The human-rights paper then asks a separate normative question: whether and how this logical architecture should be protected in law.
 
+## Relation to the retained-organization centre
+
+The v18 Learning Constitution remains a distinct machine-checked agent/interdependence layer. The later retained-organization work provides an explicit compatibility bridge rather than collapsing the two surfaces.
+
+At the intelligent-agent-network scale, the constitutional procedure can be represented as retained meta-organization:
+
+[
+R_t^{mathrm{LC}}
+longrightarrow
+mathcal K_t^{mathrm{LC}},
+]
+
+because it preserves classes of challenge, reopening, revision, appeal, repair, and access-restoration transitions.
+
+This instantiates the broader retained-organization statement:
+
+> **Retained organization becomes causal structure for future change.**
+
+The relation is deliberately asymmetric:
+
+```text
+universal retained-organization layer
+    -> intelligent-agent network specialization
+        -> Learning Constitution / SCAP specialization
+```
+
+The v18 theorem surface remains qualitative. A self-sealing restriction removes a required corrective route. The later graded-accessibility framework interprets this as the limiting case of zero corrective accessibility / infinite corrective cost, while also allowing finite but high correction costs to be measured.
+
+SCAP and the wider “verbs of learning” are not added as universal axioms. They are candidate maintenance mechanisms whose effects on correction cost, delay, validation, retention, and learning/discovery velocity require model-specific or empirical bridges.
+
+See [`research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md`](../../research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md).
+
 ## Machine-checked scope
 
 `TheRoom.lean` is checked with Lean 4.34.0 by the repository workflow

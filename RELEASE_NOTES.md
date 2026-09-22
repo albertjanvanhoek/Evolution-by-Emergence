@@ -1,233 +1,402 @@
-# Evolution by Emergence v18 — The Learning Constitution: Correctable Interdependence
+# Evolution by Emergence v19 — Retained Organization and Correctable Learning
 
-`v18` adds a separate machine-checked companion to the v17 Recursive Organization Core.
+v19 integrates the retained-organization research programme developed in PR63 with the v18 Learning Constitution while preserving the distinction between the universal organizational layer and the intelligent-agent specialization.
 
-The new question is:
+The centre is:
 
-> **What minimal procedural architecture prevents fallible interdependent agents from making their own possible error structurally uncorrectable?**
+> **Retained organization becomes causal structure for future change.**
 
-The release does **not** change the canonical v17 recursive-organization theorems. It adds a focused formal and conceptual layer about incompatible certainty, corrective routes, self-sealing restrictions, and preservation of a declared learning constitution.
+The stronger falsifiable form is:
+
+> **Paid retained organization can transfer into improved graded access to organization not previously visited.**
 
 ## 1. Release object
 
 Start with:
 
-1. `papers/the-room-learning-constitution/README.md` — reviewer entry, reading order, and scope.
-2. `papers/the-room-learning-constitution/the_room_problem.pdf` — **The Room**: the fundamental problem.
-3. `papers/the-room-learning-constitution/the_learning_constitution.pdf` — **The Learning Constitution**: the logical/systemic solution.
-4. `papers/the-room-learning-constitution/FORMAL_VERIFICATION.md` — exact paper-to-Lean traceability.
-5. `papers/the-room-learning-constitution/TheRoom.lean` — machine-checked formal backbone.
-6. `papers/the-room-learning-constitution/procedural_corrigibility_human_rights.pdf` — candidate human-rights translation.
-7. `papers/the-room-learning-constitution/the_elephant_and_the_agreement.pdf` — accessible parable.
-8. `papers/the-room-learning-constitution/CLAIMS.md` — local claims and non-claims.
+1. research/network-vortex-theory/README.md — concise entry point.
+2. research/network-vortex-theory/WORKING_THEORY.md — canonical current compression.
+3. research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md — explicit relation to v18, constrained local agency, SCAP, correction viscosity, and learning velocity.
+4. research/network-vortex-theory/theorem-notes/README.md — paid transfer, retention firewall, repetition threshold, chain dichotomy, repetition-depth theorem, Law D, and upkeep bound.
+5. research/network-vortex-theory/HANDOFF.md — continuation guide.
+6. research/network-vortex-theory/simulations/README.md — exploratory simulation status and reproduction targets.
+7. research/network-vortex-theory/scripts/ — finite adversarial/algebra checks.
+8. papers/the-room-learning-constitution/ — unchanged v18 theorem surface plus the new reciprocal bridge pointer.
 
-The `.tex` sources for all four standalone documents are committed beside the PDFs.
+## 2. Retained organization as the centre
 
-## 2. The Room: the problem
+The working state is represented schematically as
 
-The formal starting point is deliberately small.
+\[
+S_t=(G_t,R_t,\Gamma_t,B_t^{\mathrm{gross}}),
+\]
 
-If several propositions are pairwise incompatible, they cannot all be true. If agents are certain of incompatible propositions, their certainties cannot all carry a truth guarantee.
+with paid retention
 
-The formal layer keeps an important bridge explicit:
+\[
+B_t^{\mathrm{free}}
+=
+B_t^{\mathrm{gross}}-M(R_t),
+\]
 
-```text
-incompatible certainty
-does not by itself imply
-symmetric individual fallibility.
-```
+and effective transition machinery
 
-To block identity-based self-exemption, the model declares same relevant standing plus a `NoPrivilegedTruthAccess` premise.
+\[
+\mathcal K_t
+=
+\mathcal K[G_t,R_t,\Gamma_t;B_t^{\mathrm{free}}].
+\]
 
-This yields a disciplined conclusion:
+A mere change
 
-> **certainty alone is not a truth certificate.**
+\[
+\mathcal K_{t+1}\neq\mathcal K_t
+\]
 
-## 3. Interdependence
+is treated only as weak historical dependence.
 
-When convictions imply incompatible exclusive requirements for one shared outcome, there may be no mutually acceptable substantive result.
+The stronger criterion is paid transfer to an unvisited target.
 
-The formalization does not decide which participant is correct or which outcome should prevail. It isolates the need for a procedure when incompatible private models have shared consequences.
+Let
 
-The key separation is:
+\[
+R^+=R^-\cup\{X\},
+\qquad
+B^\pm=B^{\mathrm{gross}}-M(R^\pm).
+\]
 
-```text
-freedom of conviction
-!=
-unreviewable shared authority.
-```
+Then a positive transfer event requires
 
-## 4. Corrective routes
+\[
+\boxed{
+\exists Y\notin\mathcal H_t:
+\mathcal A_T(Y\mid s^+,B^+)
+>
+\mathcal A_T(Y\mid s^-,B^-).
+}
+\]
 
-The correctability layer distinguishes:
+This can fail. Retention may be beneficial, neutral, or burdensome.
 
-```text
-evidence that could correct a state
-from
-evidence that the current procedure admits.
-```
+## 3. Retention firewall
 
-Under the declared source-robust correctability model:
+The release distinguishes retained organizational memory from generic state dependence.
 
-```text
-potentially corrective source
-+ permanent source exclusion
--> failure of source-robust correctability.
-```
+A claimed retained organization should be:
 
-This is a conditional theorem under the stated source-based route definition. It does not prove that every source requires direct access when equivalent information can travel through redundant or independent channels.
+1. endogenous;
+2. slow relative to the event that generated it;
+3. paid for;
+4. causally reused later;
+5. transferable to a later context, task, descendant, episode, or unvisited organization.
 
-## 5. The Learning Constitution
+The purpose is falsifiability: ordinary state dependence does not automatically count as cumulative EbE.
 
-The local constitutional predicate `LearningConstitution.HoldsAt` declares five conditions:
+## 4. Paid hierarchy and repetition
 
-1. **challenge access** for affected, non-excluded participants;
-2. **reopening on recognized grounds for review**;
-3. **standing symmetry** in the basic capacity to challenge shared claims;
-4. **correctability of restrictions** on affected participants;
-5. **appealability of exclusion**.
+The earlier free-parameter scaffold story is replaced by an explicit reuse mechanism.
 
-These clauses are proposed design conditions. Lean does not derive them from pure logic.
+For a module occurring \(n\) times, with inline cost \(c\), reference cost \(r\), and retention burden \(h\),
 
-Given those clauses, Lean proves that affected participants cannot be subject to a **self-sealing restriction**: a restriction that simultaneously removes the ability to challenge the restriction or the procedure's ability to revise it.
+\[
+K_{\mathrm{inline}}=nc,
+\qquad
+K_{\mathrm{retain}}=c+h+nr.
+\]
 
-The formalization also defines reachability through process steps. If the constitution holds initially and every allowed step preserves it, then it holds in every reachable state.
+Retention is strictly beneficial iff
 
-Therefore:
+\[
+\boxed{
+(n-1)c>nr+h.
+}
+\]
 
-> **under the declared preservation assumptions, self-sealing restrictions cannot become reachable.**
+Therefore a purely representational scaffold cannot pay for itself from a single additive occurrence when reference/upkeep costs are nonnegative.
 
-This is the recursive core of v18:
+The repetition-depth theorem now uses a worst-case marginal-improvement argument over admissible dictionaries. If every level clears its declared strict threshold, every global optimum in the stated additive laminar model retains the full chain.
 
-```text
-the correction mechanism
-must itself remain correctable.
-```
+These are sufficient results for the declared model, not universal laws of hierarchy.
 
-## 6. Human-rights translation
+## 5. Emergence remains explicit
 
-The legal paper asks a separate normative question: whether the architecture of correctability should receive explicit protection in human-rights law.
+The release makes the theoretical decision explicit:
 
-It proposes a candidate symmetry:
+> **The centre is retention-driven change of transition machinery; emergence is one important source of candidate organization and can feed back into retention and later accessibility.**
 
-```text
-freedom of conscience:
-    nobody may own my mind
+Candidate Law D preserves two emergence-feedback routes:
 
-procedural corrigibility:
-    nobody's conviction alone should become
-    uncorrectable authority over a shared process
-```
+- an emergent capability can contribute sufficient slack to pay its marginal retention burden;
+- retained emergent organization can become an essential reused parent/constraint that transfers to unvisited organization.
 
-The paper develops a draft **Article X — Right to a Correctable Process**.
+These remain candidate bridges rather than universal theorems.
 
-This is a proposal for legal discussion. It is **not** machine-derived law and is not presented as a statement that existing international human-rights law already contains the proposed general right.
+## 6. Relation to v18 — Learning Constitution
 
-## 7. Accessible parable
+v18 remains a distinct agent/interdependence theorem surface.
 
-`The Elephant and the Agreement` presents the architecture as a story of blind observers encountering different parts of one elephant.
+v19 adds the explicit nesting:
 
-Its central symmetry is:
+\[
+\boxed{
+\text{EbE retained-organization layer}
+\supset
+\text{intelligent-agent network}
+\supset
+\text{Learning Constitution / SCAP specialization}.
+}
+\]
 
-> **Protect the observer, because no collective has direct access to another person's experience.**
+For an intelligent network:
 
-> **Protect the relationship, because no observer has direct access to the whole truth.**
+- nodes are learning agents;
+- edges are channels through which information, evidence, criticism, coordination, and repair can occur;
+- retained procedures can change which corrective transitions remain available.
 
-The parable is explanatory, not part of the theorem surface.
+The Learning Constitution can therefore be represented as retained meta-organization
 
-## 8. Machine verification
+\[
+\boxed{
+R_t^{\mathrm{LC}}
+\longrightarrow
+\mathcal K_t^{\mathrm{LC}}.
+}
+\]
 
-The permanent workflow is:
+It does not determine which substantive conclusion is correct. It preserves classes of corrective transitions.
 
-```text
-.github/workflows/learning-constitution-check.yml
-```
+## 7. Constrained local agency and “forced free will”
 
-It has two independent jobs.
+The older phrase **forced free will** is retained only as an intuitive label.
 
-### Lean
+The preferred formal interpretation is **constrained local agency**.
 
-The workflow pins **Lean 4.34.0**, rejects `sorry` / `admit` placeholders, and compiles:
+Let \(A_i(S)\) be the locally available actions of node \(i\), and \(A_i^{\mathrm{viable}}(S)\) the subset compatible with a declared continuation/viability condition.
 
-```text
-papers/the-room-learning-constitution/TheRoom.lean
-```
+Then
 
-### Standalone papers
+\[
+A_i^{\mathrm{viable}}(S)
+\subseteq
+A_i(S).
+\]
 
-The workflow independently compiles:
+“Free” means that the local action set may contain genuine alternatives.
 
-```text
-the_room_problem.tex
-the_learning_constitution.tex
-procedural_corrigibility_human_rights.tex
-the_elephant_and_the_agreement.tex
-```
+“Forced” means that the consequences of those alternatives are constrained by the relational and substrate system on which continued participation depends.
 
-The checked theorem-to-paper map is in `FORMAL_VERIFICATION.md`.
+No metaphysical theorem about free will is claimed.
 
-## 9. What v18 does not prove
+For v18 this aligns with:
 
-The formal surface does not establish:
+\[
+\boxed{
+\text{freedom of conviction}
+\neq
+\text{unreviewable shared authority}.
+}
+\]
 
-```text
-correctability -> truth
-correctability -> moral obligation
-correctability -> legal right
-same standing -> equal expertise
-procedural standing -> equal evidential weight
-challengeability -> endless debate
-appealability -> endless reopening
-source exclusion -> loss of all correction under redundant channels
-five constitutional clauses -> unique minimal constitution
-machine proof -> empirical validity.
-```
+## 8. Binary correctability as a boundary of graded accessibility
 
-The legal and philosophical steps remain open to criticism, comparison with existing doctrine, empirical testing, and revision.
+The v18 Learning Constitution is mainly qualitative: a required corrective route exists or it does not.
 
-## 10. Relation to v17
+v19 introduces the graded interior.
 
-v17 remains the canonical recursive-organization formal core:
+Let
 
-```text
-retained organization
--> operational reuse
--> changed generability
--> later recursive organization.
-```
+\[
+C_{\mathrm{corr},t}(S,a)
+\]
 
-v18 adds a separate agent/interdependence companion:
+be a declared cost of obtaining an effective correction route, or equivalently use graded accessibility
 
-```text
-fallible partial models
--> incompatible consequential claims
--> corrective procedure
--> restrictions kept correctable
--> recursive preservation of correctability.
-```
+\[
+\mathcal A_T(\mathrm{corr}\mid S,a,B).
+\]
 
-The two surfaces should not be conflated.
+A self-sealing restriction in the v18 sense corresponds, in a cost specialization, to the limiting case
 
-## 11. Review targets
+\[
+C_{\mathrm{corr}}=\infty
+\]
 
-Reviewers are invited to attack:
+or
 
-1. formal validity;
-2. whether `NoPrivilegedTruthAccess` is the right bridge;
-3. whether source-based correctability is too strong relative to channel/reachability formulations;
-4. whether the five constitutional clauses are redundant or incomplete;
-5. whether `ConstitutionPreserved` is substantively useful or merely restates the desired invariant;
-6. stronger prior art in epistemology, deliberative procedure, constitutional law, due process, administrative law, or human-rights doctrine;
-7. the normative bridge from correctability to rights;
-8. conflicts with finality, privacy, safety, association, expertise, disability rights, child rights, and emergency powers.
+\[
+\mathcal A_T(\mathrm{corr})=0.
+\]
 
-A counterexample, narrower theorem, stronger antecedent, better legal doctrine, or cleaner formalization is a successful review result.
+Thus:
+
+> **v18 protects against the zero-accessibility / infinite-viscosity boundary case; v19 also makes finite but costly, slow, fragile, or resource-intensive correction visible.**
+
+This is an interpretation around the v18 theorem surface; it does not alter the v18 Lean result.
+
+## 9. SCAP as paid, corrigible maintenance
+
+SCAP is treated as a candidate retained maintenance protocol for collective intelligence, not as a universal moral law.
+
+Candidate mappings include:
+
+- signal fidelity -> lower information corruption;
+- corrigibility -> preservation of usable correction routes;
+- diversity -> preservation of nonredundant information/candidates;
+- redundancy -> alternative correction paths;
+- repair / conditional forgiveness -> restoration of damaged useful edges;
+- reciprocity / accountability -> return loops that fund maintenance;
+- observability -> early detection of degradation;
+- education -> reproduction of the correction architecture;
+- SCAP corrigibility -> correction of the maintenance protocol itself.
+
+SCAP receives no exemption from paid retention:
+
+\[
+M(R^{\mathrm{SCAP}})>0.
+\]
+
+Its net effect can be beneficial, neutral, burdensome, or lock-in. Its own procedures must remain corrigible.
+
+## 10. Learning verbs and discovery velocity
+
+The learning verbs remain inside-process labels rather than universal causal axioms.
+
+An application-specific bridge
+
+\[
+\Gamma:P_t\rightarrow C_t
+\]
+
+maps learning-maintenance process state to outside accessibility/cost geometry.
+
+Candidate mechanisms can affect:
+
+- opportunity rate \(\lambda\);
+- opportunity wait \(K\);
+- candidate generation \(p_G\);
+- resource feasibility \(p_R\);
+- validation \(p_V\);
+- retention \(p_T\);
+- response lag \(\Delta\);
+- retained gain \(\bar g\) or \(g_{\min}\).
+
+The existing reduced rate ledger is
+
+\[
+v_{\mathrm{ledger}}
+=
+\lambda p_Gp_Rp_Vp_T\bar g.
+\]
+
+Under bounded opportunity wait, bounded validated-response lag, and minimum retained gain, the existing rate certificate has the form
+
+\[
+\boxed{
+v_{\min}
+=
+\frac{g_{\min}}{K+\Delta+1}.
+}
+\]
+
+Thus learning-maintenance processes can affect discovery velocity when a domain-specific causal bridge establishes their effects on these coordinates.
+
+The release does not assert that listening, honesty, openness, repair, forgiveness, or any other named verb necessarily increases learning speed.
+
+## 11. Dynamic Vortex prediction
+
+For the resource specialization
+
+\[
+L_t=I_t-C_t,
+\qquad
+B_t^{\mathrm{explore}}=\beta_t L_t,
+\]
+
+if candidate-generation rate is nondecreasing in exploration budget, then holding external opportunity and allocation fixed,
+
+\[
+\frac{\partial\lambda}{\partial L}\ge0.
+\]
+
+This produces a measurable conditional prediction: greater post-maintenance slack should predict no lower exploratory/reorganizational trial rate until a declared saturation or bottleneck is reached.
+
+## 12. Closest neighbours and novelty boundary
+
+The release explicitly acknowledges overlap with:
+
+- Kauffman's adjacent possible;
+- Longo, Montévil & Kauffman's enablement;
+- Montévil & Mossio's closure of constraints;
+- Busseniers & Bergerot's *Autonomous Change*;
+- evolvability and facilitated variation;
+- adaptive networks;
+- niche construction;
+- open-ended/state-dependent dynamics;
+- modularity and cumulative technological evolution.
+
+No priority claim is made for the idea that what exists changes what can exist next.
+
+The narrower working differentiation is:
+
+\[
+\boxed{
+\text{graded accessibility}
++
+\text{paid retention}
++
+\text{counterfactual transfer to unvisited organization}.
+}
+\]
+
+## 13. Verification
+
+The PR63 research package includes finite checks for:
+
+- repetition-depth threshold and worst-case logic;
+- chain dichotomy;
+- paid transfer accounting.
+
+These checks are sanity/adversarial checks, not proof-assistant verification of the full PR63 theory.
+
+The v18 Learning Constitution retains its independent Lean 4.34.0 workflow and theorem surface.
+
+The broader repository formalization remains separate and machine checked by its existing workflows.
+
+## 14. What v19 does not prove
+
+The release does not establish:
+
+- all systems are literally graphs;
+- all state dependence is EbE retention;
+- retention is always beneficial;
+- paid transfer is universal;
+- all hierarchy comes from repeated reuse;
+- all emergent functions persist;
+- SCAP is uniquely correct;
+- the Learning Constitution is uniquely necessary or sufficient;
+- forced free will is a metaphysical theorem;
+- every learning verb improves discovery velocity;
+- correctability guarantees truth;
+- maximal openness is optimal;
+- legal or moral obligations follow from the retained-organization mathematics;
+- cross-domain structural similarity establishes universal empirical validity.
+
+## 15. Next research target
+
+The central next theorem remains:
+
+> **Under graded accessibility, paid retention, and counterfactual ablation, derive sufficient and/or necessary conditions under which an endogenously retained organization raises the probability or lowers the net cost of reaching at least one organization not previously visited.**
+
+The intelligent-network specialization adds a parallel empirical target:
+
+> **Estimate how retained correction architecture and learning-maintenance processes change graded correction accessibility and validated discovery velocity after their maintenance costs are counted.**
 
 ## Release lineage
 
+- **v19 — Retained Organization and Correctable Learning**
 - **v18 — The Learning Constitution: Correctable Interdependence**
 - **v17 — Recursive Organization Core**
 - **v16 — Full Theory Peer-Review Release**
 - **v15 — Verification Closure**
 
-Use the immutable `v18` tag and record its commit SHA when reviewing this release.
+Use the immutable v19 tag and record its exact commit SHA when reviewing this release.

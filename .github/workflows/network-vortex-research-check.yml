@@ -1,0 +1,28 @@
+name: Network Vortex Research Checks
+
+on:
+  push:
+    branches:
+      - research/network-vortex-theory
+    paths:
+      - "research/network-vortex-theory/**"
+      - ".github/workflows/network-vortex-research-check.yml"
+  pull_request:
+    paths:
+      - "research/network-vortex-theory/**"
+      - ".github/workflows/network-vortex-research-check.yml"
+
+jobs:
+  algebra-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Check repetition depth
+        run: python research/network-vortex-theory/scripts/check_repetition_depth.py
+      - name: Check chain dichotomy
+        run: python research/network-vortex-theory/scripts/check_chain_dichotomy.py
+      - name: Check paid transfer criterion
+        run: python research/network-vortex-theory/scripts/check_transfer_criterion.py
