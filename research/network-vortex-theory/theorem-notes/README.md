@@ -1,7 +1,13 @@
 # Theorem Notes
 
 > **Status:** paper mathematics / candidate theorem program.  
-> These results should be independently checked before being promoted into the formal EbE core.
+> These results are specializations of the current EbE centre, not the centre itself.
+
+The governing interpretation for this file is:
+
+> **Retained organization becomes causal structure for future change.**
+
+The results below study one concrete route: retained organization reduces later construction/representation burden and can therefore alter future accessibility. They should be independently checked before being promoted into the formal EbE core.
 
 ## 1. General retention identity
 
@@ -242,22 +248,30 @@ W_k>m_k.
 
 Thus, for arbitrary prescribed depth \(k\), a full hierarchy can be uniquely optimal even when every lower-level organization has zero direct task utility.
 
-## 7. Network interpretation
+## 7. Interpretation relative to the EbE centre
 
 The hierarchy theorem is **not the ontology of EbE**.
 
-It is a subresult about retained network modules.
+It is a subresult about one way retained relational organization can become causal structure for future change.
 
-\(A_i\) should be interpreted as a stable/reproducible subnetwork that can act as a higher-scale component in \(A_{i+1}\).
+\(A_i\) should be interpreted as stable/reproducible suborganization that can act as a higher-scale component in \(A_{i+1}\).
 
-The term \(H_i\) represents a reduction in future construction/maintenance burden caused by treating that subnetwork as a reusable module.
+The term \(H_i\) represents a reduction in future construction/maintenance burden caused by treating that suborganization as reusable.
+
+In operator language, these results provide a sufficient route for
+
+\[
+\mathcal K[G_{t+1}]\neq\mathcal K[G_t],
+\]
+
+because the retained repertoire changes the costs/routes available to later construction.
 
 ## 8. Next theorem
 
-The current hierarchy is pre-specified.
+The current hierarchy is pre-specified and cost-specialized.
 
-The next target is stronger:
+The next target should move one level closer to the EbE centre:
 
-> Given a recurrent distribution of network constructions, derive sufficient conditions under which an optimal retained repertoire discovers recurrent subgraphs and necessarily contains nested reusable modules.
+> Given relational organization, a generative transition process, differential retention, and finite constraints, derive sufficient conditions under which retained reorganization necessarily changes the later transition operator or accessibility kernel.
 
-That theorem should start from network structure, not from a pre-given chain.
+A follow-up theorem can then ask when recurrent substructure makes the changed operator favor reusable coarse-grained modules and nested hierarchy.
