@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\usepackage[backend=biber,style=authoryear,natbib=true,maxcitenames=2,maxbibnames=20]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+
+\newcommand{\V}{\mathcal V}
+\newcommand{\D}{\mathcal D}
+\newcommand{\A}{\mathcal A}
+\newcommand{\Mvec}{\mathbf M}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\claimstatus}[1]{\textsc{#1}}
+
+\title{\textbf{From Distributed Control to Distributed Maintenance}\\
+\large Boundary Conditions for Viability in Decentralized Systems}
+\author{Albert Jan van Hoek}
+\date{Draft --- September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Many systems persist without a central controller. Cells maintain physiological conditions through distributed regulation; fungal networks remodel transport pathways; ecological networks preserve functions through interacting populations; and engineered protocols rely on distributed participants to detect and correct failure. These systems differ radically in substrate, yet they share a problem: the processes that maintain collective viability are themselves local, fallible, resource-dependent, and embedded in the system they regulate.
+
+This paper develops a cross-substrate framework for analysing such \emph{distributed maintenance}. The framework does not propose a new theory of feedback control, viability, organizational closure, or biological regulation. Instead, it synthesizes a sequence of boundary conditions that become visible when local control is distinguished from system-level continuation. We show why several apparently natural inferences fail: locally selected control need not be sufficient for viability; persistence need not demonstrate present self-maintenance; participant presence need not imply positive contribution; identical present states can conceal different corrective capacities; and a process can be reinforced even when the signal driving its reinforcement has become decoupled from the function whose continuation matters. In systems with several continuation requirements, contribution is naturally vector-valued and need not possess a weight-independent global sign.
+
+We formalize these observations using a declared viability region, disturbance class, distributed maintenance architecture, and multiple admissibility constraints. This yields a conservative interpretation of an ``ought'': given a dynamical model and a stipulated continuation criterion, parameters or actions must remain in an admissible region if that criterion is to continue. The logical sequence is therefore \emph{model $\rightarrow$ viability-conditioned requirement $\rightarrow$ observation $\rightarrow$ practical response}, rather than an attempt to derive categorical norms from persistence.
+
+JAM/ELVES-style distributed verification and adaptive fungal transport are used as contrasting worked examples. Their value lies not in demonstrating identical mechanisms, but in identifying which descriptions survive large changes of substrate. The resulting framework treats distributed maintenance as a network of processes linking viability-relevant function, informative coupling, corrective action, renewal, independent capacity, and revision. It generates a set of empirical tests for distinguishing merely persistent systems from systems whose current organization is actively maintaining the conditions of future viability.
+\end{abstract}
+
+\input{sections/01_foundations.tex}
+\input{sections/02_boundary_conditions.tex}
+\input{sections/03_architecture_and_examples.tex}
+\input{sections/04_requirements_and_tests.tex}
+\input{sections/05_discussion_and_conclusion.tex}
+
+\printbibliography
+
+\end{document}
