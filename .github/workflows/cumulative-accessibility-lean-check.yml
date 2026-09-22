@@ -55,6 +55,7 @@ jobs:
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.PaidRetentionTransfer \
             CumulativeAccessibility.PaidReuseHierarchy \
+            CumulativeAccessibility.RepetitionDepth \
             CumulativeAccessibility.EmergentPaidTransfer \
             CumulativeAccessibility.V17Compatibility \
             CumulativeAccessibility.LearningConstitutionSpecialization \
@@ -89,6 +90,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidRetentionTransfer.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidReuseHierarchy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RepetitionDepth.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergentPaidTransfer.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/V17Compatibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningConstitutionSpecialization.lean
