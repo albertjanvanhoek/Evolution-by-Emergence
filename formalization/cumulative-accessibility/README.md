@@ -136,6 +136,69 @@ The earlier same-time predicate `W` remains exactly the `Δ = 0` special case. T
 
 This supporting resource chain is conditional mathematics. It is **not** the v17 recursive-emergence master theorem, and it does not claim that persistence or resource slack automatically creates a validated recursive successor.
 
+
+## Candidate universal theorem layer
+
+The post-v19 branch now separates the paid-transfer instrument from three
+candidate substrate-agnostic consequences.
+
+### 1. Transition machinery induces accessibility
+
+`TransitionAccessibility.lean` defines a weighted transition kernel and derives
+finite-horizon budget accessibility from actual kernel-generated routes.
+
+The central theorem is:
+
+[
+mathcal K^+ preceq mathcal K^-
+quadLongrightarrowquad
+mathcal A_T^{mathcal K^-}(B)
+subseteq
+mathcal A_T^{mathcal K^+}(B),
+]
+
+where dominance means every old transition remains available and no old
+transition becomes more costly.
+
+Maintenance is then subtracted from the same gross budget. A regression theorem
+proves that if retained and ablated organization induce the same kernel while
+retention costs at least as much, retention cannot create a paid opening.
+
+### 2. Emergent assembly barrier
+
+`EmergentAssemblyBarrier.lean` gives strict compositional emergence an actual
+role. If whole (X) realizes target function (phi), no proper
+subconfiguration does, target-specific benefit is zero before (phi) is
+realized, and retention has positive upkeep, then every proper intermediate has
+negative target-financed net value.
+
+Hence a gradual retained path cannot be financed by the future emergent
+function alone. If such an intermediate remains viable, Lean proves that some
+strictly positive auxiliary support is required. This can represent another
+function, reuse/exaptation, subsidy/drift, or another application-specific
+source.
+
+### 3. Bounded-memory generative leverage
+
+`GenerativeLeverage.lean` operationalizes bounded reuse using an injective
+encoding of accessible targets by one retained unit and one of at most (d)
+support slots.
+
+It proves
+
+[
+|mathcal A| le |R|d.
+]
+
+Therefore a uniform retained-cardinality bound (N) and a uniform per-unit
+reuse bound (d) rule out unbounded accessible repertoire. If accessibility
+exceeds (Nd), then at least one of those restrictions fails: retained
+repertoire grows, per-unit leverage grows, or accessibility depends on
+compositional support that cannot be reduced to one retained unit/slot pair.
+
+These are candidate general constraints. They do not yet establish empirical
+universality across biological, neural, linguistic, and technological systems.
+
 ## Main modules
 
 ### Canonical v17 recursive-emergence surface
