@@ -403,6 +403,72 @@ theorem cumulativePaidTransfer_gain_exceeds_upkeep_penalty
     Retain Lose A M T base x y
     h.budgetMonotone h.paid h.transfer
 
+/-- Regression guard for probe P1: a full cumulative paid-transfer
+certificate cannot compare identical retained repertoires, because its positive
+marginal maintenance burden would collapse to an impossible strict
+self-inequality. -/
+theorem cumulativePaidTransfer_retained_arms_differ
+    (Endo : Endogenous X)
+    (Slow : SlowRetained X)
+    (Retain : RetainItem R X)
+    (Lose : LoseItem R X)
+    (x : X)
+    (Visited : Set Target)
+    (A : Accessibility G R Γ Target)
+    (M : Maintenance R)
+    (T : ℕ)
+    (base : State G R Γ)
+    (y : Target)
+    (h :
+      CumulativePaidTransferEvent
+        Endo Slow Retain Lose x
+        Visited A M T base y) :
+    Retain base.retained x ≠ Lose base.retained x := by
+  intro hSame
+  have hPaid := h.paid
+  unfold StrictlyPaidItem at hPaid
+  rw [hSame] at hPaid
+  exact (lt_irrefl _ hPaid)
+
+/-- Retention has no structural effect at a target when, at every matched free
+budget, retaining versus ablating x leaves accessibility unchanged. -/
+def RetentionInsensitiveAt
+    (Retain : RetainItem R X)
+    (Lose : LoseItem R X)
+    (A : Accessibility G R Γ Target)
+    (T : ℕ)
+    (base : State G R Γ)
+    (x : X)
+    (y : Target) : Prop :=
+  ∀ b,
+    A T base.active (Retain base.retained x) base.context b y =
+      A T base.active (Lose base.retained x) base.context b y
+
+/-- Regression guard for probe P2: with monotone accessibility, paying more
+cannot by itself create positive transfer. If retaining x has no structural
+effect at matched budget, strict upkeep makes positive transfer impossible. -/
+theorem no_positiveTransfer_from_upkeep_penalty_alone
+    (Retain : RetainItem R X)
+    (Lose : LoseItem R X)
+    (A : Accessibility G R Γ Target)
+    (M : Maintenance R)
+    (T : ℕ)
+    (base : State G R Γ)
+    (x : X)
+    (y : Target)
+    (hMono : BudgetMonotone A)
+    (hPaid : StrictlyPaidItem Retain Lose M base x)
+    (hInsensitive : RetentionInsensitiveAt Retain Lose A T base x y) :
+    ¬ PositiveTransferForItem Retain Lose A M T base x y := by
+  intro hTransfer
+  have hAdv :=
+    positivePaidTransfer_implies_sameBudget_retention_advantage
+      Retain Lose A M T base x y hMono hPaid hTransfer
+  have hEq :=
+    hInsensitive (freeBudget M (retainedArm Retain base x))
+  rw [hEq] at hAdv
+  exact (lt_irrefl _ hAdv)
+
 /-! ## Weak state dependence is not the cumulative criterion -/
 
 /-- The effective transition relation differs on at least one candidate. This is
@@ -447,6 +513,8 @@ theorem transition_change_without_paid_transfer :
 #print axioms cumulativePaidTransfer_has_unvisited_positive_transfer
 #print axioms positivePaidTransfer_implies_sameBudget_retention_advantage
 #print axioms cumulativePaidTransfer_gain_exceeds_upkeep_penalty
+#print axioms cumulativePaidTransfer_retained_arms_differ
+#print axioms no_positiveTransfer_from_upkeep_penalty_alone
 #print axioms transition_change_without_paid_transfer
 
 end RetainedOrganizationCore
