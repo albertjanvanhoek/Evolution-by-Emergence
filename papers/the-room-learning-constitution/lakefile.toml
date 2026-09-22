@@ -1,0 +1,6 @@
+name = "learning_constitution"
+version = "0.1.0"
+defaultTargets = ["TheRoom"]
+
+[[lean_lib]]
+name = "TheRoom"

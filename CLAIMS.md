@@ -11,7 +11,26 @@ Machine-readable-oriented claim ledger for agentic evaluation.
 - **evaluation_prompt**: reusable prompt skeleton for autonomous evaluators
 
 
-## Current theory core ledger — September 2026
+## Current v20 peer-review claim ledger
+
+The canonical candidate theory is [THEORY_CORE_V20.md](THEORY_CORE_V20.md). Exact theorem direction and proof boundaries are in [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md). Universality remains a falsifiable research hypothesis, not a machine-checked conclusion.
+
+| claim_id | claim | source_files | evidence_type | falsification / review path |
+|---|---|---|---|---|
+| CLM_EBE_V20_001 | Retained organization can alter finite-horizon accessibility through changed weighted transition machinery after its maintenance burden is paid. | `RetainedOrganizationCore.lean`; `TransitionAccessibility.lean` | Machine-checked conditional architecture | Find a theorem defect, a semantic mismatch, or a domain where the retain/ablate mapping is arbitrary. |
+| CLM_EBE_V20_002 | With non-decreasing upkeep, positive paid opening requires a genuine retained-kernel advantage in the sense that the ablated kernel cannot dominate the retained kernel. | `TransitionAccessibility.lean` | Machine-checked necessary condition | Construct positive paid opening under the exact premises while ablated-kernel dominance still holds. |
+| CLM_EBE_V20_003 | A retained route saving that exceeds marginal upkeep relative to a lower bound on ablated routes is sufficient for a common-gross-budget paid-opening window. | `TransitionAccessibility.lean` | Machine-checked sufficient condition | Construct a counterexample under the exact route, lower-bound, and margin premises. |
+| CLM_EBE_V20_004 | Under strict compositional emergence and target benefit only after realization, a positively costly proper intermediate cannot be financed by that future emergent function alone; viable intermediates require auxiliary support. | `EmergentAssemblyBarrier.lean`; `TransitionMediatedEmergence.lean` | Machine-checked conditional barrier + countermodels | Challenge the benefit semantics, emergence decomposition, upkeep premise, or exhibit a formal counterexample under the exact specialization. |
+| CLM_EBE_V20_005 | Under bounded single-unit reuse, accessible repertoire satisfies `|A| <= |R| d`; with minimum maintenance mu and budget B, `|A| mu <= B d`. | `GenerativeLeverage.lean` | Machine-checked structural/resource bound | Break the bound under the exact encoding or show the encoding is not explanatory in target domains. |
+| CLM_EBE_V20_006 | If every candidate retained unit costs at least mu > 0 and `B < |C| mu`, full retention is infeasible. | `GenerativeLeverage.lean` | Machine-checked no-go | Produce a counterexample under the exact cost and budget premises. |
+| CLM_EBE_V20_007 | The combined architecture motivates a nested learning-like interpretation across cellular, neural, individual, cultural, institutional, and technological scales. | `THEORY_CORE_V20.md`; `UNIVERSAL_LAW_CANDIDATE.md` | Scientific interpretation / empirical programme | Find a bona fide cumulative-evolution domain that cannot instantiate the interfaces non-arbitrarily, or identify an equal/stronger antecedent. |
+
+### V20 non-claims
+
+v20 does not infer function from persistence, improvement from novelty, truth from validation, progress from selection, literal cognition from learning-like dynamics, empirical universality from cross-domain analogy, strong unprestatable ontology creation from fixed ambient Lean types, or normative obligation from the descriptive mathematics.
+
+## Earlier integrated claim ledger — pre-v20
+
 
 The canonical candidate formal statement is [THEORY_CORE_V17.md](THEORY_CORE_V17.md). [THEORY.md](THEORY.md) is the broader synthesis around that core. Exact theorem names, formal status, and proof boundaries are in [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md).
 

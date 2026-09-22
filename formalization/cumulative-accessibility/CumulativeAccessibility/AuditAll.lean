@@ -48,6 +48,27 @@ import CumulativeAccessibility.PolicyImprovement
 import CumulativeAccessibility.PolicyLearning
 import CumulativeAccessibility.RateRegret
 
+import CumulativeAccessibility.PaidRetentionTransfer
+
+import CumulativeAccessibility.ConstrainedAgency
+
+import CumulativeAccessibility.ConstitutionAccessibility
+
+import CumulativeAccessibility.PaidLearningMaintenance
+
+import CumulativeAccessibility.PaidReuseHierarchy
+import CumulativeAccessibility.RepetitionDepth
+
+import CumulativeAccessibility.EmergentPaidTransfer
+
+import CumulativeAccessibility.RetainedOrganizationCore
+import CumulativeAccessibility.GenerativeLeverage
+import CumulativeAccessibility.EmergentAssemblyBarrier
+import CumulativeAccessibility.TransitionMediatedEmergence
+import CumulativeAccessibility.TransitionAccessibility
+import CumulativeAccessibility.V17Compatibility
+import CumulativeAccessibility.LearningConstitutionSpecialization
+
 /-!
 # Aggregate package audit target
 

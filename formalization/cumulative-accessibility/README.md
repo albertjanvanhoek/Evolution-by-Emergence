@@ -1,4 +1,125 @@
-# Cumulative Accessibility Lean Verification
+# Cumulative Accessibility
+
+> **v20 peer-review surface:** this package contains the canonical machine-checked
+> retained-organization, transition-accessibility, emergence-barrier, resource,
+> and generative-leverage results offered for independent review.
+
+## Retained-organization verification spine
+
+The current substrate-agnostic centre is expressed as
+
+[
+S_t=(G_t,R_t,Gamma_t,B_t^{\mathrm{gross}}),
+qquad
+B_t^{\mathrm{free}}=B_t^{\mathrm{gross}}-M(R_t),
+]
+
+with abstract transition machinery (mathcal K), graded finite-horizon
+accessibility (mathcal A_T), explicit retain/ablate counterfactuals for one
+retained item (X), paid maintenance, later ablation-based reuse, and transfer
+to an unvisited target.
+
+### Resource-constrained recursive loop
+
+The retained-organization core should be read as a recursive loop rather than
+only as the one-way relation `R -> K -> A`. Retained history has two
+simultaneous effects:
+
+1. **causal leverage:** retained organization can change transition machinery
+   and therefore future accessibility;
+2. **maintenance burden:** retained organization consumes part of the resource
+   budget needed for later maintenance, response, search, and change.
+
+A compact schematic is:
+
+```text
+generated organization
+        ↓
+budget-constrained retention
+        ↓
+R_t ─────────────→ K_t ─────────────→ A_t
+ │                                      │
+ └─ maintenance M(R_t)                  │
+        ↓                               │
+B_free = B_gross - M(R_t) ─────────────┘
+        ↑
+        └──────── next retained organization ────────
+```
+
+The finite-budget theorem in `GenerativeLeverage.lean` makes one implication
+explicit. If every member of a candidate retained set costs at least
+`mu > 0` to maintain and
+
+[
+B < |C| mu,
+]
+
+then the whole candidate set cannot satisfy the maintenance budget. Finite
+resources therefore force a **retention trade-off**. The theorem deliberately
+does not specify which structure is forgotten, replaced, compressed, made
+cheaper, or retained; those mechanisms remain application-specific.
+
+This recursive architecture motivates a scale-free **learning-like** reading.
+At different nested levels, prior interaction can leave retained organization
+that alters subsequent transition possibilities while finite resources prevent
+indiscriminate retention. Neural learning is one instance, but the universal
+claim under investigation is not that cells, organisms, people, and societies
+all literally learn in the same psychological sense. It is that they may
+instantiate the same abstract history-retention-accessibility dynamic. Whether
+that mapping is non-arbitrary is an empirical challenge for each domain.
+
+The current Lean files include:
+
+- `RetainedOrganizationCore.lean` — item-specific retained/ablated arms,
+  positive marginal upkeep, monotone budget semantics, causal reuse, paid
+  transfer to unvisited targets, and regression guards against two false
+  certificates found during adversarial review;
+- `PaidRetentionTransfer.lean` — lower-is-better cost specialization and
+  single-entry upkeep bookkeeping;
+- `PaidReuseHierarchy.lean` — one-level repetition threshold and single-use
+  no-go;
+- `RepetitionDepth.lean` — nonseparable arbitrary-objective RD0–RD2 theorem:
+  if actual marginal objective changes obey the declared repeated-use formula
+  and worst-case structural bounds, any global minimizer retains every level;
+- `EmergentPaidTransfer.lean` — optional Law-D feedback in which the same
+  retained item is also the configuration tested for compositional emergence;
+- `TransitionAccessibility.lean` — canonical publication-facing transition semantics: kernel-induced accessibility, necessary kernel advantage for paid opening, quantitative route-saving sufficiency, and the bridge back into the abstract core accessibility interface;
+- `EmergentAssemblyBarrier.lean` — abstract emergence barrier and auxiliary-support theorem;
+- `TransitionMediatedEmergence.lean` — mechanistic specialization deriving the emergence barrier through transition machinery, with non-vacuity and drop-one-premise countermodels;
+- `GenerativeLeverage.lean` — bounded-reuse and resource-normalized leverage constraints, including a finite-budget no-go for retaining an overfull positive-cost candidate set;
+- `V17Compatibility.lean` — reuses compatible v17 lemmas without making v17
+  recurrence/successor premises the new core;
+- `LearningConstitutionSpecialization.lean` — downstream intelligent-network
+  specialization only.
+
+### Compression / reuse test
+
+A retained representational scaffold is not explanatory merely because a free
+"saving" parameter is assigned to it. A mechanism must produce a paid
+advantage. Repetition/shared use supplies one checked mechanism:
+
+[
+(n-1)c>nr+h.
+]
+
+For the deeper theorem, the global objective is no longer assumed separable:
+the actual marginal effect of adding an omitted module may depend on the rest of
+the retained dictionary. The theorem still requires an application to justify
+the structural lower bounds on exposed occurrence count and inline cost.
+
+### Pre-statability boundary
+
+The current formalization uses fixed ambient Lean types for states,
+organizations, candidates, and targets. It can represent an expanding set of
+visited/accessible values inside those types. It does **not** prove strong
+creation of previously unstatable observables, type systems, or ontologies in
+the Kauffman/Longo sense.
+
+Claims about vocabulary emergence or changing phase spaces must therefore be
+phrased as representational/model extensions unless a stronger formal layer is
+introduced.
+
+Lean Verification
 
 Machine-checked formalization for the cumulative-accessibility and formal-core results in **Evolution by Emergence**.
 
@@ -67,6 +188,105 @@ The external gradient remains a boundary condition; the **usable response budget
 The earlier same-time predicate `W` remains exactly the `Δ = 0` special case. The exact shared-budget cumulative-accessibility margin `M=B/c*-1` is also connected to the response interface as a separate mechanism-level specialization; it is not identified with physical free-energy slack.
 
 This supporting resource chain is conditional mathematics. It is **not** the v17 recursive-emergence master theorem, and it does not claim that persistence or resource slack automatically creates a validated recursive successor.
+
+
+## Candidate universal theorem layer
+
+See [UNIVERSAL_LAW_CANDIDATE.md](UNIVERSAL_LAW_CANDIDATE.md) for the current
+scientific interpretation, prior-art guardrails, failure modes, and criteria
+for eventually using the word "universal".
+
+
+The post-v19 branch now separates the paid-transfer instrument from three
+candidate substrate-agnostic consequences.
+
+### 1. Transition machinery induces accessibility
+
+`TransitionAccessibility.lean` defines a weighted transition kernel and derives
+finite-horizon budget accessibility from actual kernel-generated routes.
+
+The central theorem is:
+
+[
+mathcal K^+ preceq mathcal K^-
+quadLongrightarrowquad
+mathcal A_T^{mathcal K^-}(B)
+subseteq
+mathcal A_T^{mathcal K^+}(B),
+]
+
+where dominance means every old transition remains available and no old
+transition becomes more costly.
+
+Maintenance is then subtracted from the same gross budget. A regression theorem
+proves that if retained and ablated organization induce the same kernel while
+retention costs at least as much, retention cannot create a paid opening.
+
+A fully constructive retained-kernel witness is included as well: without the
+retained item the toy kernel has no route to the target; retaining the item adds
+a one-step route of cost one, itself costs one unit to maintain, and at gross
+budget two Lean derives a positive item-specific paid opening.
+
+### 2. Emergent assembly barrier
+
+`EmergentAssemblyBarrier.lean` gives strict compositional emergence an actual
+role. If whole (X) realizes target function (phi), no proper
+subconfiguration does, target-specific benefit is zero before (phi) is
+realized, and retention has positive upkeep, then every proper intermediate has
+negative target-financed net value.
+
+Hence a gradual retained path cannot be financed by the future emergent
+function alone. If such an intermediate remains viable, Lean proves that some
+strictly positive auxiliary support is required. This can represent another
+function, reuse/exaptation, subsidy/drift, or another application-specific
+source.
+
+### 2b. Transition-mediated emergence specialization
+
+`TransitionMediatedEmergence.lean` connects strict compositional emergence to
+the same transition-induced accessibility semantics. If the emergent function
+is what opens a transition, a proper subconfiguration does not receive that
+function-mediated transition. With non-decreasing upkeep relative to the
+ablated arm, it therefore cannot show positive paid opening through that
+mechanism.
+
+The module includes permanent QC witnesses: a whole emergent configuration that
+does transfer, a non-emergent single-part countermodel, a negative-upkeep
+countermodel, and a stepping-stone model in which a proper part pays for itself
+through a different transition.
+
+### 3. Bounded-memory generative leverage
+
+`GenerativeLeverage.lean` operationalizes bounded reuse using an injective
+encoding of accessible targets by one retained unit and one of at most (d)
+support slots.
+
+It proves
+
+[
+|mathcal A| le |R|d.
+]
+
+Therefore a uniform retained-cardinality bound (N) and a uniform per-unit
+reuse bound (d) rule out unbounded accessible repertoire. If accessibility
+exceeds (Nd), then at least one of those restrictions fails: retained
+repertoire grows, per-unit leverage grows, or accessibility depends on
+compositional support that cannot be reduced to one retained unit/slot pair.
+
+The same resource accounting now also gives a direct retention constraint. If
+every member of a candidate retained set C costs at least mu > 0 and
+
+[
+B < |C| mu,
+]
+
+then Lean proves that retaining all of C is budget-infeasible. This is the
+minimal formal sense in which finite resources make retention selective: the
+constraint forces a trade-off, but it does not impose a universal optimization
+rule or identify which candidate should persist.
+
+These are candidate general constraints. They do not yet establish empirical
+universality across biological, neural, linguistic, and technological systems.
 
 ## Main modules
 

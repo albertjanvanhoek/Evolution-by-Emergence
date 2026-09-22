@@ -5,7 +5,8 @@ This directory contains the machine-checked components that support the current
 
 Start with:
 
-- [../THEORY_CORE_V17.md](../THEORY_CORE_V17.md) — candidate self-standing formal theory.
+- [../THEORY_CORE_V20.md](../THEORY_CORE_V20.md) — current peer-review theory core.
+- [../PEER_REVIEW_PROMPT.md](../PEER_REVIEW_PROMPT.md) — adversarial review protocol.
 - [../FORMAL_THEORY_ENDPOINT.md](../FORMAL_THEORY_ENDPOINT.md) — review-readiness target.
 - [../FORMAL_THEORY_MAP.md](../FORMAL_THEORY_MAP.md) — claim-to-theorem map.
 - [../THEORY.md](../THEORY.md) — broader synthesis around the formal core.
@@ -18,7 +19,7 @@ Start with:
 | \`affinity-layer\` | encounter/association layer before productive coupling | \`AffinityLayer.lean\` |
 | \`collective-alignment\` | recurrent maintenance, correction, protocol inheritance, sufficient alignment | \`CollectiveAlignment.lean\`, \`MaintenanceReproduction.lean\`, \`MaintenanceDynamics.lean\` |
 | \`persistence-drift\` | persistence/function separation, regulation, implementation competition, slack/search drift, return-path effects | \`PersistenceDrift.lean\`, \`FunctionalCompetition.lean\`, \`ReturnPathPrice.lean\` |
-| `cumulative-accessibility` | retention, generative closure, recursive emergence, active/history separation, finite moving envelopes, endogenous response budget, and dynamic vortex | `CumulativeAccessibility/EvolutionByEmergenceV17Core.lean`, `ConstructiveRecursiveEmergence.lean`, `ActiveHistory.lean`, `DynamicVortex.lean` |
+| `cumulative-accessibility` | v20 retained-organization core, transition-induced accessibility, emergence barrier, bounded generative leverage, recursive support layers | `CumulativeAccessibility/RetainedOrganizationCore.lean`, `TransitionAccessibility.lean`, `EmergentAssemblyBarrier.lean`, `TransitionMediatedEmergence.lean`, `GenerativeLeverage.lean` |
 | \`../verification/organizational-depth\` | finite-time/fixed-resolution physical boundary and maintenance-debt end-to-end model | \`OrganizationalDepth.lean\`, \`OperationalBridge.lean\`, \`PackingDepth.lean\`, \`MaintenanceDynamicsEndToEnd.lean\` |
 
 ## Evidence hierarchy
@@ -78,7 +79,7 @@ lake env lean EquilibriumExposure.lean
 lake env lean FunctionalThresholds.lean
 \`\`\`
 
-### Cumulative accessibility / v17 recursive core / dynamic vortex
+### Cumulative accessibility / v20 peer-review core
 
 \`\`\`bash
 cd formalization/cumulative-accessibility
@@ -133,11 +134,16 @@ and paper-specific reproducibility checks.
 
 ## Where to review first
 
-For the candidate v17 formal theory:
+For the v20 peer-review theory:
 
-1. `CumulativeAccessibility/EvolutionByEmergenceV17Core.lean` — canonical operational, promotion-driven, constructive-projection, historical, and finite-boundary surface.
-2. `CumulativeAccessibility/ConstructiveRecursiveEmergence.lean` — configuration-level construction bridge.
-3. `CumulativeAccessibility/ActiveHistory.lean` — active versus cumulative-history semantics and turnover witness.
+1. `CumulativeAccessibility/RetainedOrganizationCore.lean` — matched retain/ablate paid-transfer core.
+2. `CumulativeAccessibility/TransitionAccessibility.lean` — weighted kernels, induced accessibility, necessary kernel advantage, sufficient route-saving condition, and core bridge.
+3. `CumulativeAccessibility/EmergentAssemblyBarrier.lean` — abstract emergence financing barrier.
+4. `CumulativeAccessibility/TransitionMediatedEmergence.lean` — mechanistic emergence specialization and countermodels.
+5. `CumulativeAccessibility/GenerativeLeverage.lean` — bounded reuse, resource-normalized leverage, and finite-budget retention no-go.
+6. `CumulativeAccessibility/VerificationSurface.lean` — explicit advertised-result axiom audit.
+
+The v17 recursive-emergence modules remain historical/supporting layers and compatibility libraries.
 4. `CumulativeAccessibility/LocalEmergenceReproduction.lean` — moving-envelope correction and calibrated local certificate.
 5. `CumulativeAccessibility/EndogenousEnvelopePromotion.lean` — essential-parent, finite-admission, promotion-driven successor route.
 6. `CumulativeAccessibility/VerificationSurface.lean` — advertised axiom audit.
