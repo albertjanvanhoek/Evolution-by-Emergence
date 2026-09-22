@@ -61,6 +61,7 @@ import CumulativeAccessibility.PaidReuseHierarchy
 import CumulativeAccessibility.EmergentPaidTransfer
 
 import CumulativeAccessibility.RetainedOrganizationCore
+import CumulativeAccessibility.V17Compatibility
 import CumulativeAccessibility.LearningConstitutionSpecialization
 
 /-!
