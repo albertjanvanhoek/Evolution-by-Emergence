@@ -93,7 +93,7 @@ def DictionaryObjective
     (base : ℝ)
     (gain : ι → ℝ)
     (D : Finset ι) : ℝ :=
-  base - ∑ i in D, gain i
+  base - ∑ i ∈ D, gain i
 
 /-- Adding an omitted positive-gain module strictly lowers the dictionary
 objective. -/
