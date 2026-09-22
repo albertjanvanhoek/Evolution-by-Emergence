@@ -23,13 +23,29 @@ s^+=\operatorname{Retain}(s,X),
 s^-=\operatorname{Lose}(s,X).
 \]
 
-Let
+Let \(R^-\) be the baseline retained repertoire and \(R^+=R^-\cup\{X\}\). Let
 
 \[
-\mu_s(X)\ge0
+M(R)\ge0
 \]
 
-be the declared cost/burden of keeping or reconstructibly preserving \(X\).
+be the total declared keeping/storage/reconstruction burden, and define the marginal burden
+
+\[
+\boxed{
+\mu_R(X)=M(R^+)-M(R^-)\ge0.
+}
+\tag{T0}
+\]
+
+Both counterfactuals must start from the same gross resource budget \(B^{\mathrm{gross}}\). Their free budgets are therefore
+
+\[
+B^- = B^{\mathrm{gross}}-M(R^-),
+\qquad
+B^+ = B^{\mathrm{gross}}-M(R^+)
+     = B^- - \mu_R(X).
+\]
 
 Let \(\mathcal H_t\) denote the set of organizations already visited by time \(t\).
 
@@ -39,11 +55,21 @@ For a graded finite-horizon accessibility measure \(\mathcal A_T\), define the t
 \boxed{
 \Delta^{\mathrm{tr}}_{T}(X;Y)
 =
-\mathcal A_T\!\left(Y\mid s^+,B-\mu_s(X)\right)
+\mathcal A_T\!\left(Y\mid s^+,B^+\right)
 -
-\mathcal A_T\!\left(Y\mid s^-,B\right).
+\mathcal A_T\!\left(Y\mid s^-,B^-\right).
 }
 \tag{T1}
+\]
+
+Equivalently, if \(B\) denotes the free budget after the upkeep common to both arms, then
+
+\[
+\Delta^{\mathrm{tr}}_{T}(X;Y)
+=
+\mathcal A_T\!\left(Y\mid s^+,B-\mu_R(X)\right)
+-
+\mathcal A_T\!\left(Y\mid s^-,B\right).
 \]
 
 Retention transfers when
@@ -62,7 +88,7 @@ A state can change its immediate successor without generating transfer. The tran
 
 ### Cost specialization
 
-If accessibility is represented by a lower-is-better cost \(K_s(Y)\), define
+If accessibility is represented by a lower-is-better route/use cost, let \(K_{s^+}^{\mathrm{run}}(Y)\) explicitly **exclude** the keeping cost already represented by \(\mu_R(X)\). Define
 
 \[
 \boxed{
@@ -70,7 +96,7 @@ If accessibility is represented by a lower-is-better cost \(K_s(Y)\), define
 =
 K_{s^-}(Y)
 -
-\left[\mu_s(X)+K_{s^+}^{\mathrm{run}}(Y)\right].
+\left[\mu_R(X)+K_{s^+}^{\mathrm{run}}(Y)\right].
 }
 \tag{T3}
 \]
@@ -79,17 +105,20 @@ Positive transfer requires
 
 \[
 \boxed{
-\mu_s(X)+K_{s^+}^{\mathrm{run}}(Y)
+\mu_R(X)+K_{s^+}^{\mathrm{run}}(Y)
 <
 K_{s^-}(Y).
 }
 \tag{T4}
 \]
 
+This is the same ledger as the accessibility form, not an additional charge. If a domain-specific \(K\) already includes retention/upkeep, \(\mu_R(X)\) must not be added again.
+
 This can fail. Retention can be neutral or burdensome.
 
 ---
 
+## 2. Retention is not ordinary state dependence
 ## 2. Retention is not ordinary state dependence
 
 For the current programme, call \(X\) a **retained organizational memory** only when the application identifies all five properties below.
@@ -338,14 +367,43 @@ To make the arbitrary-depth claim robust, use a laminar nested construction.
 
 For \(i=1,\ldots,k-1\), the retained definition of \(A_{i+1}\) contains \(n_i\) occurrences of \(A_i\). The top organization \(A_k\) occurs \(n_k\) times in the external workload.
 
-For each level \(i\), let:
+For any retained dictionary \(D\) that does not yet contain \(A_i\), let:
 
-- \(c_i^{\min}>0\) be a lower bound on the cost of inlining \(A_i\) across all allowed lower-level dictionary choices;
-- \(r_i\ge0\) be reference cost;
-- \(h_i\ge0\) be definition/retention/upkeep burden;
-- \(c_i^{\min}>r_i\).
+- \(N_i(D)\): the number of occurrences of \(A_i\) that must be represented before adding \(A_i\);
+- \(c_i(D)\): the inline/reconstruction cost per occurrence under the lower-level choices in \(D\);
+- \(r_i\ge0\): reference cost;
+- \(h_i\ge0\): definition/retention/upkeep burden.
 
-Assume additive laminar accounting and no alternative substitution that bypasses the declared occurrence structure.
+Assume additive laminar accounting, no alternative substitution that bypasses the declared occurrence structure, and bounds
+
+\[
+N_i(D)\ge n_i\ge2,
+\qquad
+c_i(D)\ge c_i^{\min}>r_i
+\]
+
+for every admissible \(D\) not containing \(A_i\).
+
+Adding \(A_i\) changes the declared objective by
+
+\[
+\begin{aligned}
+F(D\cup\{A_i\})-F(D)
+&=
+c_i(D)+h_i+N_i(D)r_i-N_i(D)c_i(D)\\
+&=
+h_i+N_i(D)r_i-(N_i(D)-1)c_i(D).
+\end{aligned}
+\tag{RD0}
+\]
+
+Now define the saving function
+
+\[
+g_i(N,c)=(N-1)c-Nr_i-h_i.
+\]
+
+For \(c>r_i\), \(g_i\) is increasing in \(N\); for \(N\ge2\), it is increasing in \(c\). Therefore its worst admissible case is \((N,c)=(n_i,c_i^{\min})\).
 
 If, for every level,
 
@@ -358,11 +416,9 @@ n_ir_i+h_i,
 \tag{RD1}
 \]
 
-then retaining \(A_i\) is strictly beneficial even in the case that gives it the **fewest** relevant occurrences.
+then \(F(D\cup\{A_i\})<F(D)\) for **every** admissible dictionary \(D\) lacking \(A_i\).
 
-Because removing upstream retention can only expose more inline copies, the saving cannot decrease.
-
-Hence every optimum must retain all levels:
+Hence any candidate optimum that omits a level can be strictly improved by adding that level. Every global optimum must therefore retain the full declared chain:
 
 \[
 \boxed{
@@ -370,8 +426,6 @@ A_1\prec A_2\prec\cdots\prec A_k.
 }
 \tag{RD2}
 \]
-
-So arbitrary retained depth is possible for arbitrary prescribed \(k\), but only when every level clears a paid repetition threshold.
 
 Equivalently:
 
@@ -387,10 +441,13 @@ n_i
 \tag{RD3}
 \]
 
-This is a **sufficient theorem for the declared additive laminar model**, not a universal law of hierarchy.
+So arbitrary retained depth is possible for arbitrary prescribed \(k\), but only when every level clears a paid repetition threshold.
+
+This is a **sufficient theorem for the declared additive laminar model**, not a universal law of hierarchy. The finite script checks the threshold algebra and the worst-case marginal-improvement logic; it is not a proof assistant result.
 
 ---
 
+## 7. Why the earlier free-\(H_i\) scaffold theorem was too weak
 ## 7. Why the earlier free-\(H_i\) scaffold theorem was too weak
 
 A coarse pairwise objective can write a generic downstream saving \(H_i\) and conclude that a scaffold is retained when
@@ -428,17 +485,15 @@ Let candidate organization \(X\) realize a strict whole-level capability:
 E(X,\phi,c).
 \]
 
-Let the capability alter the maintenance/resource ledger by
+Let the capability alter the resource ledger by
 
 \[
 \Delta L_\phi
 =
-\Delta I_\phi-\Delta M_\phi,
+\Delta I_\phi-\Delta C^{\mathrm{op}}_\phi,
 \]
 
-where \(\Delta I_\phi\) is the capability's contribution to captured/useful throughput and \(\Delta M_\phi\) is its added maintenance burden.
-
-Let \(\mu(X)\) be the burden of retaining \(X\).
+where \(\Delta I_\phi\) is the capability's contribution to captured/useful throughput and \(\Delta C^{\mathrm{op}}_\phi\) is its incremental operating/expression burden **excluding** the marginal retention burden \(\mu_R(X)\).
 
 A candidate **Law D feedback condition** is:
 
@@ -446,14 +501,16 @@ A candidate **Law D feedback condition** is:
 \boxed{
 E(X,\phi,c)
 \land
-\Delta L_\phi\ge\mu(X)
+\Delta L_\phi\ge\mu_R(X)
 \Longrightarrow
-\text{the emergent capability can pay for its own declared retention burden.}
+\text{the emergent capability can pay for its own declared marginal retention burden.}
 }
 \tag{D1}
 \]
 
-If \(\Delta L_\phi>\mu(X)\) and exploration/reorganization intensity is nondecreasing in post-maintenance slack, then the retained emergent organization can also raise future search budget.
+If a domain-specific operating-cost term already includes retention upkeep, that upkeep is not added a second time.
+
+If \(\Delta L_\phi>\mu_R(X)\) and exploration/reorganization intensity is nondecreasing in post-maintenance slack, then the retained emergent organization can also raise future search budget.
 
 A second, independent emergence route is **essential reuse**:
 
@@ -478,6 +535,7 @@ Their purpose is to keep the question open and explicit:
 
 ---
 
+## 9. Upkeep bound
 ## 9. Upkeep bound
 
 Let gross available budget at time \(t\) be \(B_t^{\mathrm{gross}}\).
