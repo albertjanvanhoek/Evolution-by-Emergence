@@ -139,6 +139,11 @@ This supporting resource chain is conditional mathematics. It is **not** the v17
 
 ## Candidate universal theorem layer
 
+See [UNIVERSAL_LAW_CANDIDATE.md](UNIVERSAL_LAW_CANDIDATE.md) for the current
+scientific interpretation, prior-art guardrails, failure modes, and criteria
+for eventually using the word "universal".
+
+
 The post-v19 branch now separates the paid-transfer instrument from three
 candidate substrate-agnostic consequences.
 
