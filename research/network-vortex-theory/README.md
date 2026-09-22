@@ -2,81 +2,88 @@
 
 > **Status: working compression of the recurring EbE pattern — not yet the final formal theory.**
 >
-> This directory preserves the current centre of the theory so later formalization cannot silently replace it with a narrower cost, validation, or closure model.
+> This directory preserves the current centre so later formalization cannot silently replace it with a narrower cost, validation, closure, or generic state-dependence model.
 
 ## Centre
 
-Evolution by Emergence (EbE) is currently organized around one proposed invariant:
-
 > **Retained organization becomes causal structure for future change.**
 
-Equivalently:
+Equivalent formulation:
 
 > **The system's history becomes part of its transition machinery.**
 
-The compact recursive form is
+A schematic paid-retention spine is
+
+\[
+B_t^{\mathrm{free}}
+=
+B_t^{\mathrm{gross}}-M(R_t),
+\]
+
+\[
+\mathcal K_t
+=
+\mathcal K[G_t,R_t,\Gamma_t;B_t^{\mathrm{free}}],
+\]
+
+\[
+G'_t\sim\mathcal K_t,
+\]
+
+\[
+(G_{t+1},R_{t+1})
+=
+\operatorname{Ret}(G_t,R_t,G'_t,\mathcal V,\Gamma_t).
+\]
+
+A mere change
+
+\[
+\mathcal K_{t+1}\neq\mathcal K_t
+\]
+
+is only weak historical dependence. Ordinary state-dependent systems can satisfy it.
+
+The stronger current EbE criterion is **paid transfer** to later novelty:
 
 \[
 \boxed{
-G_t
-\longrightarrow
-\mathcal K[G_t,\Gamma_t]
-\longrightarrow
-G'_t
-\longrightarrow
-\mathcal V(G'_t,\Gamma_t)
-\longrightarrow
-G_{t+1}
-\longrightarrow
-\mathcal K[G_{t+1},\Gamma_{t+1}]
+\exists Y\notin\mathcal H_t:
+\mathcal A_T(Y\mid s^+,B-\mu_X)
+>
+\mathcal A_T(Y\mid s^-,B).
 }
 \]
 
-where:
+Retention should therefore be:
 
-- \(G_t\) is current relational organization;
-- \(\Gamma_t\) is the relevant surrounding condition, gradient, or opportunity structure;
-- \(\mathcal K[G_t,\Gamma_t]\) is the **effective transition machinery**: the distribution/rules/costs by which future organization can be generated from the present;
-- \(G'_t\) is candidate reorganization;
-- \(\mathcal V\) is its viability/selection/evaluative consequence;
-- retention/reconstruction produces the historically available organization \(G_{t+1}\).
+1. **endogenous**;
+2. **slow** relative to the event that created it;
+3. **paid** for;
+4. **reused** causally later;
+5. **transferable** to a later context/task/descendant or unvisited organization.
 
-The distinctive recursive event is
-
-\[
-\boxed{
-\mathcal K[G_{t+1},\Gamma_{t+1}]
-\neq
-\mathcal K[G_t,\Gamma_t].
-}
-\]
-
-The process has changed the conditions of its own future change.
+That is the current firewall against reducing EbE to ordinary state dependence.
 
 ## Why a network still matters
 
-A network or hypergraph is the minimal mathematical compression used here for **relational organization**:
+A network or hypergraph is the mathematical compression used for **relational organization**:
 
 \[
 G=(V,E,\theta).
 \]
 
-This does **not** assert that reality is literally a graph. It asserts that when components and relations among them matter to what a system can do, network language is a compact substrate-neutral representation.
+This does **not** assert that reality is literally a graph.
 
-Representability as a network is not enough for EbE. A real application must identify mechanistically:
+Representability as a network is not enough for EbE. A real application must identify relational organization, reorganization, differential continuation, paid retention, causal reuse, and transfer to future accessibility.
 
-1. relational organization;
-2. how that organization changes;
-3. how organization affects behavior/function;
-4. what produces differential continuation;
-5. how organization is retained or reconstructed;
-6. how that retained history changes later transition possibilities.
+## Emergence
 
-## Role of emergence
+The explicit decision is:
 
-Emergence is the creative event inside the loop, not the whole loop.
+> **The centre is retention-driven change of transition machinery; emergence is one important source of candidate organization and can feed back into retention and later accessibility.**
 
-Existing organization can combine/reorganize into a configuration with changed or new system-level capability. A strict compositional-emergence predicate is one important special case:
+Strict compositional emergence remains:
 
 \[
 E(G,\phi,c)
@@ -86,81 +93,127 @@ G\models_c\phi
 \forall K\prec G,\;K\not\models_c\phi.
 \]
 
-Not every useful organizational update must satisfy this strict predicate.
+Law D in the working theory keeps the feedback question explicit: an emergent capability may help pay its own upkeep or become an essential retained parent for later unvisited organization.
 
-A compact distinction is:
+## Accessibility and cost
 
-> **Emergence creates candidates; persistence writes some of them into future dynamics.**
-
-## Role of accessibility, cost, and hierarchy
-
-The present organization induces a future accessibility structure. One general representation is a finite-horizon accessibility kernel
+Accessibility is more general than cost:
 
 \[
-\mathcal A_T(S\mid G,\Gamma,q),
+\mathcal A_T(S\mid G,R,\Gamma,q,B).
 \]
 
-the chance or degree to which persistent successor organization in \(S\) can be realized within horizon \(T\).
-
-Costed reachability is an important specialization:
+Costed reachability is one specialization:
 
 \[
-C_G(H;c)=\inf_{\pi:G\leadsto H}\mathbb E[J_c(\pi)].
+K_G(H;c)
+=
+\inf_{\pi:G\leadsto H}\mathbb E[\ell_c(\pi)].
 \]
 
-Retention may therefore change future accessibility by changing probability, rate, energy, number of construction steps, mutation/developmental distance, learning effort, design effort, or another declared route measure.
+Keeping and using are separated:
 
-The recent retention and hierarchy theorems are **subresults of this accessibility change**, not the ontology of EbE.
+- \(M(R)\): upkeep/storage/reconstruction burden;
+- \(K_R(Y)\): later construction/use burden.
+
+This distinction is necessary for burden, lock-in, upkeep bounds, transfer thresholds, and hierarchy.
+
+## Repetition-driven hierarchy
+
+A reusable scaffold appearing \(n\) times, with inline cost \(c\), reference cost \(r\), and retention burden \(h\), pays for itself iff
+
+\[
+\boxed{
+(n-1)c>nr+h.
+}
+\]
+
+For nonnegative \(r,h\), \(n=1\) can never justify a purely representational scaffold.
+
+So in the additive model:
+
+> **single-use nesting does not generate hidden hierarchy; repeated/shared nesting can.**
+
+The detailed repetition-depth theorem and check scripts are in theorem-notes and scripts.
 
 ## Dynamic Vortex
 
-The Dynamic Vortex is the self-maintaining version of the recursion.
-
-A minimal loop is
+A minimal self-maintaining loop is
 
 \[
-X\rightarrow\phi\rightarrow r\rightarrow\operatorname{maintenance}(X),
+X\rightarrow\phi\rightarrow r\rightarrow\operatorname{maintenance}(X).
 \]
 
-where organization produces function, function affects resource/continuation conditions, and those conditions maintain or reconstruct the organization.
+A resource specialization gives post-maintenance slack
 
-When variants of the loop are differentially retained, the organization of the loop evolves.
+\[
+L_t=I_t-C_t.
+\]
 
-Thus the system is not merely moving on a fixed landscape. Its retained history can change the channel through which later movement occurs.
+If exploration budget is nondecreasing in \(L_t\), the vortex gives a measurable prediction:
 
-## Cross-domain interpretation
+> **holding external opportunity and allocation fixed, greater post-maintenance slack should predict no lower exploratory/reorganizational trial rate until saturation or another declared bottleneck is reached.**
 
-The same abstract positions can be occupied by different mechanisms:
+## Cross-domain grounding
 
 | Role | Neural learning | Chemistry | Biological inheritance | Technology |
 |---|---|---|---|---|
 | relational organization | neural connectivity/dynamics | reaction-catalysis network | regulatory/developmental/module network | component/interface/production network |
 | reorganization | plasticity/learning | reaction-network change | mutation/recombination/development | invention/recombination |
-| differential consequence | reward/error/viability | kinetic/resource persistence | reproduction/viability | performance/adoption/cost |
+| differential continuation | reward/error/viability | kinetic/resource persistence | reproduction/viability | performance/adoption/cost |
 | retention | learned organization | self-regeneration | heredity/reconstruction | design/standard/manufacture |
-| changed future machinery | learnability | reaction accessibility | evolvability/developmental bias | constructibility |
+| transfer test | later untrained learning | later chemical accessibility | later phenotypic accessibility | later constructibility |
 
-The mechanisms differ. The proposed unity is structural.
+The mechanisms differ. The proposed unity is structural and conditional.
+
+## Closest neighbours
+
+The working theory explicitly overlaps with:
+
+- Kauffman's **adjacent possible**;
+- Longo, Montévil & Kauffman's **enablement**;
+- Montévil & Mossio's **closure of constraints**;
+- Busseniers & Bergerot's **Autonomous Change**;
+- evolvability/facilitated variation;
+- adaptive networks;
+- open-ended/state-dependent dynamics;
+- niche construction;
+- modularity and cumulative technological evolution.
+
+EbE should not claim to have discovered the idea that what exists changes what can exist next.
+
+The current differentiating research programme is narrower:
+
+\[
+\boxed{
+\text{graded accessibility}
++
+\text{paid retention}
++
+\text{counterfactual transfer to unvisited organization}.
+}
+\]
+
+That is where burden, upkeep bounds, repetition-driven hierarchy, saturation, gain/loss, and lock-in become testable.
 
 ## Files
 
 - [WORKING_THEORY.md](WORKING_THEORY.md) — canonical current compression and definitions.
-- [HANDOFF.md](HANDOFF.md) — continuation guide for a researcher or LLM.
-- [theorem-notes/README.md](theorem-notes/README.md) — current retention/hierarchy theorem program.
-- [simulations/README.md](simulations/README.md) — exploratory computational results and reproduction requirements.
+- [HANDOFF.md](HANDOFF.md) — continuation guide.
+- [theorem-notes/README.md](theorem-notes/README.md) — paid transfer, repetition threshold, chain dichotomy, repetition-depth theorem, Law D, upkeep bound.
+- [simulations/README.md](simulations/README.md) — exploratory results and reproduction plan.
+- [scripts/](scripts/) — finite algebra/adversarial checks.
 
 ## Guardrail
 
-A future formalization has drifted away from the current EbE centre if it cannot still express:
+A future formalization has drifted away from the current centre if it cannot distinguish:
 
 \[
 \boxed{
-\text{retained organization}
-\rightarrow
-\text{changed effective transition machinery}
-\rightarrow
-\text{changed future organization}.
+\text{ordinary state dependence}
+\neq
+\text{paid retained causal structure}
+\neq
+\text{positive transfer to later novelty}.
 }
 \]
-
-Lean should come after that semantic relationship is fixed.
