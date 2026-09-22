@@ -148,6 +148,20 @@ def SameGrossBudget
     (sMinus sPlus : State G R Γ) : Prop :=
   sMinus.grossBudget = sPlus.grossBudget
 
+/-- Same gross budget yields the exact free-budget difference implied by the
+difference in retained maintenance burden. -/
+theorem sameGrossBudget_freeBudget_difference
+    (M : Maintenance R)
+    (sMinus sPlus : State G R Γ)
+    (hGross : SameGrossBudget sMinus sPlus) :
+    freeBudget M sPlus - freeBudget M sMinus
+      =
+    M sMinus.retained - M sPlus.retained := by
+  unfold SameGrossBudget at hGross
+  unfold freeBudget
+  rw [hGross]
+  ring
+
 /-- Paid transfer gain. Positive values favor the retained arm after each arm
 pays its own total maintenance burden. -/
 def transferGain
