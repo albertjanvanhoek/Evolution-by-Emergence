@@ -197,6 +197,93 @@ theorem route_advantage_overcomes_upkeep
   refine ⟨hMinusClosed, ?_⟩
   exact ⟨n, hn, routePlus, hFits⟩
 
+/-- A lower bound on the cost of every route to one target within a finite
+horizon under one kernel. -/
+def RouteCostLowerBound
+    (K : WeightedKernel σ)
+    (T : ℕ)
+    (s y : σ)
+    (L : ℝ) : Prop :=
+  ∀ n, n ≤ T →
+    ∀ route : Route K s y n,
+      L ≤ route.cost
+
+/-- Quantitative paid-transfer theorem.
+
+Suppose the retained arm has an actual route of cost Cplus, every ablated route
+within the same horizon costs at least Lminus, and the retained route's saving
+exceeds the marginal maintenance burden:
+
+    Cplus + (Mplus - Mminus) < Lminus.
+
+Then there exists a common gross budget at which the target is inaccessible
+without the retained organization and accessible with it. The proof chooses the
+gross budget Cplus + Mplus.
+
+This is the induced-kernel form of "transition advantage exceeds upkeep". -/
+theorem route_saving_exceeds_marginal_upkeep_opens_paid_window
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T n : ℕ)
+    (rMinus rPlus : R)
+    (s y : σ)
+    (routePlus : Route (Kernel rPlus) s y n)
+    (hn : n ≤ T)
+    (Lminus : ℝ)
+    (hLower :
+      RouteCostLowerBound
+        (Kernel rMinus) T s y Lminus)
+    (hMargin :
+      routePlus.cost + (M rPlus - M rMinus) < Lminus) :
+    ∃ grossBudget,
+      PositivePaidOpening
+        Kernel M T grossBudget
+        rMinus rPlus s y := by
+  let grossBudget : ℝ := routePlus.cost + M rPlus
+  refine ⟨grossBudget, ?_, ?_⟩
+  · intro hMinus
+    rcases hMinus with ⟨m, hm, routeMinus, hMinusCost⟩
+    have hLB : Lminus ≤ routeMinus.cost :=
+      hLower m hm routeMinus
+    dsimp [PaidReachableWithin, grossBudget] at hMinusCost
+    linarith
+  · refine ⟨n, hn, routePlus, ?_⟩
+    dsimp [grossBudget]
+    linarith
+
+/-- Item-specific form of the route-saving theorem. -/
+theorem item_route_saving_exceeds_marginal_upkeep_opens_paid_window
+    (Retain : RetainedOrganizationCore.RetainItem R X)
+    (Lose : RetainedOrganizationCore.LoseItem R X)
+    (Kernel : KernelOf R σ)
+    (M : RetainedOrganizationCore.Maintenance R)
+    (T n : ℕ)
+    (baseRetained : R)
+    (x : X)
+    (s y : σ)
+    (routePlus :
+      Route (Kernel (Retain baseRetained x)) s y n)
+    (hn : n ≤ T)
+    (Lminus : ℝ)
+    (hLower :
+      RouteCostLowerBound
+        (Kernel (Lose baseRetained x))
+        T s y Lminus)
+    (hMargin :
+      routePlus.cost +
+          (M (Retain baseRetained x) -
+            M (Lose baseRetained x)) <
+        Lminus) :
+    ∃ grossBudget,
+      PositivePaidOpeningForItem
+        Retain Lose Kernel M T grossBudget
+        baseRetained x s y := by
+  exact route_saving_exceeds_marginal_upkeep_opens_paid_window
+    Kernel M T n
+    (Lose baseRetained x)
+    (Retain baseRetained x)
+    s y routePlus hn Lminus hLower hMargin
+
 /-- Item-specific induced paid opening. Both retained repertoires are generated
 from the same baseline repertoire and the same retained item X. -/
 def PositivePaidOpeningForItem
@@ -358,6 +445,8 @@ theorem retainedKernelToy_positive_item_paid_opening :
 #print axioms kernelDominance_preserves_accessibility
 #print axioms retainedKernelDominance_preserves_access_at_equal_freeBudget
 #print axioms route_advantage_overcomes_upkeep
+#print axioms route_saving_exceeds_marginal_upkeep_opens_paid_window
+#print axioms item_route_saving_exceeds_marginal_upkeep_opens_paid_window
 #print axioms item_route_advantage_overcomes_upkeep
 #print axioms no_paidOpening_without_kernel_change
 #print axioms retainedKernelToy_ablated_not_reachable
