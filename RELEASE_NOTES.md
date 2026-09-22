@@ -1,402 +1,201 @@
-# Evolution by Emergence v19 — Retained Organization and Correctable Learning
+# Evolution by Emergence v20 — Cumulative Evolution: Retained Organization and Future Accessibility
 
-v19 integrates the retained-organization research programme developed in PR63 with the v18 Learning Constitution while preserving the distinction between the universal organizational layer and the intelligent-agent specialization.
+v20 is the first release that freezes the consolidated retained-organization theory as the repository's primary object for independent peer review.
 
 The centre is:
 
-> **Retained organization becomes causal structure for future change.**
+> **Retained organization can become causal structure for future change by altering transition machinery and later accessibility, while finite maintenance resources constrain what can remain retained.**
 
-The stronger falsifiable form is:
+The proposed cross-domain interpretation is a candidate theory of cumulative evolution. Its universality is explicitly open to falsification.
 
-> **Paid retained organization can transfer into improved graded access to organization not previously visited.**
-
-## 1. Release object
+## 1. Canonical review object
 
 Start with:
 
-1. research/network-vortex-theory/README.md — concise entry point.
-2. research/network-vortex-theory/WORKING_THEORY.md — canonical current compression.
-3. research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md — explicit relation to v18, constrained local agency, SCAP, correction viscosity, and learning velocity.
-4. research/network-vortex-theory/theorem-notes/README.md — paid transfer, retention firewall, repetition threshold, chain dichotomy, repetition-depth theorem, Law D, and upkeep bound.
-5. research/network-vortex-theory/HANDOFF.md — continuation guide.
-6. research/network-vortex-theory/simulations/README.md — exploratory simulation status and reproduction targets.
-7. research/network-vortex-theory/scripts/ — finite adversarial/algebra checks.
-8. papers/the-room-learning-constitution/ — unchanged v18 theorem surface plus the new reciprocal bridge pointer.
+1. `THEORY_CORE_V20.md` — canonical theory.
+2. `FORMAL_THEORY_MAP.md` — claim-to-Lean traceability.
+3. `PEER_REVIEW_PROMPT.md` — reproducible adversarial review protocol.
+4. `FORMAL_THEORY_ENDPOINT.md` — review freeze, scope, and failure conditions.
+5. `formalization/cumulative-accessibility/README.md` — formal package overview.
+6. `formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md` — universality guardrails and nested learning-like interpretation.
+7. `formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean` — explicit axiom audit.
 
-## 2. Retained organization as the centre
+Reviewers should resolve tag `v20` to its exact commit SHA and review that immutable object.
 
-The working state is represented schematically as
+## 2. State and paid retention
 
-\[
-S_t=(G_t,R_t,\Gamma_t,B_t^{\mathrm{gross}}),
-\]
+The core state is:
 
-with paid retention
+    S_t = (G_t, R_t, Gamma_t, B_t^gross)
+    B_t^free = B_t^gross - M(R_t).
 
-\[
-B_t^{\mathrm{free}}
-=
-B_t^{\mathrm{gross}}-M(R_t),
-\]
+Retained history therefore has two simultaneous effects:
 
-and effective transition machinery
+    R_t -> transition machinery -> future accessibility
 
-\[
-\mathcal K_t
-=
-\mathcal K[G_t,R_t,\Gamma_t;B_t^{\mathrm{free}}].
-\]
+and
 
-A mere change
+    R_t -> maintenance burden -> reduced free budget.
 
-\[
-\mathcal K_{t+1}\neq\mathcal K_t
-\]
+v20 promotes this resource-constrained recursive loop to the centre of the theory.
 
-is treated only as weak historical dependence.
+## 3. Transition machinery now induces the canonical accessibility surface
 
-The stronger criterion is paid transfer to an unvisited target.
+`TransitionAccessibility.lean` defines weighted transition kernels, actual finite routes, route cost, and finite-horizon accessibility under a free budget.
 
-Let
+Lean checks that kernel dominance preserves accessibility at equal horizon and budget.
 
-\[
-R^+=R^-\cup\{X\},
-\qquad
-B^\pm=B^{\mathrm{gross}}-M(R^\pm).
-\]
+The release then distinguishes two theorem directions:
 
-Then a positive transfer event requires
+### Necessary structural condition
 
-\[
-\boxed{
-\exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B^+)
->
-\mathcal A_T(Y\mid s^-,B^-).
-}
-\]
+With non-decreasing upkeep, positive paid opening implies that the ablated kernel cannot reproduce every retained transition at equal or lower cost.
 
-This can fail. Retention may be beneficial, neutral, or burdensome.
+### Sufficient quantitative condition
 
-## 3. Retention firewall
+If a retained route's cost saving exceeds the marginal retention burden relative to a lower bound on ablated routes, there exists a common gross-budget window in which the target is accessible with retained organization and inaccessible without it.
 
-The release distinguishes retained organizational memory from generic state dependence.
+These statements are deliberately **not** presented as converses.
 
-A claimed retained organization should be:
+## 4. Bridge back to the retained-organization core
 
-1. endogenous;
-2. slow relative to the event that generated it;
-3. paid for;
-4. causally reused later;
-5. transferable to a later context, task, descendant, episode, or unvisited organization.
+The generic core retains an abstract graded accessibility interface. The v20 publication-facing surface instantiates that interface from transition-kernel reachability.
 
-The purpose is falsifiability: ordinary state dependence does not automatically count as cumulative EbE.
+Lean proves that positive core transfer under this implementation is exactly retained reachability plus ablated non-reachability under each arm's own post-maintenance budget.
 
-## 4. Paid hierarchy and repetition
+This closes the main K -> A -> paid-transfer semantic seam identified during adversarial review.
 
-The earlier free-parameter scaffold story is replaced by an explicit reuse mechanism.
+## 5. Emergent assembly barrier
 
-For a module occurring \(n\) times, with inline cost \(c\), reference cost \(r\), and retention burden \(h\),
+`EmergentAssemblyBarrier.lean` and `TransitionMediatedEmergence.lean` give strict compositional emergence a load-bearing role.
 
-\[
-K_{\mathrm{inline}}=nc,
-\qquad
-K_{\mathrm{retain}}=c+h+nr.
-\]
+If a future function is strictly emergent and target-specific benefit is unavailable before realization, then a positively costly proper intermediate cannot finance itself from that future function alone.
 
-Retention is strictly beneficial iff
+If the intermediate remains viable, some positive auxiliary support is required.
 
-\[
-\boxed{
-(n-1)c>nr+h.
-}
-\]
+The transition-mediated specialization derives the same conclusion when realizing the emergent function is what adds a transition.
 
-Therefore a purely representational scaffold cannot pay for itself from a single additive occurrence when reference/upkeep costs are nonnegative.
+Permanent countermodels show escape routes:
 
-The repetition-depth theorem now uses a worst-case marginal-improvement argument over admissible dictionaries. If every level clears its declared strict threshold, every global optimum in the stated additive laminar model retains the full chain.
+- dropping emergence can allow a proper part to transfer;
+- favorable upkeep accounting can create apparent opening without kernel improvement;
+- a proper part can persist as a stepping stone through another transition.
 
-These are sufficient results for the declared model, not universal laws of hierarchy.
+## 6. Finite resources force retention trade-offs
 
-## 5. Emergence remains explicit
+`GenerativeLeverage.lean` now includes the direct no-go:
 
-The release makes the theoretical decision explicit:
+    if every candidate costs at least mu > 0
+    and B < |C| mu,
+    then retaining all of C is budget-infeasible.
 
-> **The centre is retention-driven change of transition machinery; emergence is one important source of candidate organization and can feed back into retention and later accessibility.**
+This is intentionally not an optimizer or a fitness rule. The theorem does not decide which candidate is forgotten, replaced, compressed, made cheaper, reused more effectively, or retained.
 
-Candidate Law D preserves two emergence-feedback routes:
+## 7. Bounded generative leverage
 
-- an emergent capability can contribute sufficient slack to pay its marginal retention burden;
-- retained emergent organization can become an essential reused parent/constraint that transfers to unvisited organization.
+Under an injective bounded single-unit reuse encoding:
 
-These remain candidate bridges rather than universal theorems.
+    |A| <= |R| d.
 
-## 6. Relation to v18 — Learning Constitution
+With minimum retained-unit maintenance mu and total maintenance budget B:
 
-v18 remains a distinct agent/interdependence theorem surface.
+    |A| mu <= B d.
 
-v19 adds the explicit nesting:
+Uniformly bounded retained cardinality plus uniformly bounded per-unit reuse therefore rules out unbounded accessible cardinality under the declared encoding.
 
-\[
-\boxed{
-\text{EbE retained-organization layer}
-\supset
-\text{intelligent-agent network}
-\supset
-\text{Learning Constitution / SCAP specialization}.
-}
-\]
+Failure of the encoding may itself be scientifically informative, for example by revealing compositional or synergistic support.
 
-For an intelligent network:
+## 8. Nested learning-like dynamics
 
-- nodes are learning agents;
-- edges are channels through which information, evidence, criticism, coordination, and repair can occur;
-- retained procedures can change which corrective transitions remain available.
+v20 makes the scale-free interpretation explicit:
 
-The Learning Constitution can therefore be represented as retained meta-organization
+    history / interaction
+      -> retained organization
+      -> changed transition machinery
+      -> changed future accessibility
+      -> new organization
+      -> budget-constrained retention.
 
-\[
-\boxed{
-R_t^{\mathrm{LC}}
-\longrightarrow
-\mathcal K_t^{\mathrm{LC}}.
-}
-\]
+This is described as **learning-like dynamics**, not as a claim that every substrate literally learns psychologically.
 
-It does not determine which substantive conclusion is correct. It preserves classes of corrective transitions.
+The architecture can now be challenged across nested layers including cellular organization, immune memory, neural learning, individual memory and skill, cumulative culture, institutions, science, and technology.
 
-## 7. Constrained local agency and “forced free will”
+The nesting also allows context to change: a learning individual changes while the surrounding technological and social repertoire changes too.
 
-The older phrase **forced free will** is retained only as an intuitive label.
+Lean does not establish that all these domains share one empirical mechanism. That is a principal scientific test of v20.
 
-The preferred formal interpretation is **constrained local agency**.
+## 9. Peer-review protocol
 
-Let \(A_i(S)\) be the locally available actions of node \(i\), and \(A_i^{\mathrm{viable}}(S)\) the subset compatible with a declared continuation/viability condition.
+`PEER_REVIEW_PROMPT.md` has been rewritten around the v20 release.
 
-Then
+Reviewers are asked to attack:
 
-\[
-A_i^{\mathrm{viable}}(S)
-\subseteq
-A_i(S).
-\]
+1. formal validity;
+2. semantic adequacy;
+3. hidden modelling assumptions;
+4. equal-or-stronger prior art;
+5. explanatory value;
+6. cross-domain mappings;
+7. the proposed universality itself.
 
-“Free” means that the local action set may contain genuine alternatives.
+A successful falsification, narrowing, or prior-art correction is an intended useful outcome.
 
-“Forced” means that the consequences of those alternatives are constrained by the relational and substrate system on which continued participation depends.
+## 10. Verification surface
 
-No metaphysical theorem about free will is claimed.
+The canonical v20 Lean review files are:
 
-For v18 this aligns with:
+    RetainedOrganizationCore.lean
+    TransitionAccessibility.lean
+    EmergentAssemblyBarrier.lean
+    TransitionMediatedEmergence.lean
+    GenerativeLeverage.lean
+    PaidReuseHierarchy.lean
+    RepetitionDepth.lean
+    DynamicVortex.lean
+    AuditAll.lean
+    VerificationSurface.lean
 
-\[
-\boxed{
-\text{freedom of conviction}
-\neq
-\text{unreviewable shared authority}.
-}
-\]
+The explicit audit surface includes the finite-budget retention theorem.
 
-## 8. Binary correctability as a boundary of graded accessibility
+Reproduce with:
 
-The v18 Learning Constitution is mainly qualitative: a required corrective route exists or it does not.
+    cd formalization/cumulative-accessibility
+    lake update
+    lake exe cache get
+    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
+    lake env lean CumulativeAccessibility/VerificationSurface.lean
 
-v19 introduces the graded interior.
+The release criterion is that the advertised surface compiles and the selected axiom audit contains no `sorryAx`.
 
-Let
+## 11. Scope boundaries
 
-\[
-C_{\mathrm{corr},t}(S,a)
-\]
+v20 does not prove:
 
-be a declared cost of obtaining an effective correction route, or equivalently use graded accessibility
+- empirical universality;
+- that all state dependence is cumulative evolution;
+- that retention is always beneficial;
+- that novelty is improvement;
+- that persistence is function;
+- that validation is truth;
+- that selection is progress;
+- that learning-like dynamics imply literal cognition;
+- a universal rule choosing which retained item survives;
+- strong creation of previously unstatable ontologies in the current fixed ambient Lean types;
+- a moral, legal, or political obligation from the descriptive mathematics.
 
-\[
-\mathcal A_T(\mathrm{corr}\mid S,a,B).
-\]
+## 12. Relationship to earlier releases
 
-A self-sealing restriction in the v18 sense corresponds, in a cost specialization, to the limiting case
+- **v19 — Retained Organization and Correctable Learning:** developed the paid-retention synthesis and intelligent-agent specialization.
+- **v18 — The Learning Constitution:** separate machine-checked correctable-interdependence companion.
+- **v17 — Recursive Organization Core:** corrected recursive-emergence and moving-envelope surface.
+- **v16 — Full Theory Peer-Review Release:** Dynamic Vortex resource-response integration.
 
-\[
-C_{\mathrm{corr}}=\infty
-\]
+v20 consolidates these developments around the retained-organization -> transition-machinery -> accessibility spine and makes that consolidated object the theory to be peer reviewed.
 
-or
+## 13. Review thesis
 
-\[
-\mathcal A_T(\mathrm{corr})=0.
-\]
+A defensible current formulation is:
 
-Thus:
+> **Evolution by Emergence v20 provides machine-checked substrate-agnostic constraints linking retained organization, transition-induced future accessibility, maintenance cost, strict compositional emergence, finite-budget retention trade-offs, and bounded generative leverage. It proposes that their recursive composition captures a learning-like architecture of cumulative evolution across nested organizational scales.**
 
-> **v18 protects against the zero-accessibility / infinite-viscosity boundary case; v19 also makes finite but costly, slow, fragile, or resource-intensive correction visible.**
-
-This is an interpretation around the v18 theorem surface; it does not alter the v18 Lean result.
-
-## 9. SCAP as paid, corrigible maintenance
-
-SCAP is treated as a candidate retained maintenance protocol for collective intelligence, not as a universal moral law.
-
-Candidate mappings include:
-
-- signal fidelity -> lower information corruption;
-- corrigibility -> preservation of usable correction routes;
-- diversity -> preservation of nonredundant information/candidates;
-- redundancy -> alternative correction paths;
-- repair / conditional forgiveness -> restoration of damaged useful edges;
-- reciprocity / accountability -> return loops that fund maintenance;
-- observability -> early detection of degradation;
-- education -> reproduction of the correction architecture;
-- SCAP corrigibility -> correction of the maintenance protocol itself.
-
-SCAP receives no exemption from paid retention:
-
-\[
-M(R^{\mathrm{SCAP}})>0.
-\]
-
-Its net effect can be beneficial, neutral, burdensome, or lock-in. Its own procedures must remain corrigible.
-
-## 10. Learning verbs and discovery velocity
-
-The learning verbs remain inside-process labels rather than universal causal axioms.
-
-An application-specific bridge
-
-\[
-\Gamma:P_t\rightarrow C_t
-\]
-
-maps learning-maintenance process state to outside accessibility/cost geometry.
-
-Candidate mechanisms can affect:
-
-- opportunity rate \(\lambda\);
-- opportunity wait \(K\);
-- candidate generation \(p_G\);
-- resource feasibility \(p_R\);
-- validation \(p_V\);
-- retention \(p_T\);
-- response lag \(\Delta\);
-- retained gain \(\bar g\) or \(g_{\min}\).
-
-The existing reduced rate ledger is
-
-\[
-v_{\mathrm{ledger}}
-=
-\lambda p_Gp_Rp_Vp_T\bar g.
-\]
-
-Under bounded opportunity wait, bounded validated-response lag, and minimum retained gain, the existing rate certificate has the form
-
-\[
-\boxed{
-v_{\min}
-=
-\frac{g_{\min}}{K+\Delta+1}.
-}
-\]
-
-Thus learning-maintenance processes can affect discovery velocity when a domain-specific causal bridge establishes their effects on these coordinates.
-
-The release does not assert that listening, honesty, openness, repair, forgiveness, or any other named verb necessarily increases learning speed.
-
-## 11. Dynamic Vortex prediction
-
-For the resource specialization
-
-\[
-L_t=I_t-C_t,
-\qquad
-B_t^{\mathrm{explore}}=\beta_t L_t,
-\]
-
-if candidate-generation rate is nondecreasing in exploration budget, then holding external opportunity and allocation fixed,
-
-\[
-\frac{\partial\lambda}{\partial L}\ge0.
-\]
-
-This produces a measurable conditional prediction: greater post-maintenance slack should predict no lower exploratory/reorganizational trial rate until a declared saturation or bottleneck is reached.
-
-## 12. Closest neighbours and novelty boundary
-
-The release explicitly acknowledges overlap with:
-
-- Kauffman's adjacent possible;
-- Longo, Montévil & Kauffman's enablement;
-- Montévil & Mossio's closure of constraints;
-- Busseniers & Bergerot's *Autonomous Change*;
-- evolvability and facilitated variation;
-- adaptive networks;
-- niche construction;
-- open-ended/state-dependent dynamics;
-- modularity and cumulative technological evolution.
-
-No priority claim is made for the idea that what exists changes what can exist next.
-
-The narrower working differentiation is:
-
-\[
-\boxed{
-\text{graded accessibility}
-+
-\text{paid retention}
-+
-\text{counterfactual transfer to unvisited organization}.
-}
-\]
-
-## 13. Verification
-
-The PR63 research package includes finite checks for:
-
-- repetition-depth threshold and worst-case logic;
-- chain dichotomy;
-- paid transfer accounting.
-
-These checks are sanity/adversarial checks, not proof-assistant verification of the full PR63 theory.
-
-The v18 Learning Constitution retains its independent Lean 4.34.0 workflow and theorem surface.
-
-The broader repository formalization remains separate and machine checked by its existing workflows.
-
-## 14. What v19 does not prove
-
-The release does not establish:
-
-- all systems are literally graphs;
-- all state dependence is EbE retention;
-- retention is always beneficial;
-- paid transfer is universal;
-- all hierarchy comes from repeated reuse;
-- all emergent functions persist;
-- SCAP is uniquely correct;
-- the Learning Constitution is uniquely necessary or sufficient;
-- forced free will is a metaphysical theorem;
-- every learning verb improves discovery velocity;
-- correctability guarantees truth;
-- maximal openness is optimal;
-- legal or moral obligations follow from the retained-organization mathematics;
-- cross-domain structural similarity establishes universal empirical validity.
-
-## 15. Next research target
-
-The central next theorem remains:
-
-> **Under graded accessibility, paid retention, and counterfactual ablation, derive sufficient and/or necessary conditions under which an endogenously retained organization raises the probability or lowers the net cost of reaching at least one organization not previously visited.**
-
-The intelligent-network specialization adds a parallel empirical target:
-
-> **Estimate how retained correction architecture and learning-maintenance processes change graded correction accessibility and validated discovery velocity after their maintenance costs are counted.**
-
-## Release lineage
-
-- **v19 — Retained Organization and Correctable Learning**
-- **v18 — The Learning Constitution: Correctable Interdependence**
-- **v17 — Recursive Organization Core**
-- **v16 — Full Theory Peer-Review Release**
-- **v15 — Verification Closure**
-
-Use the immutable v19 tag and record its exact commit SHA when reviewing this release.
+The first sentence is the formal contribution. The second is the scientific hypothesis to challenge.
