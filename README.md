@@ -1,253 +1,144 @@
 # Evolution by Emergence
 
-## A formal architecture of recursive organization
+## v20 peer-review release: cumulative evolution as retained organization changing future accessibility
 
-**Evolution by Emergence (EbE)** asks:
+Evolution by Emergence (EbE) asks one central question:
 
-> **How can organization that exists now become material that changes which organization can exist next?**
+> **How can organization that exists now become causal material that changes which organization can exist next?**
 
-The repository contains a historical book, essays, papers, models, and formalizations. The v17 release froze the recursive-organization formal core. The v18 release added a separate machine-checked companion on fallible interdependent agents and preservation of correctability. **v19 integrates these lines conceptually without conflating their theorem surfaces:** retained organization is treated as causal structure for future change, while the Learning Constitution becomes an intelligent-agent specialization concerned with preserving corrective transition routes.
+v20 is the repository's current theory object for independent peer review. It consolidates the retained-organization programme into a machine-auditable substrate-agnostic architecture connecting:
 
-The goal is **not** to claim priority for mechanisms that are already known. The goal is a self-standing, machine-auditable, literature-positioned theory that reviewers can attack precisely.
+    retained organization
+        -> transition machinery
+        -> future accessibility
+        -> generated organization
+        -> budget-constrained retention
+        -> retained organization ...
 
-## Current v19 route
+with explicit maintenance cost, emergence constraints, counterfactual ablation, and bounded generative leverage.
 
-For the current retained-organization synthesis and its relation to correctable learning, start with:
-
-1. **[Retained Organization README](research/network-vortex-theory/README.md)** — concise entry point.
-2. **[Working Theory](research/network-vortex-theory/WORKING_THEORY.md)** — paid retention, graded transfer, hierarchy, emergence, and Dynamic Vortex.
-3. **[Learning Constitution Bridge](research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md)** — constrained local agency, v18 relation, SCAP, correction viscosity, and learning velocity.
-4. **[Theorem Notes](research/network-vortex-theory/theorem-notes/README.md)** — explicit mathematical specializations and next theorem target.
-5. **[v18 Learning Constitution package](papers/the-room-learning-constitution/README.md)** — independent machine-checked agent/interdependence surface.
-
-The v17 and v18 materials remain important immutable review objects. v19 adds a higher-level integration and working research programme; it does not retroactively change what the earlier tagged theorem surfaces proved.
+The universal interpretation is a **candidate to be challenged**, not an established empirical law.
 
 ## Start here
 
-1. **[THEORY_CORE_V17.md](THEORY_CORE_V17.md)** — the self-standing theory.
-2. **[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md)** — the completion and peer-review readiness criteria.
-3. **[APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md)** — two worked mappings plus a deliberate partial non-mapping.
-4. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — claim-to-Lean traceability.
-5. **[CLAIMS.md](CLAIMS.md)** — claim ledger and non-claims.
-6. **[verification/audits/2026-09-19-recursive-emergence/](verification/audits/2026-09-19-recursive-emergence/)** — theorem, adversarial, and literature audits.
-7. **[PRIOR_ART_PREFLIGHT_V17.md](verification/audits/2026-09-19-recursive-emergence/PRIOR_ART_PREFLIGHT_V17.md)** — targeted search for an equal-or-stronger full antecedent.
-8. **[COLD_READER_PREFLIGHT_V17.md](verification/audits/2026-09-19-recursive-emergence/COLD_READER_PREFLIGHT_V17.md)** — repository-only semantic/navigation reconstruction.
-9. **[EvolutionByEmergenceV17Core.lean](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean)** — canonical v17 theorem surface.
-10. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — reproducible review protocol.
+1. **[THEORY_CORE_V20.md](THEORY_CORE_V20.md)** — canonical theory offered for peer review.
+2. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — claim-to-Lean traceability for v20.
+3. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — copy-paste adversarial review protocol for humans or LLMs.
+4. **[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md)** — exact scope, freeze, review criteria, and failure conditions.
+5. **[formalization/cumulative-accessibility/README.md](formalization/cumulative-accessibility/README.md)** — formal package overview and reproduction instructions.
+6. **[formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md](formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md)** — scientific interpretation, universality guardrails, and cross-domain challenge.
+7. **[CumulativeAccessibility/VerificationSurface.lean](formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean)** — explicit advertised-result axiom audit.
 
-### v18 companion route — correctable interdependence
+## Core in one paragraph
 
-The v18 release adds a second, deliberately separate review object:
+The state is represented as active organization G, retained organization R, context Gamma, and gross budget. Retention consumes maintenance cost, leaving free budget. Retained organization may also alter the effective transition machinery, thereby changing which targets are reachable within a horizon and budget. A retained item counts as cumulatively consequential only under an explicit retained-versus-ablated comparison after maintenance is paid. Strict compositional emergence adds an assembly constraint: a future emergent function cannot, by itself, finance positively costly proper intermediates that do not yet realize that function. Finite resource budgets additionally make unrestricted positive-cost retention impossible, while bounded retained memory plus bounded reuse bounds accessible repertoire. The resulting recursive architecture motivates a testable learning-like dynamic across nested organizational scales.
 
-1. **[The Room package README](papers/the-room-learning-constitution/README.md)** — reading order, scope, and review targets.
-2. **[The Room](papers/the-room-learning-constitution/the_room_problem.pdf)** — the fundamental problem.
-3. **[The Learning Constitution](papers/the-room-learning-constitution/the_learning_constitution.pdf)** — the logical/systemic solution.
-4. **[Formal verification map](papers/the-room-learning-constitution/FORMAL_VERIFICATION.md)** — exact prose-to-Lean traceability.
-5. **[TheRoom.lean](papers/the-room-learning-constitution/TheRoom.lean)** — machine-checked formal backbone.
-6. **[Freedom of Conscience and the Right to a Correctable Process](papers/the-room-learning-constitution/procedural_corrigibility_human_rights.pdf)** — candidate legal translation.
-7. **[The Elephant and the Agreement](papers/the-room-learning-constitution/the_elephant_and_the_agreement.pdf)** — accessible parable.
+## The two-sided role of retained history
 
-The formal and normative layers are intentionally separated: Lean checks conditional implications under declared definitions; it does not derive a moral or legal obligation.
+Retained history simultaneously:
 
-## The theory in one paragraph
+    changes future machinery        R -> K -> A
 
-Persistent organization has to be produced and maintained by processes. Some changes in organization realize capacities that no declared proper part realizes alone. If a new capacity is feasible, passes the relevant domain-specific validation or selection filter, and is retained, it can become operational material for later generation. Retained material can alter what becomes generable next.
+and
 
-But:
+    consumes future capacity        R -> M(R) -> B_free.
 
-```text
-possible
-!= generated
-!= realized
-!= emergent
-!= feasible
-!= validated
-!= retained
-!= reusable
-!= admitted to future search
-!= recursively cumulative
-```
+This tension is central. Cumulative evolution is not unlimited remembering. Under finite resources, retention becomes a trade-off.
 
-The formal theory exists largely to keep these distinctions from collapsing.
+Lean now includes a direct no-go: if every candidate in a retained set costs at least mu > 0 and B < |C| mu, then retaining the whole candidate set cannot satisfy the maintenance budget.
 
-## Two cumulative endpoints
+Lean does not determine which candidate is forgotten, compressed, replaced, made cheaper, or retained.
 
-### Operational accumulation
+## Necessary and sufficient results are kept distinct
 
-If previously acquired capacities remain operational, a seed plus sufficient local recursive continuation can produce arbitrarily many strict expansions of the active repertoire.
+The current transition surface contains:
 
-### Historical accumulation with turnover
+- a **necessary structural condition**: with non-decreasing upkeep, positive paid opening implies that the ablated kernel cannot reproduce every retained transition at equal or lower cost;
+- a **sufficient quantitative condition**: if a retained route's saving exceeds marginal upkeep, there exists a common gross-budget window with retained access and ablated non-access.
 
-Real systems can forget, lose, replace, or deactivate capabilities. The v17 core therefore separates:
+These are not stated as converses of each other.
 
-```text
-Active_t
-History_t
-```
+## Emergence remains separate
 
-Parents must be operationally active to be reused. `History_t` is a declared cumulative trace of capacities the application records as having occurred; the formalism does not independently validate the empirical record.
+Strict compositional emergence is not defined as retention or success. If a future emergent function is unavailable in every proper subconfiguration, then that function cannot finance a positively costly proper intermediate by itself. If such an intermediate persists, another support route is required. The transition-mediated specialization and its countermodels make those escape routes explicit.
 
-Lean now contains a witness where `|Active_t| = 1` for every time, the active repertoire turns over completely, and cumulative history still expands. So open-ended historical accumulation does not imply an ever-growing current operational repertoire.
+## Nested learning-like dynamics
 
-## Stronger construction bridge
+The theory can be tested at nested scales: cellular organization, immune memory, neural learning, individual skill and memory, language, cumulative culture, institutions, science, and technology.
 
-The generic recursive layer only requires that parents generate a child capacity and that some configuration realizes that capacity emergently.
+This is deliberately called **learning-like** rather than claiming that every substrate literally learns in the psychological sense. The empirical challenge is whether each domain can instantiate retained organization, maintenance, transition machinery, accessibility, and ablation without arbitrary relabeling.
 
-The v17 integration adds an optional stronger interface:
-
-```text
-parents construct configuration c for child
-AND
-the same c realizes the child capacity emergently
-AND
-the same event passes feasibility, validation, and retention filters
-```
-
-Applications that can justify this stronger bridge can close the configuration-level causal seam; weaker applications can remain explicit about using only capacity-level generation.
-
-## Primitive promotion and future generability
-
-PR #59 adds an essential-parent test: holding the next-step generator fixed, a downstream candidate is no longer generable when the newly retained primitive is removed. This establishes an essential contribution under the declared counterfactual, not sole causation.
-
-A finite admission policy then separates all newly generable possibilities from the finite candidates actually admitted to local search.
+Both retained state and context may change. A person can learn and forget while the surrounding social and technological repertoire changes simultaneously.
 
 ## What is machine checked
 
-The formal stack currently checks, among other things:
+The v20 review surface includes machine-checked results for:
 
-- relative compositional emergence;
-- separation of emergence from historical novelty and prediction;
-- feasibility / validation / retention filtering;
-- recursive parent reuse;
-- configuration-level constructive projection;
-- essential-parent generated-access expansion;
-- finite local admission and moving envelopes;
-- deterministic local successor counting;
-- sufficient recursive continuation implications;
-- fixed finite retained-repertoire saturation;
-- active/history separation under complete active turnover;
-- non-vacuity witnesses and multiple countermodels.
+- matched retain/ablate counterfactuals and paid transfer;
+- budget-monotone accessibility;
+- weighted transition kernels and route-induced accessibility;
+- transition dominance and accessibility preservation;
+- necessary kernel advantage for positive paid opening;
+- route-saving sufficiency after marginal upkeep;
+- bridge from the abstract core to kernel-induced reachability;
+- strict compositional emergence assembly barriers;
+- auxiliary-support requirement for viable emergent intermediates;
+- transition-mediated emergence with adversarial countermodels;
+- bounded-memory / bounded-reuse accessibility constraints;
+- finite-budget infeasibility of an overfull positive-cost retained candidate set;
+- paid reuse and repetition-depth specializations;
+- dynamic-vortex and earlier recursive-organization support layers.
 
-The advertised proof surface is imported by `AuditAll.lean` and its selected axiom dependencies are printed by `VerificationSurface.lean`. CI rejects `sorryAx` on that surface.
+The advertised proof surface is imported by AuditAll.lean and explicitly audited by VerificationSurface.lean. CI rejects sorryAx on that reviewed surface.
 
 Machine checking means the conclusions follow from the formal premises. It does **not** mean the premises describe every real system.
 
-## What is not claimed
+## What reviewers should attack
 
-```text
-novelty -> improvement
-persistence -> function
-validation -> truth
-retention -> goodness
-possibility -> realization
-larger search space -> progress
-self-maintenance -> automatic innovation
-historical accumulation -> growing active repertoire
-machine proof -> empirical truth
-```
+Reviewers are asked to localize criticism:
 
-The theory also does not derive a moral or political objective. Values and domain evidence choose goals; EbE can then ask what organization must actually be generated, implemented, maintained, transmitted, and reused for a chosen outcome to become and remain real.
+1. **formal validity** — does a conclusion fail under its exact premises?
+2. **semantic adequacy** — does the formal predicate fail to mean what the prose claims?
+3. **prior art** — does an existing theory already provide an equal or stronger architecture?
+4. **explanatory value** — is the factorization unnecessary or uninformative?
+5. **cross-domain mapping** — does a real cumulative-evolution system resist non-arbitrary instantiation?
+6. **universality** — can a bona fide cumulative evolutionary process be shown to lack retained-history effects on later accessibility under any defensible mapping?
 
-## Literature position
+A successful falsification, narrowing, or prior-art correction is a useful outcome.
 
-The mechanisms have strong antecedents in evolutionary theory, open-ended evolution, adjacent-possible models, changing phase spaces, novelty/co-option, evolvability, generative RAFs, major transitions, cumulative culture, technological recombination, viability/reachability, resource-limited maintenance, and systems construction.
+## Non-claims
 
-EbE therefore does **not** claim to have discovered the verbal idea that earlier organization can become reusable and enable later organization.
+EbE v20 does not infer:
 
-The candidate contribution under review is narrower:
-
-> **a machine-checked cross-domain factorization that keeps realization, emergence, feasibility, validation, retention, operational promotion, construction/parent reuse, finite admission, successor reproduction, saturation, and moving accessibility explicit, together with checked countermodels against invalid shortcuts.**
-
-See:
-
-- [LITERATURE_POSITIONING.md](verification/audits/2026-09-19-recursive-emergence/LITERATURE_POSITIONING.md)
-- [CLOSEST_ANTECEDENTS.md](verification/audits/2026-09-19-recursive-emergence/CLOSEST_ANTECEDENTS.md)
-- [LITERATURE_DIFFERENCE_MATRIX.md](verification/audits/2026-09-19-recursive-emergence/LITERATURE_DIFFERENCE_MATRIX.md)
-
-If an existing theory already provides the same full role more clearly and strongly, that is a useful review result.
-
-## Relation to the v16 Dynamic Vortex
-
-The Dynamic Vortex remains part of the larger stack. Its main role is:
-
-```text
-maintenance / uptake / resource slack
-    -> feasible response and search
-```
-
-The recursive-emergence core asks:
-
-```text
-realized retained response
-    -> reusable organization
-    -> changed generability
-    -> future candidates
-    -> later retained organization
-```
-
-The bridge is not automatic: more resource slack does not by itself prove another validated recursive innovation.
-
-## Worked mappings
-
-[APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md) tests the same definitions against:
-
-1. autocatalytic / reaction-network organization;
-2. technological / cultural cumulative innovation, including a climate-transition example with an explicit normative firewall;
-3. a fixed-operator genetic algorithm as a partial non-mapping.
-
-## When is it ready for broad review?
-
-The criterion is not certainty.
-
-> **We are ready when we no longer know of an internal contradiction, hidden theorem assumption, obvious stronger antecedent, ambiguous core term, or missing distinction that would predictably waste reviewers' time.**
-
-The full gates are in [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md). The targeted prior-art and cold-reader preflights are now complete; the remaining pre-release gate is final exact-head verification followed by freezing/tagging the review object.
-
-Reviewers should attack:
-
-1. formal validity;
-2. semantic adequacy;
-3. prior art;
-4. explanatory usefulness;
-5. application validity;
-6. empirical support;
-7. normative inference.
-
-A successful falsification or narrowing is a contribution.
+    persistence -> function
+    novelty -> improvement
+    validation -> truth
+    selection -> progress
+    retention -> goodness
+    learning-like dynamics -> literal cognition
+    moving envelope -> strong unprestatable ontology creation
+    machine proof -> empirical truth
+    descriptive dynamics -> moral or political obligation
 
 ## Reproduce the formal surface
 
-```bash
-git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
-cd Evolution-by-Emergence/formalization/cumulative-accessibility
-lake update
-lake exe cache get
-lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
-lake env lean CumulativeAccessibility/VerificationSurface.lean
-```
+    git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
+    cd Evolution-by-Emergence/formalization/cumulative-accessibility
+    lake update
+    lake exe cache get
+    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
+    lake env lean CumulativeAccessibility/VerificationSurface.lean
 
-For v17, inspect these modules:
+## Earlier releases
 
-```text
-EmergentCapacity.lean
-VocabularyEmergence.lean
-EmergencePersistenceBridge.lean
-RecursiveEmergence.lean
-ConstructiveRecursiveEmergence.lean
-ActiveHistory.lean
-LocalEmergenceReproduction.lean
-EndogenousEnvelopePromotion.lean
-EvolutionByEmergenceV17Core.lean
-```
+- **v19** — Retained Organization and Correctable Learning.
+- **v18** — The Learning Constitution: Correctable Interdependence.
+- **v17** — Recursive Organization Core.
+- **v16** — Full Theory Peer-Review Release / Dynamic Vortex integration.
 
-## Historical releases and wider corpus
+Those releases remain immutable historical review objects. v20 is the current consolidated theory to review.
 
-- **v18** — The Learning Constitution: Correctable Interdependence; machine-checked companion on fallibility, corrective routes, and recursive non-closure.
-- **v17** — Recursive Organization Core; corrected moving-envelope operational core.
-- **v16** — Full Theory Peer-Review Release; Dynamic Vortex integration.
-- **v15** — Verification Closure baseline.
-
-The historical book and essays remain in the repository because the formal core is intended to underpin and discipline that broader work, not erase its development. Use [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for the full corpus.
+Use [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for the wider corpus.
 
 ---
 
