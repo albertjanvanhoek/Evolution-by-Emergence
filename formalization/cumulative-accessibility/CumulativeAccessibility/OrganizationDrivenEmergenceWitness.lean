@@ -120,6 +120,42 @@ theorem organizationLadder_persistenceLaw (t : ℕ) :
         organizationLadderCost, organizationLadderBudget,
         organizationLadderKeep, ResourceFeasibleAt, AccessibleByCost]
 
+theorem organizationLadder_emergence_event (t : ℕ) :
+    EmergentOrganizationAt
+      organizationLadderBase
+      organizationLadderProper
+      organizationLadderRealizes
+      organizationLadderUse
+      organizationLadderRetained
+      t
+      (organizationLadderParents t)
+      (organizationLadderWhole t)
+      ()
+      (t + 2) := by
+  refine ⟨?_, ?_, ?_, ?_, organizationLadder_emergent t, ?_⟩
+  · simp [organizationLadderParents]
+  · intro x hx
+    simp only [organizationLadderParents, Finset.mem_insert,
+      Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl <;> simp [organizationLadderRetained]
+  · intro x hx
+    simp only [organizationLadderParents, Finset.mem_insert,
+      Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl
+    · exact ⟨t, rfl, Or.inl rfl⟩
+    · exact ⟨t, rfl, Or.inr rfl⟩
+  · exact Or.inl ⟨t, rfl, rfl⟩
+  · simp [organizationLadderRetained, organizationLadderWhole]
+
+theorem organizationLadder_function_exists_before_persistence (t : ℕ) :
+    organizationLadderRealizes
+      (organizationLadderWhole t) () (t + 2) := by
+  exact emergentOrganization_function_exists
+    organizationLadderBase organizationLadderProper
+    organizationLadderRealizes organizationLadderUse
+    organizationLadderRetained t
+    (organizationLadder_emergence_event t)
+
 theorem organizationLadder_event (t : ℕ) :
     EmergentOrganizationPersistenceAt
       organizationLadderBase
@@ -135,24 +171,11 @@ theorem organizationLadder_event (t : ℕ) :
       (organizationLadderWhole t)
       ()
       (t + 2) := by
-  refine ⟨?_, ?_, ?_, ?_, organizationLadder_emergent t, ?_, ?_,
+  refine ⟨organizationLadder_emergence_event t, ?_,
     organizationLadder_persistenceLaw t⟩
-  · simp [organizationLadderParents]
-  · intro x hx
-    simp only [organizationLadderParents, Finset.mem_insert,
-      Finset.mem_singleton] at hx
-    rcases hx with rfl | rfl <;> simp [organizationLadderRetained]
-  · intro x hx
-    simp only [organizationLadderParents, Finset.mem_insert,
-      Finset.mem_singleton] at hx
-    rcases hx with rfl | rfl
-    · exact ⟨t, rfl, Or.inl rfl⟩
-    · exact ⟨t, rfl, Or.inr rfl⟩
-  · exact Or.inl ⟨t, rfl, rfl⟩
-  · simp [organizationLadderRetained, organizationLadderWhole]
-  · simp [OrganizationPersistenceGateAt,
-      organizationLadderCost, organizationLadderBudget,
-      organizationLadderKeep, ResourceFeasibleAt, AccessibleByCost]
+  simp [OrganizationPersistenceGateAt,
+    organizationLadderCost, organizationLadderBudget,
+    organizationLadderKeep, ResourceFeasibleAt, AccessibleByCost]
 
 theorem organizationLadder_function_novel (t : ℕ) :
     FunctionallyNovelToRetainedSystem
@@ -379,6 +402,8 @@ theorem organizationLadder_nonEmergent_not_functionally_novel (t : ℕ) :
 end NonEmergentTwin
 
 #print axioms organizationLadder_emergent
+#print axioms organizationLadder_emergence_event
+#print axioms organizationLadder_function_exists_before_persistence
 #print axioms organizationLadder_event
 #print axioms organizationLadder_function_novel
 #print axioms organizationLadder_functions_strictly_expand
