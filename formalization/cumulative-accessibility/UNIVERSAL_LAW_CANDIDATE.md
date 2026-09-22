@@ -179,6 +179,26 @@ theorem becomes:
 }
 ]
 
+The same maintenance ledger now gives a direct retention no-go. Let C be a
+finite candidate retained set. If every candidate costs at least
+\(\mu>0\) to maintain and
+
+\[
+\boxed{
+B < |C|\mu,
+}
+\]
+
+then Lean proves that the complete set C cannot satisfy the maintenance budget.
+Finite resources therefore force a retention trade-off whenever positive-cost
+candidate history outruns available maintenance capacity.
+
+This is intentionally weaker than an optimization or fitness law. It does not
+say which candidate should persist, or whether the system responds by
+forgetting, replacement, compression, reduced upkeep, compositional reuse, or
+increased resource capture. It says only that unrestricted positive-cost
+retention is infeasible under the stated finite budget.
+
 Hence an observed repertoire satisfying
 
 [
@@ -201,7 +221,42 @@ This is not a claim that all accessible targets have a unique causal owner.
 Failure of the encoding is scientifically informative: it can indicate
 compositional or synergistic support.
 
-## 6. Why this is compatible with changing phase spaces
+## 6. Nested learning-like dynamics
+
+The same architecture can in principle recur at nested organizational scales:
+
+[
+\text{interaction/history}
+\rightarrow
+\text{retained organization}
+\rightarrow
+\text{changed transition machinery}
+\rightarrow
+\text{changed future accessibility}
+\rightarrow
+\text{new organization}
+\rightarrow
+\text{budget-constrained retention}.
+]
+
+This is best described here as **learning-like dynamics**, not as a claim that
+every substrate literally learns in the psychological sense. Neural learning
+is one concrete instance. Cells, organisms, people, institutions, cultures, and
+technological systems may instantiate analogous retained-history dynamics if
+the required interfaces can be mapped non-arbitrarily.
+
+The nesting matters. A system does not only change internally while facing a
+fixed outside world. Higher and lower organizational layers can also change the
+context and accessible possibilities encountered by the focal layer. A person,
+for example, can retain and forget across daily experience while the surrounding
+social and technological repertoire is itself changing. In the formal language,
+both retained state R and context Gamma may therefore change across turns.
+
+Lean does not prove that these domains share one empirical mechanism. The
+candidate universality claim is that the same abstract causal architecture can
+be instantiated across them without changing its logical form.
+
+## 7. Why this is compatible with changing phase spaces
 
 The theorem statements are polymorphic over arbitrary types. They do not
 enumerate future biological traits, technologies, meanings, or functions.
@@ -225,7 +280,7 @@ The present Lean development still uses fixed ambient types inside each model,
 so strong creation of previously unstatable observables or ontologies is not
 machine-checked.
 
-## 7. What would justify the word "universal"
+## 8. What would justify the word "universal"
 
 The same theorem architecture should be instantiated without changing its
 logical structure in genuinely different substrates, for example biological
@@ -239,13 +294,15 @@ transition machinery, horizon, accessibility, ablation, and reuse.
 The strongest next empirical test is whether the same paid-transfer and
 generative-leverage quantities can be operationalized across those domains.
 
-## 8. Publication claim at the present stage
+## 9. Publication claim at the present stage
 
 A defensible current formulation is:
 
 > We provide machine-checked substrate-agnostic constraints linking retained
 > organization, transition-induced future accessibility, maintenance cost,
-> strict compositional emergence, and bounded generative leverage.
+> finite-budget retention trade-offs, strict compositional emergence, and
+> bounded generative leverage. The resulting recursive architecture motivates
+> a testable learning-like interpretation across nested organizational scales.
 
 A stronger formulation such as "a universal law of evolution" should be
 reserved for after cross-domain instantiation and adversarial comparison with
