@@ -1,8 +1,8 @@
 # Cumulative Accessibility
 
-> **Post-v19 formalization status:** the retained-organization core is being
-> rebuilt here in the v19/PR63 dynamical language. This is draft formalization,
-> not yet a new numbered release.
+> **v20 peer-review surface:** this package contains the canonical machine-checked
+> retained-organization, transition-accessibility, emergence-barrier, resource,
+> and generative-leverage results offered for independent review.
 
 ## Retained-organization verification spine
 
