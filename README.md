@@ -6,9 +6,21 @@
 
 > **How can organization that exists now become material that changes which organization can exist next?**
 
-The repository contains a historical book, essays, papers, models, and formalizations. The v17 release froze the recursive-organization formal core. The v18 release adds a separate machine-checked companion on fallible interdependent agents and the preservation of correctability; it does not redefine the v17 recursive core.
+The repository contains a historical book, essays, papers, models, and formalizations. The v17 release froze the recursive-organization formal core. The v18 release added a separate machine-checked companion on fallible interdependent agents and preservation of correctability. **v19 integrates these lines conceptually without conflating their theorem surfaces:** retained organization is treated as causal structure for future change, while the Learning Constitution becomes an intelligent-agent specialization concerned with preserving corrective transition routes.
 
 The goal is **not** to claim priority for mechanisms that are already known. The goal is a self-standing, machine-auditable, literature-positioned theory that reviewers can attack precisely.
+
+## Current v19 route
+
+For the current retained-organization synthesis and its relation to correctable learning, start with:
+
+1. **[Retained Organization README](research/network-vortex-theory/README.md)** — concise entry point.
+2. **[Working Theory](research/network-vortex-theory/WORKING_THEORY.md)** — paid retention, graded transfer, hierarchy, emergence, and Dynamic Vortex.
+3. **[Learning Constitution Bridge](research/network-vortex-theory/LEARNING_CONSTITUTION_BRIDGE.md)** — constrained local agency, v18 relation, SCAP, correction viscosity, and learning velocity.
+4. **[Theorem Notes](research/network-vortex-theory/theorem-notes/README.md)** — explicit mathematical specializations and next theorem target.
+5. **[v18 Learning Constitution package](papers/the-room-learning-constitution/README.md)** — independent machine-checked agent/interdependence surface.
+
+The v17 and v18 materials remain important immutable review objects. v19 adds a higher-level integration and working research programme; it does not retroactively change what the earlier tagged theorem surfaces proved.
 
 ## Start here
 
