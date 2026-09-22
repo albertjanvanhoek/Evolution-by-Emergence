@@ -316,6 +316,34 @@ Working differentiation, not a priority claim:
 
 That is where burden, upkeep bounds, repetition-driven hierarchy, saturation, gain/loss and lock-in enter.
 
+## Relation to v18 Learning Constitution
+
+Preserve this level distinction:
+
+[
+oxed{
+	ext{universal retained organization}
+supset
+	ext{intelligent-agent network}
+supset
+	ext{Learning Constitution / SCAP}.
+}
+]
+
+Do not import human learning verbs into the universal theorem.
+
+For the intelligent specialization:
+
+- nodes are learning agents;
+- edges are correction/information/coordination channels;
+- **constrained local agency** is the formal interpretation of the older “forced free will” phrase;
+- the Learning Constitution is retained meta-organization (R^{mathrm{LC}}) that changes the allowed correction transition machinery;
+- a v18 self-sealing restriction is the binary boundary case of zero corrective accessibility / infinite correction cost;
+- SCAP is a paid, corrigible candidate maintenance protocol in the finite-cost interior;
+- learning verbs can affect discovery velocity only through an explicit model/empirical bridge to accessibility/rate coordinates.
+
+Use [LEARNING_CONSTITUTION_BRIDGE.md](LEARNING_CONSTITUTION_BRIDGE.md) for the full relationship.
+
 ## Verification files
 
 Finite checks:
