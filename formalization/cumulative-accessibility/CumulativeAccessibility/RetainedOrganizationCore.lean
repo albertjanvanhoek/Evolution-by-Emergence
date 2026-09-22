@@ -141,7 +141,7 @@ theorem positiveTransfer_iff_accessibility_strictly_higher
     stateAccessibility A M T sMinus y <
       stateAccessibility A M T sPlus y := by
   unfold PositiveTransferAt transferGain
-  linarith
+  constructor <;> intro h <;> linarith
 
 /-- Same gross budget yields the exact free-budget difference implied by the
 difference in retained maintenance burden. -/
