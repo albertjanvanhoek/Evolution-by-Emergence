@@ -103,10 +103,10 @@ Evolution acts on the organization of this self-maintaining loop.
 The key retention identity is:
 
 \[
-J(R\cup\{X\})-J(R)=C_R(X)-S_R(X),
+J(R\cup\{X\})-J(R)=\Delta M_R(X)-S_R(X),
 \]
 
-where \(S_R(X)\) is expected future saving and \(C_R(X)\) is marginal retention/maintenance cost.
+where \(S_R(X)\) is expected future saving and \(\Delta M_R(X)\) is marginal retention/maintenance cost.
 
 Retention is favored when expected reuse/compression savings exceed maintenance.
 
