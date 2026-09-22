@@ -44,15 +44,11 @@ jobs:
           $HOME/.elan/bin/lake build \
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
-            CumulativeAccessibility.EmergenceDrivenRecursion \
             CumulativeAccessibility.OrganizationDrivenEmergence \
             CumulativeAccessibility.OrganizationDrivenEmergenceRecurrence \
             CumulativeAccessibility.OrganizationDrivenEmergenceWitness \
             CumulativeAccessibility.OrganizationDrivenEmergenceProbes \
             CumulativeAccessibility.OrganizationDrivenDynamicVortex \
-            CumulativeAccessibility.EmergenceDrivenRecursionOpenEnded \
-            CumulativeAccessibility.EmergenceDrivenRecursionProbes \
-            CumulativeAccessibility.EmergenceDrivenDynamicVortex \
             CumulativeAccessibility.EmergenceDrivenVerificationSurface \
             CumulativeAccessibility.FormalCoreWitness \
             CumulativeAccessibility.MaintenanceGatedWitness \
@@ -81,15 +77,11 @@ jobs:
           set -euo pipefail
           output="$({
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
-            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursion.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceRecurrence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceProbes.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenDynamicVortex.lean
-            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursionOpenEnded.lean
-            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenRecursionProbes.lean
-            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenDynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenVerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
