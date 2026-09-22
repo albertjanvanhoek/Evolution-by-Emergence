@@ -100,6 +100,31 @@ theorem retained_card_mul_minCost_le_totalMaintenance
     exact hMin i hi
   simpa using hSum
 
+/-- **Finite maintenance budget forces a retention trade-off.**
+
+If every candidate retained unit would cost at least `mu > 0`, but retaining
+the whole candidate set would require more than the available maintenance
+budget `B`, then full retention is infeasible.
+
+This theorem does not choose which candidate is lost, compressed, replaced, or
+made cheaper. It isolates the substrate-agnostic constraint: under finite
+resources, positive-cost history cannot accumulate without bound at fixed
+maintenance efficiency. -/
+theorem candidate_set_exceeding_budget_cannot_all_be_retained
+    (cost : ι → ℝ)
+    (C : Finset ι)
+    (mu B : ℝ)
+    (hMu : 0 < mu)
+    (hMin : ∀ i, i ∈ C → mu ≤ cost i)
+    (hExcess : B < (C.card : ℝ) * mu) :
+    ¬ TotalMaintenance cost C ≤ B := by
+  intro hBudget
+  have hLower :
+      (C.card : ℝ) * mu ≤ TotalMaintenance cost C :=
+    retained_card_mul_minCost_le_totalMaintenance cost C mu hMin
+  have _hPositive : 0 < mu := hMu
+  linarith
+
 /-- Physical-budget leverage inequality. If each retained unit costs at least
 mu > 0, total maintenance is at most B, and each retained unit has at most d
 single-unit support slots, then accessible repertoire satisfies
@@ -208,6 +233,7 @@ theorem excess_accessibility_breaks_bounded_single_unit_reuse
 #print axioms accessible_card_le_retained_mul_slots
 #print axioms accessible_card_le_memoryBound_mul_slots
 #print axioms retained_card_mul_minCost_le_totalMaintenance
+#print axioms candidate_set_exceeding_budget_cannot_all_be_retained
 #print axioms accessible_card_mul_minCost_le_budget_mul_slots
 #print axioms excess_resource_normalized_accessibility_breaks_bounded_reuse
 #print axioms bounded_memory_and_bounded_reuse_rule_out_unbounded_accessibility
