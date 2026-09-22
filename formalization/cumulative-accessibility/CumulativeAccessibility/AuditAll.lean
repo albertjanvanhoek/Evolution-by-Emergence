@@ -57,6 +57,7 @@ import CumulativeAccessibility.ConstitutionAccessibility
 import CumulativeAccessibility.PaidLearningMaintenance
 
 import CumulativeAccessibility.PaidReuseHierarchy
+import CumulativeAccessibility.RepetitionDepth
 
 import CumulativeAccessibility.EmergentPaidTransfer
 
