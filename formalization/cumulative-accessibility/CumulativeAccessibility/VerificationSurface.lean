@@ -379,7 +379,7 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.RecursiveAccessibility.noOpportunity_gatedArchitecture_not_openEnded
 
 
-/-! ## v20 substrate-agnostic retained-organization surface -/
+/-! ## post-v19 substrate-agnostic retained-organization surface -/
 
 #print axioms CumulativeAccessibility.PaidRetention.marginal_run_condition_iff_positivePaidTransfer
 #print axioms CumulativeAccessibility.PaidRetention.positivePaidTransfer_opens_sameGrossBudget_window
@@ -404,10 +404,15 @@ open CumulativeAccessibility.RecursiveAccessibility
 
 #print axioms CumulativeAccessibility.EmergentPaidTransfer.emergentSelfSupport_leaves_nonnegative_netSlack
 #print axioms CumulativeAccessibility.EmergentPaidTransfer.emergentPaidTransfer_opens_unvisited_budget_window
+#print axioms CumulativeAccessibility.EmergentPaidTransfer.emergentPaidTransfer_gain_exceeds_upkeep_penalty
 
 #print axioms CumulativeAccessibility.RetainedOrganizationCore.positiveTransfer_iff_accessibility_strictly_higher
 #print axioms CumulativeAccessibility.RetainedOrganizationCore.sameGrossBudget_freeBudget_difference
 #print axioms CumulativeAccessibility.RetainedOrganizationCore.cumulativePaidTransfer_has_unvisited_positive_transfer
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.positivePaidTransfer_implies_sameBudget_retention_advantage
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.cumulativePaidTransfer_gain_exceeds_upkeep_penalty
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.cumulativePaidTransfer_retained_arms_differ
+#print axioms CumulativeAccessibility.RetainedOrganizationCore.no_positiveTransfer_from_upkeep_penalty_alone
 #print axioms CumulativeAccessibility.RetainedOrganizationCore.transition_change_without_paid_transfer
 
 /-! ## downstream intelligent-network specialization -/
