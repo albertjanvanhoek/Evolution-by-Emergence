@@ -22,14 +22,14 @@ S_R(X)=\mathbb E[D_R(Y)-D_{R\cup\{X\}}(Y)]
 and
 
 \[
-C_R(X)=M(R\cup\{X\})-M(R).
+\Delta M_R(X)=M(R\cup\{X\})-M(R).
 \]
 
 Then exactly:
 
 \[
 \boxed{
-J(R\cup\{X\})-J(R)=C_R(X)-S_R(X).
+J(R\cup\{X\})-J(R)=\Delta M_R(X)-S_R(X).
 }
 \]
 
@@ -39,7 +39,7 @@ Hence:
 \boxed{
 J(R\cup\{X\})<J(R)
 \iff
-S_R(X)>C_R(X).
+S_R(X)>\Delta M_R(X).
 }
 \]
 
