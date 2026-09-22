@@ -1,6 +1,6 @@
 # Candidate Universal Constraint Architecture
 
-Status: **post-v19 draft research architecture**.
+Status: **v20 peer-review interpretation and universality challenge**.
 
 This document is not a priority claim and does not declare a universal law established.
 
@@ -34,7 +34,7 @@ R^- = \operatorname{Lose}(R,X).
 
 Both start from the same active organization, context, and gross budget.
 
-The post-v19 instrument asks whether retaining X changes future accessibility
+The v20 instrument asks whether retaining X changes future accessibility
 after its own maintenance burden is paid.
 
 The abstract core still permits application-defined graded accessibility, but
