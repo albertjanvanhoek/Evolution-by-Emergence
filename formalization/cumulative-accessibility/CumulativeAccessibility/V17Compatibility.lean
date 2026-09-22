@@ -113,38 +113,44 @@ their own maintenance costs.
 -/
 
 /-- Application-specific bridge from a v17 essential-use event to the new
-graded paid-transfer criterion. -/
+item-specific graded paid-transfer criterion. The v17 promoted child is the
+retained item being ablated/retained in the new core. -/
 abbrev EssentialReuseToPaidTransferBridge
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
+    (Retain : RetainItem R Capacity)
+    (Lose : LoseItem R Capacity)
     (A : Accessibility G R Γ Target)
     (M : Maintenance R)
     (T : ℕ)
-    (sMinus sPlus : State G R Γ)
+    (base : State G R Γ)
     (encode : Capacity → Target) :=
   ∀ m child next,
     GenerativelyConsequentialPromotionAt S H m child next →
-    PositiveTransferAt A M T sMinus sPlus (encode next)
+    PositiveTransferForItem
+      Retain Lose A M T base child (encode next)
 
 /-- v17 essential reuse becomes a new-core paid-transfer result only after the
-explicit graded bridge is supplied. -/
+explicit graded, item-specific bridge is supplied. -/
 theorem v17_essentialReuse_plus_bridge_implies_paidTransfer
     (S : ℕ → Finset Capacity)
     (H : ℕ → HyperGenerator Capacity)
+    (Retain : RetainItem R Capacity)
+    (Lose : LoseItem R Capacity)
     (A : Accessibility G R Γ Target)
     (M : Maintenance R)
     (T : ℕ)
-    (sMinus sPlus : State G R Γ)
+    (base : State G R Γ)
     (encode : Capacity → Target)
     (bridge :
       EssentialReuseToPaidTransferBridge
-        S H A M T sMinus sPlus encode)
+        S H Retain Lose A M T base encode)
     (m : ℕ)
     (child next : Capacity)
     (h :
       GenerativelyConsequentialPromotionAt S H m child next) :
-    PositiveTransferAt
-      A M T sMinus sPlus (encode next) :=
+    PositiveTransferForItem
+      Retain Lose A M T base child (encode next) :=
   bridge m child next h
 
 #print axioms v17_emergence_is_strict_compositional_emergence
