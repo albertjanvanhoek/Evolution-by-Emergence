@@ -1,11 +1,8 @@
-import CumulativeAccessibility.EmergenceDrivenRecursion
 import CumulativeAccessibility.OrganizationDrivenEmergence
 import CumulativeAccessibility.OrganizationDrivenEmergenceRecurrence
 import CumulativeAccessibility.OrganizationDrivenEmergenceWitness
 import CumulativeAccessibility.OrganizationDrivenEmergenceProbes
 import CumulativeAccessibility.OrganizationDrivenDynamicVortex
-import CumulativeAccessibility.EmergenceDrivenRecursionProbes
-import CumulativeAccessibility.EmergenceDrivenDynamicVortex
 
 namespace CumulativeAccessibility
 namespace RecursiveAccessibility
@@ -25,9 +22,7 @@ The candidate successor is organization-first:
 * changed accessibility is a downstream consequence, not an authorization step
   and not necessarily a mutation of the underlying construction laws.
 
-The older RuleOf(S) route remains imported only as historical comparison.
-The rejected certification/operator route is intentionally absent from this
-verification surface.
+Superseded RuleOf(S) and certification/operator routes are intentionally absent from this verification surface; their history is preserved in commits and the audit note.
 -/
 
 #check FunctionAvailable
