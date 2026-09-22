@@ -59,6 +59,12 @@ def FunctionAvailable
     (phi : Capacity) : Prop :=
   ∃ organization, Available organization ∧ Realizes organization ctx phi
 
+/-- Inclusion between construction relations, without implying that either
+relation is a mutable generator object. -/
+def ConstructionRelationLe
+    (oldRel newRel : HyperGenerator Organization) : Prop :=
+  ∀ parents child, oldRel parents child -> newRel parents child
+
 def EffectiveOrganizationGenerator
     (Base : HyperGenerator Organization)
     (Realizes : CapacityRelation Organization Context Capacity)
@@ -91,7 +97,7 @@ theorem effectiveOrganizationGenerator_mono
     (ctx : Context)
     {oldAvailable newAvailable : Organization -> Prop}
     (hAvail : ∀ x, oldAvailable x -> newAvailable x) :
-    GeneratorRuleLe
+    ConstructionRelationLe
       (EffectiveOrganizationGenerator Base Realizes Use ctx oldAvailable)
       (EffectiveOrganizationGenerator Base Realizes Use ctx newAvailable) := by
   intro parents child h
@@ -124,7 +130,7 @@ theorem organizationReach_mono
     (oldGenerate newGenerate : HyperGenerator Organization)
     (oldAvailable newAvailable : Organization -> Prop)
     (hAvail : ∀ x, oldAvailable x -> newAvailable x)
-    (hGenerate : GeneratorRuleLe oldGenerate newGenerate) :
+    (hGenerate : ConstructionRelationLe oldGenerate newGenerate) :
     ∀ z,
       OrganizationReach oldGenerate oldAvailable z ->
       OrganizationReach newGenerate newAvailable z := by
@@ -152,7 +158,7 @@ theorem reachableOrganizationPromotion_preserves_fixedReach
   | base h =>
       rcases h with hOld | hEq
       · exact OrganizationReach.base hOld
-      · subst hEq
+      · cases hEq
         exact hReach
   | gen hParents hRule ih =>
       exact OrganizationReach.gen ih hRule
@@ -571,7 +577,7 @@ theorem retainedEmergentFunction_can_expand_fullReach
       emergentOrganization_old_retained
         Base Proper Realizes Use Cost Budget Keep O t h hx
   have hGen :
-      GeneratorRuleLe
+      ConstructionRelationLe
         (EffectiveOrganizationGenerator
           Base Realizes Use ctx (fun x => x ∈ O t))
         (EffectiveOrganizationGenerator
