@@ -285,7 +285,6 @@ They preserve the central EbE question:
 ---
 
 ## 5. Differential continuation
-## 5. Differential continuation
 
 Not all candidate organizations remain equally present in later history.
 
@@ -558,7 +557,6 @@ A retained organization can therefore leave unlimited logical closure unchanged 
 
 ---
 
-## 10. Second-order evolution: weak and strong forms
 ## 10. Second-order evolution: weak and strong forms
 
 ### 10.1 Weak historical dependence
