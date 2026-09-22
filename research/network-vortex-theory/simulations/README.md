@@ -9,7 +9,18 @@ The current EbE centre is broader than these simulations:
 
 > **Retained organization becomes causal structure for future change.**
 
-The simulations below test one specialization of that claim: retained organization changes later construction costs, routes, and budgeted accessibility.
+The simulations below test one specialization of that claim: **paid retained organization changes graded later construction/accessibility, and sometimes fails to do so.**
+
+The strongest future simulation endpoint should be the paid transfer criterion:
+
+\[
+\exists Y\notin\mathcal H_t:
+\mathcal A_T(Y\mid s^+,B-\mu_X)
+>
+\mathcal A_T(Y\mid s^-,B).
+\]
+
+A retained change that only alters an immediate state but does not transfer to an unvisited target should not count as a positive result.
 
 ## Reported exploratory findings
 
@@ -24,6 +35,9 @@ The research discussion reported the following qualitative patterns:
 7. **Compositional retention can generate nested reusable modules.**
 8. **Null control: destroy repeated cross-task substructure and hierarchy largely disappears.**
 9. **Increase reference cost and hierarchy weakens.**
+10. **Single-use additive scaffolds should fail.** The corrected theorem predicts that (n=1) cannot pay for a pure representational scaffold when reference/upkeep costs are nonnegative.
+11. **Repeated/shared use should show a threshold.** A module used (n) times is favored only after \((n-1)c>nr+h\).
+12. **Paid transfer can fail.** Retention should be scored after upkeep, with neutral and burden cases retained as legitimate outcomes.
 
 ## What must be reproduced
 
@@ -62,8 +76,11 @@ Compare:
 Controls:
 
 - destroy cross-task shared substructure;
+- force single-use (n=1) substructure as a no-hierarchy control;
+- vary repetition count through its analytic threshold;
 - vary reference cost;
-- vary maintenance budget;
+- vary maintenance/upkeep budget;
+- compare retained versus ablated counterfactuals on held-out/unvisited targets;
 - measure historical hierarchy depth only in time direction.
 
 ## Required outputs
@@ -74,7 +91,9 @@ For every experiment, save:
 - complete parameter configuration;
 - generated universe;
 - retention decisions over time;
-- cost definitions;
+- separate use/reach cost and retention/upkeep cost definitions;
+- visited-history set and held-out/unvisited target set;
+- retained-versus-ablated transfer measurements;
 - raw results;
 - summary statistics;
 - plots/tables;
@@ -89,17 +108,24 @@ For every experiment, save:
 - Do not call an exploratory numerical result a theorem.
 - Do not treat Boolean truth tables as universal semantics; they are a controlled test bed.
 - Do not claim network hierarchy is universal unless chemistry and other non-symbolic systems support the same mechanism.
+- Do not call a mere change in the next-state distribution transfer; require a held-out/unvisited target and an explicit ablation counterfactual.
+- Do not let maintenance/upkeep disappear from the comparison that is supposed to show retention benefit.
+- Do not infer pure scaffold value from a free (H_i) parameter; derive it from repetition/shared structure or another explicit mechanism.
 
 ## Current role
 
-These experiments motivated the theorem statement:
+These experiments motivated the sharper paid-retention statements:
 
 \[
-\text{direct reuse value}
-+
-\text{hierarchical compression value}
->
-\text{retention/maintenance cost}.
+S_R(X)>\Delta M_R(X),
 \]
 
-The next simulation should be designed *after* the network-level theorem is clarified, not used to substitute for it.
+and, for repeated additive scaffolds,
+
+\[
+(n-1)c>nr+h.
+\]
+
+The next simulation should directly test **paid transfer to unvisited organization**, with retention ablation as the control.
+
+Finite algebra/check scripts now live in [../scripts/](../scripts/). They are sanity checks, not substitutes for reproducing the exploratory simulations.
