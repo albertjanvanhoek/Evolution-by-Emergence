@@ -197,8 +197,9 @@ theorem excess_accessibility_breaks_bounded_single_unit_reuse
     (N d : ℕ)
     (hR : R.card ≤ N)
     (hLarge : N * d < A.card) :
-    ¬ BoundedReuseEncoding R A d := by
-  intro enc
+    ¬ Nonempty (BoundedReuseEncoding R A d) := by
+  intro hEnc
+  rcases hEnc with ⟨enc⟩
   have hBound :=
     accessible_card_le_memoryBound_mul_slots
       R A N d hR enc
