@@ -4,6 +4,8 @@ import Mathlib.Tactic
 namespace CumulativeAccessibility
 namespace PaidReuse
 
+open scoped BigOperators
+
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-!
