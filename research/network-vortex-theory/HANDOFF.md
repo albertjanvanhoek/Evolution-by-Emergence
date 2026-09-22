@@ -20,12 +20,24 @@ That is only weak history dependence.
 
 The current stronger EbE criterion is **paid transfer to later novelty**.
 
-Let \(X\) be retained, with upkeep \(\mu_X\). Let
+Let \(R^-\) be the baseline retained repertoire, \(R^+=R^-\cup\{X\}\), and
+
+\[
+\mu_R(X)=M(R^+)-M(R^-).
+\]
+
+Let
 
 \[
 s^+=\operatorname{Retain}(s,X),
 \qquad
-s^-=\operatorname{Lose}(s,X).
+s^-=\operatorname{Lose}(s,X),
+\]
+
+and compare both arms at the same gross budget:
+
+\[
+B^\pm=B^{\mathrm{gross}}-M(R^\pm).
 \]
 
 Then the strong transfer question is:
@@ -33,11 +45,13 @@ Then the strong transfer question is:
 \[
 \boxed{
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-).
 }
 \]
+
+Equivalently, after cancelling upkeep common to both arms, \(B^+=B^- - \mu_R(X)\).
 
 The test can fail.
 
