@@ -98,7 +98,6 @@ theorem organizationLadder_emergent (t : ℕ) :
     rcases hPart with rfl | rfl
     · simp [organizationLadderRealizes] at hRealizes
     · simp [organizationLadderRealizes] at hRealizes
-      omega
 
 theorem organizationLadder_persistenceLaw (t : ℕ) :
     IsolatedOrganizationPersistenceLawAt
@@ -241,7 +240,7 @@ theorem organizationLadder_product_not_old_reach (t : ℕ) :
         cases hChildEq
       · rcases hFunction with ⟨organization, hAvailable, hRealizes⟩
         have hPhi : phi = t + 2 := by
-          exact Sum.inr.inj hUse.2
+          exact (Sum.inr.inj hUse.2).symm
         subst phi
         cases organization with
         | inl n =>
@@ -338,7 +337,15 @@ theorem organizationLadder_chain (n : ℕ) :
         exact ⟨organizationLadderParents n, (), n + 2,
           by simp [organizationLadderParents],
           organizationLadder_event n⟩
-      simpa [Nat.add_assoc] using TimedRecursiveChain.step ih hLink
+      have hLink' :
+          OrganizationEmergenceStepAt
+            organizationLadderBase organizationLadderProper
+            organizationLadderRealizes organizationLadderUse
+            organizationLadderCost organizationLadderBudget
+            organizationLadderKeep organizationLadderRetained
+            (0 + n) (Sum.inl (n + 1)) (Sum.inl (n + 2)) := by
+        simpa using hLink
+      simpa [Nat.add_assoc] using TimedRecursiveChain.step ih hLink'
 
 theorem organizationLadder_openEndedOrganization :
     OpenEndedCumulativeNovelty organizationLadderRetained := by
@@ -397,7 +404,8 @@ theorem organizationLadder_nonEmergent_not_functionally_novel (t : ℕ) :
     ¬ FunctionallyNovelToRetainedSystem
       organizationLadderNonEmergentRealizes ()
       organizationLadderRetained t (t + 2) := by
-  exact organizationLadder_nonEmergent_function_already_available t
+  intro hNovel
+  exact hNovel (organizationLadder_nonEmergent_function_already_available t)
 
 end NonEmergentTwin
 
