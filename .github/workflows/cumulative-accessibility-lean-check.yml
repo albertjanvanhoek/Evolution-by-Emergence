@@ -8,12 +8,14 @@ on:
       - "formalization/cumulative-accessibility/**"
       - "formalization/collective-alignment/**"
       - "papers/when-does-change-become-cumulative/**"
+      - "papers/the-room-learning-constitution/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
   pull_request:
     paths:
       - "formalization/cumulative-accessibility/**"
       - "formalization/collective-alignment/**"
       - "papers/when-does-change-become-cumulative/**"
+      - "papers/the-room-learning-constitution/**"
       - ".github/workflows/cumulative-accessibility-lean-check.yml"
 
 jobs:
@@ -50,6 +52,12 @@ jobs:
             CumulativeAccessibility.EndogenousBudgetWitness \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.QuantitativeAccessibility \
+            CumulativeAccessibility.RetainedOrganizationCore \
+            CumulativeAccessibility.PaidRetentionTransfer \
+            CumulativeAccessibility.PaidReuseHierarchy \
+            CumulativeAccessibility.EmergentPaidTransfer \
+            CumulativeAccessibility.V17Compatibility \
+            CumulativeAccessibility.LearningConstitutionSpecialization \
             CumulativeAccessibility.IntelligentLearningMaintenance \
             CumulativeAccessibility.FunctionalRatchetVelocity \
             CumulativeAccessibility.RatchetVelocityLedger \
@@ -78,6 +86,12 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidRetentionTransfer.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidReuseHierarchy.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergentPaidTransfer.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/V17Compatibility.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningConstitutionSpecialization.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/IntelligentLearningMaintenance.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FunctionalRatchetVelocity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RatchetVelocityLedger.lean
