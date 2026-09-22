@@ -1,199 +1,186 @@
-# Emergence-driven synthesis audit
+# Organization-driven emergence audit
 
 **Branch:** research/emergence-driven-recursion  
 **Baseline:** d92cd7d29dfddc2182095d88b639ac13c42bced4  
 **PR:** #62  
 **Status:** research / adversarial review required
 
-## Purpose
+## What changed
 
-This audit records which findings from the 21 September external adversarial
-review are addressed by the emergence-driven synthesis and which remain open.
-It is intentionally not a claim that the review has been fully resolved.
+The branch originally explored two stronger generator-centered routes:
+
+1. a generic repertoire-dependent RuleOf(S) construction;
+2. a certification/operator construction.
+
+The first improved the treatment of full closure but could derive generator
+change without using emergence.
+
+The second attempted to make emergence load-bearing by allowing only
+emergence-certified capacities to contribute operators.
+
+That second move was rejected after conceptual review. It changes the ontology
+from organization-producing-function to permission-controlled capacity labels.
+
+The certification/operator files have therefore been removed from the branch.
+
+The current candidate is organization-first.
+
+## Current causal architecture
+
+    retained parts
+      -> assemble organization
+      -> organization realizes function
+      -> proper parts do not realize that function
+      -> function exists now
+      -> persistence gate decides whether organization remains
+      -> retained organization becomes reusable material
+      -> every function it realizes is automatically available
+      -> later organization/accessibility may change.
+
+Key separation:
+
+    function exists != organization persists.
 
 ## Review finding map
 
-| Review finding | Synthesis status | What changed |
-|---|---|---|
-| F1 / P1: weak emergence/filter interfaces can be decorated around retained generation | **Addressed on the candidate strong path** | The old weak interface remains for compatibility. The operator candidate uses the exact causal parent set as the configuration tested for emergence, and emergent provenance controls whether the child's operator can activate. |
-| F2 / P7: constructive bridge can ignore configuration | **Addressed for the strong path** | `ParentSetConstructionFromGenerator` makes configuration equal to the causal parent set; proper subconfigurations are proper parent subsets. The generic constructive interface remains weaker by design. |
-| F3 / P9: fixed-generator promotion changes one-step access, not full reach | **Addressed directly** | `FixedGenerativeClosure` and `generatedPromotion_preserves_fixedGeneratorClosure` formalize the no-go. Operational and vocabulary ratchets are now separate. |
-| F4: calibrated ledger can be trivial under unit factors | **Open** | Not changed in this PR. |
-| F5: finite local envelope/admission carries weak independent constraint | **Open** | Not changed in the finite causal core. |
-| F6: uniform zero-lag continuation is too strong as an empirical recurrence model | **Partially addressed** | The new recurrence layer does not use the v17 uniform-zero-lag predicate. It separates finite linked chains from arbitrarily late strong events. Empirical lag/distribution modelling remains open. |
-| F7: recurring historical events need not form a lineage | **Addressed conceptually/formally** | `EmergenceDrivenVocabularyChain` is a linked lineage; `RecurringEmergenceDrivenVocabularyExpansion` is explicitly weaker and documented as event frequency, not lineage. |
-| F8: some pre-promotion clauses are redundant under retention | **Open in v17** | The synthesis does not rely on that old clause for its full-closure criterion. |
-| F9: historical endpoint is primarily accounting | **Open / retained as separate endpoint** | No attempt is made to reinterpret historical accumulation as the strong EbE mechanism. |
-| F10: resource/validation cost is not configuration-specific and lacks a shared maintenance/exploration budget | **Partially addressed** | In the operator candidate, feasibility and external validation now decide Active admission and therefore whether the new operator can activate; the Dynamic Vortex bridge can supply the endogenous slack budget. Configuration-specific costs and a fully shared simultaneous-event budget remain open. |
-| F11: prior-art set incomplete | **Open** | Literature positioning is deliberately not altered until the formal synthesis stabilizes. |
-| F12: capacity labels depend on granularity/equivalence choice | **Open** | No coarse-graining or observational equivalence theorem yet. |
-| F13: reproducibility/axiom audit should be strengthened | **Partially addressed** | Both new modules are explicit CI build targets and direct axiom-audit targets. Repository-wide manifest policy is unchanged. |
+| Finding | Current status |
+|---|---|
+| F1/F2: emergence could be attached to an unrelated configuration | **Addressed on candidate path.** Causal parents must be retained, generate the exact organization, and are declared proper parts of that whole. |
+| F3/P9: fixed-rule promotion was mistaken for closure expansion | **Addressed directly.** reachableOrganizationPromotion_preserves_fixedReach states the organization-level no-go. |
+| F4: ledger calibration can be trivial | **Open.** Not part of this causal rewrite. |
+| F5: finite envelope/admission may carry weak independent constraint | **Open.** |
+| F6: uniform zero-lag continuation too strong | **Improved.** The new recurrence layer separates finite linked chains from arbitrary-late recurrence and does not identify recurrence with one empirical timing law. |
+| F7: historical recurrence need not imply one lineage | **Addressed.** OrganizationEmergenceChain and recurring-event predicates are distinct. |
+| F8/F9: bookkeeping clauses can be mistaken for mechanism | **Improved.** The candidate core uses organization, realization, persistence and reuse directly; historical accounting remains downstream. |
+| F10: resource filter not load-bearing | **Addressed at the intended layer.** Resource budget now controls persistence only. It does not create or authorize function. |
+| F11: prior art incomplete | **Open.** Must be updated before novelty claims. |
+| F12: capacity/granularity dependence | **Open and explicit.** Organization, proper-part relation, context and realization mapping remain application choices. |
+| F13: reproducibility/axiom audit | **Improved.** Candidate modules, witnesses and probes are direct CI/audit targets. |
 
-## New theorem surfaces
+## Candidate theorem surface
 
-### Fixed-generator boundary
+### Organization and function
 
-- `FixedGenerativeClosure`
-- `ClosureStrictExpandsOn`
-- `generatedPromotion_preserves_fixedGeneratorClosure`
-- `generatedPromotion_fixedGeneratorClosure_iff`
-- `internallyGeneratedPromotion_not_closureStrictExpansion`
+- FunctionAvailable
+- EffectiveOrganizationGenerator
+- EmergentOrganizationAt
+- emergentOrganization_function_exists
+- emergentOrganization_excludes_proper_part_function
 
-These establish that promotion of an already-generated child under a fixed
-generator is closure-invariant.
+### Persistence is downstream
 
-### Parent-faithful emergence
+- OrganizationPersistenceGateAt
+- IsolatedOrganizationPersistenceLawAt
+- EmergentOrganizationPersistenceAt
+- emergentPersistentOrganization_function_preexists_gate
+- emergent_function_can_exist_without_persistence
+- emergentOrganization_retained
+- emergentOrganization_function_available_after_persistence
 
-- `ParentFaithfulRecursiveEmergenceStepAt`
-- `parentFaithful_implies_constructiveRecursiveEmergence`
-- `parentFaithful_has_emergent_parent_configuration`
-- `parentFaithful_implies_recursiveEmergenceStep`
-- `parentFaithful_retains_new_child`
+### Functional vocabulary
 
-This strong specialization makes the causal parent set the exact configuration
-whose proper subsets are tested for absence of the emergent capacity.
+- FunctionallyNovelToRetainedSystem
+- RetainedVocabularyEmergenceAt
+- retainedVocabularyEmergence_strictly_expands_availableFunctions
 
-### Operational ratchet
+### Accessibility
 
-- `EmergenceDrivenTwoGenerationRatchetAt`
-- `twoGenerationRatchet_strictlyExpands_oneStepAccess`
+- OrganizationReach
+- reachableOrganizationPromotion_preserves_fixedReach
+- retainedOrganization_can_expand_oneStep_under_fixedRule
+- retainedEmergentFunction_can_expand_fullReach
 
-This is deliberately a one-step accessibility statement and is not called full
-vocabulary expansion.
+The latter theorem uses fixed Base, Realizes and Use laws. Accessibility can
+change because the retained organizational state changed; no fundamental rule
+mutation is required.
 
-### Vocabulary ratchet
+### Recursion
 
-- `RepertoireDependentGenerator`
-- `GeneratorFromRepertoire`
-- `IsolatedRetainedIntegrationAt`
-- `EmergenceDrivenVocabularyExpansionAt`
-- `constantRule_parentFaithfulPromotion_not_vocabularyExpansion`
+- OrganizationEmergenceStepAt
+- OrganizationEmergenceChain
+- RecurringEmergentOrganizationPersistence
+- RecurringRetainedVocabularyEmergence
+- recurringVocabularyEmergence_implies_openEndedOrganization
 
-The rule is explicitly a function of retained repertoire. Strong vocabulary
-expansion requires a strict change in full generative closure.
+### Positive witness
 
-### End-to-end finite witness
+- organizationLadder_emergence_event
+- organizationLadder_function_exists_before_persistence
+- organizationLadder_event
+- organizationLadder_vocabulary_event
+- organizationLadder_functions_strictly_expand
+- organizationLadder_fullReach_click
+- organizationLadder_recursive_reuse
+- organizationLadder_chain
+- organizationLadder_recurring_vocabulary
+- organizationLadder_openEndedOrganization
 
-- `emergenceToy_first_parentFaithfulEmergence`
-- `emergenceToy_second_parentFaithfulEmergence`
-- `emergenceToy_closure_strictly_expands`
-- `emergenceToy_first_is_vocabularyExpansion`
-- `emergenceToy_endToEnd_emergenceDrivenRecursion`
+### Negative/context probes
 
-The witness checks:
+- organizationLadder_nonEmergent_whole_still_functions
+- organizationLadder_nonEmergent
+- organizationLadder_nonEmergent_function_already_available
+- organizationLadder_nonEmergent_not_functionally_novel
+- same_retained_organization_context_changes_expressed_function
 
-    {a,b}
-      -> emergent c
-      -> c retained as the only repertoire addition
-      -> repertoire-dependent rule changes
-      -> d enters full closure
-      -> c is reused in {b,c}
-      -> emergent d.
+These probes enforce the conceptual correction:
 
-It is a logical satisfiability witness, not an empirical model.
+> non-emergence does not disable function.
 
-### Temporal lift
+Instead, in the twin model a proper part already supplies the same function, so
+the whole is not a new functional building block.
 
-- `EmergenceDrivenVocabularyChain`
-- `RecurringEmergenceDrivenVocabularyExpansion`
-- `recurringEmergenceDrivenVocabularyExpansion_implies_openEndedNovelty`
-- `recurringEmergenceDrivenVocabularyExpansion_implies_unboundedEnvelope`
+## Resource layer
 
-The lineage and event-frequency notions are intentionally not identified.
+OrganizationDrivenDynamicVortex.lean feeds the endogenous
+uptake-minus-maintenance response budget only into the persistence gate.
 
-## Remaining semantic seam
+It does not occur in Realizes or EmergentUnder.
 
-The strongest remaining application-specific interface is now visible:
+This protects the distinction between:
 
-    retained emergent organization
-      -> RuleOf(new retained repertoire).
+    organization has function
 
-The formalization requires `RuleOf` to be an explicit function of retained
-organization and, for the isolated event, requires that the emergent child is
-the only repertoire addition. This blocks mere time-index correlation in the
-formal object.
+and:
 
-However, Lean cannot establish that a chosen empirical `RuleOf` is the right
-causal representation of chemistry, biology, technology, culture, or an
-institution. That remains a domain mapping and empirical validation problem.
+    organization survives long enough to be reused.
 
+## Chen et al. sanity check
 
-## Second review: Q1–Q3 and the operator candidate
+Chen et al. (2025), Electronic Circuit Principles of Large Language Models
+(arXiv:2502.03325v2), motivated one explicit regression probe: the same retained
+organization can express different function in different contexts without a
+parameter/fundamental-rule change.
 
-A follow-up external review of PR #62 supplied three additional probes.
+The paper is not used as evidence for the evolutionary theory. It is used as a
+conceptual check against equating all effective capability change with generator
+mutation.
 
-- **Q1:** the first `RuleOf(S)` generator-change theorem could be proved
-  without emergence.
-- **Q2:** replacing the toy realization with a non-emergent realization did
-  not change the already-assumed closure expansion.
-- **Q3:** the recurring strong-event premise was shown non-vacuous by an
-  infinite ladder model.
+## Abandoned certification/operator route
 
-Q1 and Q2 are accepted criticisms of the first synthesis route.  That route is
-kept for comparison, but is not the preferred causal core.
+The operator/certification prototype was useful because it exposed the
+remaining Q1/Q2 problem, but it is not retained in the candidate core.
 
-The replacement is the operator/provenance surface:
+Reason:
 
-- `EmergenceDrivenOperatorEvolution.lean`
-- `EmergenceDrivenOperatorRecurrence.lean`
-- `EmergenceDrivenOperatorWitness.lean`
-- `EmergenceDrivenOperatorDynamicVortex.lean`
+    organization -> function
 
-The key change is that full-closure expansion is no longer a field of the
-event.  The current generator is built from `Base` plus operators belonging
-only to capacities that are simultaneously Active and emergence-certified.
-Emergence updates certification; feasibility/validation updates Active.
-Therefore both links are needed before `Op(child)` enters the generator.
+was being replaced by:
 
-### Q1 replacement
+    label -> certification -> allowed operator.
 
-`emergenceDrivenOperatorEvent_click` derives full-closure expansion from the
-event, and `emergenceDrivenOperatorEvent_forces_generatorChange` derives rule
-change from that click plus the fixed-generator P9 no-go.
+That is a different theory.
 
-### Q2 replacement
-
-`certificationLaw_nonEmergence_blocks_child` states directly that a
-non-emergent child cannot acquire the new provenance certificate under the
-isolated certification law.
-
-`uncertified_generated_promotion_no_closure_click` then proves that admitting
-an already-generated child as material without certifying it cannot create a
-full-closure click.
-
-The ladder witness adds a concrete non-emergent twin and a matching
-whole-versus-parts attribution countermodel.
-
-### Q3 replacement
-
-The operator ladder supplies both:
-
-- `operatorLadder_recurring`: a witness of the generic arbitrary-late
-  recurrence premise;
-- `operatorLadder_chain`: arbitrarily long explicit linked lineages.
-
-`operatorLadder_openEndedNovelty` then instantiates the generic open-ended
-consequence.
-
-### Stronger emergence attribution
-
-`emergent_operator_product_irreducible` uses an adversarial counterfactual in
-which every capacity realized by every proper subassembly is granted material
-availability and its operator.  Under a uniqueness condition for the witness
-product, the product remains unreachable.  The matching
-`nonEmergent_part_operator_reaches_product` shows why the emergence premise is
-load-bearing for whole-versus-parts attribution.
+The files were removed rather than merely hidden from the verification surface.
 
 ## Merge gate
 
-Do not promote this branch to a canonical EbE core merely because the toy
-witness compiles.
+Before this PR can become a successor core:
 
-Before merge/canonicalization:
-
-1. Lean CI and axiom audits must be green.
-2. Require the non-emergent, uncertified-promotion, fixed-operator, and whole-versus-parts knock-outs to remain green.
-3. Require the infinite operator ladder and linked-chain witness to remain green.
-4. Review whether the isolated admission/certification laws are too strong for the intended empirical mappings or best retained as causal-identification specializations.
-5. Review the additive-operator assumption and document when inhibitory or context-dependent rule evolution requires a generalization.
-6. Update prior-art positioning before any novelty claim.
+1. all organization-first Lean targets and axiom audits must be green;
+2. the positive ladder, non-emergent twin, context probe and P9 boundary must remain green;
+3. the persistence/resource bridge must remain downstream of realization;
+4. reviewers should attack whether causal parents really deserve to be treated as proper parts in intended applications;
+5. reviewers should test whether FunctionallyNovelToRetainedSystem is the right system-level vocabulary criterion;
+6. prior-art positioning must be updated before any novelty claim;
+7. empirical mappings must justify organization, decomposition, context, realization and use independently.
