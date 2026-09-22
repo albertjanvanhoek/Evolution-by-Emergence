@@ -150,6 +150,7 @@ jobs:
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
             CumulativeAccessibility.EmergentAssemblyBarrier \
+            CumulativeAccessibility.TransitionMediatedEmergence \
             CumulativeAccessibility.GenerativeLeverage \
             CumulativeAccessibility.PaidRetentionTransfer \
             CumulativeAccessibility.PaidReuseHierarchy \
@@ -183,6 +184,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergentAssemblyBarrier.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionMediatedEmergence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/GenerativeLeverage.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidRetentionTransfer.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PaidReuseHierarchy.lean
