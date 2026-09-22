@@ -1,267 +1,314 @@
-# Emergence-driven recursion — synthesis target
+# Organization-driven emergence — synthesis target
 
-**Status:** research branch; not part of the frozen v17/v18 canonical core.
+**Status:** research branch; candidate successor to the v17/v18 causal core.
 
 ## Why this branch exists
 
-The 21 September adversarial review showed that the repository had accumulated
-several correct but semantically different approaches to the same intended
-idea.
+The repository accumulated several formally correct but semantically different
+routes to the same intended idea:
 
-- RecursiveAccessibility.lean, ModuleGeneratedEvolvability.lean, and
-  GeneratorRuleEvolution.lean formalized second-order changes in future
-  accessibility, but did not require compositional emergence.
-- DynamicVortex.lean composed validated retained response with a
-  SecondOrderClick, but kept their coupling as an explicit modelling premise
-  and likewise did not require compositional emergence.
-- RecursiveEmergence.lean and ConstructiveRecursiveEmergence.lean introduced
-  compositional emergence, filtering, retention and explicit parent reuse, but
-  the later promotion route established mainly one-step generated access rather
-  than change in full transitive generative closure.
+- recursive accessibility and SecondOrderClick;
+- retained promotion and generative closure;
+- compositional emergence;
+- Dynamic Vortex maintenance/resource support;
+- repertoire-dependent generator change.
 
-The synthesis target is therefore not another parallel model. It is one
-reviewable causal chain in which emergence and future-access change are present
-at the same time.
+Adversarial review exposed an important drift: later attempts began treating
+capacity labels as objects that had to be promoted, certified, or endowed with
+operators before they could affect the future.
 
-## Target statement
+That is not the intended ontology of Evolution by Emergence.
 
-The intended architecture is:
+The present synthesis therefore returns to organization itself.
 
-    existing retained organization
-      -> parent set constructs an organization
-      -> that same parent organization realizes an emergent capacity
-      -> resource / validation filters
-      -> retained integration
-      -> operational reuse
-      -> changed generative accessibility
-      -> later parent set constructs another emergent organization
+## Core statement
 
-The strong form additionally requires:
+A configuration has whatever functions its organization realizes.
 
-    retained emergent organization
-      -> change in repertoire-dependent generative rule
-      -> strict expansion of full multi-step generative closure.
+Nothing authorizes those functions.
 
-## Three notions of accessibility
+Persistence determines only whether that organization remains available to
+become material for what comes next.
 
-The review exposed a distinction that must remain explicit.
+The intended causal chain is:
 
-1. One-step access: what the present repertoire can generate in one application
-   of a rule.
-2. Bounded access / generative distance: what can be reached under a finite
-   depth, time or resource budget.
-3. Full closure: what can be reached after arbitrarily many applications of the
-   same fixed rule.
+    retained organization
+      -> parts assemble a new whole
+      -> the whole realizes a function
+      -> proper parts do not realize that function
+      -> the organization may persist or disappear
+      -> if it persists, the whole remains reusable material
+      -> every function it realizes remains available through that whole
+      -> later organization/accessibility may change.
 
-Retaining a generated intermediate may improve (1) and (2) while leaving (3)
-unchanged.
+In compact form:
 
-Therefore the synthesis treats two ratchets separately.
+    organization -> function
+    organization + persistence -> reusable organization
+    reusable organization -> material for later organization.
 
-### Operational ratchet
+## Emergence
 
-A retained emergent product becomes a reusable primitive. Holding the next rule
-fixed, this can strictly expand one-step access or reduce generative distance.
+For organization x, context c, and function phi:
 
-### Vocabulary ratchet
+    Emergent(x,c,phi)
+      iff
+    Realizes(x,c,phi)
+      and
+    no declared proper part of x realizes phi in c.
 
-The retained organization changes the rule by which later organization is
-constructed. The strong test is strict expansion of full generative closure.
+Emergence therefore answers an attribution question:
 
-## P9 as a design constraint
+> Which organization realizes the function?
 
-The reviewer proved:
+It does not mean:
 
-    fixed generator
-    + child already generated from current repertoire
-    + promote child to primitive
-      -> no expansion of full transitive closure.
+- the function was unpredictable;
+- the function is historically novel;
+- the function is beneficial;
+- the function is persistent;
+- the function is externally approved;
+- the underlying physical or computational laws changed.
 
-The synthesis imports this result into the core semantics. Fixed-rule promotion
-is not called vocabulary emergence merely because it changes one-step
-generability.
+Those remain separate propositions.
 
-## Parent-faithful emergence
+## Persistence is downstream
 
-The generic constructive interface remains useful, but it permits a build rule
-that ignores the configuration argument. The synthesis therefore adds an
-optional stronger specialization:
+The formalization now separates:
 
-    configuration = finite causal parent set
-    proper subconfiguration = proper parent subset.
+    EmergentOrganizationAt
 
-Under this specialization, the object tested by EmergentUnder is literally the
-same parent organization used by the generator.
+from:
 
-This is intentionally strong and optional. Applications with richer
-configuration semantics may later supply a more general faithful
-parent-to-subconfiguration map.
+    EmergentOrganizationPersistenceAt.
 
-## Repertoire-dependent generator
+The first contains construction and emergence only.
 
-The strong vocabulary route introduces:
+The second adds a resource/selection persistence gate and a retention law.
 
-    RuleOf : retained repertoire -> HyperGenerator
+Therefore the theory can state explicitly:
 
-so that the time-indexed rule is not an independent input:
+    function exists
+      AND
+    persistence fails.
 
-    H_t = RuleOf(S_t).
+That organization may disappear, but its function was still real while the
+organization existed.
 
-For causal attribution, the first strong event additionally requires isolated
-integration:
-
-    S_(t+1) = S_t union {child}.
+This is the intended role of selection/resource constraints.
 
-The toy witness can therefore ask whether that retained emergent product alone
-changes the rule and full closure.
+## Functional vocabulary
 
-## First machine-check milestone
+Persistence can have a stronger consequence when the retained whole realizes a
+function that no previously retained organization realizes.
 
-The first milestone is deliberately finite, not asymptotic.
+Define:
 
-Lean should check a concrete two-generation example in which:
+    FunctionallyNovelToRetainedSystem(phi)
 
-1. existing parts a,b construct their own parent configuration;
-2. the whole {a,b}, but no proper subset, realizes c;
-3. c is feasible, validated and retained;
-4. retaining only c changes the repertoire-dependent generator;
-5. a capacity d outside the old full closure enters the new full closure;
-6. retained c is explicitly used in {b,c};
-7. {b,c}, but no proper subset, realizes emergent d.
+when no currently retained organization realizes phi.
 
-Only after this finite causal chain is checked should the work be lifted back
-into open-ended recurrence and Dynamic Vortex resource/maintenance results.
+Then a retained emergent whole with such a function strictly expands the
+system's currently available functional vocabulary.
 
+No certification variable is required:
 
-## Candidate successor: emergence-driven operator evolution
-
-A second external review of PR #62 exposed one remaining weakness in the first
-synthesis route.  The generic `RuleOf(S)` model could prove that repertoire
-change and closure expansion imply generator change, but the proof did not need
-the emergence premise.  A non-emergent realization could leave the same
-`RuleOf` transition untouched.  That route is therefore retained as an
-intermediate formal comparison, not as the preferred causal core.
+    whole persists
+      + whole realizes phi
+      -> phi is functionally available.
 
-The candidate successor is
-`EmergenceDrivenOperatorEvolution.lean`.
+This is the strong vocabulary-emergence case.
 
-It replaces an arbitrary repertoire-to-rule map with a derived generator:
-
-    H_t =
-      Base
-      OR
-      operators of capacities that are
-        (a) Active at t
-        AND
-        (b) certified as products of parent-faithful emergence.
+## Accessibility
 
-The strong event now has separate causal gates:
+Three notions remain distinct.
 
-    same parent set generates child
-      -> same parent set realizes child emergently
-      -> emergence certifies the child
-      -> feasibility + validation admit the child to Active
-      -> Active AND certified activates Op(child)
-      -> a local operator witness produces something outside old full closure
-      -> strict full-closure expansion is DERIVED.
-
-This changes the status of several earlier clauses.
-
-- **Emergence is load-bearing.**  If the child is admitted as a label but does
-  not receive emergent provenance, its operator is not activated.  Under the
-  fixed-rule P9 boundary, such uncertified promotion cannot create a
-  full-closure click.
-- **Feasibility and validation are load-bearing.**  They determine Active
-  admission.  If the gate fails, the child does not become active and its
-  operator cannot participate even if emergence occurred.
-- **Closure expansion is no longer assumed.**  It is a theorem of the strong
-  event.
-- **Generator change is no longer assumed.**  It follows from the derived
-  closure click plus the fixed-generator no-go.
-
-The model also contains a stronger whole-versus-parts attribution test.  In the
-counterfactual `ProperPartEnabledGenerator`, every capacity realized by any
-proper subassembly is granted both material availability and its operator.
-Under a domain-specific uniqueness condition for the chosen witness product,
-`emergent_operator_product_irreducible` proves that the product is still
-unreachable.  The matching non-emergent theorem shows that if a proper part
-already realizes the child, the part channel can enable the operator.
-
-This is the precise sense in which emergence now does formal work: it governs
-the provenance transition that licenses the new operator and, under the
-irreducibility assumptions, attributes the new operator-bearing capacity to
-the whole rather than a proper part.
-
-### Non-vacuity and recursion
-
-`EmergenceDrivenOperatorWitness.lean` supplies an infinite ladder model:
-
-    {n, n+1}
-      -> emergent n+2
-      -> n+2 is admitted and emergence-certified
-      -> Op(n+2) becomes active
-      -> a new product enters full closure.
-
-The retained child at one step is explicitly a parent of the next step.
-`EmergenceDrivenOperatorRecurrence.lean` therefore keeps two endpoints
-separate:
-
-1. `EmergenceDrivenOperatorChain`: one linked lineage;
-2. `RecurringEmergenceDrivenOperatorEvents`: strong events occur arbitrarily
-   late, without asserting one lineage.
-
-The ladder witnesses both and gives a constructive model of the recurring
-premise used for open-ended retained novelty.
-
-### Resource layer
-
-`EmergenceDrivenOperatorDynamicVortex.lean` instantiates the admission budget
-with the endogenous uptake-minus-maintenance budget.  Opportunity still does
-not imply innovation.  The response premise says that, within a bounded lag,
-an actual strong operator event occurs; inside that event the endogenous budget
-and external criterion decide Active admission, emergence decides
-certification, and the accessibility click is derived.
-
-### Remaining modelling commitments
-
-The operator model is intentionally a **minimal constructive model**, not a
-claim that all generator evolution is additive.  Real systems may include
-inhibition, suppression, context-dependent operators, or interactions among
-operators.  Loss is already representable because a capacity that is no longer
-Active stops contributing its operator.
-
-For empirical applications, Lean cannot decide whether the chosen
-`Realizes`, `Op`, capacity labels, or certification semantics are the right
-mapping.  Those remain domain-level scientific claims and should be tested
-independently.
-
-## Non-claims
-
-The synthesis does not claim:
-
-- every emergent capacity is retained;
-- every retained capacity changes future accessibility;
-- every retained capacity changes the generator;
-- one-step access expansion is full vocabulary expansion;
-- compositional emergence by itself implies progress or value;
-- the toy witness is an empirical model;
-- open-ended recurrence follows without an explicit continuation mechanism.
-
-## Review gates
-
-Before this branch can replace or supersede the v17 core, reviewers should try
-to falsify at least the following.
-
-1. Can a parent-faithful event still attach emergence to an unrelated
-   configuration?
-2. Can a constant generator satisfy the strong vocabulary-expansion event?
-3. Can the two-generation witness produce the second emergent product without
-   the first retained child?
-4. Does the claimed old/new closure difference survive direct induction?
-5. Is the rule change genuinely a function of retained repertoire, or merely
-   correlated with it by time index?
-6. Are emergence, retention, operational access and closure expansion still
-   separable by counterexamples?
-
-The branch should remain a research object until those gates and Lean CI are
-green.
+1. **Immediate/one-step access.**
+   Retaining organization can make a fixed construction relation usable in new
+   ways simply because new material is present.
+
+2. **Bounded-depth/resource access.**
+   Retained intermediates may shorten or cheapen later construction.
+
+3. **Full multi-step reach.**
+   A retained organization can enlarge full reach when the functions realized
+   by that retained organization participate in the fixed Use law and thereby
+   enable an organization outside the previous reach.
+
+The fixed-rule P9 boundary is retained:
+
+    if organization x was already reachable under a fixed construction
+    relation, merely promoting x to primitive material cannot enlarge the full
+    transitive closure of that same fixed relation.
+
+This is not a contradiction.  The full organization-driven model contains
+fixed laws Base, Realizes, and Use.  Retaining a new organization changes the
+state to which those fixed laws apply.  Its intrinsic functions can therefore
+change the **effective** construction relation without any mutation of the
+underlying law.
+
+## Context and expressed function
+
+Context remains explicit in:
+
+    Realizes organization context function.
+
+This permits the same retained organization to express different effective
+function in different contexts while the organization and underlying laws
+remain fixed.
+
+The research probe
+`same_retained_organization_context_changes_expressed_function`
+exists specifically to prevent the formal theory from identifying every change
+in expressed capability with generator mutation.
+
+This distinction is consistent with the conceptual lesson drawn from:
+
+Chen, Q., Qin, L., Liu, J., et al. (2025).
+*Electronic Circuit Principles of Large Language Models*.
+arXiv:2502.03325v2.
+
+The paper is not treated as evidence for EbE's evolutionary claims.  Its
+relevance here is narrower: effective capability can depend on current
+organization/context without parameter or fundamental-rule change.
+
+## Recursive reuse
+
+The temporal layer distinguishes:
+
+1. `OrganizationEmergenceChain`:
+   one explicit lineage in which a retained emergent organization becomes a
+   causal parent of the next organization;
+
+2. `RecurringEmergentOrganizationPersistence`:
+   emergent organizations persist arbitrarily late, without asserting one
+   lineage;
+
+3. `RecurringRetainedVocabularyEmergence`:
+   arbitrarily late retained emergent organizations add functions absent from
+   the previously retained system.
+
+The ladder witness instantiates both linked reuse and arbitrary-late recurrence.
+
+## Positive ladder
+
+At time t the system contains reusable organizations:
+
+    0, 1, ..., t+1.
+
+The fixed assembly law combines:
+
+    {t, t+1} -> t+2.
+
+The whole t+2 realizes function t+2.
+
+Its declared proper parts t and t+1 do not.
+
+After persistence, organization t+2 remains available and its function is
+automatically available.  A fixed Use law can then use that function to produce
+a downstream product that was outside the old full reach.
+
+The retained organization t+2 is also a parent in the next assembly event.
+
+Thus the witness has the intended form:
+
+    organization
+      -> emergent function
+      -> persistence
+      -> reuse
+      -> later organization.
+
+## Non-emergent twin
+
+The negative control is intentionally different from the rejected certification
+model.
+
+In the non-emergent twin:
+
+- the whole **still realizes the function**;
+- a retained proper part already realizes that same function;
+- therefore the function is already available before the whole persists;
+- the whole adds no new functional vocabulary.
+
+So non-emergence does not turn function off.
+
+It changes attribution and novelty.
+
+That is the required regression test.
+
+## Dynamic Vortex/resource layer
+
+The endogenous uptake-minus-maintenance budget is attached only to persistence.
+
+It does not appear in Realizes or EmergentUnder.
+
+Therefore:
+
+    insufficient resources
+      -> organization may fail to persist
+
+does **not** imply:
+
+    insufficient resources
+      -> the organization never had the function.
+
+Recurring opportunity plus successful persistence of emergent vocabulary events
+can still feed the existing open-ended retained-organization results.
+
+## Abandoned route
+
+The experimental certification/operator files were removed from the branch.
+
+The reason is conceptual, not merely terminological.
+
+That route made effective function depend on a separate provenance/permission
+state.  It therefore risked replacing:
+
+    organization -> function
+
+with:
+
+    capacity label -> certification -> allowed operator.
+
+The latter may be a useful model for some institutional or software systems,
+but it is not the intended universal EbE core.
+
+## Current formal milestones
+
+The candidate must machine-check all of the following.
+
+1. Function follows from emergent organization before persistence.
+2. A failed persistence gate can remove the organization without denying its
+   function.
+3. Persistence automatically makes every realized function of the whole
+   available.
+4. If that function was absent from all previous retained organization,
+   functional vocabulary strictly expands.
+5. If a use of the retained function reaches something outside old full reach,
+   organizational accessibility strictly expands.
+6. Fixed-rule promotion of an already-reachable organization does not enlarge
+   full closure.
+7. Linked recursive reuse is distinct from arbitrary-late recurrence.
+8. The infinite ladder witnesses recurrence and open-ended retained
+   organization.
+9. The non-emergent twin still functions but is not functionally novel.
+10. Context can change expressed function without changing retained
+    organization or fundamental laws.
+11. The endogenous resource budget affects persistence only.
+
+## Remaining scientific seams
+
+Lean cannot determine whether an empirical mapping has chosen the correct:
+
+- organization/configuration;
+- proper-part relation;
+- context;
+- realization relation;
+- functional-use law;
+- persistence criterion;
+- observational granularity.
+
+Those are scientific modelling claims.
+
+The formalization is useful precisely because it makes them visible rather than
+hiding them inside a generic success predicate.
