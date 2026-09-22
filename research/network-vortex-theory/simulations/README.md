@@ -11,13 +11,19 @@ The current EbE centre is broader than these simulations:
 
 The simulations below test one specialization of that claim: **paid retained organization changes graded later construction/accessibility, and sometimes fails to do so.**
 
-The strongest future simulation endpoint should be the paid transfer criterion:
+The strongest future simulation endpoint should be the paid transfer criterion. Compare retained and ablated counterfactuals at the same gross budget, with
+
+\[
+B^\pm=B^{\mathrm{gross}}-M(R^\pm),
+\]
+
+and require
 
 \[
 \exists Y\notin\mathcal H_t:
-\mathcal A_T(Y\mid s^+,B-\mu_X)
+\mathcal A_T(Y\mid s^+,B^+)
 >
-\mathcal A_T(Y\mid s^-,B).
+\mathcal A_T(Y\mid s^-,B^-).
 \]
 
 A retained change that only alters an immediate state but does not transfer to an unvisited target should not count as a positive result.
