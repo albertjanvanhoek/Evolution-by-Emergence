@@ -62,6 +62,9 @@ import CumulativeAccessibility.RepetitionDepth
 import CumulativeAccessibility.EmergentPaidTransfer
 
 import CumulativeAccessibility.RetainedOrganizationCore
+import CumulativeAccessibility.GenerativeLeverage
+import CumulativeAccessibility.EmergentAssemblyBarrier
+import CumulativeAccessibility.TransitionAccessibility
 import CumulativeAccessibility.V17Compatibility
 import CumulativeAccessibility.LearningConstitutionSpecialization
 
