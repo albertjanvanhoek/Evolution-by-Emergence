@@ -33,4 +33,4 @@ jobs:
             echo 'Unproved axiom detected in audited theorem' >&2
             exit 1
           fi
-          test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 110
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 116
