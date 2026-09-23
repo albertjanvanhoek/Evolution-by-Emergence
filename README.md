@@ -1,123 +1,160 @@
 # Evolution by Emergence
 
-## v20 peer-review release: cumulative evolution as retained organization changing future accessibility
+## v21: cumulative evolution with an explicit intelligent-system specialization
 
-Evolution by Emergence (EbE) asks one central question:
+Evolution by Emergence (EbE) asks:
 
-> **How can organization that exists now become causal material that changes which organization can exist next?**
+> **How can organization that exists now become causal material that changes which organization can exist next, while itself being produced, lost and maintained under finite resources?**
 
-v20 remains the immutable peer-review release object. Development on `main` now also contains reviewed post-v20 extensions; a v21 synthesis will distinguish the universal theory from its intelligent-system specialization.
+v21 is the current review object. It preserves the v20 retained-organization/accessibility core, adds the reviewed Cumulative Reproduction Model as a separate dynamical specialization, and keeps the newer Anchored Correctability / SCAP work explicitly scoped to intelligent systems.
 
-The universal interpretation is a **candidate to be challenged**, not an established empirical law.
+The universal interpretation remains a **candidate to be challenged**, not an established empirical law.
 
 ## Start here
 
-1. **[THEORY_CORE_V20.md](THEORY_CORE_V20.md)** — immutable v20 universal theory offered for peer review.
-2. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — claim-to-Lean traceability for the universal formal programme.
-3. **[PEER_REVIEW_PROMPT.md](PEER_REVIEW_PROMPT.md)** — copy-paste adversarial review protocol for humans or LLMs.
-4. **[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md)** — exact scope, review criteria, and failure conditions.
-5. **[formalization/cumulative-accessibility/README.md](formalization/cumulative-accessibility/README.md)** — v20 retained-organization/accessibility formal core.
+### Universal Evolution by Emergence
 
-## Post-v20 universal development
+1. **[THEORY_CORE_V21.md](THEORY_CORE_V21.md)** — current universal theory synthesis.
+2. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — theorem and specialization map.
+3. **[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md)** — review object, scope and failure conditions.
+4. **[formalization/cumulative-accessibility/README.md](formalization/cumulative-accessibility/README.md)** — identity-sensitive retained-organization/accessibility formal core inherited from v20.
+5. **[research/cumulative-reproduction/README.md](research/cumulative-reproduction/README.md)** — reviewed production/loss/resource dynamics and E1–E8 experiments.
 
-[Cumulative Reproduction Model](research/cumulative-reproduction/README.md) adds explicit production, loss, critical mass and an upkeep/capture ledger, with standalone Lean proofs and reproducible E1–E8 experiments. Its review keeps deterministic growth, finite-target hitting, finite-horizon survival and asymptotic persistence distinct. It extends rather than replaces the identity-sensitive v20 accessibility architecture.
+### Intelligent-system specialization
 
-## Intelligent-system specialization
+1. **[UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md)** — explicit specialization seam; mapping, not equivalence.
+2. **[research/anchored-correctability/README.md](research/anchored-correctability/README.md)** — current deep intelligent-system endpoint: semantics, tracking, realization, persistence, SCAP and alignment.
+3. **[scap-seed/README.md](scap-seed/README.md)** — smaller self-contained replay/review object with its own Lean project, claims ledger and simulations.
 
-[Anchored Correctability / Persistence / SCAP](research/anchored-correctability/README.md) is the current deep intelligent-system research endpoint. It adds epistemic objects not assumed by the universal model—candidate worlds, semantic claims, evidence, challenge, answerability and tracking—and develops exact interfaces, operational realization, bounded repair, a formal SCAP invariant, and an alignment specialization.
+The intelligent-system track introduces candidate worlds, semantic claims, evidence, challenge, answerability and tracking. Those are not silently promoted to universal EbE primitives.
 
-### Start small: SCAP Seed
+## Universal core in one paragraph
 
-[SCAP Seed](scap-seed/README.md) is a smaller, self-contained derivation and review object for the intelligent-system track. It has its own pinned Lean project, claims ledger, simulations, contribution rules and licences. The seed is intentionally frozen and portable; it does not supersede the newer research package above.
+The structural state is represented as active organization `G`, retained organization `R`, context `Gamma`, and gross budget. Retention consumes maintenance cost and can also alter transition machinery, thereby changing which future organization is reachable within a horizon and budget. Strict compositional emergence constrains what future function can finance before realization. Finite resources prevent unconstrained positive-cost retention and bounded single-unit reuse bounds declared accessible repertoire.
 
-## Core in one paragraph
+The reviewed Cumulative Reproduction Model adds a complementary count-level question: under a declared production/loss law and resource ledger, how does a retained repertoire grow, collapse, plateau or fluctuate? The structural and dynamical questions are deliberately kept distinct.
 
-The v20 state is represented as active organization G, retained organization R, context Gamma, and gross budget. Retention consumes maintenance cost, leaving free budget. Retained organization may also alter the effective transition machinery, thereby changing which targets are reachable within a horizon and budget. A retained item counts as cumulatively consequential only under an explicit retained-versus-ablated comparison after maintenance is paid. Strict compositional emergence adds an assembly constraint: a future emergent function cannot, by itself, finance positively costly proper intermediates that do not yet realize that function. Finite resource budgets additionally make unrestricted positive-cost retention impossible, while bounded retained memory plus bounded reuse bounds accessible repertoire.
+```text
+retained identity / structure
+        |
+        +--> transition machinery --> future accessibility
+        |
+        +--> maintenance burden
+        |
+        +--> production / loss / admission --> next retained repertoire
+```
 
-The reviewed Cumulative Reproduction Model adds a complementary count-level dynamic: retained organization can be produced and lost while paying upkeep and capturing resources. The v21 synthesis will keep these two roles separate—**which retained organization changes later accessibility**, and **how a retained repertoire grows, collapses or is budget-limited**.
+A complete empirical application may need both item identity/function and count/rate dynamics.
 
-## The two-sided role of retained history
+## What changed since v20
 
-Retained history simultaneously:
+v20 remains an immutable historical review object for the retained-organization/accessibility theory. v21 adds:
 
-    changes future machinery        R -> K -> A
+- the reviewed Cumulative Reproduction Model under `research/cumulative-reproduction/`;
+- explicit separation of structural accessibility from repertoire-level dynamics;
+- the current Anchored Correctability / Persistence / SCAP package as a **separate intelligent-system specialization**;
+- the Alignment layer distinguishing corrigibility from obedience/sycophancy and behavioural compliance from verification;
+- the self-contained `scap-seed/` subproject;
+- a repository-level specialization map and v21 integration verification matrix.
 
-and
+## Intelligent-system endpoint
 
-    consumes future capacity        R -> M(R) -> B_free.
+The current deep specialization follows roughly:
 
-This tension is central. Cumulative evolution is not unlimited remembering. Under finite resources, retention becomes a trade-off.
+```text
+anchor
+ -> live candidate worlds
+ -> executable challenge/revision
+ -> semantic answerability
+ -> content-sensitive tracking
+ -> individuals / groups / recursive networks
+ -> unified transition law
+ -> dynamic evidence
+ -> operational realization
+ -> changing world + link failure/repair
+ -> SCAP persistence conditions
+ -> alignment specialization
+```
 
-## Necessary and sufficient results are kept distinct
+Its formal SCAP object separates:
 
-The v20 transition surface contains:
+```text
+Connected ∧ Faithful ∧ Evidence-open ∧ Repairable ∧ Affordable.
+```
 
-- a **necessary structural condition**: with non-decreasing upkeep, positive paid opening implies that the ablated kernel cannot reproduce every retained transition at equal or lower cost;
-- a **sufficient quantitative condition**: if a retained route's saving exceeds marginal upkeep, there exists a common gross-budget window with retained access and ablated non-access.
+This is a theorem-level object under explicit semantic and operational premises. It is not a new universal axiom of EbE.
 
-These are not stated as converses of each other.
+## Start small: SCAP Seed
 
-## Emergence remains separate
+[SCAP Seed](scap-seed/README.md) is deliberately smaller than the research endpoint. It exists so a reviewer can replay the anchor-to-corrigibility path without loading the whole repository. It remains self-contained and keeps its own licensing and verification boundary.
 
-Strict compositional emergence is not defined as retention or success. If a future emergent function is unavailable in every proper subconfiguration, then that function cannot finance a positively costly proper intermediate by itself. If such an intermediate persists, another support route is required. The transition-mediated specialization and its countermodels make those escape routes explicit.
+What is proved inside the seed does not certify the rest of the repository, and the rest of the repository does not weaken the seed's local theorems.
 
-## What is machine checked
+## Verification boundaries
 
-The repository now contains several independently checked surfaces rather than one proof certifying everything:
+The repository now has four independently checked surfaces:
 
-- the v20 cumulative-accessibility formal core;
-- the reviewed Cumulative Reproduction Model;
-- the Anchored Correctability / Persistence / SCAP intelligent-system specialization;
-- the self-contained SCAP Seed.
+- `formalization/cumulative-accessibility/` — universal structural core;
+- `research/cumulative-reproduction/` — reviewed count-level dynamics and numerical checks;
+- `research/anchored-correctability/` — deep intelligent-system specialization;
+- `scap-seed/` — portable seed.
 
-A green build means the stated theorem follows from its formal premises. It does **not** mean the premises describe every real system, nor that one package certifies the others.
+`.github/workflows/v21-integration-check.yml` runs these surfaces together on a release candidate commit. A green matrix means each declared package passed its own verification on that commit; it does **not** mean one package proves the others.
 
-## What reviewers should attack
+## Important distinctions
+
+v21 keeps the following separations explicit:
+
+- state dependence ≠ cumulative evolution;
+- structural accessibility ≠ repertoire count dynamics;
+- deterministic growth ≠ finite-horizon stochastic survival;
+- finite-target hitting ≠ eventual survival;
+- emergence ≠ retention;
+- persistence ≠ function;
+- validation ≠ truth;
+- exact semantic relay ≠ live-preserving sharpening;
+- intelligent-system semantics ≠ universal EbE primitives;
+- machine checking ≠ empirical truth.
+
+## Review and falsification
 
 Reviewers are asked to localize criticism:
 
 1. **formal validity** — does a conclusion fail under its exact premises?
-2. **semantic adequacy** — does the formal predicate fail to mean what the prose claims?
-3. **prior art** — does an existing theory already provide an equal or stronger architecture?
-4. **explanatory value** — is the factorization unnecessary or uninformative?
-5. **cross-domain mapping** — does a real cumulative-evolution system resist non-arbitrary instantiation?
-6. **universality** — can a bona fide cumulative evolutionary process be shown to lack retained-history effects on later accessibility under any defensible mapping?
+2. **semantic adequacy** — does a predicate fail to mean what the prose claims?
+3. **model separation** — have structural and count-level models been conflated?
+4. **hidden assumptions** — are counting, resources, parentage, or semantic premises doing unacknowledged work?
+5. **prior art** — does an existing theory already provide an equal or stronger architecture?
+6. **cross-domain mapping** — can target systems instantiate the interfaces non-arbitrarily?
+7. **universality** — is there a genuine cumulative system with no defensible retained-history effect on later accessibility?
+8. **specialization failure** — does the intelligent-system mapping add unjustified semantics or fail to instantiate the universal interfaces it claims to specialize?
 
 A successful falsification, narrowing, or prior-art correction is a useful outcome.
 
-## Non-claims
+## Reproduce
 
-The universal EbE programme does not infer:
+Universal structural core:
 
-    persistence -> function
-    novelty -> improvement
-    validation -> truth
-    selection -> progress
-    retention -> goodness
-    learning-like dynamics -> literal cognition
-    machine proof -> empirical truth
-    descriptive dynamics -> moral or political obligation
+```bash
+cd formalization/cumulative-accessibility
+lake update
+lake exe cache get
+lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
+lake env lean CumulativeAccessibility/VerificationSurface.lean
+```
 
-The intelligent-system specialization adds semantic and epistemic premises explicitly; those premises are not silently promoted to universal axioms.
+The other three packages have their own README and path-scoped CI instructions.
 
-## Reproduce the v20 formal surface
+## Release lineage
 
-    git clone https://github.com/albertjanvanhoek/Evolution-by-Emergence.git
-    cd Evolution-by-Emergence/formalization/cumulative-accessibility
-    lake update
-    lake exe cache get
-    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
-    lake env lean CumulativeAccessibility/VerificationSurface.lean
-
-## Earlier releases
-
-- **v20** — Cumulative Evolution: Retained Organization and Future Accessibility.
+- **v21** — current synthesis: universal retained-organization/accessibility + reviewed cumulative-reproduction dynamics, with the intelligent-system specialization explicitly separated.
+- **v20** — immutable retained-organization/accessibility peer-review release.
 - **v19** — Retained Organization and Correctable Learning.
 - **v18** — The Learning Constitution: Correctable Interdependence.
 - **v17** — Recursive Organization Core.
 - **v16** — Full Theory Peer-Review Release / Dynamic Vortex integration.
 
-Those releases remain immutable historical review objects. Use [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for the wider corpus.
+Use [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for the wider corpus and historical routes.
 
 ---
 

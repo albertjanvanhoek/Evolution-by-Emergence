@@ -1,119 +1,136 @@
-# Formal Theory Map — v20 Peer-Review Surface
+# Formal Theory Map — v21 Review Surface
 
-**Purpose:** trace the v20 prose claims to the exact Lean modules and distinguish definitions, necessary conditions, sufficient conditions, countermodels, and interpretation.
+**Purpose:** trace the v21 universal synthesis and its intelligent-system specialization to their exact verification surfaces, while keeping model boundaries explicit.
 
-## Canonical review object
+## Canonical v21 objects
 
-- Theory: THEORY_CORE_V20.md
-- Formal package: formalization/cumulative-accessibility/
-- Axiom audit: CumulativeAccessibility/VerificationSurface.lean
-- Aggregate advertised import: CumulativeAccessibility/AuditAll.lean
+### Universal theory
 
-## V20 theorem spine
+- `THEORY_CORE_V21.md` — current universal synthesis.
+- `formalization/cumulative-accessibility/` — identity-sensitive retained-organization/accessibility core inherited from v20.
+- `research/cumulative-reproduction/` — reviewed count-level production/loss/resource dynamics.
 
-| ID | Claim | Lean source | Formal status | What it does not establish |
+### Intelligent-system specialization
+
+- `UNIVERSAL_TO_INTELLIGENCE.md` — declared specialization seam.
+- `research/anchored-correctability/` — deep semantic/operational specialization.
+- `scap-seed/` — smaller self-contained seed.
+
+The specialization adds candidate worlds, semantic claims, evidence, challenge, answerability and tracking. Those are not universal EbE axioms.
+
+## V21 theorem and model spine
+
+| ID | Claim / object | Source | Status | Important boundary |
 |---|---|---|---|---|
-| V20-T1 | Retain/ablate arms are matched on active organization, context, and gross budget. | RetainedOrganizationCore.lean: itemContrast_matches_background | machine-checked construction | that the application has identified the correct retained item |
-| V20-T2 | Positive marginal upkeep lowers the retained arm's free budget. | RetainedOrganizationCore.lean: strictlyPaidItem_reduces_freeBudget | machine-checked implication | that retention is beneficial |
-| V20-T3 | Under monotone accessibility and positive upkeep, positive paid transfer implies a retained structural advantage at the same free budget. | RetainedOrganizationCore.lean: positivePaidTransfer_implies_sameBudget_retention_advantage | machine-checked necessary consequence | a mechanism for the advantage |
-| V20-T4 | If retention has no matched-budget structural effect, upkeep alone cannot create positive transfer. | RetainedOrganizationCore.lean: no_positiveTransfer_from_upkeep_penalty_alone | machine-checked regression guard | that every structural effect is cumulative |
-| V20-T5 | Weighted transition-kernel dominance preserves finite-horizon accessibility at equal budget. | TransitionAccessibility.lean: kernelDominance_preserves_accessibility | machine-checked implication | empirical dominance in a real system |
-| V20-T6 | With non-decreasing upkeep, positive paid opening requires that the ablated kernel does not dominate the retained kernel. | TransitionAccessibility.lean: positivePaidOpening_requires_kernel_advantage | machine-checked necessary condition | sufficiency; an iff characterization |
-| V20-T7 | If retained route saving exceeds marginal upkeep relative to a lower bound on ablated routes, some common gross budget exhibits positive paid opening. | TransitionAccessibility.lean: route_saving_exceeds_marginal_upkeep_opens_paid_window | machine-checked sufficient condition | necessity |
-| V20-T8 | Kernel-induced accessibility connects the abstract core transfer predicate to retained reachability and ablated non-reachability. | TransitionAccessibility.lean: core_positiveTransfer_iff_kernel_reach; core_positiveTransferForItem_iff_kernel_reach | machine-checked bridge | that 0/1 reachability is the only useful accessibility measure |
-| V20-T9 | Under strict compositional emergence and target benefit only after realization, a positively costly proper intermediate has negative target-financed net value. | EmergentAssemblyBarrier.lean: emergent_proper_subconfig_negative_target_financed_net | machine-checked implication | that the intermediate cannot persist by another mechanism |
-| V20-T10 | If such a proper intermediate is viable, strictly positive auxiliary support is required. | EmergentAssemblyBarrier.lean: viable_emergent_intermediate_requires_auxiliary_support | machine-checked consequence | the source or empirical meaning of auxiliary support |
-| V20-T11 | If the emergent function itself adds a transition, a proper non-realizing part cannot obtain paid opening through that phi-mediated mechanism under non-decreasing upkeep. | TransitionMediatedEmergence.lean: emergent_proper_subconfig_no_phi_paidOpening | machine-checked mechanistic specialization | that proper parts cannot persist as stepping stones through other transitions |
-| V20-T12 | The emergence specialization is non-vacuous and has drop-one-premise countermodels. | TransitionMediatedEmergence.lean: witness_emergent_whole_positive_paidOpening; countermodel_nonEmergent_part_transfers; countermodel_negative_upkeep; steppingStone_part_transfers | machine-checked witnesses/countermodels | empirical frequency of these cases |
-| V20-T13 | Bounded single-unit reuse gives |A| <= |R| d. | GenerativeLeverage.lean: accessible_card_le_retained_mul_slots | machine-checked cardinality bound | unique causal ownership in real systems |
-| V20-T14 | With minimum maintenance mu and budget B, bounded reuse gives |A| mu <= B d. | GenerativeLeverage.lean: accessible_card_mul_minCost_le_budget_mul_slots | machine-checked resource-normalized bound | that maintenance costs are uniform or easy to measure |
-| V20-T15 | If every candidate costs at least mu > 0 and B < |C| mu, retaining all candidates is infeasible. | GenerativeLeverage.lean: candidate_set_exceeding_budget_cannot_all_be_retained | machine-checked no-go | which candidate is forgotten, compressed, replaced, or retained |
-| V20-T16 | Uniformly bounded retained cardinality plus uniformly bounded single-unit reuse rules out unbounded accessible cardinality. | GenerativeLeverage.lean: bounded_memory_and_bounded_reuse_rule_out_unbounded_accessibility | machine-checked no-go | open-endedness under compositional support outside the encoding |
-| V20-T17 | Repeated reuse can make paid retention advantageous under explicit cost thresholds. | PaidReuseHierarchy.lean; RepetitionDepth.lean | machine-checked specializations | a universal law that hierarchy must arise this way |
-| V20-T18 | Internally generated slack can be joined to second-order accessibility updates in the Dynamic Vortex specialization. | EndogenousBudgetBridge.lean; DynamicVortex.lean | machine-checked conditional composition | that every retained change improves slack or future search |
+| V21-U1 | Retain/ablate arms are matched on active organization, context and gross budget. | `RetainedOrganizationCore.lean` | machine checked | does not identify the empirically correct retained item |
+| V21-U2 | Paid retention changes free budget through maintenance burden. | `RetainedOrganizationCore.lean` | machine checked | retention need not be beneficial |
+| V21-U3 | Weighted transition-kernel dominance preserves finite-horizon accessibility at equal budget. | `TransitionAccessibility.lean` | machine checked | empirical dominance is application-specific |
+| V21-U4 | Positive paid opening requires retained structural advantage under non-decreasing upkeep. | `TransitionAccessibility.lean` | machine-checked necessary condition | not sufficient |
+| V21-U5 | A retained route saving exceeding marginal upkeep relative to an ablated lower bound is sufficient for a paid-opening window. | `TransitionAccessibility.lean` | machine-checked sufficient condition | not necessary |
+| V21-U6 | Strict compositional emergence blocks financing of a positively costly proper intermediate by the future target function alone; viable intermediates need auxiliary support. | `EmergentAssemblyBarrier.lean`; `TransitionMediatedEmergence.lean` | machine checked | other support routes may sustain the intermediate |
+| V21-U7 | Bounded single-unit reuse yields `|A| <= |R| d` and its maintenance-normalized bound. | `GenerativeLeverage.lean` | machine checked | compositional support can escape the encoding |
+| V21-U8 | Positive-cost candidates cannot all be retained when their minimum total upkeep exceeds the available budget. | `GenerativeLeverage.lean` | machine checked | no optimizer is supplied |
+| V21-D1 | For the discrete CRM recurrence, growth/shrinkage/fixed-point conditions follow gain versus loss under the stated natural-number semantics. | `research/cumulative-reproduction/lean/CumulativeReproduction.lean` | machine checked | does not prove the ODE or CTMC |
+| V21-D2 | Uniformly supercritical/subcritical regions imply the corresponding discrete growth/extinction results under their stated premises. | same | machine checked | threshold existence is model-dependent |
+| V21-D3 | Linear and quadratic excess conditions imply corresponding lower growth bounds. | same | machine checked | not a universal classification of growth |
+| V21-D4 | Under the linear ledger with `mu > eta`, affordability implies a finite repertoire ceiling. | same + `THEORY.md` | machine checked / analytic specialization | if `eta >= mu`, absence of this ceiling does not imply growth or physical feasibility |
+| V21-D5 | Finite-target hitting, finite-horizon survival, eventual survival and deterministic growth are distinct quantities. | `REVIEW.md`; `VALIDATION.md`; E1/E2/E5/E7 | reviewed analytic/numerical distinction | simulations are not Lean proofs |
+| V21-S1 | Exact semantic relay is distinguished from weaker live-preserving sharpening. | `UnifiedTracking.lean`; `Realization.lean` | machine checked | semantics are specialization-specific |
+| V21-S2 | One content-indexed tracking law covers local process tracking and deterministic model revision. | `UnifiedTracking.lean` | machine checked | does not establish empirical universality |
+| V21-S3 | Groups/networks can preserve tracking under the declared doors/interface conditions. | `Network.lean`; `SemanticComposition.lean` | machine checked | collective action is separate from epistemic openness |
+| V21-S4 | Abstract network links can be realized as bounded Layer-1b challenge/revision episodes with time and cost. | `Realization.lean` | machine checked | implementation is an explicit premise/interface |
+| V21-S5 | Under open change, a fixed informative record cannot remain correct in every possible future; bounded repair turns baseline route loss into bounded temporal delay. | `Persistence.lean` | machine checked | stochastic repair threshold is separate simulation/theory |
+| V21-S6 | SCAP packages Connected, Faithful, Evidence-open, Repairable and Affordable conditions. | `SCAP.lean` | machine checked object | not all five follow from the anchor |
+| V21-S7 | Under SCAP plus realization/governance premises, persistent structural correctability, an exactly faithful route, bounded temporal restoration and affordability hold together. | `SCAP.scap_persistent_correctability` | machine checked | not yet one globally-clocked concurrent process |
+| V21-S8 | Corrigibility is distinct from obedience/sycophancy; behavioural compliance alone cannot certify alignment; exact relay preserves another view's meaning. | `Alignment.lean` | machine checked specialization | not a universal psychological model |
 
-## Core definitions
+## Universal definitions retained from v20
 
-### State
+### State and budget
 
-    State = (active G, retained R, context Gamma, grossBudget)
-    freeBudget = grossBudget - Maintenance(retained)
-
-Source: RetainedOrganizationCore.lean.
+```text
+State = (active G, retained R, context Gamma, grossBudget)
+freeBudget = grossBudget - Maintenance(retained)
+```
 
 ### Paid transfer
 
-PositiveTransferForItem compares the retained and ablated arms created from the same base state and the same item X after each arm pays its own maintenance burden.
-
-Source: RetainedOrganizationCore.lean.
+Matched retained and ablated arms share active organization, context and gross budget. Positive paid transfer requires a retained causal effect after each arm pays its own maintenance burden.
 
 ### Weighted transition machinery
 
-WeightedKernel declares allowed one-step transitions and nonnegative transition costs. ReachableWithin requires an actual finite route within both horizon and free budget.
-
-Source: TransitionAccessibility.lean.
+A `WeightedKernel` supplies allowed one-step transitions and nonnegative transition costs. `ReachableWithin` requires an actual finite route within both horizon and free budget.
 
 ### Strict compositional emergence
 
-EmergentUnder requires the whole to realize the declared capacity and every declared proper subconfiguration not to realize it.
-
-Source: EmergentAssemblyBarrier.lean via the recursive-accessibility emergence interface.
+A declared whole realizes a capacity while every declared proper subconfiguration does not.
 
 ### Bounded reuse
 
-BoundedReuseEncoding injectively assigns each accessible target to one retained unit and one of d support slots.
+A declared encoding injectively assigns accessible targets to retained units and bounded support slots.
 
-Source: GenerativeLeverage.lean.
+## CRM specialization
 
-## Interpretation layer — not itself a Lean theorem
+The reviewed Cumulative Reproduction Model introduces a repertoire count `N`, gain/loss rules and model-specific resource accounting. It is intentionally not substituted for the identity-sensitive accessibility model.
 
-The v20 scientific interpretation combines the checked pieces into the recursive picture:
+Use:
 
-    history / interaction
-      -> retained organization
-      -> changed transition machinery
-      -> changed future accessibility
-      -> new organization
-      -> budget-constrained retention
-      -> ...
+```text
+research/cumulative-reproduction/THEORY.md
+research/cumulative-reproduction/REVIEW.md
+research/cumulative-reproduction/VALIDATION.md
+research/cumulative-reproduction/lean/CumulativeReproduction.lean
+```
 
-The proposed cross-scale reading is **learning-like dynamics**. Neural learning is one instance; other cellular, organismal, social, cultural, scientific, and technological mappings remain empirical/modeling hypotheses.
+The ODE, CTMC and E1–E8 experiments are separate analytical/numerical objects whose scope is documented in that package.
 
-Lean does not prove that these domains instantiate one empirical mechanism.
+## Intelligent-system specialization seam
 
-## Important theorem-direction guardrails
+The mapping from universal EbE to Anchored Correctability is declared in `UNIVERSAL_TO_INTELLIGENCE.md`.
 
-- V20-T6 is **necessary**, not sufficient.
-- V20-T7 is **sufficient**, not necessary.
-- The pair is not an iff characterization.
-- V20-T9 does not prove all emergent intermediates are impossible; it isolates failure of financing by the future target function alone.
-- V20-T15 proves a finite-resource trade-off, not an optimizer or fitness rule.
-- V20-T16 is conditional on the bounded single-unit reuse encoding; compositional support is an explicit escape.
+Typical correspondences are:
+
+```text
+retained organization    -> retained records, revision rules, correction structure
+transition machinery     -> challenge/evidence/revision transitions
+future accessibility     -> reachable model revisions / correction routes
+maintenance burden       -> cost of keeping correction processes and links available
+context change            -> changing evidence/world conditions
+restoration               -> repair of correction routes
+```
+
+This mapping is a proposed specialization. A theorem proving complete equivalence between the two architectures has not been established.
 
 ## Verification contract
 
-Run:
+The v21 release candidate must pass four independent surfaces on one commit:
 
-    cd formalization/cumulative-accessibility
-    lake update
-    lake exe cache get
-    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
-    lake env lean CumulativeAccessibility/VerificationSurface.lean
+1. `formalization/cumulative-accessibility/` — structural universal surface;
+2. `research/cumulative-reproduction/` — CRM Lean core + regressions/smoke simulations;
+3. `research/anchored-correctability/` — 224-result audited intelligent-system package;
+4. `scap-seed/` — self-contained seed verification and quick simulations.
 
-The advertised v20 theorem surface must compile and the audited output must contain no sorryAx.
+`.github/workflows/v21-integration-check.yml` runs that matrix.
+
+A green matrix means each package passes its own verification boundary. It does not mean one package proves another or that the scientific interpretations are empirically true.
+
+## Historical relation
+
+The detailed v20 theorem map remains frozen at tag `v20`. v21 preserves those theorem directions and adds the reviewed CRM and explicitly separated intelligent-system specialization.
 
 ## Review outcome classes
 
-A useful review should classify findings as one of:
+Classify findings as one of:
 
 - formal defect;
 - semantic mismatch;
 - hidden modelling premise;
+- model-boundary conflation;
 - prior-art correction;
 - counterexample / universality failure;
-- cross-domain mapping failure;
+- specialization failure;
 - empirical uncertainty;
 - explanatory redundancy;
 - interpretation or normative overreach.
 
-This map deliberately separates conditional mathematics from the stronger scientific interpretation offered for falsification.
+A successful falsification or narrowing is a useful result.
