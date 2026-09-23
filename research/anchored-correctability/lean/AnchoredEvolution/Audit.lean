@@ -8,6 +8,7 @@ import AnchoredEvolution.SemanticComposition
 import AnchoredEvolution.UnifiedTracking
 import AnchoredEvolution.DynamicEvidence
 import AnchoredEvolution.ModelProcess
+import AnchoredEvolution.RelayProcess
 
 /-!
 # Axiom audit of the anchored development
@@ -165,3 +166,15 @@ open Anchored
 #print axioms ModelProcess.compiled_tracks_of_live
 #print axioms ModelProcess.compiled_answerWithin_two
 #print axioms ModelProcess.compiled_answerable_of_live
+-- Executable multi-hop relay process and quantitative bound
+#print axioms RelayProcess.faithfulRoute_live
+#print axioms RelayProcess.faithfulRoute_refines
+#print axioms RelayProcess.faithfulRoute_iff
+#print axioms RelayProcess.challenge_step
+#print axioms RelayProcess.relay_step
+#print axioms RelayProcess.revision_step
+#print axioms RelayProcess.relay_run
+#print axioms RelayProcess.relay_revision_run
+#print axioms RelayProcess.answerWithin_route
+#print axioms RelayProcess.answerable_route
+#print axioms RelayProcess.zero_hop_two_step
