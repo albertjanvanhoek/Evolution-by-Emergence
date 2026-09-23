@@ -13,7 +13,7 @@ content `v`, a model is compiled into a two-stage process:
 1. challenge: `idle → heard` (cost 1);
 2. local revision using `M.revise _ v`: `heard → done` (cost 1).
 
-The public record is always `M.record` of the private model state.
+The public record is always `M.record` of the model's local state.
 
 If the model tracks a live view, the compiled process tracks the same view and
 answers it within two steps and cost two. Thus the abstract model-level
@@ -39,24 +39,24 @@ inductive Phase
 
 /-- Operational state of one compiled model. -/
 structure ExecState (M : Model World) where
-  private : M.State
+  localState : M.State
   phase : Phase
 
 /-- Public decision record of the compiled process. -/
 def execRecord (M : Model World) : ExecState M → Unit → Content World :=
-  fun s _ => M.record s.private
+  fun s _ => M.record s.localState
 
 /-- Initial process state corresponding to model state `s`. -/
 def start (M : Model World) (s : M.State) : ExecState M :=
-  ⟨s, .idle⟩
+  ⟨s, Phase.idle⟩
 
 /-- Intermediate state after the challenge has been heard. -/
 def heard (M : Model World) (s : M.State) : ExecState M :=
-  ⟨s, .heard⟩
+  ⟨s, Phase.heard⟩
 
 /-- Final state after revising toward content `v`. -/
 def done (M : Model World) (s : M.State) (v : Content World) : ExecState M :=
-  ⟨M.revise s v, .done⟩
+  ⟨M.revise s v, Phase.done⟩
 
 /-- Compile one model and one incoming content into an executable two-step
 process. `base` only fills the legacy state-independent `claimOf` field of
@@ -65,10 +65,10 @@ process. `base` only fills the legacy state-independent `claimOf` field of
 def compile (M : Model World) (base v : Content World) :
     Process Unit (ExecState M) (Content World) Unit Unit where
   step := fun s verb t =>
-    (s.phase = .idle ∧ verb = .challenge () (M.record s.private) ∧
-      t.private = s.private ∧ t.phase = .heard) ∨
-    (s.phase = .heard ∧ verb = .revise (M.record s.private) ∧
-      t.private = M.revise s.private v ∧ t.phase = .done)
+    (s.phase = Phase.idle ∧ verb = .challenge () (M.record s.localState) ∧
+      t.localState = s.localState ∧ t.phase = Phase.heard) ∨
+    (s.phase = Phase.heard ∧ verb = .revise (M.record s.localState) ∧
+      t.localState = M.revise s.localState v ∧ t.phase = Phase.done)
   cost := fun _ _ _ => 1
   affected := fun _ _ => True
   sharedClaim := fun _ _ => True
@@ -109,14 +109,14 @@ theorem after_challenge_cases (s : M.State) (v : Content World)
     {t : ExecState M}
     (h : AfterChallenge (processFamily M base) (recordFamily M) v
       (start M s) () () t) :
-    (t.private = s ∧ t.phase = .heard) ∨
-      (t.private = M.revise s v ∧ t.phase = .done) := by
+    (t.localState = s ∧ t.phase = Phase.heard) ∨
+      (t.localState = M.revise s v ∧ t.phase = Phase.done) := by
   obtain ⟨t₁, n, k, hs, hr⟩ := h
-  have ht₁p : t₁.private = s := by
+  have ht₁p : t₁.localState = s := by
     rcases hs with h1 | h2
     · exact h1.2.2.1
     · cases h2.1
-  have ht₁phase : t₁.phase = .heard := by
+  have ht₁phase : t₁.phase = Phase.heard := by
     rcases hs with h1 | h2
     · exact h1.2.2.2
     · cases h2.1
@@ -124,13 +124,13 @@ theorem after_challenge_cases (s : M.State) (v : Content World)
   | nil =>
       exact Or.inl ⟨ht₁p, ht₁phase⟩
   | @cons _ t₂ t₃ verb n k hstep hrun =>
-      have ht₂p : t₂.private = M.revise s v := by
+      have ht₂p : t₂.localState = M.revise s v := by
         rcases hstep with h1 | h2
         · rw [ht₁phase] at h1
           contradiction
         · rw [ht₁p] at h2
           exact h2.2.2.1
-      have ht₂phase : t₂.phase = .done := by
+      have ht₂phase : t₂.phase = Phase.done := by
         rcases hstep with h1 | h2
         · rw [ht₁phase] at h1
           contradiction
@@ -158,17 +158,17 @@ theorem compiled_tracks_of_live {C : Content World}
     exact Process.Run.cons (revision_step s v) (Process.Run.nil _)
   · intro t ht w hw hr
     rcases after_challenge_cases s v ht with hheard | hdone
-    · have hp : t.private = s := hheard.1
-      change M.record t.private w at hr
+    · have hp : t.localState = s := hheard.1
+      change M.record t.localState w at hr
       rw [hp] at hr
       exact Or.inl hr
-    · have hp : t.private = M.revise s v := hdone.1
-      change M.record t.private w at hr
+    · have hp : t.localState = M.revise s v := hdone.1
+      change M.record t.localState w at hr
       rw [hp] at hr
       exact (hM s v).2 w hw hr
 
-/-- The compiled process answers a tracked live view within exactly the obvious
-upper bound: two steps and cost two. -/
+/-- The compiled process answers a tracked live view within the obvious upper
+bound: two steps and cost two. -/
 theorem compiled_answerWithin_two {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
