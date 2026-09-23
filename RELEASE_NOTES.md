@@ -1,201 +1,148 @@
-# Evolution by Emergence v20 — Cumulative Evolution: Retained Organization and Future Accessibility
+# Evolution by Emergence v21 — Cumulative Reproduction and the Intelligent-System Specialization
 
-v20 is the first release that freezes the consolidated retained-organization theory as the repository's primary object for independent peer review.
+v21 keeps the v20 retained-organization/accessibility core intact and adds two major developments without collapsing them into one model:
 
-The centre is:
+1. a reviewed **universal dynamical extension** for cumulative reproduction under production, loss and resource constraints; and
+2. a separately scoped **intelligent-system specialization** for fallible models that exchange evidence and challenges, track content, repair correction routes, and remain resource-feasible.
 
-> **Retained organization can become causal structure for future change by altering transition machinery and later accessibility, while finite maintenance resources constrain what can remain retained.**
+The central universal question is now:
 
-The proposed cross-domain interpretation is a candidate theory of cumulative evolution. Its universality is explicitly open to falsification.
+> **How can organization that exists now become causal material that changes which organization can exist next, while itself being produced, lost and maintained under finite resources?**
 
-## 1. Canonical review object
+The intelligent-system work is a specialization of that broader programme, not a new universal axiom.
+
+## 1. Canonical v21 route
 
 Start with:
 
-1. `THEORY_CORE_V20.md` — canonical theory.
-2. `FORMAL_THEORY_MAP.md` — claim-to-Lean traceability.
-3. `PEER_REVIEW_PROMPT.md` — reproducible adversarial review protocol.
-4. `FORMAL_THEORY_ENDPOINT.md` — review freeze, scope, and failure conditions.
-5. `formalization/cumulative-accessibility/README.md` — formal package overview.
-6. `formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md` — universality guardrails and nested learning-like interpretation.
-7. `formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean` — explicit axiom audit.
+1. `THEORY_CORE_V21.md` — current universal synthesis.
+2. `FORMAL_THEORY_MAP.md` — theorem and specialization map.
+3. `FORMAL_THEORY_ENDPOINT.md` — v21 review object, scope and failure conditions.
+4. `formalization/cumulative-accessibility/` — identity-sensitive retained-organization/accessibility core inherited from v20.
+5. `research/cumulative-reproduction/` — reviewed production/loss/resource dynamics.
+6. `UNIVERSAL_TO_INTELLIGENCE.md` — explicit specialization seam.
+7. `research/anchored-correctability/` — deep intelligent-system specialization.
+8. `scap-seed/` — small self-contained seed for independent replay and review.
 
-Reviewers should resolve tag `v20` to its exact commit SHA and review that immutable object.
+The immutable v20 tag remains the historical review object for the retained-organization/accessibility theory alone.
 
-## 2. State and paid retention
+## 2. Universal structural core retained from v20
 
-The core state is:
+The v20 state and resource accounting remain central:
 
     S_t = (G_t, R_t, Gamma_t, B_t^gross)
-    B_t^free = B_t^gross - M(R_t).
+    B_t^free = B_t^gross - M(R_t)
 
-Retained history therefore has two simultaneous effects:
+Retained organization can simultaneously:
 
-    R_t -> transition machinery -> future accessibility
+    alter transition machinery -> change future accessibility
 
 and
 
-    R_t -> maintenance burden -> reduced free budget.
+    consume maintenance budget -> reduce free capacity.
 
-v20 promotes this resource-constrained recursive loop to the centre of the theory.
+The machine-checked structural results for matched retain/ablate comparisons, weighted transition kernels, paid opening, strict compositional emergence, bounded reuse and finite-budget retention trade-offs remain unchanged in their theorem direction.
 
-## 3. Transition machinery now induces the canonical accessibility surface
+## 3. Reviewed Cumulative Reproduction Model
 
-`TransitionAccessibility.lean` defines weighted transition kernels, actual finite routes, route cost, and finite-horizon accessibility under a free budget.
+`research/cumulative-reproduction/` adds a distinct count-level dynamical specialization.
 
-Lean checks that kernel dominance preserves accessibility at equal horizon and budget.
+Its Lean core proves conditional natural-number recurrence results for gain, loss, growth, shrinkage, critical regions, extinction, lower growth bounds and resource ceilings. The continuous ODE and stochastic CTMC remain separate analytical/numerical models.
 
-The release then distinguishes two theorem directions:
+The reviewed package keeps several distinctions explicit:
 
-### Necessary structural condition
+- deterministic growth is not finite-horizon survival;
+- finite-target hitting is not eventual survival;
+- a finite-cap no-immigration stochastic model eventually goes extinct even when the deterministic drift is supercritical;
+- a critical mass must be derived from the declared production law;
+- `R_c` is a production/loss rate ratio unless additional parentage assumptions justify a branching interpretation;
+- a scaffold speedup requires explicit information and retention assumptions.
 
-With non-decreasing upkeep, positive paid opening implies that the ablated kernel cannot reproduce every retained transition at equal or lower cost.
+E1–E8 remain reproducible model-specific experiments, not universal Lean theorems.
 
-### Sufficient quantitative condition
+## 4. Intelligent systems are a separate specialization
 
-If a retained route's cost saving exceeds the marginal retention burden relative to a lower bound on ablated routes, there exists a common gross-budget window in which the target is accessible with retained organization and inaccessible without it.
+`research/anchored-correctability/` adds primitives that are not assumed by the universal EbE core:
 
-These statements are deliberately **not** presented as converses.
+- candidate worlds and semantic claims;
+- liveness and evidence;
+- challenge, answerability and tracking;
+- exact semantic interfaces;
+- correction graphs and operational realization;
+- changing worlds, temporal failure and bounded repair;
+- resource feasibility of maintained correction structure.
 
-## 4. Bridge back to the retained-organization core
+The current package contains a 224-result Lean audit and no unfinished proofs on its advertised surface.
 
-The generic core retains an abstract graded accessibility interface. The v20 publication-facing surface instantiates that interface from transition-kernel reachability.
+Its formal SCAP object separates five theorem-level conditions:
 
-Lean proves that positive core transfer under this implementation is exactly retained reachability plus ablated non-reachability under each arm's own post-maintenance budget.
+    Connected ∧ Faithful ∧ Evidence-open ∧ Repairable ∧ Affordable.
 
-This closes the main K -> A -> paid-transfer semantic seam identified during adversarial review.
+`SCAP.scap_persistent_correctability` combines structural correctability, an exactly faithful counted route, bounded temporal restoration and explicit affordability under its declared premises.
 
-## 5. Emergent assembly barrier
+## 5. Alignment specialization
 
-`EmergentAssemblyBarrier.lean` and `TransitionMediatedEmergence.lean` give strict compositional emergence a load-bearing role.
+The intelligent-system package also contains the alignment layer ported from SCAP Seed. It distinguishes corrigibility from obedience and sycophancy, separates behavioural compliance from verification, and proves that exact relay preserves content while a mirror-like channel cannot certify or track another agent's distinct view.
 
-If a future function is strictly emergent and target-specific benefit is unavailable before realization, then a positively costly proper intermediate cannot finance itself from that future function alone.
+These are conditional theorems over the declared semantics. They are not claims that all intelligent systems must use the same representation, nor that the universal EbE model contains beliefs by default.
 
-If the intermediate remains viable, some positive auxiliary support is required.
+## 6. SCAP Seed
 
-The transition-mediated specialization derives the same conclusion when realizing the emergent function is what adds a transition.
+`scap-seed/` is a self-contained, portable review object with its own pinned Lean project, claims ledger, contribution rules, simulations and licences.
 
-Permanent countermodels show escape routes:
+It is intentionally smaller than the deep research package. Its purpose is to make the anchor-to-corrigibility path easy to replay, challenge and fork independently.
 
-- dropping emergence can allow a proper part to transfer;
-- favorable upkeep accounting can create apparent opening without kernel improvement;
-- a proper part can persist as a stepping stone through another transition.
+The seed's local proofs do not certify the rest of the repository, and the rest of the repository does not weaken the seed's local theorems.
 
-## 6. Finite resources force retention trade-offs
+## 7. Explicit specialization seam
 
-`GenerativeLeverage.lean` now includes the direct no-go:
+`UNIVERSAL_TO_INTELLIGENCE.md` maps the universal objects to the intelligent-system specialization without claiming equivalence.
 
-    if every candidate costs at least mu > 0
-    and B < |C| mu,
-    then retaining all of C is budget-infeasible.
+Examples include:
 
-This is intentionally not an optimizer or a fitness rule. The theorem does not decide which candidate is forgotten, replaced, compressed, made cheaper, reused more effectively, or retained.
+- retained organization -> retained records, revision rules and correction structure;
+- transition machinery -> challenge/evidence/revision dynamics;
+- accessibility -> reachable model revisions and correction routes;
+- maintenance -> resources required to keep correction links and processes available.
 
-## 7. Bounded generative leverage
+This mapping is a research specialization. A theorem proving that Anchored Correctability is a complete instantiation of universal EbE has not yet been established.
 
-Under an injective bounded single-unit reuse encoding:
+## 8. Verification architecture
 
-    |A| <= |R| d.
+v21 deliberately keeps independent verification boundaries:
 
-With minimum retained-unit maintenance mu and total maintenance budget B:
+- `formalization/cumulative-accessibility/` — universal structural core;
+- `research/cumulative-reproduction/` — reviewed count-level dynamics and E-series checks;
+- `research/anchored-correctability/` — deep intelligent-system specialization;
+- `scap-seed/` — portable seed.
 
-    |A| mu <= B d.
+`.github/workflows/v21-integration-check.yml` runs all four surfaces on the same candidate commit. Passing that matrix means each declared package passed its own check; it does not mean one package proves the others.
 
-Uniformly bounded retained cardinality plus uniformly bounded per-unit reuse therefore rules out unbounded accessible cardinality under the declared encoding.
+The release publisher creates the annotated tag and GitHub release only after the main-site build succeeds on the merged release commit.
 
-Failure of the encoding may itself be scientifically informative, for example by revealing compositional or synergistic support.
+## 9. Scope boundaries
 
-## 8. Nested learning-like dynamics
-
-v20 makes the scale-free interpretation explicit:
-
-    history / interaction
-      -> retained organization
-      -> changed transition machinery
-      -> changed future accessibility
-      -> new organization
-      -> budget-constrained retention.
-
-This is described as **learning-like dynamics**, not as a claim that every substrate literally learns psychologically.
-
-The architecture can now be challenged across nested layers including cellular organization, immune memory, neural learning, individual memory and skill, cumulative culture, institutions, science, and technology.
-
-The nesting also allows context to change: a learning individual changes while the surrounding technological and social repertoire changes too.
-
-Lean does not establish that all these domains share one empirical mechanism. That is a principal scientific test of v20.
-
-## 9. Peer-review protocol
-
-`PEER_REVIEW_PROMPT.md` has been rewritten around the v20 release.
-
-Reviewers are asked to attack:
-
-1. formal validity;
-2. semantic adequacy;
-3. hidden modelling assumptions;
-4. equal-or-stronger prior art;
-5. explanatory value;
-6. cross-domain mappings;
-7. the proposed universality itself.
-
-A successful falsification, narrowing, or prior-art correction is an intended useful outcome.
-
-## 10. Verification surface
-
-The canonical v20 Lean review files are:
-
-    RetainedOrganizationCore.lean
-    TransitionAccessibility.lean
-    EmergentAssemblyBarrier.lean
-    TransitionMediatedEmergence.lean
-    GenerativeLeverage.lean
-    PaidReuseHierarchy.lean
-    RepetitionDepth.lean
-    DynamicVortex.lean
-    AuditAll.lean
-    VerificationSurface.lean
-
-The explicit audit surface includes the finite-budget retention theorem.
-
-Reproduce with:
-
-    cd formalization/cumulative-accessibility
-    lake update
-    lake exe cache get
-    lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
-    lake env lean CumulativeAccessibility/VerificationSurface.lean
-
-The release criterion is that the advertised surface compiles and the selected axiom audit contains no `sorryAx`.
-
-## 11. Scope boundaries
-
-v20 does not prove:
+v21 does not prove:
 
 - empirical universality;
 - that all state dependence is cumulative evolution;
-- that retention is always beneficial;
-- that novelty is improvement;
-- that persistence is function;
-- that validation is truth;
-- that selection is progress;
-- that learning-like dynamics imply literal cognition;
-- a universal rule choosing which retained item survives;
-- strong creation of previously unstatable ontologies in the current fixed ambient Lean types;
-- a moral, legal, or political obligation from the descriptive mathematics.
+- that every retained item is functionally useful;
+- that a scalar count captures organization completely;
+- that every nonlinear production law has one critical mass;
+- that finite-cap stochastic persistence is permanent;
+- that mathematical blow-up is physically realizable;
+- that every substrate literally learns;
+- that universal EbE requires semantic beliefs or challenges;
+- that the intelligent-system specialization is morally, legally or politically obligatory;
+- that simulation results are universal theorems;
+- that machine checking establishes empirical truth.
 
-## 12. Relationship to earlier releases
+## 10. Release relation
 
-- **v19 — Retained Organization and Correctable Learning:** developed the paid-retention synthesis and intelligent-agent specialization.
-- **v18 — The Learning Constitution:** separate machine-checked correctable-interdependence companion.
-- **v17 — Recursive Organization Core:** corrected recursive-emergence and moving-envelope surface.
-- **v16 — Full Theory Peer-Review Release:** Dynamic Vortex resource-response integration.
+- **v20** — immutable retained-organization/accessibility review object.
+- **v21** — universal structural core plus reviewed cumulative-reproduction dynamics, with the intelligent-system specialization made explicit and separate.
+- **SCAP Seed** — its own portable `seed-` lineage inside the repository.
 
-v20 consolidates these developments around the retained-organization -> transition-machinery -> accessibility spine and makes that consolidated object the theory to be peer reviewed.
+A useful review should attack theorem validity, semantic adequacy, hidden premises, model separation, prior art, cross-domain mappings, universality and specialization failure.
 
-## 13. Review thesis
-
-A defensible current formulation is:
-
-> **Evolution by Emergence v20 provides machine-checked substrate-agnostic constraints linking retained organization, transition-induced future accessibility, maintenance cost, strict compositional emergence, finite-budget retention trade-offs, and bounded generative leverage. It proposes that their recursive composition captures a learning-like architecture of cumulative evolution across nested organizational scales.**
-
-The first sentence is the formal contribution. The second is the scientific hypothesis to challenge.
+A successful falsification or narrowing remains a positive scientific result.
