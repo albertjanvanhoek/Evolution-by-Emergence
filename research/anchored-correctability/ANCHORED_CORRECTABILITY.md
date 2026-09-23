@@ -2,7 +2,7 @@
 
 **Status:** active formal research development, Lean 4 core only (no Mathlib), under `lean/AnchoredEvolution/`.
 
-**Current verified checkpoint:** 148 audited headline results; 105 axiom-free, 4 using `Classical.choice`, 39 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
+**Current verified checkpoint:** 175 audited headline results; 105 axiom-free, 4 using `Classical.choice`, 66 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
 
 ---
 
@@ -19,6 +19,7 @@ The project keeps every additional ingredient named rather than hiding it in the
 - **tracking:** correction responds to the content actually supplied and changes the public record only as far as that content warrants;
 - **evidence:** candidate worlds may be removed only by evidence under the stated evidence discipline;
 - **interfaces:** exact translation preserves meaning; the legacy `Network.Honest` predicate is only live-preserving sharpening;
+- **realization:** abstract network links can be implemented by bounded Layer-1b challenge/run/revision episodes carrying content in the transition itself;
 - **resources:** both standing correction structure and correction runs consume resources and therefore meet the CRM ledger.
 
 No normative conclusion follows from the anchor alone. The correctability aim is a chosen premise and appears explicitly in the theorems that use it.
@@ -37,7 +38,8 @@ No normative conclusion follows from the anchor alone. The correctability aim is
 | Tracking | live content is admitted and revision is minimal toward that content | `Tracking.Tracks`, `Network.Model.Tracking`, `UnifiedTracking.TransitionTracking` |
 | Evidence | only evidence narrows candidate worlds | `EvidenceDiscipline` |
 | Interface | exact translation preserves meaning on candidate worlds | `HFaithful`, `FaithfulChannel`, `FaithfulRoute` |
-| Economic | links and correction structure consume a CRM ledger | `Bridge.lean`, `NetworkEconomics.lean`, CRM core |
+| Realization | a graph edge is backed by a bounded challenge/run/revision episode | `Realization.Episode`, `Realization.Implements`, `Realization.RelayN` |
+| Economic | links and correction structure consume a CRM ledger | `Bridge.lean`, `Realization.lean`, `NetworkEconomics.lean`, CRM core |
 
 ---
 
@@ -113,7 +115,7 @@ Relay theorems establish that structural reachability is insufficient if interfa
 
 ### One law, literally (`UnifiedTracking.lean`)
 
-Process-based nondeterministic tracking and deterministic model revision are now instances of one content-indexed transition relation.
+Process-based nondeterministic tracking and deterministic model revision are instances of one content-indexed transition relation.
 
 `TransitionTracksAt` requires:
 
@@ -140,7 +142,7 @@ A deterministic scale-free model is executable. For a fixed incoming content, `c
 
 `compiled_tracks_of_live` proves that a tracking model compiles to a process that tracks the live view. `compiled_answerWithin_two` gives the explicit local bound of two steps and total cost two.
 
-### Executable relay routes (`RelayProcess.lean`)
+### Explicit faithful relay realization (`RelayProcess.lean`)
 
 A route is an explicit list of content channels. The process executes one challenge, one relay step per channel, and one receiver revision. Each step has unit cost in this baseline model.
 
@@ -148,25 +150,34 @@ A route is an explicit list of content channels. The process executes one challe
 
 The main quantitative theorem `answerWithin_route` says that if the receiver tracks and the source view is live, an exactly faithful route of `h` channels answers the original view within **`h + 2` steps and `h + 2` cost units**. `zero_hop_two_step` recovers the local compiler as the zero-hop special case.
 
-The route is still supplied explicitly as a channel list. The graph-indexed `Network.Relay` witness is not yet automatically compiled into that operational list.
+### Layer 1f — generic network realization (`Realization.lean`)
 
-### Network economics (`NetworkEconomics.lean`)
+This layer supplies the missing generic interface between the abstract Layer-1e network and the executable Layer-1b process.
 
-This layer separates two different costs that were previously only described:
+The process claim type is an addressed content `(j, u)`, so the challenged content is now carried by the transition itself. `Episode P s i j u t n k` is a challenge by `i` to `j` carrying `u`, followed by an arbitrary process run and a revision of `(j, u)`, with the resulting total step count and summed cost. `episode_correction` proves that every such episode is a Layer-1b `CorrectionWithin`.
 
-- **standing maintenance cost:** the resources needed to keep directed links available;
-- **correction-run cost and latency:** the resources and steps used by a particular challenge/relay/revision run.
+`Implements P M E ch α T K` says that every graph edge `i → j`, from every process state and for every incoming content, has an episode bounded by `T` steps and `K` cost whose endpoint is exactly the receiving model's own revision on the channel output.
 
-For the four-person witness the baseline architecture profiles are now explicit:
+The main bridge theorems are:
 
-- `flatFour`: 12 directed links, maximum relay-hop distance 1;
-- `pairedFour`: 6 directed links, maximum relay-hop distance 3.
+- `implemented_hop_within`: every implemented edge is a bounded Layer-1b correction;
+- `implemented_correctable`: if the implemented graph is strongly connected and every addressed member is governed by some record, the process's own correction system is structurally correctable;
+- `ReachIn` and `RelayN`: graph routes carry an exact hop count and compose channel functions along the route;
+- `relay_run`: an `m`-hop implemented relay executes as one process run with at most `m·T` steps and `m·K` cost;
+- `voice_admitted_within`: under the legacy live-preserving-sharpening condition, a live voice is admitted after the bounded relay and the receiver's last revision is minimal toward it;
+- `voice_admitted_within_faithful`: the stronger architectural corollary using exact `FaithfulChannel` transmission;
+- `solo_voice_within_faithful`, `flat_voice_within_faithful`, `ring_voice_within_faithful`: exact-faithfulness instance wrappers;
+- `canonical_implements`: a concrete two-step, cost-two implementation exists for every network of models, proving the interface is non-vacuous.
 
-`paired_four_half_maintenance` proves that under homogeneous per-link upkeep the paired architecture uses exactly half the standing maintenance. `paired_four_latency_tradeoff` proves that its worst-case executable correction takes two additional process steps. The result is therefore a genuine topology trade-off, not a claim that hierarchy is free.
+This layer does **not** replace `ModelProcess.lean` or `RelayProcess.lean`. Those are useful explicit special constructions. `Realization.lean` is the generic graph-to-process contract. The two operational encodings are not yet proved equivalent: `Tracking`/`ModelProcess` index content at the process-family level, whereas `Realization` carries it inside each challenge step.
 
-`faithful_route_profile_answers` carries the exact `h + 2` relay theorem into this topology layer.
+### Topology and ledger consequences (`Realization.lean`, `NetworkEconomics.lean`)
 
-The same file connects directed-link count directly to the CRM ledger. `affordable_links_bounded_by_cap` proves that under net-cost link retention (`eta < mu`) any affordable architecture has at most `Ledger.cap` maintained links. `self_financing_links_unbounded` removes that ceiling when links finance their own upkeep. `paired_fits_when_flat_does_not` gives a concrete witness: whenever the ledger cap lies in `[6, 11]`, the six-link paired architecture can fit while the twelve-link flat architecture cannot.
+`Realization.lean` proves general counted-route results. In a directed ring of `n + 1` members, every route from member 0 to member `n` has at least `n` hops and one has exactly `n` (`ring_latency_lower`, `ring_latency_attained`). Conversely, one-hop latency between every distinct pair forces a direct link between every pair (`latency_one_forces_complete`). `ring_voice_within` turns the ring hop bound into operational upper bounds `n·T` and `n·K`.
+
+Its ledger specialization defines upkeep for `d` maintained links per member. A ring has `d = 1`; a complete directed network on `N` members has `d = N - 1`. `flat_ceiling` proves that with positive per-link upkeep the complete network is unaffordable once the stated linear budget cannot cover its quadratic link demand. `latency_upkeep_frontier` combines the exact ring hop bound, the one-hop complete-network requirement, and the corresponding affordability conditions.
+
+`NetworkEconomics.lean` remains the complementary concrete four-person benchmark. `flatFour` has 12 directed links and maximum relay-hop distance 1; `pairedFour` has 6 links and maximum distance 3. `paired_four_half_maintenance` proves the paired architecture uses half the standing link upkeep under homogeneous per-link cost, while `paired_four_latency_tradeoff` proves two extra worst-case process steps. `paired_fits_when_flat_does_not` supplies a concrete CRM-cap witness for the six-link versus twelve-link architectures.
 
 ### Structural composition and dynamics (`Composition.lean`, `Dynamics.lean`)
 
@@ -176,7 +187,7 @@ The older graph layer remains a deliberately lossy abstraction. Strong structura
 
 Correction structure is retained organization. Maintaining it consumes resources. The bridge proves a lower upkeep bound, a correctable-population ceiling when correction has positive net cost, and removal of that ceiling when correction is self-financing.
 
-`NetworkEconomics.lean` now supplies the first explicit topology-level specialization of that bridge. A full theorem connecting network degradation to CRM critical-mass/hysteresis dynamics is still open.
+`Realization.lean` and `NetworkEconomics.lean` now provide two explicit topology-level specializations of that resource interface. A full theorem connecting network degradation to CRM critical-mass/hysteresis dynamics remains open.
 
 ---
 
@@ -186,7 +197,9 @@ The same tracking law is literally shared by individual and collective models. S
 
 A live view needs a door into the containing model. Its content must survive interfaces with enough fidelity for the receiver to track it. Exact semantic faithfulness is stronger than mere live-preserving sharpening because strengthening can itself manufacture conflict.
 
-The four-person examples support the statement that **hierarchy need not destroy tracking when interfaces preserve content**. They do not support the stronger claim that hierarchy has zero cost. The machine-checked baseline now shows the concrete exchange: fewer maintained links can mean longer correction routes.
+The scale claim is now joined to an operational claim: under `Implements`, a graph edge is not merely structural; it corresponds to a bounded executable challenge/run/revision episode. A counted graph route then becomes a bounded process run.
+
+The topology results support a trade-off statement rather than a single optimal architecture: fewer maintained links can mean longer routes, while one-hop all-pairs latency forces complete connectivity.
 
 ---
 
@@ -196,7 +209,7 @@ From the **inside**, a learner holds views whose meanings correspond to candidat
 
 From the **outside**, the learner is a transition system: challenge, relay, evidence and revision steps occur; records change; time passes; resources are consumed.
 
-The relation-level tracking law connects these views. `ModelProcess.lean` and `RelayProcess.lean` show that the scale-free semantic law can be realized by explicit step-and-cost processes. `NetworkEconomics.lean` then attaches standing topology maintenance to the same resource ledger.
+`UnifiedTracking.lean` connects the semantic and transition descriptions at the level of the tracking law. `ModelProcess.lean` and `RelayProcess.lean` provide explicit executable witnesses. `Realization.lean` supplies the generic network-to-process implementation contract, and `NetworkEconomics.lean`/`Bridge.lean` attach standing topology maintenance to the resource ledger.
 
 Because procedural self-models are themselves claims, the architecture does not place its own correction mechanism outside the theory.
 
@@ -204,40 +217,42 @@ Because procedural self-models are themselves claims, the architecture does not 
 
 ## 6. Audit checkpoint
 
-GitHub Actions run `35900290050` built the complete package successfully with Lean 4.33 core only and the CI gate verified exactly **148** audit entries.
+GitHub Actions run `35909573951` built the complete package successfully with Lean 4.33 core only and the CI gate verified exactly **175** audit entries.
 
 - **105** results depend on no axioms;
 - **4** use `Classical.choice`;
-- **39** use only `propext` / `Quot.sound` among their non-classical dependencies;
+- **66** use only `propext` / `Quot.sound` among their non-classical dependencies;
 - **0** use `sorry` / `sorryAx`.
 
-The nine `NetworkEconomics` audit entries add three axiom-free results and six results using only standard `propext` / `Quot.sound`; none introduce classical logic.
+The 27 audited `Realization` results—including four exact-faithfulness wrappers—use only standard Lean axioms and introduce no additional classical logic.
 
 ---
 
 ## 7. Current limits
 
-1. **Graph route → operational route is not automatic yet.** `Network.Relay` and `RelayProcess` use compatible ideas but the latter currently receives an explicit channel list.
-2. **Relay and maintenance costs are homogeneous baselines.** Heterogeneous transmission, deliberation, revision and link-maintenance costs are not yet represented.
-3. **Reliability is binary.** Routes either work or do not; stochastic loss/failure and repair are not modelled.
-4. **The CRM link is a ledger-cap result, not yet a hysteresis theorem.** Network failure pushing the learning system across a CRM critical mass remains to be formalized.
-5. **Group epistemic envelope is not group action.** Retaining possibilities does not choose a single intervention or policy.
-6. **Correctness is binary over candidate worlds.** Probabilities, graded support and source credibility remain future work.
-7. **Self-model meanings are supplied.** They are not yet derived by running world-dependent versions of the process.
+1. **Two operational encodings remain.** `Tracking`/`ModelProcess` represent incoming content by indexing a process family; `Realization` places addressed content directly in each challenge step. Their semantic/operational equivalence is not yet machine checked.
+2. **`RelayProcess` and `Realization.RelayN` are complementary but not identified.** The former executes an explicit list of exactly faithful channels; the latter executes graph-indexed implemented hops with arbitrary `T,K`. A theorem relating the two would remove duplicate operational presentations.
+3. **Hop and maintenance costs are homogeneous bounds.** Heterogeneous transmission, deliberation, revision and link-maintenance costs are not yet represented in the generic realization theorem.
+4. **Hops are sequential.** Concurrent correction, queueing, competition for attention and capacity constraints are not modelled.
+5. **Reliability is binary.** Routes either work or do not; stochastic loss/failure and repair are not modelled.
+6. **The CRM link is a ledger result, not yet a hysteresis theorem.** Network degradation pushing the learning system across a CRM critical mass remains to be formalized.
+7. **Group epistemic envelope is not group action.** Retaining possibilities does not choose a single intervention or policy.
+8. **Correctness is binary over candidate worlds.** Probabilities, graded support and source credibility remain future work.
+9. **Self-model meanings are supplied.** They are not yet derived by running world-dependent versions of the process.
 
 ---
 
 ## 8. Next formal targets
 
-The next quantitative work should preserve the present separation rather than collapsing costs again:
+The next work should reduce duplication and then deepen the quantitative layer:
 
-1. compile a graph-indexed `Network.Relay` witness automatically into an executable channel list;
-2. generalize unit costs to heterogeneous link maintenance and per-step transmission/revision costs;
-3. introduce stochastic reliability, failure and repair while preserving semantic faithfulness conditions;
+1. prove the relationship between the content-indexed process-family formulation and the addressed-content `Realization` formulation, and relate `RelayProcess.FaithfulRoute` to `Realization.RelayN` under exact channels;
+2. generalize uniform `T,K` and homogeneous link upkeep to heterogeneous edge, transmission, deliberation and revision costs;
+3. introduce concurrency/capacity and stochastic reliability, failure and repair while preserving semantic faithfulness conditions;
 4. couple topology loss and restoration to CRM critical-mass/hysteresis dynamics;
 5. separately formalize collective action on top of the epistemic envelope without treating action selection as epistemic consensus.
 
-The natural comparison object is a feasible frontier:
+The natural comparison object remains a feasible frontier:
 
 `(maintenance cost, correction-run cost, latency, reliability)`.
 
