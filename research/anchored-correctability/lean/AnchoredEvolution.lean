@@ -15,4 +15,6 @@ import AnchoredEvolution.ModelProcess
 import AnchoredEvolution.RelayProcess
 import AnchoredEvolution.Realization
 import AnchoredEvolution.NetworkEconomics
+import AnchoredEvolution.Persistence
+import AnchoredEvolution.SCAP
 import AnchoredEvolution.Audit
