@@ -178,9 +178,13 @@ theorem answerWithin_preserved {s : State₁} {a : Agent₁} {d : Decision₁}
   · have hs := F.step_preserved hchallenge
     rw [F.record_commutes]
     exact hs
-  · have hc := F.cost_preserved hchallenge
+  · have hc :
+        Q.cost (F.state s) (.challenge (F.agent a) (F.claim (record₁ s d)))
+          (F.state t₁) = P.cost s (.challenge a (record₁ s d)) t₁ := by
+      simpa [mapVerb] using F.cost_preserved hchallenge
     rw [F.record_commutes]
-    simpa [hc] using hK
+    rw [hc]
+    exact hK
 
 /-- Unbounded answerability is therefore preserved as well. -/
 theorem answerable_preserved {s : State₁} {a : Agent₁} {d : Decision₁}
