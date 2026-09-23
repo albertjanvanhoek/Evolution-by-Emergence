@@ -2,7 +2,7 @@
 
 **Status:** active formal research development, Lean 4 core only (no Mathlib), under `lean/AnchoredEvolution/`.
 
-**Current verified checkpoint:** 139 audited headline results; 102 axiom-free, 4 using `Classical.choice`, 33 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
+**Current verified checkpoint:** 148 audited headline results; 105 axiom-free, 4 using `Classical.choice`, 39 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
 
 ---
 
@@ -18,7 +18,8 @@ The project keeps every additional ingredient named rather than hiding it in the
 - **semantics:** claims denote sets of candidate worlds;
 - **tracking:** correction responds to the content actually supplied and changes the public record only as far as that content warrants;
 - **evidence:** candidate worlds may be removed only by evidence under the stated evidence discipline;
-- **resources:** correction structure and correction runs consume resources and therefore eventually meet the CRM ledger.
+- **interfaces:** exact translation preserves meaning; the legacy `Network.Honest` predicate is only live-preserving sharpening;
+- **resources:** both standing correction structure and correction runs consume resources and therefore meet the CRM ledger.
 
 No normative conclusion follows from the anchor alone. The correctability aim is a chosen premise and appears explicitly in the theorems that use it.
 
@@ -35,7 +36,8 @@ No normative conclusion follows from the anchor alone. The correctability aim is
 | Semantic | claims denote sets of candidate worlds | `Compatible`, `Incompatible` |
 | Tracking | live content is admitted and revision is minimal toward that content | `Tracking.Tracks`, `Network.Model.Tracking`, `UnifiedTracking.TransitionTracking` |
 | Evidence | only evidence narrows candidate worlds | `EvidenceDiscipline` |
-| Economic | maintained correction structure consumes a ledger | `Bridge.lean`, CRM core |
+| Interface | exact translation preserves meaning on candidate worlds | `HFaithful`, `FaithfulChannel`, `FaithfulRoute` |
+| Economic | links and correction structure consume a CRM ledger | `Bridge.lean`, `NetworkEconomics.lean`, CRM core |
 
 ---
 
@@ -91,7 +93,7 @@ The answer graph is stronger than the responsive graph. Under record discipline,
 
 Content tracking then requires both successful admission and minimal change toward the content. `content_insensitive_cannot_track` is the central causal result: if two incompatible challenges generate the same process behavior, both cannot be tracked once the old record excludes one of them.
 
-`least_cost_exists`, `least_time_exists` and `cost_time_tradeoff` show that fastest and cheapest correction need not be the same run. The eventual network object therefore should not collapse correction into one scalar.
+`least_cost_exists`, `least_time_exists` and `cost_time_tradeoff` show that fastest and cheapest correction need not be the same run. Correction therefore should not be collapsed into one scalar.
 
 ### Layer 1e — scale-free models and networks (`Network.lean`)
 
@@ -99,7 +101,7 @@ A `Model` has private state, a public record and a revision rule. The same type 
 
 `solo_tracking_iff` proves that one person is exactly the one-member group case. `group_tracks` proves closure under grouping when every member tracks and every live content has a door. `sound_tree_tracks` repeats the same construction at arbitrary depth.
 
-The group record is the **union** of member records. It is best interpreted as an **epistemic envelope**: a world remains admitted if at least one member still admits it. It is not yet a collective action or policy-selection rule.
+The group record is the **union** of member records. It is an **epistemic envelope**: a world remains admitted if at least one member still admits it. It is not yet a collective action or policy-selection rule.
 
 Relay theorems establish that structural reachability is insufficient if interfaces destroy content. `blind_cut_blocks` and `pairs_position_blocks` show that forwarding a group's position instead of members' rival content can make tracking impossible across the boundary even when the surrounding network remains connected.
 
@@ -111,7 +113,7 @@ Relay theorems establish that structural reachability is insufficient if interfa
 
 ### One law, literally (`UnifiedTracking.lean`)
 
-There were previously two tracking descriptions: process-based nondeterministic tracking and deterministic model revision. They are now instances of one content-indexed transition relation.
+Process-based nondeterministic tracking and deterministic model revision are now instances of one content-indexed transition relation.
 
 `TransitionTracksAt` requires:
 
@@ -134,30 +136,37 @@ The resulting learning rule is:
 
 ### Local operational realization (`ModelProcess.lean`)
 
-A deterministic scale-free model is now executable. For a fixed incoming content, `compile` creates:
-
-1. challenge: `idle → heard`, cost 1;
-2. local model revision: `heard → done`, cost 1.
+A deterministic scale-free model is executable. For a fixed incoming content, `compile` creates challenge `idle → heard` and local revision `heard → done`, each at cost 1.
 
 `compiled_tracks_of_live` proves that a tracking model compiles to a process that tracks the live view. `compiled_answerWithin_two` gives the explicit local bound of two steps and total cost two.
 
 ### Executable relay routes (`RelayProcess.lean`)
 
-This closes the next operational gap. A route is an explicit list of content channels. The process executes:
+A route is an explicit list of content channels. The process executes one challenge, one relay step per channel, and one receiver revision. Each step has unit cost in this baseline model.
 
-1. one challenge;
-2. one relay step per channel;
-3. one receiver revision.
+`FaithfulRoute` requires exact semantic faithfulness at every hop. `faithfulRoute_iff` proves that end-to-end relayed content has the same truth value as the original source content on candidate worlds.
 
-Each step has unit cost in this baseline model. `FaithfulRoute` requires exact semantic faithfulness at every hop. `faithfulRoute_iff` proves that end-to-end relayed content has the same truth value as the original source content on candidate worlds.
+The main quantitative theorem `answerWithin_route` says that if the receiver tracks and the source view is live, an exactly faithful route of `h` channels answers the original view within **`h + 2` steps and `h + 2` cost units**. `zero_hop_two_step` recovers the local compiler as the zero-hop special case.
 
-The main quantitative theorem is `answerWithin_route`:
+The route is still supplied explicitly as a channel list. The graph-indexed `Network.Relay` witness is not yet automatically compiled into that operational list.
 
-> If the receiver tracks and the source view is live, then an exactly faithful route of `h` channels answers the original view within **`h + 2` steps and `h + 2` cost units**.
+### Network economics (`NetworkEconomics.lean`)
 
-Thus network distance, semantic answerability and resource cost now occur in the same machine-checked run. `zero_hop_two_step` recovers the local compiler as the zero-hop special case.
+This layer separates two different costs that were previously only described:
 
-The current route is supplied explicitly as a channel list. The graph-indexed `Network.Relay` proof is not yet automatically compiled into that operational list, so this is not yet an automatic quantitative theorem for every structural path.
+- **standing maintenance cost:** the resources needed to keep directed links available;
+- **correction-run cost and latency:** the resources and steps used by a particular challenge/relay/revision run.
+
+For the four-person witness the baseline architecture profiles are now explicit:
+
+- `flatFour`: 12 directed links, maximum relay-hop distance 1;
+- `pairedFour`: 6 directed links, maximum relay-hop distance 3.
+
+`paired_four_half_maintenance` proves that under homogeneous per-link upkeep the paired architecture uses exactly half the standing maintenance. `paired_four_latency_tradeoff` proves that its worst-case executable correction takes two additional process steps. The result is therefore a genuine topology trade-off, not a claim that hierarchy is free.
+
+`faithful_route_profile_answers` carries the exact `h + 2` relay theorem into this topology layer.
+
+The same file connects directed-link count directly to the CRM ledger. `affordable_links_bounded_by_cap` proves that under net-cost link retention (`eta < mu`) any affordable architecture has at most `Ledger.cap` maintained links. `self_financing_links_unbounded` removes that ceiling when links finance their own upkeep. `paired_fits_when_flat_does_not` gives a concrete witness: whenever the ledger cap lies in `[6, 11]`, the six-link paired architecture can fit while the twelve-link flat architecture cannot.
 
 ### Structural composition and dynamics (`Composition.lean`, `Dynamics.lean`)
 
@@ -167,17 +176,17 @@ The older graph layer remains a deliberately lossy abstraction. Strong structura
 
 Correction structure is retained organization. Maintaining it consumes resources. The bridge proves a lower upkeep bound, a correctable-population ceiling when correction has positive net cost, and removal of that ceiling when correction is self-financing.
 
-This is not yet a complete theorem connecting operational relay latency and standing topology maintenance to CRM hysteresis. The ingredients are now closer but remain separate.
+`NetworkEconomics.lean` now supplies the first explicit topology-level specialization of that bridge. A full theorem connecting network degradation to CRM critical-mass/hysteresis dynamics is still open.
 
 ---
 
 ## 4. What scale means here
 
-The same tracking law is now literally shared by individual and collective models. Scaling adds interface and routing conditions, not a new epistemic principle.
+The same tracking law is literally shared by individual and collective models. Scaling adds interface and routing conditions, not a new epistemic principle.
 
 A live view needs a door into the containing model. Its content must survive interfaces with enough fidelity for the receiver to track it. Exact semantic faithfulness is stronger than mere live-preserving sharpening because strengthening can itself manufacture conflict.
 
-The four-person examples therefore support the statement that **hierarchy need not destroy tracking when interfaces preserve content**. They do not support the stronger claim that hierarchy has zero cost. The executable relay layer now makes the missing cost visible as route length under the unit-cost baseline.
+The four-person examples support the statement that **hierarchy need not destroy tracking when interfaces preserve content**. They do not support the stronger claim that hierarchy has zero cost. The machine-checked baseline now shows the concrete exchange: fewer maintained links can mean longer correction routes.
 
 ---
 
@@ -187,7 +196,7 @@ From the **inside**, a learner holds views whose meanings correspond to candidat
 
 From the **outside**, the learner is a transition system: challenge, relay, evidence and revision steps occur; records change; time passes; resources are consumed.
 
-The relation-level tracking law connects these views. `ModelProcess.lean` and `RelayProcess.lean` additionally show that the scale-free semantic law can be realized by explicit step-and-cost processes, including multi-hop communication.
+The relation-level tracking law connects these views. `ModelProcess.lean` and `RelayProcess.lean` show that the scale-free semantic law can be realized by explicit step-and-cost processes. `NetworkEconomics.lean` then attaches standing topology maintenance to the same resource ledger.
 
 Because procedural self-models are themselves claims, the architecture does not place its own correction mechanism outside the theory.
 
@@ -195,41 +204,42 @@ Because procedural self-models are themselves claims, the architecture does not 
 
 ## 6. Audit checkpoint
 
-GitHub Actions run `35871863420` built the complete package successfully with Lean 4.33 core only and the CI gate verified exactly **139** audit entries.
+GitHub Actions run `35900290050` built the complete package successfully with Lean 4.33 core only and the CI gate verified exactly **148** audit entries.
 
-- **102** results depend on no axioms;
+- **105** results depend on no axioms;
 - **4** use `Classical.choice`;
-- **33** use only `propext` / `Quot.sound` among their non-classical dependencies;
+- **39** use only `propext` / `Quot.sound` among their non-classical dependencies;
 - **0** use `sorry` / `sorryAx`.
 
-For the new relay layer, six audited results are axiom-free and five use only standard `propext` / `Quot.sound`; none introduce classical logic.
+The nine `NetworkEconomics` audit entries add three axiom-free results and six results using only standard `propext` / `Quot.sound`; none introduce classical logic.
 
 ---
 
 ## 7. Current limits
 
 1. **Graph route → operational route is not automatic yet.** `Network.Relay` and `RelayProcess` use compatible ideas but the latter currently receives an explicit channel list.
-2. **Relay costs are unit costs.** Heterogeneous transmission, deliberation and revision costs are not yet represented.
-3. **Standing maintenance cost remains separate from run cost.** `Bridge.lean` prices maintained correction structure abstractly; `RelayProcess.lean` prices one correction run. They have not yet been combined in one topology object.
-4. **Reliability is binary.** Routes either work or do not; stochastic loss/failure is not modelled.
+2. **Relay and maintenance costs are homogeneous baselines.** Heterogeneous transmission, deliberation, revision and link-maintenance costs are not yet represented.
+3. **Reliability is binary.** Routes either work or do not; stochastic loss/failure and repair are not modelled.
+4. **The CRM link is a ledger-cap result, not yet a hysteresis theorem.** Network failure pushing the learning system across a CRM critical mass remains to be formalized.
 5. **Group epistemic envelope is not group action.** Retaining possibilities does not choose a single intervention or policy.
 6. **Correctness is binary over candidate worlds.** Probabilities, graded support and source credibility remain future work.
 7. **Self-model meanings are supplied.** They are not yet derived by running world-dependent versions of the process.
 
 ---
 
-## 8. Next formal target
+## 8. Next formal targets
 
-The next quantitative layer should turn a structural network into the operational object automatically and separate two resource questions:
+The next quantitative work should preserve the present separation rather than collapsing costs again:
 
-- **standing maintenance:** what it costs to keep links/interfaces available;
-- **correction run:** what one actual challenge/relay/revision trajectory costs and how long it takes.
+1. compile a graph-indexed `Network.Relay` witness automatically into an executable channel list;
+2. generalize unit costs to heterogeneous link maintenance and per-step transmission/revision costs;
+3. introduce stochastic reliability, failure and repair while preserving semantic faithfulness conditions;
+4. couple topology loss and restoration to CRM critical-mass/hysteresis dynamics;
+5. separately formalize collective action on top of the epistemic envelope without treating action selection as epistemic consensus.
 
-After adding heterogeneous edge costs, the natural comparison object becomes a feasible frontier:
+The natural comparison object is a feasible frontier:
 
 `(maintenance cost, correction-run cost, latency, reliability)`.
-
-That will permit ring, flat and hierarchical networks to be compared without equating fewer links with universally lower cost, and supplies the quantities needed for a deeper CRM budget/hysteresis bridge.
 
 ---
 
