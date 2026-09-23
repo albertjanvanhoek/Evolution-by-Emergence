@@ -2,6 +2,8 @@ import AnchoredEvolution.Bridge
 import AnchoredEvolution.Witness
 import AnchoredEvolution.Operational
 import AnchoredEvolution.Semantics
+import AnchoredEvolution.Tracking
+import AnchoredEvolution.Network
 import AnchoredEvolution.SemanticComposition
 
 /-!
@@ -10,8 +12,7 @@ import AnchoredEvolution.SemanticComposition
 Each headline theorem prints its axiom dependencies.
 
 * `propext` and `Quot.sound` are standard foundations of Lean.
-* `Classical.choice` marks a proof that uses excluded middle.  The anchor
-  layer is constructive except for the two results labelled classical.
+* `Classical.choice` marks a proof that uses excluded middle.
 * `sorryAx` must never appear.
 -/
 
@@ -94,6 +95,44 @@ open Anchored
 #print axioms Semantic.answeringDesk_answers
 #print axioms Semantic.self_model_not_guaranteed
 #print axioms Semantic.sealed_rule_fixes_error
+-- Layer 1d: answer graph, evidence, content tracking, best-case cost
+#print axioms Tracking.answer_edge_is_responsive_edge
+#print axioms Tracking.answer_correctable_implies_correctable
+#print axioms Tracking.unanswered_voice_breaks
+#print axioms Tracking.candidates_shrink
+#print axioms Tracking.scenario_removed_only_by_evidence
+#print axioms Tracking.evidence_settles_room
+#print axioms Tracking.minimal_toward_rival_blocks
+#print axioms Tracking.content_insensitive_cannot_track
+#print axioms Tracking.tracks_implies_answerable
+#print axioms Tracking.always_inclusive_answers_but_does_not_track
+#print axioms Tracking.tracking_witness
+#print axioms Tracking.tc_rivals
+#print axioms Tracking.least_cost_exists
+#print axioms Tracking.least_time_exists
+#print axioms Tracking.cost_time_tradeoff
+-- Layer 1e: one correction law for one, two, three, four … models
+#print axioms Network.open_tracks
+#print axioms Network.same_revision_blocks
+#print axioms Network.insensitive_model_cannot_track
+#print axioms Network.honest_comp
+#print axioms Network.via_honest_tracks
+#print axioms Network.confusing_channel_blocks
+#print axioms Network.provenance
+#print axioms Network.relay_honest
+#print axioms Network.honest_network_tracks
+#print axioms Network.blind_cut
+#print axioms Network.blind_cut_blocks
+#print axioms Network.ring_tracks
+#print axioms Network.group_tracks
+#print axioms Network.closed_door_breaks
+#print axioms Network.solo_tracking_iff
+#print axioms Network.aggregation_under_anchor
+#print axioms Network.sound_tree_tracks
+#print axioms Network.tree_provenance
+#print axioms Network.twoPairsTree_sound
+#print axioms Network.four_person_benchmark
+#print axioms Network.pairs_position_blocks
 -- Layer 3b: semantic composition across process boundaries
 #print axioms SemanticComposition.hfaithful_compatible_iff
 #print axioms SemanticComposition.hfaithful_incompatible_iff
