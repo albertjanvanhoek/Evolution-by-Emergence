@@ -2,29 +2,19 @@
 
 This research package develops **Anchored Correctability** from one narrow logical anchor into an executable and semantic model of learning that scales from one model to groups and networks, and connects back to the Cumulative Reproduction Model (CRM).
 
-The anchor is:
-
 > Pairwise incompatible models cannot all be correct.
 
-Everything beyond that is kept explicit: liveness is an epistemic state, correctability is a chosen aim, correction is an executable process, claims have meanings over candidate worlds, and resource limits enter only at the ledger layer.
+Everything beyond that is explicit: liveness is an epistemic state, correctability is a chosen aim, correction is an executable process, claims have meanings over candidate worlds, tracking requires content-sensitive minimal change, evidence can narrow the live-world set, and maintained correction structure consumes resources.
 
 ## Current architecture
 
-The development now has one connected chain:
+`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → dynamic evidence → local compilation → executable relay routes → CRM resource persistence`
 
-`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → dynamic evidence → local operational compilation → network time/cost → resource persistence`
-
-The important correction hierarchy is:
+The correction hierarchy is:
 
 `declared < permitted-and-revisable < responsive < answerable < tracking`
 
-- **Declared**: an interface says challenge/revision are available.
-- **Permitted and revisable**: the challenge really executes and some revision is reachable.
-- **Responsive**: a run beginning with the challenge reaches revision.
-- **Answerable**: that run reaches a record that admits the challenger's still-live view.
-- **Tracking**: the response depends on what was said and changes the record only as far as the incoming content warrants.
-
-Dynamic evidence adds the complementary legitimate outcome: a challenge need not be accommodated if new evidence actually removes the challenged view from the live set.
+Dynamic evidence adds the complementary legitimate outcome: a challenge need not be accommodated if evidence actually removes that view from the live set.
 
 ## Lean files
 
@@ -36,9 +26,10 @@ Dynamic evidence adds the complementary legitimate outcome: a challenge need not
 | `lean/AnchoredEvolution/Tracking.lean` | Answer graph, evidence discipline, content tracking, cost/time trade-off |
 | `lean/AnchoredEvolution/Network.lean` | One model type for individual/group/group-of-groups; doors, relays, blind cuts, provenance, four-person benchmark |
 | `lean/AnchoredEvolution/SemanticComposition.lean` | Heterogeneous faithful process embeddings preserving answerability, time and cost across boundaries |
-| `lean/AnchoredEvolution/UnifiedTracking.lean` | One relation-level tracking law; proves operational tracking and deterministic network tracking are instances; separates exact faithfulness from live-preserving sharpening |
+| `lean/AnchoredEvolution/UnifiedTracking.lean` | One relation-level tracking law; operational and deterministic network tracking are instances; exact faithfulness separated from live-preserving sharpening |
 | `lean/AnchoredEvolution/DynamicEvidence.lean` | Evidence-aware resolution: admit a still-live view or acquire evidence that removes it |
-| `lean/AnchoredEvolution/ModelProcess.lean` | Concrete two-step compiler from a scale-free model revision into an executable process with explicit time/cost |
+| `lean/AnchoredEvolution/ModelProcess.lean` | Two-step compiler from a scale-free model revision into an executable process |
+| `lean/AnchoredEvolution/RelayProcess.lean` | Executable multi-hop faithful relay routes; route length becomes correction time and run cost |
 | `lean/AnchoredEvolution/Composition.lean` | Structural composition, ring witness, non-absorption, recursive scale invariance |
 | `lean/AnchoredEvolution/Dynamics.lean` | Structural correctability through restrictions/restorations over time |
 | `lean/AnchoredEvolution/Bridge.lean` | Resource/upkeep bridge from correction structure to CRM ledger |
@@ -47,42 +38,36 @@ Dynamic evidence adds the complementary legitimate outcome: a challenge need not
 | `lean/AnchoredEvolution/Vendor/TheRoom.lean` | Verbatim compatibility copy of `TheRoom.lean` from commit `a870788` |
 | `lean/AnchoredEvolution/Audit.lean` | Explicit axiom audit |
 
-The reviewed CRM theory, stochastic experiments and figures remain canonical in PR #65; this package only vendors the discrete Lean core needed for the bridge and standalone build.
+The reviewed CRM theory, stochastic experiments and figures remain canonical in PR #65.
 
-## What is now formally unified
+## One tracking law across scales
 
-`UnifiedTracking.lean` removes an important duplication. The process-based `Tracking.Tracks` and the scale-free `Network.Model.Tracking` are both instances of one **content-indexed transition law**:
+`UnifiedTracking.lean` gives both process-based `Tracking.Tracks` and deterministic `Network.Model.Tracking` one common **content-indexed transition law**:
 
-1. if incoming content is still live, at least one correction outcome admits it;
+1. if incoming content is live, at least one correction outcome admits it;
 2. every correction outcome changes the public record minimally toward that content.
 
-For executable processes, the possible outcomes are the states reachable after the challenge. For a `Network.Model`, there is one deterministic outcome, `revise s v`. Thus “one person”, “group”, and “group of groups” no longer rely on a second tracking principle.
+A person is the one-member group (`solo_tracking_iff`); tracking groups close under grouping when every live content has a door (`group_tracks`); the same constructor recurses to arbitrary depth (`sound_tree_tracks`).
 
-The interface terminology is also sharpened. `Network.Honest` is retained for compatibility, but mathematically it is a **live-preserving sharpening** condition: it may narrow the content while keeping it live. Exact semantic transmission is now `UnifiedTracking.FaithfulChannel`, inherited from `SemanticComposition.HFaithful`. Exact faithfulness preserves compatibility and incompatibility both ways, so translation alone cannot manufacture or erase a conflict.
-
-## Scaling result
-
-A person is the one-member group (`solo_tracking_iff`). A group of tracking members tracks when every live content has a door (`group_tracks`). The same constructor recurses to arbitrary depth (`sound_tree_tracks`). Strongly connected relay networks preserve tracking when their interfaces satisfy the stated channel condition; blind cuts destroy the ability to track rival content across the boundary.
-
-The group record is best read as an **epistemic envelope**: it is the union of worlds admitted by its members. It is not yet a collective action rule. Likewise, `aggregation_under_anchor` concerns literal intersection of mutually incompatible complete views; it is not a claim that ordinary deliberative consensus is generally false.
+The legacy `Network.Honest` condition is retained for compatibility but is mathematically only **live-preserving sharpening**. Exact semantic transport is `FaithfulChannel`, which preserves compatibility and incompatibility both ways. Translation alone therefore cannot create or erase disagreement under the exact condition.
 
 ## Evidence-aware resolution
 
-The fixed-candidate semantics has now been extended. `DynamicEvidence.ResolvedAt` treats a challenge as resolved when either:
+`DynamicEvidence.ResolvedAt` resolves a challenge when either the later record admits the view or the view is no longer live. `resolution_is_admission_or_evidence` proves that, under `EvidenceDiscipline`, a live initial view is resolved either by semantic admission or along a route containing an actual evidence-presenting step. If the view remains live, `live_dynamic_resolution_requires_admission` forces admission.
 
-- the later record admits the view; or
-- the view is no longer live under the later evidence state.
+## Operational realization and relay cost
 
-`resolution_is_admission_or_evidence` proves that, when the view was live initially and candidate worlds obey `EvidenceDiscipline`, a reachable resolution is either semantic admission or includes an actual evidence-presenting step. `live_dynamic_resolution_requires_admission` prevents the mere occurrence of unrelated evidence from substituting for answering a view that remains live.
+`ModelProcess.lean` compiles a local model revision into challenge + revision, giving a two-step, cost-two answer bound for a tracked live view.
 
-## Executable realization of a model
+`RelayProcess.lean` extends this to multi-hop communication. For an explicit route of `h` exactly faithful channels, the executable run contains:
 
-`ModelProcess.lean` now closes the first operational gap. A scale-free `Network.Model` can be compiled into an actual `Operational.Process` for a fixed incoming content:
+- one challenge step;
+- `h` relay steps;
+- one receiver revision step.
 
-1. the challenge executes (`idle → heard`), cost 1;
-2. the model applies its own `revise` rule (`heard → done`), cost 1.
+`answerWithin_route` therefore proves a tracked live source view is answered within **`h + 2` steps and `h + 2` cost units** in the unit-cost baseline. `faithfulRoute_iff` proves the relayed content has exactly the same truth value as the source content on candidate worlds. This is the first theorem in the project where network distance, semantic answerability, and operational resource cost occur in the same object.
 
-If the abstract model tracks a live view, the compiled process tracks that view (`compiled_tracks_of_live`) and answers it within two steps at total cost two (`compiled_answerWithin_two`). This is a local-model compiler; it does not yet count the relay hops needed to get content from one model to another.
+The route is currently supplied explicitly as a list of channels. The existing graph-indexed `Network.Relay` proof is not yet automatically compiled into that route, so the result should not be read as an automatic quantitative theorem for every structural graph path yet.
 
 ## Reproduce
 
@@ -91,15 +76,21 @@ cd research/anchored-correctability/lean
 lake build
 ```
 
-The current GitHub Actions checkpoint builds with Lean 4.33 core only. The audit contains **128 headline results**:
+GitHub Actions run `35871863420` builds the complete package with Lean 4.33 core only. The audit now contains **139 headline results**:
 
-- **96 depend on no axioms at all**;
+- **102 depend on no axioms at all**;
 - **4 use `Classical.choice`**;
-- the remaining **28** use only Lean's standard `propext` / `Quot.sound` dependencies;
+- the remaining **33** use only Lean's standard `propext` / `Quot.sound` dependencies;
 - no `sorry` / `sorryAx` is present.
 
 ## Current research boundary
 
-The semantic law is unified, evidence-aware, and locally executable. The remaining gap is now genuinely **network operationalization**: relay hops are still semantic `Relay` objects rather than steps in the executable process. Consequently hop-count latency, relay cost, reliability, and concrete link-maintenance cost are not yet derived from the same run.
+The semantic law is unified, evidence-aware, locally executable, and executable over an explicit faithful multi-hop route. The remaining quantitative gaps are now narrower:
 
-The next technical target is therefore to compile a **relay route plus a receiving model** into an operational run, prove that exact faithful channels preserve the incoming content along that run, and derive correction time/cost from route length. That is the point at which ring, flat and hierarchical topologies can be compared quantitatively and then connected rigorously to the CRM budget/hysteresis layer.
+1. derive the operational channel list automatically from a graph-indexed `Network.Relay` witness;
+2. replace the unit-cost baseline with heterogeneous relay/revision costs;
+3. distinguish **per-run correction cost** from **standing link-maintenance cost**;
+4. add stochastic reliability;
+5. use those quantities to connect topology to the CRM budget and, later, to hysteresis/critical-mass dynamics.
+
+The natural comparison object is therefore a frontier such as `(maintenance cost, correction-run cost, latency, reliability)`, rather than a single correction-cost scalar. The group union record remains an epistemic envelope, not a collective action rule.
