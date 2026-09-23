@@ -12,4 +12,5 @@ import AnchoredEvolution.SemanticComposition
 import AnchoredEvolution.UnifiedTracking
 import AnchoredEvolution.DynamicEvidence
 import AnchoredEvolution.ModelProcess
+import AnchoredEvolution.RelayProcess
 import AnchoredEvolution.Audit
