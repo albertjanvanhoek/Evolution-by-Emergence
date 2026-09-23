@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1500" viewBox="0 0 900 1500">
+<style>text{font-family:Arial,sans-serif;fill:#222}.t{font-size:22px;font-weight:bold}.l{font-size:15px}.a{stroke:#444;stroke-width:1}.g{stroke:#ddd;stroke-width:1}.p1{fill:none;stroke:#1f77b4;stroke-width:3}.p2{fill:none;stroke:#ff7f0e;stroke-width:3}.p3{fill:none;stroke:#2ca02c;stroke-width:3}.p4{fill:none;stroke:#9467bd;stroke-width:3}.dash{stroke-dasharray:8 6}</style>
+<text class="t" x="90" y="35">F1 — forgiveness threshold</text>
+<line class="a" x1="90" y1="245" x2="830" y2="245"/><line class="a" x1="90" y1="55" x2="90" y2="245"/>
+<line class="g" x1="90" y1="245.0" x2="830" y2="245.0"/><text class="l" x="50" y="250.0">0</text>
+<line class="g" x1="90" y1="197.5" x2="830" y2="197.5"/><text class="l" x="50" y="202.5">0.25</text>
+<line class="g" x1="90" y1="150.0" x2="830" y2="150.0"/><text class="l" x="50" y="155.0">0.5</text>
+<line class="g" x1="90" y1="102.5" x2="830" y2="102.5"/><text class="l" x="50" y="107.5">0.75</text>
+<line class="g" x1="90" y1="55.0" x2="830" y2="55.0"/><text class="l" x="50" y="60.0">1</text>
+<text class="l" x="390.0" y="280">k·r/(p+r)</text>
+<polyline class="p1" points="90.0,244.4 264.7,217.8 389.5,111.8 483.1,83.4 555.9,70.8 614.2,64.9 661.8,63.0 701.5,61.0 735.1,59.3 763.9,58.9 788.9,58.2 810.7,57.8 830.0,57.4"/>
+<polyline class="p3" points="90.0,151.4 264.7,121.9 389.5,109.1 483.1,103.2 555.9,101.9 614.2,100.8 661.8,99.8 701.5,101.2 735.1,98.6 763.9,99.9 788.9,98.2 810.7,98.7 830.0,98.6"/>
+<line class="p2 dash" x1="264.7" y1="55" x2="264.7" y2="245"/>
+<text class="l" x="620" y="75">blue: collaboration · green: usable knowledge</text>
+<text class="t" x="90" y="325">F2 — tipping and hysteresis</text>
+<line class="a" x1="90" y1="535" x2="830" y2="535"/><line class="a" x1="90" y1="345" x2="90" y2="535"/>
+<line class="g" x1="90" y1="535.0" x2="830" y2="535.0"/><text class="l" x="50" y="540.0">0</text>
+<line class="g" x1="90" y1="487.5" x2="830" y2="487.5"/><text class="l" x="50" y="492.5">0.25</text>
+<line class="g" x1="90" y1="440.0" x2="830" y2="440.0"/><text class="l" x="50" y="445.0">0.5</text>
+<line class="g" x1="90" y1="392.5" x2="830" y2="392.5"/><text class="l" x="50" y="397.5">0.75</text>
+<line class="g" x1="90" y1="345.0" x2="830" y2="345.0"/><text class="l" x="50" y="350.0">1</text>
+<text class="l" x="390.0" y="570">repair rate r</text>
+<polyline class="p1" points="90.0,531.6 164.0,531.7 238.0,527.3 312.0,519.2 386.0,470.1 460.0,408.9 534.0,399.9 608.0,390.9 682.0,386.2 756.0,380.1 830.0,377.2"/>
+<polyline class="p2" points="90.0,534.9 164.0,530.9 238.0,501.8 312.0,453.4 386.0,429.3 460.0,404.8 534.0,394.3 608.0,393.7 682.0,385.1 756.0,383.4 830.0,379.1"/>
+<polyline class="p3" points="90.0,399.3 164.0,392.3 238.0,407.7 312.0,408.0 386.0,439.3 460.0,472.5 534.0,477.5 608.0,480.4 682.0,477.4 756.0,481.7 830.0,482.4"/>
+<polyline class="p4" points="90.0,395.3 164.0,399.0 238.0,417.3 312.0,449.5 386.0,462.6 460.0,474.0 534.0,480.2 608.0,474.0 682.0,480.5 756.0,478.7 830.0,479.3"/>
+<text class="l" x="510" y="365">blue/orange: links · green/purple: separate realities</text>
+<text class="t" x="90" y="615">F3 — learning law</text>
+<line class="a" x1="90" y1="825" x2="830" y2="825"/><line class="a" x1="90" y1="635" x2="90" y2="825"/>
+<line class="g" x1="90" y1="825.0" x2="830" y2="825.0"/><text class="l" x="50" y="830.0">0</text>
+<line class="g" x1="90" y1="777.5" x2="830" y2="777.5"/><text class="l" x="50" y="782.5">0.25</text>
+<line class="g" x1="90" y1="730.0" x2="830" y2="730.0"/><text class="l" x="50" y="735.0">0.5</text>
+<line class="g" x1="90" y1="682.5" x2="830" y2="682.5"/><text class="l" x="50" y="687.5">0.75</text>
+<line class="g" x1="90" y1="635.0" x2="830" y2="635.0"/><text class="l" x="50" y="640.0">1</text>
+<rect x="125" y="642.9" width="50" height="182.1" fill="#1f77b4"/><rect x="183" y="689.2" width="50" height="135.8" fill="#2ca02c"/><text class="l" x="121" y="849">learner</text>
+<rect x="265" y="725.9" width="50" height="99.1" fill="#1f77b4"/><rect x="323" y="755.7" width="50" height="69.3" fill="#2ca02c"/><text class="l" x="261" y="849">rigid</text>
+<rect x="405" y="776.5" width="50" height="48.5" fill="#1f77b4"/><rect x="463" y="796.3" width="50" height="28.7" fill="#2ca02c"/><text class="l" x="401" y="849">drifter</text>
+<rect x="545" y="725.6" width="50" height="99.4" fill="#1f77b4"/><rect x="603" y="747.0" width="50" height="78.0" fill="#2ca02c"/><text class="l" x="541" y="849">sealed</text>
+<rect x="685" y="635.0" width="50" height="190.0" fill="#1f77b4"/><rect x="743" y="825.0" width="50" height="0.0" fill="#2ca02c"/><text class="l" x="681" y="849">vacuous</text>
+<text class="l" x="600" y="655">blue: in step · green: usable knowledge</text>
+<text class="t" x="90" y="905">F4 — narrative selection and fragility</text>
+<line class="a" x1="90" y1="1115" x2="830" y2="1115"/><line class="a" x1="90" y1="925" x2="90" y2="1115"/>
+<line class="g" x1="90" y1="1115.0" x2="830" y2="1115.0"/><text class="l" x="50" y="1120.0">0</text>
+<line class="g" x1="90" y1="1067.5" x2="830" y2="1067.5"/><text class="l" x="50" y="1072.5">0.25</text>
+<line class="g" x1="90" y1="1020.0" x2="830" y2="1020.0"/><text class="l" x="50" y="1025.0">0.5</text>
+<line class="g" x1="90" y1="972.5" x2="830" y2="972.5"/><text class="l" x="50" y="977.5">0.75</text>
+<line class="g" x1="90" y1="925.0" x2="830" y2="925.0"/><text class="l" x="50" y="930.0">1</text>
+<rect x="190" y="925.3" width="65" height="189.7" fill="#1f77b4"/><rect x="265" y="926.0" width="65" height="189.0" fill="#ff7f0e"/><text class="l" x="215" y="1139">κ=0.0</text>
+<rect x="400" y="938.8" width="65" height="176.2" fill="#1f77b4"/><rect x="475" y="948.6" width="65" height="166.4" fill="#ff7f0e"/><text class="l" x="425" y="1139">κ=1.0</text>
+<rect x="610" y="996.4" width="65" height="118.6" fill="#1f77b4"/><rect x="685" y="1043.2" width="65" height="71.8" fill="#ff7f0e"/><text class="l" x="635" y="1139">κ=4.0</text>
+<text class="l" x="600" y="945">blue: before shock · orange: break rate doubled</text>
+<text class="t" x="90" y="1195">F5 — succession</text>
+<line class="a" x1="90" y1="1405" x2="830" y2="1405"/><line class="a" x1="90" y1="1215" x2="90" y2="1405"/>
+<line class="g" x1="90" y1="1405.0" x2="830" y2="1405.0"/><text class="l" x="50" y="1410.0">0</text>
+<line class="g" x1="90" y1="1357.5" x2="830" y2="1357.5"/><text class="l" x="50" y="1362.5">0.25</text>
+<line class="g" x1="90" y1="1310.0" x2="830" y2="1310.0"/><text class="l" x="50" y="1315.0">0.5</text>
+<line class="g" x1="90" y1="1262.5" x2="830" y2="1262.5"/><text class="l" x="50" y="1267.5">0.75</text>
+<line class="g" x1="90" y1="1215.0" x2="830" y2="1215.0"/><text class="l" x="50" y="1220.0">1</text>
+<text class="l" x="390.0" y="1440">inheritance fidelity</text>
+<polyline class="p1" points="90.0,1267.2 275.0,1263.9 460.0,1260.6 645.0,1258.9 830.0,1256.4"/>
+<polyline class="p2" points="90.0,1343.9 275.0,1335.5 460.0,1328.8 645.0,1319.3 830.0,1307.3"/>
+<text class="l" x="620" y="1235">blue: linked to others · orange: alone</text>
+</svg>
