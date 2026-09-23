@@ -33,6 +33,12 @@ open LearningConstitution Operational Semantic Tracking Network
 
 variable {World : Type u}
 
+/-- A one-element type living in the same universe as the model.  `Process`
+requires all five of its type parameters to inhabit one universe; using
+ordinary `Unit` would incorrectly force a higher-universe model down to
+`Type 0`. -/
+abbrev One : Type u := PUnit.{u+1}
+
 inductive Phase
   | idle | heard | done
   deriving DecidableEq
@@ -43,7 +49,7 @@ structure ExecState (M : Model World) where
   phase : Phase
 
 /-- Public decision record of the compiled process. -/
-def execRecord (M : Model World) : ExecState M → Unit → Content World :=
+def execRecord (M : Model World) : ExecState M → One → Content World :=
   fun s _ => M.record s.localState
 
 /-- Initial process state corresponding to model state `s`. -/
@@ -63,9 +69,9 @@ process. `base` only fills the legacy state-independent `claimOf` field of
 `Operational.Process`; semantic answering uses the state-dependent
 `execRecord`. -/
 def compile (M : Model World) (base v : Content World) :
-    Process Unit (ExecState M) (Content World) Unit Unit where
+    Process One (ExecState M) (Content World) One One where
   step := fun s verb t =>
-    (s.phase = Phase.idle ∧ verb = .challenge () (M.record s.localState) ∧
+    (s.phase = Phase.idle ∧ verb = .challenge PUnit.unit (M.record s.localState) ∧
       t.localState = s.localState ∧ t.phase = Phase.heard) ∨
     (s.phase = Phase.heard ∧ verb = .revise (M.record s.localState) ∧
       t.localState = M.revise s.localState v ∧ t.phase = Phase.done)
@@ -81,12 +87,12 @@ def compile (M : Model World) (base v : Content World) :
 variable (M : Model World) (base : Content World)
 
 /-- Content-indexed family used by `Tracking.Tracks`. -/
-def processFamily : Content World → Process Unit (ExecState M) (Content World) Unit Unit :=
+def processFamily : Content World → Process One (ExecState M) (Content World) One One :=
   fun v => compile M base v
 
 /-- The record family is content-independent because the same model exposes the
 same public record regardless of which challenge we use to inspect it. -/
-def recordFamily : Content World → ExecState M → Unit → Content World :=
+def recordFamily : Content World → ExecState M → One → Content World :=
   fun _ => execRecord M
 
 variable {M base}
@@ -94,7 +100,7 @@ variable {M base}
 /-- The challenge step is always executable from an initial state. -/
 theorem challenge_step (s : M.State) (v : Content World) :
     (compile M base v).step (start M s)
-      (.challenge () (M.record s)) (heard M s) := by
+      (.challenge PUnit.unit (M.record s)) (heard M s) := by
   exact Or.inl ⟨rfl, rfl, rfl, rfl⟩
 
 /-- The local revision step executes after hearing the challenge. -/
@@ -108,7 +114,7 @@ state or the uniquely revised `done` state. -/
 theorem after_challenge_cases (s : M.State) (v : Content World)
     {t : ExecState M}
     (h : AfterChallenge (processFamily M base) (recordFamily M) v
-      (start M s) () () t) :
+      (start M s) PUnit.unit PUnit.unit t) :
     (t.localState = s ∧ t.phase = Phase.heard) ∨
       (t.localState = M.revise s v ∧ t.phase = Phase.done) := by
   obtain ⟨t₁, n, k, hs, hr⟩ := h
@@ -151,7 +157,7 @@ theorem compiled_tracks_of_live {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
     Tracks den C (processFamily M base) (recordFamily M) v
-      (start M s) () () := by
+      (start M s) PUnit.unit PUnit.unit := by
   refine ⟨?_, ?_⟩
   · refine ⟨done M s v, ?_, (hM s v).1 hlive⟩
     refine ⟨heard M s, 1, 1, challenge_step s v, ?_⟩
@@ -173,7 +179,7 @@ theorem compiled_answerWithin_two {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
     AnswerWithin (compile M base v) den C (execRecord M)
-      (start M s) () () v 2 2 := by
+      (start M s) PUnit.unit PUnit.unit v 2 2 := by
   refine ⟨heard M s, done M s v, 1, 1, challenge_step s v, ?_,
     (hM s v).1 hlive, by decide, by decide⟩
   exact Process.Run.cons (revision_step s v) (Process.Run.nil _)
@@ -184,7 +190,7 @@ theorem compiled_answerable_of_live {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
     Answerable (compile M base v) den C (execRecord M)
-      (start M s) () () v :=
+      (start M s) PUnit.unit PUnit.unit v :=
   ⟨2, 2, compiled_answerWithin_two hM hlive⟩
 
 end Anchored.ModelProcess
