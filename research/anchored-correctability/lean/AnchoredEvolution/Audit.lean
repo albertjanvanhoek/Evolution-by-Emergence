@@ -13,6 +13,7 @@ import AnchoredEvolution.Realization
 import AnchoredEvolution.NetworkEconomics
 import AnchoredEvolution.Persistence
 import AnchoredEvolution.SCAP
+import AnchoredEvolution.Alignment
 
 /-!
 # Axiom audit of the anchored development
@@ -247,3 +248,28 @@ open Anchored
 #print axioms SCAP.persistent_faithful_access
 #print axioms SCAP.implemented_scap_correctable
 #print axioms SCAP.scap_persistent_correctability
+-- Alignment specialization: corrigible, not obedient
+#print axioms Alignment.seed_derivable
+#print axioms Alignment.seed_has_no_live_rival
+#print axioms Alignment.seed_never_makes_rivals
+#print axioms Alignment.sealed_wrong_where_other_right
+#print axioms Alignment.obedient_wrong_where_self_right
+#print axioms Alignment.obedient_not_corrigible
+#print axioms Alignment.sealed_not_corrigible
+#print axioms Alignment.open_is_corrigible
+#print axioms Alignment.corrigible_characterization
+#print axioms Alignment.mutual_corrigibility
+#print axioms Alignment.sycophant_last_speaker_wins
+#print axioms Alignment.corrigible_keeps_every_voice
+#print axioms Alignment.open_order_independent
+#print axioms Alignment.certifies_needs_discrimination
+#print axioms Alignment.discrimination_certifies
+#print axioms Alignment.compliance_cannot_certify
+#print axioms Alignment.mirror_is_blind
+#print axioms Alignment.mirror_blocks_tracking
+#print axioms Alignment.relay_channel_faithful
+#print axioms Alignment.relay_tracks
+#print axioms Alignment.echo_is_mirror
+#print axioms Alignment.scap_seed_path
+#print axioms Alignment.path_witness
+#print axioms Alignment.evaluation_witness
