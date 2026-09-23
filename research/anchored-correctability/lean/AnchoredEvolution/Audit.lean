@@ -9,6 +9,7 @@ import AnchoredEvolution.UnifiedTracking
 import AnchoredEvolution.DynamicEvidence
 import AnchoredEvolution.ModelProcess
 import AnchoredEvolution.RelayProcess
+import AnchoredEvolution.NetworkEconomics
 
 /-!
 # Axiom audit of the anchored development
@@ -178,3 +179,13 @@ open Anchored
 #print axioms RelayProcess.answerWithin_route
 #print axioms RelayProcess.answerable_route
 #print axioms RelayProcess.zero_hop_two_step
+-- Network economics: topology trade-off + CRM link budget
+#print axioms NetworkEconomics.paired_four_half_links
+#print axioms NetworkEconomics.paired_four_half_maintenance
+#print axioms NetworkEconomics.paired_four_latency_tradeoff
+#print axioms NetworkEconomics.faithful_route_profile_answers
+#print axioms NetworkEconomics.link_affordable_iff_ledger
+#print axioms NetworkEconomics.affordable_links_bounded_by_cap
+#print axioms NetworkEconomics.self_financing_links_unbounded
+#print axioms NetworkEconomics.links_above_cap_unaffordable
+#print axioms NetworkEconomics.paired_fits_when_flat_does_not
