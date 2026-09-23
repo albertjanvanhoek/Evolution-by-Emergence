@@ -1,0 +1,13 @@
+# Lean build output
+lean/.lake/
+lean/build.log
+# Python
+__pycache__/
+*.pyc
+.venv/
+# LaTeX build output
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz

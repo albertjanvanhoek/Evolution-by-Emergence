@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use or build on this work, please cite it as below, and cite a tagged release."
+title: "SCAP Seed: one sure thing, and what follows from it"
+abstract: >-
+  A machine-checked theory of how intelligent systems stay correctable as they
+  grow. It starts from one certainty (views that clash cannot all be right) and
+  derives the learning law, the conditions for a shared reality, repair as
+  second-order evolution, and alignment as a property of the link between
+  models: corrigible, not obedient, with correction running both ways.
+type: software
+authors:
+  - family-names: "van Hoek"
+    given-names: "Albert Jan"
+version: "seed-v1.0.0"
+date-released: "2026-09-23"
+license: MIT
+repository-code: "https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/main/scap-seed"
+keywords:
+  - alignment
+  - corrigibility
+  - collective intelligence
+  - formal verification
+  - Lean 4
+  - evolution
+  - SCAP
