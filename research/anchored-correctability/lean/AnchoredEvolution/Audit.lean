@@ -2,6 +2,7 @@ import AnchoredEvolution.Bridge
 import AnchoredEvolution.Witness
 import AnchoredEvolution.Operational
 import AnchoredEvolution.Semantics
+import AnchoredEvolution.SemanticComposition
 
 /-!
 # Axiom audit of the anchored development
@@ -93,3 +94,11 @@ open Anchored
 #print axioms Semantic.answeringDesk_answers
 #print axioms Semantic.self_model_not_guaranteed
 #print axioms Semantic.sealed_rule_fixes_error
+-- Layer 3b: semantic composition across process boundaries
+#print axioms SemanticComposition.hfaithful_compatible_iff
+#print axioms SemanticComposition.hfaithful_incompatible_iff
+#print axioms SemanticComposition.Embedding.liftRun
+#print axioms SemanticComposition.Embedding.admits_preserved
+#print axioms SemanticComposition.Embedding.answerWithin_preserved
+#print axioms SemanticComposition.Embedding.answerable_preserved
+#print axioms SemanticComposition.answerable_through_two_levels
