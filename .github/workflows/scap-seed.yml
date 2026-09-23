@@ -1,0 +1,43 @@
+name: scap-seed
+
+# Verifies the SCAP Seed subproject. Runs only when scap-seed/ (or this file) changes.
+on:
+  push:
+    paths:
+      - "scap-seed/**"
+      - ".github/workflows/scap-seed.yml"
+  pull_request:
+    paths:
+      - "scap-seed/**"
+      - ".github/workflows/scap-seed.yml"
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: scap-seed
+
+jobs:
+  proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lean (elan)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Check the seed and build the development
+        run: scripts/verify.sh
+
+  simulations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r sim/requirements.txt
+      - name: Run the simulations in quick mode
+        run: |
+          cd sim
+          python experiments.py --quick
+          python fragmentation_experiments.py --quick
