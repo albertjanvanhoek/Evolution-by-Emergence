@@ -39,7 +39,7 @@ This does not yet turn the temporal waiting steps into one global timestamped
 `Operational.Process.Run`; concurrency and attention/capacity remain open.
 -/
 
-universe u v
+universe u
 
 namespace Anchored.SCAP
 
@@ -52,7 +52,7 @@ open Persistence
 open UnifiedTracking
 open CumulativeReproduction
 
-variable {World : Type u} {ι : Type v}
+variable {World ι : Type u}
 
 /-- The five-part SCAP condition at theorem level.
 
