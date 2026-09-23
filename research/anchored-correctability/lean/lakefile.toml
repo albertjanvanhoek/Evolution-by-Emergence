@@ -1,0 +1,6 @@
+name = "anchored_evolution"
+version = "0.1.0"
+defaultTargets = ["AnchoredEvolution"]
+
+[[lean_lib]]
+name = "AnchoredEvolution"
