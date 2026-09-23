@@ -1,0 +1,172 @@
+name: v21 Integration Check
+
+on:
+  pull_request:
+    paths:
+      - 'THEORY_CORE_V21.md'
+      - 'FORMAL_THEORY_MAP.md'
+      - 'FORMAL_THEORY_ENDPOINT.md'
+      - 'UNIVERSAL_TO_INTELLIGENCE.md'
+      - 'README.md'
+      - 'RELEASE_VERSION'
+      - 'RELEASE_TITLE'
+      - 'RELEASE_NOTES.md'
+      - 'CITATION.cff'
+      - 'formalization/cumulative-accessibility/**'
+      - 'research/cumulative-reproduction/**'
+      - 'research/anchored-correctability/**'
+      - 'scap-seed/**'
+      - '.github/workflows/v21-integration-check.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'THEORY_CORE_V21.md'
+      - 'FORMAL_THEORY_MAP.md'
+      - 'FORMAL_THEORY_ENDPOINT.md'
+      - 'UNIVERSAL_TO_INTELLIGENCE.md'
+      - 'README.md'
+      - 'RELEASE_VERSION'
+      - 'RELEASE_TITLE'
+      - 'RELEASE_NOTES.md'
+      - 'CITATION.cff'
+      - 'formalization/cumulative-accessibility/**'
+      - 'research/cumulative-reproduction/**'
+      - 'research/anchored-correctability/**'
+      - 'scap-seed/**'
+      - '.github/workflows/v21-integration-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release-metadata:
+    name: Release metadata coherence
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check v21 metadata and routes
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(tr -d '[:space:]' < RELEASE_VERSION)" = "v21"
+          grep -q '^Evolution by Emergence v21' RELEASE_TITLE
+          grep -q '^# Evolution by Emergence v21' RELEASE_NOTES.md
+          test -s THEORY_CORE_V21.md
+          test -s FORMAL_THEORY_MAP.md
+          test -s FORMAL_THEORY_ENDPOINT.md
+          test -s UNIVERSAL_TO_INTELLIGENCE.md
+          test -s CITATION.cff
+          grep -q 'research/anchored-correctability' THEORY_CORE_V21.md
+          grep -q 'research/cumulative-reproduction' THEORY_CORE_V21.md
+          grep -q 'scap-seed' THEORY_CORE_V21.md
+
+  universal-structure:
+    name: Universal structural core
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/cumulative-accessibility
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        shell: bash
+        run: |
+          curl --retry 5 --retry-all-errors --connect-timeout 20 -sSf \
+            https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
+            | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Resolve dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+          $HOME/.elan/bin/lake exe cache get
+      - name: Build and audit v20/v21 structural surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.VerificationSurface
+          output="$($HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean 2>&1)"
+          printf '%s\n' "$output"
+          if grep -q 'sorryAx' <<<"$output"; then
+            echo 'Universal structural surface contains sorryAx.' >&2
+            exit 1
+          fi
+
+  cumulative-reproduction:
+    name: Cumulative Reproduction Model
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile and audit CRM Lean core
+        working-directory: research/cumulative-reproduction/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          lean CumulativeReproduction.lean | tee lean-audit.log
+          if grep -q 'sorryAx' lean-audit.log; then
+            echo 'CRM contains sorryAx.' >&2
+            exit 1
+          fi
+          test "$(grep -c 'depends on axioms:' lean-audit.log)" -eq 16
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies
+        run: python -m pip install -r research/cumulative-reproduction/requirements.txt
+      - name: Run CRM regressions
+        run: python -m unittest discover -s research/cumulative-reproduction/sim -p 'test_*.py' -v
+      - name: Smoke-run E1-E8
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: python research/cumulative-reproduction/sim/experiments.py --quick --output-dir "$RUNNER_TEMP/crm-quick"
+
+  anchored-correctability:
+    name: Anchored Correctability / SCAP
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build and audit 224-result intelligent-system surface
+        working-directory: research/anchored-correctability/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build 2>&1 | tee lean-audit.log
+          if grep -q 'sorryAx' lean-audit.log; then
+            echo 'Anchored Correctability contains sorryAx.' >&2
+            exit 1
+          fi
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 224
+
+  scap-seed:
+    name: SCAP Seed
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scap-seed
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install Lean
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Verify seed proofs and audit
+        run: scripts/verify.sh
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install seed simulation dependencies
+        run: pip install -r sim/requirements.txt
+      - name: Smoke-run seed simulations
+        run: |
+          cd sim
+          python experiments.py --quick
+          python fragmentation_experiments.py --quick
