@@ -33,17 +33,15 @@ open LearningConstitution Operational Semantic Tracking Network
 
 variable {World : Type u}
 
-/-- A one-element type living in the same universe as the model.  `Process`
-requires all five of its type parameters to inhabit one universe; using
-ordinary `Unit` would incorrectly force a higher-universe model down to
-`Type 0`. -/
+/-- A one-element type living in the same universe as the model. `Process`
+requires all five type parameters in one universe; ordinary `Unit` would force
+a higher-universe model down to `Type 0`. -/
 abbrev One : Type u := PUnit.{u+1}
 
 inductive Phase
   | idle | heard | done
   deriving DecidableEq
 
-/-- Operational state of one compiled model. -/
 structure ExecState (M : Model World) where
   localState : M.State
   phase : Phase
@@ -52,22 +50,18 @@ structure ExecState (M : Model World) where
 def execRecord (M : Model World) : ExecState M → One → Content World :=
   fun s _ => M.record s.localState
 
-/-- Initial process state corresponding to model state `s`. -/
 def start (M : Model World) (s : M.State) : ExecState M :=
   ⟨s, Phase.idle⟩
 
-/-- Intermediate state after the challenge has been heard. -/
 def heard (M : Model World) (s : M.State) : ExecState M :=
   ⟨s, Phase.heard⟩
 
-/-- Final state after revising toward content `v`. -/
 def done (M : Model World) (s : M.State) (v : Content World) : ExecState M :=
   ⟨M.revise s v, Phase.done⟩
 
 /-- Compile one model and one incoming content into an executable two-step
-process. `base` only fills the legacy state-independent `claimOf` field of
-`Operational.Process`; semantic answering uses the state-dependent
-`execRecord`. -/
+process. `base` only fills the legacy state-independent `claimOf` field;
+semantic answering uses the state-dependent `execRecord`. -/
 def compile (M : Model World) (base v : Content World) :
     Process One (ExecState M) (Content World) One One where
   step := fun s verb t =>
@@ -86,24 +80,19 @@ def compile (M : Model World) (base v : Content World) :
 
 variable (M : Model World) (base : Content World)
 
-/-- Content-indexed family used by `Tracking.Tracks`. -/
 def processFamily : Content World → Process One (ExecState M) (Content World) One One :=
   fun v => compile M base v
 
-/-- The record family is content-independent because the same model exposes the
-same public record regardless of which challenge we use to inspect it. -/
 def recordFamily : Content World → ExecState M → One → Content World :=
   fun _ => execRecord M
 
 variable {M base}
 
-/-- The challenge step is always executable from an initial state. -/
 theorem challenge_step (s : M.State) (v : Content World) :
     (compile M base v).step (start M s)
       (.challenge PUnit.unit (M.record s)) (heard M s) := by
   exact Or.inl ⟨rfl, rfl, rfl, rfl⟩
 
-/-- The local revision step executes after hearing the challenge. -/
 theorem revision_step (s : M.State) (v : Content World) :
     (compile M base v).step (heard M s)
       (.revise (M.record s)) (done M s v) := by
@@ -133,26 +122,26 @@ theorem after_challenge_cases (s : M.State) (v : Content World)
       have ht₂p : t₂.localState = M.revise s v := by
         rcases hstep with h1 | h2
         · rw [ht₁phase] at h1
-          contradiction
+          cases h1.1
         · rw [ht₁p] at h2
           exact h2.2.2.1
       have ht₂phase : t₂.phase = Phase.done := by
         rcases hstep with h1 | h2
         · rw [ht₁phase] at h1
-          contradiction
+          cases h1.1
         · exact h2.2.2.2
       cases hrun with
       | nil => exact Or.inr ⟨ht₂p, ht₂phase⟩
       | cons hnext _ =>
           rcases hnext with h1 | h2
           · rw [ht₂phase] at h1
-            contradiction
+            cases h1.1
           · rw [ht₂phase] at h2
-            contradiction
+            cases h2.1
 
 /-- **The model-level law is operationally realizable.** If `M` tracks and `v`
-is live, the compiled step-and-cost process tracks `v` in the stronger
-process-level sense of `Tracking.Tracks`. -/
+is live, the compiled step-and-cost process tracks `v` in the process-level
+sense of `Tracking.Tracks`. -/
 theorem compiled_tracks_of_live {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
@@ -173,16 +162,18 @@ theorem compiled_tracks_of_live {C : Content World}
       rw [hp] at hr
       exact (hM s v).2 w hw hr
 
-/-- The compiled process answers a tracked live view within the obvious upper
-bound: two steps and cost two. -/
+/-- The compiled process answers a tracked live view within two steps and cost
+two. -/
 theorem compiled_answerWithin_two {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
     AnswerWithin (compile M base v) den C (execRecord M)
       (start M s) PUnit.unit PUnit.unit v 2 2 := by
   refine ⟨heard M s, done M s v, 1, 1, challenge_step s v, ?_,
-    (hM s v).1 hlive, by decide, by decide⟩
-  exact Process.Run.cons (revision_step s v) (Process.Run.nil _)
+    (hM s v).1 hlive, ?_, ?_⟩
+  · exact Process.Run.cons (revision_step s v) (Process.Run.nil _)
+  · omega
+  · simp [compile]
 
 /-- Consequently every live content tracked by the abstract model is
 operationally answerable at finite time and cost after compilation. -/
