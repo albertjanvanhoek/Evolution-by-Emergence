@@ -6,4 +6,5 @@ import AnchoredEvolution.Bridge
 import AnchoredEvolution.Witness
 import AnchoredEvolution.Operational
 import AnchoredEvolution.Semantics
+import AnchoredEvolution.SemanticComposition
 import AnchoredEvolution.Audit
