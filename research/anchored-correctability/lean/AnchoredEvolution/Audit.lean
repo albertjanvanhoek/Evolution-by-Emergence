@@ -9,6 +9,7 @@ import AnchoredEvolution.UnifiedTracking
 import AnchoredEvolution.DynamicEvidence
 import AnchoredEvolution.ModelProcess
 import AnchoredEvolution.RelayProcess
+import AnchoredEvolution.Realization
 import AnchoredEvolution.NetworkEconomics
 
 /-!
@@ -179,6 +180,34 @@ open Anchored
 #print axioms RelayProcess.answerWithin_route
 #print axioms RelayProcess.answerable_route
 #print axioms RelayProcess.zero_hop_two_step
+-- Layer 1f: graph-indexed realization on Layer-1b processes
+#print axioms Realization.ReachIn.trans
+#print axioms Realization.one_hop_is_edge
+#print axioms Realization.latency_one_forces_complete
+#print axioms Realization.ring_forced
+#print axioms Realization.ring_latency_lower
+#print axioms Realization.ring_latency_attained
+#print axioms Realization.ring_within
+#print axioms Realization.run_append
+#print axioms Realization.episode_run
+#print axioms Realization.episode_correction
+#print axioms Realization.implemented_hop_within
+#print axioms Realization.implemented_correctable
+#print axioms Realization.relay_run
+#print axioms Realization.voice_admitted_within
+#print axioms Realization.voice_admitted_within_faithful
+#print axioms Realization.solo_voice_within
+#print axioms Realization.flat_voice_within
+#print axioms Realization.ring_voice_within
+#print axioms Realization.solo_voice_within_faithful
+#print axioms Realization.flat_voice_within_faithful
+#print axioms Realization.ring_voice_within_faithful
+#print axioms Realization.ring_self_financing
+#print axioms Realization.flat_ceiling
+#print axioms Realization.latency_upkeep_frontier
+#print axioms Realization.canonical_implements
+#print axioms Realization.canonical_correctable
+#print axioms Realization.canonical_ring_voice
 -- Network economics: topology trade-off + CRM link budget
 #print axioms NetworkEconomics.paired_four_half_links
 #print axioms NetworkEconomics.paired_four_half_maintenance
