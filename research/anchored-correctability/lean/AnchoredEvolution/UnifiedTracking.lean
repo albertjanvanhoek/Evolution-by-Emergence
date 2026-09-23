@@ -29,7 +29,7 @@ universe u
 
 namespace Anchored.UnifiedTracking
 
-open Semantic Tracking Network
+open LearningConstitution Operational Semantic Tracking Network
 
 /-! ## 1. One content-indexed transition law -/
 
