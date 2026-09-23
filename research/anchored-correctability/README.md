@@ -1,120 +1,110 @@
-# Anchored Evolution: from logical anchor to scalable learning process
+# Anchored Evolution: from logical anchor to persistent correctability
 
-This research package develops **Anchored Correctability** from one narrow logical anchor into an executable and semantic model of learning that scales from one model to groups and networks, and connects back to the Cumulative Reproduction Model (CRM).
+This research package develops **Anchored Correctability** from one narrow logical anchor into an executable, semantic and scale-free learning model, then asks the longer-horizon question: **what lets correctability persist while the world and the network change?**
 
 > Pairwise incompatible models cannot all be correct.
 
-Everything beyond that is explicit: liveness is an epistemic state, correctability is a chosen aim, correction is an executable process, claims have meanings over candidate worlds, tracking requires content-sensitive minimal change, evidence can narrow the live-world set, and maintained correction structure consumes resources.
+Everything beyond that is explicit. Liveness is an epistemic state; correctability is a chosen aim; correction is executable; claims have meanings over candidate worlds; tracking requires content-sensitive minimal change; exact interfaces preserve meaning; evidence can narrow the live-world set; links can fail and be repaired; and maintained correction structure consumes resources.
 
 ## Current architecture
 
-`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → unified transition law → dynamic evidence → operational realization → topology economics → CRM resource persistence`
+`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → one transition law → dynamic evidence → operational realization → persistence/repair → SCAP invariant`
 
-The correction hierarchy is:
+Resource economics is a cross-cutting constraint on that persistent structure and reuses the CRM ledger from PR #65.
+
+The correction hierarchy remains:
 
 `declared < permitted-and-revisable < responsive < answerable < tracking`
 
-Dynamic evidence adds the complementary legitimate outcome: a challenge need not be accommodated if evidence actually removes that view from the live set.
+## Formal stack
 
-## Lean files
-
-| Path | Role |
+| File | Role |
 |---|---|
-| `lean/AnchoredEvolution/Anchor.lean` | Logical anchor, live/guaranteed possible-world semantics, structural correction skeleton |
-| `lean/AnchoredEvolution/Operational.lean` | Executable transitions, responsiveness, finite correction time/cost, induced correction graph |
-| `lean/AnchoredEvolution/Semantics.lean` | Claim meanings, perspective translation, answerability, fixed-error theorem, self-model |
-| `lean/AnchoredEvolution/Tracking.lean` | Answer graph, evidence discipline, content tracking, cost/time trade-off |
-| `lean/AnchoredEvolution/Network.lean` | One model type for individual/group/group-of-groups; doors, relays, blind cuts, provenance, four-person benchmark |
-| `lean/AnchoredEvolution/SemanticComposition.lean` | Heterogeneous faithful process embeddings preserving answerability, time and cost across boundaries |
-| `lean/AnchoredEvolution/UnifiedTracking.lean` | One relation-level tracking law; operational and deterministic network tracking are instances; exact faithfulness separated from live-preserving sharpening |
-| `lean/AnchoredEvolution/DynamicEvidence.lean` | Evidence-aware resolution: admit a still-live view or acquire evidence that removes it |
-| `lean/AnchoredEvolution/ModelProcess.lean` | Two-step local compiler from a model revision into an executable process |
-| `lean/AnchoredEvolution/RelayProcess.lean` | Explicit exactly-faithful channel-list realization with `h + 2` step/cost bound |
-| `lean/AnchoredEvolution/Realization.lean` | Generic graph-indexed realization: content lives in the challenge step, graph hops become Layer-1b corrections, relay length gives time/cost bounds, and ring/flat topology is tied to the ledger |
-| `lean/AnchoredEvolution/NetworkEconomics.lean` | Four-person maintenance/latency benchmark and link-count CRM ledger results |
-| `lean/AnchoredEvolution/Composition.lean` | Structural composition, ring witness, non-absorption, recursive scale invariance |
-| `lean/AnchoredEvolution/Dynamics.lean` | Structural correctability through restrictions/restorations over time |
-| `lean/AnchoredEvolution/Bridge.lean` | Resource/upkeep bridge from correction structure to CRM ledger |
-| `lean/AnchoredEvolution/Witness.lean` | Non-vacuity witnesses |
-| `lean/AnchoredEvolution/CumulativeReproduction.lean` | Vendored reviewed discrete CRM core for standalone build |
-| `lean/AnchoredEvolution/Vendor/TheRoom.lean` | Verbatim compatibility copy of `TheRoom.lean` from commit `a870788` |
-| `lean/AnchoredEvolution/Audit.lean` | Explicit axiom audit |
+| `Anchor.lean` | Logical anchor, possible-world liveness/guarantee, structural correction skeleton |
+| `Operational.lean` | Executable transitions, responsiveness, finite correction time/cost, induced correction graph |
+| `Semantics.lean` | Claim meanings, perspective distortion, answerability, fixed-error and procedural self-model results |
+| `Tracking.lean` | Answer graph, evidence discipline, content-sensitive minimal correction, fastest/cheapest trade-off |
+| `Network.lean` | Same `Model` type for individual/group/group-of-groups; doors, relays, blind cuts, provenance |
+| `SemanticComposition.lean` | Exact heterogeneous process embeddings preserving answerability, time and cost |
+| `UnifiedTracking.lean` | One content-indexed transition law; process and deterministic-model tracking are instances; exact `FaithfulChannel` separated from legacy live-preserving sharpening |
+| `DynamicEvidence.lean` | A challenge resolves by admitting a still-live view or by evidence that removes it |
+| `ModelProcess.lean` | Two-step local executable witness |
+| `RelayProcess.lean` | Explicit exactly-faithful route witness with `h + 2` unit-step/cost bound |
+| `Realization.lean` | Generic graph-to-process contract; addressed content in challenge transitions; counted relays and `m*T`, `m*K` bounds |
+| `Persistence.lean` | Changing-world learning law, evidence-defined shared reality, temporal link repair, reflexivity |
+| `SCAP.lean` | Formal top-level Connected/Faithful/Open/Repairable/Affordable invariant and persistent-correctability theorem |
+| `NetworkEconomics.lean` | Concrete topology maintenance/latency examples and CRM link-budget results |
+| `Composition.lean`, `Dynamics.lean` | Structural composition and route-preserving change |
+| `Bridge.lean` | Resource/upkeep bridge to the CRM ledger |
+| `CumulativeReproduction.lean` | Vendored reviewed discrete CRM core for standalone build; full CRM package remains canonical in PR #65 |
+| `Audit.lean` | Explicit axiom audit |
 
-The reviewed CRM theory, stochastic experiments and figures remain canonical in PR #65.
+For a law-by-law synthesis, see [`METAMODEL.md`](METAMODEL.md). For the detailed theorem notes, see [`ANCHORED_CORRECTABILITY.md`](ANCHORED_CORRECTABILITY.md).
 
-## One tracking law across scales
+## Persistence: what is new
 
-`UnifiedTracking.lean` gives both process-based `Tracking.Tracks` and deterministic `Network.Model.Tracking` one common **content-indexed transition law**:
+`Persistence.lean` adds time explicitly.
 
-1. if incoming content is live, at least one correction outcome admits it;
-2. every correction outcome changes the public record minimally toward that content.
+`deaf_must_be_vacuous` proves that a record fixed independently of what happens, yet required to remain in step at an open future time, must admit every still-possible world. `sealed_constraint_fails` proves the complementary statement: an invariant informative constraint fails in some possible future under open change. `learner_in_step` shows that following reliable evidence keeps a learner in step.
 
-A person is the one-member group (`solo_tracking_iff`); tracking groups close under grouping when every live content has a door (`group_tracks`); the same constructor recurses to arbitrary depth (`sound_tree_tracks`).
+A member's `reality` is its prior intersected with all evidence whose source can reach it. Mutual reachability gives equal realities (`same_component_same_reality`), and strong connectivity gives one shared evidence-defined reality. Reliable evidence keeps the true world in every reality; disjoint realities therefore imply false evidence somewhere. `hidden_versus_revealed_conflict` gives a two-agent witness in which connection exposes inconsistent evidence while separation hides it.
 
-The legacy `Network.Honest` condition is retained for compatibility but is mathematically only **live-preserving sharpening**. Exact semantic transport is `FaithfulChannel`, which preserves compatibility and incompatibility both ways. Translation alone therefore cannot create or erase disagreement under the exact condition.
+Temporal reachability is `TReach`. If links only disappear, a split is permanent (`no_repair_split_permanent`). If every baseline link is restored within `R` steps, a baseline route of `m` links is temporally reachable within **`m*(R+1)`** steps (`repair_bounds_delay`). Strong baseline connectivity plus that bounded repair condition gives `forgiveness_turns_split_into_delay`.
 
-## Evidence-aware resolution
+`self_fulfilment_is_not_verification` formalizes the reflexive point: an observation generated whenever a narrative is complied with cannot by itself eliminate a candidate world in which the compliance occurs but the narrative's claim is false.
 
-`DynamicEvidence.ResolvedAt` resolves a challenge when either the later record admits the view or the view is no longer live. `resolution_is_admission_or_evidence` proves that, under `EvidenceDiscipline`, a live initial view is resolved either by semantic admission or along a route containing an actual evidence-presenting step. If the view remains live, `live_dynamic_resolution_requires_admission` forces admission.
+## SCAP is now a Lean object
 
-## Operational realization
+`SCAP.Invariant` deliberately packages five **explicit premises** rather than claiming they all follow from the anchor:
 
-Three related constructions now meet at the operational boundary.
+- **Connected:** the baseline correction web is strongly connected;
+- **Faithful:** every baseline edge is an exact `FaithfulChannel` on the candidate worlds;
+- **Evidence-open:** public records follow supplied evidence, so reliable evidence keeps them in step;
+- **Repairable:** every baseline edge returns within a bounded delay `R`;
+- **Affordable:** the explicitly counted maintained correction structure fits the CRM ledger.
 
-`ModelProcess.lean` is the local witness: for a fixed incoming content, a tracking model compiles to challenge + revision and answers within two steps and cost two.
+The stochastic condition `k*r/(p+r) > 1` is **not** the definition of SCAP repairability and is not a Lean theorem. It is a model-specific percolation threshold tested in F1 and compared with random-graph theory.
 
-`RelayProcess.lean` is the explicit exactly-faithful route witness: for a supplied list of `h` faithful channels, one challenge, `h` relay steps and one receiver revision answer the source view within **`h + 2` steps and `h + 2` cost units**.
+The top-level theorem `SCAP.scap_persistent_correctability` combines the current layers. Given `SCAP.Invariant`, a `Realization.Implements` contract and the existing governance premise, it establishes current Layer-1b structural correctability, an exactly faithful counted route between any pair, temporal access along that baseline route within `m*(R+1)` under bounded repair, and affordability of the maintained structure.
 
-`Realization.lean` is the generic network interface. Its process claim is an addressed pair `(j, u)`, so the challenged content is carried in the transition itself rather than being an index on a family of processes. `Episode` is one challenge/run/revision hop. `Implements P M E ch α T K` says that every network edge, from every process state and for every incoming content, has such an episode bounded by `T` steps and `K` cost, ending in the receiving model's own revision.
+It intentionally keeps temporal waiting/repair distinct from a single globally-clocked `Operational.Process.Run`; concurrency and attention/capacity are still open.
 
-The main consequences are:
+## Operational realization and resources
 
-- `implemented_hop_within`: each implemented network edge is an actual Layer-1b `CorrectionWithin`;
-- `implemented_correctable`: if the implemented graph is strongly connected and the addressed records are governed, the actual process correction system is structurally correctable;
-- `relay_run`: an `m`-hop implemented relay executes as one process run in at most `m·T` steps and `m·K` cost;
-- `voice_admitted_within`: the original live-preserving-sharpening interface theorem;
-- `voice_admitted_within_faithful`: the stronger architectural wrapper requiring exact `FaithfulChannel` transmission;
-- `canonical_implements`: every network of models has a non-vacuous two-step, cost-two implementation per hop.
+`Realization.Implements P M E ch α T K` requires every network edge, every process state and every incoming content to have a bounded challenge/run/revision episode ending in the receiving model's own revision. Thus an `m`-hop implemented relay executes within `m*T` steps and `m*K` run cost.
 
-Exact-faithfulness wrappers are also provided for the solo, flat and ring instances. The original `Honest` theorems are retained because they are mathematically stronger in applicability, but exact faithfulness is the condition used when the claim is that another model's meaning is preserved.
+This is separate from **standing maintenance**. `NetworkEconomics.lean` and the ledger specialization in `Realization.lean` constrain which topologies can be maintained. One-hop distance between every distinct pair forces a complete directed graph; a ring uses one maintained outgoing link per member but has longer routes. The current theory therefore yields a feasible region in maintenance, correction-run cost and latency, not one universal optimum.
 
-## Topology, latency and upkeep
+## F1–F5 simulations
 
-`Realization.lean` adds general counted-route theorems. In a directed ring of `n + 1` members, the route from member 0 to member `n` has exactly `n` hops (`ring_latency_lower`, `ring_latency_attained`), while one-hop distance between every distinct pair forces the complete directed graph (`latency_one_forces_complete`). For an implemented ring, every live voice reaches every other member within `n·T` process steps and `n·K` cost.
+The new scoped simulations are under `sim/` and test the dynamic metamodel; they are not proofs.
 
-Its ledger specialization uses `d` maintained links per member. A ring has `d = 1`; the complete directed network has `d = N - 1`. The Lean result `flat_ceiling` is stated under positive per-link upkeep and per-member return: with `N` members, complete-network upkeep scales as `(N - 1)·μ·N`, while available budget is `B0 + η·N`. `latency_upkeep_frontier` combines the exact ring hop bound, one-hop complete-network requirement, and these affordability conditions.
+- **F1:** repaired-link percolation and usable knowledge across the `k*r/(p+r)` transition.
+- **F2:** disagreement-dependent break/repair and hysteresis.
+- **F3:** learners versus rigid, drifting, sealed and vacuous models in a changing world.
+- **F4:** selection and fragility of repair narratives under repair cost.
+- **F5:** substitution between inheritance across time and links across peers.
 
-`NetworkEconomics.lean` keeps the complementary concrete four-person benchmark:
+The frozen result snapshot is `sim/results/fragmentation.json`; `sim/fragmentation_experiments.py` regenerates the F-series results and figures. E1–E8 CRM experiments remain canonical in PR #65 and are not duplicated here.
 
-- flat everyone-to-everyone: **12 directed links**, maximum relay distance **1**, worst-case correction latency **3** process steps;
-- two linked pairs: **6 directed links**, maximum relay distance **3**, worst-case correction latency **5** process steps.
+![F1–F5 summary](sim/figures/F1-F5_summary.svg)
 
-Under homogeneous per-link upkeep, the paired architecture therefore uses exactly half the standing maintenance while adding two worst-case correction steps. With net-cost links (`eta < mu`), its link-count bridge also gives a concrete CRM-cap witness: a six-link paired architecture can fit in a regime where a twelve-link flat architecture cannot.
-
-## Reproduce
+## Verification
 
 ```bash
 cd research/anchored-correctability/lean
 lake build
 ```
 
-GitHub Actions run `35909573951` builds the complete package with Lean 4.33 core only and verifies **175 headline audit results**:
+GitHub Actions run `35915854514` builds the complete package from a clean checkout with Lean 4.33 core only and verifies exactly **200 audited headline results**:
 
-- **105 depend on no axioms at all**;
-- **4 use `Classical.choice`**;
-- the remaining **66** use only Lean's standard `propext` / `Quot.sound` dependencies;
-- no `sorry` / `sorryAx` is present.
+- **122** depend on no axioms;
+- **4** use `Classical.choice`;
+- **74** use only Lean's standard `propext` / `Quot.sound` dependencies;
+- **0** use `sorry` / `sorryAx`.
 
-The 27 audited `Realization` results—including the four exact-faithfulness wrappers—introduce no additional classical logic.
+The new persistence layer contributes 17 audited results and `SCAP.lean` adds 8; neither adds classical logic.
 
 ## Current research boundary
 
-The generic graph-to-process bridge is now present, so the main remaining gaps are no longer simply “make a graph executable.” The next targets are:
-
-1. prove the relationship between the two operational encodings: `Tracking`/`ModelProcess` content indexed at the process level versus `Realization` content carried directly in each challenge step, and relate `RelayProcess`'s explicit faithful channel list to `Realization.RelayN`;
-2. replace homogeneous hop/link bounds with heterogeneous transmission, deliberation, revision and maintenance costs;
-3. add concurrency, capacity/attention constraints, stochastic reliability, failure and repair;
-4. connect topology degradation/restoration to CRM critical-mass and hysteresis dynamics rather than only to the shared ledger;
-5. separately add a collective action rule on top of the epistemic envelope without collapsing epistemic openness into action selection.
-
-The natural comparison object remains a frontier `(maintenance cost, correction-run cost, latency, reliability)`, rather than a single correction-cost scalar.
+The central persistence theorem now exists. The next technical gaps are to relate the process-family and addressed-content operational encodings; put repair/waiting and relay execution into one globally clocked process with concurrency/capacity constraints; generalize homogeneous time/cost/upkeep; formalize stochastic failure/repair where possible; and connect topology degradation/restoration to the CRM critical-mass/hysteresis dynamics rather than only to the ledger. Collective action remains separate from the epistemic envelope.
