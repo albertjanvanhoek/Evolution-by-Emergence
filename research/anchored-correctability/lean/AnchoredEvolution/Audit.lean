@@ -6,6 +6,7 @@ import AnchoredEvolution.Tracking
 import AnchoredEvolution.Network
 import AnchoredEvolution.SemanticComposition
 import AnchoredEvolution.UnifiedTracking
+import AnchoredEvolution.DynamicEvidence
 
 /-!
 # Axiom audit of the anchored development
@@ -149,3 +150,10 @@ open Anchored
 #print axioms UnifiedTracking.faithful_channel_compatible_iff
 #print axioms UnifiedTracking.faithful_channel_incompatible_iff
 #print axioms UnifiedTracking.via_faithful_tracks
+-- Dynamic evidence-aware resolution
+#print axioms DynamicEvidence.resolved_of_live_iff_admits
+#print axioms DynamicEvidence.not_live_is_resolved
+#print axioms DynamicEvidence.answerWithin_implies_dynamic_static
+#print axioms DynamicEvidence.evidential_refutation_answers
+#print axioms DynamicEvidence.resolution_is_admission_or_evidence
+#print axioms DynamicEvidence.live_dynamic_resolution_requires_admission
