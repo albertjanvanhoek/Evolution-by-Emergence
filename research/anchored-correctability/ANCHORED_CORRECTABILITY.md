@@ -2,9 +2,9 @@
 
 **Status:** formal development, Lean 4 core library only (no Mathlib), in `lean/AnchoredEvolution/`.
 **Build:** `cd lean && lake build`, run offline.
-**Audit:** 36 headline results are audited in `Audit.lean`:
-- 25 depend on **no axioms at all**, so they are fully constructive;
-- one uses classical logic, and it is labelled;
+**Audit:** 67 headline results are audited in `Audit.lean`:
+- 49 depend on **no axioms at all**, so they are fully constructive;
+- two use classical logic, and both are labelled;
 - the rest use only Lean's standard `propext` / `Quot.sound`, which come from arithmetic automation;
 - no `sorry` anywhere.
 
@@ -69,6 +69,73 @@ The anchor is also scale-free by construction. The index type can be persons, on
 | **`missing_route_leaves_uncorrectable_error`** | If the route from a live model b to d is missing, some evidentially open world has been dropped. In that world b is right, **every other model (including d) is wrong**, and b's correction cannot reach d | none |
 
 The last theorem is the formal centre. A missing route is not a neutral design choice. It removes a scenario that evidence left open. By the anchor, that scenario is exactly the one in which everyone except the silenced model is wrong. The system has made itself uncorrectable in precisely the case where it is in error.
+
+### Layer 1b — the operational layer: permissions, availability and cost derived from steps (`Operational.lean`)
+
+The Learning Constitution in `TheRoom.lean` declares `permitted`, `canChallengeDecision`, `canReviseDecision` and `step` as independent fields. `ConstitutionAccessibility.lean` then assigns a correction cost of `⊤` or a finite declared cost from those flags.
+
+This layer makes the **executable step relation primary** and derives everything else from it:
+
+- a verb is *permitted* when a step with that label can execute;
+- *revision is available* when a revision step is reachable;
+- a challenge is **responsive** when a run starting with that challenge reaches a revision of the challenged claim;
+- **correction time and cost** are the number of steps and the summed cost of such a run.
+
+The Room's own `Interface`, `HoldsAt`, `Next` and `Reachable` are reused unchanged (vendored verbatim from commit `a870788`).
+
+| Theorem | Meaning | Axioms |
+|---|---|---|
+| `paper_constitution` | With the declared interface, the full Learning Constitution can hold at a state from which **no step of any kind can execute**. Declared permissions do not imply that anything can happen | none |
+| `derived_permission_executable`, `derived_challenge_executes`, `derived_appeal_executes` | In the derived interface, every permission is executable. Under the derived constitution, an affected participant's challenge, or appeal if excluded, actually runs | none |
+| **`heard_but_unanswerable`** | Even the *derived* constitution can hold while every challenge leads to a dead end. In the "desk" process, challenges are filed and go nowhere, while the authority can revise on its own initiative. **Permitted plus revisable is strictly weaker than responsive** | none |
+| **`declared_available_but_sealed`** | For that same desk, `DecisionCorrectionAvailable` from `ConstitutionAccessibility` holds, so its `EffectiveCorrectionCost` would be **finite**, yet the restriction is sealed: no challenge can ever produce a revision | none |
+| `responsive_implies_restriction_clause`, `responsive_blocks_sealing` | Responsiveness implies the Room's restriction clause and rules out operational self-sealing. So it is strictly stronger | none |
+| `sealed_iff_no_finite_cost`, `sealed_unaffordable_at_every_budget` | A restriction is operationally sealed **iff** no finite time and resource bound admits a responsive correction. The `⊤` of `ConstitutionAccessibility` becomes a theorem about runs | none |
+| `responsive_invariant` | If the responsive constitution holds initially and every step preserves it, it holds in every reachable state (the Room's `Reachable`/`Next`) | none |
+| `correctionSystem`, `commons_responsive_correctable`, `operational_voice_sealed_breaks` | Every process induces an anchored correction graph among agents: edge a → b when a's challenge of a claim governing b can lead to its revision. All Layer 2–4 theorems apply. A responsive commons claim is sufficient for correctability. A participant whose challenges can revise nothing breaks it | none |
+| `answeringDesk_responsive` | Non-vacuity: once a filed challenge can be answered, the responsive constitution holds, with correction in 2 steps at cost 2 | none |
+
+**What changes.** The three earlier formalizations described the same thing at different levels:
+- the Room's constitution (declared flags);
+- `ConstitutionAccessibility` (declared costs);
+- the anchored correction graph (edges).
+
+Now all three are views of one transition system. The key new distinction is **responsiveness**: a correction route exists only when the challenge itself can lead to revision. Permission without responsiveness is the "heard but unanswerable" failure. The declared framework cannot see it, and the operational one can.
+
+### Layer 1c — what represented claims mean, and when a revision answers a challenge (`Semantics.lean`)
+
+Layer 1b made correction operational, but *any* revision counted as a response, including a rewording that still excludes the challenger. Layer 1c gives claims a meaning and ties them back to the anchor.
+
+- A claim's **content** is the set of candidate worlds in which it holds (`meaning c w`).
+- **Holding** a claim is a property of an agent's state; **truth** is a property of the world. They are separate predicates.
+- A decision's current record **admits** a view when some candidate world makes both true.
+- A challenge is **answerable** when a run starting with it reaches a state whose record admits the challenger's view.
+
+| Theorem | Meaning | Axioms |
+|---|---|---|
+| `views_anchor`, `represented_views_no_guarantee` | Views held by agents with pairwise incompatible meanings satisfy the Layer-1 anchor. So no represented view can be treated as fact, and every Layer-1 theorem applies to represented claims | none |
+| `room_applies_to_represented_claims` | `TheRoom.lean`'s own first theorem, unchanged, applies to represented claims through an explicit interpretation of `Certain` | classical (inherited from `TheRoom.lean`) |
+| `faithful_preserves_incompatibility`, `strengthening_preserves_incompatibility`, `weakening_reflects_incompatibility` | **Perspective.** Rendering another agent's claim is a translation. Faithful translations preserve incompatibility exactly; strengthening preserves it; weakening reflects it | none |
+| **`overgeneralization_manufactures_conflict`** | **The elephant, formally.** "Like a wall" and "like a snake" are compatible: the elephant world makes both true. Over-generalized to "only a wall" and "only a snake", they become incompatible. Apparent incompatibility can come from how one perspective renders another | std |
+| `caricature_dissolves_conflict` | The reverse: weakening both sides to a caricature can hide a real conflict | std |
+| **`revised_but_unanswered`** | The "rewording desk". A challenge leads to a revision (responsive in the Layer-1b sense) that only rewords the policy and still excludes the challenger. **Responsive is strictly weaker than answerable** | propext |
+| `first_revision`, **`answerable_implies_responsive`**, `answer_requires_revision` | Under *record discipline* (a record changes only through a revision of that record), and if the current record excludes the challenger's view: every answered challenge is also responsive, and answering requires an actual revision. Hearing alone never answers | std / none |
+| **`unanswerable_challenge_fixes_error`** | **The Room's error, made operational.** If the challenger's view is live and the challenge is unanswerable, there is a candidate world where the challenger is right, and **in every state the challenge can lead to, the decision is wrong there** | none |
+| `executable_unanswerable_challenge_fixes_error` | Non-vacuous strengthening: when the challenge actually executes, the theorem returns a concrete post-challenge branch and a live world in which every state reachable on that branch keeps the decision record wrong | none |
+| `self_model_not_guaranteed` | **The metamodel under its own anchor.** A claim about the correction procedure itself ("challenges here are answered") is a claim like any other. It is not guaranteed while an incompatible self-model is live | none |
+| `sealed_rule_fixes_error` | If the decision that records the procedure's own rule is sealed against a live rival self-model, the same fixed error follows. *The correction mechanism must itself remain correctable* is here an instance of a theorem | none |
+| `answeringDesk_answers` | Non-vacuity: a desk that revises to an inclusive policy answers the challenge within 2 steps at cost 2, with record discipline and an initially excluding record | propext |
+
+**The strict hierarchy.** Answerable implies responsive (under record discipline), which implies permitted-and-revisable. Neither converse holds:
+
+| Level | Meaning | Separating countermodel |
+|---|---|---|
+| Declared | The interface says challenge and revision are available | `paper_constitution`: nothing can execute |
+| Permitted and revisable | A challenge step executes; some revision is reachable | `heard_but_unanswerable`: challenges are filed and go nowhere |
+| Responsive | The challenge leads to a revision of the challenged record | `revised_but_unanswered`: the revision is a rewording that still excludes the challenger |
+| **Answerable** | The challenge leads to a record that no longer excludes the challenger's view | — |
+
+Only the last level carries the anchor's force. An unanswerable challenge from a live view fixes an error in a world that evidence leaves open.
 
 ### Layer 2 — minimal architecture (`Composition.lean`)
 
@@ -149,10 +216,16 @@ The requirement was that the metamodel work for one model, and unchanged when tw
 
 ## 5. Limits: what this does not yet capture
 
-- **Speed and reliability.** Correctability here means a route *exists*. It says nothing about how fast correction arrives or how well it survives the journey. The ring is the cheapest correctable architecture but also the slowest: a correction may need n hops. Hierarchies with appeal and feedback routes trade a little cost for much shorter paths. That cost–latency frontier is the natural next theorem.
-- **Graded correctness.** `holds a w` is binary. The elephant parable shows that models can be *partly* right, and that incompatibility itself can be only apparent. Here incompatibility is a premise within each world. Where models are compatible, the anchor does not apply and the no-guarantee argument weakens. This is stated, not hidden.
-- **Evidence.** Liveness is an input. The development does not model how evidence refutes a model; it only shows that certainty cannot.
+- **Semantic composition is not yet formalized.** The current graph composition theorem preserves structural correction routes, but not yet answerability of cross-boundary challenges. The next layer should compose operational processes and preserve semantic answerability across interfaces.
+- **Translations are homogeneous.** `Faithful`, `Strengthening` and `Weakening` currently map one claim language to itself. Composition across members or groups with different vocabularies needs heterogeneous translations and explicit interface semantics.
+- **Evidence is fixed during a run.** Candidate worlds and liveness do not yet update when new evidence arrives. A full learning process should allow a challenge to be answered either by revising the record to admit a still-live view or by evidence that genuinely removes that view from the live set.
+- **Speed and reliability remain downstream.** Runs already carry time and resource cost, but the cost–latency/reliability frontier has not yet been developed for semantically answerable correction across composed systems.
+- **Graded correctness remains open.** Meanings are binary sets of worlds. Partial fit, probabilistic support and graded credibility are not yet represented.
 - **Credibility and weights.** Routes are unweighted. Different weight for different sources is compatible with everything here, as long as no source's weight becomes zero by construction, but it is not modelled.
+- **Answering means "no longer excludes", not "adopts".** An answered challenge leads to a record that admits the challenger's view. It need not adopt it. That is intended: the anchor requires the challenger's scenario to stay open, not that the challenger win.
+- **Meanings and candidate worlds are fixed during a run.** Evidence that arrives mid-process and narrows the candidate worlds is not modelled.
+- **Self-model meanings are supplied, not derived.** The process itself does not vary across worlds. A claim such as "our challenges are answered" gets its meaning as input rather than by evaluating the process in each world. Deriving it would need world-dependent processes.
+- **`ConstitutionAccessibility` is not imported.** It depends on Mathlib, which was unavailable in this environment. `declared_available_but_sealed` uses a verbatim copy of its `DecisionCorrectionAvailable` definition, and the statement about its `EffectiveCorrectionCost` follows from that definition's `if … then BaseCost else ⊤`.
 - **No machine-checked link to the CRM dynamics.** Layer 5 shares the ledger with the reproduction model. The claim that excluding members can push a community below its critical mass (the CRM hysteresis law) is an interpretation, not a proved theorem here.
 
 ---
@@ -170,5 +243,8 @@ Files:
 - `Dynamics.lean`: Layer 4
 - `Bridge.lean`: Layer 5
 - `Witness.lean`: non-vacuity witnesses
+- `Operational.lean`: Layer 1b, the operational layer
+- `Semantics.lean`: Layer 1c, meaning, perspective and answering
+- `Vendor/TheRoom.lean`: verbatim copy of `TheRoom.lean` at commit `a870788`
 - `CumulativeReproduction.lean`: the reproduction model's discrete core
 - `Audit.lean`: the axiom audit

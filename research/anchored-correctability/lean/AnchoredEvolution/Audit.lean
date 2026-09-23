@@ -1,5 +1,7 @@
 import AnchoredEvolution.Bridge
 import AnchoredEvolution.Witness
+import AnchoredEvolution.Operational
+import AnchoredEvolution.Semantics
 
 /-!
 # Axiom audit of the anchored development
@@ -58,3 +60,36 @@ open Anchored
 #print axioms room_no_guarantee
 #print axioms room_correctable
 #print axioms level3_correctable
+-- Operational layer: permissions, availability and cost derived from steps
+#print axioms Operational.paper_constitution
+#print axioms Operational.Process.derived_permission_executable
+#print axioms Operational.Process.derived_challenge_executes
+#print axioms Operational.Process.derived_appeal_executes
+#print axioms Operational.heard_but_unanswerable
+#print axioms Operational.Process.responsive_implies_restriction_clause
+#print axioms Operational.Process.responsive_blocks_sealing
+#print axioms Operational.Process.sealed_iff_no_finite_cost
+#print axioms Operational.Process.sealed_unaffordable_at_every_budget
+#print axioms Operational.Process.responsive_invariant
+#print axioms Operational.Process.commons_responsive_correctable
+#print axioms Operational.Process.operational_voice_sealed_breaks
+#print axioms Operational.answeringDesk_responsive
+#print axioms Operational.declared_available_but_sealed
+-- Layer 1c: meaning, perspective, answering, self-model
+#print axioms Semantic.views_anchor
+#print axioms Semantic.represented_views_no_guarantee
+#print axioms Semantic.room_applies_to_represented_claims
+#print axioms Semantic.faithful_preserves_incompatibility
+#print axioms Semantic.strengthening_preserves_incompatibility
+#print axioms Semantic.weakening_reflects_incompatibility
+#print axioms Semantic.overgeneralization_manufactures_conflict
+#print axioms Semantic.caricature_dissolves_conflict
+#print axioms Semantic.answer_requires_revision
+#print axioms Semantic.first_revision
+#print axioms Semantic.answerable_implies_responsive
+#print axioms Semantic.unanswerable_challenge_fixes_error
+#print axioms Semantic.executable_unanswerable_challenge_fixes_error
+#print axioms Semantic.revised_but_unanswered
+#print axioms Semantic.answeringDesk_answers
+#print axioms Semantic.self_model_not_guaranteed
+#print axioms Semantic.sealed_rule_fixes_error

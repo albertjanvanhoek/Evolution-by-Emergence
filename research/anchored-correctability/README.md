@@ -1,40 +1,44 @@
-# Anchored Correctability
+# Anchored Evolution: correctability and cumulative reproduction
 
-This research checkpoint formalizes the line that grows from **The Room** and the **Learning Constitution**.
+The package has two connected parts.
 
-The construction begins with one logical anchor: pairwise incompatible models cannot all be correct. It then names, rather than hides, the two premises needed to move from that fact to a system architecture:
+1. **[`ANCHORED_CORRECTABILITY.md`](ANCHORED_CORRECTABILITY.md): the model built up from its one certainty.**
+   - It starts from the anchor: incompatible models cannot all be correct.
+   - It adds only named premises (liveness and the aim).
+   - It derives the relational skeleton, the minimal architecture, scale-invariant composition, correctability through time, and the economic ceiling on mutual correctability.
+2. **[`THEORY.md`](THEORY.md): the Cumulative Reproduction Model.**
+   - It gives the law of whether and how fast retained organization runs away, levels off, or collapses.
+   - Its terms are R_c, the critical mass, the budget ceiling and the speed class.
 
-1. **Liveness:** each model not yet refuted by evidence is correct in at least one candidate world still open.
-2. **Correctability aim:** whichever candidate world is actual, correction from its correct model must be able to reach every model in the shared system.
+The two meet in `lean/AnchoredEvolution/Bridge.lean`. The correction network is itself retained organization, so it obeys the same budget law.
 
-The Lean development derives the resulting correction architecture, shows that it composes recursively across scales, characterizes which restrictions preserve correctability through time, and connects the upkeep of correction routes to the Cumulative Reproduction budget law.
+## Contents
 
-## Why this is a separate checkpoint
-
-The Cumulative Reproduction Model is tracked and reviewed in PR #65 (`research/cumulative-reproduction/`). This directory records the **new anchored development** without duplicating that model's theory, simulations, or figures. A local copy of its Lean discrete core is retained only so that this package builds independently; `Bridge.lean` is the formal interface between the two lines of work.
-
-The older `TheRoom.lean` used a factual reading of truth guarantee. This checkpoint replaces that step with a possible-world reading: a model is guaranteed only if it is correct in every world left open by the evidence. The change matters because the premises can then hold even when one participant is in fact right, rather than making the central Room case vacuous.
-
-## Structure
-
-- `ANCHORED_CORRECTABILITY.md` — premise ledger, layer map, theorem meanings, limits and next questions.
-- `lean/AnchoredEvolution/Anchor.lean` — logical anchor, liveness/guarantee semantics, and the forced correction skeleton.
-- `lean/AnchoredEvolution/Composition.lean` — minimal architecture, composition, nesting, interdependence and non-absorption.
-- `lean/AnchoredEvolution/Dynamics.lean` — correctability through time; restrictions are admissible exactly when old correction routes remain realizable directly or by detour.
-- `lean/AnchoredEvolution/Bridge.lean` — budget cost of maintaining mutually correctable networks.
-- `lean/AnchoredEvolution/Witness.lean` — non-vacuity witnesses at one and several levels.
-- `lean/AnchoredEvolution/Audit.lean` — axiom audit of the headline results.
-- `lean/AnchoredEvolution/CumulativeReproduction.lean` — local discrete core used by the bridge; the reviewed research package in PR #65 remains canonical for the CRM itself.
+| Path | What |
+|---|---|
+| `ANCHORED_CORRECTABILITY.md` | Layer-by-layer construction from the anchor, premise ledger, theorem map, limits |
+| `THEORY.md` | Cumulative Reproduction Model: laws, evidence, predictions, limits |
+| `lean/AnchoredEvolution/Anchor.lean` | Layer 0 (the anchor) and Layer 1 (the relational skeleton it forces) |
+| `lean/AnchoredEvolution/Operational.lean` | Layer 1b: permissions, availability and correction cost derived from executable steps; responsiveness; joins the Room's constitution, `ConstitutionAccessibility` and the correction graph into one transition system |
+| `lean/AnchoredEvolution/Semantics.lean` | Layer 1c: claims get meanings over candidate worlds; the anchor applies to represented claims; perspective translations (the elephant, formally); answering vs responding; unanswerable challenges fix errors; the metamodel under its own anchor |
+| `lean/AnchoredEvolution/Vendor/TheRoom.lean` | Verbatim copy of the repository's `TheRoom.lean` (commit `a870788`), reused unchanged |
+| `lean/AnchoredEvolution/Composition.lean` | Layer 2 (every model sends and receives; ring) and Layer 3 (composition at any depth, interdependence, non-absorption) |
+| `lean/AnchoredEvolution/Dynamics.lean` | Layer 4 (a restriction is legitimate iff correction can route around it; invariance through time) |
+| `lean/AnchoredEvolution/Bridge.lean` | Layer 5 (upkeep of correctability; correctable-population ceiling) |
+| `lean/AnchoredEvolution/Witness.lean` | Non-vacuity: a room of three; a three-level, twelve-model system |
+| `lean/AnchoredEvolution/CumulativeReproduction.lean` | Discrete-time core of the reproduction model |
+| `lean/AnchoredEvolution/Audit.lean` | Axiom audit of 67 headline results |
+| `sim/` | Exact stochastic simulation for the reproduction model (E1–E8), results and figures |
 
 ## Reproduce
 
 ```bash
-cd lean
-lake build
+cd lean && lake build            # Lean 4.33 core only, offline; prints the axiom audit
+cd sim  && python experiments.py # about 2.5 min; --quick for a smoke test
 ```
 
-The package uses Lean 4.33 core only, no Mathlib, and contains no `sorry`. The audit currently covers 36 headline results: 25 use no axioms, one explicitly uses classical logic, and the remainder use Lean's standard `propext` / `Quot.sound` dependencies.
-
-## Research frontier
-
-This PR is intentionally a working branch. The current formalization establishes **existence of correction routes**, not their speed, reliability, evidential quality or weight. The immediate open fronts are the cost–latency/reliability frontier, graded correctness and apparent incompatibility, evidence dynamics that update liveness, weighted credibility without structurally zeroing standing, and a machine-checked bridge from correctability loss to the CRM critical-mass/hysteresis dynamics.
+**Audit summary:**
+- 49 of the 67 audited results depend on no axioms at all;
+- two use classical logic: `anchor_all_but_one_wrong`, and `room_applies_to_represented_claims` (inherited from `TheRoom.lean`'s proof);
+- the rest use only `propext` / `Quot.sound`;
+- there is no `sorry`.
