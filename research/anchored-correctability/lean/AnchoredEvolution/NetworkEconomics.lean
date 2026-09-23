@@ -9,16 +9,16 @@ with `h` channels answers a live view in `h + 2` steps and costs `h + 2` units
 (one challenge, `h` relay steps, one receiver revision).
 
 This file keeps that **per-correction** cost separate from the **standing
-maintenance** cost of keeping links available.  It then connects link count to
+maintenance** cost of keeping links available. It then connects link count to
 the same Cumulative Reproduction ledger already used for retained correction
 structure.
 
 The point is deliberately modest but useful: topology induces a real trade-off.
 For the four-person witness already in `Network.lean`, the flat architecture
 has 12 directed links and one-hop diameter, while the two-pair architecture has
-6 directed links and three-hop diameter.  Thus the latter halves standing link
+6 directed links and three-hop diameter. Thus the latter halves standing link
 maintenance in the homogeneous baseline, while increasing worst-case relay
-latency by two steps.  Hierarchy is therefore not cost-free; it can exchange
+latency by two steps. Hierarchy is therefore not cost-free; it can exchange
 maintenance cost for relay distance without losing tracking when interfaces are
 faithful.
 -/
@@ -29,7 +29,7 @@ namespace Anchored.NetworkEconomics
 
 open CumulativeReproduction
 open LearningConstitution Operational Semantic Tracking Network
-open UnifiedTracking RelayProcess ModelProcess
+open UnifiedTracking RelayProcess
 
 variable {World : Type u}
 
@@ -84,7 +84,7 @@ theorem faithful_route_profile_answers {C : Content World}
     {route : List (Channel World)} (hroute : FaithfulRoute C route)
     (hlive : LiveClaim den C v) :
     AnswerWithin (process M base) den C (record M)
-      (start M s v route) PUnit.unit PUnit.unit v
+      (RelayProcess.start M s v route) PUnit.unit PUnit.unit v
       (route.length + 2) (route.length + 2) :=
   answerWithin_route hM hroute hlive
 
@@ -93,7 +93,7 @@ maintained links are treated as retained organizational items. -/
 def LinkAffordable (ell : Ledger) (links : Nat) : Prop :=
   ell.mu * links <= ell.B0 + ell.eta * links
 
- theorem link_affordable_iff_ledger (ell : Ledger) (links : Nat) :
+theorem link_affordable_iff_ledger (ell : Ledger) (links : Nat) :
     LinkAffordable ell links ↔ ell.Affordable links := by
   rfl
 
