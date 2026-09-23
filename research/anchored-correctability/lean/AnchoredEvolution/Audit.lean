@@ -5,6 +5,7 @@ import AnchoredEvolution.Semantics
 import AnchoredEvolution.Tracking
 import AnchoredEvolution.Network
 import AnchoredEvolution.SemanticComposition
+import AnchoredEvolution.UnifiedTracking
 
 /-!
 # Axiom audit of the anchored development
@@ -141,3 +142,10 @@ open Anchored
 #print axioms SemanticComposition.Embedding.answerWithin_preserved
 #print axioms SemanticComposition.Embedding.answerable_preserved
 #print axioms SemanticComposition.answerable_through_two_levels
+-- Unification bridge: one relation-level tracking law + exact interfaces
+#print axioms UnifiedTracking.operational_tracks_iff_transition_tracksAt_of_live
+#print axioms UnifiedTracking.model_tracking_iff_transition_tracking
+#print axioms UnifiedTracking.faithful_channel_is_live_sharpening
+#print axioms UnifiedTracking.faithful_channel_compatible_iff
+#print axioms UnifiedTracking.faithful_channel_incompatible_iff
+#print axioms UnifiedTracking.via_faithful_tracks
