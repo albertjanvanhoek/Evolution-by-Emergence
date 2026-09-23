@@ -11,6 +11,8 @@ import AnchoredEvolution.ModelProcess
 import AnchoredEvolution.RelayProcess
 import AnchoredEvolution.Realization
 import AnchoredEvolution.NetworkEconomics
+import AnchoredEvolution.Persistence
+import AnchoredEvolution.SCAP
 
 /-!
 # Axiom audit of the anchored development
@@ -218,3 +220,30 @@ open Anchored
 #print axioms NetworkEconomics.self_financing_links_unbounded
 #print axioms NetworkEconomics.links_above_cap_unaffordable
 #print axioms NetworkEconomics.paired_fits_when_flat_does_not
+-- Layer 6: persistence, shared reality, repair, reflexivity
+#print axioms Persistence.deaf_must_be_vacuous
+#print axioms Persistence.sealed_constraint_fails
+#print axioms Persistence.rigid_informative_fails
+#print axioms Persistence.learner_in_step
+#print axioms Persistence.learning_witness
+#print axioms Persistence.same_component_same_reality
+#print axioms Persistence.shared_reality_when_connected
+#print axioms Persistence.reliable_realities_compatible
+#print axioms Persistence.disjoint_realities_imply_false_evidence
+#print axioms Persistence.disjoint_realities_not_both_true
+#print axioms Persistence.empty_reality_signals_false_evidence
+#print axioms Persistence.hidden_versus_revealed_conflict
+#print axioms Persistence.no_repair_split_permanent
+#print axioms Persistence.repair_bounds_delay
+#print axioms Persistence.forgiveness_turns_split_into_delay
+#print axioms Persistence.self_fulfilment_is_not_verification
+#print axioms Persistence.sealed_narrative_fails
+-- SCAP top-level invariant and persistence theorem
+#print axioms SCAP.faithful_id
+#print axioms SCAP.faithful_comp
+#print axioms SCAP.relayN_faithful
+#print axioms SCAP.faithful_route_exists
+#print axioms SCAP.members_in_step
+#print axioms SCAP.persistent_faithful_access
+#print axioms SCAP.implemented_scap_correctable
+#print axioms SCAP.scap_persistent_correctability
