@@ -17,4 +17,5 @@ import AnchoredEvolution.Realization
 import AnchoredEvolution.NetworkEconomics
 import AnchoredEvolution.Persistence
 import AnchoredEvolution.SCAP
+import AnchoredEvolution.Alignment
 import AnchoredEvolution.Audit
