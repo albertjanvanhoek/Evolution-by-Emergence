@@ -1,0 +1,52 @@
+name: Cumulative Reproduction Research Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/cumulative-reproduction/**'
+      - '.github/workflows/cumulative-reproduction-check.yml'
+  pull_request:
+    paths:
+      - 'research/cumulative-reproduction/**'
+      - '.github/workflows/cumulative-reproduction-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Compile and audit the standalone discrete core
+        working-directory: research/cumulative-reproduction/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          lean CumulativeReproduction.lean | tee lean-audit.log
+          if grep -q 'sorryAx' lean-audit.log; then
+            echo 'Unproved axiom detected' >&2
+            exit 1
+          fi
+          test "$(grep -c 'depends on axioms:' lean-audit.log)" -eq 16
+  simulation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependencies
+        run: python -m pip install -r research/cumulative-reproduction/requirements.txt
+      - name: Regression and counterexample checks
+        run: python -m unittest discover -s research/cumulative-reproduction/sim -p 'test_*.py' -v
+      - name: Smoke-run all eight experiments
+        env:
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+        run: python research/cumulative-reproduction/sim/experiments.py --quick --output-dir "$RUNNER_TEMP/crm-quick"

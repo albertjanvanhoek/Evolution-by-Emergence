@@ -29,6 +29,10 @@ The universal interpretation is a **candidate to be challenged**, not an establi
 6. **[formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md](formalization/cumulative-accessibility/UNIVERSAL_LAW_CANDIDATE.md)** — scientific interpretation, universality guardrails, and cross-domain challenge.
 7. **[CumulativeAccessibility/VerificationSurface.lean](formalization/cumulative-accessibility/CumulativeAccessibility/VerificationSurface.lean)** — explicit advertised-result axiom audit.
 
+## Research extension under review
+
+[Cumulative Reproduction Model](research/cumulative-reproduction/README.md) adds explicit production, loss and an upkeep/capture ledger, with standalone Lean proofs and reproducible simulations. Its review separates deterministic thresholds, finite-horizon survival and asymptotic growth. It is a research specialization; v20 remains the canonical review object.
+
 ## Core in one paragraph
 
 The state is represented as active organization G, retained organization R, context Gamma, and gross budget. Retention consumes maintenance cost, leaving free budget. Retained organization may also alter the effective transition machinery, thereby changing which targets are reachable within a horizon and budget. A retained item counts as cumulatively consequential only under an explicit retained-versus-ablated comparison after maintenance is paid. Strict compositional emergence adds an assembly constraint: a future emergent function cannot, by itself, finance positively costly proper intermediates that do not yet realize that function. Finite resource budgets additionally make unrestricted positive-cost retention impossible, while bounded retained memory plus bounded reuse bounds accessible repertoire. The resulting recursive architecture motivates a testable learning-like dynamic across nested organizational scales.
