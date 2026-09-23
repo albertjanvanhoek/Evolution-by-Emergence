@@ -5,25 +5,18 @@ import AnchoredEvolution.ModelProcess
 
 `Network.Relay` established semantic transport through a graph, and
 `ModelProcess.lean` compiled one local revision into an executable two-step
-process.  This file makes the missing quantitative middle explicit.
+process. This file makes the missing quantitative middle explicit.
 
-An operational route is a list of content channels.  A run now contains:
-
-1. one challenge step;
-2. one executable relay step per channel;
-3. one local revision step at the receiver.
-
-Every step costs one unit in this baseline model.  Therefore a route of `h`
-hops answers within exactly the constructive upper bound `h + 2` steps and
-`h + 2` resource units.
+An operational route is a list of content channels. A run contains one
+challenge step, one executable relay step per channel, and one local revision
+step at the receiver. Every step costs one unit in this baseline model.
+Therefore a route of `h` hops answers within `h + 2` steps and `h + 2` resource
+units.
 
 The semantic premise is **exact faithfulness** at every hop, not the weaker
-legacy `Network.Honest` predicate.  Under exact faithfulness, the end-to-end
-content has exactly the same meaning on candidate worlds as the source view.
-A tracking receiver therefore answers the original source view after the relay.
-
-This is the first point where network distance enters the same operational
-object as semantic answerability and resource cost.
+legacy `Network.Honest` predicate. Under exact faithfulness, the end-to-end
+content has the same meaning on candidate worlds as the source view. A tracking
+receiver therefore answers the original source view after the relay.
 -/
 
 universe u
@@ -34,12 +27,10 @@ open LearningConstitution Operational Semantic Tracking Network UnifiedTracking 
 
 variable {World : Type u}
 
-/-- Apply channels in route order. -/
 def applyChannels : List (Channel World) → Content World → Content World
   | [], v => v
   | c :: cs, v => applyChannels cs (c v)
 
-/-- Every hop on the operational route is exactly semantically faithful. -/
 def FaithfulRoute (C : Content World) : List (Channel World) → Prop
   | [] => True
   | c :: cs => FaithfulChannel C c ∧ FaithfulRoute C cs
@@ -52,20 +43,19 @@ theorem faithfulRoute_live {C : Content World} :
   | [], _, _, hlive => hlive
   | c :: cs, v, ⟨hc, hcs⟩, ⟨w, hw, hv⟩ => by
       have hcv : c v w := hc.2 v w hw hv
-      exact faithfulRoute_live hcs ⟨w, hw, hcv⟩
+      exact faithfulRoute_live (route := cs) (v := c v) hcs ⟨w, hw, hcv⟩
 
-/-- Exact faithfulness also prevents a route from manufacturing content: if the
-end-to-end content holds in a candidate world, the original content held there. -/
+/-- Exact faithfulness prevents a route from manufacturing content. -/
 theorem faithfulRoute_refines {C : Content World} :
     ∀ {route : List (Channel World)} {v : Content World} {w : World},
       FaithfulRoute C route → C w → applyChannels route v w → v w
   | [], _, _, _, _, hv => hv
   | c :: cs, v, w, ⟨hc, hcs⟩, hw, hout => by
-      have hcv : c v w := faithfulRoute_refines hcs hw hout
+      have hcv : c v w :=
+        faithfulRoute_refines (route := cs) (v := c v) hcs hw hout
       exact hc.1 v w hw hcv
 
-/-- End-to-end exact faithfulness: the relayed content and source content have
-identical truth value on every candidate world. -/
+/-- End-to-end exact faithfulness. -/
 theorem faithfulRoute_iff {C : Content World} {route : List (Channel World)}
     {v : Content World} (h : FaithfulRoute C route) {w : World} (hw : C w) :
     applyChannels route v w ↔ v w := by
@@ -82,15 +72,12 @@ inductive Phase
   | idle | relaying | done
   deriving DecidableEq
 
-/-- State of a receiving model while one item of content moves along a route. -/
 structure State (M : Model World) where
   localState : M.State
   content : Content World
   remaining : List (Channel World)
   phase : Phase
 
-/-- Public decision record: relay steps do not alter it; only the receiver's
-final local revision can do so. -/
 def record (M : Model World) : State M → One → Content World :=
   fun s _ => M.record s.localState
 
@@ -105,8 +92,8 @@ def relaying (M : Model World) (s : M.State) (v : Content World)
 def finish (M : Model World) (s : M.State) (v : Content World) : State M :=
   ⟨M.revise s v, v, [], Phase.done⟩
 
-/-- Baseline executable relay process.  Each challenge, hop and local revision
-costs one unit. -/
+/-- Baseline executable relay process: challenge, zero or more relay hops, then
+local revision. Each step costs one unit. -/
 def process (M : Model World) (base : Content World) :
     Process One (State M) (Content World) One One where
   step := fun s verb t =>
@@ -150,7 +137,7 @@ theorem revision_step (s : M.State) (v : Content World) :
       (.revise (M.record s)) (finish M s v) := by
   exact Or.inr (Or.inr ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩)
 
-/-- Execute every relay hop, but not yet the receiving model's revision. -/
+/-- Execute every relay hop, but not the receiver revision. -/
 theorem relay_run (s : M.State) :
     ∀ (route : List (Channel World)) (v : Content World),
       (process M base).Run (relaying M s v route)
@@ -159,21 +146,23 @@ theorem relay_run (s : M.State) :
   | c :: cs, v => by
       have hs := relay_step (base := base) s v c cs
       have hr := relay_run s cs (c v)
-      simpa [applyChannels] using Process.Run.cons hs hr
+      simpa [applyChannels, process, Nat.add_comm] using Process.Run.cons hs hr
 
-/-- Execute every relay hop and then the receiver's local revision. -/
+/-- Execute relay hops and then the local revision. -/
 theorem relay_revision_run (s : M.State) :
     ∀ (route : List (Channel World)) (v : Content World),
       (process M base).Run (relaying M s v route)
         (finish M s (applyChannels route v)) (route.length + 1) (route.length + 1)
   | [], v => by
-      simpa using Process.Run.cons (revision_step (base := base) s v) (Process.Run.nil _)
+      simpa [applyChannels, process] using
+        Process.Run.cons (revision_step (base := base) s v) (Process.Run.nil _)
   | c :: cs, v => by
       have hs := relay_step (base := base) s v c cs
       have hr := relay_revision_run s cs (c v)
-      simpa [applyChannels, Nat.add_assoc] using Process.Run.cons hs hr
+      simpa [applyChannels, process, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using
+        Process.Run.cons hs hr
 
-/-- **Operational network bound.**  A tracking receiver behind an exactly
+/-- **Operational network bound.** A tracking receiver behind an exactly
 faithful route of `h` channels answers the original live view within `h + 2`
 steps and `h + 2` cost units. -/
 theorem answerWithin_route {C : Content World}
@@ -193,9 +182,9 @@ theorem answerWithin_route {C : Content World}
   · exact ⟨w, hw, hr, hv⟩
   · omega
   · simp [process]
+    omega
 
-/-- Finite answerability follows immediately, with the bound retaining the
-route length. -/
+/-- Finite answerability follows, retaining the route-length bound. -/
 theorem answerable_route {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     {route : List (Channel World)} (hroute : FaithfulRoute C route)
@@ -205,7 +194,7 @@ theorem answerable_route {C : Content World}
   ⟨route.length + 2, route.length + 2,
     answerWithin_route hM hroute hlive⟩
 
-/-- The zero-hop case reduces to the local two-step compiler bound. -/
+/-- Zero hops recovers the two-step local bound. -/
 theorem zero_hop_two_step {C : Content World}
     (hM : M.Tracking C) {s : M.State} {v : Content World}
     (hlive : LiveClaim den C v) :
