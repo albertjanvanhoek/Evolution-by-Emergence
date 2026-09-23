@@ -7,6 +7,7 @@ import AnchoredEvolution.Network
 import AnchoredEvolution.SemanticComposition
 import AnchoredEvolution.UnifiedTracking
 import AnchoredEvolution.DynamicEvidence
+import AnchoredEvolution.ModelProcess
 
 /-!
 # Axiom audit of the anchored development
@@ -157,3 +158,10 @@ open Anchored
 #print axioms DynamicEvidence.evidential_refutation_answers
 #print axioms DynamicEvidence.resolution_is_admission_or_evidence
 #print axioms DynamicEvidence.live_dynamic_resolution_requires_admission
+-- Concrete local compiler from a scale-free model to an executable process
+#print axioms ModelProcess.challenge_step
+#print axioms ModelProcess.revision_step
+#print axioms ModelProcess.after_challenge_cases
+#print axioms ModelProcess.compiled_tracks_of_live
+#print axioms ModelProcess.compiled_answerWithin_two
+#print axioms ModelProcess.compiled_answerable_of_live
