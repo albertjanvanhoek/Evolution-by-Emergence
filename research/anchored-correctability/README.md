@@ -8,7 +8,7 @@ Everything beyond that is explicit: liveness is an epistemic state, correctabili
 
 ## Current architecture
 
-`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → dynamic evidence → local compilation → executable relay routes → CRM resource persistence`
+`anchor → live worlds → executable challenge → semantic answer → content tracking → groups/networks → dynamic evidence → local compilation → executable relay routes → topology economics → CRM resource persistence`
 
 The correction hierarchy is:
 
@@ -30,6 +30,7 @@ Dynamic evidence adds the complementary legitimate outcome: a challenge need not
 | `lean/AnchoredEvolution/DynamicEvidence.lean` | Evidence-aware resolution: admit a still-live view or acquire evidence that removes it |
 | `lean/AnchoredEvolution/ModelProcess.lean` | Two-step compiler from a scale-free model revision into an executable process |
 | `lean/AnchoredEvolution/RelayProcess.lean` | Executable multi-hop faithful relay routes; route length becomes correction time and run cost |
+| `lean/AnchoredEvolution/NetworkEconomics.lean` | Separates standing link maintenance from per-run correction cost/latency and connects link count to the CRM ledger |
 | `lean/AnchoredEvolution/Composition.lean` | Structural composition, ring witness, non-absorption, recursive scale invariance |
 | `lean/AnchoredEvolution/Dynamics.lean` | Structural correctability through restrictions/restorations over time |
 | `lean/AnchoredEvolution/Bridge.lean` | Resource/upkeep bridge from correction structure to CRM ledger |
@@ -55,19 +56,22 @@ The legacy `Network.Honest` condition is retained for compatibility but is mathe
 
 `DynamicEvidence.ResolvedAt` resolves a challenge when either the later record admits the view or the view is no longer live. `resolution_is_admission_or_evidence` proves that, under `EvidenceDiscipline`, a live initial view is resolved either by semantic admission or along a route containing an actual evidence-presenting step. If the view remains live, `live_dynamic_resolution_requires_admission` forces admission.
 
-## Operational realization and relay cost
+## Operational realization, relay cost, and topology
 
 `ModelProcess.lean` compiles a local model revision into challenge + revision, giving a two-step, cost-two answer bound for a tracked live view.
 
-`RelayProcess.lean` extends this to multi-hop communication. For an explicit route of `h` exactly faithful channels, the executable run contains:
+`RelayProcess.lean` extends this to multi-hop communication. For an explicit route of `h` exactly faithful channels, the executable run contains one challenge, `h` relay steps, and one receiver revision. `answerWithin_route` proves a tracked live source view is answered within **`h + 2` steps and `h + 2` cost units** in the unit-cost baseline.
 
-- one challenge step;
-- `h` relay steps;
-- one receiver revision step.
+`NetworkEconomics.lean` then separates that per-run quantity from **standing link maintenance**. In the four-person witness:
 
-`answerWithin_route` therefore proves a tracked live source view is answered within **`h + 2` steps and `h + 2` cost units** in the unit-cost baseline. `faithfulRoute_iff` proves the relayed content has exactly the same truth value as the source content on candidate worlds. This is the first theorem in the project where network distance, semantic answerability, and operational resource cost occur in the same object.
+- flat everyone-to-everyone: **12 directed links**, maximum relay distance **1**, worst-case correction latency **3** process steps;
+- two linked pairs: **6 directed links**, maximum relay distance **3**, worst-case correction latency **5** process steps.
 
-The route is currently supplied explicitly as a list of channels. The existing graph-indexed `Network.Relay` proof is not yet automatically compiled into that route, so the result should not be read as an automatic quantitative theorem for every structural graph path yet.
+Under homogeneous per-link upkeep, the paired architecture therefore uses exactly half the standing maintenance while adding two worst-case correction steps. This makes the earlier qualitative statement precise: hierarchy need not destroy tracking, but it can trade maintained structure for relay distance.
+
+The same file connects maintained link count to the CRM ledger. With net-cost links (`eta < mu`), an affordable architecture cannot exceed `Ledger.cap`; if the cap lies between 6 and 11, the six-link paired architecture can be affordable while the twelve-link flat architecture is not (`paired_fits_when_flat_does_not`). If links are self-financing (`mu <= eta`), the ledger imposes no link-count ceiling.
+
+The route is still supplied explicitly as a list of channels. The graph-indexed `Network.Relay` witness is not yet automatically compiled into that route.
 
 ## Reproduce
 
@@ -76,21 +80,21 @@ cd research/anchored-correctability/lean
 lake build
 ```
 
-GitHub Actions run `35871863420` builds the complete package with Lean 4.33 core only. The audit now contains **139 headline results**:
+GitHub Actions run `35900290050` builds the complete package with Lean 4.33 core only. The audit now contains **148 headline results**:
 
-- **102 depend on no axioms at all**;
+- **105 depend on no axioms at all**;
 - **4 use `Classical.choice`**;
-- the remaining **33** use only Lean's standard `propext` / `Quot.sound` dependencies;
+- the remaining **39** use only Lean's standard `propext` / `Quot.sound` dependencies;
 - no `sorry` / `sorryAx` is present.
 
 ## Current research boundary
 
-The semantic law is unified, evidence-aware, locally executable, and executable over an explicit faithful multi-hop route. The remaining quantitative gaps are now narrower:
+The semantic law is unified, evidence-aware, locally executable, executable over explicit faithful multi-hop routes, and now has a first machine-checked maintenance/latency/ledger comparison. The remaining quantitative gaps are narrower:
 
 1. derive the operational channel list automatically from a graph-indexed `Network.Relay` witness;
-2. replace the unit-cost baseline with heterogeneous relay/revision costs;
-3. distinguish **per-run correction cost** from **standing link-maintenance cost**;
-4. add stochastic reliability;
-5. use those quantities to connect topology to the CRM budget and, later, to hysteresis/critical-mass dynamics.
+2. replace unit step/link costs with heterogeneous transmission, deliberation, revision and maintenance costs;
+3. add stochastic reliability and failure/repair;
+4. connect the resulting topology-dependent quantities to CRM critical-mass/hysteresis dynamics;
+5. separately add a collective action rule on top of the epistemic envelope without collapsing epistemic openness into action selection.
 
-The natural comparison object is therefore a frontier such as `(maintenance cost, correction-run cost, latency, reliability)`, rather than a single correction-cost scalar. The group union record remains an epistemic envelope, not a collective action rule.
+The natural comparison object is a frontier `(maintenance cost, correction-run cost, latency, reliability)`, rather than a single correction-cost scalar.
