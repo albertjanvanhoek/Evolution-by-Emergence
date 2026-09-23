@@ -1,0 +1,36 @@
+name: Anchored Correctability Research Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'research/anchored-correctability/**'
+      - '.github/workflows/anchored-correctability-check.yml'
+  pull_request:
+    paths:
+      - 'research/anchored-correctability/**'
+      - '.github/workflows/anchored-correctability-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install elan
+        run: |
+          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build anchored model and audit headline theorems
+        working-directory: research/anchored-correctability/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build 2>&1 | tee lean-audit.log
+          if grep -q 'sorryAx' lean-audit.log; then
+            echo 'Unproved axiom detected in audited theorem' >&2
+            exit 1
+          fi
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 36
