@@ -2,27 +2,25 @@
 
 **Status:** active formal research development, Lean 4 core only (no Mathlib), under `lean/AnchoredEvolution/`.
 
-**Current verified checkpoint:** 128 audited headline results; 96 axiom-free, 4 using `Classical.choice`, 28 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
+**Current verified checkpoint:** 139 audited headline results; 102 axiom-free, 4 using `Classical.choice`, 33 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`.
 
 ---
 
-## 0. What the project now is
+## 0. Construction in one sentence
 
-Anchored Correctability starts from one narrow logical anchor:
+Anchored Correctability starts from one narrow logical anchor — **pairwise incompatible models cannot all be correct** — and asks what a fallible learning system must preserve, conditional on the explicit aim that it remain able to correct itself whichever evidentially live world is actual.
 
-> **Pairwise incompatible models cannot all be correct.**
-
-The rest is not smuggled into that statement. The development names each additional ingredient:
+The project keeps every additional ingredient named rather than hiding it in the anchor:
 
 - **liveness:** a view remains true in at least one candidate world left open by current evidence;
-- **correctability aim:** whichever live world is actual, the system should retain a route by which its error can be corrected;
-- **execution:** challenge, evidence, revision and repair are state transitions, not declarations;
-- **semantics:** claims have meanings over candidate worlds;
-- **tracking:** correction must respond to the content that was actually supplied and change the model only as far as that content warrants;
-- **evidence:** candidate worlds may be removed only through evidence under the stated evidence discipline;
-- **resources:** correction structure itself has upkeep and therefore inherits the CRM ledger constraint.
+- **correctability aim:** if a live view is the correct one, its correction must remain able to reach the system;
+- **execution:** challenge, evidence, relay, revision and repair are state transitions;
+- **semantics:** claims denote sets of candidate worlds;
+- **tracking:** correction responds to the content actually supplied and changes the public record only as far as that content warrants;
+- **evidence:** candidate worlds may be removed only by evidence under the stated evidence discipline;
+- **resources:** correction structure and correction runs consume resources and therefore eventually meet the CRM ledger.
 
-The project is therefore a description of what a **fallible learning system that remains correctable** must preserve, conditional on the explicitly stated aim.
+No normative conclusion follows from the anchor alone. The correctability aim is a chosen premise and appears explicitly in the theorems that use it.
 
 ---
 
@@ -30,199 +28,208 @@ The project is therefore a description of what a **fallible learning system that
 
 | Status | Ingredient | Formal object |
 |---|---|---|
-| Logical anchor | pairwise incompatible models are not jointly correct | `PairwiseIncompatible`, `AnchorInEveryWorld` |
+| Logical anchor | incompatible models are not jointly correct | `PairwiseIncompatible`, `AnchorInEveryWorld` |
 | Epistemic state | each non-refuted view is true in at least one still-open world | `Live`, `LiveClaim` |
 | Chosen aim | correction from a correct live model remains able to reach the system | `CorrectabilityAim` |
-| Operational | actions are executable state transitions with costs | `Operational.Process`, `Process.Run` |
-| Semantic | claims denote sets of candidate worlds | `meaning`, `Compatible`, `Incompatible` |
+| Operational | actions are executable transitions with step cost | `Operational.Process`, `Process.Run` |
+| Semantic | claims denote sets of candidate worlds | `Compatible`, `Incompatible` |
 | Tracking | live content is admitted and revision is minimal toward that content | `Tracking.Tracks`, `Network.Model.Tracking`, `UnifiedTracking.TransitionTracking` |
 | Evidence | only evidence narrows candidate worlds | `EvidenceDiscipline` |
 | Economic | maintained correction structure consumes a ledger | `Bridge.lean`, CRM core |
-
-No normative conclusion follows from the anchor alone. Results that need the correctability aim state it as a hypothesis.
 
 ---
 
 ## 2. The correction hierarchy
 
-The formalization has progressively separated notions that ordinary prose often collapses:
+The formalization separates concepts that ordinary prose often collapses:
 
 `declared < permitted-and-revisable < responsive < answerable < tracking`
 
-### Declared
+**Declared.** An interface says challenge or revision is available. `paper_constitution` proves that the full paper constitution can hold at a state from which no step executes.
 
-The interface says challenge or revision is available. `paper_constitution` proves this can hold even where nothing can execute.
+**Permitted and revisable.** The challenge actually executes and some revision is reachable. `heard_but_unanswerable` proves these capabilities can still be causally disconnected: challenges are filed into a dead end while independent revision remains possible.
 
-### Permitted and revisable
+**Responsive.** A run beginning with the participant's challenge reaches revision. Correction time and correction cost are properties of actual runs. `sealed_iff_no_finite_cost` turns infinite correction cost from a declaration into a theorem about the absence of finite responsive runs.
 
-A challenge really executes and some revision is reachable somewhere. `heard_but_unanswerable` proves that these can still be causally disconnected: challenges can be filed into a dead end while the authority revises independently.
+**Answerable.** The challenge reaches a record that admits the challenger's live view. `revised_but_unanswered` proves that responsiveness is weaker: revision can merely reword the decision and continue excluding the challenger.
 
-### Responsive
+**Tracking.** Answerability is still too weak, because a system could answer by opening its model to everything. Tracking adds content dependence and minimal change. `always_inclusive_answers_but_does_not_track` separates the notions, while `content_insensitive_cannot_track` proves that a content-blind mechanism cannot track incompatible rival views.
 
-A run that **starts with the participant's challenge** reaches a revision. Correction time and correction cost are properties of the run. `sealed_iff_no_finite_cost` turns sealing into a result: no finite responsive correction exists.
-
-### Answerable
-
-A challenge reaches a record that no longer excludes the challenger's live view. `revised_but_unanswered` proves responsiveness is weaker: merely rewording a policy can count as revision while still excluding the challenger.
-
-### Tracking
-
-Answerability is still not enough. A system can answer every challenge by opening the record to everything. Tracking adds **content dependence and minimal change**. `always_inclusive_answers_but_does_not_track` separates these notions; `content_insensitive_cannot_track` proves that a content-blind correction mechanism cannot track incompatible rival views.
+Dynamic evidence adds one legitimate alternative to admission: if evidence genuinely removes the challenged view from the live set, the challenge can be resolved by refutation rather than accommodation.
 
 ---
 
-## 3. Layer map
+## 3. Formal layers
 
-### Layer 0 — logical anchor (`Anchor.lean`)
+### Layer 0 — anchor (`Anchor.lean`)
 
-Core consequences include `anchor_not_two`, `anchor_at_most_one`, `anchor_others_wrong`, and the possible-world distinction between `Live` and `Guaranteed`.
+The anchor yields `anchor_not_two`, `anchor_at_most_one`, `anchor_others_wrong` and related results. Possible-world semantics separates `Live` from `Guaranteed`, repairing the older factual reading of certainty in `TheRoom.lean`.
 
-The important epistemic result is `open_room_no_guarantee`: when incompatible rivals are live, no one represented model is guaranteed across all candidate worlds.
+`open_room_no_guarantee` says that when incompatible rivals remain live, no represented model is guaranteed across all candidate worlds. This is an epistemic statement, not a claim that nobody happens to be right in the actual world.
 
-### Layer 1 — structural correction skeleton (`Anchor.lean`)
+### Layer 1 — structural correctability (`Anchor.lean`)
 
-`live_and_aim_force_strong_connectivity` derives strong connectivity from liveness plus the chosen correctability aim. `missing_route_leaves_uncorrectable_error` gives the failure witness: a missing route leaves open a world where the silenced live model is right, others are wrong, and its correction cannot reach the target.
+`live_and_aim_force_strong_connectivity` derives a strongly connected correction skeleton from liveness plus the chosen aim. `missing_route_leaves_uncorrectable_error` gives the failure witness: if a correction route is missing, there is an evidentially open world where the omitted live model is right, others are wrong, and its correction cannot reach the target.
 
 ### Layer 1b — executable correction (`Operational.lean`)
 
-The executable step relation becomes primary. Permission, revision availability, responsiveness, time and cost are derived from actual steps. The process also induces a structural correction graph, connecting the operational and graph views.
+The executable step relation becomes primary. Permission, revision availability, responsiveness, correction time and cost are derived from actual state transitions. The process also induces the older structural correction graph, making that graph an abstraction of behavior rather than a primitive declaration.
 
 ### Layer 1c — meaning and answerability (`Semantics.lean`)
 
-Claims receive meanings over candidate worlds. Holding a claim and that claim being true are separate facts.
+Claims receive meanings over candidate worlds. Holding a claim and the claim being true are separate predicates.
 
-The elephant result is formalized here. `overgeneralization_manufactures_conflict` shows that two compatible partial descriptions can be made incompatible by strengthening the translation; `caricature_dissolves_conflict` shows weakening can hide real conflict. A faithful translation preserves incompatibility exactly.
+The perspective problem is machine checked. `overgeneralization_manufactures_conflict` shows that strengthening another person's partial description can manufacture incompatibility; `caricature_dissolves_conflict` shows weakening can hide incompatibility. Faithful translation preserves incompatibility exactly.
 
-`unanswerable_challenge_fixes_error` and its non-vacuous strengthening `executable_unanswerable_challenge_fixes_error` connect failure to answer a live challenge with a candidate world in which the decision remains wrong.
+`unanswerable_challenge_fixes_error` and the non-vacuous `executable_unanswerable_challenge_fixes_error` connect an unanswerable live challenge to a candidate world in which the decision remains wrong after the challenge. `self_model_not_guaranteed` and `sealed_rule_fixes_error` put claims about the correction mechanism itself under the same anchor.
 
-Claims about the correction procedure itself are ordinary claims under the same semantics (`self_model_not_guaranteed`, `sealed_rule_fixes_error`). Thus recursive correctability is not exempt from the model's own anchor.
+### Layer 1d — tracking, evidence, time and cost (`Tracking.lean`)
 
-### Layer 1d — tracking, evidence and cost/time (`Tracking.lean`)
+The answer graph is stronger than the responsive graph. Under record discipline, answer-graph correctability implies responsive-graph correctability.
 
-This layer builds an **answer graph**, introduces `EvidenceDiscipline`, and adds content tracking. `scenario_removed_only_by_evidence` proves that a candidate world that disappears along a run implies an evidence-presenting step occurred. `content_insensitive_cannot_track` proves that a process behaving identically under rival challenge contents cannot track both once the old record excludes one of them. `cost_time_tradeoff` shows that fastest and cheapest correction can be different runs.
+`EvidenceDiscipline` lets candidate sets change with state. `scenario_removed_only_by_evidence` proves that a world that disappears from the candidate set along a run implies an actual evidence-presenting step occurred.
+
+Content tracking then requires both successful admission and minimal change toward the content. `content_insensitive_cannot_track` is the central causal result: if two incompatible challenges generate the same process behavior, both cannot be tracked once the old record excludes one of them.
+
+`least_cost_exists`, `least_time_exists` and `cost_time_tradeoff` show that fastest and cheapest correction need not be the same run. The eventual network object therefore should not collapse correction into one scalar.
 
 ### Layer 1e — scale-free models and networks (`Network.lean`)
 
-A `Model` has a private state, a public record and a revision rule. The same type can represent one person, a hypothesis inside a person, a group, or a group of groups.
+A `Model` has private state, a public record and a revision rule. The same type can represent one hypothesis inside a learner, one person, a group, or a group of groups.
 
-`solo_tracking_iff` proves that the individual is exactly the one-member group case. `group_tracks` proves closure under grouping when members track and every live content has a door. `sound_tree_tracks` recursively extends this to arbitrary depth.
+`solo_tracking_iff` proves that one person is exactly the one-member group case. `group_tracks` proves closure under grouping when every member tracks and every live content has a door. `sound_tree_tracks` repeats the same construction at arbitrary depth.
 
-The public group record is a **union of member records**. This is best interpreted as an **epistemic envelope**: which worlds remain admitted by at least one member. It is not a collective action rule.
+The group record is the **union** of member records. It is best interpreted as an **epistemic envelope**: a world remains admitted if at least one member still admits it. It is not yet a collective action or policy-selection rule.
 
-The relay results show that content transport matters in addition to graph connectivity. Blind interfaces can destroy tracking even when the structural graph is connected (`blind_cut_blocks`, `pairs_position_blocks`). The four-person benchmark establishes preservation of tracking under suitable interfaces; it does **not** establish that hierarchy has zero physical or organizational cost.
+Relay theorems establish that structural reachability is insufficient if interfaces destroy content. `blind_cut_blocks` and `pairs_position_blocks` show that forwarding a group's position instead of members' rival content can make tracking impossible across the boundary even when the surrounding network remains connected.
 
-`aggregation_under_anchor` is narrow: literal intersection of mutually incompatible complete member views is empty on the candidate set. It is not a theorem against ordinary deliberative consensus, compromise or action selection.
+`aggregation_under_anchor` is deliberately narrow: literal intersection of mutually incompatible complete views is empty on the candidate set. It is not a theorem against ordinary deliberative consensus, compromise or action selection.
 
-### Layer 3b — semantic process composition (`SemanticComposition.lean`)
+### Semantic composition (`SemanticComposition.lean`)
 
-`HFaithful` requires exact preservation of claim meaning. An `Embedding` also preserves records, executable steps and step cost. Entire runs lift and answerability survives a boundary with the same time and cost bounds. `answerable_through_two_levels` reuses the same law at the next nesting level.
+`HFaithful` is exact heterogeneous semantic translation. An `Embedding` additionally preserves records, executable steps and costs. `liftRun`, `answerWithin_preserved`, `answerable_preserved` and `answerable_through_two_levels` show that semantic answerability survives faithful process boundaries without inventing a new rule at the next scale.
 
-### Unification bridge — literally one tracking law (`UnifiedTracking.lean`)
+### One law, literally (`UnifiedTracking.lean`)
 
-The nondeterministic process-based and deterministic model-level tracking formalisms are instances of one common relation-level object: a **content-indexed transition relation**.
+There were previously two tracking descriptions: process-based nondeterministic tracking and deterministic model revision. They are now instances of one content-indexed transition relation.
 
 `TransitionTracksAt` requires:
 
 1. if incoming content is live, at least one transition outcome admits it;
-2. every transition outcome is minimal toward that content.
+2. every transition outcome changes the public record minimally toward that content.
 
-`operational_tracks_iff_transition_tracksAt_of_live` identifies process-level tracking with this law for live views. `model_tracking_iff_transition_tracking` proves that `Network.Model.Tracking` is its deterministic specialization.
+`operational_tracks_iff_transition_tracksAt_of_live` identifies process tracking with this relation-level law for live views. `model_tracking_iff_transition_tracking` proves that `Network.Model.Tracking` is its deterministic specialization.
 
-The same file repairs interface terminology. The legacy `Network.Honest` condition permits **live-preserving sharpening**; it is weaker than exact semantic faithfulness. `FaithfulChannel` specializes `HFaithful` to network content and preserves compatibility and incompatibility in both directions. Translation alone therefore cannot manufacture or erase a conflict under the stronger condition.
+The same file distinguishes **exact faithfulness** from the older `Network.Honest` predicate. The latter is better understood as live-preserving sharpening: it may narrow what was said. `FaithfulChannel` preserves compatibility and incompatibility in both directions, so exact translation itself cannot manufacture or erase conflict.
 
-### Dynamic evidence-aware resolution (`DynamicEvidence.lean`)
+### Dynamic evidence (`DynamicEvidence.lean`)
 
-`ResolvedAt` allows two legitimate outcomes: the later decision admits the challenged view, or the view is no longer live under later evidence.
+`ResolvedAt` says a challenged view is resolved when either the current record admits it or the view is no longer live under the current evidence state.
 
-`resolution_is_admission_or_evidence` proves the key dichotomy. If the view was live initially, the later state is reachable, and evidence discipline holds, then resolution means either semantic admission or that an actual evidence-presenting step occurred on the route. `live_dynamic_resolution_requires_admission` prevents unrelated evidence from substituting for an answer when the view remains live.
+`resolution_is_admission_or_evidence` proves the central dichotomy. If a view was initially live and later becomes resolved along a run obeying `EvidenceDiscipline`, then either the later record admits it or the route contains an actual evidence-presenting step. `live_dynamic_resolution_requires_admission` prevents unrelated evidence from substituting for an answer when the view remains live.
 
-The learning rule is therefore:
+The resulting learning rule is:
 
 > **If a challenged possibility remains live, admit it; otherwise its removal must be accounted for by evidence.**
 
-### Local operational compiler (`ModelProcess.lean`)
+### Local operational realization (`ModelProcess.lean`)
 
-The scale-free model law is now concretely realizable as an executable process. For a fixed incoming content, `compile` creates a two-step process:
+A deterministic scale-free model is now executable. For a fixed incoming content, `compile` creates:
 
-1. `idle → heard` by challenge, cost 1;
-2. `heard → done` by the model's own revision rule, cost 1.
+1. challenge: `idle → heard`, cost 1;
+2. local model revision: `heard → done`, cost 1.
 
-`compiled_tracks_of_live` proves that a tracking model compiles to a process that tracks the live incoming view. `compiled_answerWithin_two` gives an explicit operational upper bound: answer within two steps and total cost two. `compiled_answerable_of_live` gives finite answerability immediately.
+`compiled_tracks_of_live` proves that a tracking model compiles to a process that tracks the live view. `compiled_answerWithin_two` gives the explicit local bound of two steps and total cost two.
 
-This closes the **local** abstract-revision gap. Relay hops between distinct models are not yet compiled into the same run.
+### Executable relay routes (`RelayProcess.lean`)
+
+This closes the next operational gap. A route is an explicit list of content channels. The process executes:
+
+1. one challenge;
+2. one relay step per channel;
+3. one receiver revision.
+
+Each step has unit cost in this baseline model. `FaithfulRoute` requires exact semantic faithfulness at every hop. `faithfulRoute_iff` proves that end-to-end relayed content has the same truth value as the original source content on candidate worlds.
+
+The main quantitative theorem is `answerWithin_route`:
+
+> If the receiver tracks and the source view is live, then an exactly faithful route of `h` channels answers the original view within **`h + 2` steps and `h + 2` cost units**.
+
+Thus network distance, semantic answerability and resource cost now occur in the same machine-checked run. `zero_hop_two_step` recovers the local compiler as the zero-hop special case.
+
+The current route is supplied explicitly as a channel list. The graph-indexed `Network.Relay` proof is not yet automatically compiled into that operational list, so this is not yet an automatic quantitative theorem for every structural path.
 
 ### Structural composition and dynamics (`Composition.lean`, `Dynamics.lean`)
 
-The graph layer remains useful as a deliberately lossy abstraction. Correctable systems compose structurally; a ring is a minimal strongly connected witness; sealed inward/outward boundaries break structural correctability; restrictions preserve it exactly when old routes remain realizable directly or through detours.
+The older graph layer remains a deliberately lossy abstraction. Strong structural correctability composes recursively; a ring is a minimal strongly connected witness; sealed inward/outward boundaries break correctability; restrictions preserve it exactly when old routes remain realizable directly or through detours.
 
 ### Resource bridge (`Bridge.lean`)
 
-The correction network is retained organization. Maintaining it consumes resources. The bridge proves a lower bound on upkeep and a population ceiling under net-cost correction, while self-financing correction removes that ledger ceiling.
+Correction structure is retained organization. Maintaining it consumes resources. The bridge proves a lower upkeep bound, a correctable-population ceiling when correction has positive net cost, and removal of that ceiling when correction is self-financing.
 
-This is a structural/economic bridge, not yet a full theorem connecting relay latency to CRM hysteresis.
+This is not yet a complete theorem connecting operational relay latency and standing topology maintenance to CRM hysteresis. The ingredients are now closer but remain separate.
 
 ---
 
-## 4. What the model now says about scale
+## 4. What scale means here
 
-The same correction law is usable without changing logical form for one hypothesis inside a learner, one person as a one-member group, several people forming a group, groups forming higher-level groups, and networks connected by content-transforming interfaces.
+The same tracking law is now literally shared by individual and collective models. Scaling adds interface and routing conditions, not a new epistemic principle.
 
-The conditions added by composition are interface conditions rather than a new epistemic law: a live view needs a door into the containing model, and translation across a boundary must preserve enough of its content for tracking to remain meaningful.
+A live view needs a door into the containing model. Its content must survive interfaces with enough fidelity for the receiver to track it. Exact semantic faithfulness is stronger than mere live-preserving sharpening because strengthening can itself manufacture conflict.
 
-Exact semantic faithfulness is stronger than live-preserving sharpening. The distinction matters because strengthening a representation can itself manufacture conflict.
+The four-person examples therefore support the statement that **hierarchy need not destroy tracking when interfaces preserve content**. They do not support the stronger claim that hierarchy has zero cost. The executable relay layer now makes the missing cost visible as route length under the unit-cost baseline.
 
 ---
 
 ## 5. Inside and outside
 
-From the **inside**, a learner holds views whose meanings correspond to candidate worlds and can be challenged by content it did not already accommodate.
+From the **inside**, a learner holds views whose meanings correspond to candidate worlds and receives challenges carrying content.
 
-From the **outside**, the learner is a transition system: challenge and evidence steps occur, states change, records change, and those changes consume time and resources.
+From the **outside**, the learner is a transition system: challenge, relay, evidence and revision steps occur; records change; time passes; resources are consumed.
 
-The relation-level tracking law is the bridge. `ModelProcess.lean` now also shows that the scale-free deterministic revision rule can be realized by an explicit step-and-cost process at the local model boundary.
+The relation-level tracking law connects these views. `ModelProcess.lean` and `RelayProcess.lean` additionally show that the scale-free semantic law can be realized by explicit step-and-cost processes, including multi-hop communication.
 
-Because procedural self-models are themselves claims, the bridge is not outside its own theory: claims such as "our challenges are answerable" remain challengeable under the same anchor.
+Because procedural self-models are themselves claims, the architecture does not place its own correction mechanism outside the theory.
 
 ---
 
 ## 6. Audit checkpoint
 
-GitHub Actions builds the complete package with Lean 4.33 core only and rejects `sorryAx`.
+GitHub Actions run `35871863420` built the complete package successfully with Lean 4.33 core only and the CI gate verified exactly **139** audit entries.
 
-Current audit: **128 headline results**.
-
-- **96** depend on no axioms;
+- **102** results depend on no axioms;
 - **4** use `Classical.choice`;
-- **28** use only `propext` / `Quot.sound` among their non-classical dependencies;
+- **33** use only `propext` / `Quot.sound` among their non-classical dependencies;
 - **0** use `sorry` / `sorryAx`.
 
-The six local-compiler results add four axiom-free theorems and two results using only standard `propext` / `Quot.sound` dependencies.
+For the new relay layer, six audited results are axiom-free and five use only standard `propext` / `Quot.sound`; none introduce classical logic.
 
 ---
 
-## 7. Limits and research boundary
+## 7. Current limits
 
-Several boundaries remain explicit.
-
-1. **Relay execution is not yet compiled.** A local `Network.Model` now has an operational realization, but a multi-hop `Network.Relay` is still a semantic route rather than a sequence of executable relay steps in the same `Process.Run`.
-2. **Relay time is not yet counted.** The local model has a verified two-step correction bound; network hop-count latency remains to be derived.
-3. **Link maintenance is not yet in the process ledger.** The CRM bridge prices maintained correction structure abstractly; it does not derive upkeep from a concrete network topology with relays.
-4. **Reliability is not modelled.** Routes either exist or do not; stochastic transmission/revision failure remains future work.
-5. **The group record is not a group action.** Union retains epistemic possibilities but does not choose a single intervention, policy or action.
-6. **Correctness remains binary over candidate worlds.** Probabilistic support, graded fit and source credibility are not represented.
-7. **Self-model meaning remains supplied.** A procedural claim's meaning is not yet derived by running world-dependent versions of the process.
+1. **Graph route → operational route is not automatic yet.** `Network.Relay` and `RelayProcess` use compatible ideas but the latter currently receives an explicit channel list.
+2. **Relay costs are unit costs.** Heterogeneous transmission, deliberation and revision costs are not yet represented.
+3. **Standing maintenance cost remains separate from run cost.** `Bridge.lean` prices maintained correction structure abstractly; `RelayProcess.lean` prices one correction run. They have not yet been combined in one topology object.
+4. **Reliability is binary.** Routes either work or do not; stochastic loss/failure is not modelled.
+5. **Group epistemic envelope is not group action.** Retaining possibilities does not choose a single intervention or policy.
+6. **Correctness is binary over candidate worlds.** Probabilities, graded support and source credibility remain future work.
+7. **Self-model meanings are supplied.** They are not yet derived by running world-dependent versions of the process.
 
 ---
 
 ## 8. Next formal target
 
-The next layer should compile a **relay route plus receiving model** into one operational run with explicit relay steps and local revision. The target theorem is that exact faithful channels preserve the semantic content needed for tracking while route length contributes directly to correction time and route-specific cost.
+The next quantitative layer should turn a structural network into the operational object automatically and separate two resource questions:
 
-After that, the natural comparison object is a feasible frontier involving at least:
+- **standing maintenance:** what it costs to keep links/interfaces available;
+- **correction run:** what one actual challenge/relay/revision trajectory costs and how long it takes.
 
-`(link-maintenance cost, correction-run cost, latency, reliability)`.
+After adding heterogeneous edge costs, the natural comparison object becomes a feasible frontier:
 
-That will allow ring, flat and hierarchical examples to be compared without collapsing "fewer maintained links" into the stronger and unjustified claim "hierarchy costs nothing", and it will supply the missing quantitative input for a deeper CRM budget/hysteresis bridge.
+`(maintenance cost, correction-run cost, latency, reliability)`.
+
+That will permit ring, flat and hierarchical networks to be compared without equating fewer links with universally lower cost, and supplies the quantities needed for a deeper CRM budget/hysteresis bridge.
 
 ---
 
