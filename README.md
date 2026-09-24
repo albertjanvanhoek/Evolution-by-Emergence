@@ -1,12 +1,12 @@
 # Evolution by Emergence
 
-## v21: cumulative evolution with an explicit intelligent-system specialization
+## v21.1: cumulative evolution, common ground, and an explicit intelligent-system specialization
 
 Evolution by Emergence (EbE) asks:
 
 > **How can organization that exists now become causal material that changes which organization can exist next, while itself being produced, lost and maintained under finite resources?**
 
-v21 is the current review object. It preserves the v20 retained-organization/accessibility core, adds the reviewed Cumulative Reproduction Model as a separate dynamical specialization, and keeps the newer Anchored Correctability / SCAP work explicitly scoped to intelligent systems.
+v21.1 is the current review object. It retains the v21 universal retained-organization/accessibility core and reviewed Cumulative Reproduction Model, keeps Anchored Correctability / SCAP explicitly scoped to intelligent systems, and adds the audited Step 6 result that **common ground is the correction link, not shared content**.
 
 The universal interpretation remains a **candidate to be challenged**, not an established empirical law.
 
@@ -48,14 +48,21 @@ A complete empirical application may need both item identity/function and count/
 
 ## What changed since v20
 
-v20 remains an immutable historical review object for the retained-organization/accessibility theory. v21 adds:
+v20 remains an immutable historical review object for the retained-organization/accessibility theory. v21 added:
 
 - the reviewed Cumulative Reproduction Model under `research/cumulative-reproduction/`;
 - explicit separation of structural accessibility from repertoire-level dynamics;
-- the current Anchored Correctability / Persistence / SCAP package as a **separate intelligent-system specialization**;
+- the Anchored Correctability / Persistence / SCAP package as a **separate intelligent-system specialization**;
 - the Alignment layer distinguishing corrigibility from obedience/sycophancy and behavioural compliance from verification;
 - the self-contained `scap-seed/` subproject;
 - a repository-level specialization map and v21 integration verification matrix.
+
+v21.1 adds:
+
+- **Step 6: common ground is the link, not the content**, machine-audited in both intelligent-system Lean packages;
+- 184 audited SCAP Seed results and 227 audited Anchored Correctability results;
+- repaired Zenodo/GitHub archival metadata after the v21 `CITATION.cff` ingestion failure;
+- release checks that validate CFF metadata and the Zenodo-specific archive metadata before publication.
 
 ## Intelligent-system endpoint
 
@@ -74,6 +81,7 @@ anchor
  -> changing world + link failure/repair
  -> SCAP persistence conditions
  -> alignment specialization
+ -> common ground as the maintained correction link
 ```
 
 Its formal SCAP object separates:
@@ -88,6 +96,10 @@ This is a theorem-level object under explicit semantic and operational premises.
 
 [SCAP Seed](scap-seed/README.md) is deliberately smaller than the research endpoint. It exists so a reviewer can replay the anchor-to-corrigibility path without loading the whole repository. It remains self-contained and keeps its own licensing and verification boundary.
 
+Its Step 6 makes the common-ground claim explicit:
+
+> **Common ground is not what we agree on. It is how we find out when one of us is wrong.**
+
 What is proved inside the seed does not certify the rest of the repository, and the rest of the repository does not weaken the seed's local theorems.
 
 ## Verification boundaries
@@ -101,9 +113,11 @@ The repository now has four independently checked surfaces:
 
 `.github/workflows/v21-integration-check.yml` runs these surfaces together on a release candidate commit. A green matrix means each declared package passed its own verification on that commit; it does **not** mean one package proves the others.
 
+The release metadata gate additionally checks `CITATION.cff` and `.zenodo.json` before publication so a GitHub release cannot silently repeat the v21 Zenodo metadata failure.
+
 ## Important distinctions
 
-v21 keeps the following separations explicit:
+v21.1 keeps the following separations explicit:
 
 - state dependence ≠ cumulative evolution;
 - structural accessibility ≠ repertoire count dynamics;
@@ -113,6 +127,7 @@ v21 keeps the following separations explicit:
 - persistence ≠ function;
 - validation ≠ truth;
 - exact semantic relay ≠ live-preserving sharpening;
+- agreement ≠ common ground;
 - intelligent-system semantics ≠ universal EbE primitives;
 - machine checking ≠ empirical truth.
 
@@ -147,7 +162,8 @@ The other three packages have their own README and path-scoped CI instructions.
 
 ## Release lineage
 
-- **v21** — current synthesis: universal retained-organization/accessibility + reviewed cumulative-reproduction dynamics, with the intelligent-system specialization explicitly separated.
+- **v21.1** — current review object: v21 scientific core + audited Step 6/common-ground extension + repaired Zenodo archival metadata.
+- **v21** — universal retained-organization/accessibility + reviewed cumulative-reproduction dynamics, with the intelligent-system specialization explicitly separated.
 - **v20** — immutable retained-organization/accessibility peer-review release.
 - **v19** — Retained Organization and Correctable Learning.
 - **v18** — The Learning Constitution: Correctable Interdependence.
