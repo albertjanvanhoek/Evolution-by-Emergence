@@ -1,7 +1,7 @@
 # The SCAP metamodel: one sure thing, one aim, and the dynamics of staying connected
 
 **Status:** version 1, September 2026.
-- **Proofs:** Lean 4, in `lean/AnchoredEvolution/`: 181 results audited, none unfinished. Reproduce with `scripts/verify.sh`.
+- **Proofs:** Lean 4, in `lean/AnchoredEvolution/`: 184 results audited, none unfinished. Reproduce with `scripts/verify.sh`.
 - **Simulations:** in `sim/`:
   - experiments F1–F5 test this metamodel;
   - experiments E1–E8 test the reproduction model.
@@ -165,7 +165,7 @@ The anchor is the only fixed point. Everything else, including this document, st
 ## 9. What is proved, simulated, assumed and open
 
 - **Proved (Lean, core library, offline):** L1–L8, L11 and L12. Also the structural parts of L7 (no repair means a permanent split; repair means a bounded delay) and L10 (sealed inheritance fails).
-  - **Audit:** 181 results; 101 with no axioms at all; 5 using classical logic; none unfinished (no `sorry`).
+  - **Audit:** 184 results; 103 with no axioms at all; 5 using classical logic; none unfinished (no `sorry`).
 - **Simulated** (`sim/fragmentation.py`, `sim/fragmentation_experiments.py`, `results/fragmentation.json`):
   - the forgiveness threshold (F1);
   - tipping and hysteresis (F2);

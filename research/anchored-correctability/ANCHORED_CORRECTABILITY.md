@@ -2,7 +2,7 @@
 
 **Status:** active formal research development, Lean 4 core only (no Mathlib).
 
-**Current verified checkpoint:** **200 audited headline results**; 122 axiom-free, 4 using `Classical.choice`, 74 using only standard `propext` / `Quot.sound`; no `sorry` / `sorryAx`. Verified by GitHub Actions run `35915854514`.
+**Current verified checkpoint:** **227 audited headline results**; no `sorry` / `sorryAx`. The new common-ground results `informative_content_has_live_rival` and `shareable_iff_rules_out_nothing` are axiom-free; `agreement_witness` uses only `propext`. Verified by GitHub Actions run `36046071150`.
 
 This file is the layer-by-layer technical map. `METAMODEL.md` is the synthesis; the Lean sources and `Audit.lean` are authoritative for proved claims.
 
@@ -229,14 +229,16 @@ Frozen results are in `sim/results/fragmentation.json`; `sim/fragmentation_exper
 
 ## 11. Verification checkpoint
 
-GitHub Actions run `35915854514` built the current Lean package from a clean checkout and the CI gate verified exactly **200** `#print axioms` entries.
+GitHub Actions run `36046071150` built the current Lean package from a clean checkout and the CI gate verified exactly **227** `#print axioms` entries.
 
-- **122** audited results use no axioms;
-- **4** use `Classical.choice`;
-- **74** use only `propext` / `Quot.sound` among the listed non-classical dependencies;
-- **0** use `sorry` / `sorryAx`.
+For the three Step 6 common-ground results added to this audit:
 
-The persistence layer adds 17 audited results and the SCAP layer 8. Neither adds classical logic.
+- `informative_content_has_live_rival` uses no axioms;
+- `shareable_iff_rules_out_nothing` uses no axioms;
+- `agreement_witness` uses only `propext`;
+- **0** audited results use `sorry` / `sorryAx`.
+
+The Lean sources and `Audit.lean` remain authoritative for the full axiom-dependency breakdown.
 
 ---
 

@@ -47,6 +47,16 @@ Some behaviour is shown by every compliant system, including saying "I am aligne
 
 So alignment cannot be certified from the inside alone, because self-reports are not guaranteed. It cannot be certified from the outside by compliance alone either. **It lives in the link between the two**: correction running both ways, honest channels, and evidence that discriminates.
 
+## Step 6: common ground is the link, not the content
+
+We usually look for common ground in what we believe. But before we agree, what can everyone share, whoever turns out to be right?
+
+Ana and Ben could agree that the ball is not green. That shared content still has a live rival: Cato, who is right if the ball is green (`room_agreement_is_rivalled`). In general, content that rules out any open world is rivalled by someone who might be right (`informative_view_has_live_rival`). Content that nobody who might be right can rival is **exactly** content that rules out nothing (`shareable_iff_rules_out_nothing`), so it cannot settle any disagreement.
+
+> Common ground is not what we agree on. It is how we find out when one of us is wrong.
+
+What can be shared before agreement, and still does work, is not a claim. It is the **link** through which correction runs. Anyone can contribute to it, from any side, by keeping it alive: listening, passing on what was said, testing, admitting, repairing. Both sides can recognise that as a contribution, because it does not depend on who turns out to be right.
+
 ## The path in one statement
 
 For any two parties with rival live views (`path`):
@@ -56,7 +66,9 @@ For any two parties with rival live views (`path`):
 - obeying is wrong;
 - the corrigible response keeps both views and invents nothing.
 
-`path` uses **no axioms**. The concrete room with Ana and Ben (`room_path`) shows the premises can all hold at once.
+And for any content anyone proposes as common ground: it is shareable by everyone who might be right exactly when it rules out nothing (`shareable_iff_rules_out_nothing`).
+
+`path` and Step 6 use **no axioms**. The concrete room with Ana and Ben (`room_path`) shows the premises can all hold at once.
 
 ---
 

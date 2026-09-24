@@ -107,16 +107,18 @@ The group union record is an **epistemic envelope**. It does not yet choose a si
 
 ## 7. Verification
 
-Current Lean checkpoint: **200 audited headline results**, built with Lean 4.33 core only.
+Current Lean checkpoint: **227 audited headline results**, built with Lean 4.33 core only.
 
-- **122** use no axioms;
-- **4** use `Classical.choice`;
-- **74** use only Lean's standard `propext` / `Quot.sound` dependencies;
-- **0** use `sorry` / `sorryAx`.
+For the three Step 6 common-ground results added to the audit:
 
-The persistence layer contributes 17 audited results; `SCAP.lean` contributes 8. Neither introduces additional classical logic.
+- `informative_content_has_live_rival` uses no axioms;
+- `shareable_iff_rules_out_nothing` uses no axioms;
+- `agreement_witness` uses only `propext`;
+- **0** audited results use `sorry` / `sorryAx`.
 
-Verified by GitHub Actions run `35915854514`.
+The Lean sources and `Audit.lean` remain authoritative for the full axiom-dependency breakdown.
+
+Verified by GitHub Actions run `36046071150`.
 
 ## 8. Open formal frontier
 

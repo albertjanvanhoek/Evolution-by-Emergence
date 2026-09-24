@@ -21,7 +21,7 @@ jobs:
           ref: ${{ github.event.workflow_run.head_sha }}
           fetch-depth: 0
 
-      - name: Validate release metadata
+      - name: Validate release and archive metadata
         id: meta
         shell: bash
         run: |
@@ -29,6 +29,9 @@ jobs:
           test -s RELEASE_VERSION
           test -s RELEASE_TITLE
           test -s RELEASE_NOTES.md
+          test -s CITATION.cff
+          test -s .zenodo.json
+          test ! -e citation.cff
 
           VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
           TITLE="$(cat RELEASE_TITLE)"
@@ -38,6 +41,37 @@ jobs:
             echo "Invalid release version: $VERSION" >&2
             exit 1
           fi
+
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          version = Path('RELEASE_VERSION').read_text(encoding='utf-8').strip()
+          title = Path('RELEASE_TITLE').read_text(encoding='utf-8').strip()
+          notes = Path('RELEASE_NOTES.md').read_text(encoding='utf-8')
+          cff = Path('CITATION.cff').read_text(encoding='utf-8')
+          zenodo = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
+
+          if version not in title or not notes.startswith(f'# Evolution by Emergence {version}'):
+              raise SystemExit('Release version, title and notes are inconsistent')
+          if f'version: "{version}"' not in cff:
+              raise SystemExit('CITATION.cff version does not match RELEASE_VERSION')
+          if 'license: "CC-BY-4.0 OR Apache-2.0"' in cff:
+              raise SystemExit('CITATION.cff contains an invalid SPDX OR expression')
+          if not re.search(r'(?m)^license:\s*\n\s+-\s+CC-BY-4\.0\s*\n\s+-\s+Apache-2\.0\s*$', cff):
+              raise SystemExit('CITATION.cff must preserve the dual-license list')
+
+          if zenodo.get('version') != version:
+              raise SystemExit('.zenodo.json version does not match RELEASE_VERSION')
+          if zenodo.get('upload_type') != 'software' or zenodo.get('access_right') != 'open':
+              raise SystemExit('.zenodo.json release type/access metadata is inconsistent')
+          license_value = zenodo.get('license')
+          if not isinstance(license_value, str) or license_value.lower() != 'cc-by-4.0':
+              raise SystemExit('.zenodo.json must use one cc-by-4.0 license value for GitHub ingestion')
+          if not zenodo.get('creators'):
+              raise SystemExit('.zenodo.json must name at least one creator')
+          PY
 
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"

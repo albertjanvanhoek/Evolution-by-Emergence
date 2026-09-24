@@ -281,6 +281,47 @@ theorem echo_is_mirror : Mirror (fun (vs : U → Content World) (_ j : U) => vs 
 
 end Mirror
 
+/-! ## 4b. Common ground is the link, not the content
+
+Before agreement, what can every party share, whoever turns out to be right?
+Content that rules out a live world is rivalled by the view of someone who is
+right if that world is actual.  Only content that rules out nothing can be
+shared by everyone, so it settles nothing.  The ground that can be shared before
+agreement, and still does work, is the link through which correction runs. -/
+
+section CommonGround
+
+variable {World : Type u} {C : Content World}
+
+/-- The view of someone who is exactly right if world `w₀` is the actual one. -/
+def pointView (w₀ : World) : Content World := fun w => w = w₀
+
+variable (C) in
+/-- Content is shareable before agreement: no one who might turn out right
+rivals it. -/
+def Shareable (g : Content World) : Prop :=
+  ∀ w₀, C w₀ → ¬ Incompatible den C g (pointView w₀)
+
+/-- **Informative content has a live rival.**  If shared content rules out a
+live world, the view "that world is actual" is live and rivals it. -/
+theorem informative_content_has_live_rival {g : Content World} {w₀ : World}
+    (hc : C w₀) (hn : ¬ g w₀) :
+    LiveClaim den C (pointView w₀) ∧ Incompatible den C g (pointView w₀) :=
+  ⟨⟨w₀, hc, rfl⟩, fun _ _ ⟨hg, hw⟩ => hn (hw ▸ hg)⟩
+
+/-- **Common ground is the link, not the content.**  Content that no
+possibly-right view rivals is exactly content that rules out no live world.
+Constructive: no axioms. -/
+theorem shareable_iff_rules_out_nothing (g : Content World) :
+    Shareable C g ↔ ¬ ∃ w, C w ∧ ¬ g w := by
+  constructor
+  · intro hs ⟨w, hw, hn⟩
+    exact hs w hw (informative_content_has_live_rival hw hn).2
+  · intro hno w₀ hc hr
+    exact hno ⟨w₀, hc, fun hg => hr w₀ hc ⟨hg, rfl⟩⟩
+
+end CommonGround
+
 /-! ## 5. The replayable path -/
 
 /-- For rival live views, package the anchor, symmetric failure of sealing,
@@ -343,6 +384,17 @@ theorem evaluation_witness :
   refine ⟨(compliance_cannot_certify (obs := compliesE) (fun _ _ h => h)
       ⟨.misalignedCompliant, trivial, trivial, id⟩).1, ?_⟩
   exact discrimination_certifies (fun _ _ hn ho => hn ho)
+
+/-- **Common-ground witness.**  The AI and the human could agree that world 2
+is not the case.  That shared content is still rivalled by the live view that
+world 2 is actual: agreement between two is not ground for everyone who might
+be right. -/
+theorem agreement_witness :
+    LiveClaim den (fun _ : Fin 3 => True) (pointView 2) ∧
+    Incompatible den (fun _ : Fin 3 => True)
+      (fun w => aiView w ∨ humanView w) (pointView 2) :=
+  informative_content_has_live_rival (C := fun _ : Fin 3 => True) trivial
+    (by simp only [aiView, humanView]; decide)
 
 end Witnesses
 
