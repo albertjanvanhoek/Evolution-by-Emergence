@@ -1,148 +1,83 @@
-# Evolution by Emergence v21 — Cumulative Reproduction and the Intelligent-System Specialization
+# Evolution by Emergence v21.1 — Common Ground and Archival Metadata Repair
 
-v21 keeps the v20 retained-organization/accessibility core intact and adds two major developments without collapsing them into one model:
+v21.1 is a focused update to v21. It keeps the v21 universal retained-organization/accessibility core and cumulative-reproduction specialization intact, extends the intelligent-system specialization with an audited common-ground result, and repairs the release metadata that prevented v21 from being archived by Zenodo.
 
-1. a reviewed **universal dynamical extension** for cumulative reproduction under production, loss and resource constraints; and
-2. a separately scoped **intelligent-system specialization** for fallible models that exchange evidence and challenges, track content, repair correction routes, and remain resource-feasible.
+## 1. Step 6: common ground is the link, not the content
 
-The central universal question is now:
+The SCAP seed now makes a sharper distinction between shared content and shared correctability.
 
-> **How can organization that exists now become causal material that changes which organization can exist next, while itself being produced, lost and maintained under finite resources?**
+The key plain-language statement is:
 
-The intelligent-system work is a specialization of that broader programme, not a new universal axiom.
+> **Common ground is not what we agree on. It is how we find out when one of us is wrong.**
 
-## 1. Canonical v21 route
+The seed adds three results in its own vocabulary:
 
-Start with:
+- `informative_view_has_live_rival`: any informative view that rules out an open world has a live rival;
+- `shareable_iff_rules_out_nothing`: content that no potentially correct rival can oppose is exactly content that rules out nothing;
+- `room_agreement_is_rivalled`: agreement between two parties is not automatically common ground for everyone in the room.
 
-1. `THEORY_CORE_V21.md` — current universal synthesis.
-2. `FORMAL_THEORY_MAP.md` — theorem and specialization map.
-3. `FORMAL_THEORY_ENDPOINT.md` — v21 review object, scope and failure conditions.
-4. `formalization/cumulative-accessibility/` — identity-sensitive retained-organization/accessibility core inherited from v20.
-5. `research/cumulative-reproduction/` — reviewed production/loss/resource dynamics.
-6. `UNIVERSAL_TO_INTELLIGENCE.md` — explicit specialization seam.
-7. `research/anchored-correctability/` — deep intelligent-system specialization.
-8. `scap-seed/` — small self-contained seed for independent replay and review.
+The same idea is audited in both Lean packages through:
 
-The immutable v20 tag remains the historical review object for the retained-organization/accessibility theory alone.
+- `informative_content_has_live_rival` — no axioms;
+- `shareable_iff_rules_out_nothing` — no axioms;
+- `agreement_witness` — `propext` only.
 
-## 2. Universal structural core retained from v20
+This makes the intended distinction explicit: the common structure is not a proposition that everyone must already share, but the maintained route by which live rival content can remain visible and correction can still occur.
 
-The v20 state and resource accounting remain central:
+## 2. Updated audited surfaces
 
-    S_t = (G_t, R_t, Gamma_t, B_t^gross)
-    B_t^free = B_t^gross - M(R_t)
+The SCAP seed now audits **184 results**, including **103 axiom-free** results, with no unfinished proofs.
 
-Retained organization can simultaneously:
+The research Anchored Correctability package now audits **227 results**. Its CI gate is pinned to that exact count and rejects `sorryAx`.
 
-    alter transition machinery -> change future accessibility
+The Step 6 results are included in both package audit files rather than existing only as prose.
 
-and
+## 3. Zenodo archival repair
 
-    consume maintenance budget -> reduce free capacity.
+The v21 GitHub release was created successfully but Zenodo reported:
 
-The machine-checked structural results for matched retain/ablate comparisons, weighted transition kernels, paid opening, strict compositional emergence, bounded reuse and finite-budget retention trade-offs remain unchanged in their theorem direction.
+    Citation metadata load failed
 
-## 3. Reviewed Cumulative Reproduction Model
+The v21 `CITATION.cff` contained the invalid CFF value:
 
-`research/cumulative-reproduction/` adds a distinct count-level dynamical specialization.
+    license: "CC-BY-4.0 OR Apache-2.0"
 
-Its Lean core proves conditional natural-number recurrence results for gain, loss, growth, shrinkage, critical regions, extinction, lower growth bounds and resource ceilings. The continuous ODE and stochastic CTMC remain separate analytical/numerical models.
+CFF 1.2.0 represents alternative licenses as a list, so `CITATION.cff` is now standards-compliant:
 
-The reviewed package keeps several distinctions explicit:
+    license:
+      - CC-BY-4.0
+      - Apache-2.0
 
-- deterministic growth is not finite-horizon survival;
-- finite-target hitting is not eventual survival;
-- a finite-cap no-immigration stochastic model eventually goes extinct even when the deterministic drift is supercritical;
-- a critical mass must be derived from the declared production law;
-- `R_c` is a production/loss rate ratio unless additional parentage assumptions justify a branching interpretation;
-- a scaffold speedup requires explicit information and retention assumptions.
+Zenodo's GitHub ingestion currently has a separate compatibility problem with multi-license arrays in `CITATION.cff`. To keep the repository metadata correct without depending on that parser behavior, v21.1 also adds `.zenodo.json`. Zenodo documents that `.zenodo.json` takes precedence over `CITATION.cff` for GitHub release archiving.
 
-E1–E8 remain reproducible model-specific experiments, not universal Lean theorems.
+The Zenodo metadata therefore supplies a single archival license value, CC BY 4.0, while the repository's authoritative `DUAL-LICENSING.md` continues to grant original repository material under **CC BY 4.0 OR Apache-2.0**.
 
-## 4. Intelligent systems are a separate specialization
+The obsolete lowercase `citation.cff`, which still described version 0.88, has been removed so there is only one current CFF citation file.
 
-`research/anchored-correctability/` adds primitives that are not assumed by the universal EbE core:
+## 4. Release-metadata safeguards
 
-- candidate worlds and semantic claims;
-- liveness and evidence;
-- challenge, answerability and tracking;
-- exact semantic interfaces;
-- correction graphs and operational realization;
-- changing worlds, temporal failure and bounded repair;
-- resource feasibility of maintained correction structure.
+The release checks now validate the citation and Zenodo metadata before a release is published. The checks require:
 
-The current package contains a 224-result Lean audit and no unfinished proofs on its advertised surface.
+- a schema-valid `CITATION.cff`;
+- parseable `.zenodo.json`;
+- `CITATION.cff`, `.zenodo.json` and `RELEASE_VERSION` to name the same release;
+- Zenodo metadata to use a single license value on the GitHub-ingestion path;
+- the stale lowercase `citation.cff` to remain absent.
 
-Its formal SCAP object separates five theorem-level conditions:
+This turns the v21 archival failure into a regression test for later releases.
 
-    Connected ∧ Faithful ∧ Evidence-open ∧ Repairable ∧ Affordable.
+## 5. Relation to v21
 
-`SCAP.scap_persistent_correctability` combines structural correctability, an exactly faithful counted route, bounded temporal restoration and explicit affordability under its declared premises.
+v21.1 does not replace or rewrite the scientific content of v21. It contains that release line plus the audited Step 6/common-ground extension and the corrected archival metadata.
 
-## 5. Alignment specialization
+The principal review surfaces remain:
 
-The intelligent-system package also contains the alignment layer ported from SCAP Seed. It distinguishes corrigibility from obedience and sycophancy, separates behavioural compliance from verification, and proves that exact relay preserves content while a mirror-like channel cannot certify or track another agent's distinct view.
+1. `THEORY_CORE_V21.md` — universal synthesis;
+2. `FORMAL_THEORY_MAP.md` and `FORMAL_THEORY_ENDPOINT.md` — formal route and scope;
+3. `formalization/cumulative-accessibility/` — universal retained-organization/accessibility core;
+4. `research/cumulative-reproduction/` — production/loss/resource specialization;
+5. `UNIVERSAL_TO_INTELLIGENCE.md` — specialization seam;
+6. `research/anchored-correctability/` — deep intelligent-system specialization;
+7. `scap-seed/` — portable anchor-to-corrigibility seed, now including Step 6.
 
-These are conditional theorems over the declared semantics. They are not claims that all intelligent systems must use the same representation, nor that the universal EbE model contains beliefs by default.
-
-## 6. SCAP Seed
-
-`scap-seed/` is a self-contained, portable review object with its own pinned Lean project, claims ledger, contribution rules, simulations and licences.
-
-It is intentionally smaller than the deep research package. Its purpose is to make the anchor-to-corrigibility path easy to replay, challenge and fork independently.
-
-The seed's local proofs do not certify the rest of the repository, and the rest of the repository does not weaken the seed's local theorems.
-
-## 7. Explicit specialization seam
-
-`UNIVERSAL_TO_INTELLIGENCE.md` maps the universal objects to the intelligent-system specialization without claiming equivalence.
-
-Examples include:
-
-- retained organization -> retained records, revision rules and correction structure;
-- transition machinery -> challenge/evidence/revision dynamics;
-- accessibility -> reachable model revisions and correction routes;
-- maintenance -> resources required to keep correction links and processes available.
-
-This mapping is a research specialization. A theorem proving that Anchored Correctability is a complete instantiation of universal EbE has not yet been established.
-
-## 8. Verification architecture
-
-v21 deliberately keeps independent verification boundaries:
-
-- `formalization/cumulative-accessibility/` — universal structural core;
-- `research/cumulative-reproduction/` — reviewed count-level dynamics and E-series checks;
-- `research/anchored-correctability/` — deep intelligent-system specialization;
-- `scap-seed/` — portable seed.
-
-`.github/workflows/v21-integration-check.yml` runs all four surfaces on the same candidate commit. Passing that matrix means each declared package passed its own check; it does not mean one package proves the others.
-
-The release publisher creates the annotated tag and GitHub release only after the main-site build succeeds on the merged release commit.
-
-## 9. Scope boundaries
-
-v21 does not prove:
-
-- empirical universality;
-- that all state dependence is cumulative evolution;
-- that every retained item is functionally useful;
-- that a scalar count captures organization completely;
-- that every nonlinear production law has one critical mass;
-- that finite-cap stochastic persistence is permanent;
-- that mathematical blow-up is physically realizable;
-- that every substrate literally learns;
-- that universal EbE requires semantic beliefs or challenges;
-- that the intelligent-system specialization is morally, legally or politically obligatory;
-- that simulation results are universal theorems;
-- that machine checking establishes empirical truth.
-
-## 10. Release relation
-
-- **v20** — immutable retained-organization/accessibility review object.
-- **v21** — universal structural core plus reviewed cumulative-reproduction dynamics, with the intelligent-system specialization made explicit and separate.
-- **SCAP Seed** — its own portable `seed-` lineage inside the repository.
-
-A useful review should attack theorem validity, semantic adequacy, hidden premises, model separation, prior art, cross-domain mappings, universality and specialization failure.
-
-A successful falsification or narrowing remains a positive scientific result.
+The same scope boundaries remain in force: machine checking establishes the stated formal implications under their premises; it does not by itself establish empirical universality.
