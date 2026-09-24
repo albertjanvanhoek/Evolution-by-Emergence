@@ -86,7 +86,7 @@ scripts/verify.sh           verify everything from scratch
 
 ## What is proved, and what is not
 
-- **Proved** (Lean 4 core library, offline): the seed audit covers **181 headline results**; the verification script rejects unfinished proofs.
+- **Proved** (Lean 4 core library, offline): the seed audit covers **184 headline results**; the verification script rejects unfinished proofs.
 - **Simulated:** reproduction dynamics and fragmentation/repair experiments are reproducible numerical models, not Lean proofs.
 - **Assumed and stated openly:** persistence/change/interdependence/resource premises and the chosen correctability aim where used.
 - **Not shown:** that any particular human, organisation or AI system actually satisfies the formal predicates.
