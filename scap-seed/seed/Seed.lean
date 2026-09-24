@@ -29,6 +29,10 @@ The path:
 5. **Compliance is not alignment.**  Behaviour that every compliant system
    shows, including saying "I am aligned", cannot rule out a system that
    complies but is not aligned.  Only evidence that discriminates can.
+6. **Common ground is the link, not the content.**  Content that rules out an
+   open world has a live rival: the view of someone who is right if that world
+   is actual.  Only content that rules out nothing can be shared by everyone
+   before agreement.  What can be shared, and still does work, is the link.
 -/
 
 namespace Seed
@@ -146,6 +150,43 @@ theorem certify_needs_discrimination {obs aligned : World → Prop}
     (hcert : ∀ w, C w → obs w → aligned w) : ∀ w, C w → ¬ aligned w → ¬ obs w :=
   fun w hw hna ho => hna (hcert w hw ho)
 
+/-! ## 6. Common ground is the link, not the content
+
+Before agreement, what can every party share, whoever turns out to be right?
+Not informative content: content that rules out an open world is rivalled by
+the view of someone who is right if that world is actual.  Only content that
+rules out nothing can be shared by everyone.  So the ground that can be shared
+before agreement, and still does work, is not a claim.  It is the link through
+which correction runs. -/
+
+/-- The view of someone who is exactly right if world `w₀` is the actual one. -/
+def pointView (w₀ : World) : World → Prop := fun w => w = w₀
+
+variable (C) in
+/-- Content is shareable before agreement: nobody who might turn out right
+rivals it. -/
+def Shareable (g : World → Prop) : Prop :=
+  ∀ w₀, C w₀ → ¬ Rivals C g (pointView w₀)
+
+/-- **Informative content has a live rival.**  If shared content rules out an
+open world, the view "that world is actual" is live and rivals it. -/
+theorem informative_view_has_live_rival {g : World → Prop} {w₀ : World}
+    (hc : C w₀) (hn : ¬ g w₀) :
+    Live C (pointView w₀) ∧ Rivals C g (pointView w₀) :=
+  ⟨⟨w₀, hc, rfl⟩, fun _ _ ⟨hg, hw⟩ => hn (hw ▸ hg)⟩
+
+/-- **6. Only content that rules out nothing is shareable before agreement.**
+Content that no possibly-right view rivals is exactly content that excludes no
+open world, so it cannot settle any disagreement.  Common ground that does
+work must therefore be the link, not the content. -/
+theorem shareable_iff_rules_out_nothing (g : World → Prop) :
+    Shareable C g ↔ ¬ ∃ w, C w ∧ ¬ g w := by
+  constructor
+  · intro hs ⟨w, hw, hn⟩
+    exact hs w hw (informative_view_has_live_rival hw hn).2
+  · intro hno w₀ hc hr
+    exact hno ⟨w₀, hc, fun hg => hr w₀ hc ⟨hg, rfl⟩⟩
+
 /-! ## The path, as one statement -/
 
 /-- **The path.**  For any two parties with rival live views:
@@ -185,6 +226,15 @@ theorem room_path :
   let p := path (C := fun _ : Fin 3 => True) ana_ben_rivals ⟨0, trivial, rfl⟩ ⟨1, trivial, rfl⟩
   ⟨p.1, p.2.1.1, p.2.2.1.1, p.2.2.2.1⟩
 
+/-- **Common ground in the room.**  Ana and Ben could agree that the ball is not
+green.  But that shared content has a live rival: Cato's view, right if the
+ball is green.  Agreement between two is not ground for all three. -/
+theorem room_agreement_is_rivalled :
+    Live (fun _ : Fin 3 => True) (pointView 2) ∧
+    Rivals (fun _ : Fin 3 => True) (fun w => ana w ∨ ben w) (pointView 2) :=
+  informative_view_has_live_rival (C := fun _ : Fin 3 => True) trivial
+    (by unfold ana ben; decide)
+
 end Seed
 
 -- Which axioms does each step use?  "does not depend on any axioms" means pure logic.
@@ -197,3 +247,6 @@ end Seed
 #print axioms Seed.compliance_not_alignment
 #print axioms Seed.path
 #print axioms Seed.room_path
+#print axioms Seed.informative_view_has_live_rival
+#print axioms Seed.shareable_iff_rules_out_nothing
+#print axioms Seed.room_agreement_is_rivalled
