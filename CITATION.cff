@@ -5,18 +5,20 @@ type: software
 authors:
   - family-names: "van Hoek"
     given-names: "Albert Jan"
-version: "v21"
-date-released: 2026-09-23
+    orcid: "https://orcid.org/0000-0002-9244-0489"
+version: "v21.1"
+date-released: 2026-09-24
 repository-code: "https://github.com/albertjanvanhoek/Evolution-by-Emergence"
 url: "https://albertjanvanhoek.github.io/Evolution-by-Emergence/"
-license: "CC-BY-4.0 OR Apache-2.0"
+license:
+  - CC-BY-4.0
+  - Apache-2.0
 abstract: >-
   Evolution by Emergence is an open research corpus and machine-auditable
-  candidate architecture for resource-constrained cumulative evolution. v21
-  combines the retained-organization/accessibility core with a reviewed
-  cumulative-reproduction specialization, while keeping the Anchored
-  Correctability / SCAP work explicitly scoped as an intelligent-system
-  specialization.
+  candidate architecture for resource-constrained cumulative evolution. v21.1
+  retains the v21 retained-organization/accessibility and cumulative-reproduction
+  core, and extends the audited intelligent-system specialization with Step 6:
+  common ground is the correction link rather than shared content.
 keywords:
   - cumulative evolution
   - emergence
@@ -25,4 +27,5 @@ keywords:
   - complex systems
   - Lean
   - corrigibility
+  - common ground
   - SCAP
