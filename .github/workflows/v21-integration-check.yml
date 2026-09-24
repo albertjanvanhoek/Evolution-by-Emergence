@@ -12,11 +12,14 @@ on:
       - 'RELEASE_TITLE'
       - 'RELEASE_NOTES.md'
       - 'CITATION.cff'
+      - 'citation.cff'
+      - '.zenodo.json'
       - 'formalization/cumulative-accessibility/**'
       - 'research/cumulative-reproduction/**'
       - 'research/anchored-correctability/**'
       - 'scap-seed/**'
       - '.github/workflows/v21-integration-check.yml'
+      - '.github/workflows/publish-release.yml'
   push:
     branches: [main]
     paths:
@@ -29,11 +32,14 @@ on:
       - 'RELEASE_TITLE'
       - 'RELEASE_NOTES.md'
       - 'CITATION.cff'
+      - 'citation.cff'
+      - '.zenodo.json'
       - 'formalization/cumulative-accessibility/**'
       - 'research/cumulative-reproduction/**'
       - 'research/anchored-correctability/**'
       - 'scap-seed/**'
       - '.github/workflows/v21-integration-check.yml'
+      - '.github/workflows/publish-release.yml'
   workflow_dispatch:
 
 permissions:
@@ -45,21 +51,59 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Check v21 metadata and routes
+      - name: Validate CITATION.cff against CFF 1.2
+        uses: citation-file-format/cffconvert-github-action@2.0.0
+        with:
+          args: '--validate'
+      - name: Check v21.1 and Zenodo metadata
         shell: bash
         run: |
           set -euo pipefail
-          test "$(tr -d '[:space:]' < RELEASE_VERSION)" = "v21"
-          grep -q '^Evolution by Emergence v21' RELEASE_TITLE
-          grep -q '^# Evolution by Emergence v21' RELEASE_NOTES.md
+          VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
+          test "$VERSION" = "v21.1"
+          grep -q '^Evolution by Emergence v21.1' RELEASE_TITLE
+          grep -q '^# Evolution by Emergence v21.1' RELEASE_NOTES.md
           test -s THEORY_CORE_V21.md
           test -s FORMAL_THEORY_MAP.md
           test -s FORMAL_THEORY_ENDPOINT.md
           test -s UNIVERSAL_TO_INTELLIGENCE.md
           test -s CITATION.cff
+          test -s .zenodo.json
+          test ! -e citation.cff
           grep -q 'research/anchored-correctability' THEORY_CORE_V21.md
           grep -q 'research/cumulative-reproduction' THEORY_CORE_V21.md
           grep -q 'scap-seed' THEORY_CORE_V21.md
+
+          python - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          version = Path('RELEASE_VERSION').read_text(encoding='utf-8').strip()
+          cff = Path('CITATION.cff').read_text(encoding='utf-8')
+          zenodo = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
+
+          if f'version: "{version}"' not in cff:
+              raise SystemExit('CITATION.cff version does not match RELEASE_VERSION')
+          if 'license: "CC-BY-4.0 OR Apache-2.0"' in cff:
+              raise SystemExit('CITATION.cff contains an invalid SPDX OR expression')
+          if not re.search(r'(?m)^license:\s*\n\s+-\s+CC-BY-4\.0\s*\n\s+-\s+Apache-2\.0\s*$', cff):
+              raise SystemExit('CITATION.cff must preserve the repository dual-license list')
+
+          if zenodo.get('version') != version:
+              raise SystemExit('.zenodo.json version does not match RELEASE_VERSION')
+          if zenodo.get('upload_type') != 'software':
+              raise SystemExit('.zenodo.json must describe a software release')
+          if zenodo.get('access_right') != 'open':
+              raise SystemExit('.zenodo.json must keep the release open access')
+          license_value = zenodo.get('license')
+          if not isinstance(license_value, str) or not license_value:
+              raise SystemExit('.zenodo.json must use one string license for Zenodo GitHub ingestion')
+          if license_value.lower() != 'cc-by-4.0':
+              raise SystemExit('.zenodo.json archival license must be cc-by-4.0')
+          if not zenodo.get('creators'):
+              raise SystemExit('.zenodo.json must name at least one creator')
+          PY
 
   universal-structure:
     name: Universal structural core
@@ -134,7 +178,7 @@ jobs:
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Build and audit 224-result intelligent-system surface
+      - name: Build and audit 227-result intelligent-system surface
         working-directory: research/anchored-correctability/lean
         shell: bash
         run: |
