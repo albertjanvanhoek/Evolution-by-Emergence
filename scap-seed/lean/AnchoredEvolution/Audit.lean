@@ -201,3 +201,6 @@ open Anchored
 #print axioms Alignment.scap_seed_path
 #print axioms Alignment.path_witness
 #print axioms Alignment.evaluation_witness
+#print axioms Alignment.informative_content_has_live_rival
+#print axioms Alignment.shareable_iff_rules_out_nothing
+#print axioms Alignment.agreement_witness
