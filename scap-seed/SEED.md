@@ -49,13 +49,15 @@ So alignment cannot be certified from the inside alone, because self-reports are
 
 ## Step 6: common ground is the link, not the content
 
-We usually look for common ground in what we believe. But before we agree, what can everyone share, whoever turns out to be right?
+What can every party share before agreement, whoever turns out to be right?
 
-Ana and Ben could agree that the ball is not green. That shared content still has a live rival: Cato, who is right if the ball is green (`room_agreement_is_rivalled`). In general, content that rules out any open world is rivalled by someone who might be right (`informative_view_has_live_rival`). Content that nobody who might be right can rival is **exactly** content that rules out nothing (`shareable_iff_rules_out_nothing`), so it cannot settle any disagreement.
+> **Common ground is not what we agree on. It is how we find out when one of us is wrong.**
 
-> Common ground is not what we agree on. It is how we find out when one of us is wrong.
+Any content that rules out an open world has a live rival: the view of someone who is right if that world is actual (`informative_view_has_live_rival`). Content that nobody who might be right can rival is exactly content that rules out nothing (`shareable_iff_rules_out_nothing`). So content that is safe for everyone settles nothing.
 
-What can be shared before agreement, and still does work, is not a claim. It is the **link** through which correction runs. Anyone can contribute to it, from any side, by keeping it alive: listening, passing on what was said, testing, admitting, repairing. Both sides can recognise that as a contribution, because it does not depend on who turns out to be right.
+Agreement between some parties does not change this. Ana and Ben can agree that the ball is "not green", while Cato's live view that it is green still rivals them (`room_agreement_is_rivalled`).
+
+The useful common ground is therefore not shared content. It is the **link** through which rival views can meet and correction can run.
 
 ## The path in one statement
 
@@ -66,9 +68,7 @@ For any two parties with rival live views (`path`):
 - obeying is wrong;
 - the corrigible response keeps both views and invents nothing.
 
-And for any content anyone proposes as common ground: it is shareable by everyone who might be right exactly when it rules out nothing (`shareable_iff_rules_out_nothing`).
-
-`path` and Step 6 use **no axioms**. The concrete room with Ana and Ben (`room_path`) shows the premises can all hold at once.
+`path` uses **no axioms**. The concrete room with Ana and Ben (`room_path`) shows the premises can all hold at once.
 
 ---
 
