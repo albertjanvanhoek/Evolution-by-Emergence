@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use Evolution by Emergence, please cite this repository and the exact release you reviewed."
-title: "Evolution by Emergence"
+message: "If you use this Evolution by Emergence release, please cite this repository and the exact release you reviewed."
+title: "Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence"
 type: software
 authors:
   - family-names: "van Hoek"
@@ -20,9 +20,11 @@ abstract: >-
   v22.0 retains the v21 universal retained-organization/accessibility and
   cumulative-reproduction core and closes the intelligent-system specialization
   with audited Anchor-Safety, reflexive self-model, shared-layer, and
-  correction-preserving transition results. Formal verification establishes
-  implications under explicit premises; empirical, causal, political and
-  normative interpretations remain open.
+  correction-preserving transition results. The release title uses "simulation
+  of reality" to mean the internal model through which a system experiences and
+  acts in the world, not a claim that reality itself is simulated. Formal
+  verification establishes implications under explicit premises; empirical,
+  causal, political and normative interpretations remain open.
 keywords:
   - cumulative evolution
   - emergence
