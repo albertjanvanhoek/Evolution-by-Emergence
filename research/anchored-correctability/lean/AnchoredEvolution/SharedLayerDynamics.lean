@@ -63,9 +63,11 @@ def CollectivelyIrreducible : Prop :=
   JointlyDetermined view S hub ∧
   ∀ n, S n → ¬ NodeDeterminesHub view hub n
 
-/-- If exactly one node is available, joint determination collapses to
-individual determination by that node. -/
-theorem sole_contributor_implies_node_determines {n₀ : N} (hn₀ : S n₀)
+/-- If at most one node can be available, joint determination collapses to
+individual determination by that node. The node itself need not be available:
+when no node is available, joint determination already forces the hub to be
+constant. -/
+theorem at_most_one_contributor_implies_node_determines {n₀ : N}
     (hsole : ∀ m, S m → m = n₀) (hjoint : JointlyDetermined view S hub) :
     NodeDeterminesHub view hub n₀ := by
   intro v w heq
@@ -81,7 +83,7 @@ theorem collectively_irreducible_has_no_sole_contributor
     (hcoll : CollectivelyIrreducible view S hub)
     {n₀ : N} (hn₀ : S n₀) : ¬ ∀ m, S m → m = n₀ :=
   fun hsole => hcoll.2 n₀ hn₀
-    (sole_contributor_implies_node_determines view S hub hn₀ hsole hcoll.1)
+    (at_most_one_contributor_implies_node_determines view S hub hsole hcoll.1)
 
 end Collective
 
