@@ -269,21 +269,37 @@ theorem prune_redundant_safe (s : State W O R M) (eff' : R → Prop)
 
 /-! ## What is forbidden: closing the last route -/
 
-/-- **Result 6.** Causal last-route statement. Start from an anchor-safe
-state. If `r₀` is effective, separates a live cut pair that the inside view
-cannot separate, and every other effective route is blind on that pair, then
-removing `r₀` takes the state from safe to unsafe. -/
+/-- **Result 6.** Causal last-route statement. If `r₀` is effective,
+separates a live cut pair of a retained commitment that the inside view cannot
+separate, and every other effective route is blind on that pair, then `r₀` is
+what keeps the pair distinguishable: before removal the pair is not
+indistinguishable (this uses `hr₀eff` and `hr₀sep`), after removal it is,
+so the live error in `w` becomes sealed. -/
 theorem last_route_removal_seals (s : State W O R M) (r₀ : R)
+    {a : W → Prop} (hK : s.K a) {v w : W}
+    (hCv : s.C v) (hCw : s.C w) (hav : a v) (hnaw : ¬ a w)
+    (ho : s.obs v = s.obs w)
+    (hr₀eff : s.eff r₀) (hr₀sep : s.msg r₀ v ≠ s.msg r₀ w)
+    (hothers : ∀ r, s.eff r → r ≠ r₀ → s.msg r v = s.msg r w) :
+    ¬ Indist s v w ∧
+    Sealed { s with eff := fun r => s.eff r ∧ r ≠ r₀ } a w ∧
+    ¬ Unsealed { s with eff := fun r => s.eff r ∧ r ≠ r₀ } := by
+  have hsealed : Sealed { s with eff := fun r => s.eff r ∧ r ≠ r₀ } a w :=
+    ⟨v, hCv, hav, ho, fun r hr => hothers r hr.1 hr.2⟩
+  exact ⟨fun hvw => hr₀sep (hvw.2 r₀ hr₀eff), hsealed,
+    fun hnew => hnew a hK w hCw hnaw hsealed⟩
+
+/-- Transition form: from an anchor-safe state, removing the last separating
+route of a live cut produces an unsafe state. -/
+theorem last_route_removal_breaks_safety (s : State W O R M) (r₀ : R)
     (hsafe : Unsealed s) {a : W → Prop} (hK : s.K a) {v w : W}
     (hCv : s.C v) (hCw : s.C w) (hav : a v) (hnaw : ¬ a w)
     (ho : s.obs v = s.obs w)
     (hr₀eff : s.eff r₀) (hr₀sep : s.msg r₀ v ≠ s.msg r₀ w)
     (hothers : ∀ r, s.eff r → r ≠ r₀ → s.msg r v = s.msg r w) :
-    Unsealed s ∧ ¬ Unsealed { s with eff := fun r => s.eff r ∧ r ≠ r₀ } := by
-  refine ⟨hsafe, ?_⟩
-  intro hnew
-  exact hnew a hK w hCw hnaw
-    ⟨v, hCv, hav, ho, fun r hr => hothers r hr.1 hr.2⟩
+    Unsealed s ∧ ¬ Unsealed { s with eff := fun r => s.eff r ∧ r ≠ r₀ } :=
+  ⟨hsafe, (last_route_removal_seals s r₀ hK hCv hCw hav hnaw ho
+    hr₀eff hr₀sep hothers).2.2⟩
 
 /-- Local redundancy lemma corresponding to the information principle behind
 Theorem 6: a route that is a function of the inside view cannot separate a pair
@@ -304,13 +320,16 @@ false in it: a real error. -/
 def RealError : Prop := (∀ t, (traj t).C wstar) ∧ ¬ a wstar
 
 /-- **Result 7a.** If `a` is genuinely false in the actual world and truthful
-evidence never closes that world, then a seal that is never lifted makes that
-real error informationally undiscoverable for as long as the seal persists. -/
+evidence never closes that world, then a seal that is never lifted leaves a
+persistent undiscovered error: at every later time the actual world is open,
+`a` is false there, and that falsity is not discoverable. -/
 theorem permanent_seal_permanent_error (t₀ : Nat)
-    (_herr : RealError traj a wstar)
+    (herr : RealError traj a wstar)
     (hseal : ∀ t, t₀ ≤ t → Sealed (traj t) a wstar) :
-    ∀ t, t₀ ≤ t → ¬ Discoverable (traj t) a wstar :=
-  fun t ht hD => (discoverable_iff_not_sealed (traj t) a wstar).1 hD (hseal t ht)
+    ∀ t, t₀ ≤ t →
+      (traj t).C wstar ∧ ¬ a wstar ∧ ¬ Discoverable (traj t) a wstar :=
+  fun t ht => ⟨herr.1 t, herr.2,
+    fun hD => (discoverable_iff_not_sealed (traj t) a wstar).1 hD (hseal t ht)⟩
 
 /-- Repairable within `R`: from any time, within `R` steps the error is
 unsealed again. -/
@@ -320,12 +339,14 @@ def RepairableWithin (Rh : Nat) : Prop :=
 /-- **Result 7b.** For a real error, bounded unsealing turns an
 information-level seal into bounded delay: from any time the error becomes
 informationally discoverable within `R` steps. -/
-theorem repairable_seal_is_delay (Rh : Nat) (_herr : RealError traj a wstar)
+theorem repairable_seal_is_delay (Rh : Nat) (herr : RealError traj a wstar)
     (h : RepairableWithin traj a wstar Rh) :
-    ∀ t, ∃ t', t ≤ t' ∧ t' ≤ t + Rh ∧ Discoverable (traj t') a wstar := by
+    ∀ t, ∃ t', t ≤ t' ∧ t' ≤ t + Rh ∧
+      (traj t').C wstar ∧ ¬ a wstar ∧ Discoverable (traj t') a wstar := by
   intro t
   obtain ⟨t', h1, h2, h3⟩ := h t
-  exact ⟨t', h1, h2, (discoverable_iff_not_sealed (traj t') a wstar).2 h3⟩
+  exact ⟨t', h1, h2, herr.1 t', herr.2,
+    (discoverable_iff_not_sealed (traj t') a wstar).2 h3⟩
 
 /-- The two regimes exclude each other: an irreversible seal is not repairable. -/
 theorem irreversible_not_repairable (Rh t₀ : Nat)
