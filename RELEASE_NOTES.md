@@ -1,6 +1,11 @@
-# Evolution by Emergence v22.0 — Anchor-Safety, Self-Model and Shared Intelligence
+# Welcome to the Real World
 
-v22.0 is the closing package release for the current Evolution by Emergence repository line. It leaves the v21 universal retained-organization/accessibility and Cumulative Reproduction Model core intact and completes the reviewed intelligent-system specialization from the logical anchor through correction-preserving transitions.
+*How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
+**A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
+
+**Evolution by Emergence v22.0**
+
+v22.0 is the closing package release for the current Evolution by Emergence repository line. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The release leaves the v21 universal retained-organization/accessibility and Cumulative Reproduction Model core intact and completes the reviewed intelligent-system specialization from the logical anchor through correction-preserving transitions.
 
 No legacy chapters, essays, earlier theory cores, posts, creeds, presentations or PDFs are rewritten by this release. They remain part of the repository's lineage.
 
@@ -59,7 +64,7 @@ The historical online book edition and legacy repository material remain in plac
 
 ## 5. Release and archive metadata
 
-`RELEASE_VERSION`, `RELEASE_TITLE`, `CITATION.cff` and `.zenodo.json` are synchronized to v22.0. Zenodo-specific metadata includes the SoundCloud, YouTube and website resources as `isSupplementedBy` related identifiers.
+`RELEASE_VERSION`, `RELEASE_TITLE`, `CITATION.cff` and `.zenodo.json` are synchronized to v22.0 and to the public title above. Zenodo-specific metadata includes the SoundCloud, YouTube and website resources as `isSupplementedBy` related identifiers.
 
 The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`; Zenodo assigns the exact v22.0 version DOI when this GitHub release is archived.
 
