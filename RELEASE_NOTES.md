@@ -1,83 +1,83 @@
-# Evolution by Emergence v21.1 — Common Ground and Archival Metadata Repair
+# Welcome to the Real World
 
-v21.1 is a focused update to v21. It keeps the v21 universal retained-organization/accessibility core and cumulative-reproduction specialization intact, extends the intelligent-system specialization with an audited common-ground result, and repairs the release metadata that prevented v21 from being archived by Zenodo.
+*How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
+**A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-## 1. Step 6: common ground is the link, not the content
+**Evolution by Emergence v22.0**
 
-The SCAP seed now makes a sharper distinction between shared content and shared correctability.
+v22.0 is the closing package release for the current Evolution by Emergence repository line. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The release leaves the v21 universal retained-organization/accessibility and Cumulative Reproduction Model core intact and completes the reviewed intelligent-system specialization from the logical anchor through correction-preserving transitions.
 
-The key plain-language statement is:
+No legacy chapters, essays, earlier theory cores, posts, creeds, presentations or PDFs are rewritten by this release. They remain part of the repository's lineage.
 
-> **Common ground is not what we agree on. It is how we find out when one of us is wrong.**
+## 1. Intelligent-system endpoint
 
-The seed adds three results in its own vocabulary:
+The deep package under `research/anchored-correctability/` now includes the reviewed layers:
 
-- `informative_view_has_live_rival`: any informative view that rules out an open world has a live rival;
-- `shareable_iff_rules_out_nothing`: content that no potentially correct rival can oppose is exactly content that rules out nothing;
-- `room_agreement_is_rivalled`: agreement between two parties is not automatically common ground for everyone in the room.
+- **AnchorSafety** — an acting/learning system may commit and change, but a still-live error in a retained commitment must not become structurally undiscoverable;
+- **SelfModel** — claims a system makes about itself inherit the same correctability constraints as world-claims;
+- **GlobalLayer** — a shared representation's blind spot propagates when all available local views are determined by that same representation; independent local distinctions can be pivotal;
+- **SharedLayerDynamics** — shared information can be integrated while correction-relevant distinctions are handed off, rewired or redistributed across the network;
+- **CorrectionTransition** — the generic endpoint: every blind live cut after a transition must already have been a blind live cut before it.
 
-The same idea is audited in both Lean packages through:
+The final transition relation is deliberately exact rather than inflated. From an Anchor-Safe source, `correction_preserving_iff_safe_target` proves that correction preservation is equivalent to target safety. Its additional value is type-generality, composition, local sufficient conditions for concrete operations, and a meaningful non-expansion rule for systems that are not initially safe.
 
-- `informative_content_has_live_rival` — no axioms;
-- `shareable_iff_rules_out_nothing` — no axioms;
-- `agreement_witness` — `propext` only.
+## 2. Audited formal surfaces
 
-This makes the intended distinction explicit: the common structure is not a proposition that everyone must already share, but the maintained route by which live rival content can remain visible and correction can still occur.
+The current Anchored Correctability build rejects `sorryAx` and pins:
 
-## 2. Updated audited surfaces
+- `Audit.lean`: **227** headline results;
+- `AnchorSafetyAudit.lean`: **16**;
+- `SelfModelAudit.lean`: **11**;
+- `GlobalLayerAudit.lean`: **4**;
+- `SharedLayerDynamicsAudit.lean`: **11**;
+- `CorrectionTransitionAudit.lean`: **16**.
 
-The SCAP seed now audits **184 results**, including **103 axiom-free** results, with no unfinished proofs.
+All 16 `CorrectionTransition` audit results are axiom-free. Within the 16-result Anchor-Safety audit, 15 results are axiom-free; `anchorSafe_iff_cuts_separated` uses classical logic in one direction. Older formal surfaces keep their own explicit axiom reports.
 
-The research Anchored Correctability package now audits **227 results**. Its CI gate is pinned to that exact count and rejects `sorryAx`.
+The portable `scap-seed/` remains separately auditable at **184** headline results. The universal structural core and Cumulative Reproduction Model remain independently checked surfaces rather than being silently certified by the intelligent-system package.
 
-The Step 6 results are included in both package audit files rather than existing only as prose.
+## 3. Claims narrowed to the proof surface
 
-## 3. Zenodo archival repair
+This release keeps the repository's status categories explicit:
 
-The v21 GitHub release was created successfully but Zenodo reported:
+- **proved** — machine-checked implications under declared definitions and hypotheses;
+- **assumed** — named premises such as liveness, a chosen reality-tracking/correctability aim, evidence reliability where invoked, resource assumptions and application mappings;
+- **interpretation / open** — empirical universality, causal social mechanisms, numerical identity, political/normative conclusions and domain mappings not established by the formal proofs.
 
-    Citation metadata load failed
+In particular, the shared-layer results do **not** establish claims about nationality, legal ownership, training provenance, cultural neutrality or benefit distribution. `CollectivelyIrreducible` is also kept distinct from the stronger Evolution-by-Emergence notion of emergence.
 
-The v21 `CITATION.cff` contained the invalid CFF value:
+See `CLAIMS_V21.md`, `research/anchored-correctability/ANCHOR_SAFETY.md`, `research/anchored-correctability/SELF_MODEL.md`, and `scap-seed/CLAIMS.md` for the detailed ledgers.
 
-    license: "CC-BY-4.0 OR Apache-2.0"
+## 4. Self-standing repository front door
 
-CFF 1.2.0 represents alternative licenses as a list, so `CITATION.cff` is now standards-compliant:
+`README.md` is rewritten as the current navigation and citation surface. It now provides:
 
-    license:
-      - CC-BY-4.0
-      - Apache-2.0
+- a two-minute orientation;
+- a six-step argument map;
+- current-core versus archive/lineage routing;
+- exact verification commands and audit counts;
+- proved/assumed/open boundaries;
+- SoundCloud, YouTube and website routes;
+- citation and dual-licensing information.
 
-Zenodo's GitHub ingestion currently has a separate compatibility problem with multi-license arrays in `CITATION.cff`. To keep the repository metadata correct without depending on that parser behavior, v21.1 also adds `.zenodo.json`. Zenodo documents that `.zenodo.json` takes precedence over `CITATION.cff` for GitHub release archiving.
+The historical online book edition and legacy repository material remain in place as written.
 
-The Zenodo metadata therefore supplies a single archival license value, CC BY 4.0, while the repository's authoritative `DUAL-LICENSING.md` continues to grant original repository material under **CC BY 4.0 OR Apache-2.0**.
+## 5. Release and archive metadata
 
-The obsolete lowercase `citation.cff`, which still described version 0.88, has been removed so there is only one current CFF citation file.
+`RELEASE_VERSION`, `RELEASE_TITLE`, `CITATION.cff` and `.zenodo.json` are synchronized to v22.0 and to the public title above. Zenodo-specific metadata includes the SoundCloud, YouTube and website resources as `isSupplementedBy` related identifiers.
 
-## 4. Release-metadata safeguards
+The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`; Zenodo assigns the exact v22.0 version DOI when this GitHub release is archived.
 
-The release checks now validate the citation and Zenodo metadata before a release is published. The checks require:
+## 6. Open work remains open
 
-- a schema-valid `CITATION.cff`;
-- parseable `.zenodo.json`;
-- `CITATION.cff`, `.zenodo.json` and `RELEASE_VERSION` to name the same release;
-- Zenodo metadata to use a single license value on the GitHub-ingestion path;
-- the stale lowercase `citation.cff` to remain absent.
+The release does not convert remaining research questions into conclusions. Visible open problems include:
 
-This turns the v21 archival failure into a regression test for later releases.
+- the reachability–independence trade-off;
+- decoding and trust;
+- total rather than pivotal contribution;
+- the full upkeep/responsibility argument;
+- empirical tests of whether real updates are correction-preserving;
+- numerical identity and continuation;
+- cross-world-space transition semantics.
 
-## 5. Relation to v21
-
-v21.1 does not replace or rewrite the scientific content of v21. It contains that release line plus the audited Step 6/common-ground extension and the corrected archival metadata.
-
-The principal review surfaces remain:
-
-1. `THEORY_CORE_V21.md` — universal synthesis;
-2. `FORMAL_THEORY_MAP.md` and `FORMAL_THEORY_ENDPOINT.md` — formal route and scope;
-3. `formalization/cumulative-accessibility/` — universal retained-organization/accessibility core;
-4. `research/cumulative-reproduction/` — production/loss/resource specialization;
-5. `UNIVERSAL_TO_INTELLIGENCE.md` — specialization seam;
-6. `research/anchored-correctability/` — deep intelligent-system specialization;
-7. `scap-seed/` — portable anchor-to-corrigibility seed, now including Step 6.
-
-The same scope boundaries remain in force: machine checking establishes the stated formal implications under their premises; it does not by itself establish empirical universality.
+v22.0 is therefore a closure of the current package, not a claim that the research programme has no remaining questions.
