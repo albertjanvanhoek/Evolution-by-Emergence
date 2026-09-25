@@ -38,3 +38,4 @@ jobs:
           test "$(grep -c '^#print axioms ' AnchoredEvolution/SelfModelAudit.lean)" -eq 11
           test "$(grep -c '^#print axioms ' AnchoredEvolution/GlobalLayerAudit.lean)" -eq 4
           test "$(grep -c '^#print axioms ' AnchoredEvolution/SharedLayerDynamicsAudit.lean)" -eq 11
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/CorrectionTransitionAudit.lean)" -eq 16
