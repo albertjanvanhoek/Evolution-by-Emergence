@@ -237,24 +237,99 @@ The same shared representation can be useful as an informational input while
 being dangerous as the sole determinant at one of its own blind spots.
 
 Current limitations are explicit. `S`, `C`, `K` and the local view type remain
-fixed over time; only views and the hub vary. The formalisation treats
-information/refinement relations, not causal influence. Whether real humans,
-models or institutions satisfy these relations is empirical. A later layer can
-allow changing membership, evidence/open-world sets, commitments and
-representation types.
+fixed inside this shared-layer module; only views and the hub vary. The
+formalisation treats information/refinement relations, not causal influence.
+Whether real humans, models or institutions satisfy these relations is
+empirical. The generic transition layer below removes several of these type and
+membership restrictions while keeping the same world type.
+
+## Extension: correction-preserving transitions
+
+`lean/AnchoredEvolution/CorrectionTransition.lean` · audit:
+`CorrectionTransitionAudit.lean` (16 audited results)
+
+This is the type-general transition abstraction suggested by the preceding
+layers. A transition may change the inside-view type, route/member type and
+message type while remaining over the same world type `W`.
+
+The key predicate is `BlindLiveCut s a v w`: `a` is retained, `v` and `w` are
+open worlds on opposite sides of the commitment, and the state cannot
+distinguish them. `unsealed_iff_no_blind_live_cut` proves that Anchor-Safety is
+exactly the absence of such cuts.
+
+`CorrectionPreserving s s'` is then simply backward inclusion of blind live
+cuts:
+
+> every blind live cut after the transition was already a blind live cut before
+> it.
+
+So the invariant is not "preserve all information" and not even "preserve each
+node's information". It is **do not expand the set of unresolved blind cuts**.
+
+### Core consequences
+
+- `correction_preserving_refl` and `correction_preserving_trans`: the relation is
+  reflexive and compositional across changing state types.
+- `transition_preserves_safety`: if the source has no blind live cuts, a
+  correction-preserving target has none either.
+- `new_blind_cut_breaks_transition` and `new_seal_breaks_transition`: from a safe
+  source, introducing a blind live cut / sealed live error violates the
+  invariant.
+- `correction_preserving_iff_safe_target`: from a safe source the abstraction is
+  exact, not stronger than necessary: correction-preserving iff the target is
+  safe.
+- `trajectory_stays_safe`: heterogeneous trajectories remain safe when every
+  step is correction-preserving.
+
+The exactness result is important because it limits the claim. From a safe
+source, `CorrectionPreserving` adds no new safety criterion. Its extra value is
+structural and operational: it provides one compositional language for many
+kinds of change, and it remains meaningful when the source is already unsafe.
+In that case existing blind cuts may persist or disappear, but a
+correction-preserving transition may not introduce a **new blind live cut**.
+This is stronger and more precise than merely saying "do not add another unsafe
+state".
+
+### Earlier operations as instances
+
+- `reconfiguration_is_correction_preserving`: route rewiring.
+- `shrink_is_correction_preserving`: shrinking candidate worlds and/or retained
+  commitments. This theorem is purely set-theoretic; it does **not** prove that
+  the shrink is justified by evidence. Evidence discipline and reliability are
+  separate requirements.
+- `reencoding_is_correction_preserving`: change of inside representation through
+  an encoding with a left inverse.
+- `membership_change_is_correction_preserving`: replacing the available members,
+  including changing the member type, under a cut-reflection condition;
+  `membership_change_preserves_safety` is its safety corollary.
+- `network_cut_preserving_iff_correction_preserving`: the shared-layer
+  `NetworkCutPreserving` condition is exactly the generic transition invariant
+  for consecutive network states.
+- `connector_is_correction_preserving`: connector updates are therefore direct
+  instances of the generic relation.
+
+This closes an important loop in the architecture: route rewiring, membership
+change, representation change and shared-layer integration are no longer
+separate safety stories. They are local sufficient conditions for one
+blind-cut non-expansion invariant.
+
+The abstraction still keeps `W` fixed. A later semantic bridge would be needed
+to compare states whose world spaces themselves change. Likewise, the generic
+relation is informational; causal mechanisms, costs, evidence legitimacy and
+empirical realizability remain separate layers.
 
 ## Ledger
 
 | Status | Item |
 |---|---|
-| Proved, no axioms | the 11 audited self-model results, 4 global-layer results, and 11 shared-layer-dynamics results |
-| Formal hypotheses | open worlds and retained commitments; equal/different histories; live cuts; exact node separation/determination; equal introspective reports; hub/local dependence; network cut preservation or connector conditions in dynamics |
-| Modelling choices | history, node-network and introspection as `State` instances; `IsSelf` marker; `Unit` inside view in pure node networks; shared representation `hub`; fixed `S`, `C`, `K` and view type in the first dynamic layer |
+| Proved, no axioms | 11 audited self-model results, 4 global-layer results, 11 shared-layer-dynamics results, and 16 correction-transition results |
+| Formal hypotheses | open worlds and retained commitments; equal/different histories; live cuts; exact node separation/determination; equal introspective reports; hub/local dependence; network cut preservation; blind-live-cut reflection across generic transitions |
+| Modelling choices | history, node-network and introspection as `State` instances; `IsSelf` marker; `Unit` inside view in pure node networks; shared representation `hub`; same world type `W` across a generic correction transition |
 | Programme-level aims | persistence and reality-tracking explain why correctability matters; they are not hypotheses of these proofs |
 | Interpretive mappings | material-buffer interpretation; bodies/hosted models; nodes as people, communities, institutions or nations; hub as a shared model/AI layer; "capture" and "connector" as readings of information-dependence regimes |
-| Not defined | numerical identity; whether process continuation is sufficient for identity; legal/political ownership of a representation layer; full EbE emergence of a shared layer |
-| Outside formalisation | phenomenal feeling; causal influence of a hub on nodes; empirical identity/conflict claims; predictions about national identity; normative benefit-sharing claims |
-| Open | time-varying membership, evidence sets and commitments; changing representation types; a formal continuation relation for retained organisation; quantitative measures of total contribution, robustness, homogenisation and independence; responsibility/upkeep via `NetworkEconomics`; worked finite examples |
+| Not defined | numerical identity; whether process continuation is sufficient for identity; legal/political ownership of a representation layer; full EbE emergence of a shared layer; transitions between different world spaces |
+| Outside formalisation | phenomenal feeling; causal influence of a hub on nodes; empirical identity/conflict claims; predictions about national identity; normative benefit-sharing claims; whether candidate-set shrinkage is evidentially warranted |
+| Open | a formal continuation relation for retained organisation; quantitative measures of total contribution, robustness, homogenisation and independence; responsibility/upkeep via `NetworkEconomics`; semantic bridges across changing world spaces; worked finite examples |
 
 ## Provenance
 
@@ -265,4 +340,7 @@ total, and particularity versus identity. Later extensions applied the same
 node-network logic to a shared representation layer and then to its dynamics,
 keeping informational dependence separate from political, causal and normative
 interpretations and moving the dynamic invariant from per-node retention to
-network-level preservation of live correction cuts.
+network-level preservation of live correction cuts. The final transition layer
+factors those cases into a single heterogeneous blind-cut non-expansion
+relation while stating explicitly that, from a safe source, the relation is
+exactly equivalent to target safety.
