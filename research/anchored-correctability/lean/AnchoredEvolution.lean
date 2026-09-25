@@ -21,7 +21,9 @@ import AnchoredEvolution.Alignment
 import AnchoredEvolution.AnchorSafety
 import AnchoredEvolution.SelfModel
 import AnchoredEvolution.GlobalLayer
+import AnchoredEvolution.SharedLayerDynamics
 import AnchoredEvolution.Audit
 import AnchoredEvolution.AnchorSafetyAudit
 import AnchoredEvolution.SelfModelAudit
 import AnchoredEvolution.GlobalLayerAudit
+import AnchoredEvolution.SharedLayerDynamicsAudit
