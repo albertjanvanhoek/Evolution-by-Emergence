@@ -1,4 +1,4 @@
-name: v21 Integration Check
+name: v22 Integration Check
 
 on:
   pull_request:
@@ -47,7 +47,7 @@ permissions:
 
 jobs:
   release-metadata:
-    name: Release metadata coherence
+    name: Release metadata and README coherence
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -55,14 +55,14 @@ jobs:
         uses: citation-file-format/cffconvert-github-action@2.0.0
         with:
           args: '--validate'
-      - name: Check v21.1 and Zenodo metadata
+      - name: Check v22.0, README and Zenodo metadata
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
-          test "$VERSION" = "v21.1"
-          grep -q '^Evolution by Emergence v21.1' RELEASE_TITLE
-          grep -q '^# Evolution by Emergence v21.1' RELEASE_NOTES.md
+          test "$VERSION" = "v22.0"
+          grep -q '^Evolution by Emergence v22.0' RELEASE_TITLE
+          grep -q '^# Evolution by Emergence v22.0' RELEASE_NOTES.md
           test -s THEORY_CORE_V21.md
           test -s FORMAL_THEORY_MAP.md
           test -s FORMAL_THEORY_ENDPOINT.md
@@ -70,6 +70,7 @@ jobs:
           test -s CITATION.cff
           test -s .zenodo.json
           test ! -e citation.cff
+          test "$(wc -l < README.md)" -le 250
           grep -q 'research/anchored-correctability' THEORY_CORE_V21.md
           grep -q 'research/cumulative-reproduction' THEORY_CORE_V21.md
           grep -q 'scap-seed' THEORY_CORE_V21.md
@@ -78,13 +79,17 @@ jobs:
           import json
           import re
           from pathlib import Path
+          from urllib.parse import unquote
 
           version = Path('RELEASE_VERSION').read_text(encoding='utf-8').strip()
           cff = Path('CITATION.cff').read_text(encoding='utf-8')
           zenodo = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
+          readme = Path('README.md').read_text(encoding='utf-8')
 
           if f'version: "{version}"' not in cff:
               raise SystemExit('CITATION.cff version does not match RELEASE_VERSION')
+          if 'doi: "10.5281/zenodo.15207807"' not in cff:
+              raise SystemExit('CITATION.cff must carry the stable Zenodo DOI')
           if 'license: "CC-BY-4.0 OR Apache-2.0"' in cff:
               raise SystemExit('CITATION.cff contains an invalid SPDX OR expression')
           if not re.search(r'(?m)^license:\s*\n\s+-\s+CC-BY-4\.0\s*\n\s+-\s+Apache-2\.0\s*$', cff):
@@ -96,13 +101,36 @@ jobs:
               raise SystemExit('.zenodo.json must describe a software release')
           if zenodo.get('access_right') != 'open':
               raise SystemExit('.zenodo.json must keep the release open access')
-          license_value = zenodo.get('license')
-          if not isinstance(license_value, str) or not license_value:
-              raise SystemExit('.zenodo.json must use one string license for Zenodo GitHub ingestion')
-          if license_value.lower() != 'cc-by-4.0':
+          if zenodo.get('license', '').lower() != 'cc-by-4.0':
               raise SystemExit('.zenodo.json archival license must be cc-by-4.0')
           if not zenodo.get('creators'):
               raise SystemExit('.zenodo.json must name at least one creator')
+
+          expected = {
+              'https://soundcloud.com/emergence-223803727',
+              'https://www.youtube.com/@AutonomousInterdependence',
+              'https://albertjanvanhoek.github.io/Evolution-by-Emergence/',
+          }
+          related = {
+              item.get('identifier')
+              for item in zenodo.get('related_identifiers', [])
+              if item.get('relation') == 'isSupplementedBy'
+          }
+          if not expected <= related:
+              raise SystemExit('.zenodo.json is missing one or more supplemental media/site links')
+
+          # Check every relative Markdown link in the repository front door.
+          # External URLs, mailto links and in-page anchors are checked elsewhere.
+          missing = []
+          for target in re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)', readme):
+              target = target.strip().split()[0].strip('<>')
+              if target.startswith(('http://', 'https://', 'mailto:', '#')):
+                  continue
+              target = unquote(target.split('#', 1)[0])
+              if target and not Path(target).exists():
+                  missing.append(target)
+          if missing:
+              raise SystemExit('Broken relative README links: ' + ', '.join(sorted(set(missing))))
           PY
 
   universal-structure:
@@ -178,7 +206,7 @@ jobs:
         run: |
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Build and audit 227-result intelligent-system surface
+      - name: Build and audit intelligent-system surfaces
         working-directory: research/anchored-correctability/lean
         shell: bash
         run: |
@@ -189,6 +217,11 @@ jobs:
             exit 1
           fi
           test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 227
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/AnchorSafetyAudit.lean)" -eq 16
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/SelfModelAudit.lean)" -eq 11
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/GlobalLayerAudit.lean)" -eq 4
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/SharedLayerDynamicsAudit.lean)" -eq 11
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/CorrectionTransitionAudit.lean)" -eq 16
 
   scap-seed:
     name: SCAP Seed

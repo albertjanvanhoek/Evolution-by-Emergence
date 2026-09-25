@@ -1,154 +1,72 @@
 # Evolution by Emergence
 
-## v21.1: cumulative evolution, common ground, and an explicit intelligent-system specialization
+**A substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems.**
 
-Evolution by Emergence (EbE) asks:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
+[![Anchored Correctability](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml)
+[![License](https://img.shields.io/badge/license-CC--BY--4.0%20OR%20Apache--2.0-blue.svg)](DUAL-LICENSING.md)
 
-> **How can organization that exists now become causal material that changes which organization can exist next, while itself being produced, lost and maintained under finite resources?**
+## What this is
 
-v21.1 is the current review object. It retains the v21 universal retained-organization/accessibility core and reviewed Cumulative Reproduction Model, keeps Anchored Correctability / SCAP explicitly scoped to intelligent systems, and adds the audited Step 6 result that **common ground is the correction link, not shared content**.
-
-The universal interpretation remains a **candidate to be challenged**, not an established empirical law.
+**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and then, conditional on a stated aim of continued reality-tracking/correctability, derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
 ## Start here
 
-### Universal Evolution by Emergence
+| If you want to… | Go to |
+|---|---|
+| understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
+| understand the universal EbE theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md) |
+| read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |
+| check the proofs | [Verify](#verify) below |
+| see what is proved, assumed and open | [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md) |
+| start from the smallest replayable formal object | [scap-seed/](scap-seed/) |
+| browse the papers | [papers/](papers/) |
+| listen or watch | [Listen and watch](#listen-and-watch) below |
+| cite the project | [Cite](#cite) below |
 
-1. **[THEORY_CORE_V21.md](THEORY_CORE_V21.md)** — current universal theory synthesis.
-2. **[FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)** — theorem and specialization map.
-3. **[FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md)** — review object, scope and failure conditions.
-4. **[formalization/cumulative-accessibility/README.md](formalization/cumulative-accessibility/README.md)** — identity-sensitive retained-organization/accessibility formal core inherited from v20.
-5. **[research/cumulative-reproduction/README.md](research/cumulative-reproduction/README.md)** — reviewed production/loss/resource dynamics and E1–E8 experiments.
+## The argument in six steps
 
-### Intelligent-system specialization
+1. **The anchor.** Mutually incompatible live claims cannot all be true; while a live rival remains, certainty from inside a model is not itself a certificate of correspondence with reality. See [TheRoom.lean](papers/the-room-learning-constitution/TheRoom.lean) and the [SCAP Seed](scap-seed/SEED.md).
+2. **Common ground.** Before agreement, informative content can itself be rivalled; the shareable structure is the maintained possibility of correction rather than a proposition all sides already accept. See [Alignment.lean](research/anchored-correctability/lean/AnchoredEvolution/Alignment.lean).
+3. **Anchor-safety.** Learn, act and commit, but do not make a still-live error in a retained commitment structurally undiscoverable. See [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md).
+4. **Self-model.** Claims a system makes about itself receive no epistemic exemption from claims about the world. See [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md).
+5. **Shared layer.** A shared representation can help as a connector of independent views; if it becomes their common determinant, its blind spots can propagate through the network. This is an information-theoretic result, not a claim about nationality, ownership, training provenance or benefit distribution. See [GlobalLayer.lean](research/anchored-correctability/lean/AnchoredEvolution/GlobalLayer.lean) and [SharedLayerDynamics.lean](research/anchored-correctability/lean/AnchoredEvolution/SharedLayerDynamics.lean).
+6. **Transitions.** A learning network may forget, compress, re-encode, rewire and change members provided blind live cuts do not expand. See [CorrectionTransition.lean](research/anchored-correctability/lean/AnchoredEvolution/CorrectionTransition.lean).
 
-1. **[UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md)** — explicit specialization seam; mapping, not equivalence.
-2. **[research/anchored-correctability/README.md](research/anchored-correctability/README.md)** — current deep intelligent-system endpoint: semantics, tracking, realization, persistence, SCAP and alignment.
-3. **[scap-seed/README.md](scap-seed/README.md)** — smaller self-contained replay/review object with its own Lean project, claims ledger and simulations.
+> **A healthy intelligence, individual or shared, does not need its parts to stay unchanged; it needs change never to erase the last way of discovering a still-live error.**
 
-The intelligent-system track introduces candidate worlds, semantic claims, evidence, challenge, answerability and tracking. Those are not silently promoted to universal EbE primitives.
+## Repository map
 
-## Universal core in one paragraph
+### Current core
 
-The structural state is represented as active organization `G`, retained organization `R`, context `Gamma`, and gross budget. Retention consumes maintenance cost and can also alter transition machinery, thereby changing which future organization is reachable within a horizon and budget. Strict compositional emergence constrains what future function can finance before realization. Finite resources prevent unconstrained positive-cost retention and bounded single-unit reuse bounds declared accessible repertoire.
+- **Universal theory:** [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
+- **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
+- **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
+- **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
+- **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.
+- **Independent verification material:** [verification/](verification/).
+- **Papers:** [papers/](papers/).
+- **Book:** [Chapters/](Chapters/), [Backmatter/](Backmatter/), `main.tex`, and the website sources under [docs/](docs/) with [mkdocs.yml](mkdocs.yml).
 
-The reviewed Cumulative Reproduction Model adds a complementary count-level question: under a declared production/loss law and resource ledger, how does a retained repertoire grow, collapse, plateau or fluctuate? The structural and dynamical questions are deliberately kept distinct.
+### Archive and lineage — kept in place, as written
 
-```text
-retained identity / structure
-        |
-        +--> transition machinery --> future accessibility
-        |
-        +--> maintenance burden
-        |
-        +--> production / loss / admission --> next retained repertoire
-```
+Nothing in this release deletes, moves, renames or rewrites the historical corpus.
 
-A complete empirical application may need both item identity/function and count/rate dynamics.
+- [THEORY_CORE_V17.md](THEORY_CORE_V17.md) — earlier recursive-organization core; superseded as the repository front door by the v21 universal synthesis.
+- [THEORY_CORE_V20.md](THEORY_CORE_V20.md) — frozen retained-organization/accessibility peer-review core; inherited by later releases.
+- [THEORY_CORE_V21.md](THEORY_CORE_V21.md) — current universal core inherited unchanged by v22.
+- [THEORY.md](THEORY.md), [DYNAMIC_OVERVIEW.md](DYNAMIC_OVERVIEW.md), [APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md) — broader earlier syntheses and mappings; retained for lineage.
+- [Individual_essays/](Individual_essays/) and [Original linkedIN posts/](Original%20linkedIN%20posts/) — essays and original posts, kept as written.
+- [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written.
+- [Presentations/](Presentations/) — presentation sources, kept as written.
+- Rendered and source papers under [papers/](papers/) — including historical PDFs; source lineage is preserved rather than normalized.
+- [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) provides a wider map of the corpus.
 
-## What changed since v20
+## Verify
 
-v20 remains an immutable historical review object for the retained-organization/accessibility theory. v21 added:
+The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-- the reviewed Cumulative Reproduction Model under `research/cumulative-reproduction/`;
-- explicit separation of structural accessibility from repertoire-level dynamics;
-- the Anchored Correctability / Persistence / SCAP package as a **separate intelligent-system specialization**;
-- the Alignment layer distinguishing corrigibility from obedience/sycophancy and behavioural compliance from verification;
-- the self-contained `scap-seed/` subproject;
-- a repository-level specialization map and v21 integration verification matrix.
-
-v21.1 adds:
-
-- **Step 6: common ground is the link, not the content**, machine-audited in both intelligent-system Lean packages;
-- 184 audited SCAP Seed results and 227 audited Anchored Correctability results;
-- repaired Zenodo/GitHub archival metadata after the v21 `CITATION.cff` ingestion failure;
-- release checks that validate CFF metadata and the Zenodo-specific archive metadata before publication.
-
-## Intelligent-system endpoint
-
-The current deep specialization follows roughly:
-
-```text
-anchor
- -> live candidate worlds
- -> executable challenge/revision
- -> semantic answerability
- -> content-sensitive tracking
- -> individuals / groups / recursive networks
- -> unified transition law
- -> dynamic evidence
- -> operational realization
- -> changing world + link failure/repair
- -> SCAP persistence conditions
- -> alignment specialization
- -> common ground as the maintained correction link
-```
-
-Its formal SCAP object separates:
-
-```text
-Connected ∧ Faithful ∧ Evidence-open ∧ Repairable ∧ Affordable.
-```
-
-This is a theorem-level object under explicit semantic and operational premises. It is not a new universal axiom of EbE.
-
-## Start small: SCAP Seed
-
-[SCAP Seed](scap-seed/README.md) is deliberately smaller than the research endpoint. It exists so a reviewer can replay the anchor-to-corrigibility path without loading the whole repository. It remains self-contained and keeps its own licensing and verification boundary.
-
-Its Step 6 makes the common-ground claim explicit:
-
-> **Common ground is not what we agree on. It is how we find out when one of us is wrong.**
-
-What is proved inside the seed does not certify the rest of the repository, and the rest of the repository does not weaken the seed's local theorems.
-
-## Verification boundaries
-
-The repository now has four independently checked surfaces:
-
-- `formalization/cumulative-accessibility/` — universal structural core;
-- `research/cumulative-reproduction/` — reviewed count-level dynamics and numerical checks;
-- `research/anchored-correctability/` — deep intelligent-system specialization;
-- `scap-seed/` — portable seed.
-
-`.github/workflows/v21-integration-check.yml` runs these surfaces together on a release candidate commit. A green matrix means each declared package passed its own verification on that commit; it does **not** mean one package proves the others.
-
-The release metadata gate additionally checks `CITATION.cff` and `.zenodo.json` before publication so a GitHub release cannot silently repeat the v21 Zenodo metadata failure.
-
-## Important distinctions
-
-v21.1 keeps the following separations explicit:
-
-- state dependence ≠ cumulative evolution;
-- structural accessibility ≠ repertoire count dynamics;
-- deterministic growth ≠ finite-horizon stochastic survival;
-- finite-target hitting ≠ eventual survival;
-- emergence ≠ retention;
-- persistence ≠ function;
-- validation ≠ truth;
-- exact semantic relay ≠ live-preserving sharpening;
-- agreement ≠ common ground;
-- intelligent-system semantics ≠ universal EbE primitives;
-- machine checking ≠ empirical truth.
-
-## Review and falsification
-
-Reviewers are asked to localize criticism:
-
-1. **formal validity** — does a conclusion fail under its exact premises?
-2. **semantic adequacy** — does a predicate fail to mean what the prose claims?
-3. **model separation** — have structural and count-level models been conflated?
-4. **hidden assumptions** — are counting, resources, parentage, or semantic premises doing unacknowledged work?
-5. **prior art** — does an existing theory already provide an equal or stronger architecture?
-6. **cross-domain mapping** — can target systems instantiate the interfaces non-arbitrarily?
-7. **universality** — is there a genuine cumulative system with no defensible retained-history effect on later accessibility?
-8. **specialization failure** — does the intelligent-system mapping add unjustified semantics or fail to instantiate the universal interfaces it claims to specialize?
-
-A successful falsification, narrowing, or prior-art correction is a useful outcome.
-
-## Reproduce
-
-Universal structural core:
+Universal retained-organization/accessibility core:
 
 ```bash
 cd formalization/cumulative-accessibility
@@ -158,20 +76,87 @@ lake build CumulativeAccessibility.AuditAll CumulativeAccessibility.Verification
 lake env lean CumulativeAccessibility/VerificationSurface.lean
 ```
 
-The other three packages have their own README and path-scoped CI instructions.
+Deep intelligent-system package:
 
-## Release lineage
+```bash
+cd research/anchored-correctability/lean
+lake build
+```
 
-- **v21.1** — current review object: v21 scientific core + audited Step 6/common-ground extension + repaired Zenodo archival metadata.
-- **v21** — universal retained-organization/accessibility + reviewed cumulative-reproduction dynamics, with the intelligent-system specialization explicitly separated.
-- **v20** — immutable retained-organization/accessibility peer-review release.
-- **v19** — Retained Organization and Correctable Learning.
-- **v18** — The Learning Constitution: Correctable Interdependence.
-- **v17** — Recursive Organization Core.
-- **v16** — Full Theory Peer-Review Release / Dynamic Vortex integration.
+Its audit surfaces are in `lean/AnchoredEvolution/*Audit.lean`. CI rejects `sorryAx` and pins these counts:
 
-Use [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for the wider corpus and historical routes.
+| Audit | Headline results |
+|---|---:|
+| `Audit.lean` | 227 |
+| `AnchorSafetyAudit.lean` | 16 |
+| `SelfModelAudit.lean` | 11 |
+| `GlobalLayerAudit.lean` | 4 |
+| `SharedLayerDynamicsAudit.lean` | 11 |
+| `CorrectionTransitionAudit.lean` | 16 |
 
----
+Within the 16-result **Anchor-Safety** audit, 15 results are axiom-free; `anchorSafe_iff_cuts_separated` uses classical logic in one direction. Other older formal surfaces have their own explicit axiom reports; machine checking proves implications under stated premises, not empirical truth.
 
-*Evolution by Emergence is an active, corrigible research corpus by Albert Jan van Hoek with AI collaboration. Formal verification establishes mathematical implications under explicit assumptions. Scientific interpretation, application, and normative conclusions remain open to evidence and peer review.*
+Cumulative Reproduction Model:
+
+```bash
+cd research/cumulative-reproduction/lean
+lean CumulativeReproduction.lean
+```
+
+SCAP Seed:
+
+```bash
+cd scap-seed
+scripts/verify.sh
+```
+
+The seed audits **184 headline results**. The integrated release matrix is [.github/workflows/v21-integration-check.yml](.github/workflows/v21-integration-check.yml); the deep package has its own [anchored-correctability workflow](.github/workflows/anchored-correctability-check.yml).
+
+## What is proved, assumed and open
+
+| Status | What it means here |
+|---|---|
+| **Proved** | Lean-checked implications under the definitions and hypotheses in the formal files; axiom status is printed in the audit files. |
+| **Assumed** | Named premises such as liveness, the chosen correctability/reality-tracking aim, evidence reliability where invoked, resource bounds, and model-to-domain mappings. |
+| **Interpretation / open** | Empirical universality, whether real humans/organizations/models instantiate the predicates, numerical identity, causal social interpretations, political/normative conclusions, and other domain claims not established by the formal proofs. |
+
+Full ledgers: [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md), and [scap-seed/CLAIMS.md](scap-seed/CLAIMS.md).
+
+Open problems remain visible rather than being converted into claims: the **reachability–independence trade-off** (including the Zollman-style concern that more connectivity can erase independent exploration), decoding and trust, total rather than merely pivotal contribution, the full upkeep/responsibility argument, and empirical tests of whether real updates are correction-preserving.
+
+## Listen and watch
+
+The work also exists as music, spoken word and video:
+
+- **Emergence on SoundCloud:** https://soundcloud.com/emergence-223803727
+- **Autonomous Interdependence on YouTube:** https://www.youtube.com/@AutonomousInterdependence
+- **Online book edition:** https://albertjanvanhoek.github.io/Evolution-by-Emergence/
+
+The website is the historical online book edition; this README is the current repository front door.
+
+## Cite
+
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.0 version DOI after archival.
+
+```bibtex
+@software{vanhoek_evolution_by_emergence_v22,
+  author  = {van Hoek, Albert Jan},
+  title   = {Evolution by Emergence},
+  version = {v22.0},
+  year    = {2026},
+  doi     = {10.5281/zenodo.15207807},
+  url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
+}
+```
+
+Plain text:
+
+> van Hoek, Albert Jan. (2026). *Evolution by Emergence* (v22.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
+
+See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
+
+## License
+
+Except where a file or third-party notice says otherwise, original repository material is available under **CC BY 4.0 OR Apache-2.0**; choose either license. See [DUAL-LICENSING.md](DUAL-LICENSING.md), [LICENSE-APACHE-2.0](LICENSE-APACHE-2.0), and [License](License).
+
+Some subprojects or third-party materials carry their own notices; those local terms remain authoritative.

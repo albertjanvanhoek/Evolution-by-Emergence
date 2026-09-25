@@ -6,13 +6,13 @@
     }
   ],
   "title": "Evolution by Emergence",
-  "version": "v21.1",
-  "publication_date": "2026-09-24",
+  "version": "v22.0",
+  "publication_date": "2026-09-25",
   "upload_type": "software",
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v21.1 retains the v21 retained-organization/accessibility and cumulative-reproduction core and adds the audited Step 6 common-ground results. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
+  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.0 retains the v21 universal retained-organization/accessibility and cumulative-reproduction core and closes the intelligent-system specialization with audited Anchor-Safety, reflexive self-model, shared-layer, and correction-preserving transition results. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
   "keywords": [
     "cumulative evolution",
     "emergence",
@@ -21,7 +21,26 @@
     "complex systems",
     "Lean",
     "corrigibility",
-    "common ground",
+    "Anchor-Safety",
+    "self-model",
+    "shared intelligence",
     "SCAP"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://soundcloud.com/emergence-223803727",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "https://www.youtube.com/@AutonomousInterdependence",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    },
+    {
+      "identifier": "https://albertjanvanhoek.github.io/Evolution-by-Emergence/",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    }
   ]
 }
