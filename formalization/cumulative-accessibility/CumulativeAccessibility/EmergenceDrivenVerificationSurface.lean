@@ -1,0 +1,103 @@
+import CumulativeAccessibility.OrganizationDrivenEmergence
+import CumulativeAccessibility.OrganizationDrivenEmergenceRecurrence
+import CumulativeAccessibility.OrganizationDrivenEmergenceWitness
+import CumulativeAccessibility.OrganizationDrivenEmergenceProbes
+import CumulativeAccessibility.OrganizationDrivenDynamicVortex
+
+namespace CumulativeAccessibility
+namespace RecursiveAccessibility
+
+/-!
+# Organization-driven emergence — research verification surface
+
+This is the compact review entry point for PR #62.
+
+The candidate successor is organization-first:
+
+* retained organization is the state variable;
+* function is realized by organization directly;
+* emergence attributes a function to the whole rather than proper parts;
+* persistence decides whether the whole remains available;
+* retained organization automatically makes its realized functions available;
+* changed accessibility is a downstream consequence, not an authorization step
+  and not necessarily a mutation of the underlying construction laws.
+
+Superseded RuleOf(S) and certification/operator routes are intentionally absent from this verification surface; their history is preserved in commits and the audit note.
+-/
+
+#check FunctionAvailable
+#check EffectiveOrganizationGenerator
+#check OrganizationReach
+#check reachableOrganizationPromotion_preserves_fixedReach
+
+#check OrganizationPersistenceGateAt
+#check IsolatedOrganizationPersistenceLawAt
+#check persistenceLaw_gateFailure_does_not_retain_new
+
+#check EmergentOrganizationPersistenceAt
+#check emergentOrganization_function_exists
+#check emergentOrganization_excludes_proper_part_function
+#check emergentOrganization_retained
+#check emergentOrganization_function_available_after_persistence
+
+#check FunctionallyNovelToRetainedSystem
+#check RetainedVocabularyEmergenceAt
+#check retainedVocabularyEmergence_strictly_expands_availableFunctions
+
+#check retainedEmergentFunction_can_expand_fullReach
+#check retainedOrganization_can_expand_oneStep_under_fixedRule
+
+#check OrganizationEmergenceChain
+#check organizationEmergenceChain_endpoint_retained
+#check RecurringEmergentOrganizationPersistence
+#check RecurringRetainedVocabularyEmergence
+#check recurringVocabularyEmergence_implies_openEndedOrganization
+
+#check organizationLadder_event
+#check organizationLadder_vocabulary_event
+#check organizationLadder_functions_strictly_expand
+#check organizationLadder_fullReach_click
+#check organizationLadder_recursive_reuse
+#check organizationLadder_recurring_vocabulary
+#check organizationLadder_chain
+#check organizationLadder_openEndedOrganization
+
+#check organizationLadder_nonEmergent_whole_still_functions
+#check organizationLadder_nonEmergent
+#check organizationLadder_nonEmergent_function_already_available
+#check organizationLadder_nonEmergent_not_functionally_novel
+#check same_retained_organization_context_changes_expressed_function
+#check organizationProbe_function_is_upstream_of_persistence
+#check organizationProbe_nonEmergence_means_not_functionally_novel
+#check recurringOpportunity_and_vocabularyPersistence_imply_openEndedOrganization
+
+#print axioms reachableOrganizationPromotion_preserves_fixedReach
+#print axioms persistenceLaw_gateFailure_does_not_retain_new
+#print axioms emergentOrganization_function_exists
+#print axioms emergentOrganization_excludes_proper_part_function
+#print axioms emergentOrganization_retained
+#print axioms emergentOrganization_function_available_after_persistence
+#print axioms retainedVocabularyEmergence_strictly_expands_availableFunctions
+#print axioms retainedEmergentFunction_can_expand_fullReach
+#print axioms retainedOrganization_can_expand_oneStep_under_fixedRule
+#print axioms organizationEmergenceChain_endpoint_retained
+#print axioms recurringVocabularyEmergence_implies_openEndedOrganization
+#print axioms organizationLadder_event
+#print axioms organizationLadder_vocabulary_event
+#print axioms organizationLadder_functions_strictly_expand
+#print axioms organizationLadder_fullReach_click
+#print axioms organizationLadder_recursive_reuse
+#print axioms organizationLadder_recurring_vocabulary
+#print axioms organizationLadder_chain
+#print axioms organizationLadder_openEndedOrganization
+#print axioms organizationLadder_nonEmergent_whole_still_functions
+#print axioms organizationLadder_nonEmergent
+#print axioms organizationLadder_nonEmergent_function_already_available
+#print axioms organizationLadder_nonEmergent_not_functionally_novel
+#print axioms same_retained_organization_context_changes_expressed_function
+#print axioms organizationProbe_function_is_upstream_of_persistence
+#print axioms organizationProbe_nonEmergence_means_not_functionally_novel
+#print axioms recurringOpportunity_and_vocabularyPersistence_imply_openEndedOrganization
+
+end RecursiveAccessibility
+end CumulativeAccessibility

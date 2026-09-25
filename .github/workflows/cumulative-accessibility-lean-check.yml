@@ -46,6 +46,12 @@ jobs:
           $HOME/.elan/bin/lake build \
             CumulativeAccessibility.AuditAll \
             CumulativeAccessibility.VerificationSurface \
+            CumulativeAccessibility.OrganizationDrivenEmergence \
+            CumulativeAccessibility.OrganizationDrivenEmergenceRecurrence \
+            CumulativeAccessibility.OrganizationDrivenEmergenceWitness \
+            CumulativeAccessibility.OrganizationDrivenEmergenceProbes \
+            CumulativeAccessibility.OrganizationDrivenDynamicVortex \
+            CumulativeAccessibility.EmergenceDrivenVerificationSurface \
             CumulativeAccessibility.FormalCoreWitness \
             CumulativeAccessibility.MaintenanceGatedWitness \
             CumulativeAccessibility.BoundedResponseWitness \
@@ -84,6 +90,12 @@ jobs:
           set -euo pipefail
           output="$({
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/VerificationSurface.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergence.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceRecurrence.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceWitness.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenEmergenceProbes.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/OrganizationDrivenDynamicVortex.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/EmergenceDrivenVerificationSurface.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/FormalCoreWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/MaintenanceGatedWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/BoundedResponseWitness.lean
