@@ -26,6 +26,13 @@ relational particularity. Neither defines identity, and this layer does not
 claim that the programme-level identity candidate is the uniquely correct
 metaphysical criterion.
 
+A further distinction is left deliberately open: **process continuation is not
+yet numerical identity**. A persistence relation may allow branching or
+copying, so one process can have more than one later continuer. Numerical
+identity normally demands something stronger. The backup result below is a
+useful warning: preserving the same network function or corrective role does
+not by itself decide which continuer, if any, is the same individual.
+
 ## Results
 
 **0. No self-exemption.** `selfPart` restricts retained commitments to
@@ -83,9 +90,9 @@ external routes).
 | Modelling choices | the history state, node network and introspective state as `State` instances; `IsSelf` as a marker for self-claims; `Unit` inside view in the pure node-network construction |
 | Programme-level aims | persistence and reality-tracking explain why correctability matters; they are not hypotheses of these 11 proofs |
 | Interpretive mappings | treating a temporal indistinguishability horizon as a material buffer; mapping bodies or hosted models to such histories; applying the same abstraction across substrates |
-| Not defined | identity as a persisting organised process |
+| Not defined | numerical identity; whether process continuation is sufficient for identity, especially under branching/copying |
 | Outside formalisation | whether anything is felt; whether these definitions capture what they name |
-| Open | a measure of total (not only pivotal) contribution, including robustness; responsibility as upkeep via `NetworkEconomics`; local views cannot certify network-level commitments; a worked finite example |
+| Open | a formal continuation relation for retained organisation; a measure of total (not only pivotal) contribution, including robustness; responsibility as upkeep via `NetworkEconomics`; local views cannot certify network-level commitments; a worked finite example |
 
 ## Provenance
 
