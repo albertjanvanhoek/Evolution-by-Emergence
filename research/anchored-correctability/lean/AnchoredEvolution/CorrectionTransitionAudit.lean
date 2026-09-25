@@ -1,0 +1,25 @@
+import AnchoredEvolution.CorrectionTransition
+
+/-!
+# Axiom audit: correction-preserving transitions
+
+Blind-live-cut non-expansion, trajectory closure and the main specialisations.
+`sorryAx` must never appear.
+-/
+
+#print axioms Anchored.CorrectionTransition.unsealed_iff_no_blind_live_cut
+#print axioms Anchored.CorrectionTransition.correction_preserving_refl
+#print axioms Anchored.CorrectionTransition.transition_preserves_safety
+#print axioms Anchored.CorrectionTransition.new_blind_cut_breaks_transition
+#print axioms Anchored.CorrectionTransition.new_seal_breaks_transition
+#print axioms Anchored.CorrectionTransition.unsealed_target_is_correction_preserving
+#print axioms Anchored.CorrectionTransition.correction_preserving_iff_safe_target
+#print axioms Anchored.CorrectionTransition.correction_preserving_trans
+#print axioms Anchored.CorrectionTransition.trajectory_stays_safe
+#print axioms Anchored.CorrectionTransition.reconfiguration_is_correction_preserving
+#print axioms Anchored.CorrectionTransition.shrink_is_correction_preserving
+#print axioms Anchored.CorrectionTransition.reencoding_is_correction_preserving
+#print axioms Anchored.CorrectionTransition.membership_change_is_correction_preserving
+#print axioms Anchored.CorrectionTransition.membership_change_preserves_safety
+#print axioms Anchored.CorrectionTransition.network_cut_preserving_iff_correction_preserving
+#print axioms Anchored.CorrectionTransition.connector_is_correction_preserving
