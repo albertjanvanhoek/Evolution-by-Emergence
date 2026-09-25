@@ -85,10 +85,14 @@ procedure computes the judgement. Operational realization remains the job of
 5. `reconfiguration_preserves_safety` — genuine route replacement/rewiring is
    allowed whenever no live commitment cut that was distinguishable becomes
    indistinguishable. `prune_safe` is a stronger route-wise sufficient rule.
-6. `last_route_removal_seals` — from a safe state, removing the unique effective
-   separator of a live commitment cut makes the resulting state unsafe.
-7. Over time, an irreversible seal makes a real error persistently
-   undiscoverable, while bounded unsealing turns the same information-level
+6. `last_route_removal_seals` — if an effective route is the only separator of
+   a live commitment cut, that pair is distinguishable before its removal and
+   sealed after it, so the resulting state is unsafe (effectiveness and
+   separation are used in the proof, not merely assumed).
+   `last_route_removal_breaks_safety` states the safe-to-unsafe transition.
+7. Over time, an irreversible seal on a real error (actual world always open,
+   commitment false there; both used in the conclusion) yields an error that is
+   live, false and undiscoverable at every later time, while bounded unsealing turns the same information-level
    failure into bounded delay.
 
 ## Corrections made during integration
