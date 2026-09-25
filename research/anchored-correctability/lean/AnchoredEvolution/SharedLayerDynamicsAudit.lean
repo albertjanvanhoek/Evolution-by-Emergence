@@ -6,7 +6,7 @@ import AnchoredEvolution.SharedLayerDynamics
 All headline structural results in the dynamic shared-layer extension.
 `CollectivelyIrreducible` is deliberately not called emergence in the formal
 surface; connector versus hub-determined updates are informational conditions.
-` sorryAx` must never appear.
+`sorryAx` must never appear.
 -/
 
 #print axioms Anchored.SharedLayerDynamics.sole_contributor_implies_node_determines
