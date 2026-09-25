@@ -1,0 +1,22 @@
+import AnchoredEvolution.SharedLayerDynamics
+
+/-!
+# Axiom audit: shared-layer dynamics
+
+All headline structural results in the dynamic shared-layer extension.
+`CollectivelyIrreducible` is deliberately not called emergence in the formal
+surface; connector versus hub-determined updates are informational conditions.
+` sorryAx` must never appear.
+-/
+
+#print axioms Anchored.SharedLayerDynamics.sole_contributor_implies_node_determines
+#print axioms Anchored.SharedLayerDynamics.collectively_irreducible_has_no_sole_contributor
+#print axioms Anchored.SharedLayerDynamics.hub_determined_update_inherits_blind_spot
+#print axioms Anchored.SharedLayerDynamics.hub_determined_not_distinction_preserving_at_independent_pair
+#print axioms Anchored.SharedLayerDynamics.distinction_preserving_implies_live_cut_preserving
+#print axioms Anchored.SharedLayerDynamics.live_cut_preserving_step_keeps_safety
+#print axioms Anchored.SharedLayerDynamics.live_cut_preserving_network_stays_safe
+#print axioms Anchored.SharedLayerDynamics.recoverable_update_preserves
+#print axioms Anchored.SharedLayerDynamics.connector_update_preserves_live_cuts
+#print axioms Anchored.SharedLayerDynamics.connector_network_stays_safe
+#print axioms Anchored.SharedLayerDynamics.hub_determined_not_connector_at_live_independent_cut
