@@ -1,6 +1,9 @@
-# Evolution by Emergence
+# Welcome to the Real World
 
-**A substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems.**
+*How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
+**A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
+
+**Evolution by Emergence v22.0** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 [![Anchored Correctability](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml)
@@ -8,7 +11,7 @@
 
 ## What this is
 
-**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and then, conditional on a stated aim of continued reality-tracking/correctability, derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
+**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and then, conditional on a stated aim of continued reality-tracking/correctability, derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
 ## Start here
 
@@ -139,9 +142,9 @@ The website is the historical online book edition; this README is the current re
 The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.0 version DOI after archival.
 
 ```bibtex
-@software{vanhoek_evolution_by_emergence_v22,
+@software{vanhoek_welcome_real_world_v22,
   author  = {van Hoek, Albert Jan},
-  title   = {Evolution by Emergence},
+  title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
   version = {v22.0},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
@@ -151,7 +154,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Evolution by Emergence* (v22.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 
