@@ -5,14 +5,14 @@
       "orcid": "0000-0002-9244-0489"
     }
   ],
-  "title": "Evolution by Emergence",
+  "title": "Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence",
   "version": "v22.0",
   "publication_date": "2026-09-25",
   "upload_type": "software",
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.0 retains the v21 universal retained-organization/accessibility and cumulative-reproduction core and closes the intelligent-system specialization with audited Anchor-Safety, reflexive self-model, shared-layer, and correction-preserving transition results. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
+  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.0 retains the v21 universal retained-organization/accessibility and cumulative-reproduction core and closes the intelligent-system specialization with audited Anchor-Safety, reflexive self-model, shared-layer, and correction-preserving transition results. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
   "keywords": [
     "cumulative evolution",
     "emergence",
