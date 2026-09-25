@@ -34,3 +34,4 @@ jobs:
             exit 1
           fi
           test "$(grep -c '^#print axioms ' AnchoredEvolution/Audit.lean)" -eq 227
+          test "$(grep -c '^#print axioms ' AnchoredEvolution/AnchorSafetyAudit.lean)" -eq 15
