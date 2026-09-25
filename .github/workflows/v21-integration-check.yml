@@ -61,8 +61,9 @@ jobs:
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
           test "$VERSION" = "v22.0"
-          grep -q '^Evolution by Emergence v22.0' RELEASE_TITLE
-          grep -q '^# Evolution by Emergence v22.0' RELEASE_NOTES.md
+          test "$(cat RELEASE_TITLE)" = "Welcome to the Real World — How You Live in Your Own Simulation of Reality — and How We Can Still Share a World — A Theory of Persistence, Emergence, Learning, and Correctable Intelligence"
+          grep -q '^# Welcome to the Real World$' RELEASE_NOTES.md
+          grep -q '^# Welcome to the Real World$' README.md
           test -s THEORY_CORE_V21.md
           test -s FORMAL_THEORY_MAP.md
           test -s FORMAL_THEORY_ENDPOINT.md
@@ -82,12 +83,20 @@ jobs:
           from urllib.parse import unquote
 
           version = Path('RELEASE_VERSION').read_text(encoding='utf-8').strip()
+          release_title = Path('RELEASE_TITLE').read_text(encoding='utf-8').strip()
           cff = Path('CITATION.cff').read_text(encoding='utf-8')
           zenodo = json.loads(Path('.zenodo.json').read_text(encoding='utf-8'))
           readme = Path('README.md').read_text(encoding='utf-8')
+          expected_title = (
+              'Welcome to the Real World: How You Live in Your Own Simulation of Reality '
+              '— and How We Can Still Share a World. A Theory of Persistence, Emergence, '
+              'Learning, and Correctable Intelligence'
+          )
 
           if f'version: "{version}"' not in cff:
               raise SystemExit('CITATION.cff version does not match RELEASE_VERSION')
+          if f'title: "{expected_title}"' not in cff:
+              raise SystemExit('CITATION.cff title does not match the confirmed public title')
           if 'doi: "10.5281/zenodo.15207807"' not in cff:
               raise SystemExit('CITATION.cff must carry the stable Zenodo DOI')
           if 'license: "CC-BY-4.0 OR Apache-2.0"' in cff:
@@ -97,6 +106,8 @@ jobs:
 
           if zenodo.get('version') != version:
               raise SystemExit('.zenodo.json version does not match RELEASE_VERSION')
+          if zenodo.get('title') != expected_title:
+              raise SystemExit('.zenodo.json title does not match the confirmed public title')
           if zenodo.get('upload_type') != 'software':
               raise SystemExit('.zenodo.json must describe a software release')
           if zenodo.get('access_right') != 'open':
@@ -105,6 +116,14 @@ jobs:
               raise SystemExit('.zenodo.json archival license must be cc-by-4.0')
           if not zenodo.get('creators'):
               raise SystemExit('.zenodo.json must name at least one creator')
+
+          expected_release_title = (
+              'Welcome to the Real World — How You Live in Your Own Simulation of Reality '
+              '— and How We Can Still Share a World — A Theory of Persistence, Emergence, '
+              'Learning, and Correctable Intelligence'
+          )
+          if release_title != expected_release_title:
+              raise SystemExit('RELEASE_TITLE does not match the confirmed display title')
 
           expected = {
               'https://soundcloud.com/emergence-223803727',
