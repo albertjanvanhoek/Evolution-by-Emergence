@@ -9,7 +9,7 @@ surface; connector versus hub-determined updates are informational conditions.
 `sorryAx` must never appear.
 -/
 
-#print axioms Anchored.SharedLayerDynamics.sole_contributor_implies_node_determines
+#print axioms Anchored.SharedLayerDynamics.at_most_one_contributor_implies_node_determines
 #print axioms Anchored.SharedLayerDynamics.collectively_irreducible_has_no_sole_contributor
 #print axioms Anchored.SharedLayerDynamics.hub_determined_update_inherits_blind_spot
 #print axioms Anchored.SharedLayerDynamics.hub_determined_not_distinction_preserving_at_independent_pair
