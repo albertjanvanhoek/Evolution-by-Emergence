@@ -122,25 +122,125 @@ independent distinctions remain reachable.** Which institutions or model
 architectures best satisfy that condition is an empirical/design question, not
 a theorem here.
 
+## Extension: shared-layer dynamics
+
+`lean/AnchoredEvolution/SharedLayerDynamics.lean` · audit:
+`SharedLayerDynamicsAudit.lean` (11 audited results)
+
+This layer adds time, but still models **informational dependence**, not causal
+intervention. It sharpens the connector-versus-determinant distinction and
+removes two overstatements from the first draft.
+
+### Collective irreducibility, not "emergence" by definition
+
+`JointlyDetermined` says that if all **available** contributors identify two
+worlds, the shared representation identifies them too. Thus the layer carries
+no distinction absent from the available views as a group.
+
+`NodeDeterminesHub` is the corresponding one-node condition. A layer is
+`CollectivelyIrreducible` when it is jointly determined but no available node
+individually determines it. This is deliberately not called `Emergent` in Lean:
+it is one structural signature of collective informational dependence, not by
+itself the stronger Evolution-by-Emergence concept of emergence.
+
+- `sole_contributor_implies_node_determines`: with exactly one available
+  contributor, joint determination collapses to individual determination.
+- `collectively_irreducible_has_no_sole_contributor`: therefore a collectively
+  irreducible layer cannot have exactly one available contributor.
+
+These are boundary-relative information statements, not claims about historical
+authorship, legal ownership, training provenance or who deserves benefits.
+
+### Hub-determined updates
+
+`HubDeterminedUpdate` says that a node's next view carries no distinction that
+the current shared layer lacks. If the hub is blind between two worlds, the
+node is blind there at the next step.
+
+- `hub_determined_update_inherits_blind_spot`: if every available node updates
+  this way, a live retained-commitment cut hidden from the hub becomes sealed
+  and undiscoverable for the next network state.
+- `hub_determined_not_distinction_preserving_at_independent_pair`: if a node
+  previously had a distinction that the hub lacks, a hub-determined update
+  cannot preserve *all* of that node's old distinctions.
+
+This is the structural failure mode previously described informally as
+"capture". The theorem itself is neutral: a hub-determined update is only a
+problem at distinctions the hub lacks and the network still needs.
+
+### The weaker condition safety actually needs
+
+The first draft used `DistinctionPreserving`, requiring every old distinction
+to survive. That is stronger than Anchor-Safety requires. The revised core is
+`LiveCutPreserving`: only distinctions crossing open, still-live cuts of
+retained commitments must survive.
+
+- `distinction_preserving_implies_live_cut_preserving`: full preservation is a
+  sufficient special case.
+- `live_cut_preserving_step_keeps_safety`: one cut-preserving step keeps an
+  anchor-safe network anchor-safe.
+- `live_cut_preserving_network_stays_safe`: if that condition holds at every
+  step, an initially anchor-safe network remains anchor-safe over time.
+- `recoverable_update_preserves`: if the old view is recoverable from the new
+  view, then all old distinctions are preserved and hence all live cuts are
+  preserved. Views can therefore change substantially; freezing their old
+  content is unnecessary.
+
+### A connector is now an explicit formal regime
+
+The first draft called the preserving regime "generative" even though its
+safety theorem did not mention the shared layer. The revised `ConnectorUpdate`
+does. It requires that the new local representation:
+
+1. preserve its old distinctions on all still-live retained-commitment cuts;
+2. be at least as discriminating as the current shared layer.
+
+So the next view can contain shared information **and** retain the independent
+routes still needed for correction.
+
+- `connector_update_preserves_live_cuts`: every connector update satisfies the
+  core cut-preservation condition.
+- `connector_network_stays_safe`: if every available node updates as a
+  connector at every step, initial Anchor-Safety is preserved.
+- `hub_determined_not_connector_at_live_independent_cut`: at a live cut where a
+  node holds a distinction absent from the hub, the same update cannot both be
+  hub-determined and a connector. This is the precise formal boundary between
+  the two regimes at the point where independence matters.
+
+The structural lesson is therefore:
+
+> **Integrate shared information without making still-needed independent
+> distinctions disappear.**
+
+This is not a claim that global layers are harmful or local layers are good.
+A shared layer can be a connector and recombinator; the failure mode is making
+it the common determinant at distinctions where it is itself blind.
+
+Current limitations are explicit. `S`, `C`, `K` and the view type are fixed
+over time; only views and the hub vary. The definitions are informational, not
+causal. Whether real agents or models update in these ways is empirical. A
+later dynamic layer could allow changing membership, evidence/open-world sets,
+commitments and representation types.
+
 ## Ledger
 
 | Status | Item |
 |---|---|
-| Proved, no axioms | the 11 audited self-model results plus the 4 global-layer structural results; headline claims are Anchor-Safety instantiations and adapter lemmas are direct consequences of the state definitions |
-| Formal hypotheses | open worlds and retained commitments; equal/different histories; live cut pairs; exact node separation/determination; equal introspective reports; hub-determination or hub/local separation for the global-layer results |
-| Modelling choices | the history state, node network and introspective state as `State` instances; `IsSelf` as a marker for self-claims; `Unit` inside view in the pure node-network construction; a shared representation `hub` and nodes as local views |
+| Proved, no axioms | the 11 audited self-model results, 4 global-layer results, and 11 shared-layer-dynamics results |
+| Formal hypotheses | open worlds and retained commitments; equal/different histories; live cut pairs; exact node separation/determination; equal introspective reports; hub/local dependence; live-cut preservation or connector conditions in dynamics |
+| Modelling choices | history, node-network and introspection as `State` instances; `IsSelf` marker; `Unit` inside view in pure node networks; shared representation `hub`; fixed `S`, `C`, `K` and view type in the first dynamic layer |
 | Programme-level aims | persistence and reality-tracking explain why correctability matters; they are not hypotheses of these proofs |
-| Interpretive mappings | treating a temporal indistinguishability horizon as a material buffer; mapping bodies or hosted models to such histories; reading nodes as people, communities or nations; reading `hub` as a shared AI/model layer; applying the same abstraction across substrates |
-| Not defined | numerical identity; whether process continuation is sufficient for identity, especially under branching/copying; nationality or ownership of a representation layer |
-| Outside formalisation | whether anything is felt; whether these definitions capture what they name; historical links between identity loss and conflict; predictions about national identity; normative benefit-sharing claims |
-| Open | a formal continuation relation for retained organisation; a measure of total (not only pivotal) contribution, including robustness; responsibility as upkeep via `NetworkEconomics`; local views cannot certify network-level commitments; quantitative measures of representation homogenisation and independence; a worked finite example |
+| Interpretive mappings | material-buffer interpretation; bodies/hosted models; nodes as people, communities, institutions or nations; hub as a shared model/AI layer; "capture" and "connector" as application-level readings of information-dependence regimes |
+| Not defined | numerical identity; whether process continuation is sufficient for identity; legal/political ownership of a representation layer; full EbE emergence of a shared layer |
+| Outside formalisation | phenomenal feeling; causal influence of a hub on nodes; empirical identity/conflict claims; predictions about national identity; normative benefit-sharing claims |
+| Open | time-varying membership, evidence sets and commitments; changing representation types; a formal continuation relation for retained organisation; quantitative measures of total contribution, robustness, homogenisation and independence; responsibility/upkeep via `NetworkEconomics`; worked finite examples |
 
 ## Provenance
 
 Developed in dialogue between the author and two AI systems. A first version
-presented these results as a parallel information theory. Review moved them
-onto Anchor-Safety and narrowed three claims: pairwise versus global,
-pivotal versus total, and particularity versus identity. A later extension
-applied the same node-network logic to a shared representation layer, with the
-formal claim kept at information dependence/non-reducibility rather than
-political or legal ownership.
+presented the self-model results as a parallel information theory. Review moved
+them onto Anchor-Safety and narrowed pairwise versus global, pivotal versus
+total, and particularity versus identity. Later extensions applied the same
+node-network logic to a shared representation layer and then to its dynamics,
+keeping informational dependence separate from political, causal and normative
+interpretations.
