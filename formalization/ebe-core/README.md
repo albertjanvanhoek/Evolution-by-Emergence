@@ -1,23 +1,24 @@
 # EbE Core — the formal backbone in one file
 
-[`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core dynamic of Evolution by Emergence, in the order of [`CORE.md`](../../CORE.md):
+[`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core of Evolution by Emergence, in the order of the eight steps of [`CORE.md`](../../CORE.md):
 
-0. **Persistence first** — the premise and its two consequences: given substrate dependence and reciprocity, persistence requires correctability; in an open-ended world, persistence requires the vortex to keep turning.
-1. **Ledger** — staying alive: slack = capture − upkeep; viability, ceilings, forced forgetting.
-2. **Ratchet** — accumulation: kept organization changes which routes exist; paid opening; second-order clicks.
-3. **Vortex** — feedback: a kept change that both raises slack and widens search.
-4. **Speed** — the ratchet-velocity ledger, rate floors, the search–validation balance, competition lowering cost.
-5. **Network** — transfer versus creation inside the vortex; correctability of networks of models.
+1. **Existence is paid for from a gradient** — the ledger: viability, ceilings, unaffordable critical mass, forced forgetting.
+2. **Existence through connections** — a maintenance cycle keeps its members going; delete the return edge and the node declines.
+3. **Selection comes free** — under selection on cost, mean cost falls and slack rises.
+4. **A changing world requires reconfiguration** — a sealed configuration runs out of reserve; one that follows reliable feedback persists.
+5. **The learning loop becomes the vortex** — feedback plus retention, paid opening, second-order clicks, the vortex turn, and its speed.
+6. **The commons and capture** — transfer versus creation, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
+7. **Boundaries** — countermodels showing the vortex can stop.
+8. **One domain worked out: intelligence** — the anchor, the learning law for records and evidence, shared reality, correctable networks.
 
-plus the **boundaries** (countermodels) showing which premises cannot be dropped.
-
-The file adds **no mathematics**. It imports 44 results from three packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 55 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|
-| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | persistence requires the vortex, ledger, ratchet, vortex, speed, network ledger, boundaries |
-| `anchored_evolution` | [`research/anchored-correctability/lean`](../../research/anchored-correctability/lean) | persistence requires correctability, budget ledger, critical mass, anchor, correctable composition, sealing, shared layers |
-| `functional_competition_check` | [`formalization/persistence-drift`](../persistence-drift) | competition among equivalent implementations raises slack |
+| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | ledger, adaptive persistence, paid opening, second-order clicks, the vortex, its speed, the network ledger, the assembly barrier, boundaries |
+| `collective_alignment` | [`formalization/collective-alignment`](../collective-alignment) (through cumulative accessibility) | the maintenance cycle and its return edge, selected versus sufficient effort |
+| `functional_competition_check` | [`formalization/persistence-drift`](../persistence-drift) | selection on cost, competition raising slack, the extraction threshold, return-path feedback |
+| `anchored_evolution` | [`research/anchored-correctability/lean`](../../research/anchored-correctability/lean) | budget ledger and critical mass, the scaffold, and the intelligence domain: anchor, learning law, shared reality, correctable networks |
 
 ## Verify locally
 
@@ -28,10 +29,10 @@ cd formalization/ebe-core
 lake update
 lake exe cache get        # prebuilt Mathlib; otherwise Mathlib builds from source
 lake build EbECore
-lake env lean EbECore.lean   # prints the 44 statements and their axioms
+lake env lean EbECore.lean   # prints the 55 statements and their axioms
 ```
 
-A correct run prints 44 axiom reports and no `sorryAx`.
+A correct run prints 55 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 

@@ -79,8 +79,8 @@ jobs:
           test -s PREDICTIONS.md
           grep -q '](PREDICTIONS.md)' README.md
           grep -q '](PREDICTIONS.md)' CORE.md
-          grep -q 'PersistenceFirst' formalization/ebe-core/EbECore.lean
-          grep -q 'PersistenceRequiresVortex' formalization/ebe-core/EbECore.lean
+          grep -q 'AdaptivePersistence' formalization/ebe-core/EbECore.lean
+          grep -q 'AdaptivePersistence' CORE.md
           test -s CITATION.cff
           test -s .zenodo.json
           test ! -e citation.cff
