@@ -5,6 +5,7 @@ This directory contains the machine-checked components that support the current
 
 Start with:
 
+- [../CORE.md](../CORE.md) — the core dynamic on one page, checked in one file: [ebe-core/EbECore.lean](ebe-core/EbECore.lean).
 - [../THEORY_CORE_V20.md](../THEORY_CORE_V20.md) — current peer-review theory core.
 - [../PEER_REVIEW_PROMPT.md](../PEER_REVIEW_PROMPT.md) — adversarial review protocol.
 - [../FORMAL_THEORY_ENDPOINT.md](../FORMAL_THEORY_ENDPOINT.md) — review-readiness target.
@@ -16,6 +17,7 @@ Start with:
 
 | Package | Role in the theory | Primary entry point |
 |---|---|---|
+| `ebe-core` | **front door:** imports and audits the results that carry the core dynamic (ledger, ratchet, vortex, speed, network); adds no mathematics | `EbECore.lean` |
 | \`affinity-layer\` | encounter/association layer before productive coupling | \`AffinityLayer.lean\` |
 | \`collective-alignment\` | recurrent maintenance, correction, protocol inheritance, sufficient alignment | \`CollectiveAlignment.lean\`, \`MaintenanceReproduction.lean\`, \`MaintenanceDynamics.lean\` |
 | \`persistence-drift\` | persistence/function separation, regulation, implementation competition, slack/search drift, return-path effects | \`PersistenceDrift.lean\`, \`FunctionalCompetition.lean\`, \`ReturnPathPrice.lean\` |

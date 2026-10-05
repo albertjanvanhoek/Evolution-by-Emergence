@@ -2,6 +2,8 @@
 
 **Purpose:** trace the v21 universal synthesis and its intelligent-system specialization to their exact verification surfaces, while keeping model boundaries explicit.
 
+> **Core first:** the vortex loop and the results that carry it are collected on one page in [`CORE.md`](CORE.md) and checked together in [`formalization/ebe-core/EbECore.lean`](formalization/ebe-core/EbECore.lean). The map below traces the full v21 review surface.
+
 ## Canonical v21 objects
 
 ### Universal theory

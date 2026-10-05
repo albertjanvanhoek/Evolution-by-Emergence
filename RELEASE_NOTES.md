@@ -3,81 +3,68 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v22.0**
+**Evolution by Emergence v22.1**
 
-v22.0 is the closing package release for the current Evolution by Emergence repository line. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The release leaves the v21 universal retained-organization/accessibility and Cumulative Reproduction Model core intact and completes the reviewed intelligent-system specialization from the logical anchor through correction-preserving transitions.
+v22.1 makes the core of Evolution by Emergence findable, checkable and reusable from one place. It adds no new universal axiom and removes nothing: the v22.0 universal core, the Cumulative Reproduction Model and the intelligent-system specialization are retained unchanged. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
 
-No legacy chapters, essays, earlier theory cores, posts, creeds, presentations or PDFs are rewritten by this release. They remain part of the repository's lineage.
+## 1. The core on one page: `CORE.md`
 
-## 1. Intelligent-system endpoint
+The repository holds many formal layers built over successive releases. v22.1 states the dynamic they share on one page:
 
-The deep package under `research/anchored-correctability/` now includes the reviewed layers:
+> Organization that pays for itself can spend its surplus trying new combinations of what it already keeps. The combinations that pass the filters are kept, and keeping them changes what can be tried next. When a kept change also makes the organization cheaper to run or better at capturing resources, the surplus grows. That loop is the vortex.
 
-- **AnchorSafety** — an acting/learning system may commit and change, but a still-live error in a retained commitment must not become structurally undiscoverable;
-- **SelfModel** — claims a system makes about itself inherit the same correctability constraints as world-claims;
-- **GlobalLayer** — a shared representation's blind spot propagates when all available local views are determined by that same representation; independent local distinctions can be pivotal;
-- **SharedLayerDynamics** — shared information can be integrated while correction-relevant distinctions are handed off, rewired or redistributed across the network;
-- **CorrectionTransition** — the generic endpoint: every blind live cut after a transition must already have been a blind live cut before it.
+`CORE.md` gives this loop as five laws, each tied to the Lean theorems that prove it:
 
-The final transition relation is deliberately exact rather than inflated. From an Anchor-Safe source, `correction_preserving_iff_safe_target` proves that correction preservation is equivalent to target safety. Its additional value is type-generality, composition, local sufficient conditions for concrete operations, and a meaningful non-expansion rule for systems that are not initially safe.
+1. **Ledger** — slack = capture − upkeep; viability, budget ceilings, forced forgetting.
+2. **Ratchet** — kept organization changes which routes exist; a kept item counts as cumulative only if it opens more than it costs; kept products become parents for the next round.
+3. **Vortex** — a kept change that both raises slack and widens search; recurring turns give open-ended accumulation.
+4. **Speed** — opportunity × generate × affordable × validated × retained × gain; rate floors; the search–validation balance; competition among equivalent implementations lowering cost and raising slack.
+5. **Network** — transfer versus creation inside the vortex; correctability of networks of models.
 
-## 2. Audited formal surfaces
+It also lists the boundaries shown necessary by countermodels: seed, successors, retention, a widening range of distinctions, and auxiliary support for emergent wholes.
 
-The current Anchored Correctability build rejects `sorryAx` and pins:
+## 2. The formal backbone in one file: `formalization/ebe-core`
 
-- `Audit.lean`: **227** headline results;
-- `AnchorSafetyAudit.lean`: **16**;
-- `SelfModelAudit.lean`: **11**;
-- `GlobalLayerAudit.lean`: **4**;
-- `SharedLayerDynamicsAudit.lean`: **11**;
-- `CorrectionTransitionAudit.lean`: **16**.
+`EbECore.lean` adds no mathematics. It imports the 37 results that carry the core from three packages (`cumulative-accessibility`, `anchored-correctability`, `persistence-drift`), prints every statement and audits every axiom set. The new **EbE Core Check** workflow rejects `sorryAx` and pins the count.
 
-All 16 `CorrectionTransition` audit results are axiom-free. Within the 16-result Anchor-Safety audit, 15 results are axiom-free; `anchorSafe_iff_cuts_separated` uses classical logic in one direction. Older formal surfaces keep their own explicit axiom reports.
+The package is usable as a Lean dependency:
 
-The portable `scap-seed/` remains separately auditable at **184** headline results. The universal structural core and Cumulative Reproduction Model remain independently checked surfaces rather than being silently certified by the intelligent-system package.
+```toml
+[[require]]
+name = "ebe_core"
+git = "https://github.com/albertjanvanhoek/Evolution-by-Emergence.git"
+rev = "v22.1"
+subDir = "formalization/ebe-core"
+```
 
-## 3. Claims narrowed to the proof surface
+Dependency resolution from a fresh outside project was tested before release: Lake resolves the in-repository path packages and the pinned Mathlib. See [`formalization/ebe-core/README.md`](formalization/ebe-core/README.md).
 
-This release keeps the repository's status categories explicit:
+## 3. Network vortex ledger
 
-- **proved** — machine-checked implications under declared definitions and hypotheses;
-- **assumed** — named premises such as liveness, a chosen reality-tracking/correctability aim, evidence reliability where invoked, resource assumptions and application mappings;
-- **interpretation / open** — empirical universality, causal social mechanisms, numerical identity, political/normative conclusions and domain mappings not established by the formal proofs.
+`formalization/cumulative-accessibility/CumulativeAccessibility/NetworkVortexLedger.lean` splits the dynamic-vortex slack ledger over the parts of a network and separates **creation** (more uptake from the gradient, less maintenance) from **transfer** (internal flows that sum to zero), using only the existing vortex quantities:
 
-In particular, the shared-layer results do **not** establish claims about nationality, legal ownership, training provenance, cultural neutrality or benefit distribution. `CollectivelyIrreducible` is also kept distinct from the stronger Evolution-by-Emergence notion of emergence.
+- transfers cancel: the whole's slack and response budget are the sum of part slacks for any pure transfer;
+- a transfer moves slack between parts but never changes the size of the vortex;
+- transfers decide survival, not size: the whole is viable exactly when some redistribution lets every part cover its own maintenance, and a witness shows a transfer breaking a part while the whole's slack is unchanged;
+- creation in any part raises the whole's response budget; a non-viable vortex cannot afford any positive-cost response and has zero ratchet velocity under the velocity-ledger seam.
 
-See `CLAIMS_V21.md`, `research/anchored-correctability/ANCHOR_SAFETY.md`, `research/anchored-correctability/SELF_MODEL.md`, and `scap-seed/CLAIMS.md` for the detailed ledgers.
+It is wired into `AuditAll`, the `VerificationSurface` axiom audit and the cumulative-accessibility CI build.
 
-## 4. Self-standing repository front door
+## 4. Front door and metadata
 
-`README.md` is rewritten as the current navigation and citation surface. It now provides:
+- `README.md`, `FORMAL_THEORY_MAP.md` and `formalization/README.md` point to `CORE.md` and `EbECore.lean` first.
+- `persistence-drift/lakefile.toml` exposes `PersistenceDrift` as a library so it can be imported; its default build targets are unchanged.
+- `RELEASE_VERSION`, `CITATION.cff` and `.zenodo.json` are synchronized to v22.1; the public title is unchanged.
+- The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`; Zenodo assigns the exact v22.1 version DOI when this GitHub release is archived.
 
-- a two-minute orientation;
-- a six-step argument map;
-- current-core versus archive/lineage routing;
-- exact verification commands and audit counts;
-- proved/assumed/open boundaries;
-- SoundCloud, YouTube and website routes;
-- citation and dual-licensing information.
+## 5. Status of the claims
 
-The historical online book edition and legacy repository material remain in place as written.
-
-## 5. Release and archive metadata
-
-`RELEASE_VERSION`, `RELEASE_TITLE`, `CITATION.cff` and `.zenodo.json` are synchronized to v22.0 and to the public title above. Zenodo-specific metadata includes the SoundCloud, YouTube and website resources as `isSupplementedBy` related identifiers.
-
-The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`; Zenodo assigns the exact v22.0 version DOI when this GitHub release is archived.
+- **Proved:** each result in `EbECore.lean` is a machine-checked implication under the premises stated in its theorem.
+- **Packaged, not derived:** the vortex composition theorem joins proved parts; it does not derive that real systems keep producing turns. Application mappings (what counts as capture, upkeep, a filter or a transfer in a domain) are assumptions to be tested.
+- **Not claimed:** empirical universality, that any particular system satisfies the premises, or normative conclusions.
 
 ## 6. Open work remains open
 
-The release does not convert remaining research questions into conclusions. Visible open problems include:
+The visible open problems of v22.0 remain: the reachability–independence trade-off, decoding and trust, total rather than pivotal contribution, the full upkeep/responsibility argument, empirical tests of whether real updates are correction-preserving, numerical identity and continuation, and cross-world-space transition semantics. v22.1 adds one practical test: whether a new reader can reconstruct the theory from `CORE.md` and `EbECore.lean` alone.
 
-- the reachability–independence trade-off;
-- decoding and trust;
-- total rather than pivotal contribution;
-- the full upkeep/responsibility argument;
-- empirical tests of whether real updates are correction-preserving;
-- numerical identity and continuation;
-- cross-world-space transition semantics.
-
-v22.0 is therefore a closure of the current package, not a claim that the research programme has no remaining questions.
+The v22.0 release notes remain available at the `v22.0` tag.
