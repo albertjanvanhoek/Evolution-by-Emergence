@@ -472,6 +472,7 @@ capacity for novelty ≠ realized novelty
 - `EndogenousBudgetWitness.lean` — fixed-gradient uptake-improvement witness and exact `2/3 → 97/99` margin-funded response witness.
 - `DynamicVortex.lean` — explicit composition interface joining internally funded validated response to second-order organizational/search updates.
 - `DynamicVortexWitness.lean` — concrete full-dynamic construction with open-ended retained novelty, unbounded envelope capacity, and recurring second-order updates.
+- `NetworkVortexLedger.lean` — splits the vortex slack ledger over the parts of a network and separates creation (more uptake or less maintenance) from transfer (internal flows that sum to zero): transfers cancel in the whole's slack and response budget, decide which parts can cover their maintenance but not the size of the vortex, creation in any part raises the response budget, and a non-viable vortex cannot afford any positive-cost response.
 
 The external predicate is intentionally uninterpreted. It is **not** defined to mean objective truth, fitness, utility, morality, or correctness.
 

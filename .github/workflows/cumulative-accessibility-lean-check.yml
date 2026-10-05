@@ -51,6 +51,7 @@ jobs:
             CumulativeAccessibility.BoundedResponseWitness \
             CumulativeAccessibility.EndogenousBudgetWitness \
             CumulativeAccessibility.DynamicVortexWitness \
+            CumulativeAccessibility.NetworkVortexLedger \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
