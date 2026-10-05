@@ -59,12 +59,12 @@ jobs:
         uses: citation-file-format/cffconvert-github-action@2.0.0
         with:
           args: '--validate'
-      - name: Check v22.1, README, core front door and Zenodo metadata
+      - name: Check v22.2, README, core front door and Zenodo metadata
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
-          test "$VERSION" = "v22.1"
+          test "$VERSION" = "v22.2"
           test "$(cat RELEASE_TITLE)" = "Welcome to the Real World — How You Live in Your Own Simulation of Reality — and How We Can Still Share a World — A Theory of Persistence, Emergence, Learning, and Correctable Intelligence"
           grep -q '^# Welcome to the Real World$' RELEASE_NOTES.md
           grep -q '^# Welcome to the Real World$' README.md
@@ -76,6 +76,11 @@ jobs:
           test -s formalization/ebe-core/EbECore.lean
           grep -q '](CORE.md)' README.md
           grep -q 'formalization/ebe-core/EbECore.lean' CORE.md
+          test -s PREDICTIONS.md
+          grep -q '](PREDICTIONS.md)' README.md
+          grep -q '](PREDICTIONS.md)' CORE.md
+          grep -q 'PersistenceFirst' formalization/ebe-core/EbECore.lean
+          grep -q 'PersistenceRequiresVortex' formalization/ebe-core/EbECore.lean
           test -s CITATION.cff
           test -s .zenodo.json
           test ! -e citation.cff

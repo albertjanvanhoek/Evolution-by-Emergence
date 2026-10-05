@@ -3,7 +3,7 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v22.1** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** the core dynamic on one page, checked in one Lean file.
+**Evolution by Emergence v22.2** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** one premise (persistence), two derived consequences and five laws on one page, checked in one Lean file.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 [![EbE Core](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml)
@@ -12,7 +12,7 @@
 
 ## What this is
 
-**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and then, conditional on a stated aim of continued reality-tracking/correctability, derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
+**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and from persistence: given substrate dependence and reciprocal support, staying correctable is derived as a requirement of persistence rather than chosen as an aim. From there it derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
 ## Start here
 
@@ -134,7 +134,7 @@ The seed audits **184 headline results**. The integrated release matrix is [.git
 | Status | What it means here |
 |---|---|
 | **Proved** | Lean-checked implications under the definitions and hypotheses in the formal files; axiom status is printed in the audit files. |
-| **Assumed** | Named premises such as liveness, the chosen correctability/reality-tracking aim, evidence reliability where invoked, resource bounds, and model-to-domain mappings. |
+| **Assumed** | Named premises such as liveness, substrate dependence with a finite buffer, reciprocal support and an open-ended world (from which correctability and the vortex's necessity are derived; older files state the correctability aim directly), evidence reliability where invoked, resource bounds, and model-to-domain mappings. |
 | **Interpretation / open** | Empirical universality, whether real humans/organizations/models instantiate the predicates, numerical identity, causal social interpretations, political/normative conclusions, and other domain claims not established by the formal proofs. |
 
 Full ledgers: [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md), and [scap-seed/CLAIMS.md](scap-seed/CLAIMS.md).
@@ -153,13 +153,13 @@ The website is the historical online book edition; this README is the current re
 
 ## Cite
 
-The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.1 version DOI after archival.
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.2 version DOI after archival.
 
 ```bibtex
-@software{vanhoek_welcome_real_world_v22_1,
+@software{vanhoek_welcome_real_world_v22_2,
   author  = {van Hoek, Albert Jan},
   title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
-  version = {v22.1},
+  version = {v22.2},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
   url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
@@ -168,7 +168,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.1). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.2). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 

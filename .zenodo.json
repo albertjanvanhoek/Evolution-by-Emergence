@@ -6,13 +6,13 @@
     }
   ],
   "title": "Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence",
-  "version": "v22.1",
+  "version": "v22.2",
   "publication_date": "2026-10-05",
   "upload_type": "software",
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.1 adds a single front door to the core dynamic: CORE.md states the vortex loop on one page (ledger, ratchet, vortex, speed, network, and the boundaries that cannot be dropped), and formalization/ebe-core/EbECore.lean collects and audits the 37 machine-checked results that carry it, usable as a Lean dependency. It also adds a network ledger separating creation from transfer inside the vortex. The v22.0 universal core and intelligent-system specialization are retained unchanged. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
+  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.2 makes persistence the premise of the formal core. From substrate dependence with a finite buffer and reciprocal support, it derives that persistence requires correctability: the correctability aim of earlier versions becomes a theorem, and a countermodel shows reciprocity is load-bearing. From an open-ended world and positive upkeep, it derives that persistence requires the vortex to keep turning, without claiming that it does. CORE.md is reframed as one premise, two consequences and five laws; formalization/ebe-core/EbECore.lean now audits 44 machine-checked results; and PREDICTIONS.md states falsifiable predictions about collectives of fallible intelligences, with SCAP as a conditional design result. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
   "keywords": [
     "cumulative evolution",
     "emergence",
