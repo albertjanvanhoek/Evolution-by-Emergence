@@ -3,9 +3,10 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v22.0** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems.
+**Evolution by Emergence v22.1** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** the core dynamic on one page, checked in one Lean file.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
+[![EbE Core](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml)
 [![Anchored Correctability](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/anchored-correctability-check.yml)
 [![License](https://img.shields.io/badge/license-CC--BY--4.0%20OR%20Apache--2.0-blue.svg)](DUAL-LICENSING.md)
 
@@ -70,6 +71,16 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 ## Verify
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
+
+The core in one file — the 37 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+
+```bash
+cd formalization/ebe-core
+lake update
+lake exe cache get
+lake build EbECore
+lake env lean EbECore.lean
+```
 
 Universal retained-organization/accessibility core:
 
@@ -141,13 +152,13 @@ The website is the historical online book edition; this README is the current re
 
 ## Cite
 
-The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.0 version DOI after archival.
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.1 version DOI after archival.
 
 ```bibtex
-@software{vanhoek_welcome_real_world_v22,
+@software{vanhoek_welcome_real_world_v22_1,
   author  = {van Hoek, Albert Jan},
   title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
-  version = {v22.0},
+  version = {v22.1},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
   url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
@@ -156,7 +167,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.1). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 
