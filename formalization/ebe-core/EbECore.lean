@@ -13,12 +13,14 @@ import CumulativeAccessibility.OpenEndedCapacity
 import CumulativeAccessibility.EmergentAssemblyBarrier
 import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
+import CumulativeAccessibility.PersistenceRequiresVortex
 import AnchoredEvolution.CumulativeReproduction
 import AnchoredEvolution.Anchor
 import AnchoredEvolution.Composition
 import AnchoredEvolution.Bridge
 import AnchoredEvolution.AnchorSafety
 import AnchoredEvolution.GlobalLayer
+import AnchoredEvolution.PersistenceFirst
 import PersistenceDrift
 
 /-!
@@ -31,9 +33,25 @@ proved there; this file imports them, prints each statement (`#check`) and
 prints its axioms (`#print axioms`), so CI fails if any of them stops compiling
 or depends on `sorry`.
 
+## Where it starts: persistence
+
+One premise, two consequences, five laws. The theory is about persistence.
+Intelligences are fundamentally non-certain (the room), and an intelligence
+exists only while the substrate and network that sustain it are maintained
+(substrate dependence). Two consequences are proved below:
+
+* **Persistence requires correctability**, given reciprocity: partners keep
+  sustaining an agent only while it answers their correction. Without
+  reciprocity it does not follow (`reciprocity_is_load_bearing`).
+* **Persistence requires the vortex**, in an open-ended world: readiness for
+  what can happen forces an ever-growing repertoire, and with positive upkeep
+  capture must keep growing. Persistence requires the vortex; it does not
+  produce it.
+
 ## The core in one sentence
 
-Organization that pays for itself can spend its surplus trying new
+To persist, organization must keep paying for itself and keep its errors
+findable. Organization that pays for itself can spend its surplus trying new
 combinations of what it already keeps. The combinations that pass the filters
 are kept, and keeping them changes what can be tried next. When a kept change
 also makes the organization cheaper to run or better at capturing resources,
@@ -59,7 +77,28 @@ system satisfies the premises.
 
 open CumulativeAccessibility
 
-/-! ## Law 1. The ledger: persistence
+/-! ## Persistence first: the two consequences
+
+Substrate dependence with a finite buffer plus reciprocal support: persisting
+requires answering correction within the buffer; sealing is fatal once the
+buffer runs out; across a strongly connected support network the correction
+edges in operation are strongly connected, so the correctability aim of
+`Anchor.lean` is derived rather than chosen. The countermodel shows reciprocity
+is load-bearing.
+
+An open-ended world plus readiness forces an unbounded repertoire; with
+positive upkeep per retained kind and viability at every time, capture must
+exceed every bound. -/
+
+#check @Anchored.PersistenceFirst.persistence_requires_correction_within
+#check @Anchored.PersistenceFirst.sealing_is_fatal_after_buffer
+#check @Anchored.PersistenceFirst.interdependence_and_persistence_force_correctability
+#check @Anchored.PersistenceFirst.persistence_replaces_the_aim
+#check @Anchored.PersistenceFirst.reciprocity_is_load_bearing
+#check @RecursiveAccessibility.open_world_forces_unbounded_repertoire
+#check @RecursiveAccessibility.persistence_in_open_world_requires_unbounded_capture
+
+/-! ## Law 1. The ledger: staying alive
 
 Slack is capture minus upkeep; the organization is viable exactly when slack
 is nonnegative. Better organization (more capture, cheaper upkeep) raises the
@@ -161,6 +200,13 @@ so intermediates need support from elsewhere. -/
 
 /-! ## Axiom audit -/
 
+#print axioms Anchored.PersistenceFirst.persistence_requires_correction_within
+#print axioms Anchored.PersistenceFirst.sealing_is_fatal_after_buffer
+#print axioms Anchored.PersistenceFirst.interdependence_and_persistence_force_correctability
+#print axioms Anchored.PersistenceFirst.persistence_replaces_the_aim
+#print axioms Anchored.PersistenceFirst.reciprocity_is_load_bearing
+#print axioms RecursiveAccessibility.open_world_forces_unbounded_repertoire
+#print axioms RecursiveAccessibility.persistence_in_open_world_requires_unbounded_capture
 #print axioms RecursiveAccessibility.internallyViableAt_iff_internalSlack_nonneg
 #print axioms RecursiveAccessibility.organization_improvement_increases_endogenousResponseBudget
 #print axioms CumulativeReproduction.self_financing_never_binds

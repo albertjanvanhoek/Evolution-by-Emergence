@@ -73,7 +73,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 37 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 44 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core
