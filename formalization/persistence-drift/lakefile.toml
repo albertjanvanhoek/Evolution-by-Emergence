@@ -21,3 +21,6 @@ name = "FunctionalThresholds"
 
 [[lean_lib]]
 name = "RegulatoryReturn"
+
+[[lean_lib]]
+name = "PersistenceDrift"

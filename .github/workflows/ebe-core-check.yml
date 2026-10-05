@@ -1,0 +1,63 @@
+name: EbE Core Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "formalization/ebe-core/**"
+      - "formalization/cumulative-accessibility/**"
+      - "formalization/collective-alignment/**"
+      - "formalization/persistence-drift/**"
+      - "papers/the-room-learning-constitution/**"
+      - "research/anchored-correctability/lean/**"
+      - ".github/workflows/ebe-core-check.yml"
+  pull_request:
+    paths:
+      - "formalization/ebe-core/**"
+      - "formalization/cumulative-accessibility/**"
+      - "formalization/collective-alignment/**"
+      - "formalization/persistence-drift/**"
+      - "papers/the-room-learning-constitution/**"
+      - "research/anchored-correctability/lean/**"
+      - ".github/workflows/ebe-core-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: formalization/ebe-core
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Update dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+
+      - name: Fetch Mathlib cache
+        run: |
+          $HOME/.elan/bin/lake exe cache get
+
+      - name: Build the core surface
+        run: |
+          $HOME/.elan/bin/lake build EbECore
+
+      - name: Print core statements and audit axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake env lean EbECore.lean | tee core-audit.log
+          if grep -q 'sorryAx' core-audit.log; then
+            echo 'Unproved axiom detected' >&2
+            exit 1
+          fi
+          test "$(grep -c 'axioms' core-audit.log)" -eq 37

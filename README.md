@@ -17,6 +17,7 @@
 
 | If you want to… | Go to |
 |---|---|
+| see the core dynamic on one page | [CORE.md](CORE.md), checked in one Lean file: [EbECore.lean](formalization/ebe-core/EbECore.lean) |
 | understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
 | understand the universal EbE theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md) |
 | read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |
@@ -42,6 +43,7 @@
 
 ### Current core
 
+- **The core on one page:** [CORE.md](CORE.md) — the vortex loop, its five laws and their boundaries, with every result collected and checked in [formalization/ebe-core/EbECore.lean](formalization/ebe-core/EbECore.lean).
 - **Universal theory:** [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
