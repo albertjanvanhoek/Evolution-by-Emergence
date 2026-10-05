@@ -2,7 +2,8 @@
 
 [`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core dynamic of Evolution by Emergence, in the order of [`CORE.md`](../../CORE.md):
 
-1. **Ledger** — persistence: slack = capture − upkeep; viability, ceilings, forced forgetting.
+0. **Persistence first** — the premise and its two consequences: given substrate dependence and reciprocity, persistence requires correctability; in an open-ended world, persistence requires the vortex to keep turning.
+1. **Ledger** — staying alive: slack = capture − upkeep; viability, ceilings, forced forgetting.
 2. **Ratchet** — accumulation: kept organization changes which routes exist; paid opening; second-order clicks.
 3. **Vortex** — feedback: a kept change that both raises slack and widens search.
 4. **Speed** — the ratchet-velocity ledger, rate floors, the search–validation balance, competition lowering cost.
@@ -10,12 +11,12 @@
 
 plus the **boundaries** (countermodels) showing which premises cannot be dropped.
 
-The file adds **no mathematics**. It imports 37 results from three packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 44 results from three packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|
-| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | ledger, ratchet, vortex, speed, network ledger, boundaries |
-| `anchored_evolution` | [`research/anchored-correctability/lean`](../../research/anchored-correctability/lean) | budget ledger, critical mass, anchor, correctable composition, sealing, shared layers |
+| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | persistence requires the vortex, ledger, ratchet, vortex, speed, network ledger, boundaries |
+| `anchored_evolution` | [`research/anchored-correctability/lean`](../../research/anchored-correctability/lean) | persistence requires correctability, budget ledger, critical mass, anchor, correctable composition, sealing, shared layers |
 | `functional_competition_check` | [`formalization/persistence-drift`](../persistence-drift) | competition among equivalent implementations raises slack |
 
 ## Verify locally
@@ -27,10 +28,10 @@ cd formalization/ebe-core
 lake update
 lake exe cache get        # prebuilt Mathlib; otherwise Mathlib builds from source
 lake build EbECore
-lake env lean EbECore.lean   # prints the 37 statements and their axioms
+lake env lean EbECore.lean   # prints the 44 statements and their axioms
 ```
 
-A correct run prints 37 axiom reports and no `sorryAx`.
+A correct run prints 44 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 
@@ -40,7 +41,7 @@ Add this to your project's `lakefile.toml`, pinning `rev` to a release tag or co
 [[require]]
 name = "ebe_core"
 git = "https://github.com/albertjanvanhoek/Evolution-by-Emergence.git"
-rev = "v22.1"
+rev = "v22.2"
 subDir = "formalization/ebe-core"
 ```
 

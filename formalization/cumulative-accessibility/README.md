@@ -473,6 +473,7 @@ capacity for novelty ≠ realized novelty
 - `DynamicVortex.lean` — explicit composition interface joining internally funded validated response to second-order organizational/search updates.
 - `DynamicVortexWitness.lean` — concrete full-dynamic construction with open-ended retained novelty, unbounded envelope capacity, and recurring second-order updates.
 - `NetworkVortexLedger.lean` — splits the vortex slack ledger over the parts of a network and separates creation (more uptake or less maintenance) from transfer (internal flows that sum to zero): transfers cancel in the whole's slack and response budget, decide which parts can cover their maintenance but not the size of the vortex, creation in any part raises the response budget, and a non-viable vortex cannot afford any positive-cost response.
+- `PersistenceRequiresVortex.lean` — persistence requires the vortex but does not produce it: in an open-ended world, being ready for every possible kind of situation forces an unbounded retained repertoire, and with positive upkeep per kind and viability at every time, capture must exceed every bound. The existing countermodels show the vortex can still stop.
 
 The external predicate is intentionally uninterpreted. It is **not** defined to mean objective truth, fitness, utility, morality, or correctness.
 

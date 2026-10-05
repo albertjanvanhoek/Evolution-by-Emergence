@@ -1,10 +1,22 @@
 # The core of Evolution by Emergence
 
-**One page, one loop, five laws.** Everything else in this repository refines, specializes or records the history of what is on this page. The formal backbone is collected in one Lean file, [`formalization/ebe-core/EbECore.lean`](formalization/ebe-core/EbECore.lean), which states every result below and is checked by CI.
+**One premise, two consequences, five laws.** Everything else in this repository refines, specializes or records the history of what is on this page. The formal backbone is collected in one Lean file, [`formalization/ebe-core/EbECore.lean`](formalization/ebe-core/EbECore.lean), which states every result below and is checked by CI.
+
+## Where it starts: persistence
+
+The theory is about **persistence**: what it takes for organization, and in particular for intelligence, to keep existing. It starts from two insights:
+
+1. **The room.** Intelligences are fundamentally non-certain. Incompatible views cannot all be right, and no view can certify itself from the inside.
+2. **Substrate dependence.** An intelligence exists only while the substrate and the network that sustain it are maintained.
+
+Two consequences follow, and both are machine-checked:
+
+- **Persistence requires correctability.** If an agent depends on partners who keep sustaining it only while it answers their correction (*reciprocity*), then persisting requires answering correction within its buffer, sealing itself off is fatal once the buffer runs out, and across an interdependent network the correction routes must reach everyone. Staying correctable is not a chosen aim; it is what persistence requires. Without reciprocity it does not follow: a sealed agent can persist where no one it depends on can withdraw.
+- **Persistence requires the vortex.** In an open-ended world, where the kinds of situation that can arise keep growing, being ready for what can happen forces an ever-growing repertoire. With upkeep on everything retained, capture must keep growing too: the loop below has to keep turning. Persistence requires the vortex; it does not produce it. The vortex can still stop, and what persists is what kept it turning.
 
 ## The core in one sentence
 
-> **Organization that pays for itself can spend its surplus trying new combinations of what it already keeps. The combinations that pass the filters are kept, and keeping them changes what can be tried next. When a kept change also makes the organization cheaper to run or better at capturing resources, the surplus grows. That loop is the vortex.**
+> **To persist, organization must keep paying for itself and keep its errors findable. Organization that pays for itself can spend its surplus trying new combinations of what it already keeps. The combinations that pass the filters are kept, and keeping them changes what can be tried next. When a kept change also makes the organization cheaper to run or better at capturing resources, the surplus grows. That loop is the vortex.**
 
 ```
         external gradient
@@ -24,7 +36,7 @@
 
 ## The five laws
 
-**1. The ledger: persistence.** Slack is capture minus upkeep; the organization is viable exactly while slack is at least zero. Better organization, capturing more or maintaining more cheaply, raises the budget for change. Items that pay their own upkeep never meet a ceiling; otherwise there is a ceiling that no growth law can outrun. A finite budget cannot keep every candidate, so forgetting is forced.
+**1. The ledger: staying alive.** Slack is capture minus upkeep; the organization is viable exactly while slack is at least zero. Better organization, capturing more or maintaining more cheaply, raises the budget for change. Items that pay their own upkeep never meet a ceiling; otherwise there is a ceiling that no growth law can outrun. A finite budget cannot keep every candidate, so forgetting is forced.
 
 **2. The ratchet: accumulation.** What is kept changes which routes exist. A kept item counts as cumulative only if it opens more than it costs to keep: a mere change of state is not enough, and paying more upkeep cannot create the advantage. Kept products become parents for the next round, so what can be tried widens: a *second-order click*.
 
@@ -36,12 +48,18 @@
 
 ## The boundaries: what cannot be dropped
 
-Each premise of the open-ended loop is shown necessary by a countermodel. Without a **seed** nothing happens. Without **successors** there is one innovation, then stasis. Without **retention** there is endless novelty but no accumulation. A **fixed finite space saturates**, so open-endedness needs an ever-widening range of distinctions. A **new whole cannot pay for its own parts**, so intermediate steps need support from elsewhere.
+Persistence forces correction only through **reciprocity**: an agent that depends on no one who can withdraw can persist while sealed, but only while its buffer lasts. Each premise of the open-ended loop is shown necessary by a countermodel. Without a **seed** nothing happens. Without **successors** there is one innovation, then stasis. Without **retention** there is endless novelty but no accumulation. A **fixed finite space saturates**, so open-endedness needs an ever-widening range of distinctions. A **new whole cannot pay for its own parts**, so intermediate steps need support from elsewhere.
+
+## What the derivation assumes
+
+The two consequences above rest on premises about the world, stated explicitly in the Lean files: substrate dependence with a finite buffer, reciprocal support, an open-ended world, readiness for what can happen (no instant acquisition of a missing distinction), and positive upkeep on what is retained. Whether a given domain satisfies them is an empirical question; where one fails, the corresponding consequence does not follow.
 
 ## Where each law is proved
 
 | Law | Result (Lean name) | Source |
 |---|---|---|
+| P | `persistence_requires_correction_within`, `sealing_is_fatal_after_buffer`, `interdependence_and_persistence_force_correctability`, `persistence_replaces_the_aim`, `reciprocity_is_load_bearing` | [PersistenceFirst](research/anchored-correctability/lean/AnchoredEvolution/PersistenceFirst.lean) |
+| P | `open_world_forces_unbounded_repertoire`, `persistence_in_open_world_requires_unbounded_capture` | [PersistenceRequiresVortex](formalization/cumulative-accessibility/CumulativeAccessibility/PersistenceRequiresVortex.lean) |
 | 1 | `internallyViableAt_iff_internalSlack_nonneg`, `organization_improvement_increases_endogenousResponseBudget` | [EndogenousBudgetBridge](formalization/cumulative-accessibility/CumulativeAccessibility/EndogenousBudgetBridge.lean) |
 | 1 | `self_financing_never_binds`, `no_runaway_when_upkeep_exceeds_capture`, `critical_mass_dichotomy` | [CumulativeReproduction](research/anchored-correctability/lean/AnchoredEvolution/CumulativeReproduction.lean) |
 | 1 | `candidate_set_exceeding_budget_cannot_all_be_retained` | [GenerativeLeverage](formalization/cumulative-accessibility/CumulativeAccessibility/GenerativeLeverage.lean) |
@@ -68,8 +86,13 @@ Each premise of the open-ended loop is shown necessary by a countermodel. Withou
 ## What this page does and does not claim
 
 - **Proved:** each row is a machine-checked implication under the premises stated in its Lean theorem. `EbECore.lean` prints every statement and its axioms; CI rejects `sorry`.
-- **Packaged, not derived:** the vortex composition theorem joins proved parts; it does not derive that real systems keep producing turns. That premise, like every application mapping (what counts as capture, upkeep, a filter or a transfer in a given domain), is an assumption to be tested.
+- **Derived from persistence:** that correctability and a turning vortex are *required* for persistence, under the premises listed above.
+- **Not derived:** that real systems keep producing turns. The vortex composition theorem joins proved parts, and the countermodels show the vortex can stop. That premise, like every application mapping (what counts as capture, upkeep, a filter or a transfer in a given domain), is an assumption to be tested.
 - **Not claimed:** empirical universality, that any particular system satisfies the premises, or normative conclusions.
+
+## What the framework predicts
+
+The falsifiable predictions about collectives of fallible intelligences — and SCAP as a conditional design result — are in [PREDICTIONS.md](PREDICTIONS.md).
 
 ## How this relates to the rest of the repository
 
