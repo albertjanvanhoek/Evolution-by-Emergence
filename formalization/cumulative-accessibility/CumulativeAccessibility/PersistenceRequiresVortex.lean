@@ -6,6 +6,13 @@ namespace RecursiveAccessibility
 /-!
 # Persistence requires the vortex, but does not produce it
 
+**Scope note.** The premise `ReadyFor` asks for readiness for every possible
+kind of situation at once. The core does not assume this: finite budgets force
+forgetting, and what persistence requires in a changing world is
+reconfiguration from reliable feedback (`AdaptivePersistence`), not ever-growing
+holdings. This file shows what that strong premise would demand. "Capture"
+below means uptake from the gradient, not capture of a commons.
+
 `DynamicVortex.lean` assumes that vortex turns keep recurring. This file asks
 the converse question: what does persistence itself demand?
 

@@ -3,6 +3,17 @@ import AnchoredEvolution.Anchor
 /-!
 # Persistence first: correctability derived from persistence
 
+**Scope note.** This file gives a *social* route to correctability: where an
+agent depends on partners who keep sustaining it only while it answers their
+correction, the cost of sealing arrives within the agent's buffer. The general
+route needs no reciprocity: under open change, a configuration whose fit is
+fixed in advance runs out of reserve in some possible future, while one that
+follows reliable feedback persists (`CumulativeAccessibility.AdaptivePersistence`
+in the cumulative-accessibility package, and the learning law in
+`AnchoredEvolution.Persistence`). The countermodel below lives in a world where
+nothing changes; it shows that reciprocity is needed for *this* route, not that
+sealed agents can persist in a changing world.
+
 `Anchor.lean` takes correctability as an explicit chosen premise
 (`CorrectabilityAim`). This file derives it instead, from persistence and two
 premises about the world:

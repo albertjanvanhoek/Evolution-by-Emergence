@@ -9,12 +9,12 @@ Each prediction names the machine-checked result it rests on, what observation w
 
 ## Starting point
 
-The framework starts from two insights:
+The framework is one model of learning, read as a network ([CORE.md](CORE.md)). Applied to intelligences:
 
-1. **The room:** intelligences are fundamentally non-certain. Incompatible views cannot all be right, and no view can certify itself from the inside.
-2. **Substrate dependence:** an intelligence exists only while the substrate and the network that sustain it are maintained.
+1. **Intelligences are non-certain.** Incompatible views cannot all be right, and no view can certify itself from the inside, so the feedback that keeps a model in step comes from outside, through its connections (`learner_in_step`, `shared_reality_when_connected`).
+2. **They exist through their connections** and pay for their upkeep from the same ledger.
 
-Together with **reciprocity** — a link is kept only while correction arriving on it is answered — persistence then requires correctability (`persistence_replaces_the_aim`), and persistence in an open-ended world requires the vortex to keep turning (`persistence_in_open_world_requires_unbounded_capture`). Neither is guaranteed: the countermodels show that sealed agents can persist where reciprocity fails, and that the vortex can stop.
+In a world that changes, a configuration whose fit is fixed in advance runs out of reserve in some possible future, while one that follows reliable feedback persists (`sealed_configuration_does_not_persist`, `listening_configuration_persists`). Where members depend reciprocally on one another, reciprocity adds a social route that makes sealing costly sooner (`sealing_is_fatal_after_buffer`). Nothing guarantees persistence: sealed configurations can last while the world stays within what they hold, or while they can pass their costs to others, and the vortex can stop.
 
 The predictions are therefore of the form **"what persists will have this architecture; what lacks it will be over-represented among failures"**, not "every collective converges to it".
 
@@ -26,9 +26,9 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Prediction.** In persisting collectives, every member can both send and receive correction. Members or offices that are permanently exempt from correction are rare among long-lived collectives and common among those that fragmented or collapsed.
 
-**Rests on.** `sc_every_model_sends`, `sc_every_model_receives`, `sealing_breaks`, `isolation_breaks`, `persistence_replaces_the_aim`.
+**Rests on.** `sc_every_model_sends`, `sc_every_model_receives`, `sealing_breaks`, `isolation_breaks`, `sealed_configuration_does_not_persist`.
 
-**Would count against it.** Long-lived collectives (decades, under changing conditions) in which some member or office is structurally unanswerable *and* the collective depends reciprocally on others (see E1 for the exception).
+**Would count against it.** Long-lived collectives (decades, under changing conditions) in which some member or office is structurally unanswerable and cannot pass the cost of its errors to others (see E1 for the exception).
 
 ### P2. Restrictions come with detours
 
@@ -104,11 +104,11 @@ The predictions are therefore of the form **"what persists will have this archit
 
 ### E1. The exception: sealed persistence
 
-**Prediction.** Sealed agents and collectives — monopolies, coercive regimes, parasitic arrangements — *can* persist without answering correction, but only where they do not depend on reciprocal partners. They persist while their buffer lasts and fail abruptly when reciprocal dependence returns: reserves run out, partners can leave, or an outside dependence appears.
+**Prediction.** Sealed agents and collectives — monopolies, coercive regimes, parasitic arrangements — *can* persist without answering correction, but only while the world stays within what they already hold, or while they can pass the cost of their errors to others. They live off their reserve and fail abruptly when the world moves past them, the reserve runs out, or partners they depend on can leave.
 
-**Rests on.** `reciprocity_is_load_bearing`, `sealing_is_fatal_after_buffer`, `buffer_seals_dependence`.
+**Rests on.** `sealed_configuration_does_not_persist` (sealing fails once the world moves outside what the configuration fits), `reciprocity_is_load_bearing` (without dependence on partners, sealing is not punished socially), `sealing_is_fatal_after_buffer`, `buffer_seals_dependence`.
 
-**Would count against it.** Sealed systems that become reciprocally dependent and still persist indefinitely without answering correction.
+**Would count against it.** Sealed systems that persist indefinitely in a changing world while bearing the cost of their own errors.
 
 ---
 
@@ -124,7 +124,7 @@ The predictions are therefore of the form **"what persists will have this archit
 - **Repairable** — splits become delays;
 - **Affordable** — correction pays its own upkeep.
 
-**Rests on.** `scap_persistent_correctability` (the five conditions together give persistent correctability), `persistence_replaces_the_aim`, `reciprocity_is_load_bearing`, `commons_responsive_correctable`.
+**Rests on.** `scap_persistent_correctability` (the five conditions together give persistent correctability), `listening_configuration_persists`, `sealed_configuration_does_not_persist`, `reciprocity_is_load_bearing`, `commons_responsive_correctable`.
 
 **Status.** This is a conditional design result, not an unconditional prediction: it says what agents with this aim and understanding would build, not that every collective will build it.
 
@@ -161,7 +161,7 @@ A constitution can declare every right while nothing can execute (`paper_constit
 
 ## Relation to existing evidence
 
-The framework was derived from the room and from substrate dependence, not from prior literature. Some predictions nonetheless meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6. Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
+The framework was derived from a model of learning in neural networks, the room and substrate dependence, not from prior literature. Some predictions nonetheless meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6. Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
 
 ## What this document does not claim
 
