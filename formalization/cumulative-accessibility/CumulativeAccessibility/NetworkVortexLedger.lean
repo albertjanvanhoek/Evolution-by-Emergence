@@ -192,7 +192,7 @@ theorem moveFlow_partSlack
         PartSlackAt state gradient partUptake partMaintenance flow i t + δ ∧
     PartSlackAt state gradient partUptake partMaintenance (moveFlow flow i j δ) j t =
         PartSlackAt state gradient partUptake partMaintenance flow j t - δ := by
-  simp only [PartSlackAt, moveFlow, if_pos rfl, if_neg hij, if_neg hij.symm]
+  simp only [PartSlackAt, moveFlow, if_neg hij, if_neg hij.symm, ↓reduceIte]
   constructor <;> ring
 
 end Move
