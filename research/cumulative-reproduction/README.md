@@ -9,6 +9,7 @@ The ledger bound survives review: with constant finite external budget B₀ and 
 | Path | Contents |
 |---|---|
 | `lean/CumulativeReproduction.lean` | Standalone Lean 4 integer recurrence proofs and 16 named axiom audits |
+| `lean/CommonsLedger.lean` | Standalone Lean 4 extension: shared kernel versus private budget, transfer versus creation, and their coupling; 19 named axiom audits |
 | `sim/crm.py` | Gillespie simulation, CTMC generator, deterministic closure and analytic formulas |
 | `sim/experiments.py` | Experiments E1–E8 |
 | `sim/test_crm.py` | Regression and counterexample checks |
@@ -22,6 +23,7 @@ Run from this directory. Install [elan](https://github.com/leanprover/elan) for 
 
 ```bash
 (cd lean && lean CumulativeReproduction.lean)
+(cd lean && lean CommonsLedger.lean)
 python -m pip install -r requirements.txt
 python -m unittest discover -s sim -p 'test_*.py' -v
 python sim/experiments.py --output-dir /tmp/crm-full

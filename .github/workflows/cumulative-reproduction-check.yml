@@ -34,6 +34,17 @@ jobs:
             exit 1
           fi
           test "$(grep -c 'depends on axioms:' lean-audit.log)" -eq 16
+      - name: Compile and audit the standalone commons ledger
+        working-directory: research/cumulative-reproduction/lean
+        shell: bash
+        run: |
+          set -euo pipefail
+          lean CommonsLedger.lean | tee commons-audit.log
+          if grep -q 'sorryAx' commons-audit.log; then
+            echo 'Unproved axiom detected' >&2
+            exit 1
+          fi
+          test "$(grep -c 'axioms' commons-audit.log)" -eq 19
   simulation:
     runs-on: ubuntu-latest
     steps:
