@@ -52,6 +52,7 @@ jobs:
             CumulativeAccessibility.EndogenousBudgetWitness \
             CumulativeAccessibility.DynamicVortexWitness \
             CumulativeAccessibility.NetworkVortexLedger \
+            CumulativeAccessibility.PersistenceRequiresVortex \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
