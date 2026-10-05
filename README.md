@@ -19,6 +19,7 @@
 | If you want to… | Go to |
 |---|---|
 | see the core dynamic on one page | [CORE.md](CORE.md), checked in one Lean file: [EbECore.lean](formalization/ebe-core/EbECore.lean) |
+| see what the framework predicts, and how it could be wrong | [PREDICTIONS.md](PREDICTIONS.md) |
 | understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
 | understand the universal EbE theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md) |
 | read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |

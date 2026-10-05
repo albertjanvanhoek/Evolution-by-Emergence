@@ -71,6 +71,10 @@ Each premise of the open-ended loop is shown necessary by a countermodel. Withou
 - **Packaged, not derived:** the vortex composition theorem joins proved parts; it does not derive that real systems keep producing turns. That premise, like every application mapping (what counts as capture, upkeep, a filter or a transfer in a given domain), is an assumption to be tested.
 - **Not claimed:** empirical universality, that any particular system satisfies the premises, or normative conclusions.
 
+## What the framework predicts
+
+The falsifiable predictions about collectives of fallible intelligences — and SCAP as a conditional design result — are in [PREDICTIONS.md](PREDICTIONS.md).
+
 ## How this relates to the rest of the repository
 
 The current full theory ([THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md)) and the intelligent-system specialization ([research/anchored-correctability/](research/anchored-correctability/)) remain the detailed review objects. Earlier cores, essays, chapters and papers are lineage, kept as written. If a reader understands this page and can check `EbECore.lean`, they hold the core.
