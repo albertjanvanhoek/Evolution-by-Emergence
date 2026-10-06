@@ -9,7 +9,7 @@ title: Home
 
 Welcome to the online edition of *Evolution by Emergence: A Universal Theory of Networks, Life, and Mind*.
 
-> **Current theory (September 2026):** this online book is the historical conceptual edition. The current scientific theory, proof map, and verification surface are maintained in the repository root: [THEORY.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/THEORY.md), [DYNAMIC_OVERVIEW.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/DYNAMIC_OVERVIEW.md), and [FORMAL_THEORY_MAP.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/FORMAL_THEORY_MAP.md).
+> **Current theory:** this online book is the historical conceptual edition. The current theory is on one page in the repository: [CORE.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/CORE.md), a theory of persistence in eight steps, with every result checked in one Lean file. The proof map is [FORMAL_THEORY_MAP.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/main/FORMAL_THEORY_MAP.md).
   
 
 [**This webpage is automatically compiled from the LaTeX code for the book**](https://github.com/albertjanvanhoek/Evolution-by-Emergence)

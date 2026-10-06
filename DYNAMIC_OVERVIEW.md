@@ -1,5 +1,7 @@
 # v17 relationship
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it describes the resource and accessibility dynamics developed through v16. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 This document describes the resource/maintenance-to-response and second-order accessibility dynamics developed through v16. It remains an important supporting layer, but it is **not** the canonical v17 recursive-emergence theorem surface.
 
 For the candidate v17 core, start with [`THEORY_CORE_V17.md`](THEORY_CORE_V17.md) and [`formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceV17Core.lean).

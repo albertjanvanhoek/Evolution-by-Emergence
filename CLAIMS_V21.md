@@ -1,5 +1,7 @@
 # CLAIMS — v21
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it states the theory as of v21, with claims organized around retained organization and accessibility. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 Compact claim ledger for the current Evolution by Emergence review object.
 
 This file distinguishes machine-checked conditional claims, reviewed analytical/numerical claims, specialization claims, and scientific interpretation. It does not replace the exact Lean sources.

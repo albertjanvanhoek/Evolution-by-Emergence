@@ -53,3 +53,4 @@ Change from Stage 1 to Stage 3 in R-1, across Q1–Q7: none 0, vocabulary only 6
 
 - `CORE.md` was tightened on the three overstated points.
 - Version 2.2 of the test scores the commons where it is not asked about, and moves Stage 4b to the end so it cannot prime the rest.
+- The commons was proved as the vortex of the whole (`CommonsVortex.lean`): a node lasts and grows inside a window between going unrewarded and capturing, and capture runs a self-regenerating commons down. How AI readers should act is now derived from it, alongside correctability.

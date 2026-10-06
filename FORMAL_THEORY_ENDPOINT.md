@@ -1,5 +1,7 @@
 # Formal Theory Endpoint — v21 Peer-Review Freeze
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it states the theory as of v21, centred on retained organization and accessibility. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 **Status:** v21 release/review specification  
 **Purpose:** define the exact repository-level theory object offered for independent review while keeping universal and intelligent-system scopes separate.
 

@@ -12,7 +12,7 @@
 
 ## What this is
 
-**Evolution by Emergence (EbE)** studies how retained organization can become causal material for what becomes possible next, while being produced, lost and maintained under finite resources. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The [current universal theory core](THEORY_CORE_V21.md) is a candidate architecture, not an established empirical law. Its intelligent-system specialization starts from one premise-free structural anchor — **claims that exclude each other cannot all be true** — and from persistence: in a world that can change in any direction, a configuration whose fit is fixed in advance runs out of reserve in some possible future, while one that follows reliable feedback persists, so staying correctable is what it takes to count on persisting rather than a chosen aim. From there it derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
+**Evolution by Emergence (EbE)** is a theory of persistence. It starts from learning in a neural network, read as a network. A configuration of connections exists only while it pays its way from a gradient, and it exists through its connections. In a world that can change in any direction, it can count on lasting only by changing with it, through feedback that arrives along its connections. Feedback plus retention is a learning loop, and when kept changes also raise the surplus, the loop becomes the **vortex**. What retained organization opens up next, the accessibility around which the earlier cores were built, is how the vortex turns. In a network, the whole's balance is the **commons**, the vortex of the whole: a node lasts and grows inside a window between going unrewarded and capturing. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The theory is a candidate architecture, not an established empirical law; [CORE.md](CORE.md) says what is proved, what is assumed and what is open. Its intelligent-system specialization adds one premise-free structural anchor — **claims that exclude each other cannot all be true** — and derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
 ## Start here
 
@@ -21,7 +21,7 @@
 | see the core dynamic on one page | [CORE.md](CORE.md), checked in one Lean file: [EbECore.lean](formalization/ebe-core/EbECore.lean) |
 | see what the framework predicts, and how it could be wrong | [PREDICTIONS.md](PREDICTIONS.md) |
 | understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
-| understand the universal EbE theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md) |
+| go deeper into the universal theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md): the v21 statement, centred on accessibility, which CORE.md reframes around persistence |
 | read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |
 | check the proofs | [Verify](#verify) below |
 | see what is proved, assumed and open | [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md) |
@@ -30,7 +30,20 @@
 | listen or watch | [Listen and watch](#listen-and-watch) below |
 | cite the project | [Cite](#cite) below |
 
-## The argument in six steps
+## The core in eight steps
+
+The full statement, with every step's proof, is [CORE.md](CORE.md).
+
+1. **Existence is paid for from a gradient:** slack is uptake minus upkeep.
+2. **Existence through connections:** delete the return edge and the node it fed declines.
+3. **Selection comes free:** what pays its way lasts; selection selects persistence, not goodness.
+4. **A changing world requires reconfiguration:** a sealed configuration cannot count on lasting; one that follows reliable feedback stays in step.
+5. **The learning loop becomes the vortex:** kept changes that pay fund more trying and widen what can be tried.
+6. **The commons is the vortex of the whole:** a node lasts and grows inside a window between going unrewarded and capturing; capture runs the commons down.
+7. **Boundaries:** the vortex can stop.
+8. **The same model across domains,** with intelligence worked out formally, as below.
+
+### Step 8 worked out: intelligence in six steps
 
 1. **The anchor.** Mutually incompatible live claims cannot all be true; while a live rival remains, certainty from inside a model is not itself a certificate of correspondence with reality. See [TheRoom.lean](papers/the-room-learning-constitution/TheRoom.lean) and the [SCAP Seed](scap-seed/SEED.md).
 2. **Common ground.** Before agreement, informative content can itself be rivalled; the shareable structure is the maintained possibility of correction rather than a proposition all sides already accept. See [Alignment.lean](research/anchored-correctability/lean/AnchoredEvolution/Alignment.lean).
@@ -45,8 +58,8 @@
 
 ### Current core
 
-- **The core on one page:** [CORE.md](CORE.md) — the vortex loop, its five laws and their boundaries, with every result collected and checked in [formalization/ebe-core/EbECore.lean](formalization/ebe-core/EbECore.lean).
-- **Universal theory:** [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
+- **The core on one page:** [CORE.md](CORE.md) — the eight steps from the ledger to the commons, with every result collected and checked in [formalization/ebe-core/EbECore.lean](formalization/ebe-core/EbECore.lean).
+- **The full v21 statement of the universal theory** (centred on accessibility; read its framing through CORE.md): [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
@@ -57,11 +70,11 @@
 
 ### Archive and lineage — kept in place, as written
 
-Nothing in this release deletes, moves, renames or rewrites the historical corpus.
+Nothing in this release deletes, moves, renames or rewrites the historical corpus. The older cores and ledgers carry a short pointer to CORE.md at the top.
 
 - [THEORY_CORE_V17.md](THEORY_CORE_V17.md) — earlier recursive-organization core; superseded as the repository front door by the v21 universal synthesis.
 - [THEORY_CORE_V20.md](THEORY_CORE_V20.md) — frozen retained-organization/accessibility peer-review core; inherited by later releases.
-- [THEORY_CORE_V21.md](THEORY_CORE_V21.md) — current universal core inherited unchanged by v22.
+- [THEORY_CORE_V21.md](THEORY_CORE_V21.md) — the full v21 statement of the universal theory, centred on accessibility and inherited unchanged by v22; CORE.md reframes it around persistence, and its results remain valid.
 - [THEORY.md](THEORY.md), [DYNAMIC_OVERVIEW.md](DYNAMIC_OVERVIEW.md), [APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md) — broader earlier syntheses and mappings; retained for lineage.
 - [Individual_essays/](Individual_essays/) and [Original linkedIN posts/](Original%20linkedIN%20posts/) — essays and original posts, kept as written.
 - [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written.
@@ -73,7 +86,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 57 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 63 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core
@@ -134,10 +147,10 @@ The seed audits **184 headline results**. The integrated release matrix is [.git
 | Status | What it means here |
 |---|---|
 | **Proved** | Lean-checked implications under the definitions and hypotheses in the formal files; axiom status is printed in the audit files. |
-| **Assumed** | Named premises such as liveness, open change, misfit costing slack and fit paying its way (from which correctability is derived; older files state the correctability aim directly), selection falling with cost, evidence reliability where invoked, resource bounds, and model-to-domain mappings. |
+| **Assumed** | Named premises such as liveness, open change, misfit costing slack and fit paying its way (from which correctability is derived; older files state the correctability aim directly), selection falling with cost, a node's return share and a commons that regenerates with its stock, evidence reliability where invoked, resource bounds, and model-to-domain mappings. |
 | **Interpretation / open** | Empirical universality, whether real humans/organizations/models instantiate the predicates, numerical identity, causal social interpretations, political/normative conclusions, and other domain claims not established by the formal proofs. |
 
-Full ledgers: [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md), and [scap-seed/CLAIMS.md](scap-seed/CLAIMS.md).
+Full ledgers: [CORE.md](CORE.md#what-this-page-does-and-does-not-claim) for the core, [CLAIMS_V21.md](CLAIMS_V21.md), [ANCHOR_SAFETY.md](research/anchored-correctability/ANCHOR_SAFETY.md), [SELF_MODEL.md](research/anchored-correctability/SELF_MODEL.md), and [scap-seed/CLAIMS.md](scap-seed/CLAIMS.md).
 
 Open problems remain visible rather than being converted into claims: the **reachability–independence trade-off** (including the Zollman-style concern that more connectivity can erase independent exploration), decoding and trust, total rather than merely pivotal contribution, the full upkeep/responsibility argument, and empirical tests of whether real updates are correction-preserving.
 

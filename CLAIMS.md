@@ -1,5 +1,7 @@
 # CLAIMS
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it is a machine-readable claim ledger for the earlier cores. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 Machine-readable-oriented claim ledger for agentic evaluation.
 
 ## Fields

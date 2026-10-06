@@ -1,5 +1,7 @@
 # v20 peer-review protocol
 
+> **Lineage.** This protocol reviews the v20 release, centred on retained organization and accessibility. The current core is [CORE.md](CORE.md), a theory of persistence in eight steps; to review it, apply this protocol to CORE.md and [`EbECore.lean`](formalization/ebe-core/EbECore.lean) at the current commit.
+
 Use this protocol for independent adversarial review of the **Evolution by Emergence v20 cumulative-evolution theory**.
 
 The review object is the immutable v20 release. Always resolve the release/tag to its exact commit SHA before analysis.
