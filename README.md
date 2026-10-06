@@ -35,7 +35,7 @@
 The full statement, with every step's proof, is [CORE.md](CORE.md).
 
 1. **Existence is paid for from a gradient:** slack is uptake minus upkeep.
-2. **Existence through connections:** delete the return edge and the node it fed declines.
+2. **Existence through connections:** delete the return edge and the node it fed declines; a defector that cannot live alone falls after its partner, at every level, inward and outward.
 3. **Selection comes free:** what pays its way lasts; selection selects persistence, not goodness.
 4. **A changing world requires reconfiguration:** a sealed configuration cannot count on lasting; one that follows reliable feedback stays in step.
 5. **The learning loop becomes the vortex:** kept changes that pay fund more trying and widen what can be tried.
@@ -86,7 +86,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 67 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 70 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core

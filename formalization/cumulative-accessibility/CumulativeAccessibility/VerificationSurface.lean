@@ -542,3 +542,9 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.CommonsInterest.specialists_fail_after_collapse
 #print axioms CumulativeAccessibility.CommonsInterest.sanction_makes_capture_unprofitable
 #print axioms CumulativeAccessibility.CommonsInterest.commons_interest_witness
+#print axioms CumulativeAccessibility.Reciprocity.exchange_lasts
+#print axioms CumulativeAccessibility.Reciprocity.defection_pays_at_first
+#print axioms CumulativeAccessibility.Reciprocity.partner_reserve_falls
+#print axioms CumulativeAccessibility.Reciprocity.partner_falls
+#print axioms CumulativeAccessibility.Reciprocity.defector_falls_after_partner
+#print axioms CumulativeAccessibility.Reciprocity.reciprocity_witness
