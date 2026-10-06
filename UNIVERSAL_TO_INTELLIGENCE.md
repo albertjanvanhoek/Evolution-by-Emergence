@@ -3,6 +3,8 @@
 **Status:** explicit specialization map for v21.  
 **Important:** this document maps interfaces; it does **not** prove that the intelligent-system theory is equivalent to, or required by, the universal Evolution by Emergence model.
 
+> **Start with [CORE.md](CORE.md).** This map was written for the v21 universal core, centred on retained organization and accessibility. The current core puts persistence at the centre, and intelligence is its eighth step: the domain worked out formally. The interfaces mapped here remain valid; read their framing through CORE.md.
+
 ## 1. Why keep the layers separate?
 
 The universal EbE core is substrate-agnostic. Its primitive objects are organization, retention, transition machinery, accessibility, resources, emergence, production and loss.

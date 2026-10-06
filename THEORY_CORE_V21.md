@@ -1,5 +1,7 @@
 # Evolution by Emergence v21 — Theory Core
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it states the theory as of v21, centred on retained organization and accessibility. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 **Status:** candidate theory for adversarial peer review  
 **Universal scope:** substrate-agnostic cumulative evolution under explicit retention, transition, accessibility, production/loss, emergence, and resource constraints  
 **Companion specialization:** intelligent systems are treated separately in `research/anchored-correctability/`; their semantic premises are not universal axioms

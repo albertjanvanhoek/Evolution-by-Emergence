@@ -1,5 +1,7 @@
 # Evolution by Emergence — Research Guide
 
+> **Start with [CORE.md](CORE.md).** This document is lineage: it states the theory as of v21, routing the corpus around the v21 core. The current core puts persistence at the centre: a configuration exists while it pays its way through its connections, lasts in a changing world only by learning, and its learning loop becomes the vortex; the whole's balance, the commons, is the vortex of the whole. What retained organization opens up next is how the vortex turns (CORE.md, step 5), not a separate centre. The results stated here remain valid; read their framing through CORE.md.
+
 > A routing document for the current theory, formalizations, specializations and historical corpus.
 
 This repository is an active research corpus by **Albert Jan van Hoek, with AI collaboration**. It contains a universal candidate architecture for cumulative evolution, several formal and numerical specializations, and a separate intelligent-system programme about corrigibility and persistent learning networks.
