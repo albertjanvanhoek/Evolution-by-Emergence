@@ -4,9 +4,13 @@
 
 ## Where it comes from
 
-Take a neural network and read it as a network. Its capacities are not in any single unit; they live in its connections, in the weights. It learns through a loop: feedback from outside, from data and a loss, adjusts the connections; what works is kept; and what is kept becomes material for what can be learned next. Learned features become building blocks for later features, so capacities grow as the network is used. Training costs compute and energy, and capacity is finite.
+Intelligence is a training loop in a neural network. In a human brain, learning does not add neurons or replace them; it changes the connections between them. The difference between speaking French and not speaking French is a different configuration of the same web. Capacity is configuration. The loop that changes it is simple: feedback from outside adjusts the connections, what works is kept, and what is kept becomes material for what can be learned next. Keeping the web running costs energy, and its capacity is finite.
 
-The question was whether this loop is special to artificial neural networks. The proposal of this work is that it is not. The same structure describes human intelligence (a neural network in a body), science and society (learning loops across people), ecosystems and bodies (networks of interacting processes). In each case something persists, in a world that does not hold still, by keeping a learning loop running on its connections. Evolution is one instance; the object of the theory is **prolonged existence**.
+Artificial neural networks are a recreation of this, which is why they are called artificial, and they made the structure easy to see: a model's capacities live in its weights, and training is the same loop of feedback, adjustment and retention.
+
+Because only connections change, adapting is cheap: nothing new has to be grown, only rewired. And because similar networks are built from the same kind of parts, a configuration can pass from one to another. You watch someone do something, make a few connections, and now you can do it too. Knowledge is infectious.
+
+The question was whether this loop is special to neural networks. The proposal of this work is that it is not. The same structure describes science and society (learning loops across people), and ecosystems and bodies (networks of interacting processes). In each case something persists, in a world that does not hold still, by keeping a learning loop running on its connections. Evolution is one instance; the object of the theory is **prolonged existence**.
 
 ## The core in one paragraph
 
@@ -36,7 +40,7 @@ The question was whether this loop is special to artificial neural networks. The
 
 **3. Selection comes free.** What pays its way lasts; what we observe is mostly what lasted. When fitness falls with cost, selection lowers mean cost, and competition among implementations that do the same job strictly raises slack, which can fund more search. Selection selects what persists, not what is good.
 
-**4. A changing world requires reconfiguration.** A configuration whose fit is fixed in advance and rules something out exhausts its reserve in some possible future, when misfit costs slack. Its reserve sets how long that takes; it cannot make sealing safe. A configuration that follows reliable feedback stays in step and, when fitting pays its way, keeps its reserve. For a neural network: a model frozen after training drifts out of step with a changing world; a model that keeps learning from reliable feedback stays in step.
+**4. A changing world requires reconfiguration.** A configuration whose fit is fixed in advance and rules something out exhausts its reserve in some possible future, when misfit costs slack. Its reserve sets how long that takes; it cannot make sealing safe. A configuration that follows reliable feedback stays in step and, when fitting pays its way, keeps its reserve. For a neural network, biological or artificial: one that stops rewiring drifts out of step with a changing world; one that keeps learning from reliable feedback stays in step.
 
 **5. The learning loop becomes the vortex.** Feedback on each part plus retention of what is found turns a search over `q^k` joint possibilities into `k·q` trials. Better organization raises the budget for change. A kept item counts as cumulative only if it opens more than it costs; kept products become parents for the next round, so what can be tried widens (a *second-order click*). A turn of the vortex is a kept change that both raises slack and widens search; recurring turns give open-ended accumulation. Its speed is `opportunity × generate × affordable × validated × retained × gain`: any zero factor stops it, and more search alone can lower it.
 
@@ -48,8 +52,7 @@ The question was whether this loop is special to artificial neural networks. The
 
 | Domain | Nodes and connections | Feedback from outside | What is kept | Status |
 |---|---|---|---|---|
-| Neural networks (AI) | units and weights | data, loss | weights, learned features | the origin; mapped |
-| Human intelligence | neurons; people and sources | evidence, other people's correction | memory, skills, models | worked out formally (below) |
+| Neural networks, biological and artificial | neurons or units, and their connections (weights) | evidence and other people's correction; data and loss | the configuration of connections: memory, skills, models | the origin; worked out formally for intelligence (below) |
 | Science and society | researchers, institutions, records | replication, criticism, review | results, methods, standards | mapped |
 | Ecology and the body | organisms, cells, metabolic and ecological interactions | selection, environmental response | heredity, regulation, structure | mapped |
 

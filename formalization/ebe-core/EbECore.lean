@@ -40,13 +40,16 @@ or depends on `sorry`.
 
 ## Where the model comes from
 
-The model began as a simple description of learning in a neural network, read
-as a network. Its capacities live in its connections. It learns through a loop:
-feedback from outside (data, loss) adjusts the connections, what works is kept,
-and what is kept becomes material for what can be learned next. Training costs
-compute and capacity is finite. The question was whether this loop is special to
-artificial neural networks. The answer proposed here is that the same structure
-describes any configuration that persists in a world that does not hold still.
+Intelligence is a training loop in a neural network. When a brain learns, its
+neurons stay the same; the connections between them change, so capacity is a
+configuration of connections. Feedback from outside adjusts the connections,
+what works is kept, and what is kept becomes material for what can be learned
+next, at a cost and with finite capacity. Artificial neural networks recreate
+this loop in their weights. Because only connections change, adapting is cheap,
+and a configuration can pass from one network to another. The question was
+whether this loop is special to neural networks. The answer proposed here is
+that the same structure describes any configuration that persists in a world
+that does not hold still.
 
 ## The story, in the order of the sections below
 
