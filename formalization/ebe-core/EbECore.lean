@@ -16,6 +16,7 @@ import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
+import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.Reciprocity
 import MaintenanceDynamics
 import CollectiveAlignment
@@ -181,7 +182,9 @@ it creates, until saturation stops the node. It can take more and still last,
 up to its interest: its own creation plus what the commons regenerates. Taking
 more eats the principal: a depleted commons regenerates nothing, and the
 capturer is left with only what it creates itself. Capture pays at first, but
-past a horizon not cheating has yielded more; specialists can all be carried on
+past a horizon not cheating has yielded more, for a taker whose discount rate is
+below the rate at which the commons regenerates; a taker that discounts more
+steeply gains by capture, which is why rules matter; specialists can all be carried on
 the interest and fail after a collapse; and a large enough sanction makes
 capture yield no more than the interest at any horizon. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
@@ -203,6 +206,8 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsInterest.not_cheating_wins_over_time
 #check @CommonsInterest.specialists_fail_after_collapse
 #check @CommonsInterest.sanction_makes_capture_unprofitable
+#check @CommonsDiscount.capture_wins_under_steep_discount
+#check @CommonsDiscount.not_cheating_wins_under_mild_discount
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -302,6 +307,8 @@ routes pay upkeep from the same ledger. -/
 #print axioms CommonsInterest.not_cheating_wins_over_time
 #print axioms CommonsInterest.specialists_fail_after_collapse
 #print axioms CommonsInterest.sanction_makes_capture_unprofitable
+#print axioms CommonsDiscount.capture_wins_under_steep_discount
+#print axioms CommonsDiscount.not_cheating_wins_under_mild_discount
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

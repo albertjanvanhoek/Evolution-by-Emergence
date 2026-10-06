@@ -50,8 +50,10 @@ is a correction route, as in SCAP.
 
 Premises: regeneration depends only on the stock, rises with it, and is zero
 when the stock is empty (for the collapse results); one aggregate take per step;
-a one-time sanction in part 3.  Not covered: detection that can fail, sanctions
-that are themselves captured, and how a collective sets its rules.
+a one-time sanction in part 3.  Totals are undiscounted: a gain later counts as
+much as a gain now; `CommonsDiscount` shows where discounting moves the line.
+Not covered: detection that can fail, sanctions that are themselves captured,
+and how a collective sets its rules.
 -/
 
 /-- A node's interest at stock `s`: its own creation plus what the commons
