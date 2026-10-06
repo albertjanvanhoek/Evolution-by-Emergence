@@ -38,6 +38,7 @@ import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.CommonsCapture
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
+import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
