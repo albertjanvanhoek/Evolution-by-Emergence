@@ -55,6 +55,8 @@ jobs:
             CumulativeAccessibility.PersistenceRequiresVortex \
             CumulativeAccessibility.AdaptivePersistence \
             CumulativeAccessibility.ListeningCost \
+            CumulativeAccessibility.GradedBelief \
+            CumulativeAccessibility.ConnectionIndependence \
             CumulativeAccessibility.CommonsCapture \
             CumulativeAccessibility.CommonsVortex \
             CumulativeAccessibility.CommonsInterest \
@@ -103,6 +105,8 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/AdaptivePersistence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ListeningCost.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/GradedBelief.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ConnectionIndependence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsCapture.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsInterest.lean

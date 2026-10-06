@@ -58,7 +58,7 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Prediction.** Persisting collectives keep several independent checks on what matters and protect members whose views are not determined by a common source. **Collectives whose members all rely on the same representation layer — for example the same AI model — will miss exactly the errors that layer is blind to, however careful each member is.** Independent members are pivotal at those blind spots; losing the last one seals the error.
 
-**Rests on.** `hub_determined_network_inherits_blind_spot`, `independent_node_pivotal_at_hub_blind_spot`, `backup_becomes_pivotal`, `majority3_redundancy_gain`.
+**Rests on.** `hub_determined_network_inherits_blind_spot`, `independent_node_pivotal_at_hub_blind_spot`, `backup_becomes_pivotal`, `majority3_redundancy_gain`, and `correcting_levels_form_interval`: the collectives that catch and correct such errors sit between isolation and conformity, connected enough to spread a correction but not so tightly that every member falls into line.
 
 **Would count against it.** Collectives converging on one shared AI layer that detect errors on that layer's blind spots at the same rate as collectives with independent sources.
 

@@ -60,4 +60,4 @@ jobs:
             echo 'Unproved axiom detected' >&2
             exit 1
           fi
-          test "$(grep -c 'axioms' core-audit.log)" -eq 81
+          test "$(grep -c 'axioms' core-audit.log)" -eq 84

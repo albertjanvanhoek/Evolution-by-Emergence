@@ -36,6 +36,8 @@ import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.PersistenceRequiresVortex
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.ListeningCost
+import CumulativeAccessibility.GradedBelief
+import CumulativeAccessibility.ConnectionIndependence
 import CumulativeAccessibility.CommonsCapture
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
