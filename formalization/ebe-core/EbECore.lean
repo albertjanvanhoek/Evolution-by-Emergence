@@ -14,7 +14,7 @@ import CumulativeAccessibility.EmergentAssemblyBarrier
 import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
-import CumulativeAccessibility.CommonsCapture
+import CumulativeAccessibility.CommonsVortex
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -63,10 +63,10 @@ any configuration that persists in a world that does not hold still.
    of reserve; one that follows reliable feedback persists.
 5. The learning loop becomes the vortex: feedback plus retention makes search
    cheap; kept changes that pay for themselves widen what can be tried next.
-6. The commons and capture: transfers decide survival, not size; extraction is
-   survivable only within the host's margin; what is selected can fall short of
-   what is sufficient; taking more than a commons regenerates undermines the
-   taker's own ground.
+6. The commons is the vortex of the whole: transfers decide survival, not size;
+   a node and the commons grow together inside a window between being
+   unrewarded and capturing; capture runs a self-regenerating commons down and
+   then fails.
 7. Boundaries: the vortex can stop.
 8. One domain worked out: intelligence.
 
@@ -152,19 +152,22 @@ more search alone can lower it. -/
 #check @FunctionalOrganization.shorterResponseLag_strictlyRaises_rateFloor
 #check @FunctionalOrganization.more_search_can_reduce_velocity
 
-/-! ## 6. The commons and capture
+/-! ## 6. The commons is the vortex of the whole
 
 Inside a network, transfers between parts cancel: they decide which parts can
 cover their upkeep, never the size of the whole, and a transfer can break a
 part while the whole is unchanged. A non-viable whole stalls. A host survives
 one-way extraction exactly while the extraction stays within its margin. A
 bad return path can overwhelm selection, and privately selected effort can fall
-below what the network needs. A node that draws its uptake from a commons and
-takes more than the commons regenerates gains while the stock lasts, then is
-left with what regenerates: if its upkeep exceeds that, capture undermines its
-own ground, and taking more never changes whether it lasts. A new whole cannot
-pay for its own parts while it is being assembled; it needs support from
-elsewhere. -/
+below what the network needs. The whole's balance is the commons, and a commons
+that regenerates more as it holds more is the vortex of the whole. A node that
+creates for the commons and takes back through a return path lasts and grows,
+with the commons, inside a window: what comes back exceeds its upkeep and does
+not exceed what it creates. Inside the window both grow, until saturation stops
+the node. Above it, the node captures: taking more than the commons
+regenerates runs it down, a depleted commons regenerates nothing, and the
+capturer is left with only what it creates itself. A new whole cannot pay for
+its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack
 #check @RecursiveAccessibility.internallyViable_iff_exists_viable_transfer
@@ -173,10 +176,12 @@ elsewhere. -/
 #check @FunctionalThresholds.extraction_viable_iff
 #check @ReturnPathPrice.mean_fitness_decreases_of_return_below_selection
 #check @CollectiveAlignment.selectedAlignment_insufficient_if
-#check @CommonsCapture.capture_undermines_own_ground
-#check @CommonsCapture.no_take_lasts_above_regeneration
-#check @CommonsCapture.lasts_iff
-#check @CommonsCapture.capture_buys_no_lasting
+#check @CommonsVortex.grows_with_commons_iff
+#check @CommonsVortex.positive_loop
+#check @CommonsVortex.saturation_bounds_growth
+#check @CommonsVortex.commons_grows_in_window
+#check @CommonsVortex.capture_collapses_commons
+#check @CommonsVortex.capture_pays_then_fails
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -262,10 +267,12 @@ routes pay upkeep from the same ledger. -/
 #print axioms FunctionalThresholds.extraction_viable_iff
 #print axioms ReturnPathPrice.mean_fitness_decreases_of_return_below_selection
 #print axioms CollectiveAlignment.selectedAlignment_insufficient_if
-#print axioms CommonsCapture.capture_undermines_own_ground
-#print axioms CommonsCapture.no_take_lasts_above_regeneration
-#print axioms CommonsCapture.lasts_iff
-#print axioms CommonsCapture.capture_buys_no_lasting
+#print axioms CommonsVortex.grows_with_commons_iff
+#print axioms CommonsVortex.positive_loop
+#print axioms CommonsVortex.saturation_bounds_growth
+#print axioms CommonsVortex.commons_grows_in_window
+#print axioms CommonsVortex.capture_collapses_commons
+#print axioms CommonsVortex.capture_pays_then_fails
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough
