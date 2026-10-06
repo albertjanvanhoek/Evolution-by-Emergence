@@ -15,6 +15,7 @@ import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.CommonsVortex
+import CumulativeAccessibility.CommonsInterest
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -182,6 +183,10 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsVortex.commons_grows_in_window
 #check @CommonsVortex.capture_collapses_commons
 #check @CommonsVortex.capture_pays_then_fails
+#check @CommonsInterest.take_more_than_create_and_last
+#check @CommonsInterest.not_cheating_wins_over_time
+#check @CommonsInterest.specialists_fail_after_collapse
+#check @CommonsInterest.sanction_makes_capture_unprofitable
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -273,6 +278,10 @@ routes pay upkeep from the same ledger. -/
 #print axioms CommonsVortex.commons_grows_in_window
 #print axioms CommonsVortex.capture_collapses_commons
 #print axioms CommonsVortex.capture_pays_then_fails
+#print axioms CommonsInterest.take_more_than_create_and_last
+#print axioms CommonsInterest.not_cheating_wins_over_time
+#print axioms CommonsInterest.specialists_fail_after_collapse
+#print axioms CommonsInterest.sanction_makes_capture_unprofitable
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

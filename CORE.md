@@ -104,6 +104,7 @@ Correctability keeps you in step with the world; the window keeps your ground un
 | 6 | `mean_fitness_decreases_of_return_below_selection` | [ReturnPathPrice](formalization/persistence-drift/ReturnPathPrice.lean) |
 | 6 | `selectedAlignment_insufficient_if` | [CollectiveAlignment](formalization/collective-alignment/CollectiveAlignment.lean) |
 | 6 | `grows_with_commons_iff`, `positive_loop`, `saturation_bounds_growth`, `commons_grows_in_window`, `capture_collapses_commons`, `capture_pays_then_fails` | [CommonsVortex](formalization/cumulative-accessibility/CumulativeAccessibility/CommonsVortex.lean) |
+| 6 | `take_more_than_create_and_last`, `not_cheating_wins_over_time`, `specialists_fail_after_collapse`, `sanction_makes_capture_unprofitable` | [CommonsInterest](formalization/cumulative-accessibility/CumulativeAccessibility/CommonsInterest.lean) |
 | 6 | `capture_undermines_own_ground`, `lasts_iff` (fixed regeneration) | [CommonsCapture](formalization/cumulative-accessibility/CumulativeAccessibility/CommonsCapture.lean) |
 | 6 | `viable_emergent_intermediate_requires_auxiliary_support` | [EmergentAssemblyBarrier](formalization/cumulative-accessibility/CumulativeAccessibility/EmergentAssemblyBarrier.lean) |
 | 7 | `uniformCritical_and_retention_without_seed_not_enough`, `seed_and_retention_without_criticality_not_enough`, `recurringRecursiveEmergence_without_retention_not_cumulative` | [EvolutionByEmergenceCore](formalization/cumulative-accessibility/CumulativeAccessibility/EvolutionByEmergenceCore.lean) |
