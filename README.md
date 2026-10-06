@@ -12,7 +12,7 @@
 
 ## What this is
 
-**Evolution by Emergence (EbE)** is a theory of persistence. It starts from learning in a neural network, read as a network. A configuration of connections exists only while it pays its way from a gradient, and it exists through its connections. In a world that can change in any direction, it can count on lasting only by changing with it, through feedback that arrives along its connections. Feedback plus retention is a learning loop, and when kept changes also raise the surplus, the loop becomes the **vortex**. What retained organization opens up next, the accessibility around which the earlier cores were built, is how the vortex turns. In a network, the whole's balance is the **commons**, the vortex of the whole: a node lasts and grows inside a window between going unrewarded and capturing. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The theory is a candidate architecture, not an established empirical law; [CORE.md](CORE.md) says what is proved, what is assumed and what is open. Its intelligent-system specialization adds one premise-free structural anchor — **claims that exclude each other cannot all be true** — and derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
+**Evolution by Emergence (EbE)** is a theory of persistence. It starts from learning in a neural network, read as a network. A configuration of connections exists only while it pays its way from a gradient, and it exists through its connections. In a world that can change in any direction, it can count on lasting only by changing with it, through feedback that arrives along its connections. Feedback plus retention is a learning loop, and when kept changes also raise the surplus, the loop becomes the **vortex**. What retained organization opens up next, the accessibility around which the earlier cores were built, is how the vortex turns. In a network, the whole's balance is the **commons**, the vortex of the whole: a node can live off its interest, its own creation plus what the commons regenerates, but taking more eats the principal, and not cheating gains more over time. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The theory is a candidate architecture, not an established empirical law; [CORE.md](CORE.md) says what is proved, what is assumed and what is open. Its intelligent-system specialization adds one premise-free structural anchor — **claims that exclude each other cannot all be true** — and derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
 ## Start here
 
@@ -35,11 +35,11 @@
 The full statement, with every step's proof, is [CORE.md](CORE.md).
 
 1. **Existence is paid for from a gradient:** slack is uptake minus upkeep.
-2. **Existence through connections:** delete the return edge and the node it fed declines.
+2. **Existence through connections:** delete the return edge and the node it fed declines; a defector that cannot live alone falls after its partner, at every level, inward and outward.
 3. **Selection comes free:** what pays its way lasts; selection selects persistence, not goodness.
 4. **A changing world requires reconfiguration:** a sealed configuration cannot count on lasting; one that follows reliable feedback stays in step.
 5. **The learning loop becomes the vortex:** kept changes that pay fund more trying and widen what can be tried.
-6. **The commons is the vortex of the whole:** a node lasts and grows inside a window between going unrewarded and capturing; capture runs the commons down.
+6. **The commons is the vortex of the whole:** live off the interest, not the principal; capture pays at first, not cheating gains more over time, and rules make it pay now.
 7. **Boundaries:** the vortex can stop.
 8. **The same model across domains,** with intelligence worked out formally, as below.
 
@@ -86,7 +86,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 63 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 70 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core

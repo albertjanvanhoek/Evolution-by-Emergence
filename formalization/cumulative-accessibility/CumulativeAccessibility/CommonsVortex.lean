@@ -24,9 +24,12 @@ Results:
    it grows while the commons does not lose exactly when `m < a ≤ c`.  Such a
    share exists exactly when the node creates more than its upkeep, `m < c`.
    Below the window a node can create a surplus for the whole and still starve
-   (`unrewarded_creator_starves`); above it, the node gains while the commons
-   loses: **capture** (`capture_iff`), the only way a node whose upkeep
-   exceeds its own creation can last (`capture_covers_what_creation_cannot`).
+   (`unrewarded_creator_starves`); above it, the node takes back more than it
+   creates and the commons loses on its account (`capture_iff`), the only way
+   a node whose upkeep exceeds its own creation can last
+   (`capture_covers_what_creation_cannot`).  Whether that is capture in the
+   sense of `CORE.md`, eating the principal, depends on whether the take also
+   exceeds what the commons regenerates (`CommonsInterest`).
 2. **The positive loop** (`positive_loop`): a node inside the window that
    reinvests its surplus grows at least geometrically, and so does what it
    leaves in the commons each step.
@@ -46,8 +49,9 @@ Results:
    fails, whenever its upkeep exceeds its own creation.
 
 So the network keeps itself in balance through two loops: creators inside the
-window are pulled up, and a node that takes more than it creates spends the
-ground it stands on.
+window are pulled up, and a node that takes more than its own creation plus
+what the commons regenerates spends the ground it stands on.  Between the two
+lies living off the interest (`CommonsInterest`).
 
 Premises: the return share is fixed per step (part 1, 2) or falls with size
 (part 3); regeneration depends only on the stock, rises with it, and is zero
@@ -102,7 +106,8 @@ theorem capture_iff (c a : Nat) : commonsGain c a < 0 ↔ c < a := by
   omega
 
 /-- A node whose upkeep exceeds what it creates can cover that upkeep only by
-capture: it lasts this step while the commons loses. -/
+taking back more than it creates: it lasts this step while the commons loses on
+its account. -/
 theorem capture_covers_what_creation_cannot {c a m : Nat} (hcm : c < m) (hma : m ≤ a) :
     commonsGain c a < 0 ∧ 0 ≤ nodeSlack a m := by
   unfold nodeSlack commonsGain

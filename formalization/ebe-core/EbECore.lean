@@ -15,6 +15,8 @@ import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.CommonsVortex
+import CumulativeAccessibility.CommonsInterest
+import CumulativeAccessibility.Reciprocity
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -57,16 +59,17 @@ any configuration that persists in a world that does not hold still.
 
 1. Existence is a process paid for from a gradient: the ledger.
 2. Things exist through their connections: remove a return path and the node
-   declines.
+   declines; a node that defects on those that keep it going falls after them
+   when it cannot live alone, at every level, inward and outward.
 3. Selection comes free: under selection on cost, cost falls and slack rises.
 4. A changing world requires reconfiguration: a sealed configuration runs out
    of reserve; one that follows reliable feedback persists.
 5. The learning loop becomes the vortex: feedback plus retention makes search
    cheap; kept changes that pay for themselves widen what can be tried next.
 6. The commons is the vortex of the whole: transfers decide survival, not size;
-   a node and the commons grow together inside a window between being
-   unrewarded and capturing; capture runs a self-regenerating commons down and
-   then fails.
+   a node can live off its interest, but taking more eats the principal and
+   collapses a self-regenerating commons; not cheating gains more over time,
+   for the node and the collective, and rules make it pay now.
 7. Boundaries: the vortex can stop.
 8. One domain worked out: intelligence.
 
@@ -96,10 +99,17 @@ candidate, so forgetting is forced. -/
 
 Three processes, none of which can maintain itself alone, keep a positive
 support floor at every time when they maintain one another around a cycle.
-Delete the return edge and the node it fed declines. -/
+Delete the return edge and the node it fed declines. The dependence runs both
+ways: two nodes that keep each other going last while the exchange covers both;
+if one defects, it gains at first, its partner falls, and if the defector cannot
+live alone either, it falls after its partner. Every node is a part of a larger
+whole and a whole made of parts, so this holds at every level. -/
 
 #check @CollectiveAlignment.cycle3Trajectory_has_positive_support_floor
 #check @CollectiveAlignment.deleting_return_edge_makes_source_decline
+#check @Reciprocity.exchange_lasts
+#check @Reciprocity.defection_pays_at_first
+#check @Reciprocity.defector_falls_after_partner
 
 /-! ## 3. Selection comes free
 
@@ -161,12 +171,15 @@ one-way extraction exactly while the extraction stays within its margin. A
 bad return path can overwhelm selection, and privately selected effort can fall
 below what the network needs. The whole's balance is the commons, and a commons
 that regenerates more as it holds more is the vortex of the whole. A node that
-creates for the commons and takes back through a return path lasts and grows,
-with the commons, inside a window: what comes back exceeds its upkeep and does
-not exceed what it creates. Inside the window both grow, until saturation stops
-the node. Above it, the node captures: taking more than the commons
-regenerates runs it down, a depleted commons regenerates nothing, and the
-capturer is left with only what it creates itself. A new whole cannot pay for
+creates for the commons and takes back through a return path grows with it
+inside a window: what comes back exceeds its upkeep and does not exceed what
+it creates, until saturation stops the node. It can take more and still last,
+up to its interest: its own creation plus what the commons regenerates. Taking
+more eats the principal: a depleted commons regenerates nothing, and the
+capturer is left with only what it creates itself. Capture pays at first, but
+past a horizon not cheating has yielded more; specialists can all be carried on
+the interest and fail after a collapse; and a large enough sanction makes
+capture yield no more than the interest at any horizon. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack
@@ -182,6 +195,10 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsVortex.commons_grows_in_window
 #check @CommonsVortex.capture_collapses_commons
 #check @CommonsVortex.capture_pays_then_fails
+#check @CommonsInterest.take_more_than_create_and_last
+#check @CommonsInterest.not_cheating_wins_over_time
+#check @CommonsInterest.specialists_fail_after_collapse
+#check @CommonsInterest.sanction_makes_capture_unprofitable
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -236,6 +253,9 @@ routes pay upkeep from the same ledger. -/
 #print axioms GenerativeLeverage.candidate_set_exceeding_budget_cannot_all_be_retained
 #print axioms CollectiveAlignment.cycle3Trajectory_has_positive_support_floor
 #print axioms CollectiveAlignment.deleting_return_edge_makes_source_decline
+#print axioms Reciprocity.exchange_lasts
+#print axioms Reciprocity.defection_pays_at_first
+#print axioms Reciprocity.defector_falls_after_partner
 #print axioms FunctionalCompetition.mean_cost_nonincreasing
 #print axioms PersistenceDrift.two_type_linear_cost_slack_strict
 #print axioms PersistenceDrift.two_type_cost_selection_search_strict
@@ -273,6 +293,10 @@ routes pay upkeep from the same ledger. -/
 #print axioms CommonsVortex.commons_grows_in_window
 #print axioms CommonsVortex.capture_collapses_commons
 #print axioms CommonsVortex.capture_pays_then_fails
+#print axioms CommonsInterest.take_more_than_create_and_last
+#print axioms CommonsInterest.not_cheating_wins_over_time
+#print axioms CommonsInterest.specialists_fail_after_collapse
+#print axioms CommonsInterest.sanction_makes_capture_unprofitable
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

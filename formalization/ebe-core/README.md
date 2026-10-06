@@ -3,15 +3,15 @@
 [`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core of Evolution by Emergence, in the order of the eight steps of [`CORE.md`](../../CORE.md):
 
 1. **Existence is paid for from a gradient** — the ledger: viability, ceilings, unaffordable critical mass, forced forgetting.
-2. **Existence through connections** — a maintenance cycle keeps its members going; delete the return edge and the node declines.
+2. **Existence through connections** — a maintenance cycle keeps its members going; delete the return edge and the node declines; a defector that cannot live alone falls after its partner.
 3. **Selection comes free** — under selection on cost, mean cost falls and slack rises.
 4. **A changing world requires reconfiguration** — a sealed configuration runs out of reserve; one that follows reliable feedback persists.
 5. **The learning loop becomes the vortex** — feedback plus retention, paid opening, second-order clicks, the vortex turn, and its speed.
-6. **The commons is the vortex of the whole** — transfer versus creation, the window in which a node and the commons grow together, saturation, a self-regenerating commons and its collapse under capture, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
+6. **The commons is the vortex of the whole** — transfer versus creation, the window in which a node and the commons grow together, saturation, living off the interest, the horizon past which not cheating gains more, specialists and collapse, sanctions, a self-regenerating commons and its collapse under capture, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
 7. **Boundaries** — countermodels showing the vortex can stop.
 8. **One domain worked out: intelligence** — the anchor (across people and across one person's lifetime), the learning law for records and evidence, shared reality, correctable networks.
 
-The file adds **no mathematics**. It imports 63 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 70 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|
@@ -29,10 +29,10 @@ cd formalization/ebe-core
 lake update
 lake exe cache get        # prebuilt Mathlib; otherwise Mathlib builds from source
 lake build EbECore
-lake env lean EbECore.lean   # prints the 63 statements and their axioms
+lake env lean EbECore.lean   # prints the 70 statements and their axioms
 ```
 
-A correct run prints 63 axiom reports and no `sorryAx`.
+A correct run prints 70 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 
