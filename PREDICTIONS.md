@@ -136,7 +136,7 @@ If every agent aligns on one shared framework, that framework becomes the shared
 
 #### C2. Understanding is not enforcement
 
-Even when everyone understands the premises, an individual can gain by capturing for as long as its buffer lasts (`buffer_seals_dependence`). Shared understanding makes the cooperative equilibrium reachable; institutions that restore reciprocity — appeal, separation of powers, the ability to leave, independent checks — make it stable.
+Even when everyone understands the premises, an individual can gain by capturing for as long as its buffer lasts (`buffer_seals_dependence`), and the more members share a commons, the less each one's own share of the damage restrains it (`tragedy_of_the_commons`, `enough_takers_make_defection_pay`). Shared understanding makes the cooperative equilibrium reachable; institutions that restore reciprocity — appeal, separation of powers, the ability to leave, independent checks — make it stable.
 
 #### C3. Declared is not operational
 
@@ -151,7 +151,7 @@ SCAP keeps correction working; it does not limit what members take from the comm
 - **D-P1.** Collectives whose members share the premises and maintain operational SCAP conditions show less capture and persist longer than otherwise comparable collectives that do not.
 - **D-P2.** Collectives that adopt SCAP as unquestionable doctrine lose the advantage of D-P1 on the blind spots of their own doctrine (C1).
 - **D-P3.** Collectives with SCAP in declaration only show capture rates like collectives without it (C3).
-- **D-P4.** Without enforcement that restores reciprocity, shared understanding alone delays capture but does not prevent it (C2).
+- **D-P4.** Without enforcement that restores reciprocity, shared understanding alone delays capture but does not prevent it (C2), and the more members share a commons, the more often it is captured; enforcement works when the expected sanction, the sanction times the rate at which capture is detected, is at least the windfall (`detected_sanction_deters`).
 - **D-P5.** Among collectives that maintain operational SCAP, those whose members together take more from a shared, self-regenerating commons than they create plus what it regenerates run it down and lose members that depend on it, at a pace set by the stock rather than by how correctable they are; those that live off the interest do not (C4).
 
 **Would count against Part II.** Shared, operational, correctable SCAP conditions showing no effect on capture or persistence; or unquestionable SCAP performing as well as correctable SCAP on its own blind spots.

@@ -17,6 +17,7 @@ import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
+import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
 import MaintenanceDynamics
 import CollectiveAlignment
@@ -184,7 +185,10 @@ more eats the principal: a depleted commons regenerates nothing, and the
 capturer is left with only what it creates itself. Capture pays at first, but
 past a horizon not cheating has yielded more, for a taker whose discount rate is
 below the rate at which the commons regenerates; a taker that discounts more
-steeply gains by capture, which is why rules matter; specialists can all be carried on
+steeply gains by capture, which is why rules matter; with many takers, each weighs
+its windfall against only its own share, so defection pays each of them while the
+whole loses, unless a sanction at least as large as the windfall, scaled up by how
+rarely defection is detected, makes it unprofitable; specialists can all be carried on
 the interest and fail after a collapse; and a large enough sanction makes
 capture yield no more than the interest at any horizon. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
@@ -208,6 +212,9 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsInterest.sanction_makes_capture_unprofitable
 #check @CommonsDiscount.capture_wins_under_steep_discount
 #check @CommonsDiscount.not_cheating_wins_under_mild_discount
+#check @CommonsTakers.tragedy_of_the_commons
+#check @CommonsTakers.enough_takers_make_defection_pay
+#check @CommonsTakers.detected_sanction_deters
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -309,6 +316,9 @@ routes pay upkeep from the same ledger. -/
 #print axioms CommonsInterest.sanction_makes_capture_unprofitable
 #print axioms CommonsDiscount.capture_wins_under_steep_discount
 #print axioms CommonsDiscount.not_cheating_wins_under_mild_discount
+#print axioms CommonsTakers.tragedy_of_the_commons
+#print axioms CommonsTakers.enough_takers_make_defection_pay
+#print axioms CommonsTakers.detected_sanction_deters
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

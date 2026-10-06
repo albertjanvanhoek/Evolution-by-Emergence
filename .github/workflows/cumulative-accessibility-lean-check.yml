@@ -58,6 +58,7 @@ jobs:
             CumulativeAccessibility.CommonsVortex \
             CumulativeAccessibility.CommonsInterest \
             CumulativeAccessibility.CommonsDiscount \
+            CumulativeAccessibility.CommonsTakers \
             CumulativeAccessibility.Reciprocity \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
@@ -103,6 +104,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsInterest.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsDiscount.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsTakers.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/Reciprocity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
