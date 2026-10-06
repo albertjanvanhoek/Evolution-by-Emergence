@@ -44,7 +44,8 @@ not defecting: in rules that bind both (`CommonsInterest`,
 `sanction_makes_capture_unprofitable`).
 
 Not covered, and exactly where defection might pay: nodes that can find a new
-partner, partial defection, and more than two nodes.  `CommonsInterest` treats
+partner (treated in `PartnerSwitching`), partial defection, and more than two
+nodes.  `CommonsInterest` treats
 a whole of many specialists sharing one commons, but not several strategic
 defectors.
 -/
