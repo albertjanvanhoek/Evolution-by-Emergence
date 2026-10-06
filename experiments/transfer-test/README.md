@@ -51,7 +51,7 @@ The predictions of earlier versions, and how they fared, are in the results fold
 A reader must not find this folder: it holds the questions and the key. So each version pins the reader to a commit whose tree has no `experiments/` folder:
 - **Version 2.1:** `99a26e1`, the last commit before this folder was added.
 - **Version 2.2:** `5ab18d8`, a snapshot commit: the repository after the commons vortex was added and the entry points were made consistent, with this folder deleted. The next commit restores the folder unchanged. The pull request that adds them is merged with a merge commit, so the snapshot stays in main's history. Earlier snapshots, `399e957` and `03a9d33`, were replaced before any run used them.
-- **Version 2.3:** `SNAPSHOT_SHORT`, a snapshot made the same way: the repository after living off the interest (`CommonsInterest.lean`) and reciprocal dependence (`Reciprocity.lean`) were added, and the core text was rewritten to start from the network.
+- **Version 2.3:** `7f0c113`, a snapshot made the same way: the repository after living off the interest (`CommonsInterest.lean`) and reciprocal dependence (`Reciprocity.lean`) were added, and the core text was rewritten to start from the network.
 
 To test a later version of the text, make a new snapshot the same way, on the branch that changes the text:
 
