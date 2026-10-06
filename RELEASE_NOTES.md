@@ -11,9 +11,9 @@ v22.2 makes **persistence** the premise of the formal core. Two things that earl
 
 These notes describe v22.2 as released. Since then, on `main`:
 
-- [`EbECore.lean`](formalization/ebe-core/EbECore.lean) prints and audits **78** results, reorganized around the eight steps of [`CORE.md`](CORE.md); it no longer has a "Persistence first" section.
+- [`EbECore.lean`](formalization/ebe-core/EbECore.lean) prints and audits **81** results, reorganized around the eight steps of [`CORE.md`](CORE.md); it no longer has a "Persistence first" section.
 - `PersistenceFirst.lean` and `PersistenceRequiresVortex.lean` remain, as narrower results. Section 1 overstates them: "correctability becomes a theorem" holds only under the reciprocity premise, that partners keep sustaining an agent only while it answers their correction, and `reciprocity_is_load_bearing` shows that without that premise it fails.
-- New since v22.2: the commons as the vortex of the whole (`CommonsVortex`, `CommonsCapture`, `CommonsInterest`), discounting (`CommonsDiscount`), several takers (`CommonsTakers`), reciprocal dependence (`Reciprocity`), partner switching (`PartnerSwitching`), and the scope, related work and honesty notes in `CORE.md`.
+- New since v22.2: the commons as the vortex of the whole (`CommonsVortex`, `CommonsCapture`, `CommonsInterest`), discounting (`CommonsDiscount`), several takers (`CommonsTakers`), reciprocal dependence (`Reciprocity`), partner switching (`PartnerSwitching`), the cost of listening (`ListeningCost`), and the scope, related work and honesty notes in `CORE.md`.
 
 ## 1. One premise, two consequences, five laws
 
