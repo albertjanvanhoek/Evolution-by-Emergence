@@ -7,6 +7,14 @@
 
 v22.2 makes **persistence** the premise of the formal core. Two things that earlier versions took as given are now derived from it: staying correctable, and the need for the vortex to keep turning. Nothing is removed: the v22.0 universal core, the Cumulative Reproduction Model, the intelligent-system specialization and the v22.1 front door are retained. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
 
+## 0. Since this release
+
+These notes describe v22.2 as released. Since then, on `main`:
+
+- [`EbECore.lean`](formalization/ebe-core/EbECore.lean) prints and audits **71** results, reorganized around the eight steps of [`CORE.md`](CORE.md); it no longer has a "Persistence first" section.
+- `PersistenceFirst.lean` and `PersistenceRequiresVortex.lean` remain, as narrower results. Section 1 overstates them: "correctability becomes a theorem" holds only under the reciprocity premise, that partners keep sustaining an agent only while it answers their correction, and `reciprocity_is_load_bearing` shows that without that premise it fails.
+- New since v22.2: the commons as the vortex of the whole (`CommonsVortex`, `CommonsCapture`, `CommonsInterest`), reciprocal dependence (`Reciprocity`), and the scope, related work and honesty notes in `CORE.md`.
+
 ## 1. One premise, two consequences, five laws
 
 The theory starts from two insights:

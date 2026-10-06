@@ -546,5 +546,6 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.Reciprocity.defection_pays_at_first
 #print axioms CumulativeAccessibility.Reciprocity.partner_reserve_falls
 #print axioms CumulativeAccessibility.Reciprocity.partner_falls
+#print axioms CumulativeAccessibility.Reciprocity.defector_holds_while_partner_lives
 #print axioms CumulativeAccessibility.Reciprocity.defector_falls_after_partner
 #print axioms CumulativeAccessibility.Reciprocity.reciprocity_witness

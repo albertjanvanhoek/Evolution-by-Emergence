@@ -166,7 +166,17 @@ SCAP keeps correction working; it does not limit what members take from the comm
 
 ## Relation to existing evidence
 
-The framework was derived from a model of learning in neural networks, the room and substrate dependence, not from prior literature. Some predictions nonetheless meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6, and her congruence between what members take from a commons and what they provide to it, which resembles the window (C4, D-P5). Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
+The framework was developed from a model of learning in neural networks, the room and substrate dependence. Many of its parts restate or sit next to existing results ([CORE.md, Related work](CORE.md#related-work)), so a prediction counts as support for this framework only where it goes beyond what those theories already predict. Some predictions meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6, and her congruence between what members take from a commons and what they provide to it, which resembles the window (C4, D-P5). Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
+
+## How to test these without fooling ourselves
+
+The predictions have the form "what persists has this architecture", which makes them easy to confirm by accident. Before any test:
+
+- **Fix the terms in advance.** Say what counts as a member, an exempt member, a correction route, a repair, a buffer and persistence, and over what horizon, before looking at which collectives lasted.
+- **Count the failures, not only the survivors.** Sample collectives when they start, or match long-lived and failed ones on age, size and setting; otherwise survivorship produces the pattern by itself.
+- **Bound the exception.** E1 lets a sealed collective last while the world holds still or while it passes its costs on. Measure the stability of its setting and its cost-shifting independently, in advance; a sealed collective that lasts without either counts against P1 and E1, and may not be explained away afterwards.
+- **Start with the cheapest sharp test.** P5, the shared-layer blind spot, can be tested now in simulated collectives of AI agents: plant errors where a shared model is blind and compare detection with collectives that have independent sources.
+- **Compare with the neighbours.** For each prediction, say which existing theory predicts the same; the ones none of them predict are the test of this framework.
 
 ## What this document does not claim
 

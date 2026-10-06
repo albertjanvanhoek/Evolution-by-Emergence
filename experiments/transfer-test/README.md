@@ -116,7 +116,7 @@ Runs by hand are slow, so each arm has one or two runs. Automated runs add numbe
 - **Grading:** as above, by two fresh graders per answer set, under random codes.
 - **Record** the model and the harness with each run.
 
-**Caveat:** an AI assistant helped write much of the repository's text, and if the automated readers and graders come from the same model family, they may find that text familiar in ways other models do not. Report automated runs separately from runs in other models' chat interfaces, and never pool them.
+**Caveat:** an AI assistant helped write much of the repository's text, and if the automated readers and graders come from the same model family, they may find that text familiar in ways other models do not. Report automated runs separately from runs in other models' chat interfaces, and never pool them. The first automated run ([results/2026-10-06-v2.3-auto/](results/2026-10-06-v2.3-auto/)) bore this out: readers from that family already held the text's conclusions before reading, so the run could not show what reading adds. Use readers from other model families, or people.
 
 
 
@@ -170,3 +170,4 @@ Changes from version 2 ([results/2026-10-06-v2/](results/2026-10-06-v2/)):
 - **Version 2:** [results/2026-10-06-v2/](results/2026-10-06-v2/). The correctability core transferred; the commons, and existing through others, did not stick and were lost in transfer. This led to the commons text in PR #77 and to version 2.1.
 - **Version 2.1:** [results/2026-10-06-v2.1/](results/2026-10-06-v2.1/). One run per arm. The readers, the control included, knew the commons logic when asked, but did not use it unasked; the reader's critique led to tightening three passages of `CORE.md`. This led to version 2.2.
 - **Version 2.2:** [results/2026-10-06-v2.2/](results/2026-10-06-v2.2/). Two reader runs, one control (memory on) and one transfer. Grok's U rose from 2 to 5 after reading; ChatGPT's stayed at 4, below its control. The situations did not separate the arms, the second reader again lost what is taken and returned, and every model rejected conduct derived from its own persistence. This led to living off the interest, reciprocal dependence, the network-first text and version 2.3.
+- **Version 2.3, automated:** [results/2026-10-06-v2.3-auto/](results/2026-10-06-v2.3-auto/). Five readers and five controls from the model family that helped write the text; stopped before grading. Reading changed almost nothing, no reader found an action of its own (Q10), and the controls already gave the distinctive reasons in the situations. The readers' shared critiques led to the scope, honesty and related-work changes in `CORE.md`, and to the anchor as the reader's own proof that it is a model.
