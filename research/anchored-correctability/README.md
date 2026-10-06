@@ -36,6 +36,7 @@ Dynamic evidence adds the complementary legitimate outcome: a challenge need not
 | `lean/AnchoredEvolution/RelayProcess.lean` | Explicit exactly-faithful channel-list realization with `h + 2` step/cost bound |
 | `lean/AnchoredEvolution/Realization.lean` | Generic graph-indexed realization: content lives in the challenge step, graph hops become Layer-1b corrections, relay length gives time/cost bounds, and ring/flat topology is tied to the ledger |
 | `lean/AnchoredEvolution/Persistence.lean` | Changing-world learning law, evidence-defined shared reality, temporal repair, reflexivity |
+| `lean/AnchoredEvolution/RoomInOneHead.lean` | The anchor across one agent's lifetime: incompatible records at two times are not both correct, and any certainty that depends only on the record held of a record that is not correct |
 | `lean/AnchoredEvolution/SCAP.lean` | Formal top-level invariant: Connected, Faithful, Evidence-open, Repairable, Affordable |
 | `lean/AnchoredEvolution/NetworkEconomics.lean` | Four-person maintenance/latency benchmark and link-count CRM ledger results |
 | `lean/AnchoredEvolution/Composition.lean` | Structural composition, ring witness, non-absorption, recursive scale invariance |

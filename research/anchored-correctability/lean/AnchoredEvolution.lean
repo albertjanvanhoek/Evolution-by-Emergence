@@ -24,6 +24,7 @@ import AnchoredEvolution.GlobalLayer
 import AnchoredEvolution.SharedLayerDynamics
 import AnchoredEvolution.CorrectionTransition
 import AnchoredEvolution.PersistenceFirst
+import AnchoredEvolution.RoomInOneHead
 import AnchoredEvolution.Audit
 import AnchoredEvolution.AnchorSafetyAudit
 import AnchoredEvolution.SelfModelAudit

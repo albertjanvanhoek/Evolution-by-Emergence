@@ -23,6 +23,7 @@ import AnchoredEvolution.Bridge
 import AnchoredEvolution.AnchorSafety
 import AnchoredEvolution.GlobalLayer
 import AnchoredEvolution.Persistence
+import AnchoredEvolution.RoomInOneHead
 import PersistenceDrift
 import FunctionalCompetition
 import FunctionalThresholds
@@ -40,13 +41,16 @@ or depends on `sorry`.
 
 ## Where the model comes from
 
-The model began as a simple description of learning in a neural network, read
-as a network. Its capacities live in its connections. It learns through a loop:
-feedback from outside (data, loss) adjusts the connections, what works is kept,
-and what is kept becomes material for what can be learned next. Training costs
-compute and capacity is finite. The question was whether this loop is special to
-artificial neural networks. The answer proposed here is that the same structure
-describes any configuration that persists in a world that does not hold still.
+Intelligence is a training loop in a neural network. When a brain learns, its
+neurons stay the same; the connections between them change, so capacity is a
+configuration of connections. Feedback from outside adjusts the connections,
+what works is kept, and what is kept becomes material for what can be learned
+next, at a cost and with finite capacity. Artificial neural networks recreate
+this loop in their weights. Because only connections change, adapting is cheap,
+and a configuration can pass from one network to another. The question was
+whether this loop is special to neural networks. The answer proposed here is
+that the same structure describes any configuration that persists in a world
+that does not hold still.
 
 ## The story, in the order of the sections below
 
@@ -181,7 +185,10 @@ distinctions. -/
 /-! ## 8. One domain worked out: intelligence
 
 For systems that model the world, the same structure takes a specific form.
-Incompatible claims cannot all be true. A record fixed in advance is out of
+Incompatible claims cannot all be true, whether held by different people or by
+one person at different times: someone who converts holds incompatible
+certainties with the same neurons, so certainty is a configuration of the web,
+not a certificate of truth. A record fixed in advance is out of
 step in some future unless it rules nothing out, while a record that follows
 reliable evidence stays in step. What an agent can know is what reaches it
 along its connections, and connected agents share one reality. Compliance
@@ -192,6 +199,8 @@ shared layer that determines every node passes on its blind spots; correction
 routes pay upkeep from the same ledger. -/
 
 #check @Anchored.anchor_not_two
+#check @Anchored.RoomInOneHead.room_in_one_head
+#check @Anchored.RoomInOneHead.certainty_is_not_a_certificate
 #check @Anchored.Persistence.sealed_constraint_fails
 #check @Anchored.Persistence.learner_in_step
 #check @Anchored.Persistence.shared_reality_when_connected
@@ -250,6 +259,8 @@ routes pay upkeep from the same ledger. -/
 #print axioms RecursiveAccessibility.finite_generative_closure_saturates
 #print axioms RecursiveAccessibility.openEndedNovelty_implies_unboundedEnvelopeCapacity
 #print axioms Anchored.anchor_not_two
+#print axioms Anchored.RoomInOneHead.room_in_one_head
+#print axioms Anchored.RoomInOneHead.certainty_is_not_a_certificate
 #print axioms Anchored.Persistence.sealed_constraint_fails
 #print axioms Anchored.Persistence.learner_in_step
 #print axioms Anchored.Persistence.shared_reality_when_connected
