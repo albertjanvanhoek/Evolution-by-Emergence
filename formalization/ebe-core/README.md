@@ -9,9 +9,9 @@
 5. **The learning loop becomes the vortex** — feedback plus retention, paid opening, second-order clicks, the vortex turn, and its speed.
 6. **The commons and capture** — transfer versus creation, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
 7. **Boundaries** — countermodels showing the vortex can stop.
-8. **One domain worked out: intelligence** — the anchor, the learning law for records and evidence, shared reality, correctable networks.
+8. **One domain worked out: intelligence** — the anchor (across people and across one person's lifetime), the learning law for records and evidence, shared reality, correctable networks.
 
-The file adds **no mathematics**. It imports 55 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 57 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|
@@ -29,10 +29,10 @@ cd formalization/ebe-core
 lake update
 lake exe cache get        # prebuilt Mathlib; otherwise Mathlib builds from source
 lake build EbECore
-lake env lean EbECore.lean   # prints the 55 statements and their axioms
+lake env lean EbECore.lean   # prints the 57 statements and their axioms
 ```
 
-A correct run prints 55 axiom reports and no `sorryAx`.
+A correct run prints 57 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 
