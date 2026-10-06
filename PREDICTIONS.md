@@ -3,7 +3,7 @@
 This document states what the framework predicts about collectives of intelligences, in a form that can be checked and can be wrong. It has two parts:
 
 - **Part I — descriptive predictions.** What the architecture of persisting collectives of fallible intelligences will look like, and how sealed collectives fail.
-- **Part II — SCAP as a conditional design result.** What agents who want to persist together, and understand the premises, would rationally build, and the three conditions without which it fails.
+- **Part II — SCAP as a conditional design result.** What agents who want to persist together, and understand the premises, would rationally build, and the four conditions without which it fails.
 
 Each prediction names the machine-checked result it rests on, what observation would count against it, and where it can be tested. The theorems are conditional implications under the premises stated in their Lean files; the predictions are the empirical claims that real collectives satisfy those premises often enough for the pattern to show. A failed prediction is a useful result: it locates which premise does not hold in which domain.
 
@@ -128,7 +128,7 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Status.** This is a conditional design result, not an unconditional prediction: it says what agents with this aim and understanding would build, not that every collective will build it.
 
-### The three conditions without which D1 fails
+### The four conditions without which D1 fails
 
 #### C1. SCAP must itself stay correctable
 
@@ -142,12 +142,17 @@ Even when everyone understands the premises, an individual can gain by capturing
 
 A constitution can declare every right while nothing can execute (`paper_constitution`); a challenge can be heard and never answered (`heard_but_unanswerable`). Capturers can adopt SCAP's language while keeping every route sealed. Behavioural compliance cannot certify alignment unless the observation discriminates (`compliance_cannot_certify`). SCAP is measured by operation — are challenges answered, within what time, at what cost — not by what is written.
 
+#### C4. Correctable is not sustainable
+
+SCAP keeps correction working; it does not limit what members take from the commons they share. A node lasts and grows, with the commons, only inside a window: what comes back to it covers its upkeep and does not exceed what it creates (`grows_with_commons_iff`). A member that takes back more than it creates plus what the commons regenerates runs the commons down, and a depleted commons regenerates nothing (`capture_collapses_commons`). Affordable covers the upkeep of correction; the window covers the upkeep of everything else. **A collective can stay correctable and still spend its ground.**
+
 ### Predictions from Part II
 
 - **D-P1.** Collectives whose members share the premises and maintain operational SCAP conditions show less capture and persist longer than otherwise comparable collectives that do not.
 - **D-P2.** Collectives that adopt SCAP as unquestionable doctrine lose the advantage of D-P1 on the blind spots of their own doctrine (C1).
 - **D-P3.** Collectives with SCAP in declaration only show capture rates like collectives without it (C3).
 - **D-P4.** Without enforcement that restores reciprocity, shared understanding alone delays capture but does not prevent it (C2).
+- **D-P5.** Among collectives that maintain operational SCAP, those whose members take back more from a shared, self-regenerating commons than they create run it down and lose members that depend on it, at a pace set by the stock rather than by how correctable they are; those that keep within the window do not (C4).
 
 **Would count against Part II.** Shared, operational, correctable SCAP conditions showing no effect on capture or persistence; or unquestionable SCAP performing as well as correctable SCAP on its own blind spots.
 
@@ -161,7 +166,7 @@ A constitution can declare every right while nothing can execute (`paper_constit
 
 ## Relation to existing evidence
 
-The framework was derived from a model of learning in neural networks, the room and substrate dependence, not from prior literature. Some predictions nonetheless meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6. Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
+The framework was derived from a model of learning in neural networks, the room and substrate dependence, not from prior literature. Some predictions nonetheless meet independent empirical work that they can be tested against. The clearest is Elinor Ostrom's design principles for long-lived commons — monitoring, accessible conflict resolution, members' say in the rules, nested enterprises — which resemble P1–P3 and P6, and her congruence between what members take from a commons and what they provide to it, which resembles the window (C4, D-P5). Agreement there would be independent support; the predictions that go beyond it are the shared-layer blind spot (P5), the buffer timing of sealing (P7, E1), transfer versus creation (P10), and the reflexive conditions on SCAP itself (C1–C3).
 
 ## What this document does not claim
 
