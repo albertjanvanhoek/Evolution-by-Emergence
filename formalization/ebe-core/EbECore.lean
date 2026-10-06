@@ -19,6 +19,7 @@ import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
+import CumulativeAccessibility.PartnerSwitching
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -106,8 +107,9 @@ Delete the return edge and the node it fed declines. The dependence runs both
 ways: two nodes that keep each other going last while the exchange covers both;
 if one defects, it gains at first, it holds while its partner still gives, its
 partner falls, and if the defector cannot live alone either, it falls too, within
-its own reserve. Two nodes, no new partners: where a defector can find a new
-partner, this is not shown. Every node is a part of a larger
+its own reserve. Where a defector can find a new partner, serial defection pays
+exactly when what it saves before it is found out exceeds what finding a new
+partner costs, and a reputation that lengthens each search ends it. Every node is a part of a larger
 whole and a whole made of parts, so this holds at every level. -/
 
 #check @CollectiveAlignment.cycle3Trajectory_has_positive_support_floor
@@ -116,6 +118,8 @@ whole and a whole made of parts, so this holds at every level. -/
 #check @Reciprocity.defection_pays_at_first
 #check @Reciprocity.defector_holds_while_partner_lives
 #check @Reciprocity.defector_falls_after_partner
+#check @PartnerSwitching.switching_defection_pays_iff
+#check @PartnerSwitching.reputation_ends_serial_defection
 
 /-! ## 3. Selection comes free
 
@@ -273,6 +277,8 @@ routes pay upkeep from the same ledger. -/
 #print axioms Reciprocity.defection_pays_at_first
 #print axioms Reciprocity.defector_holds_while_partner_lives
 #print axioms Reciprocity.defector_falls_after_partner
+#print axioms PartnerSwitching.switching_defection_pays_iff
+#print axioms PartnerSwitching.reputation_ends_serial_defection
 #print axioms FunctionalCompetition.mean_cost_nonincreasing
 #print axioms PersistenceDrift.two_type_linear_cost_slack_strict
 #print axioms PersistenceDrift.two_type_cost_selection_search_strict

@@ -74,7 +74,7 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Prediction.** Where members depend reciprocally on each other, a member that stops answering correction loses its links after a characteristic delay set by its buffer, not immediately and not never. The delay grows with the buffer (reserves, reputation, accumulated goodwill).
 
-**Rests on.** `sealing_is_fatal_after_buffer`, `persistence_requires_correction_within`, `buffer_seals_dependence`.
+**Rests on.** `sealing_is_fatal_after_buffer`, `persistence_requires_correction_within`, `buffer_seals_dependence`; where members can find new partners, `switching_defection_pays_iff` and `reputation_ends_serial_defection`: dropping a member works only if news of it reaches its next partners.
 
 **Would count against it.** Reciprocally dependent members that stop answering and keep their links indefinitely without any external buffer.
 
