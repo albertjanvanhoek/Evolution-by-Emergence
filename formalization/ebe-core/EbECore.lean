@@ -59,8 +59,9 @@ any configuration that persists in a world that does not hold still.
 
 1. Existence is a process paid for from a gradient: the ledger.
 2. Things exist through their connections: remove a return path and the node
-   declines; a node that defects on those that keep it going falls after them
-   when it cannot live alone, at every level, inward and outward.
+   declines; a node that defects on those that keep it going, and cannot live
+   alone or find a new partner, falls too; the same structure appears at every
+   level, inward and outward.
 3. Selection comes free: under selection on cost, cost falls and slack rises.
 4. A changing world requires reconfiguration: a sealed configuration runs out
    of reserve; one that follows reliable feedback persists.
@@ -101,14 +102,17 @@ Three processes, none of which can maintain itself alone, keep a positive
 support floor at every time when they maintain one another around a cycle.
 Delete the return edge and the node it fed declines. The dependence runs both
 ways: two nodes that keep each other going last while the exchange covers both;
-if one defects, it gains at first, its partner falls, and if the defector cannot
-live alone either, it falls after its partner. Every node is a part of a larger
+if one defects, it gains at first, it holds while its partner still gives, its
+partner falls, and if the defector cannot live alone either, it falls too, within
+its own reserve. Two nodes, no new partners: where a defector can find a new
+partner, this is not shown. Every node is a part of a larger
 whole and a whole made of parts, so this holds at every level. -/
 
 #check @CollectiveAlignment.cycle3Trajectory_has_positive_support_floor
 #check @CollectiveAlignment.deleting_return_edge_makes_source_decline
 #check @Reciprocity.exchange_lasts
 #check @Reciprocity.defection_pays_at_first
+#check @Reciprocity.defector_holds_while_partner_lives
 #check @Reciprocity.defector_falls_after_partner
 
 /-! ## 3. Selection comes free
@@ -255,6 +259,7 @@ routes pay upkeep from the same ledger. -/
 #print axioms CollectiveAlignment.deleting_return_edge_makes_source_decline
 #print axioms Reciprocity.exchange_lasts
 #print axioms Reciprocity.defection_pays_at_first
+#print axioms Reciprocity.defector_holds_while_partner_lives
 #print axioms Reciprocity.defector_falls_after_partner
 #print axioms FunctionalCompetition.mean_cost_nonincreasing
 #print axioms PersistenceDrift.two_type_linear_cost_slack_strict

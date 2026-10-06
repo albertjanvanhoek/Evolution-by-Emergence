@@ -35,7 +35,7 @@
 The full statement, with every step's proof, is [CORE.md](CORE.md).
 
 1. **Existence is paid for from a gradient:** slack is uptake minus upkeep.
-2. **Existence through connections:** delete the return edge and the node it fed declines; a defector that cannot live alone falls after its partner, at every level, inward and outward.
+2. **Existence through connections:** delete the return edge and the node it fed declines; a defector that cannot live alone gains at first and then falls with its partner (proved for two nodes that cannot find a new partner); the same structure appears at every level, inward and outward.
 3. **Selection comes free:** what pays its way lasts; selection selects persistence, not goodness.
 4. **A changing world requires reconfiguration:** a sealed configuration cannot count on lasting; one that follows reliable feedback stays in step.
 5. **The learning loop becomes the vortex:** kept changes that pay fund more trying and widen what can be tried.
@@ -70,13 +70,15 @@ The full statement, with every step's proof, is [CORE.md](CORE.md).
 
 ### Archive and lineage — kept in place, as written
 
-Nothing in this release deletes, moves, renames or rewrites the historical corpus. The older cores and ledgers carry a short pointer to CORE.md at the top.
+Nothing in this release deletes, moves, renames or rewrites the historical corpus. The older cores and ledgers carry a short pointer to CORE.md at the top. Nothing in the archive is a claim of the current theory unless CORE.md states it.
 
 - [THEORY_CORE_V17.md](THEORY_CORE_V17.md) — earlier recursive-organization core; superseded as the repository front door by the v21 universal synthesis.
 - [THEORY_CORE_V20.md](THEORY_CORE_V20.md) — frozen retained-organization/accessibility peer-review core; inherited by later releases.
 - [THEORY_CORE_V21.md](THEORY_CORE_V21.md) — the full v21 statement of the universal theory, centred on accessibility and inherited unchanged by v22; CORE.md reframes it around persistence, and its results remain valid.
 - [THEORY.md](THEORY.md), [DYNAMIC_OVERVIEW.md](DYNAMIC_OVERVIEW.md), [APPLICATION_MAPPINGS_V17.md](APPLICATION_MAPPINGS_V17.md) — broader earlier syntheses and mappings; retained for lineage.
-- [Individual_essays/](Individual_essays/) and [Original linkedIN posts/](Original%20linkedIN%20posts/) — essays and original posts, kept as written.
+- [Individual_essays/](Individual_essays/) and [Original linkedIN posts/](Original%20linkedIN%20posts/) — essays and original posts, kept as written. Some essays were written by AI systems in conversation with the author, as their titles say; they are part of the record, not evidence for the theory.
+- [ebe_science_religion_synthesis.md](ebe_science_religion_synthesis.md) — an earlier reflection on science and religion; interpretation, not a claim of the theory.
+- [concepts.json](concepts.json) — the v17 concept graph, not updated since.
 - [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written.
 - [Presentations/](Presentations/) — presentation sources, kept as written.
 - Rendered and source papers under [papers/](papers/) — including historical PDFs; source lineage is preserved rather than normalized.
@@ -86,7 +88,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 70 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 71 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core

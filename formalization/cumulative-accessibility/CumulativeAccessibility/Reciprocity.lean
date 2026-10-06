@@ -30,9 +30,12 @@ Results:
   by exactly what it no longer gives.
 * `partner_falls`: if `B` cannot live on its own uptake, it dies after `A`
   defects, within its reserve plus one steps.
+* `defector_holds_while_partner_lives`: if what `A` receives covers its own
+  shortfall, `A` stays at or above its starting reserve as long as `B` is
+  alive and giving.
 * `defector_falls_after_partner`: if `A` cannot live on its own uptake either,
-  `A` dies too, after its partner: it outlives what it defected on by at most
-  its own reserve.
+  `A` dies too, at most its own reserve (as it stands when the partner is
+  dead) plus one steps after the partner's deadline.
 
 So when neither node can live alone, which is what specialization means,
 defection buys a windfall and then the defector's own end.  By symmetry the
@@ -40,9 +43,10 @@ same holds when the partner defects, so each node has a stake in the other
 not defecting: in rules that bind both (`CommonsInterest`,
 `sanction_makes_capture_unprofitable`).
 
-Not covered: nodes that can find a new partner, partial defection, and more
-than two nodes; `CommonsInterest` treats a whole of many specialists sharing
-one commons.
+Not covered, and exactly where defection might pay: nodes that can find a new
+partner, partial defection, and more than two nodes.  `CommonsInterest` treats
+a whole of many specialists sharing one commons, but not several strategic
+defectors.
 -/
 
 /-- The parameters of an exchange between two nodes. -/
@@ -136,12 +140,34 @@ theorem partner_falls {e : Exchange} {s0 : Reserves}
   have h := partner_reserve_falls (s0 := s0) hB hgB t
   omega
 
+/-- **The defector holds while its partner lives.**  If what `A` receives
+covers its own shortfall, then after defecting `A` stays at or above its
+starting reserve at every step up to which `B` has stayed alive (and so kept
+giving). -/
+theorem defector_holds_while_partner_lives {e : Exchange} {s0 : Reserves}
+    (hgain : 0 ≤ e.uA - e.mA + e.wB) :
+    ∀ t, (∀ k, k < t → 0 ≤ (run e true s0 k).rB) → s0.rA ≤ (run e true s0 t).rA := by
+  intro t
+  induction t with
+  | zero => intro _; exact Int.le_refl _
+  | succ t ih =>
+    intro halive
+    have hprev := ih (fun k hk => halive k (Nat.lt_succ_of_lt hk))
+    have hb := halive t (Nat.lt_succ_self t)
+    show s0.rA ≤ (step e true (run e true s0 t)).rA
+    generalize run e true s0 t = s at hprev hb
+    simp only [step, hb, decide_true, Bool.not_true, Bool.and_false, ite_true,
+      Bool.false_eq_true, ite_false]
+    omega
+
 /-- **The defector falls after its partner.**  If `A` cannot live on its own
-uptake either, then after defecting it, too, is dead from some step on: it
-outlives what it defected on by at most its own reserve. -/
+uptake either, then after defecting it, too, is dead: from the partner's
+deadline `rB + 1` on, it loses at least one unit per step, so it is dead at
+most its remaining reserve plus one steps later. -/
 theorem defector_falls_after_partner {e : Exchange} {s0 : Reserves}
     (hA : e.uA < e.mA) (hB : e.uB < e.mB) (hgB : 0 ≤ e.gB) :
-    ∃ T, ∀ t, T ≤ t → (run e true s0 t).rA < 0 := by
+    ∀ t, s0.rB.toNat + 1 + (run e true s0 (s0.rB.toNat + 1)).rA.toNat + 1 ≤ t →
+      (run e true s0 t).rA < 0 := by
   let TB := s0.rB.toNat + 1
   have hdeadB : ∀ t, TB ≤ t → (run e true s0 t).rB < 0 := partner_falls hB hgB
   have hfall : ∀ k, (run e true s0 (TB + k)).rA ≤ (run e true s0 TB).rA - k := by
@@ -157,8 +183,8 @@ theorem defector_falls_after_partner {e : Exchange} {s0 : Reserves}
       simp only [step, hb', decide_false, Bool.not_true, Bool.and_false]
       push_cast at ih ⊢
       omega
-  refine ⟨TB + (run e true s0 TB).rA.toNat + 1, ?_⟩
   intro t ht
+  change TB + (run e true s0 TB).rA.toNat + 1 ≤ t at ht
   have hk : t = TB + (t - TB) := by omega
   have h := hfall (t - TB)
   rw [← hk] at h
