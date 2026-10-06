@@ -14,6 +14,7 @@ import CumulativeAccessibility.EmergentAssemblyBarrier
 import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
+import CumulativeAccessibility.ListeningCost
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
@@ -136,12 +137,19 @@ can fund more search. Selection selects what persists, not what is good. -/
 A configuration whose fit is fixed in advance and rules something out exhausts
 its finite reserve in some possible future when misfit costs slack. A
 configuration that follows reliable feedback keeps a nonnegative reserve when
-fitting pays. Both hold on the vortex ledger. -/
+fitting pays. Both hold on the vortex ledger. When listening has a cost and the
+feedback can mislead, listening does better exactly when the misfits it avoids
+are worth more than it costs; feedback that misleads as often as the world moves
+does not pay, and listening that costs more than fit gains exhausts any
+reserve. -/
 
 #check @AdaptivePersistence.sealed_configuration_does_not_persist
 #check @AdaptivePersistence.listening_configuration_persists
 #check @AdaptivePersistence.sealed_configuration_fails_on_vortex_ledger
 #check @AdaptivePersistence.listening_persists_on_vortex_ledger
+#check @ListeningCost.listening_pays_iff
+#check @ListeningCost.misleading_feedback_does_not_pay
+#check @ListeningCost.unaffordable_listening_fails
 
 /-! ## 5. The learning loop becomes the vortex
 
@@ -286,6 +294,9 @@ routes pay upkeep from the same ledger. -/
 #print axioms AdaptivePersistence.listening_configuration_persists
 #print axioms AdaptivePersistence.sealed_configuration_fails_on_vortex_ledger
 #print axioms AdaptivePersistence.listening_persists_on_vortex_ledger
+#print axioms ListeningCost.listening_pays_iff
+#print axioms ListeningCost.misleading_feedback_does_not_pay
+#print axioms ListeningCost.unaffordable_listening_fails
 #print axioms CumulativeReproduction.scaffolded_search_cost
 #print axioms CumulativeReproduction.scaffold_strict
 #print axioms RecursiveAccessibility.organization_improvement_increases_endogenousResponseBudget

@@ -106,7 +106,7 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Prediction.** Sealed agents and collectives — monopolies, coercive regimes, parasitic arrangements — *can* persist without answering correction, but only while the world stays within what they already hold, or while they can pass the cost of their errors to others. They live off their reserve and fail abruptly when the world moves past them, the reserve runs out, or partners they depend on can leave.
 
-**Rests on.** `sealed_configuration_does_not_persist` (sealing fails once the world moves outside what the configuration fits), `reciprocity_is_load_bearing` (without dependence on partners, sealing is not punished socially), `sealing_is_fatal_after_buffer`, `buffer_seals_dependence`.
+**Rests on.** `sealed_configuration_does_not_persist` (sealing fails once the world moves outside what the configuration fits), `stable_world_favours_sealing` and `listening_pays_iff` (while the world holds still, listening only costs; it pays once the world's moves outweigh its cost), `reciprocity_is_load_bearing` (without dependence on partners, sealing is not punished socially), `sealing_is_fatal_after_buffer`, `buffer_seals_dependence`.
 
 **Would count against it.** Sealed systems that persist indefinitely in a changing world while bearing the cost of their own errors.
 

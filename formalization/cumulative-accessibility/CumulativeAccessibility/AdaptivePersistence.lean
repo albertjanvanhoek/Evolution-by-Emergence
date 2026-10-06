@@ -57,7 +57,8 @@ Results:
   persists along every course.
 
 What this file does **not** show: that real systems pay for misfit in this way,
-what feedback costs to maintain (that belongs in `fits`-paying slack), or where
+what feedback costs to maintain and what happens when it misleads (see
+`ListeningCost`), or where
 feedback comes from.  In the intelligence specialization, feedback arrives
 through the correction network (`Anchored.Persistence.reality`).
 -/
