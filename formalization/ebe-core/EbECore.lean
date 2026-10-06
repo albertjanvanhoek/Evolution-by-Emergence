@@ -65,9 +65,9 @@ any configuration that persists in a world that does not hold still.
 5. The learning loop becomes the vortex: feedback plus retention makes search
    cheap; kept changes that pay for themselves widen what can be tried next.
 6. The commons is the vortex of the whole: transfers decide survival, not size;
-   a node and the commons grow together inside a window between being
-   unrewarded and capturing; capture runs a self-regenerating commons down and
-   then fails.
+   a node can live off its interest, but taking more eats the principal and
+   collapses a self-regenerating commons; not cheating gains more over time,
+   for the node and the collective, and rules make it pay now.
 7. Boundaries: the vortex can stop.
 8. One domain worked out: intelligence.
 
@@ -162,12 +162,15 @@ one-way extraction exactly while the extraction stays within its margin. A
 bad return path can overwhelm selection, and privately selected effort can fall
 below what the network needs. The whole's balance is the commons, and a commons
 that regenerates more as it holds more is the vortex of the whole. A node that
-creates for the commons and takes back through a return path lasts and grows,
-with the commons, inside a window: what comes back exceeds its upkeep and does
-not exceed what it creates. Inside the window both grow, until saturation stops
-the node. Above it, the node captures: taking more than the commons
-regenerates runs it down, a depleted commons regenerates nothing, and the
-capturer is left with only what it creates itself. A new whole cannot pay for
+creates for the commons and takes back through a return path grows with it
+inside a window: what comes back exceeds its upkeep and does not exceed what
+it creates, until saturation stops the node. It can take more and still last,
+up to its interest: its own creation plus what the commons regenerates. Taking
+more eats the principal: a depleted commons regenerates nothing, and the
+capturer is left with only what it creates itself. Capture pays at first, but
+past a horizon not cheating has yielded more; specialists can all be carried on
+the interest and fail after a collapse; and a large enough sanction makes
+capture yield no more than the interest at any horizon. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack

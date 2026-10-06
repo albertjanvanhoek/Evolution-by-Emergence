@@ -144,7 +144,7 @@ A constitution can declare every right while nothing can execute (`paper_constit
 
 #### C4. Correctable is not sustainable
 
-SCAP keeps correction working; it does not limit what members take from the commons they share. A node lasts and grows, with the commons, only inside a window: what comes back to it covers its upkeep and does not exceed what it creates (`grows_with_commons_iff`). A member that takes back more than it creates plus what the commons regenerates runs the commons down, and a depleted commons regenerates nothing (`capture_collapses_commons`). Affordable covers the upkeep of correction; the window covers the upkeep of everything else. **A collective can stay correctable and still spend its ground.**
+SCAP keeps correction working; it does not limit what members take from the commons they share. A member can take up to its interest, its own creation plus what the commons regenerates, and the commons stays level (`living_off_interest`). A member that takes more eats the principal, and a depleted commons regenerates nothing (`capture_collapses_commons`); the more specialized the collective, the more members fail after the collapse (`specialists_fail_after_collapse`). Affordable covers the upkeep of correction; living off the interest covers the upkeep of everything else. **A collective can stay correctable and still spend its ground.**
 
 ### Predictions from Part II
 
@@ -152,7 +152,7 @@ SCAP keeps correction working; it does not limit what members take from the comm
 - **D-P2.** Collectives that adopt SCAP as unquestionable doctrine lose the advantage of D-P1 on the blind spots of their own doctrine (C1).
 - **D-P3.** Collectives with SCAP in declaration only show capture rates like collectives without it (C3).
 - **D-P4.** Without enforcement that restores reciprocity, shared understanding alone delays capture but does not prevent it (C2).
-- **D-P5.** Among collectives that maintain operational SCAP, those whose members take back more from a shared, self-regenerating commons than they create run it down and lose members that depend on it, at a pace set by the stock rather than by how correctable they are; those that keep within the window do not (C4).
+- **D-P5.** Among collectives that maintain operational SCAP, those whose members together take more from a shared, self-regenerating commons than they create plus what it regenerates run it down and lose members that depend on it, at a pace set by the stock rather than by how correctable they are; those that live off the interest do not (C4).
 
 **Would count against Part II.** Shared, operational, correctable SCAP conditions showing no effect on capture or persistence; or unquestionable SCAP performing as well as correctable SCAP on its own blind spots.
 

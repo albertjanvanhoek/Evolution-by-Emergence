@@ -7,7 +7,7 @@
 3. **Selection comes free** — under selection on cost, mean cost falls and slack rises.
 4. **A changing world requires reconfiguration** — a sealed configuration runs out of reserve; one that follows reliable feedback persists.
 5. **The learning loop becomes the vortex** — feedback plus retention, paid opening, second-order clicks, the vortex turn, and its speed.
-6. **The commons is the vortex of the whole** — transfer versus creation, the window in which a node and the commons grow together, saturation, a self-regenerating commons and its collapse under capture, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
+6. **The commons is the vortex of the whole** — transfer versus creation, the window in which a node and the commons grow together, saturation, living off the interest, the horizon past which not cheating gains more, specialists and collapse, sanctions, a self-regenerating commons and its collapse under capture, the extraction threshold, selection overwhelmed by a bad return path, selected versus sufficient effort, the assembly barrier.
 7. **Boundaries** — countermodels showing the vortex can stop.
 8. **One domain worked out: intelligence** — the anchor (across people and across one person's lifetime), the learning law for records and evidence, shared reality, correctable networks.
 
