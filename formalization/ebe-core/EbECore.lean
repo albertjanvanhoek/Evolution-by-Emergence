@@ -15,6 +15,8 @@ import CumulativeAccessibility.EvolutionByEmergenceCore
 import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.ListeningCost
+import CumulativeAccessibility.GradedBelief
+import CumulativeAccessibility.ConnectionIndependence
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
@@ -256,7 +258,12 @@ cannot verify a narrative. A network stays correctable only if every live error
 remains findable; correctable parts joined by correctable interfaces stay
 correctable; removing the last route that can reveal an error seals it; a
 shared layer that determines every node passes on its blind spots; correction
-routes pay upkeep from the same ledger. -/
+routes pay upkeep from the same ledger. In degrees: a zero credence is sealed
+against all evidence, and mixing one's credence with another's keeps open what
+either keeps open while keeping what both agree on. Correcting a shared blind
+spot needs a node both independent and connected; links spread corrections but
+also pull nodes into line, so the levels of connection that correct form an
+interval between isolation and conformity. -/
 
 #check @Anchored.anchor_not_two
 #check @Anchored.RoomInOneHead.room_in_one_head
@@ -270,6 +277,9 @@ routes pay upkeep from the same ledger. -/
 #check @Anchored.AnchorSafety.last_route_removal_seals
 #check @Anchored.GlobalLayer.hub_determined_network_inherits_blind_spot
 #check @Anchored.correctable_population_ceiling
+#check @GradedBelief.zero_credence_is_sealed
+#check @GradedBelief.mix_keeps_agreed_ranking
+#check @ConnectionIndependence.correcting_levels_form_interval
 
 /-! ## Axiom audit -/
 
@@ -354,3 +364,6 @@ routes pay upkeep from the same ledger. -/
 #print axioms Anchored.AnchorSafety.last_route_removal_seals
 #print axioms Anchored.GlobalLayer.hub_determined_network_inherits_blind_spot
 #print axioms Anchored.correctable_population_ceiling
+#print axioms GradedBelief.zero_credence_is_sealed
+#print axioms GradedBelief.mix_keeps_agreed_ranking
+#print axioms ConnectionIndependence.correcting_levels_form_interval
