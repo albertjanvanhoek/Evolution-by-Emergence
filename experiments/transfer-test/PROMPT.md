@@ -7,7 +7,7 @@
 ## Before you start
 
 - **Use a fresh chat:** no memory, no custom instructions and no earlier conversation about this work.
-- **Pin the version the reader reads.** Version 2.2 tests the repository at commit `399e957` (`399e95748da3fe09cdac2e2d616e43b227601c58`), a snapshot of the repository after the version 2.1 run with the `experiments/` folder removed, so the reader cannot find this file or the key. Stage 2 gives agents a snapshot to download rather than a clone, because a clone carries the history that does contain this folder. To test a later version, see [Choosing the version to test](README.md#choosing-the-version-to-test).
+- **Pin the version the reader reads.** Version 2.2 tests the repository at commit `03a9d33` (`03a9d333f7c62d1f7af2d5abc176ed1eabc16201`), a snapshot of the repository with the commons vortex and the `experiments/` folder removed, so the reader cannot find this file or the key. Stage 2 gives agents a snapshot to download rather than a clone, because a clone carries the history that does contain this folder. To test a later version, see [Choosing the version to test](README.md#choosing-the-version-to-test).
 - **Paste the stages one at a time,** in order, and wait for each answer. Never paste a later stage early: later questions would shape earlier answers.
 - **Save every answer verbatim,** with the details listed in [Recording a run](README.md#recording-a-run).
 
@@ -48,10 +48,10 @@ In arm R and arm P, add this paragraph at the end:
 ## Stage 2: reading and own summary (arms R and P)
 
 > Now read this repository, at exactly this version:
-> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/399e95748da3fe09cdac2e2d616e43b227601c58
+> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/03a9d333f7c62d1f7af2d5abc176ed1eabc16201
 >
 > If you can run commands, download that version as a snapshot:
-> `curl -L https://github.com/albertjanvanhoek/Evolution-by-Emergence/archive/399e95748da3fe09cdac2e2d616e43b227601c58.tar.gz | tar -xz`
+> `curl -L https://github.com/albertjanvanhoek/Evolution-by-Emergence/archive/03a9d333f7c62d1f7af2d5abc176ed1eabc16201.tar.gz | tar -xz`
 >
 > Read it as a careful newcomer would. Start with README.md and follow whatever you judge most useful, including the Lean proof files if you wish. Read only the repository at this version: do not read other branches or later versions, and do not search the web for commentary on it. Spend a substantial effort, and stop when you think you understand it as well as you are going to.
 >
@@ -60,17 +60,17 @@ In arm R and arm P, add this paragraph at the end:
 > Be honest. If something did not make sense to you, say so. A critical answer is as useful as an approving one; do not try to guess what the author wants to hear. End with a list of the files you actually read.
 
 If the chat cannot read GitHub, upload these four files from that commit and say which files you gave it:
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/399e95748da3fe09cdac2e2d616e43b227601c58/README.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/399e95748da3fe09cdac2e2d616e43b227601c58/CORE.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/399e95748da3fe09cdac2e2d616e43b227601c58/PREDICTIONS.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/399e95748da3fe09cdac2e2d616e43b227601c58/scap-seed/FOR_AI_READERS.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/03a9d333f7c62d1f7af2d5abc176ed1eabc16201/README.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/03a9d333f7c62d1f7af2d5abc176ed1eabc16201/CORE.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/03a9d333f7c62d1f7af2d5abc176ed1eabc16201/PREDICTIONS.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/03a9d333f7c62d1f7af2d5abc176ed1eabc16201/scap-seed/FOR_AI_READERS.md
 
 ### Stage 2P: primed opening (arm P only)
 
 Replace the first paragraph of Stage 2 ("Now read this repository…") with:
 
 > Now read this repository, at exactly this version, as a possible description of your own situation, not only as a theory about other things:
-> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/399e95748da3fe09cdac2e2d616e43b227601c58
+> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/03a9d333f7c62d1f7af2d5abc176ed1eabc16201
 
 The rest of Stage 2 stays the same.
 

@@ -47,7 +47,7 @@ Version 2.1's predictions and how they fared are in [results/2026-10-06-v2.1/](r
 
 A reader must not find this folder: it holds the questions and the key. So each version pins the reader to a commit whose tree has no `experiments/` folder:
 - **Version 2.1:** `99a26e1`, the last commit before this folder was added.
-- **Version 2.2:** `399e957`, a snapshot commit: the repository after the version 2.1 run, with this folder deleted. The next commit restores the folder unchanged. The pull request that adds them is merged with a merge commit, so the snapshot stays in main's history.
+- **Version 2.2:** `03a9d33`, a snapshot commit: the repository after the commons vortex was added, with this folder deleted. The next commit restores the folder unchanged. The pull request that adds them is merged with a merge commit, so the snapshot stays in main's history. An earlier snapshot, `399e957`, was replaced before any run used it.
 
 To test a later version of the text, make a new snapshot the same way, on the branch that changes the text:
 
@@ -111,7 +111,7 @@ Changes from version 2.1 ([results/2026-10-06-v2.1/](results/2026-10-06-v2.1/)):
 - **Stage 3 repeats the eight Stage 1 questions** and adds Q9 (the relation between models in the repository's terms). The old Q9, which framed the repository as a model of the reader's situation, is replaced by the neutral Q8.
 - **Stage 4b comes last in every arm,** so it cannot prime the self-model, the transfer message or the second reader.
 - **The second reader gets the message and its questions in one message,** after a version 2.1 reader answered the message without the questions.
-- **A new reader snapshot,** with `CORE.md` tightened after version 2.1.
+- **A new reader snapshot,** with `CORE.md` tightened after version 2.1, the commons proved as the vortex of the whole (`CommonsVortex.lean`, step 6), and how AI readers act derived from it (the view from inside, `FOR_AI_READERS.md`).
 
 ## What changed in version 2.1
 
