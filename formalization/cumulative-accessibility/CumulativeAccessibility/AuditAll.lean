@@ -39,6 +39,7 @@ import CumulativeAccessibility.CommonsCapture
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
+import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
