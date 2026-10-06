@@ -54,6 +54,7 @@ jobs:
             CumulativeAccessibility.NetworkVortexLedger \
             CumulativeAccessibility.PersistenceRequiresVortex \
             CumulativeAccessibility.AdaptivePersistence \
+            CumulativeAccessibility.CommonsCapture \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
@@ -94,6 +95,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/DynamicVortexWitness.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/AdaptivePersistence.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsCapture.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean
