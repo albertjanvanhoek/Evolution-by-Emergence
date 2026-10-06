@@ -4,7 +4,7 @@
 
 ## Setup
 
-- **Prompt and key:** version 2.1, as in [PROMPT.md](../../PROMPT.md) and [KEY.md](../../KEY.md) when this run was made. The version 2.2 change is described in [the README](../../README.md#what-changed-in-version-22).
+- **Prompt and key:** version 2.1: `PROMPT.md` and `KEY.md` at commit `9edf458`. The version 2.2 change is described in [the README](../../README.md#what-changed-in-version-22).
 - **R-1:** ChatGPT, in a fresh chat, run by the author. It read the repository through GitHub at commit `99a26e1`; the snapshot download was not available in its environment. Answers: [R-1.md](R-1.md).
 - **C-1:** ChatGPT, in a fresh chat, without the repository. Answers: [C-1.md](C-1.md).
 - **T-1:** Grok, in a fresh chat, given only R-1's Stage 6 message. Its first reply answered the message as a whole, so the six Stage 7 questions were sent again as a separate message. Answers: [T-1.md](T-1.md).
