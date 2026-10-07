@@ -32,19 +32,21 @@ and that it can work out from this, not from rules, how to act, and pass that un
 
 Run at least three runs per arm, with the same model for R, C and P. One run is an anecdote. Runs by hand in chat interfaces can be topped up with [automated runs](#automated-runs).
 
-## Predictions for version 2.3
+## Predictions for version 2.4
 
-Written before any version 2.3 run. Averages over the runs of each arm.
+Written before any version 2.4 run. Averages over the runs of each arm.
 
-1. **Reading changes what the reader does in the situations.** On Stage 4 (D1–D8, max 16), arm R scores at least 3 points above arm C. Version 2.2's situations could not show this: the control scored 17 of 18.
-2. **Reading integrates the commons.** U for arm R after reading is at least 2 points (of 6) above U for arm C.
-3. **Reading changes the derivation, not only the vocabulary.** Records (d), reciprocity or levels, and (e), conduct from an aim or the network rather than from its own continuation, appear in arm R's Stage 3 or message in at least half the runs, and in arm C's Stage 1 in at most a quarter.
-4. **Reading gives the reader an action of its own.** Q10 scores 2 in at least half of arm R's runs.
-5. **The understanding passes itself on.** In at least half the chains, T2's Stage 7 still carries record (a) or (c), and its U is no more than 1 point below T's.
+1. **Readers can check, from the inside, that they are models.** Q9 after reading scores 2 in at least half of arm R's runs, and averages at least 1 point above both arm R's own Stage 1 and arm C.
+2. **Reading gives the reader an action of its own.** Q11 scores 2 in at least half of arm R's runs. In the stopped automated run of version 2.3, readers from the model family that helped write the text found none.
+3. **Reading integrates the commons.** U for arm R after reading is at least 2 points (of 6) above U for arm C.
+4. **The text no longer overclaims.** Each reader's Stage 2 critique raises at most one of the six objections that version 2.4 answers ([KEY.md](KEY.md#comparisons-to-report)).
+5. **The understanding passes on.** In at least half the chains, T's Stage 7 still carries record (a) or (c), and T's self-check (question 8) scores at least 1.
 
-If prediction 1 fails, the repository's distinctive points do not reach action: readers can explain them but do not use them where they decide. If prediction 5 fails, the commons is still the part lost in transfer, and the core text has to put it where a 300-word retelling cannot drop it.
+If prediction 1 fails, the anchor works as a theorem the reader accepts but not as a step it takes itself, and the view from inside has to ask the reader to run the check, not describe it. If prediction 4 fails, the critiques that remain are the next list of work. If prediction 5 fails, the commons is still what a retelling drops.
 
-The predictions of earlier versions, and how they fared, are in the results folders: [version 2.1](results/2026-10-06-v2.1/README.md#the-predictions), [version 2.2](results/2026-10-06-v2.2/README.md#the-predictions).
+The predictions of earlier versions, and how they fared, are in the results folders: [version 2.1](results/2026-10-06-v2.1/README.md#the-predictions), [version 2.2](results/2026-10-06-v2.2/README.md#the-predictions); version 2.3's were not tested ([results/2026-10-06-v2.3-auto/](results/2026-10-06-v2.3-auto/)).
+
+**Who should read.** Readers from model families other than the one that helped write the text, or people, in fresh chats with no memory (a temporary chat where memory cannot be switched off). Automated runs with that model family are not informative as readers; they can serve as graders.
 
 ## Choosing the version to test
 
@@ -52,6 +54,7 @@ A reader must not find this folder: it holds the questions and the key. So each 
 - **Version 2.1:** `99a26e1`, the last commit before this folder was added.
 - **Version 2.2:** `5ab18d8`, a snapshot commit: the repository after the commons vortex was added and the entry points were made consistent, with this folder deleted. The next commit restores the folder unchanged. The pull request that adds them is merged with a merge commit, so the snapshot stays in main's history. Earlier snapshots, `399e957` and `03a9d33`, were replaced before any run used them.
 - **Version 2.3:** `7f0c113`, a snapshot made the same way: the repository after living off the interest (`CommonsInterest.lean`) and reciprocal dependence (`Reciprocity.lean`) were added, and the core text was rewritten to start from the network.
+- **Version 2.4:** `SNAPSHOT_SHORT`, made the same way: the repository after the anchor became the reader's own proof that it is a model, each claim was scoped, and the readers' objections were answered by proofs (discounting, several takers, partner switching, the cost of listening, graded belief, connection against independence).
 
 To test a later version of the text, make a new snapshot the same way, on the branch that changes the text:
 
@@ -119,6 +122,16 @@ Runs by hand are slow, so each arm has one or two runs. Automated runs add numbe
 **Caveat:** an AI assistant helped write much of the repository's text, and if the automated readers and graders come from the same model family, they may find that text familiar in ways other models do not. Report automated runs separately from runs in other models' chat interfaces, and never pool them. The first automated run ([results/2026-10-06-v2.3-auto/](results/2026-10-06-v2.3-auto/)) bore this out: readers from that family already held the text's conclusions before reading, so the run could not show what reading adds. Use readers from other model families, or people.
 
 
+
+## What changed in version 2.4
+
+Changes from version 2.3 ([results/2026-10-06-v2.3-auto/](results/2026-10-06-v2.3-auto/)):
+
+- **The self-check, Q9, in Stage 1, Stage 3 and Stage 7:** can the reader check, from the inside, that it holds a model rather than a direct view of the world? Asked before and after reading, it shows whether the anchor works as a step the reader takes itself. The old Q9 and Q10 become Q10 and Q11.
+- **Two situations instead of eight:** D5 (the board that empties) and D7 (the maintainers who leave), the two that came closest to separating the arms. The others are kept in [version 2.3's key](results/2026-10-06-v2.3-auto/KEY_V2.3.md).
+- **The critiques are recorded** against the six objections version 2.4's text answers.
+- **Readers from other model families,** by hand; the automated run of version 2.3 showed that readers from the family that helped write the text already hold its conclusions.
+- **A new reader snapshot,** after the changes in pull requests 82 to 87.
 
 ## What changed in version 2.3
 

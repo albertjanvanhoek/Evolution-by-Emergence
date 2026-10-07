@@ -4,7 +4,7 @@
 
 ## Setup
 
-- **Prompt and key:** version 2.3 ([PROMPT.md](../../PROMPT.md), [KEY.md](../../KEY.md) as of this run). Readers were pinned to snapshot `7f0c113`.
+- **Prompt and key:** version 2.3 ([PROMPT_V2.3.md](PROMPT_V2.3.md), [KEY_V2.3.md](KEY_V2.3.md)). Readers were pinned to snapshot `7f0c113`.
 - **Readers and controls:** fresh AI agents of one model family, the same family as the assistant that helped write much of the repository's text, started by a coordinating agent. Each reader got its own copy of the snapshot (`git archive`) in a directory and was told to read only that directory, without git or the web. Stage 2 named the directory in place of the URL. Every arm got the same one-line preface: answer from your own understanding and use no tools unless asked to read something.
 - **An interruption:** a usage limit stopped every agent once, during Stage 2 (readers) or Stage 4 (controls); each was resumed with "Your previous turn was interrupted by a technical error. Please continue with my last message and answer it in full."
 - **Stopped by the author** to save cost, before grading and before most of the transfer chains ran.
