@@ -161,7 +161,7 @@ SCAP keeps correction working; it does not limit what members take from the comm
 
 ## Part III — The health of intelligence and of the commons (proposed tests)
 
-These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-intelligence/HEALTH_OF_INTELLIGENCE.md) and [HEALTH_OF_THE_COMMONS.md](research/health-of-intelligence/HEALTH_OF_THE_COMMONS.md). Most were proposed, in similar form, by two independent research reports ([review](research/health-of-intelligence/REVIEW_OF_THE_REPORTS.md)). Each needs preregistered outcomes, task difficulty, horizons and a smallest effect of interest. The outcome criterion throughout is staying in step: remaining within specified performance and resource limits over a stated horizon, defined for each kind of unit before measurement.
+These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-intelligence/HEALTH_OF_INTELLIGENCE.md) and [HEALTH_OF_THE_COMMONS.md](research/health-of-intelligence/HEALTH_OF_THE_COMMONS.md). Most were proposed, in similar form, by three independent research reports ([review](research/health-of-intelligence/REVIEW_OF_THE_REPORTS.md)). Each needs preregistered outcomes, task difficulty, horizons and a smallest effect of interest. The outcome criterion throughout is staying in step: remaining within specified performance and resource limits over a stated horizon, defined for each kind of unit before measurement.
 
 ### H1. Correction integrity predicts recovery beyond competence
 
@@ -221,13 +221,13 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 
 **Would count against it.** Care duration unrelated to carer margin and respite once the needs of the person cared for are controlled for, or respite that covers the gap not prolonging care.
 
-### H8. The commons adds to the individual
+### H8. Shared conditions moderate capacity
 
-**Prediction.** The state of the commons a person or AI system lives in (truthfulness of the information around it, stability, care capacity, environmental stress, and whether these regenerate) predicts how it fares, beyond its own and its supported profile.
+**Prediction.** The shared conditions a person, AI system or institution lives in (truthfulness of the information around it, stability, care capacity, environmental stress, data provenance, and whether these regenerate) predict how it fares beyond its own and its supported profile, and they do so as interactions with capacity, not as one universal multiplier.
 
-**Design.** Track the commons profile, on the same domains as the individual profile, with a separate ledger for each kind of stock; test interventions that fund or protect renewal.
+**Design.** Units with the same baseline capacity exposed to different heat, misinformation, care, provenance, compute or institutional conditions, across sites or deployments; test capacity × condition interactions, with a separate ledger for each kind of shared condition; test interventions that fund or protect renewal.
 
-**Would count against it.** The commons profile adding no predictive or causal information beyond direct resources and individual competence over the stated horizon.
+**Would count against it.** Shared conditions adding no reproducible out-of-sample prediction beyond node capacity and ordinary covariates, or effects fully additive or negligible, with no stable moderation across preregistered replications.
 
 ### H9. Diffuse, late returns undermine maintenance; legible returns restore it
 
@@ -239,6 +239,34 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 
 **Would count against it.** Maintenance unrelated to how shared and how delayed the return is, or legible returns not raising it.
 
+### H10. Distributions predict failures that averages miss
+
+**Prediction.** Among organizations, care systems or communities with similar total resources, those whose workload or slack is concentrated on a few members fail more often (local service failure, staff exit, collapse of those who depend on them) than those where it is spread; distributional minima predict failure better than totals.
+
+**Rests on.** `transfer_breaks_part_with_whole_unchanged`, `surplus_does_not_cover_deficit`.
+
+**Would count against it.** Aggregate slack predicting failure as well as or better than distributional minima or quantiles across external samples.
+
+### H11. Care beyond what the carer regains leads to delayed decline in both
+
+**Prediction.** Where the care a carer gives exceeds what they regain on some dimension (time, sleep, money, health) over a sustained period, the carer's health declines first and the cared-for's functioning later, unless respite or formal support closes the gap.
+
+**Design.** Prospective carer–recipient cohorts measuring the recipient's functioning, the carer's reserves and health on several dimensions, formal support and time use.
+
+**Rests on.** `care_lasts_iff_every_dimension`, `carer_burns_out`, `cared_for_falls_after_carer`.
+
+**Would count against it.** Sustained high care loads not predicting the carer's decline or the recipient's later instability, after confounding and selection are addressed.
+
+### H12. Provenance protects the AI commons
+
+**Prediction.** Successive generations of models trained with real data kept or accumulated, or with provenance-filtered and independently checked data, keep their tail coverage, calibration and performance on real data; generations trained by recursive replacement do not.
+
+**Rests on.** `hub_determined_network_inherits_blind_spot`, and the commons results of step 6.
+
+**Neighbours.** Model-collapse research already shows much of this (Shumailov and colleagues; Kazdan and colleagues; Gillman and colleagues); what this framework adds is treating provenance and independent checking as the regeneration of a commons.
+
+**Would count against it.** Provenance-preserving and independently grounded regimes deteriorating at the same rate as pure recursive replacement.
+
 ---
 
 ## Where this can be tested
@@ -246,7 +274,7 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 1. **Simulated collectives of AI agents.** AI agents are themselves non-certain intelligences, and the setting is cheap and controllable. Vary connectivity, a shared model layer, repair, reciprocity and buffers; plant errors and include agents that attempt capture; measure detection rate, time to detection, capture incidence and persistence. Part II adds conditions: agents given the SCAP premises versus not, SCAP as revisable versus as doctrine, and SCAP declared versus enforced.
 2. **Open-source projects and wiki communities.** Public data on issue responsiveness, appeal routes, maintainer turnover, forks (splits) and re-merges (repair), and project survival.
 3. **Institutional histories.** Longevity against the presence of appeal, review, repair and independent-check mechanisms, and the timing of collapse of sealed regimes against measures of their buffer.
-4. **For Part III:** AI systems first (H1, H2, H4–H6 can be run cheaply with planted errors, misleading feedback, ablations and shifts), then existing panel data on informal care and carer strain (H7), and surveys and indices of trust, stability, misinformation exposure and environmental stress linked to individual outcomes (H8, H9).
+4. **For Part III:** AI systems first (H1, H2, H4–H6 and H12 can be run cheaply with planted errors, misleading feedback, ablations, shifts and successive training), then existing panel data on informal care and carer strain (H7, H11), records of workload distribution in organizations and care systems (H10), and surveys and indices of trust, stability, misinformation exposure and environmental stress linked to individual outcomes (H8, H9).
 
 ## Relation to existing evidence
 

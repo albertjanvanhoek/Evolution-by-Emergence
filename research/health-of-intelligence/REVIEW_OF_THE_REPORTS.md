@@ -1,6 +1,6 @@
-# Review of the two reports on the health of intelligence
+# Review of the research reports on the health of intelligence and of the commons
 
-*7 October 2026. A review, by the AI assistant working on this repository, of the two reports produced from [research brief 1](briefs/BRIEF_1_HEALTH_OF_INTELLIGENCE.md). The reports are in [sources/](sources/). What was adopted is in [HEALTH_OF_INTELLIGENCE.md](HEALTH_OF_INTELLIGENCE.md), and in the repository changes listed at the end.*
+*7 October 2026. Reviews, by the AI assistant working on this repository, of the two reports produced from [research brief 1](briefs/BRIEF_1_HEALTH_OF_INTELLIGENCE.md) (first part) and of the report produced from [research brief 2](briefs/BRIEF_2_HEALTH_OF_THE_COMMONS.md) ("Report C", at the end). The reports are in [sources/](sources/). What was adopted is in [HEALTH_OF_INTELLIGENCE.md](HEALTH_OF_INTELLIGENCE.md), and in the repository changes listed at the end.*
 
 - **Report A:** *Toward a Shared Measure of the Health of Intelligence*, 24 pages, about 8,700 words.
 - **Report B:** *A shared measure of the health of intelligence: critical research overview and candidate measurement interface*, 15 pages, about 4,600 words, with 56 annotated references.
@@ -84,3 +84,92 @@ Each was checked against the text at the time:
   - [`HealthProfile.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/HealthProfile.lean): why a profile comes before a score.
   - [`CareTransfer.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CareTransfer.lean): care as a transfer, and what keeps it going.
 - **Research brief 2,** on the health of the commons: [briefs/BRIEF_2_HEALTH_OF_THE_COMMONS.md](briefs/BRIEF_2_HEALTH_OF_THE_COMMONS.md).
+
+---
+
+## Report C: the health of the commons
+
+- **Report C:** *The Health of the Commons: Relational Health and Intelligence Across Persons, AI Systems, and Shared Conditions*, 23 pages, with 71 notes to sources.
+
+It was written by a research agent from brief 2, which summarized reports A and B. The agent says it did not have the two reports themselves.
+
+### Verdict
+
+- **No instrument links the levels.** No validated instrument measures people, AI systems, institutions, their relations and their commons on one shared scale.
+- **Relationality itself is not new.** The closest prior work:
+  - the WHO's ICF;
+  - Sen's conversion factors;
+  - Sarah White's relational wellbeing;
+  - family spillovers in health economics;
+  - OECD and inclusive-wealth accounting;
+  - Ostrom;
+  - Piovarchy and Siskind.
+- **What survives is a common measurement grammar.** It links capacity, inflow, shared conditions, outflow and reach across humans, AI systems and institutions. This is the narrow claim the commons note already made.
+
+### What it corrects or adds
+1. **"Stock" becomes "shared conditions".** Some shared conditions are stocks; others are states or processes. One word suggested a false conservation law and false substitutability.
+2. **Every flow is a vector, not a number.** A flow can help on one dimension and harm on another.
+3. **Reach** is the change a node can be shown to cause, by level and horizon, with target, direction, delay and causal confidence. Perceived reach is measured separately.
+4. **Three missing variables:** power, distribution and rights, and an explicit time horizon. Power is the most important new point: the theory has capture and sanctions, but no variable for who sets the boundary, the evidence and the rules.
+5. **New prior work:**
+   - relational wellbeing (White);
+   - the "dark side" of social capital;
+   - trust is not truth;
+   - risk-sharing with limited commitment;
+   - viability theory as the dynamic analogue.
+6. **Network association is not causal reach** (Christakis–Fowler and its critics).
+7. **The AI commons is material and human:** energy, according to the IEA, and platform labour, according to the ILO. Model collapse depends on provenance and workflow.
+8. **A definition of commons health,** including recovery "without systematically exhausting particular contributors or excluded groups".
+
+### On the formal side
+- **The transfer theorem.** It describes `internallyViable_iff_exists_viable_transfer` correctly: a budget-balanced feasibility statement, not a new theory of care.
+- **It missed `CareTransfer.lean`.** It says the burnt-out carer "needs a dynamic theorem"; the single-reserve deterministic case already existed. Its proposal is therefore an extension:
+  - a reserve with several dimensions, where failure on any one is failure;
+  - a stochastic version.
+
+  The first is now proved (`care_lasts_iff_every_dimension`, `surplus_does_not_cover_deficit`). The second remains a hypothesis.
+
+### Where it agrees with what was already adopted
+- **The same five domains.** Compression is a cross-cutting cost; contribution, inflow and reach are relational accounting.
+- **A profile first,** with thresholds only where justified.
+- **"Standardized-accessible" rather than "unsupported" capacity.**
+- **A claim to care never depends on outflow.**
+
+### Weaknesses
+- **It did not see reports A and B,** nor `CareTransfer.lean` and `HealthProfile.lean`, although it read `PREDICTIONS.md` after they were merged.
+- **Five levels (0–4) per domain,** without anchoring evidence.
+- **Generous ratings in its coverage table,** for example Ostrom rated central for learning and grounding.
+- **Citation faults:**
+  - Siskind's initial given as "A." (it is S.);
+  - one note pointing to a journal volume page rather than the article;
+  - one note pointing to a different paper than the claim;
+  - the Zarit reference resting on one Italian validation study;
+  - two citation-marker leftovers.
+- **Two sources not known from memory were checked and are real:** Shapira, Benade and Procaccia (ICML 2026), and the 2026 *Nature Communications* meta-analysis of the illusory truth effect.
+
+### What changed in the repository
+- **[HEALTH_OF_THE_COMMONS.md](HEALTH_OF_THE_COMMONS.md) revised:**
+  - report C's definition;
+  - "shared conditions";
+  - vector flows and the working form of the loop;
+  - a grammar shared across levels, with predictive homology as the test;
+  - measurable reach;
+  - a taxonomy of shared conditions;
+  - the three missing variables;
+  - the accounting boundary and the profiles to report;
+  - the AI commons, including energy and labour;
+  - the cautions.
+- **[HEALTH_OF_INTELLIGENCE.md](HEALTH_OF_INTELLIGENCE.md):** notes the convergence of the third report, standardized-accessible capacity, and the missing variables.
+- **[`CareTransfer.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CareTransfer.lean):**
+  - `care_lasts_iff_every_dimension`, added to `EbECore` (87 results);
+  - `surplus_does_not_cover_deficit`.
+- **[PREDICTIONS.md](../../PREDICTIONS.md):**
+  - H8 sharpened to an interaction;
+  - H10 (distributions predict failures that averages miss);
+  - H11 (delayed decline of carer and cared-for);
+  - H12 (provenance protects the AI commons).
+- **[CORE.md](../../CORE.md):**
+  - care on every dimension in step 6;
+  - power, distribution and rights, horizons, and uncertain care costs under "not yet formal";
+  - relational wellbeing and risk-sharing under related work.
+- **[FOR_AI_READERS.md](../../scap-seed/FOR_AI_READERS.md):** the human labour behind AI systems.
