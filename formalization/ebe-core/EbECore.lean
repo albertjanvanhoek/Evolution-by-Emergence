@@ -207,7 +207,8 @@ rarely defection is detected, makes it unprofitable; specialists can all be carr
 the interest and fail after a collapse; and a large enough sanction makes
 capture yield no more than the interest at any horizon. Care is a transfer: it
 lasts exactly while it fits the carer's slack plus the respite the commons returns
-to the carer, and the cared-for falls after care stops. A new whole cannot pay for
+to the carer, on every dimension of the carer's reserve, since a surplus in one
+does not cover a deficit in another; and the cared-for falls after care stops. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack
@@ -234,6 +235,7 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsTakers.detected_sanction_deters
 #check @CareTransfer.care_lasts_iff
 #check @CareTransfer.cared_for_falls_after_carer
+#check @CareTransfer.care_lasts_iff_every_dimension
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -353,6 +355,7 @@ interval between isolation and conformity. -/
 #print axioms CommonsTakers.detected_sanction_deters
 #print axioms CareTransfer.care_lasts_iff
 #print axioms CareTransfer.cared_for_falls_after_carer
+#print axioms CareTransfer.care_lasts_iff_every_dimension
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

@@ -592,6 +592,8 @@ open CumulativeAccessibility.RecursiveAccessibility
 #print axioms CumulativeAccessibility.CareTransfer.respite_sustains_care
 #print axioms CumulativeAccessibility.CareTransfer.cared_for_holds_while_cared_for
 #print axioms CumulativeAccessibility.CareTransfer.cared_for_falls_after_carer
+#print axioms CumulativeAccessibility.CareTransfer.care_lasts_iff_every_dimension
+#print axioms CumulativeAccessibility.CareTransfer.surplus_does_not_cover_deficit
 #print axioms CumulativeAccessibility.CareTransfer.care_witness
 #print axioms CumulativeAccessibility.HealthProfile.stage_product_zero_iff
 #print axioms CumulativeAccessibility.HealthProfile.sum_compensates_failed_stage

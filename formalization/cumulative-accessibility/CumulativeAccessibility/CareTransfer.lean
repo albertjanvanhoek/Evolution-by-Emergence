@@ -34,14 +34,23 @@ Results:
   within its own reserve.
 * `respite_sustains_care`: respite that covers the gap keeps the carer's
   reserve from ever falling, so care can last indefinitely.
+* `care_lasts_iff_every_dimension`: a carer's reserve has several dimensions
+  (time, sleep, money, health); care lasts on all of them exactly when, on
+  every dimension, care is no more than slack plus respite.
+* `surplus_does_not_cover_deficit`: a positive total margin across dimensions
+  does not keep care going: one dimension can be exhausted while the total
+  stays positive.  So the ledger is a vector, not a sum.
 * `care_witness`: a carer with slack 1 giving care 3 from a reserve of 4 is
   exhausted at step 5; with respite 2 it never is.
 
 So whether care lasts is decided by the carer's margin and by what the commons
 returns to the carer, not by the cared-for.  The results are close to
 arithmetic; the substance is in the setting, where the carer's own health is
-part of the cared-for's.  Not covered: care whose cost or benefit changes over
-time, several carers or cared-for, and the value of care beyond covering upkeep.
+part of the cared-for's.  A budget running out is not clinical burnout, which
+has several dimensions and needs validated health outcomes.  Not covered: care
+whose cost or benefit changes over time or is uncertain (a negative expected
+margin raises the risk of crossing the limit), several carers or cared-for,
+and the value of care beyond covering upkeep.
 -/
 
 /-- The carer's reserve after `n` steps: reserve `R`, slack `s`, respite `r`,
@@ -138,6 +147,27 @@ theorem cared_for_falls_after_carer {Q d : Int} {T : Nat} (hQ : 0 ≤ Q) (hd : 0
   rw [Int.mul_one] at hmul
   generalize (Q + 1) * d = P at hmul ⊢
   omega
+
+/-- **No dimension covers another.**  A carer's reserve has several dimensions
+(time, sleep, money, health), each with its own reserve, slack, respite and
+care cost.  From nonnegative reserves, care can be kept up on every dimension
+at every step exactly when, on every dimension, care is no more than slack plus
+respite. -/
+theorem care_lasts_iff_every_dimension {k : Nat} {R s r c : Fin k → Int}
+    (hR : ∀ i, 0 ≤ R i) :
+    (∀ i n, 0 ≤ carerReserve (R i) (s i) (r i) (c i) n) ↔ ∀ i, c i ≤ s i + r i :=
+  ⟨fun h i => (care_lasts_iff (hR i)).1 (h i),
+   fun h i => (care_lasts_iff (hR i)).2 (h i)⟩
+
+/-- **A surplus does not cover a deficit.**  Two dimensions of one carer's
+reserve: time, with slack 5 and care 1, and sleep, with slack 0 and care 1.
+The total margin is 3 per step, yet sleep, from a reserve of 2, is exhausted at
+step 3, while time never runs down. -/
+theorem surplus_does_not_cover_deficit :
+    (0 : Int) < (5 + 0 - 1) + (0 + 0 - 1) ∧ carerReserve 2 0 0 1 3 < 0 ∧
+      ∀ n : Nat, 0 ≤ carerReserve 2 5 0 1 n := by
+  refine ⟨by decide, by decide, fun n => ?_⟩
+  exact Int.le_trans (by decide) (respite_sustains_care (R := 2) (by decide) n)
 
 /-- A carer with reserve 4 and slack 1 giving care 3 is exhausted at step 5;
 with respite 2 from the commons its reserve never falls. -/
