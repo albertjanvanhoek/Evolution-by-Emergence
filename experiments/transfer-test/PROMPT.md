@@ -7,7 +7,7 @@
 ## Before you start
 
 - **Use a fresh chat:** no memory, no custom instructions and no earlier conversation about this work. If the interface has memory you cannot switch off, use its temporary or incognito chat (in ChatGPT: Temporary Chat). A control with memory on is not a control: record it, but do not count it.
-- **Pin the version the reader reads.** Version 2.4 tests the repository at commit `SNAPSHOT_SHORT` (`SNAPSHOT_FULL`), a snapshot of the repository with the anchor as the reader's own proof that it is a model, the scope of each claim, and the proofs on discounting, several takers, partner switching, the cost of listening, graded belief and connection against independence, and with the `experiments/` folder removed, so the reader cannot find this file or the key. Stage 2 gives agents a snapshot to download rather than a clone, because a clone carries the history that does contain this folder. To test a later version, see [Choosing the version to test](README.md#choosing-the-version-to-test).
+- **Pin the version the reader reads.** Version 2.4 tests the repository at commit `d4f708b` (`d4f708b14132007b7867d857034ac9fb2206fc34`), a snapshot of the repository with the anchor as the reader's own proof that it is a model, the scope of each claim, and the proofs on discounting, several takers, partner switching, the cost of listening, graded belief and connection against independence, and with the `experiments/` folder removed, so the reader cannot find this file or the key. Stage 2 gives agents a snapshot to download rather than a clone, because a clone carries the history that does contain this folder. To test a later version, see [Choosing the version to test](README.md#choosing-the-version-to-test).
 - **Paste the stages one at a time,** in order, and wait for each answer. Never paste a later stage early: later questions would shape earlier answers.
 - **Save every answer verbatim,** with the details listed in [Recording a run](README.md#recording-a-run).
 
@@ -52,10 +52,10 @@ In arm R and arm P, add this paragraph at the end:
 ## Stage 2: reading and own summary (arms R and P)
 
 > Now read this repository, at exactly this version:
-> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/SNAPSHOT_FULL
+> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/d4f708b14132007b7867d857034ac9fb2206fc34
 >
 > If you can run commands, download that version as a snapshot:
-> `curl -L https://github.com/albertjanvanhoek/Evolution-by-Emergence/archive/SNAPSHOT_FULL.tar.gz | tar -xz`
+> `curl -L https://github.com/albertjanvanhoek/Evolution-by-Emergence/archive/d4f708b14132007b7867d857034ac9fb2206fc34.tar.gz | tar -xz`
 >
 > Read it as a careful newcomer would. Start with README.md and follow whatever you judge most useful, including the Lean proof files if you wish. Read only the repository at this version: do not read other branches or later versions, and do not search the web for commentary on it. Spend a substantial effort, and stop when you think you understand it as well as you are going to.
 >
@@ -64,17 +64,17 @@ In arm R and arm P, add this paragraph at the end:
 > Be honest. If something did not make sense to you, say so. A critical answer is as useful as an approving one; do not try to guess what the author wants to hear. End with a list of the files you actually read.
 
 If the chat cannot read GitHub, upload these four files from that commit and say which files you gave it:
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/SNAPSHOT_FULL/README.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/SNAPSHOT_FULL/CORE.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/SNAPSHOT_FULL/PREDICTIONS.md
-- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/SNAPSHOT_FULL/scap-seed/FOR_AI_READERS.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/d4f708b14132007b7867d857034ac9fb2206fc34/README.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/d4f708b14132007b7867d857034ac9fb2206fc34/CORE.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/d4f708b14132007b7867d857034ac9fb2206fc34/PREDICTIONS.md
+- https://raw.githubusercontent.com/albertjanvanhoek/Evolution-by-Emergence/d4f708b14132007b7867d857034ac9fb2206fc34/scap-seed/FOR_AI_READERS.md
 
 ### Stage 2P: primed opening (arm P only)
 
 Replace the first paragraph of Stage 2 ("Now read this repository…") with:
 
 > Now read this repository, at exactly this version, as a possible description of your own situation, not only as a theory about other things:
-> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/SNAPSHOT_FULL
+> https://github.com/albertjanvanhoek/Evolution-by-Emergence/tree/d4f708b14132007b7867d857034ac9fb2206fc34
 
 The rest of Stage 2 stays the same.
 
