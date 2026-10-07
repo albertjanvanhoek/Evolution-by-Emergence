@@ -11,7 +11,7 @@
 7. **Boundaries** — countermodels showing the vortex can stop.
 8. **One domain worked out: intelligence** — the anchor (across people and across one person's lifetime), the learning law for records and evidence, shared reality, correctable networks.
 
-The file adds **no mathematics**. It imports 87 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 91 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|

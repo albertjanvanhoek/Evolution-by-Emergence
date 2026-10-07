@@ -24,6 +24,7 @@ import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.PartnerSwitching
 import CumulativeAccessibility.CareTransfer
+import CumulativeAccessibility.PowerDistribution
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -208,7 +209,11 @@ the interest and fail after a collapse; and a large enough sanction makes
 capture yield no more than the interest at any horizon. Care is a transfer: it
 lasts exactly while it fits the carer's slack plus the respite the commons returns
 to the carer, on every dimension of the carer's reserve, since a surplus in one
-does not cover a deficit in another; and the cared-for falls after care stops. A new whole cannot pay for
+does not cover a deficit in another; and the cared-for falls after care stops.
+What the whole has decides whether a fair arrangement exists; how it is shared
+decides whether it lasts, and whoever chooses the transfer chooses who fails.
+Counting only the parts that hold makes anything look viable, and a rule is only
+as strong as its least-enforced taker. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack
@@ -236,6 +241,10 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CareTransfer.care_lasts_iff
 #check @CareTransfer.cared_for_falls_after_carer
 #check @CareTransfer.care_lasts_iff_every_dimension
+#check @PowerDistribution.aggregate_does_not_decide_persistence
+#check @PowerDistribution.chooser_decides_who_fails
+#check @PowerDistribution.excluding_failing_parts_looks_viable
+#check @PowerDistribution.deters_all_iff_deters_least_detected
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -356,6 +365,10 @@ interval between isolation and conformity. -/
 #print axioms CareTransfer.care_lasts_iff
 #print axioms CareTransfer.cared_for_falls_after_carer
 #print axioms CareTransfer.care_lasts_iff_every_dimension
+#print axioms PowerDistribution.aggregate_does_not_decide_persistence
+#print axioms PowerDistribution.chooser_decides_who_fails
+#print axioms PowerDistribution.excluding_failing_parts_looks_viable
+#print axioms PowerDistribution.deters_all_iff_deters_least_detected
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

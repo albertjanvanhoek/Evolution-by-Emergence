@@ -46,6 +46,7 @@ import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.PartnerSwitching
 import CumulativeAccessibility.CareTransfer
+import CumulativeAccessibility.PowerDistribution
 import CumulativeAccessibility.HealthProfile
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
