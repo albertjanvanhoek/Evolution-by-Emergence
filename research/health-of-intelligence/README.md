@@ -18,11 +18,14 @@ Quality of life is measured with instruments such as EQ-5D, which take the intel
    - equity;
    - what it teaches the theory.
 2. **[HEALTH_OF_THE_COMMONS.md](HEALTH_OF_THE_COMMONS.md):** the concept note on the commons.
-   - inflow, stock and outflow;
-   - the same profile read at node, relation and commons level;
-   - reach;
-   - care as a transfer;
-   - many ledgers;
+   - a working definition;
+   - inflow, shared conditions and outflow, as vectors;
+   - one grammar read at node, relation and commons level;
+   - reach, measured, with perceived reach separate;
+   - care as a two-sided transfer, on every dimension of the carer's reserve;
+   - a taxonomy of shared conditions;
+   - power, distribution and time horizon as missing variables;
+   - what a measure would report;
    - the AI case.
 3. **[REVIEW_OF_THE_REPORTS.md](REVIEW_OF_THE_REPORTS.md):** the reviews of the three research reports, what was adopted and what changed in the repository.
 4. **[briefs/](briefs/):** the two research briefs, verbatim.
