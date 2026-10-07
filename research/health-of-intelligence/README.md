@@ -24,7 +24,7 @@ Quality of life is measured with instruments such as EQ-5D, which take the intel
    - reach, measured, with perceived reach separate;
    - care as a two-sided transfer, on every dimension of the carer's reserve;
    - a taxonomy of shared conditions;
-   - power, distribution and time horizon as missing variables;
+   - power and distribution, now partly formal, and the time horizon;
    - what a measure would report;
    - the AI case.
 3. **[REVIEW_OF_THE_REPORTS.md](REVIEW_OF_THE_REPORTS.md):** the reviews of the three research reports, what was adopted and what changed in the repository.
@@ -42,11 +42,12 @@ Quality of life is measured with instruments such as EQ-5D, which take the intel
 
 - **[`HealthProfile.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/HealthProfile.lean):** a product of stage scores is zero exactly when a stage is zero, a sum hides a failed stage, and order-preserving relabelling of ordinal levels can reverse rankings under a sum or a product, while dominance survives.
 - **[`CareTransfer.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CareTransfer.lean):** care moves slack without creating it, care lasts exactly when it fits the carer's slack plus respite on every dimension of the carer's reserve (a surplus in one does not cover a deficit in another), the carer burns out otherwise, and the cared-for falls once care stops.
+- **[`PowerDistribution.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/PowerDistribution.lean):** an arrangement lasts exactly when every part holds, whatever the total; whoever chooses the transfer chooses who fails; counting only the parts that hold makes anything look viable; and a rule is only as strong as its least-enforced taker.
 - **Related results in `CORE.md`:** `internallyViable_iff_exists_viable_transfer`, `transfer_breaks_part_with_whole_unchanged`, the commons results of step 6 and the correction results of step 8.
 
 ## Next steps
 
-- Make power, distribution and rights, and time horizons explicit in the theory (report C).
+- Power: extend to power over evidence, captured rules and several powerful parties; make time horizons explicit (report C).
 - State carer exhaustion with uncertain costs and several carers.
 - The cheapest first test (H1 in [PREDICTIONS.md](../../PREDICTIONS.md)): correction integrity across substrates, starting with AI systems, using matched valid and misleading feedback and planted errors.
 - Define "staying in step" operationally for each kind of unit.

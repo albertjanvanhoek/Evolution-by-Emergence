@@ -99,7 +99,7 @@ The predictions are therefore of the form **"what persists will have this archit
 
 **Prediction.** Redistributing resources between members changes which members can sustain themselves, but not the collective's total capacity; only creation (more capture, less upkeep) enlarges it. A transfer can break a member while the collective's total is unchanged.
 
-**Rests on.** `internallyViable_iff_exists_viable_transfer`, `transfer_breaks_part_with_whole_unchanged`.
+**Rests on.** `internallyViable_iff_exists_viable_transfer`, `transfer_breaks_part_with_whole_unchanged`, `aggregate_does_not_decide_persistence`, and `chooser_decides_who_fails`: whoever chooses the transfers chooses which members fail.
 
 **Would count against it.** Pure transfers that change a collective's total capacity in the model's own accounting (this would indicate a mis-specified ledger rather than a failed theorem).
 
@@ -125,7 +125,7 @@ The predictions are therefore of the form **"what persists will have this archit
 - **Repairable** — splits become delays;
 - **Affordable** — correction pays its own upkeep.
 
-**Rests on.** `scap_persistent_correctability` (the five conditions together give persistent correctability), `listening_configuration_persists`, `sealed_configuration_does_not_persist`, `reciprocity_is_load_bearing`, `commons_responsive_correctable`.
+**Rests on.** `scap_persistent_correctability` (the five conditions together give persistent correctability), `listening_configuration_persists`, `sealed_configuration_does_not_persist`, `reciprocity_is_load_bearing`, `commons_responsive_correctable`; and, for why the powerful must be bound too, `deters_all_iff_deters_least_detected` (a rule is only as strong as its least-enforced member) and `exempt_taker_not_deterred` (a member never held to account is deterred by no sanction).
 
 **Status.** This is a conditional design result, not an unconditional prediction: it says what agents with this aim and understanding would build, not that every collective will build it.
 
@@ -154,6 +154,7 @@ SCAP keeps correction working; it does not limit what members take from the comm
 - **D-P3.** Collectives with SCAP in declaration only show capture rates like collectives without it (C3).
 - **D-P4.** Without enforcement that restores reciprocity, shared understanding alone delays capture but does not prevent it (C2), and the more members share a commons, the more often it is captured; enforcement works when the expected sanction, the sanction times the rate at which capture is detected, is at least the windfall (`detected_sanction_deters`).
 - **D-P5.** Among collectives that maintain operational SCAP, those whose members together take more from a shared, self-regenerating commons than they create plus what it regenerates run it down and lose members that depend on it, at a pace set by the stock rather than by how correctable they are; those that live off the interest do not (C4).
+- **D-P6.** Where monitoring and sanctions reach the powerful less often than other members, capture originates disproportionately with the powerful, and raising the sanction without raising their detection does not reduce it (`deters_all_iff_deters_least_detected`, `exempt_taker_not_deterred`).
 
 **Would count against Part II.** Shared, operational, correctable SCAP conditions showing no effect on capture or persistence; or unquestionable SCAP performing as well as correctable SCAP on its own blind spots.
 
@@ -243,7 +244,7 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 
 **Prediction.** Among organizations, care systems or communities with similar total resources, those whose workload or slack is concentrated on a few members fail more often (local service failure, staff exit, collapse of those who depend on them) than those where it is spread; distributional minima predict failure better than totals.
 
-**Rests on.** `transfer_breaks_part_with_whole_unchanged`, `surplus_does_not_cover_deficit`.
+**Rests on.** `transfer_breaks_part_with_whole_unchanged`, `surplus_does_not_cover_deficit`, `arrangement_lasts_iff_every_part_holds`, `aggregate_does_not_decide_persistence`.
 
 **Would count against it.** Aggregate slack predicting failure as well as or better than distributional minima or quantiles across external samples.
 
@@ -267,6 +268,16 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 
 **Would count against it.** Provenance-preserving and independently grounded regimes deteriorating at the same rate as pure recursive replacement.
 
+### H13. Boundaries chosen after the fact flatter
+
+**Prediction.** Assessments of a system's or a commons' health whose accounting boundary (which parts, costs and externalities count) is chosen after the results are seen report better health than assessments with a boundary fixed in advance, and the difference is concentrated in the parts that carry the costs: carers, contractors, annotators, future periods, ecosystems.
+
+**Rests on.** `excluding_failing_parts_looks_viable`.
+
+**Design.** Compare preregistered with post-hoc boundaries in organizational, sustainability or AI-system reports; or re-score published assessments with the excluded parts restored.
+
+**Would count against it.** No systematic difference between post-hoc and preregistered boundaries, or differences not located in the excluded parts.
+
 ---
 
 ## Where this can be tested
@@ -274,7 +285,7 @@ These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-inte
 1. **Simulated collectives of AI agents.** AI agents are themselves non-certain intelligences, and the setting is cheap and controllable. Vary connectivity, a shared model layer, repair, reciprocity and buffers; plant errors and include agents that attempt capture; measure detection rate, time to detection, capture incidence and persistence. Part II adds conditions: agents given the SCAP premises versus not, SCAP as revisable versus as doctrine, and SCAP declared versus enforced.
 2. **Open-source projects and wiki communities.** Public data on issue responsiveness, appeal routes, maintainer turnover, forks (splits) and re-merges (repair), and project survival.
 3. **Institutional histories.** Longevity against the presence of appeal, review, repair and independent-check mechanisms, and the timing of collapse of sealed regimes against measures of their buffer.
-4. **For Part III:** AI systems first (H1, H2, H4–H6 and H12 can be run cheaply with planted errors, misleading feedback, ablations, shifts and successive training), then existing panel data on informal care and carer strain (H7, H11), records of workload distribution in organizations and care systems (H10), and surveys and indices of trust, stability, misinformation exposure and environmental stress linked to individual outcomes (H8, H9).
+4. **For Part III:** AI systems first (H1, H2, H4–H6 and H12 can be run cheaply with planted errors, misleading feedback, ablations, shifts and successive training), then existing panel data on informal care and carer strain (H7, H11), records of workload distribution in organizations and care systems (H10), published health and sustainability assessments re-scored with fixed boundaries (H13), and surveys and indices of trust, stability, misinformation exposure and environmental stress linked to individual outcomes (H8, H9).
 
 ## Relation to existing evidence
 
