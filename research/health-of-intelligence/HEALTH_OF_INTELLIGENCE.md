@@ -1,6 +1,6 @@
 # The health of intelligence
 
-**Status: concept note, October 2026.** This is a hypothesis and a measurement programme, not a result. No instrument described here has been validated. What is machine-checked is named where it is used; everything else is a proposal to be tested. The note draws on two commissioned research reports and a review of them ([README](README.md)); claims taken from those reports are attributed to them, and their sources should be checked against the original records before being quoted.
+**Status: concept note, October 2026.** This is a hypothesis and a measurement programme, not a result. No instrument described here has been validated. What is machine-checked is named where it is used; everything else is a proposal to be tested. The note draws on two commissioned research reports (A and B) and a review of them, and on a third report (C) on the commons ([README](README.md)); claims taken from those reports are attributed to them, and their sources should be checked against the original records before being quoted.
 
 ---
 
@@ -74,6 +74,8 @@ The theory's first proposal had five dimensions: Change, Compression, Coherence,
 | — | **E. Robustness and recovery** | A system can recover through redundancy without learning, so recovery is not the same as B. |
 | Contribution | **Network companion** (not a domain of the node's own health) | What a node does to others is part of the health of the network, not a requirement for its own functioning. A person who needs lifelong support has the same claim to care. It is developed in [HEALTH_OF_THE_COMMONS.md](HEALTH_OF_THE_COMMONS.md). |
 
+A third report (C), written separately on the commons, reached the same five domains. It too treats compression as a cross-cutting cost (resources used per retained capability), not a domain, and keeps contribution, inflow and reach as relational accounting rather than intrinsic health. It phrases each domain as a question that can be asked at any level; see section 4 of [HEALTH_OF_THE_COMMONS.md](HEALTH_OF_THE_COMMONS.md).
+
 Each domain, with indicators for each kind of system. All levels are provisional ordinal descriptors, not equal intervals, cut-offs or norms. "Unknown" and "not applicable" are separate codes. Receiving assistance is never itself a worse level.
 
 **A. Grounding and calibrated judgment.** Representations and decisions distinguish the states of the world that matter, with confidence that matches demonstrated reliability.
@@ -140,7 +142,7 @@ A person with dementia, supported by carers and records, may stay in step with t
 
 Report three profiles where feasible (report B):
 
-1. **Standardized accessible conditions:** the node's own capacity.
+1. **Standardized-accessible capacity:** the node's own capacity, in a defined, accessible reference environment that keeps essential aids.
 2. **Actual support:** with the relations, tools and records it really has.
 3. **A specified feasible improvement in support:** an intervention estimate, not an imagined maximum.
 
@@ -199,7 +201,8 @@ These are independent motivations for measurement, not unique confirmation of Eb
 - the unit of analysis;
 - error classes fixed in advance;
 - support conditions;
-- the health of the commons itself.
+- the health of the commons itself;
+- power, distribution and rights, and explicit time horizons (report C; section 8 of [HEALTH_OF_THE_COMMONS.md](HEALTH_OF_THE_COMMONS.md)).
 
 ## 11. Testable predictions
 

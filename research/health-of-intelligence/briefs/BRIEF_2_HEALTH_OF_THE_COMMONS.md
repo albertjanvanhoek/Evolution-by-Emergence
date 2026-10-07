@@ -1,4 +1,4 @@
-> **Research brief 2, October 2026.** Written to be given to a separate research agent, with the two reports in [../sources/](../sources/) and the QALY paper attached. The answer is pending. Kept verbatim as the record of what was asked; the concept note it tests is [../HEALTH_OF_THE_COMMONS.md](../HEALTH_OF_THE_COMMONS.md).
+> **Research brief 2, October 2026.** Written to be given to a separate research agent, with the two reports in [../sources/](../sources/) and the QALY paper attached. It produced report C in [../sources/](../sources/), reviewed in [../REVIEW_OF_THE_REPORTS.md](../REVIEW_OF_THE_REPORTS.md). Kept verbatim as the record of what was asked; the concept note it tests is [../HEALTH_OF_THE_COMMONS.md](../HEALTH_OF_THE_COMMONS.md).
 
 ```text
 RESEARCH BRIEF: THE HEALTH OF THE COMMONS
