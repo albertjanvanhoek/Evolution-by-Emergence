@@ -64,6 +64,8 @@ jobs:
             CumulativeAccessibility.CommonsTakers \
             CumulativeAccessibility.Reciprocity \
             CumulativeAccessibility.PartnerSwitching \
+            CumulativeAccessibility.CareTransfer \
+            CumulativeAccessibility.HealthProfile \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
@@ -114,6 +116,8 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsTakers.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/Reciprocity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PartnerSwitching.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/CareTransfer.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/HealthProfile.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean
