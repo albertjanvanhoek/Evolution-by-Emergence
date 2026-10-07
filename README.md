@@ -20,6 +20,7 @@
 |---|---|
 | see the core dynamic on one page | [CORE.md](CORE.md), checked in one Lean file: [EbECore.lean](formalization/ebe-core/EbECore.lean) |
 | see what the framework predicts, and how it could be wrong | [PREDICTIONS.md](PREDICTIONS.md) |
+| explore the health of intelligence, and of the commons it lives in (concept notes) | [research/health-of-intelligence/](research/health-of-intelligence/) |
 | understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
 | go deeper into the universal theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md): the v21 statement, centred on accessibility, which CORE.md reframes around persistence |
 | read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |
@@ -54,6 +55,8 @@ The full statement, with every step's proof, is [CORE.md](CORE.md).
 
 > **A healthy intelligence, individual or shared, does not need its parts to stay unchanged; it needs change never to erase the last way of discovering a still-live error.**
 
+What else a healthy intelligence needs (grounding, learning that keeps what still works, affordable upkeep, recovery) and what makes the commons around it healthy are developed as concept notes in [research/health-of-intelligence/](research/health-of-intelligence/).
+
 ## Repository map
 
 ### Current core
@@ -62,6 +65,7 @@ The full statement, with every step's proof, is [CORE.md](CORE.md).
 - **The full v21 statement of the universal theory** (centred on accessibility; read its framing through CORE.md): [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
+- **Health of intelligence and of the commons:** [research/health-of-intelligence/](research/health-of-intelligence/) — concept notes, not results: a shared measure of the health of intelligence for people, AI systems and institutions, the health of the commons they live in, the research briefs and reports behind them, and their review.
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
 - **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.
 - **Independent verification material:** [verification/](verification/).
@@ -88,7 +92,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 84 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 86 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core
