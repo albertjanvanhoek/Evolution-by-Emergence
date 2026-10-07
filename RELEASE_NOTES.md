@@ -11,9 +11,11 @@ v22.2 makes **persistence** the premise of the formal core. Two things that earl
 
 These notes describe v22.2 as released. Since then, on `main`:
 
-- [`EbECore.lean`](formalization/ebe-core/EbECore.lean) prints and audits **84** results, reorganized around the eight steps of [`CORE.md`](CORE.md); it no longer has a "Persistence first" section.
+- [`EbECore.lean`](formalization/ebe-core/EbECore.lean) prints and audits **86** results, reorganized around the eight steps of [`CORE.md`](CORE.md); it no longer has a "Persistence first" section.
 - `PersistenceFirst.lean` and `PersistenceRequiresVortex.lean` remain, as narrower results. Section 1 overstates them: "correctability becomes a theorem" holds only under the reciprocity premise, that partners keep sustaining an agent only while it answers their correction, and `reciprocity_is_load_bearing` shows that without that premise it fails.
-- New since v22.2: the commons as the vortex of the whole (`CommonsVortex`, `CommonsCapture`, `CommonsInterest`), discounting (`CommonsDiscount`), several takers (`CommonsTakers`), reciprocal dependence (`Reciprocity`), partner switching (`PartnerSwitching`), the cost of listening (`ListeningCost`), graded belief (`GradedBelief`), connection against independence (`ConnectionIndependence`), and the scope, related work and honesty notes in `CORE.md`.
+- New since v22.2: the commons as the vortex of the whole (`CommonsVortex`, `CommonsCapture`, `CommonsInterest`), discounting (`CommonsDiscount`), several takers (`CommonsTakers`), reciprocal dependence (`Reciprocity`), partner switching (`PartnerSwitching`), the cost of listening (`ListeningCost`), graded belief (`GradedBelief`), connection against independence (`ConnectionIndependence`), care as a transfer (`CareTransfer`), and the scope, related work and honesty notes in `CORE.md`.
+- New outside the core: `HealthProfile.lean` (why a health profile comes before a single score); concept notes on the health of intelligence and of the commons, with their research briefs, the two research reports and a review, in [`research/health-of-intelligence/`](research/health-of-intelligence/); and proposed tests H1–H9 in [`PREDICTIONS.md`](PREDICTIONS.md), Part III.
+- Narrowed in `CORE.md`, `PREDICTIONS.md` and the text for AI readers: no view can certify its own overall reliability from the inside, though it can catch some of its own contradictions; a zero credence is sealed within a fixed set of possibilities; what an intelligence keeps includes context, tools and memory, and the system differs from the organization that maintains it; "every live error remains findable" is testable only against error classes fixed in advance; and the commons is not one stock.
 
 ## 1. One premise, two consequences, five laws
 

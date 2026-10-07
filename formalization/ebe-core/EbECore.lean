@@ -23,6 +23,7 @@ import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.PartnerSwitching
+import CumulativeAccessibility.CareTransfer
 import MaintenanceDynamics
 import CollectiveAlignment
 import AnchoredEvolution.CumulativeReproduction
@@ -204,7 +205,9 @@ its windfall against only its own share, so defection pays each of them while th
 whole loses, unless a sanction at least as large as the windfall, scaled up by how
 rarely defection is detected, makes it unprofitable; specialists can all be carried on
 the interest and fail after a collapse; and a large enough sanction makes
-capture yield no more than the interest at any horizon. A new whole cannot pay for
+capture yield no more than the interest at any horizon. Care is a transfer: it
+lasts exactly while it fits the carer's slack plus the respite the commons returns
+to the carer, and the cared-for falls after care stops. A new whole cannot pay for
 its own parts while it is being assembled; it needs support from elsewhere. -/
 
 #check @RecursiveAccessibility.internalSlack_eq_sum_partSlack
@@ -229,6 +232,8 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 #check @CommonsTakers.tragedy_of_the_commons
 #check @CommonsTakers.enough_takers_make_defection_pay
 #check @CommonsTakers.detected_sanction_deters
+#check @CareTransfer.care_lasts_iff
+#check @CareTransfer.cared_for_falls_after_carer
 #check @EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 
 /-! ## 7. Boundaries: the vortex can stop
@@ -346,6 +351,8 @@ interval between isolation and conformity. -/
 #print axioms CommonsTakers.tragedy_of_the_commons
 #print axioms CommonsTakers.enough_takers_make_defection_pay
 #print axioms CommonsTakers.detected_sanction_deters
+#print axioms CareTransfer.care_lasts_iff
+#print axioms CareTransfer.cared_for_falls_after_carer
 #print axioms EmergentAssemblyBarrier.viable_emergent_intermediate_requires_auxiliary_support
 #print axioms RecursiveAccessibility.uniformCritical_and_retention_without_seed_not_enough
 #print axioms RecursiveAccessibility.seed_and_retention_without_criticality_not_enough

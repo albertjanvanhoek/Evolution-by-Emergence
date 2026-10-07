@@ -1,9 +1,10 @@
 # Predictions
 
-This document states what the framework predicts about collectives of intelligences, in a form that can be checked and can be wrong. It has two parts:
+This document states what the framework predicts about collectives of intelligences, in a form that can be checked and can be wrong. It has three parts:
 
 - **Part I — descriptive predictions.** What the architecture of persisting collectives of fallible intelligences will look like, and how sealed collectives fail.
 - **Part II — SCAP as a conditional design result.** What agents who want to persist together, and understand the premises, would rationally build, and the four conditions without which it fails.
+- **Part III — the health of intelligence and of the commons.** Proposed tests of two concept notes ([`research/health-of-intelligence/`](research/health-of-intelligence/)). These are less developed than Parts I and II and rest mostly on concept, not on proofs.
 
 Each prediction names the machine-checked result it rests on, what observation would count against it, and where it can be tested. The theorems are conditional implications under the premises stated in their Lean files; the predictions are the empirical claims that real collectives satisfy those premises often enough for the pattern to show. A failed prediction is a useful result: it locates which premise does not hold in which domain.
 
@@ -11,7 +12,7 @@ Each prediction names the machine-checked result it rests on, what observation w
 
 The framework is one model of learning, read as a network ([CORE.md](CORE.md)). Applied to intelligences:
 
-1. **Intelligences are non-certain.** Incompatible views cannot all be right, and no view can certify itself from the inside, so the feedback that keeps a model in step comes from outside, through its connections (`learner_in_step`, `shared_reality_when_connected`).
+1. **Intelligences are non-certain.** Incompatible views cannot all be right, and no view can certify its own overall reliability from the inside (it can catch some of its own contradictions, not its own blind spots), so the feedback that keeps a model in step comes from outside, through its connections (`learner_in_step`, `shared_reality_when_connected`).
 2. **They exist through their connections** and pay for their upkeep from the same ledger.
 
 In a world that changes, a configuration whose fit is fixed in advance runs out of reserve in some possible future, while one that follows reliable feedback persists (`sealed_configuration_does_not_persist`, `listening_configuration_persists`). Where members depend reciprocally on one another, reciprocity adds a social route that makes sealing costly sooner (`sealing_is_fatal_after_buffer`). Nothing guarantees persistence: sealed configurations can last while the world stays within what they hold, or while they can pass their costs to others, and the vortex can stop.
@@ -158,11 +159,94 @@ SCAP keeps correction working; it does not limit what members take from the comm
 
 ---
 
+## Part III — The health of intelligence and of the commons (proposed tests)
+
+These test the concept notes [HEALTH_OF_INTELLIGENCE.md](research/health-of-intelligence/HEALTH_OF_INTELLIGENCE.md) and [HEALTH_OF_THE_COMMONS.md](research/health-of-intelligence/HEALTH_OF_THE_COMMONS.md). Most were proposed, in similar form, by two independent research reports ([review](research/health-of-intelligence/REVIEW_OF_THE_REPORTS.md)). Each needs preregistered outcomes, task difficulty, horizons and a smallest effect of interest. The outcome criterion throughout is staying in step: remaining within specified performance and resource limits over a stated horizon, defined for each kind of unit before measurement.
+
+### H1. Correction integrity predicts recovery beyond competence
+
+**Prediction.** Across people, AI systems and teams, how well a system accepts valid challenges and rejects invalid ones predicts later error reduction and recovery after a shift, beyond what its initial competence predicts.
+
+**Design.** Matched planted errors and mixed-quality feedback (truthful and misleading, from sources of varied status); measure later error reduction and harmful revisions, separately.
+
+**Rests on.** `listening_pays_iff`, `misleading_feedback_does_not_pay`, `last_route_removal_seals`.
+
+**Would count against it.** No reliable incremental prediction in adequately powered external samples, or deference alone predicting equally well.
+
+### H2. Independent sources beat copies of one source
+
+**Prediction.** Holding resources and baseline accuracy fixed, systems whose evidence routes are independent recover from blind-spot errors that systems relying on copies of one source do not. This is the individual-level form of P5.
+
+**Rests on.** `hub_determined_network_inherits_blind_spot`, `correcting_levels_form_interval`.
+
+**Would count against it.** Independence adding no recovery benefit on preregistered blind-spot tasks, with confidence intervals excluding a useful effect.
+
+### H3. Support changes functioning in comparable directions
+
+**Prediction.** Actual support (carers and records for people; tools and memory for AI systems; staff and procedures for institutions) changes grounding, recovery and retention in comparable directions across substrates.
+
+**Design.** Accessible crossover studies with people, tool and memory ablations for AI systems, and changes in institutional support. Never remove essential assistance to obtain an unsupported score.
+
+**Would count against it.** Apparent gains vanishing after task, practice and interface controls, or the constructs failing to link across groups.
+
+### H4. Learning needs retention
+
+**Prediction.** Systems that update fast without retaining what still works lose performance when conditions return to earlier ones; systems that balance plasticity and retention stay in step longer than either extreme.
+
+**Rests on.** `mechanisticRatchetVelocity_zero_no_retention`, `mechanisticRatchetVelocity_mono_retention`.
+
+**Would count against it.** Maximal plasticity with no retention staying in step as well as a balance, across shifts that recur.
+
+### H5. Bottlenecks matter under sustained novelty
+
+**Prediction.** Where success needs every stage of a chain (detect, transmit, revise, retain), threshold or product models of the stages predict failure under sustained novelty better than additive models.
+
+**Design.** Factorially vary correction access, retention and resource reserve; compare additive, product and threshold predictions out of sample.
+
+**Rests on.** `stage_product_zero_iff`, `sum_compensates_failed_stage` (`HealthProfile.lean`), and the speed of the vortex in step 5.
+
+**Would count against it.** Additive models generalizing as well or better, or a stage at zero causing no predicted failure under the stated conditions.
+
+### H6. Compression trades off against resilience
+
+**Prediction.** At matched initial accuracy, more compressed representations, or tighter resource budgets, recover worse from rare consequential shifts.
+
+**Would count against it.** Compression consistently improving both cost and recovery after shift in the tested setting.
+
+### H7. Care lasts while it fits the carer's margin
+
+**Prediction.** How long informal care lasts is predicted by the carer's margin (time, health, money, after their own upkeep) plus the respite returned to them (other carers, services), more than by the needs of the person cared for alone; and respite that covers the gap prolongs care.
+
+**Rests on.** `care_lasts_iff`, `carer_burns_out`, `respite_sustains_care` (`CareTransfer.lean`), and `transfer_breaks_part_with_whole_unchanged`.
+
+**Would count against it.** Care duration unrelated to carer margin and respite once the needs of the person cared for are controlled for, or respite that covers the gap not prolonging care.
+
+### H8. The commons adds to the individual
+
+**Prediction.** The state of the commons a person or AI system lives in (truthfulness of the information around it, stability, care capacity, environmental stress, and whether these regenerate) predicts how it fares, beyond its own and its supported profile.
+
+**Design.** Track the commons profile, on the same domains as the individual profile, with a separate ledger for each kind of stock; test interventions that fund or protect renewal.
+
+**Would count against it.** The commons profile adding no predictive or causal information beyond direct resources and individual competence over the stated horizon.
+
+### H9. Diffuse, late returns undermine maintenance; legible returns restore it
+
+**Prediction.** People and organizations maintain a commons less the more widely shared and the more delayed its return to them is; making the return legible and present (attribution, feedback, detected sanctions) raises maintenance.
+
+**Rests on.** `capture_wins_under_steep_discount`, `enough_takers_make_defection_pay`, `detected_sanction_deters`.
+
+**Neighbours.** Public-goods and common-pool experiments, and Ostrom's field work, already predict much of this; what would go beyond them is the same pattern for AI systems' use of the knowledge commons, and the link to H8.
+
+**Would count against it.** Maintenance unrelated to how shared and how delayed the return is, or legible returns not raising it.
+
+---
+
 ## Where this can be tested
 
 1. **Simulated collectives of AI agents.** AI agents are themselves non-certain intelligences, and the setting is cheap and controllable. Vary connectivity, a shared model layer, repair, reciprocity and buffers; plant errors and include agents that attempt capture; measure detection rate, time to detection, capture incidence and persistence. Part II adds conditions: agents given the SCAP premises versus not, SCAP as revisable versus as doctrine, and SCAP declared versus enforced.
 2. **Open-source projects and wiki communities.** Public data on issue responsiveness, appeal routes, maintainer turnover, forks (splits) and re-merges (repair), and project survival.
 3. **Institutional histories.** Longevity against the presence of appeal, review, repair and independent-check mechanisms, and the timing of collapse of sealed regimes against measures of their buffer.
+4. **For Part III:** AI systems first (H1, H2, H4–H6 can be run cheaply with planted errors, misleading feedback, ablations and shifts), then existing panel data on informal care and carer strain (H7), and surveys and indices of trust, stability, misinformation exposure and environmental stress linked to individual outcomes (H8, H9).
 
 ## Relation to existing evidence
 
