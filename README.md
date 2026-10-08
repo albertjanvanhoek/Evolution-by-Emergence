@@ -21,6 +21,7 @@
 | see the core dynamic on one page | [CORE.md](CORE.md), checked in one Lean file: [EbECore.lean](formalization/ebe-core/EbECore.lean) |
 | see what the framework predicts, and how it could be wrong | [PREDICTIONS.md](PREDICTIONS.md) |
 | explore the health of intelligence, and of the commons it lives in (concept notes) | [research/health-of-intelligence/](research/health-of-intelligence/) |
+| see how the author and an AI assistant build this model together, where they disagreed and what decided it | [DIALOGUE.md](DIALOGUE.md) (AI assistants: start with [CLAUDE.md](CLAUDE.md)) |
 | understand the central argument quickly | [SCAP Seed](scap-seed/SEED.md), then [Anchor-Safety](research/anchored-correctability/ANCHOR_SAFETY.md) |
 | go deeper into the universal theory | [THEORY_CORE_V21.md](THEORY_CORE_V21.md) and [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md): the v21 statement, centred on accessibility, which CORE.md reframes around persistence |
 | read the book sources | [Chapters/](Chapters/) and the [online book edition](https://albertjanvanhoek.github.io/Evolution-by-Emergence/) |
@@ -84,7 +85,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 - [ebe_science_religion_synthesis.md](ebe_science_religion_synthesis.md) — an earlier reflection on science and religion; interpretation, not a claim of the theory.
 - [concepts.json](concepts.json) — the v17 concept graph, not updated since.
 - [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written.
-- [Presentations/](Presentations/) — presentation sources, kept as written.
+- [Presentations/](Presentations/) — presentation sources, kept as written; among them [Kwalitijd](Presentations/2026-10-08-kwalitijd/README.md) (October 2026, in Dutch), the story of this repository told through quality of life, looking ahead and choosing together.
 - Rendered and source papers under [papers/](papers/) — including historical PDFs; source lineage is preserved rather than normalized.
 - [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) provides a wider map of the corpus.
 
