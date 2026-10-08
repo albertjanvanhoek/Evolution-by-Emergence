@@ -59,12 +59,12 @@ jobs:
         uses: citation-file-format/cffconvert-github-action@2.0.0
         with:
           args: '--validate'
-      - name: Check v22.2, README, core front door and Zenodo metadata
+      - name: Check v22.3, README, core front door and Zenodo metadata
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(tr -d '[:space:]' < RELEASE_VERSION)"
-          test "$VERSION" = "v22.2"
+          test "$VERSION" = "v22.3"
           test "$(cat RELEASE_TITLE)" = "Welcome to the Real World — How You Live in Your Own Simulation of Reality — and How We Can Still Share a World — A Theory of Persistence, Emergence, Learning, and Correctable Intelligence"
           grep -q '^# Welcome to the Real World$' RELEASE_NOTES.md
           grep -q '^# Welcome to the Real World$' README.md
