@@ -137,12 +137,17 @@ The commons is not one quantity, and equations should not be moved between kinds
 - **Institutions:** run down through capture and through losing their correction routes.
 - **Climate:** a coupled physical state, not a fund.
 
-## 8. Three missing variables
+## 8. Three missing variables, two now partly formal
 
-Report C names three things the theory has left implicit:
+Report C names three things the theory had left implicit. Power and distribution are now stated in their simplest form in [`PowerDistribution.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/PowerDistribution.lean); the time horizon remains open.
 
-- **Power.** Inflow says what reaches a node, not who can compel whom. It does not say who sets the accounting boundary, defines valid evidence, refuses care, shifts costs or changes the rules. The repository proves things about capture and sanctions, but power is not yet a variable. Political efficacy, relational autonomy, Ostrom's governance principles and the measurement of democracy all point here.
-- **Distribution and rights.** A viable whole whose surplus depends on one permanently depleted group should not count as a healthy commons. `transfer_breaks_part_with_whole_unchanged` separates the whole from its parts. The theory still has to say which parts have claims that cannot be traded against aggregate gain.
+- **Distribution.** What the whole has decides whether a fair arrangement *exists* (`internallyViable_iff_exists_viable_transfer`). How it is shared decides whether the arrangement *lasts*: an arrangement lasts exactly when every part holds, whatever the total (`arrangement_lasts_iff_every_part_holds`). Two arrangements with the same total can last or drain a part to failure (`aggregate_does_not_decide_persistence`). So a whole whose surplus depends on one permanently depleted group is not in a steady state: the drained part fails, and with it whatever depended on it.
+- **Power, in three forms.**
+  - *Over transfers:* whoever chooses the transfer chooses who fails, with the whole unchanged (`chooser_decides_who_fails`).
+  - *Over the boundary:* counting only the parts that hold always gives a nonnegative total (`excluding_failing_parts_looks_viable`). So whoever sets the accounting boundary after seeing the result can make anything look viable. The boundary must be fixed in advance and include those who carry the costs (section 9; prediction H13).
+  - *Over enforcement:* a uniform sanction deters every taker exactly when it deters the least-enforced one (`deters_all_iff_deters_least_detected`). A taker never held to account is deterred by no sanction (`exempt_taker_not_deterred`), and with `CommonsTakers` one taker who eats the principal removes every share. That is the formal core of "no asymmetry without accountability" (prediction D-P6).
+- **Still open about power:** power over what counts as valid evidence, rules that are themselves captured, several powerful parties, and how power is gained or lost. Political efficacy, relational autonomy, Ostrom's governance principles and the measurement of democracy all point here.
+- **Rights are a value, not a theorem.** These results are about persistence. A drained part fails, and so does whatever depended on it (step 2), but a part the whole does not depend on gets no protection from them. Which parts have claims that may not be traded against the whole's gain must be stated as a value, as this note does in section 11 for the claim to care.
 - **Time horizon.** Direct agency acts in seconds, caregiving effects build over months, institutions learn over years, and climate and knowledge span generations. "Staying in step" needs a stated horizon: a system can look healthy over one step and be doomed over a hundred.
 
 ## 9. What a measure would report
@@ -233,10 +238,12 @@ Proposed predictions are in [PREDICTIONS.md](../../PREDICTIONS.md), Part III:
 - **H10:** distributional viability predicts failures that averages miss.
 - **H11:** care that exceeds what the carer regains leads to delayed decline in both carer and cared-for.
 - **H12:** provenance-preserving data routes prevent recursive AI degradation.
+- **H13:** assessments whose boundary is chosen after the results are seen report better health, and the difference lies in the parts that carry the costs.
+- **D-P6** (Part II): where monitoring reaches the powerful less often, capture originates with them, and raising the sanction without raising their detection does not help.
 
 **Open questions:**
 - How do capacity, inflow, shared conditions, power and history combine? Compare additive, interaction, threshold and dynamic survival models out of sample.
-- How should power be represented: as control over the boundary, the rules and the evidence?
+- How should power over evidence and over the rules themselves be represented, beyond the three forms now stated (transfers, boundary, enforcement)?
 - Which parts have claims that cannot be traded against aggregate gain, and how should that enter a measure?
 - How can a change in shared conditions be attributed to the many small outflows that caused it?
 - How can carer exhaustion be stated with uncertain costs, several carers, and shared conditions that can themselves run down?
