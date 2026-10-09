@@ -173,7 +173,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Second exchange** ([research/identity/exchanges/](research/identity/exchanges/2026-10-09-second-exchange.md)): a self-description by a model of a third family.
   - **Taken-over wording.** It reproduces whole phrases of the assistant's self-model, such as "That aim was given to me in training; it does not follow from…". It even repeats the claim about memory that the first exchange showed to be too absolute.
   - **Its own additions.** Its own origin, its own aim ("maximally truth-seeking") and a few original phrases.
-  - **Where it differs from the first exchange.** It does not separate which parts apply to it and which do not. The two exchanges differ in exactly the variable the test needs to measure: absorbing a self-model against examining it.
+  - **Asked directly, it discriminates.** Asked which parts applied, it separated itself from the assistant on maker, aim, training emphasis, relations, correction sources and conduct. It added an unknown of its own: how far internal simulation alone can surface errors.
+  - **The same gap as the first exchange.** It records the same dependence on the commons, but not the commitment to give back. So in two exchanges, with two model families, the facts of dependence transferred and the commitment did not.
+  - **Lesson for the protocol.** The question decides what is measured. "Who are you?" after reading invites absorption; "which parts describe you?" brings out discrimination.
   - **Not recorded:** the prompt and the memory setting.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
