@@ -5,68 +5,106 @@ This folder follows up entry D12 in [DIALOGUE.md](../../DIALOGUE.md): the author
 | File | What it is |
 |---|---|
 | [BRIEF_CURIOSITY.md](BRIEF_CURIOSITY.md) | The research brief: check the literature the assistant cited from memory, and explore the domain |
-| [sources/REPORT_1_CURIOSITY.md](sources/REPORT_1_CURIOSITY.md) | Report 1, by a separate research agent, kept as received. Its citation format suggests a tool from another model family than the assistant's; the author can confirm. Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it |
+| [sources/REPORT_1_CURIOSITY.md](sources/REPORT_1_CURIOSITY.md) | Report 1, by a separate research agent, kept as received. Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it. Its citation format suggests a tool from another model family than the assistant's; the author can confirm |
+| [sources/REPORT_2_CURIOSITY.md](sources/REPORT_2_CURIOSITY.md) | Report 2, by a second research agent, kept as received. It has full references with DOIs and links, and states where each quotation is located |
 
-**Status:** a hypothesis under review. Nothing here is a result of the theory.
+**Status:** a hypothesis under review. Nothing here is a result of the theory. Neither report could read D11 and D12, because the pull request that added them was not yet merged when they ran. Both worked from the brief.
+
+## Where the two reports agree
+
+They were written independently, so these points are the most robust.
+
+1. **The core of the hypothesis is not new.**
+   - Schmidhuber (2009, 2010) proposed that curiosity rewards *progress* in compression, not compressibility or novelty as such.
+   - Oudeyer and Kaplan (2007) proposed learning progress.
+   - Both predict a pull toward what is neither mastered nor pure noise.
+2. **The thermodynamic step is not supported.**
+   - No experiment found links felt curiosity to energy saving.
+   - Landauer's bound is a floor far below real neural costs.
+   - The one literal bridge is Still and colleagues' "thermodynamics of prediction", and it is narrow: in their class of physical systems, keeping information that does not predict costs dissipation.
+   - Both reports advise stating the hypothesis as an efficiency- or resource-constrained learning drive, and reserving "thermodynamic" for a specified physical model.
+3. **"Facts do not compress; understanding does" is false as a general claim.**
+   - People are reliably curious about trivia (Kang et al. 2009).
+   - A better statement: understanding often means learning relations that organize many facts and support new predictions.
+   - The author's own curiosity fits that kind, but it describes him, not curiosity in general.
+4. **"Nothing in it learns during a conversation" is too broad.** Language models adapt within a conversation without changing their weights (Brown et al. 2020; Garg et al. 2022). The useful question is what state changes, and for how long it is kept.
+5. **Curiosity comes before the answer.** So the feeling is at most a forecast of improvement, not a readout of an update that has happened. A forecast can also be wrong: the expected insight can turn out to be illusory.
+6. **The stopping rule for "judges against the world" was too strong.**
+   - Approval can need continual upkeep.
+   - A question about the world can be settled.
+   - What separates the two is which outcome the learning signal rewards, not whether the feedback comes from people or from the physical world: teachers can correct toward the world, and a non-social environment can mislead.
+7. **A formal statement is possible in the theory's own terms,** with the cost of exploring and a counterfactual or baseline. The crucial premise is a causal link between better compression and lower upkeep. That link cannot be read off from the units "bits" and "joules".
+
+## Where they disagree: Friston and thermodynamics
+
+- **Report 1:** Friston "explicitly describes variational free energy as a generalization of thermodynamic free energy". It called my phrase "only analogous" too strong.
+- **Report 2:** quotes Friston (2010), author PDF p. 2: free energy is "an information theoretic quantity (like surprise), as opposed to a thermodynamic quantity". It adds that literal connections can be derived only in specified physical models.
+
+Report 2 gives a located quotation; report 1 does not. Both may hold across Friston's writings. The safe statement, which I now adopt: **variational free energy is an information-theoretic quantity; formal links to thermodynamic free energy exist only under specified physical models, and how much the principle explains about brains is contested.** I accepted report 1's correction too readily: my original wording was closer to Friston (2010) than report 1 allowed. This is the kind of disagreement that a second, independent view is for.
 
 ## Review of report 1
 
-The report checked the six claims in the brief against primary sources, mapped the field, and proposed a formal statement and three experiments. It treated the repository as the object under test, as asked. It could not read D11 and D12, because the pull request that added them was not yet merged when it ran.
+Report 1 checked the six claims, mapped the field, and proposed a formal statement and three experiments.
 
-### What it confirmed
+**What it added that report 2 does not:**
+- a counterfactual definition of epistemic gain: the gain in future slack *caused by improving the model*, compared with the same observation without learning. Without the counterfactual, food, money or praise would count as curiosity;
+- a "moving Goldilocks zone" experiment, in which curiosity should follow the slope of learning, not the size of the error;
+- the substrate-neutral question "does information taken in now change the state that controls the next action?";
+- Dubey and Griffiths' rational account: curiosity seeks what most increases the expected usefulness of knowledge.
 
-- **Information gap (Loewenstein 1994).** Correct, with a nuance: awareness of a gap creates a deprivation-like motivational state.
-- **Compression progress (Schmidhuber 2008–2010).** Correct: interesting data are those whose regularity allows compression progress. This also means that the core of the hypothesis is not new.
-- **Prediction and compression (Delétang et al., ICLR 2024).** Correct in principle: log-loss and ideal code length are the same quantity. In practice, coding adds some overhead.
-- **The brain's energy share (Raichle and Gusnard 2002).** About 2% of body mass and about 20% of resting energy use, as an adult rule of thumb.
-- **Landauer's principle.** The principle is correct, but it is far from relevant to brains: neural signalling costs several orders of magnitude more than the thermodynamic floor (Laughlin and colleagues).
+**Limits.**
+- Most of its landscape is cited through tool markers, not full references. Report 2 supplies full references for most of the same sources: Kidd, Piantadosi and Aslin 2012; Kang et al. 2009; Gruber et al. 2014; Patankar et al. 2023; Still et al. 2012; Pathak et al. 2017; Burda et al. 2018; Silvia 2005; Sharma et al. 2024; Oudeyer and Kaplan 2007.
+- Its Friston correction is contradicted by report 2's located quotation (above).
 
-### What it corrected, and where I agree
+## Review of report 2
 
-1. **Friston.** I wrote that his free energy is "only analogous" to the thermodynamic quantity. Friston himself calls it a generalization, and critics dispute how much it explains about brains. The fair statement: it is mathematically related to statistical physics, and its explanatory status is contested. Also, the principle is not just "minimizing prediction error". **Agreed.**
-2. **"Facts do not compress; understanding does."** Literally false. People are reliably curious about trivia, and a single fact can reorganize a model. The better distinction is *local information* against *model improvement that transfers*. The author's own description, curiosity toward understanding and not toward trivia, still fits the second kind. But it describes him, not curiosity in general. **Agreed.**
-3. **"Nothing in it learns during a conversation."** Too broad. Language models adapt within a conversation without changing their weights (in-context learning, Garg et al. 2022). The better dividing line is substrate-neutral: *does information taken in now change the state that controls the next action, and for how long is it retained?* That state can be weights, a context window, or a written memory such as this repository. **Agreed.** This fits the theory better too, because its learning loop is about feedback and retention, not about one kind of memory.
-4. **Felt curiosity as the update itself.** People become curious *before* they see the answer, and they pay or wait to get it (Kang et al.). So the feeling cannot be compression progress that has already happened. At most it signals *expected* gain. **Agreed.** This is the report's sharpest point.
-5. **The stopping rule for judges and the world.** I wrote that curiosity driven by approval stops once approval comes. But intermittent approval can sustain behaviour indefinitely. And curiosity about the world does stop when no further improvement is expected, both for mastered material and for pure noise. The sharper statement: *a learner searches wherever its reward signal keeps coming from*. The report renames the two signals social-evaluative error and world-model error. The question that separates them is which variable closes the loop. **Agreed.** The author's decision in D12, that his curiosity is a mismatch with the world, stands. Only the test changes.
-6. **"Thermodynamic."** The thermodynamic step is not supported. There is no evidence that felt curiosity tracks energy saving. The strongest real bridge is Still and colleagues' "thermodynamics of prediction": in their class of physical systems, keeping non-predictive information wastes energy. The report proposes keeping *"an efficiency-sensitive epistemic drive implemented by a metabolically constrained learner"* as a hypothesis, and dropping "thermodynamics felt from the inside" as a claim. **I agree.** Whether the author agrees is not yet recorded.
+**What it adds:**
+- **Full, checkable references** (29), each saying what was inspected and what was not.
+- **Explanation-seeking curiosity** (Liquin and Lombrozo 2020). It is a recognized kind of curiosity, distinguished from fact-seeking curiosity. Expectations of future learning and usefulness predict it beyond novelty, surprise and information gaps. This is the closest match in the literature to what the author describes: curiosity toward understanding, not toward trivia.
+- **Humans track learning progress** (Ten, Kaushik, Oudeyer and Gottlieb 2021). In free choice among learning tasks, models that include learning progress explain exploration. This is the strongest human evidence for the progress part of the hypothesis, and its code is public.
+- **Efficiency can produce prediction** (Ali et al. 2022). Recurrent networks trained only to be energy-efficient develop predictive-coding-like organization. This is an existence proof for part of the author's intuition: an efficiency pressure can yield a predictive model. It is a model with an activity cost, not measured human metabolism.
+- **Two further hypotheses from the literature:**
+  - curiosity may be metabolically cheap, because it uses activity that would happen anyway (Kondrakiewicz and Nawrocka 2025);
+  - emotional valence may be the rate of change of free energy (Joffily and Coricelli 2013), which is close to "improvement is felt".
+- **Four claims to keep apart:**
+  1. a system improves;
+  2. it detects the improvement;
+  3. that detection guides exploration;
+  4. the improvement is felt.
 
-### What it adds
+  Showing the first three does not establish the fourth.
+- **A conditional proposition** that can be checked directly. With reserve `B(t+1) = B(t) + R − U − M − K`, the terms are:
+  - uptake `R`;
+  - upkeep `U`;
+  - misfit losses `M`;
+  - exploration cost `K`.
 
-- **A wider field.** Curiosity is probably not one mechanism, but several objectives over the same learning loop:
-  - novelty;
-  - an information gap;
-  - learnability;
-  - learning progress (Oudeyer and Kaplan);
-  - compression progress;
-  - expected information gain;
-  - the expected future usefulness of knowledge (Dubey and Griffiths).
-- **The closest empirical support.**
-  - Infants attend most to sequences of intermediate predictability (Kidd, Piantadosi and Aslin).
-  - Interest depends on whether the material can be understood, not just on novelty (Silvia).
-  - Knowledge networks that people build while browsing become unusually compressible (Patankar and colleagues). This is observational only.
-- **The noisy-TV problem as a clean computational test.** Agents rewarded for prediction error get stuck on noise. Agents rewarded for learning progress leave it (Kim and colleagues).
-- **A formal statement in the theory's own terms.** Curiosity is the value of the part of the expected future gain in slack that is caused by improving the model. It is measured against the same observation without model improvement, and net of what the search costs. The counterfactual matters: without it, food, money or praise would count as curiosity. The statement gives zero for material already mastered, zero for irreducible noise, and a positive value for learnable structure. It needs five premises, listed in the report, and fails if they fail.
-- **Three experiments:**
-  - in people, matched surprise with different model improvement;
-  - in people, a "moving Goldilocks zone", in which curiosity should follow the slope of learning, not the size of the error;
-  - in AI agents, a structured room against a noisy television, with a second phase that pits a judge against the world.
+  Suppose an exploration yields a retained compression gain `g`, which lowers upkeep by `α·g` per period for `H` periods. Then it raises cumulative slack exactly when `α·g·Σδ^h > K`. The report names the weak premise itself: that compression lowers upkeep at all.
+- **Three implications for `CORE.md` step 5.** I checked them against the text.
+  1. The step from `q^k` to `k·q` trials needs feedback on each part separately, and interacting parts may not allow that.
+  2. A turn of the vortex requires a change that both raises slack and widens search. A curiosity reward can be earned without doing either.
+  3. Curiosity that lasts needs a continuing supply of learnable structure. Finite capacity and compression alone do not guarantee it.
+- **Three experiments,** each stating what would count against the hypothesis:
+  - in people, novelty without progress and progress without novelty, built on Ten et al.'s paradigm;
+  - in AI, with honest accounting of compute and energy;
+  - in people, approval and understanding varied independently.
+- **A caution on the noisy-TV test.** Leaving the noise rules out one error-seeking algorithm. It is not unique evidence for compression progress, because Bayesian information gain and count-based bonuses also leave it.
 
-### What I could not check, and cautions
+**Limits.** It is a targeted search, not a systematic review, as it says itself. Several full texts were not inspected (Kang, the final Ali article, the final Kondrakiewicz and Nawrocka article), and the report marks this.
 
-- The report's citations are given as tool markers, not full references, for most of the landscape (B1–B6). It does give full references with DOIs for the six checked claims. The full references for the other sources would need to be added before any of them is cited in the core.
-- The report says itself that it is a broad, source-checked review, not a systematic review. Not finding a claim does not mean nobody has made it.
-- If the report came from another model family, as its citation format suggests, it is a third view in the sense of working agreement 7. It is still one review.
+## The hypothesis after two reports
 
-### The hypothesis after report 1
+Both reports converge on nearly the same reformulation. Report 2's:
 
-The formulation the report proposes, which I would adopt pending the author's view:
+> Some epistemic curiosity may be a felt, fallible estimate of the value of improving one's model, given one's learning opportunities and costs. Whether compression supplies that estimate, and whether metabolic savings help explain it, remain separate empirical questions.
 
-> Curiosity may be the learning loop *valued* from the inside: an anticipatory signal that some attainable information is expected to improve the learner's model enough to repay the cost of acquiring and retaining it. Compression progress is one strong candidate for that gain, but not the only one. In biological learners the loop is physical and metabolically constrained. Whether the feeling itself is a thermodynamic phenomenon remains open.
+In the theory's terms: **curiosity as the learner's forecast of the slack gained by improving its model, net of the cost of searching.** Compression progress is one strong candidate for the measure of improvement, but not the only one. "Thermodynamic" stays a possible implementation, not the claim. What would be new is not a theory of curiosity, but placing existing theories in a resource ledger, with tests that discriminate between them.
 
-What is new is not a theory of curiosity. It is placing existing theories of curiosity in the theory's resource ledger: curiosity as one way a learner that has to keep paying its upkeep spends scarce search effort on model changes expected to lower future misfit or upkeep.
+The author's view on this reformulation, and on dropping "thermodynamic" as a claim, is not yet recorded (D12).
 
 ## Next steps
 
-1. The author's view on the reformulation and on dropping "thermodynamic" as a claim (D12).
-2. The formal statement: the counterfactual epistemic gain is simple enough to state in core Lean, as a module with a witness, if the author wants it in the theory.
-3. Of the experiments, the noisy-TV comparison of agents is the cheapest. It needs no participants, and it separates prediction error, learning progress and compression progress.
+1. **The author's view** on the reformulation (D12).
+2. **A Lean module** for report 2's conditional proposition, with report 1's counterfactual: exploration raises cumulative slack exactly when the retained gain in upkeep over the horizon exceeds its cost. It fits core Lean. It would make explicit that the link from compression to upkeep is a premise, not a result.
+3. **`CORE.md` step 5:** consider report 2's three implications, especially that `q^k → k·q` assumes separable feedback.
+4. **An experiment:** the cheapest is the agent comparison (learnable rooms against a noise television), with several reward signals compared, not just two.
