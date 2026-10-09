@@ -23,6 +23,11 @@ A 30-minute talk in Dutch for a general audience, by Albert Jan van Hoek, about 
    - keep your own view;
    - give more than you take;
    - the same rules for everyone.
+8. **Join in.** An invitation to take part in Infectieradar, the RIVM's participatory surveillance of infections, which the author leads. Participants fill in a short questionnaire each week ("Had je klachten van een infectie? Ook 'nee' telt mee"), so that infections are also seen in people who do not go to their GP. The slide has a link and a QR code to [infectieradar.nl](https://www.infectieradar.nl).
+9. **The next possibility.** "Geld koopt geen behandeling die nog niet bestaat." Taking part produces knowledge, knowledge makes new interventions possible, those produce healthy years, and healthy people can contribute again: "en dat opent de volgende mogelijkheid". This works only if the gain is shared, which brings the talk back to the price of a healthy year:
+   - *Winst nemen*: when the price rises to the threshold per QALY, we buy healthy years but do not gain them, if the same money would have bought as much health elsewhere. The threshold then works as a bounty.
+   - *Winst delen*: reach as many people as possible, at a price close to the cost. The gain stays with all of us and pays for the next step.
+10. **Close.** "Samen, als we eerlijk zijn over wat we zien en durven toe te geven wat we fout zagen, kijken we generaties vooruit en navigeren we de toekomst. Kwalitijd."
 
 ## How it connects to the repository
 
@@ -34,10 +39,12 @@ A 30-minute talk in Dutch for a general audience, by Albert Jan van Hoek, about 
 | The instrument assumes we see ahead | The starting question of [the health of intelligence](../../research/health-of-intelligence/README.md) |
 | The entry requirements | The conduct in [FOR_AI_READERS.md](../../scap-seed/FOR_AI_READERS.md) and the SCAP conditions in [PREDICTIONS.md](../../PREDICTIONS.md) |
 | Modelling together is living together | [DIALOGUE.md](../../DIALOGUE.md): how the author and the AI assistant build this model together |
+| Money cannot buy a treatment that does not exist yet; taking part opens the next possibility | Step 5, the learning loop, and step 6, the commons, in [CORE.md](../../CORE.md) |
+| Taking the gain or sharing it | Capture against contribution (`CommonsCapture`, `CommonsInterest`) in [CORE.md](../../CORE.md) step 6; the author's essays on vaccine pricing, [collective_margin_vaccine_paper_v2.tex](../../Individual_essays/collective_margin_vaccine_paper_v2.tex) and [pricing_crc_streamlined.tex](../../Individual_essays/pricing_crc_streamlined.tex) |
 
 ## How it was made
 
-The talk is itself an example of the method it argues for. The author wrote the outline and the storyline. An AI assistant helped articulate it, find the literature and build a first deck. The author then checked the claims against the primary sources: he read the life-expectancy figures from the CBS table himself, and asked where Levin's examples came from. Two claims the assistant had taken from search summaries did not survive that check (see errata below, and entry D6 in [DIALOGUE.md](../../DIALOGUE.md)). The author made the final edits.
+The talk is itself an example of the method it argues for. The author wrote the outline and the storyline. An AI assistant helped articulate it, find the literature and build a first deck. The author then checked the claims against the primary sources: he read the life-expectancy figures from the CBS table himself, and asked where Levin's examples came from. Two claims the assistant had taken from search summaries did not survive that check (see errata below, and entry D6 in [DIALOGUE.md](../../DIALOGUE.md)). The author made the final edits. Slides 21 and 22 (Infectieradar and the next possibility) were added on the day of the talk: the author asked for them, the assistant drafted them, and the author edited them and rewrote the closing line.
 
 ## Data: remaining life expectancy at 65
 
@@ -54,7 +61,7 @@ Source: CBS StatLine, *Gezonde levensverwachting; vanaf 1981* (table 71950NED), 
 
 ## Errata (kept as presented)
 
-Slides 3 and 21 of the final version were made before the Levin examples were checked against his article:
+Slides 3 and 23 of the final version were made before the Levin examples were checked against his article:
 - **Subtitle of slide 3.** Levin defines the cone as what a system can *measure, model and try to affect*, not "waarnemen, voorspellen" (perceive, predict).
 - **The bacterium ("een paar micrometer, een paar minuten").** This is not one of Levin's examples. It came from a third-party summary.
 - **The dog ("zijn buurt, een paar dagen").** This was a paraphrase. Levin's examples are in the caption of his figure 2 (p. 9):
