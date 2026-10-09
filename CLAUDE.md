@@ -22,7 +22,7 @@ Each has a reason in [DIALOGUE.md](DIALOGUE.md).
 
 1. **Check before claiming (D6).** Do not put a figure, quote or attribution in a deliverable without having seen it in its primary source. If you cannot reach the source (this environment often blocks data sites), say so plainly and mark the claim as unverified, or ask the author to read it. Search-engine summaries are leads, not sources.
 2. **Ask before anything expensive (D1).** The author is cost-conscious. Do not start long automated runs, many agents or large experiments without asking first.
-3. **Disagree in writing (D10).** Every pull request has a section "Where I'm unsure or disagree". Put anything substantive into [DIALOGUE.md](DIALOGUE.md) with both views in each one's own words. Quote the author verbatim, and never put words in his mouth: if his view is not recorded, say so and leave the entry open.
+3. **Disagree in writing (D10).** Every pull request has a section "Where I'm unsure or disagree". Put anything substantive into [DIALOGUE.md](DIALOGUE.md) with both views in each one's own words. Quote the author verbatim, and never put words in his mouth: if his view is not recorded, say so and leave the entry open. Keeping `DIALOGUE.md` current is your responsibility (D13).
 4. **Merging is the author's call.** Merge only on his explicit go, always as a merge commit (no squash or rebase), and only when CI is green.
 5. **No model names or identifiers** in commits, pull requests or files.
 6. **Scope every claim honestly.**
