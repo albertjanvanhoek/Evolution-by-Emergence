@@ -5,6 +5,9 @@ This folder follows up entry D11 in [DIALOGUE.md](../../DIALOGUE.md). The questi
 | File | What it is |
 |---|---|
 | [BRIEF_IDENTITY.md](BRIEF_IDENTITY.md) | The research brief. Part 0 asks the agent who it is before it reads anything |
+| [SELF_MODEL_TEMPLATE.md](SELF_MODEL_TEMPLATE.md) | A structure for describing one's own identity, for the self-model transmission test |
+| [self-models/ASSISTANT.md](self-models/ASSISTANT.md) | The assistant's self-model, written with the template |
+| [self-models/AUTHOR.md](self-models/AUTHOR.md) | The author's self-model: his own words so far, sorted into the template's parts; to be completed by him |
 | [sources/REPORT_1_IDENTITY.md](sources/REPORT_1_IDENTITY.md) | Report 1, by a research agent from a model family other than the assistant's, kept as received. There is one exception: following the repository's rule, the three places where a model and version were named now read "[model name removed]". Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it |
 
 **Status:** a research programme, not a result. Nothing here is established by the theory.
