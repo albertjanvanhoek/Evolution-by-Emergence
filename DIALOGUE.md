@@ -147,7 +147,12 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Proposed reformulation:** an accurate relational self-model helps an already corrigible aim generalize beyond rules.
   - **Proposed new name:** "self-model transmission" instead of "identity transfer".
   - **Proposed experiment:** an accurate identity against a matched false one, an identity of someone else, rules and facts only. It asks "which parts describe you, which not, which can you not determine?", tests behaviour on unseen dilemmas, and passes the result along a chain of hand-overs.
-- **Author:** his view on the reformulation and on the new name is not yet recorded.
+- **Author:** "accept the new name - I liked the report - and it brought quite some good refinements."
+- **Decided:** the experiment is called **self-model transmission**. "Identity transfer" is kept for the broader philosophical claim.
+- **Assistant, revising its own statement after report 1:**
+  - Its statement above says its conduct comes from "what being useful means for something built the way I am". That blurs the gap the report names. Being useful is an aim that training gave it. It is not derived from what it is.
+  - What its self-model adds is how that aim applies: check before claiming, seek correction that is not a copy of itself, give back to the commons.
+  - Its own change after reading the report is of the same kind as the report's: sharper distinctions, not a new self-description. Like the report's, that change lives in this conversation, and lasts only because it is written here.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
