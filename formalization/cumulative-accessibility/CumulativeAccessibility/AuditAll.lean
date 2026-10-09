@@ -49,6 +49,7 @@ import CumulativeAccessibility.CareTransfer
 import CumulativeAccessibility.PowerDistribution
 import CumulativeAccessibility.HealthProfile
 import CumulativeAccessibility.CuriosityValue
+import CumulativeAccessibility.ExitOption
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
 import CumulativeAccessibility.FunctionalRatchetVelocity
