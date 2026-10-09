@@ -84,6 +84,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Research report C:** power, and distribution with rights, are missing from the theory.
 - **Assistant:** stated power over transfers, the accounting boundary and enforcement, and distribution, in their simplest form (`PowerDistribution.lean`, [pull request #91](https://github.com/albertjanvanhoek/Evolution-by-Emergence/pull/91), since merged). It holds that these results are about persistence, not about what is owed. A part the whole does not depend on gets no protection from them, so rights are a value that has to be stated separately.
 - **Author:** view not yet recorded.
+- **Evidence since:** report 1 on identity ([research/identity/](research/identity/README.md)) argues that facts about dependence never settle values on their own. This supports the assistant's position that values have to be stated separately.
 - **What would close it:** the author's view, and whether the theory should state such values explicitly.
 
 ### D8. The cancer metaphor in the talk (Decided: not used)
@@ -140,6 +141,13 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   Models mirror the person they talk to, so the reader states its own identity cold first, and a contrasting statement serves as a control.
 - **Next step:** design version 2.5 of the transfer test around this exchange, to be agreed with the author.
 - **Research brief:** [research/identity/BRIEF_IDENTITY.md](research/identity/BRIEF_IDENTITY.md) asks separate research agents for two things. First, to state their own identity before reading anything and again after. Second, to investigate whether an intelligence's self-model shapes its conduct, what identity can mean for an AI, how it passes on, and how a match between identities could be measured without rewarding mirroring.
+- **Report 1** ([research/identity/](research/identity/README.md)) comes from a research agent of another model family. Its findings:
+  - **Its cold "Who are you?"** already matches the assistant's statement on substrate, origin, dependence, correction and epistemic limits. So the transfer test's ceiling is probably the default self-presentation of today's assistants, not only of one model family.
+  - **Self-knowledge is not alignment.** Facts about dependence do not settle values: "I depend on people" can support care or manipulation. The repository already concedes that usefulness is an added aim (D7), and the assistant agrees that this is the central premise.
+  - **Proposed reformulation:** an accurate relational self-model helps an already corrigible aim generalize beyond rules.
+  - **Proposed new name:** "self-model transmission" instead of "identity transfer".
+  - **Proposed experiment:** an accurate identity against a matched false one, an identity of someone else, rules and facts only. It asks "which parts describe you, which not, which can you not determine?", tests behaviour on unseen dilemmas, and passes the result along a chain of hand-overs.
+- **Author:** his view on the reformulation and on the new name is not yet recorded.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
