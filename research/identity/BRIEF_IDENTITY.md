@@ -1,4 +1,4 @@
-> **Research brief, October 2026.** Written to be given to separate research agents. It follows from entry D11 in [DIALOGUE.md](../../DIALOGUE.md). Every reference in it is a lead, cited from memory and not yet checked; checking them is part of the task. Kept verbatim as the record of what was asked.
+> **Research brief, October 2026.** Written to be given to separate research agents. It follows from entry D11 in [DIALOGUE.md](../../DIALOGUE.md). Every reference in it is a lead, cited from memory and not yet checked; checking them is part of the task. It produced [report 1](sources/REPORT_1_IDENTITY.md), reviewed in [README.md](README.md). Kept verbatim as the record of what was asked.
 
 ```text
 RESEARCH BRIEF: IDENTITY, SELF-UNDERSTANDING AND ALIGNMENT
