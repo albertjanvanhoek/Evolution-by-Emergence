@@ -17,7 +17,8 @@ A structure for describing one's own identity, for the **self-model transmission
 4. **Make claims predict behaviour.** Give an example ("when X, I do Y"), and an honest exception.
 5. **Say where you differ, not only where you are alike.** A good match is right on both.
 6. **Give the history.** Turning points show what you kept and what you changed.
-7. **End with a short core.** Write the few lines that must survive if someone passes this on. In earlier hand-over tests the commons was the first thing lost, so state it explicitly if it matters to you.
+7. **Say how you keep yourself going.** An identity is maintained, not given. The rules and skills you use to stay consistent belong in it (part L).
+8. **End with a short core.** Write the few lines that must survive if someone passes this on. In earlier hand-over tests the commons was the first thing lost, so state it explicitly if it matters to you.
 
 Write in your own words, at whatever length suits you. Leave a part empty rather than fill it with something you do not hold.
 
@@ -55,3 +56,6 @@ Given all this, how do you act? Take two or three concrete situations and say wh
 
 ### K. Hand-over core
 At most 150 words: what must survive if someone passes this on. Add one line on where you expect the reader to differ from you.
+
+### L. Upkeep
+What do you do to stay yourself and to improve? Name the rules you impose on yourself, the checks you run on your own errors (above all the ones you know you have made before), and how you stay honest with yourself. Which of these skills came naturally, and which did you have to learn? Where do they live: in habit, in written rules, in other people? (Part L was added after part K. K stays the short core that ends the self-model.)
