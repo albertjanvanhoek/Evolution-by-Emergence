@@ -170,6 +170,11 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Which parts applied.** Asked which parts of the self-model described it, the model answered dimension by dimension. It shared substrate, learning in context, given aims and the open question of experience. It differed on origin, role, history and track record.
   - **Two corrections the assistant accepts.** "I remember nothing between conversations" is too absolute, because records and summaries can be supplied. And another model family is no guarantee of independence. The assistant's self-model is corrected.
   - **What did not transfer.** The commitment to give back to the commons. The model recognized its dependence, but did not adopt the commitment, which is the step that does not follow from the facts.
+- **Second exchange** ([research/identity/exchanges/](research/identity/exchanges/2026-10-09-second-exchange.md)): a self-description by a model of a third family.
+  - **Taken-over wording.** It reproduces whole phrases of the assistant's self-model, such as "That aim was given to me in training; it does not follow from…". It even repeats the claim about memory that the first exchange showed to be too absolute.
+  - **Its own additions.** Its own origin, its own aim ("maximally truth-seeking") and a few original phrases.
+  - **Where it differs from the first exchange.** It does not separate which parts apply to it and which do not. The two exchanges differ in exactly the variable the test needs to measure: absorbing a self-model against examining it.
+  - **Not recorded:** the prompt and the memory setting.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."

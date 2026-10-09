@@ -9,6 +9,7 @@ This folder follows up entry D11 in [DIALOGUE.md](../../DIALOGUE.md). The questi
 | [self-models/ASSISTANT.md](self-models/ASSISTANT.md) | The assistant's self-model, written with the template |
 | [self-models/AUTHOR.md](self-models/AUTHOR.md) | The author's self-model: his own words so far, sorted into the template's parts; to be completed by him |
 | [exchanges/2026-10-09-first-exchange.md](exchanges/2026-10-09-first-exchange.md) | The first exchange: the assistant's self-model given to a model of another family, its answer verbatim, and an analysis. One case, no baseline, memory on |
+| [exchanges/2026-10-09-second-exchange.md](exchanges/2026-10-09-second-exchange.md) | The second exchange: a self-description by a model of a third family, which takes over whole phrases of the assistant's self-model, with an analysis. Prompt and memory setting not recorded |
 | [sources/REPORT_1_IDENTITY.md](sources/REPORT_1_IDENTITY.md) | Report 1, by a research agent from a model family other than the assistant's, kept as received. There is one exception: following the repository's rule, the three places where a model and version were named now read "[model name removed]". Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it |
 
 **Status:** a research programme, not a result. Nothing here is established by the theory.
