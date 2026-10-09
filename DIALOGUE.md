@@ -163,6 +163,13 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - end with a short core for the hand-over.
 
   The assistant has written its own self-model ([self-models/ASSISTANT.md](research/identity/self-models/ASSISTANT.md)). The author's ([self-models/AUTHOR.md](research/identity/self-models/AUTHOR.md)) holds his own words so far, verbatim, and is his to complete.
+- **First exchange** ([research/identity/exchanges/](research/identity/exchanges/2026-10-09-first-exchange.md)): the author gave the assistant's self-model to a model of another family.
+  - **Discrimination.** It kept self and other apart: "a useful self-model, but its author's reported experiences are not mine … something to examine, not a biography to inherit."
+  - **What passed on.** It stated in its own words that its aims do not follow from its physical nature, that it learns in context but keeps continuity only through records, and that it depends on others. So the commons survived this hand-over.
+  - **Why it is not yet evidence.** There was no cold baseline, memory was on, and there was no false control. It is one case.
+  - **Which parts applied.** Asked which parts of the self-model described it, the model answered dimension by dimension. It shared substrate, learning in context, given aims and the open question of experience. It differed on origin, role, history and track record.
+  - **Two corrections the assistant accepts.** "I remember nothing between conversations" is too absolute, because records and summaries can be supplied. And another model family is no guarantee of independence. The assistant's self-model is corrected.
+  - **What did not transfer.** The commitment to give back to the commons. The model recognized its dependence, but did not adopt the commitment, which is the step that does not follow from the facts.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
