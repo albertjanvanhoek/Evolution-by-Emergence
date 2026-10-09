@@ -137,5 +137,6 @@ Open problems carried forward:
 ## Since this release
 
 - **`CuriosityValue` (outside the core).** When exploring pays in the slack ledger: an exploration raises the reserve exactly when the retained saving over the horizon exceeds its cost. Without a retained saving it only costs. It can pay and still be unaffordable now. That a better model saves upkeep is a premise. It follows two research reports on curiosity ([research/curiosity/](research/curiosity/README.md)) and entry D12 of [DIALOGUE.md](DIALOGUE.md).
+- **`ExitOption` (outside the core).** Agency that works through its possibility. A partner who needs an agent offers the least that keeps it. At that offer the agent stays, so the exit is never used, yet a credible exit raises what the agent receives. Reconsidering pays only when the world has shifted enough; otherwise the predictable habit is optimal. It follows entry D15 of [DIALOGUE.md](DIALOGUE.md).
 
 The v22.2 release notes remain available at the `v22.2` tag.
