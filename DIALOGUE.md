@@ -139,6 +139,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
   Models mirror the person they talk to, so the reader states its own identity cold first, and a contrasting statement serves as a control.
 - **Next step:** design version 2.5 of the transfer test around this exchange, to be agreed with the author.
+- **Research brief:** [research/identity/BRIEF_IDENTITY.md](research/identity/BRIEF_IDENTITY.md) asks separate research agents for two things. First, to state their own identity before reading anything and again after. Second, to investigate whether an intelligence's self-model shapes its conduct, what identity can mean for an AI, how it passes on, and how a match between identities could be measured without rewarding mirroring.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
