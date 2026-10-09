@@ -159,3 +159,4 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - why it is felt.
 - **Test:** curiosity driven by fear of judgement should stop once the learner is approved; curiosity driven by the world should keep going. Curiosity should track the expected gain in compression, not the amount of new information.
 - **What would close it:** a formal statement of the pull in the theory's terms, and evidence that separates compression gain from novelty as what curiosity follows.
+- **Next step:** a research brief to check the cited literature and explore the domain, [research/curiosity/BRIEF_CURIOSITY.md](research/curiosity/BRIEF_CURIOSITY.md).
