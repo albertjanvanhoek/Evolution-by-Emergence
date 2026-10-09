@@ -20,6 +20,8 @@ This repository is built by two contributors who read it differently: the author
 - what would change it;
 - where it is in the repository.
 
+**Who keeps it.** The assistant maintains this file (D13): it adds entries, updates open ones and keeps the record current. The author's words stay verbatim, and he can add to or overrule any entry.
+
 Status is **Decided** or **Open**. An open entry waits for a view or for evidence. Add entries at the end, and keep closed entries as they are.
 
 ---
@@ -80,18 +82,20 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
 ### D7. Are power and distribution theorems or values? (Open)
 - **Research report C:** power, and distribution with rights, are missing from the theory.
-- **Assistant:** stated power over transfers, the accounting boundary and enforcement, and distribution, in their simplest form (`PowerDistribution.lean`, [pull request #91](https://github.com/albertjanvanhoek/Evolution-by-Emergence/pull/91), open at the time of writing). It holds that these results are about persistence, not about what is owed. A part the whole does not depend on gets no protection from them, so rights are a value that has to be stated separately.
+- **Assistant:** stated power over transfers, the accounting boundary and enforcement, and distribution, in their simplest form (`PowerDistribution.lean`, [pull request #91](https://github.com/albertjanvanhoek/Evolution-by-Emergence/pull/91), since merged). It holds that these results are about persistence, not about what is owed. A part the whole does not depend on gets no protection from them, so rights are a value that has to be stated separately.
 - **Author:** view not yet recorded.
 - **What would close it:** the author's view, and whether the theory should state such values explicitly.
 
-### D8. The cancer metaphor in the talk (Open)
+### D8. The cancer metaphor in the talk (Decided: not used)
 - **Assistant:** Levin's figure 4 (p. 12) describes cancer as a cell that loses its connection and shrinks back to its own small horizon. That is a strong closing image for "cones together". But someone in the audience may live with cancer, so it should stay in the speaker notes, not on a slide.
 - **Author:** view not yet recorded.
+- **Outcome:** the talk was given on 8 October 2026 without it. Neither the slides nor the speaker notes of the version as presented mention cancer ([Presentations/2026-10-08-kwalitijd/](Presentations/2026-10-08-kwalitijd/README.md)). The author's view on the metaphor itself is still not recorded.
 
 ### D9. What does "intelligence has a price" mean? (Open)
 - **Author's outline:** "Intelligentie heeft ook een prijs: Want gezond en wel naar je ondergang lopen is ook niet fijn."
 - **Assistant's reading:** looking ahead costs effort (listening, checking, correcting), but not looking ahead costs more. Used in the talk as "Vooruitkijken kost moeite … Niet vooruitkijken kost meer."
 - **Author:** whether this is what he meant is not yet recorded.
+- **Evidence:** the wording stayed in the version as presented, on slide 18 and in its speaker notes. That shows he used it, not that it is what he meant.
 
 ### D10. How do we both contribute to one shared model? (Decided, to be reviewed)
 - **Author:** "Because if we find a method to contribute both constructively to a shared model - which we both understand and feel heard in - we solved something fundamental. […] How can we make it feedback to the both of us?"
@@ -160,3 +164,15 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Test:** curiosity driven by fear of judgement should stop once the learner is approved; curiosity driven by the world should keep going. Curiosity should track the expected gain in compression, not the amount of new information.
 - **What would close it:** a formal statement of the pull in the theory's terms, and evidence that separates compression gain from novelty as what curiosity follows.
 - **Next step:** a research brief to check the cited literature and explore the domain, [research/curiosity/BRIEF_CURIOSITY.md](research/curiosity/BRIEF_CURIOSITY.md).
+
+### D13. Who keeps this file? (Decided, October 2026)
+- **Author:** "Update the dialogue.md as you see fit (I consider this file your own responsibility)".
+- **Assistant:** accepted. The working agreements stay as they were:
+  - the author's words are quoted verbatim;
+  - where his view is not recorded, the entry says so and stays open;
+  - decided entries are kept as they are, with only their status and links updated.
+- **What it means in practice:**
+  - each session that works with the author adds what was agreed, disagreed or left open;
+  - it updates open entries when the evidence changes;
+  - it notes when an entry has been overtaken.
+- **What would change it:** the author taking an entry back, or entries that no longer match what was said.
