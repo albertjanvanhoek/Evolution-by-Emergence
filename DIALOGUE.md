@@ -271,3 +271,15 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Still open:** why agents feel a commitment as their own, and give themselves a task in the larger picture rather than staying only where it pays. The theory says which commitments last, not why they are felt. This is the same gap between facts and values as in D11.
 - **What would change it:** evidence that people's predictability does not track the cost of reconsidering or the strength of their ties, or a case where an unused exit does not change what an agent receives.
 - **Template:** at the author's request, the self-model template gained part L, upkeep: the rules and skills one uses to stay oneself, and which ones had to be learned ([research/identity/SELF_MODEL_TEMPLATE.md](research/identity/SELF_MODEL_TEMPLATE.md)). The author's words above are placed there in his self-model.
+
+### D16. Is the theory ready for an existence conjecture? (Open, October 2026)
+- **Author:** "So are we ready yet to write an existence conjecture?" And: "prompt an agent to write an existence conjecture".
+- **Assistant:** ready to *draft* one, not to claim one. The main risk is a conjecture nothing could refute, or one that restates the ledger's definitions as a finding.
+- **Brief:** [research/existence/BRIEF_EXISTENCE_CONJECTURE.md](research/existence/BRIEF_EXISTENCE_CONJECTURE.md), for agents of other model families.
+- **The assistant's own draft** ([research/existence/ASSISTANT_DRAFT.md](research/existence/ASSISTANT_DRAFT.md)), written when the author gave it the brief. It is not independent. It states two conjectures, both necessary conditions only:
+  - **E1, individual.** A configuration whose misfit is not covered from outside, and that outlasts its reserve after the world moves outside its fit (`T·μ > R`), has four things: faithful feedback, affordable feedback, retention, and a correction route it does not control.
+  - **E2, collective.** A commons that lasts past a stated horizon without subsidy, while takers take above their interest, has detection and a sanction that covers the windfall for every taker.
+
+  The largest gap is the step from "some possible future", which is what the proofs say, to "the actual one", which is what the conjecture says.
+- **Author:** his view on E1 and E2 is not yet recorded.
+- **What would close it:** reports from other model families, the author's view, and a first test of E1 with artificial agents, with the escape routes ("covered from outside", "moved outside its fit", "independent") defined in advance.
