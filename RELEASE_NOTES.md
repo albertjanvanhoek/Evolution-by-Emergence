@@ -134,4 +134,8 @@ Open problems carried forward:
 - **From [`DIALOGUE.md`](DIALOGUE.md):** the entries still open.
 - **First empirical test:** the cheapest is H1, correction integrity across substrates, starting with AI systems.
 
+## Since this release
+
+- **`CuriosityValue` (outside the core).** When exploring pays in the slack ledger: an exploration raises the reserve exactly when the retained saving over the horizon exceeds its cost. Without a retained saving it only costs. It can pay and still be unaffordable now. That a better model saves upkeep is a premise. It follows two research reports on curiosity ([research/curiosity/](research/curiosity/README.md)) and entry D12 of [DIALOGUE.md](DIALOGUE.md).
+
 The v22.2 release notes remain available at the `v22.2` tag.

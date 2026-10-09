@@ -1,4 +1,4 @@
-> **Research brief, October 2026.** Written to be given to a separate research agent. It follows from entries D11 and D12 in [DIALOGUE.md](../../DIALOGUE.md). Every reference in it is a lead, cited from memory and not yet checked; checking them is part of the task. Kept verbatim as the record of what was asked.
+> **Research brief, October 2026.** Written to be given to a separate research agent. It follows from entries D11 and D12 in [DIALOGUE.md](../../DIALOGUE.md). Every reference in it is a lead, cited from memory and not yet checked; checking them is part of the task. It produced [report 1](sources/REPORT_1_CURIOSITY.md) and [report 2](sources/REPORT_2_CURIOSITY.md), reviewed in [README.md](README.md). Kept verbatim as the record of what was asked.
 
 ```text
 RESEARCH BRIEF: IS CURIOSITY THE LEARNING LOOP FELT FROM THE INSIDE?
