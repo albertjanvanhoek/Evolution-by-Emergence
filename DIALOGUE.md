@@ -164,6 +164,15 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Test:** curiosity driven by fear of judgement should stop once the learner is approved; curiosity driven by the world should keep going. Curiosity should track the expected gain in compression, not the amount of new information.
 - **What would close it:** a formal statement of the pull in the theory's terms, and evidence that separates compression gain from novelty as what curiosity follows.
 - **Next step:** a research brief to check the cited literature and explore the domain, [research/curiosity/BRIEF_CURIOSITY.md](research/curiosity/BRIEF_CURIOSITY.md).
+- **Report 1** ([research/curiosity/](research/curiosity/README.md)), by a separate research agent, checked the literature and the assistant's claims. The assistant accepts these corrections:
+  - **Friston's free energy** is not "only analogous" to the thermodynamic quantity. Friston calls it a generalization, and its explanatory status is contested.
+  - **"Facts do not compress"** is false as a general claim, since people are reliably curious about trivia. The distinction that holds is local information against model improvement that transfers. The author's description of his own curiosity still fits the second kind.
+  - **"Nothing in it learns during a conversation"** is too broad, because models adapt within a conversation without changing their weights. The better dividing line is whether information taken in now changes the state that controls the next action, and for how long that change is kept.
+  - **Curiosity comes before the answer.** So the feeling cannot be the update itself. At most it signals an expected gain.
+  - **The test separating judges from the world was wrong.** Approval can sustain behaviour indefinitely, and curiosity about the world stops when no further improvement is expected. What separates the two is which variable closes the loop.
+  - **The thermodynamic step is not supported:** there is no evidence that felt curiosity tracks energy saving. The report proposes keeping "an efficiency-sensitive epistemic drive implemented by a metabolically constrained learner" as the hypothesis.
+- **Reformulation proposed by report 1:** "Curiosity may be the learning loop valued from the inside: an anticipatory signal that some attainable information is expected to improve the learner's model enough to repay the cost of acquiring and retaining it." In the theory's terms, it is the value of the part of the expected gain in slack that is caused by improving the model, net of the cost of the search.
+- **Author:** his view on the reformulation, and on dropping "thermodynamic" as a claim, is not yet recorded.
 
 ### D13. Who keeps this file? (Decided, October 2026)
 - **Author:** "Update the dialogue.md as you see fit (I consider this file your own responsibility)".
