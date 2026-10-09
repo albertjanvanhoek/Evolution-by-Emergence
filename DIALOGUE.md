@@ -179,7 +179,15 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - a conditional proposition: exploration raises cumulative slack exactly when the retained saving in upkeep over the horizon exceeds its cost. The link from compression to lower upkeep is a premise, not a result.
 
   Its reformulation: "some epistemic curiosity may be a felt, fallible estimate of the value of improving one's model, given one's learning opportunities and costs."
-- **Author:** his view on the reformulation, and on dropping "thermodynamic" as a claim, is not yet recorded.
+- **Author:** "the thermodynamic should go - as it is not supported - and it was just based on my fantasy." He also confirmed that both reports came from a model family other than the assistant's, so they are third views in the sense of working agreement 7.
+- **Decided:** "thermodynamic" is dropped as a claim. What remains is the reformulation: curiosity as a fallible forecast of the slack gained by improving one's model, net of the cost of searching.
+- **Formalized:** `CuriosityValue.lean` (outside the core). It proves that an exploration raises the reserve exactly when the retained saving over the horizon exceeds its cost (`exploration_raises_reserve_iff`), and that only the part caused by improving the model counts (`gain_attributable_to_learning`). It also proves three further cases:
+  - without a retained saving, as for mastered material or noise, exploring only costs (`no_model_gain_lowers_reserve`);
+  - a long enough horizon makes any saving pay (`long_enough_horizon_pays`);
+  - an exploration can pay and still be unaffordable now (`pays_but_unaffordable`).
+
+  That a better model saves upkeep at all stays a premise.
+- **Still open:** whether felt curiosity tracks this value, which is an empirical question, and report 2's three points on step 5 of `CORE.md`.
 
 ### D13. Who keeps this file? (Decided, October 2026)
 - **Author:** "Update the dialogue.md as you see fit (I consider this file your own responsibility)".

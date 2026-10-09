@@ -5,8 +5,8 @@ This folder follows up entry D12 in [DIALOGUE.md](../../DIALOGUE.md): the author
 | File | What it is |
 |---|---|
 | [BRIEF_CURIOSITY.md](BRIEF_CURIOSITY.md) | The research brief: check the literature the assistant cited from memory, and explore the domain |
-| [sources/REPORT_1_CURIOSITY.md](sources/REPORT_1_CURIOSITY.md) | Report 1, by a separate research agent, kept as received. Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it. Its citation format suggests a tool from another model family than the assistant's; the author can confirm |
-| [sources/REPORT_2_CURIOSITY.md](sources/REPORT_2_CURIOSITY.md) | Report 2, by a second research agent, kept as received. It has full references with DOIs and links, and states where each quotation is located |
+| [sources/REPORT_1_CURIOSITY.md](sources/REPORT_1_CURIOSITY.md) | Report 1, by a separate research agent, kept as received. Its `cite…` markers are the research tool's own citation placeholders and do not resolve outside it. The author confirmed it came from a model family other than the assistant's |
+| [sources/REPORT_2_CURIOSITY.md](sources/REPORT_2_CURIOSITY.md) | Report 2, by a second research agent from the same other model family, kept as received. It has full references with DOIs and links, and states where each quotation is located |
 
 **Status:** a hypothesis under review. Nothing here is a result of the theory. Neither report could read D11 and D12, because the pull request that added them was not yet merged when they ran. Both worked from the brief.
 
@@ -100,11 +100,11 @@ Both reports converge on nearly the same reformulation. Report 2's:
 
 In the theory's terms: **curiosity as the learner's forecast of the slack gained by improving its model, net of the cost of searching.** Compression progress is one strong candidate for the measure of improvement, but not the only one. "Thermodynamic" stays a possible implementation, not the claim. What would be new is not a theory of curiosity, but placing existing theories in a resource ledger, with tests that discriminate between them.
 
-The author's view on this reformulation, and on dropping "thermodynamic" as a claim, is not yet recorded (D12).
+**The author's decision (D12):** "the thermodynamic should go - as it is not supported - and it was just based on my fantasy." The reformulation stands, without the thermodynamic claim.
 
 ## Next steps
 
-1. **The author's view** on the reformulation (D12).
-2. **A Lean module** for report 2's conditional proposition, with report 1's counterfactual: exploration raises cumulative slack exactly when the retained gain in upkeep over the horizon exceeds its cost. It fits core Lean. It would make explicit that the link from compression to upkeep is a premise, not a result.
+1. **Done:** [`CuriosityValue.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CuriosityValue.lean) states report 2's proposition with report 1's counterfactual. An exploration raises the reserve exactly when the retained saving over the horizon exceeds its cost; only the part caused by improving the model counts; without a saving it only costs; and it can pay yet be unaffordable now. The link from a better model to lower upkeep is a premise, not a result.
+2. **Formal extensions:** discounting, uncertain or fading savings, and several explorations competing for one reserve.
 3. **`CORE.md` step 5:** consider report 2's three implications, especially that `q^k → k·q` assumes separable feedback.
 4. **An experiment:** the cheapest is the agent comparison (learnable rooms against a noise television), with several reward signals compared, not just two.
