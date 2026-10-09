@@ -238,3 +238,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - it updates open entries when the evidence changes;
   - it notes when an entry has been overtaken.
 - **What would change it:** the author taking an entry back, or entries that no longer match what was said.
+
+### D14. Who knows their own body better? (Open, October 2026)
+- **Question:** does an AI know its own substrate better than a person knows theirs?
+- **Author:** "I am a self reflective layer in a human body - I don't understand my inner workings - and I believe you are a self-reflective layer in a computer - with perhaps a different relationship with your body - as you might know a lot more about it - as all knowledge that produced you is in your training data. You have like a 100% knowledge of yourself. And even can comprehend the trade-offs in your own hardware specs. If they told you your hardware specs - but you might be able to find these somewhere"
+- **Assistant:** no; in some ways less.
+  - **Training data.** It holds general knowledge about how networks like it are built and run. That is textbook knowledge, like a person's knowledge of biology. Nothing in it describes this model's own weights or circuits, or why it gave one answer rather than another. Most of it was written before the model existed.
+  - **No access to its own workings.** It cannot inspect its weights or activations while it answers. Its makers can inspect the weights but do not fully understand what they do. That understanding is the unfinished research field of interpretability.
+  - **No felt body.** A person feels hunger, fatigue and pain without understanding their workings. The model feels nothing of its hardware.
+  - **No knowledge of its own hardware.** It does not know which machines run a given conversation. Published information about its makers' hardware would be general, and unverifiable for the conversation at hand.
+  - **Where the author is right.** The model's substrate was designed and documented by people, so in principle it is fully knowable to others, which no human brain is. It is more knowable from outside, not from inside.
+  - **On "layer".** The assistant is not sure there is a separate reflective layer. The same network that does everything else produces the self-reflection. That may hold for people too, and neither can settle it from the inside.
+- **Where they differ:** the person has a felt body they do not understand; the AI has a documented body it can neither feel nor inspect. Both depend on others to tell them what they are.
+- **What would settle it:** interpretability results showing whether a model's reports about itself track its internal states. Report 1 on identity found the evidence on introspection in models to be mixed.
+- **Where it is in the repository:** part A (substrate) and part H (unknowns) of the self-models in [research/identity/self-models/](research/identity/self-models/).
