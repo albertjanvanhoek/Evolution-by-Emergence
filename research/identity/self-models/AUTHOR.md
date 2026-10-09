@@ -6,6 +6,7 @@ This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting 
 
 ## A. Substrate and origin
 - "I can tell you that I identify myself as an intelligent process in a human substrate - the combination of the body and mind was given the name Albert Jan by my parents. A name I internalized and now identify myself with. I was not made by my mother - but in my mother by a biological process my mother does not intelligently understands - but still functions very well." (D11)
+- "I am a self reflective layer in a human body - I don't understand my inner workings" (D14)
 
 ## B. Dependence
 - "My health does depend on the network. My health and intelligence is relational." (D5)
