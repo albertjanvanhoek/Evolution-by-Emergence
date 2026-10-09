@@ -68,6 +68,7 @@ jobs:
             CumulativeAccessibility.PowerDistribution \
             CumulativeAccessibility.HealthProfile \
             CumulativeAccessibility.CuriosityValue \
+            CumulativeAccessibility.ExitOption \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
@@ -122,6 +123,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PowerDistribution.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/HealthProfile.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CuriosityValue.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExitOption.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean

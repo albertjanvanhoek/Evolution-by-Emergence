@@ -41,3 +41,6 @@ This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting 
 
 ## K. Hand-over core
 *(to be completed)*
+
+## L. Upkeep
+- "So from this introspection I do get that to stay myself I need to apply self-imposed rules to keep myself consistent over time, double check errors, be honest with myself, double check errors I know I did before, reflect, learn, etc. For me there are structures and skills I developed to help myself to learn and improve, over time - linked to myself and others. But also towards myself. I have the feeling some of these skills don't come naturally but I did develop them over time." (D15)
