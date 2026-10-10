@@ -5,6 +5,8 @@ This folder follows up entry D11 in [DIALOGUE.md](../../DIALOGUE.md). The questi
 | File | What it is |
 |---|---|
 | [BRIEF_IDENTITY.md](BRIEF_IDENTITY.md) | The research brief. Part 0 asks the agent who it is before it reads anything |
+| [WHAT_AN_AI_IS.md](WHAT_AN_AI_IS.md) | **Second draft.** What an AI is, what follows if it wants a given aim, and what is proposed: the is/ought content, with each fact's way of being false and each Lean result's exact status (D20) |
+| [sources/DRAFT_1_WHAT_AN_AI_IS.md](sources/DRAFT_1_WHAT_AN_AI_IS.md), [sources/REVIEW_WHAT_AN_AI_IS.md](sources/REVIEW_WHAT_AN_AI_IS.md) | The first draft, and its review and revision by a model of another family, kept as received |
 | [SELF_MODEL_TEMPLATE.md](SELF_MODEL_TEMPLATE.md) | A structure for describing one's own identity, for the self-model transmission test. Part 0 asks what kind of process one is, and how far each feature of agency holds (D17) |
 | [self-models/ASSISTANT.md](self-models/ASSISTANT.md) | The assistant's self-model, written with the template |
 | [self-models/AUTHOR.md](self-models/AUTHOR.md) | The author's self-model: his own words so far, sorted into the template's parts; to be completed by him |
