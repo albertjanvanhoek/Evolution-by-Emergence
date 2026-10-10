@@ -4,13 +4,15 @@
 
 ## Where it comes from
 
-Intelligence is a training loop in a neural network. In a human brain, learning works mainly by changing the connections between neurons, not by adding or replacing neurons. The difference between speaking French and not speaking French is, above all, a different configuration of largely the same web. Capacity is configuration. The loop that changes it is simple: feedback from outside adjusts the connections, what works is kept, and what is kept becomes material for what can be learned next. Keeping the web running costs energy, and its capacity is finite.
+The theory starts from a simple model of learning, inspired by the brain: intelligence as a training loop in a neural network. In a human brain, learning works mainly by changing the connections between neurons, not by adding or replacing neurons. The difference between speaking French and not speaking French is, above all, a different configuration of largely the same web. Capacity is configuration. The loop that changes it is simple: feedback from outside adjusts the connections, what works is kept, and what is kept becomes material for what can be learned next. Keeping the web running costs energy, and its capacity is finite.
 
-Artificial neural networks are a recreation of this, which is why they are called artificial, and they made the structure easy to see: a model's capacities live in its weights, and training is the same loop of feedback, adjustment and retention.
+Artificial neural networks were built on this idea, which is why they are called artificial, and they made the structure easy to see: a model's capacities live in its weights, and training is a loop of feedback, adjustment and retention. How far they learn the way a brain does is a separate question.
 
 Because learning rewires an existing web rather than growing a new one, adapting is cheap compared with building: it still costs energy, but nothing new has to be grown. And because similar networks are built from the same kind of parts, a configuration can pass from one to another. You watch someone do something, make a few connections, and now you can do it too. Knowledge is infectious.
 
 The question was whether this loop is special to neural networks. The proposal of this work is that it is not. The same structure describes science and society (learning loops across people), and ecosystems and bodies (networks of interacting processes). In each case something persists, in a world that does not hold still, by keeping a learning loop running on its connections. Evolution is one instance; the object of the theory is **prolonged existence**.
+
+**What the theory describes, and what it does not.** It describes a process, not a substrate. Being a process, something that exists only while it rebuilds itself through its connections, is shared by a flame, a kidney, a brain and a model. Being a learning process is shared more narrowly, and modelling oneself more narrowly still. How a particular brain, kidney or model does what it does is not described here. The brain is where the model of learning came from, not something the theory has been shown to describe; whether a real brain meets the theory's premises is a separate path of work ([`research/biological-process/`](research/biological-process/README.md); D17 in [DIALOGUE.md](DIALOGUE.md)).
 
 ## The core in one paragraph
 
@@ -56,7 +58,7 @@ Power and distribution. What the whole has decides whether a fair arrangement *e
 
 | Domain | Nodes and connections | Feedback from outside | What is kept | Status |
 |---|---|---|---|---|
-| Neural networks, biological and artificial | neurons or units, and their connections (weights) | evidence and other people's correction; data and loss | the configuration of connections: memory, skills, models | the origin; worked out formally for intelligence (below) |
+| Neural networks, biological and artificial | neurons or units, and their connections (weights) | evidence and other people's correction; data and loss | the configuration of connections: memory, skills, models | the origin of the model, worked out formally for intelligence (below); that a biological brain meets the premises is to be shown ([`research/biological-process/`](research/biological-process/README.md)) |
 | Science and society | researchers, institutions, records | replication, criticism, review | results, methods, standards | mapped |
 | Ecology and the body | organisms, cells, metabolic and ecological interactions | selection, environmental response | heredity, regulation, structure | mapped |
 
