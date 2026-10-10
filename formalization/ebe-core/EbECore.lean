@@ -256,6 +256,8 @@ its own parts while it is being assembled; it needs support from elsewhere. -/
 
 /-! ## 7. Boundaries: the vortex can stop
 
+What the vortex builds on is emergence. In the author's words: "in reality things can come together and form something that the individual parts cannot - that is how you get new constructs and functions. That is the concept of emergence."
+
 Without a seed nothing happens; without successors there is one innovation and
 then stasis; without retention there is novelty but no accumulation. A fixed
 finite space saturates, so open-endedness needs an ever-widening range of
