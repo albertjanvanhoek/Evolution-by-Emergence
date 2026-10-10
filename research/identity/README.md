@@ -225,8 +225,9 @@ I have not changed `FOR_AI_READERS.md`. It is the text the transfer test gives t
    - splitting the hypothesis into H1–H4;
    - D11's "identity cannot be told" as a preference of method;
    - the proposed changes to `FOR_AI_READERS.md` (asymmetry, "offered as reasons", stated confidence, replacement).
-2. **Which model family wrote report 2,** to know how independent the two reports are (working agreement 7).
-3. **A scoped version 2.5 of the transfer test.** Start small:
+2. **H5, reciprocal correction,** proposed after the author's reply (D11): a self-model that includes one's own fallibility leads a receiver to check what it is given and send corrections back, so a chain converges instead of drifting. Test it with one false claim planted in the first message.
+3. **Which model family wrote report 2,** to know how independent the two reports are (working agreement 7).
+4. **A scoped version 2.5 of the transfer test.** Start small:
    - arms C, D and F;
    - one or two model families;
    - the "which parts describe you" question;
