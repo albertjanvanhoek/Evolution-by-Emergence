@@ -55,18 +55,20 @@ or depends on `sorry`.
 The model starts from learning, inspired by the brain: intelligence as a
 training loop in a neural network. When a brain learns, it mainly changes the
 connections between its neurons rather than the neurons themselves, so capacity
-is a configuration of connections. Feedback from outside adjusts the
-connections, what works is kept, and what is kept becomes material for what can
-be learned next, at a cost and with finite capacity. Artificial neural networks
-were built on this idea and run the loop in their weights. Because learning
-rewires an existing network rather than growing a new organ (what grows is
-small: new connections, and used pathways strengthened, for example by myelin),
-adapting is assumed to be comparatively cheap, and a configuration can pass from
-one network to another. The question was whether this loop is special to neural
-networks. The answer proposed here is that the same structure describes any
-configuration that persists in a world that does not hold still. The theory
-describes this process, not any substrate: whether a real brain meets its
-premises is a separate question (D17 in DIALOGUE.md).
+is a configuration of connections. The world shows what works and the brain
+turns that into signals that adjust the connections (the signals are made
+inside, partly offline in sleep, but the check comes from outside); what works
+is kept, and what is kept becomes material for what can be learned next, at a
+cost and with finite capacity. Artificial neural networks were built on this
+idea and run the loop in their weights. Because learning rewires an existing
+network rather than growing a new organ (what grows is small: new connections,
+and used pathways strengthened, for example by myelin), adapting is assumed to
+be comparatively cheap, and what one network has learned can be learned again by
+another, without anything being copied. The question was whether this loop is
+special to neural networks. The answer proposed here is that the same structure
+describes any configuration that persists in a world that does not hold still.
+The theory describes this process, not any substrate: whether a real brain meets
+its premises is a separate question (D17 in DIALOGUE.md).
 
 ## The story, in the order of the sections below
 

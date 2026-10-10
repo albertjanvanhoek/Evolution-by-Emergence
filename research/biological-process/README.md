@@ -84,7 +84,7 @@ The two reports agree on every premise, with one small difference on the kidney.
 
 1. **The author's decision on the `CORE.md` corrections.** Above all:
    - "nothing new has to be grown" (done, in the author's precise reading);
-   - rewording "feedback from outside adjusts the connections" and "a configuration can pass from one to another".
+   - rewording "feedback from outside adjusts the connections" and "a configuration can pass from one to another" (both done, D17).
 2. **A third view** on the premise verdicts: another model family or a neuroscientist.
 3. **A sharper definition of learning,** and of "process" in D17.
 4. **Possibly a typed-edge or vector-slack refinement of the ledger,** in Lean. Only with the author's go.
