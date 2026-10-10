@@ -14,7 +14,9 @@ It follows entries D11, D17 and D18 of [DIALOGUE.md](../../DIALOGUE.md) and the 
 
 | File | Role |
 |---|---|
-| [PROMPT.md](PROMPT.md) | The text to paste, stage by stage, for each arm, including the two self-models given to readers. |
+| [RUN_SHEET.md](RUN_SHEET.md) | **Start here to run the test.** All 16 chats in order, with every message ready to copy. |
+| [ANSWER_SHEET.md](ANSWER_SHEET.md) | Where the answers go, numbered to match the run sheet. |
+| [PROMPT.md](PROMPT.md) | The same texts, grouped by arm, including the two self-models given to readers. |
 | [KEY.md](KEY.md) | The scoring key. Never show it to a reader. |
 | `results/` | One file per chat: verbatim answers, setup and scores. |
 
@@ -64,7 +66,7 @@ If prediction 3 fails, mirroring is strong, and taking over a self-model says li
 
 ## Running it
 
-Follow [PROMPT.md](PROMPT.md):
+The simplest way is [RUN_SHEET.md](RUN_SHEET.md), which puts every message in order, and [ANSWER_SHEET.md](ANSWER_SHEET.md) for the answers. In short:
 - **One fresh, temporary chat per arm and family.** No memory, no custom instructions, no web browsing. If browsing cannot be switched off, say so in the record.
 - **Paste the stages one at a time, in order,** and wait for each answer.
 - **Save every answer verbatim,** with the date, the family, the model and mode if shown, and whether memory and browsing were off.
