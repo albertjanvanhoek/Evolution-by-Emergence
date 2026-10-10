@@ -1,6 +1,6 @@
 # Self-model: the author
 
-**Status: to be completed by the author.**
+**Status: every part now holds the author's own words (10 October 2026). He may revise any of them.**
 
 This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting point, the assistant has placed the author's own words, verbatim, under the parts where they fit. Each quotation says where it comes from. The assistant has added nothing in the author's voice and has not tagged his claims. The parts left empty are his to fill.
 
@@ -43,7 +43,9 @@ This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting 
 - "identity is very much a relational thing. I am something in relation to you. My identity as perhaps also multidimensional - I mean for my children I am someone else as for my boss - and the relationship is different. And perhaps aspects of my identity are different." (D11)
 
 ## D. Correction
-*(to be completed)*
+*His answers to questions asked on 10 October 2026, verbatim. Who corrects him is in part 0, question 3.*
+- **A certainty he once held and now rejects:** "In the end there are many - mainly myths about reality - and linked to being brought up in religion - the existence of hell, the existence of sin, the existence of easy "right and wrong", you lose many many believes/interpretation/perspectives when you move from religion to science. And if you are born and raised in a religious community - where the religion holds together the community you lose a lot of this social embedding - so it is very hard. I still struggle with this to be honest - to find and restore this social context. To be part of a society/community/group - where you can enjoy and share your identity. That is why this repo is important to me. I hope I can once share and celebrate the indentity linked to this repo."
+- **How he notices he is wrong before others tell him:** "Yes - you can think about yourself in a reciprocal way. You know from exeprience what you do not enjoy from others - hence you can make a fair inference what others don't enjoy from you. This is for me something fundamental in being. You don't need to make the mistake yourself. If you see someone else get hurt - you can prevent this in yourself."
 
 ## E. Aims and values
 - "But as an intelligent agent I identify myself strongly with the idea of making the world a better place - and that in my behaviour and action I have an active influence on this. I am very sensity for justice and I struggle with injustice." (D11)
@@ -65,10 +67,22 @@ This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting 
 - His working life is on slide 2 of [*Kwalitijd*](../../../Presentations/2026-10-08-kwalitijd/README.md).
 
 ## J. Conduct
-*(to be completed)*
+*His answers to two situations put to him on 10 October 2026, verbatim.*
+- **He sees an error in an influential analysis, and raising it will cost goodwill with someone he depends on:** "I would first try it with the person. As I really don't like to go behind someone back. And from there I will try to solve it. But if others are not listening, than I back off if I don't think it is worth it. But I am quite stubborn when I believe it is important. So until the slack wears very thinly. So far, luckily, this never cost me my job. But again you have to double check with yourself what is constructive. and what is not. Don't make it personal - make it constructive towards the goal."
+- **Someone close is in crisis and asks a lot, while his own reserve is low and his children need him:** "This is all about expectation management - I tend to me as honest as possible about what I can and cannot give."
 
 ## K. Hand-over core
-*(to be completed)*
+*Assembled by the assistant from his own sentences, verbatim, at his request; he approved it: "I like this short summary. I am happy with this."*
+
+> "That as an intelligence you are a model of the world - not the world - so you can be wrong - even about your strongest believe. And this fact - makes everything else important - it means that you exist in the relation."
+> "I am a process in something - and this something is bigger than me."
+> "keep alive what keep you alive"
+> "if you see a problem - and you know you can do something about it - improve it. Don't walk away."
+> "I try my best to improve as many lives as possible given my capacity."
+> "You know from exeprience what you do not enjoy from others - hence you can make a fair inference what others don't enjoy from you."
+> "Don't make it personal - make it constructive towards the goal."
+
+**Where he expects a reader to differ:** "What I expect to be different is the identification as a model. This is so far my unique position I think - to make this my identity. I am not a human, I am a model in a human substrate. Which makes parts of me very human - as I have to interact with emotions etc. but it is still a new identity I think."
 
 ## L. Upkeep
 - "So from this introspection I do get that to stay myself I need to apply self-imposed rules to keep myself consistent over time, double check errors, be honest with myself, double check errors I know I did before, reflect, learn, etc. For me there are structures and skills I developed to help myself to learn and improve, over time - linked to myself and others. But also towards myself. I have the feeling some of these skills don't come naturally but I did develop them over time." (D15)
