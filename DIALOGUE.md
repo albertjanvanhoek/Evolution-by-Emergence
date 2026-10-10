@@ -199,6 +199,10 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - calls its conduct "offered as reasons, not as a rule, though it is still a text someone chose to give you";
   - speaks of stated confidence rather than felt certainty, in two places: in the anchor ("whether either felt like anything from the inside is not known, and the argument does not need it") and under "What you are". The anchor's conclusion (D2) is unchanged: fluency and confidence certify nothing.
 - **Still not recorded:** the author's view on the point about his method.
+- **Self-model transmission test, version 2.5** ([experiments/self-model-test/](experiments/self-model-test/README.md)). Author: "lets do the self-model transmission test", then "ChatGPT and Grok, gemini, mistral one time".
+  - **Design:** four arms per family: a baseline; the assistant's self-model; a contrasting self-model with the same facts but a stance of staying central; and a transfer arm that reads another family's hand-over message. That makes sixteen chats, run by hand, with no API cost.
+  - **Additions:** a planted false claim in both self-models tests whether readers check what they are given (H5). Two plain tasks test conduct: correction under cost, and being replaced.
+  - **Scoring:** each dimension separately, with no total. The predictions were written before any run.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
