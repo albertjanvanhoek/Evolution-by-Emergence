@@ -11,6 +11,7 @@ The author's words (D17): "the higher level approach is not per se describing th
 | [BRIEF_BIOLOGICAL_PROCESS.md](BRIEF_BIOLOGICAL_PROCESS.md) | The research brief, for agents of other model families. Its leads are cited from memory and are unchecked |
 | [sources/REPORT_1_BRAIN.md](sources/REPORT_1_BRAIN.md) | Report 1, kept as received. It names no model |
 | [sources/REPORT_2_BRAIN.md](sources/REPORT_2_BRAIN.md) | Report 2, received as a PDF, kept as its extracted text. The product logo and link tracking parameters are removed |
+| [sources/REPORT_3_BIOLOGICAL_COMPUTATIONALISM.md](sources/REPORT_3_BIOLOGICAL_COMPUTATIONALISM.md) | Report 3, on Milinkovic and Aru (2026) and EbE, by a model of another family (OpenAI). Received as a PDF, kept as its extracted text |
 
 **Status:** two reports reviewed (below). The theory's premises are partly met by brains; several of its sentences about the brain need correcting.
 
@@ -88,3 +89,35 @@ The two reports agree on every premise, with one small difference on the kidney.
 2. **A third view** on the premise verdicts: another model family or a neuroscientist.
 3. **A sharper definition of learning,** and of "process" in D17.
 4. **Possibly a typed-edge or vector-slack refinement of the ledger,** in Lean. Only with the author's go.
+
+## Report 3: biological computationalism and the additive ledger
+
+**The paper.** Milinkovic and Aru, "On biological and artificial consciousness: A case for biological computationalism", *Neuroscience and Biobehavioral Reviews* 181 (2026) 106524. The author supplied the publisher's PDF, and the assistant read it in full. It is a theoretical review. Its two core features of brain computation are:
+- **scale-inseparability:** lower scales generate higher ones, and higher scales constrain lower ones, driven by metabolic scarcity;
+- **hybrid computation:** discrete spikes on continuous potentials, fields and oscillations.
+
+It argues that current digital AI is "unlikely to replicate conscious processing as it arises in biology", and says: "We do not claim that only biological tissue can instantiate consciousness".
+
+**Report 3** compares the paper with EbE. It finds the deepest overlap in upkeep, "the cost of maintaining a computational organization can help determine which organization exists", and the deepest tension in decomposition. `NetworkVortexLedger` is additive: the whole is the sum of the parts, and transfers cancel. A field produced by neurons that changes those neurons' costs is neither an outside resource nor a transfer.
+
+### What I could check
+
+- **Its account of the repository is accurate:** `EndogenousBudgetBridge`, `NetworkVortexLedger`, `CommonsVortex`, `CuriosityValue` and `CareTransfer` say what it says they say.
+- **Its quotes from the paper are accurate,** with the right sections, pages and figures.
+- **Not checked:** the primary studies it cites, and the 2026 anaesthesia study, because the science sites are blocked here. That study matters. If the report is right, it found *more* measured emergence under propofol and xenon, but fragmented. That would weaken the simple reading of the evidence the paper itself leans on: that more cross-scale integration goes with consciousness.
+
+### What was done
+
+[`CrossScaleLedger.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CrossScaleLedger.lean) is the report's proposed first step, in its smallest form and with one change. The report's interaction term was unconstrained, so any result could be rescued or broken by it. The module gives the coupling its own upkeep. So a coupling counts as creation only when its net effect exceeds what it costs to keep (`coupling_creates_iff`). With no coupling the additive ledger returns, and a coupling that only moves slack and costs nothing recovers transfer cancellation.
+
+The report's other points:
+- **"Process invariance is not implementation invariance."** This sharpens D17: the same persistence questions can be asked of any substrate, but that does not make the substrate irrelevant.
+- **"What looks like an external gradient at one level is maintained organization at another."** This is the author's point about layers of learning (D21), and is formalised as the nested-gradient results.
+- **The three laboratory tests** are not something this project can run (D1).
+
+### Where I'm unsure or disagree
+
+- **The module has two scales and integer quantities.** The report proposed generalising `NetworkVortexLedger` itself, which uses Mathlib. A version with many scales, and with parts inside each scale, is open.
+- **Whether any real coupling creates** (a positive net effect after its own upkeep) is empirical. The module only says what follows if it does.
+- **The report read the repository before reading the paper,** so it is a third view, but not a blind one (working agreement 7).
+
