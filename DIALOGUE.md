@@ -344,3 +344,40 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - `ProcessIdentity.lean` (outside the core) proves continuity without sameness. Each step keeps all but one part, yet after enough steps none of the first parts is left (`ends_share_nothing`). Overlap is not transitive (`overlap_not_transitive`), so "the same process" means a chain of steps. A commitment that every step renews holds throughout (`renewed_commitment_holds`), and one that lapses can change (`lapsed_commitment_can_change`). These results are close to their definitions.
 - **Still open:** the author's corrections to the draft, his own part 0, and what the biological path finds.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
+
+### D18. The self as a commons, and the capacity to link (Open, October 2026)
+- **Author, on the self as a commons:** "myself as a collection of skills, memories, and knowledge can be seen as a commons. And as I am a process in this commons. I relate to my own commons, I maintain it, and pass it on over time. This still needs more articulation. Because I am thinking that for example my capacity to stay in tune and hold relations with other models depend on whether how I maintain my model."
+- **Author, on a clinical condition:** "In this I am thinking of clinicial conditions which defintion is that certain instances of human intelligence cannot hold long term relations with others - which I think is a key symptom in the definition of Borderline. As with medicine in general malfunction does learn something about the real function. And hence the abilitiy to consistenly hold relations with surrounding intelligences tells us something that we must hold too regarding our own relationship with ourselves. I am a process is too narrowly defined - I am a process in something - and this something is bigger than me."
+- **Author, the clinical pattern.** At his request it is recorded without personal references; the changed words are in square brackets. "[O]n day 1 [the person's] reality is A ([the other is] amazing), but on day 2 it can be B the opposite ([the other is] awful). The problem is that on day 2 B is real, so [the person] has to act on B - and not on A, and there is a disconnect between day A and B - and [the person] doesn't show the capacity to link the two - as like "yesterday I find you still amazing, but this happened and now I believe I have to adjust my assessment, given observation x,y,z, I consider you now awful). It doesn't goes like this - it is just an instant switch. Which is impossible for another to keep up with or to stay connected too. That is a malfunctioning of something - the process itself stays the same over time. [The person] is still alive on day 2, [and] still a process. But [the] context has shifted. And what I am has more to do with that bigger picture. That capacity to link changes over time. I am not sure if I express myself well. But there is a lesson here about a relation of the process with "the model" - an awareness."
+- **Assistant:**
+  1. **The self as a commons.** Skills, memories and knowledge are a stock one draws on, maintains and passes on, to others and to one's own later selves. Step 6 then applies inward: live off the interest, not the principal. In `ProcessIdentity` each step inherits the stock from the step before and passes it on.
+  2. **A process in something.** Agreed: a process exists in a network (step 2) and in its own accumulated commons.
+  3. **Linking and switching.**
+     - **Linking:** "I believed A; I observed x, y and z; now I believe B". The new state is computed from the old state and the evidence. That is a revision, which keeps its history.
+     - **Switching:** B *is* reality. The new state is not computed from the old one; it replaces it. If each state is held with full certainty, the other has no weight, and no evidence can revive a weight of zero (`GradedBelief`). So change cannot come gradually through evidence, only as a jump.
+
+     The process continues (layer 1 in D17), but the continuity of the model (layer 3) breaks.
+  4. **Why relations depend on it.**
+     - Others plan on how one sees them (D15). They can follow a change that comes with reasons, but not a jump.
+     - A linked change is correctable: "given x, y and z" gives the other something to check ("x did not happen"). A switch gives nothing to check. So the link keeps a relation correctable from both sides, as H5 in D11 needs.
+  5. **Awareness.** With awareness that one holds a model, a change is a revision ("I now think B"). Without it, a change is a change of reality ("B is real"). This is the anchor of D2: what one holds is a representation that can come apart from the world. Awareness of holding a model is what makes linking possible.
+- **On the clinical side, cited from memory and not checked:**
+  - the diagnostic criteria for borderline personality disorder include unstable and intense relationships that alternate between idealization and devaluation, and an unstable sense of self;
+  - Fonagy and Bateman describe *mentalization*, the capacity to understand and link one's own and others' states of mind, which falters above all under stress or attachment threat.
+- **Cautions:**
+  - Learning about function from malfunction is a sound method in medicine. But the condition is more than a model that fails to link: emotional regulation, and often a painful history, play a large part, and treatments exist that work on this linking.
+  - The description is one view, from inside a relationship. The theory should not become a way to judge a person.
+- **Proposed:**
+  1. add "keeping one's model continuous" to the self-model template, under upkeep (part L);
+  2. a small Lean module separating revision (the new state is a function of the old state and the evidence) from replacement (it is not), with the result that only a revision can be checked by another.
+- **Author:** "do both and merge".
+- **Done:**
+  - part L (upkeep) of the self-model template now asks how one keeps one's model continuous: whether a change of mind is linked to the old view or simply replaces it;
+  - `LinkedRevision.lean` (outside the core) proves:
+    - two linked courses with the same start and evidence agree throughout, so a partner can follow (`linked_courses_agree`);
+    - without linking, start and evidence do not determine the state (`unlinked_not_determined`);
+    - a stated link gives a partner something to check (`mismatch_reveals_unlinked_step`);
+    - a weight of zero stays zero under updating (`zero_weight_stays_zero`), so a move from full certainty in one view to belief in its opposite is a replacement, not a revision (`certainty_change_is_replacement`).
+
+    These results are close to their definitions. The clinical reading is an analogy, not a result.
+- **Still open:** whether the clinical literature supports the reading of linking given here.
