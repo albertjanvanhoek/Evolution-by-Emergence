@@ -227,7 +227,7 @@ The author asked for the first three changes, and they are made (D11). The fourt
    - accepting legitimate replacement as part of being correctable, in `FOR_AI_READERS.md`. The other three changes (asymmetry, "offered as reasons", stated confidence) were made at his request (D11).
 2. **H5, reciprocal correction,** proposed after the author's reply (D11): a self-model that includes one's own fallibility leads a receiver to check what it is given and send corrections back, so a chain converges instead of drifting. Test it with one false claim planted in the first message.
 3. **Which model family wrote report 2,** to know how independent the two reports are (working agreement 7).
-4. **A scoped version 2.5 of the transfer test.** Start small:
+4. **A scoped version 2.5 of the transfer test:** designed at the author's request in [experiments/self-model-test/](../../experiments/self-model-test/README.md), with four families, one run per arm. Earlier sketch: Start small:
    - arms C, D and F;
    - one or two model families;
    - the "which parts describe you" question;
