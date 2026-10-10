@@ -31,7 +31,7 @@ Each layer is narrower than the one before it.
 
 ## Review of reports 1 and 2
 
-Two research agents answered the brief independently. Both read `CORE.md` and D17, and both say they did not open `experiments/`. Report 2 comes from a model family other than the assistant's. Report 1's family is not recorded.
+Two research agents answered the brief independently. Both read `CORE.md` and D17, and both say they did not open `experiments/`. Both come from the same model family, which is not the assistant's: two different models in it, one in a deep-research mode. So they are third views in the sense of working agreement 7. But their agreement with each other is less independent than two families would give.
 
 ### What I could check
 
@@ -78,13 +78,13 @@ The two reports agree on every premise, with one small difference on the kidney.
 - **Which definition of learning to adopt.** Report 2's definition (a retained change that alters future response) would also count damage. Report 1's adds selection by feedback, which is closer to the theory's loop. I prefer report 1's.
 - **"Process" needs a narrower name.** Report 1 notes that "process" does not by itself mean a self-maintaining organization. That is fair. D17 means the narrower thing: something that exists only while it rebuilds itself. It should say so.
 - **The step-1 theorem is unaffected.** "A finite budget cannot keep every candidate, so forgetting is forced" is still proved in the model. What fails is the claim that brains forget for this reason. Both reports keep this distinction, and the repository should too.
-- **Report 1's family is not recorded.** If it is the same family as report 2, their agreement is less independent than it looks.
+- **Both reports come from one family.** Their agreement on every premise is partly shared training, not two independent checks. A report from a third family, or from a neuroscientist, would test it.
 
 ## Next steps
 
 1. **The author's decision on the `CORE.md` corrections.** Above all:
    - "nothing new has to be grown" (done, in the author's precise reading);
    - rewording "feedback from outside adjusts the connections" and "a configuration can pass from one to another".
-2. **Which model family wrote report 1.**
+2. **A third view** on the premise verdicts: another model family or a neuroscientist.
 3. **A sharper definition of learning,** and of "process" in D17.
 4. **Possibly a typed-edge or vector-slack refinement of the ledger,** in Lean. Only with the author's go.
