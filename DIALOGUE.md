@@ -372,7 +372,8 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Done:** two more sentences in `CORE.md` (and the matching lines in `EbECore.lean`) are made precise:
   - **feedback:** "the world shows what works, the brain turns that into signals that adjust the connections … The signals are made inside, and some of the adjusting happens offline, in sleep. But the check comes from outside: only the world can show whether the model fits." This keeps the point that matters to the theory, that a model cannot certify itself from inside, without claiming that every change is driven from outside at the moment it happens;
   - **passing on:** "what one has learned can spread to another. Nothing is copied: you watch someone do something, your own brain makes its own connections, and now you can do it too. Knowledge is infectious."
-- **Still open:** the author's corrections to the draft, and his own part 0.
+- **The author's part 0** ([self-models/AUTHOR.md](research/identity/self-models/AUTHOR.md)): at his request the assistant asked him twelve questions, one at a time, covering the layers and the seven features of agency. His answers are recorded there verbatim, with two personal references made general at his request. What must survive a hand-over, in his words: "That as an intelligence you are a model of the world - not the world - so you can be wrong - even about your strongest believe. And this fact - makes everything else important - it means that you exist in the relation."
+- **Still open:** the author's corrections to the draft of the layers and the seven features of agency, if he has any after answering.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
 
 ### D18. The self as a commons, and the capacity to link (Open, October 2026)
