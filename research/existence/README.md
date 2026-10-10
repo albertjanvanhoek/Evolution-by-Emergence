@@ -75,6 +75,6 @@ These appendices are lineage and are kept as written (working agreement 6). They
 
 ## Next steps
 1. **Errata for Appendix 30 and 31:** done, at the author's request, in [Backmatter/ERRATA_APPENDIX30_31.md](../../Backmatter/ERRATA_APPENDIX30_31.md).
-2. **Two lemmas in core Lean:** the vector deficit-window lemma, and the indistinguishability lemma.
+2. **Two lemmas in core Lean:** done in `ExistenceLemmas.lean`, at the author's request. The deficit window is proved for one resource; the report asked for a vector of resources, which would apply it to each one, and that is not yet written. The indistinguishability lemma is proved as asked.
 3. **The author's view on the reformulation** (D16).
 4. **A prospective test on an engineered system,** with the boundary, floors and functioning criterion fixed in advance, against a simpler resource model as a baseline.
