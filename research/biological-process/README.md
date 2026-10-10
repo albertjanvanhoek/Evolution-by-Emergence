@@ -57,7 +57,7 @@ The two reports agree on every premise, with one small difference on the kidney.
 
 ### Corrections to `CORE.md` that both reports support
 
-- **"Nothing new has to be grown" is false.** Learning grows new dendritic spines and new myelinating cells (in mice). Both reports say this, and it is the clearest error they found.
+- **"Nothing new has to be grown" was too loose.** Both reports call it false, because learning grows new dendritic spines and new myelinating cells (in mice). The author's reply (D17) is that the sentence was about scale: there is no organ for French, and the growth that learning needs is new connections and the strengthening of used pathways, for which myelin matters. That reading is right, and it is consistent with the reports. The sentence now says what grows and what does not: no new organ, but new connections and strengthened pathways. That learning in this way is cheaper than building a new structure is still an assumption; the reports found no measurement of it.
 - **Adult neurogenesis can no longer be dismissed.** Newer human studies (2025, 2026) strengthen the evidence for new neurons in the adult hippocampus, although their part in everyday learning is unknown. "Mainly by changing connections" is still fair for the adult neocortex.
 - **"Feedback from outside adjusts the connections" is too direct.** Report 2 calls the better notion *externally anchorable feedback*: the world finally decides whether a model works, but the signal that changes the tissue is produced inside. This fits the theory's own claim that a model cannot certify itself from inside.
 - **"Capacity is configuration"** holds as a modelling choice, not as a statement about brains.
@@ -83,7 +83,7 @@ The two reports agree on every premise, with one small difference on the kidney.
 ## Next steps
 
 1. **The author's decision on the `CORE.md` corrections.** Above all:
-   - removing "nothing new has to be grown";
+   - "nothing new has to be grown" (done, in the author's precise reading);
    - rewording "feedback from outside adjusts the connections" and "a configuration can pass from one to another".
 2. **Which model family wrote report 1.**
 3. **A sharper definition of learning,** and of "process" in D17.
