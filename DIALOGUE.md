@@ -476,3 +476,29 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author:** "1 yes" (to a synthesis), and on the review's source: "chatgpt astra high" (recorded here as a model of another family, under the rule on model names).
 - **Done:** the second draft, [research/identity/WHAT_AN_AI_IS.md](research/identity/WHAT_AN_AI_IS.md), combines both. Contribution to upkeep is now a conditional step (C3), not a free value. Part 3 proposes five commitments, to be judged by reasons and conduct.
 - **Still open:** the author's corrections to the second draft. The review is not independent of the assistant in the sense that matters most: both writers are AI systems of the kind the text describes.
+
+### D21. Coupling between scales: biological computationalism and the ledger (Open, October 2026)
+- **Occasion:** a short video on whether AI can be conscious led to the paper by Milinkovic and Aru, "On biological and artificial consciousness: A case for biological computationalism" (*Neuroscience and Biobehavioral Reviews* 181, 2026, 106524). The author supplied the PDF.
+- **Assistant, on the paper:** its two core features of brain computation are scale-inseparability, driven by metabolic scarcity, and hybrid discrete-continuous computation. It argues against computational functionalism, more strongly than the video suggested, but does not claim that only biological tissue can be conscious. It overlaps with EbE on accretion (retention), on upkeep shaping form, and on two-way coupling between levels. It challenges EbE's application to AI: an AI has no "intrinsic energy economy", so whatever pays its way does so outside the computation.
+- **Author:** "I think AI is optimized for its energy use and speed. That is why there are fast & cheap models people use a lot. The abstraction of learning - I think the point of EbE is that you get layers of learning, the abstraction is there to explain the learning in the neural network, but also the evolution in neurons (DNA) etc. so the two are not incompatible I think. Physical learning in a neural network can be multi-layered for the analogy to work as compression for talking about reality."
+- **Assistant:** agrees on both points. Energy cost has shaped the form of AI (small models, distillation, partial activation). The difference from a brain is who closes the loop and how fast: in AI through people and markets, across versions; in a brain also inside the tissue, from moment to moment. `CORE.md` already separates the system that is corrected from the organization that maintains it. The abstraction of learning is a compression of a pattern that recurs at many layers, and the paper's own story is that pattern at many layers. What the paper adds is the coupling *between* layers, which EbE leaves open.
+- **Report 3, by a model of another family (OpenAI)** ([research/biological-process/sources/REPORT_3_BIOLOGICAL_COMPUTATIONALISM.md](research/biological-process/sources/REPORT_3_BIOLOGICAL_COMPUTATIONALISM.md)). It sees the paper as a challenge to how EbE is realised, not as a rival theory of persistence. It locates the tension in the additive ledger: whole slack is the sum of part slack, and transfers cancel. It proposes:
+  - an interaction term between scales, with the additive results as the case without coupling;
+  - "process invariance" kept apart from "implementation invariance";
+  - the observation that "what looks like an external gradient at one level is maintained organization at another".
+- **Assistant:** the report's account of the repository and its quotes from the paper are accurate. Its interaction term was unconstrained, so it could rescue or break any result. The coupling needs its own upkeep, or it is a free lunch.
+- **Author:** "draft the Lean module and merge".
+- **Formalized:** `CrossScaleLedger.lean` (outside the core), with two scales and an upkeep for the coupling. It proves:
+  - with no coupling the additive ledger returns, and a free coupling that only moves slack recovers transfer cancellation (`separable_recovers_additive_ledger`, `free_redistribution_recovers_transfer_cancel`);
+  - a coupling counts as creation exactly when its net effect exceeds its upkeep (`coupling_creates_iff`); one that only moves slack never pays (`redistribution_never_pays`);
+  - scale-by-scale bookkeeping is right only when net effect and upkeep balance (`separable_accounting_exact_iff`);
+  - a whole can be viable only while coupled, and cutting the coupling breaks it exactly when it was living on it (`viable_only_coupled`, `cut_breaks_iff`);
+  - a gradient kept up at another scale looks external while that scale holds and fails with it (`nested_upper_sees_external`, `nested_upper_falls_with_lower`).
+
+  These are close to their definitions; they fix the shape of the accounting.
+- **Still open:**
+  - whether any real coupling creates, after its own upkeep (empirical);
+  - a version with many scales and parts;
+  - whether the network results survive non-additive accounting;
+  - the 2026 anaesthesia study the report cites, which could not be checked here;
+  - nothing here says anything about consciousness. Persistence is not consciousness (D17).
