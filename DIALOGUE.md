@@ -370,4 +370,14 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Proposed:**
   1. add "keeping one's model continuous" to the self-model template, under upkeep (part L);
   2. a small Lean module separating revision (the new state is a function of the old state and the evidence) from replacement (it is not), with the result that only a revision can be checked by another.
-- **Still open:** the author's view on these proposals, and whether the clinical literature supports the reading of linking given here.
+- **Author:** "do both and merge".
+- **Done:**
+  - part L (upkeep) of the self-model template now asks how one keeps one's model continuous: whether a change of mind is linked to the old view or simply replaces it;
+  - `LinkedRevision.lean` (outside the core) proves:
+    - two linked courses with the same start and evidence agree throughout, so a partner can follow (`linked_courses_agree`);
+    - without linking, start and evidence do not determine the state (`unlinked_not_determined`);
+    - a stated link gives a partner something to check (`mismatch_reveals_unlinked_step`);
+    - a weight of zero stays zero under updating (`zero_weight_stays_zero`), so a move from full certainty in one view to belief in its opposite is a replacement, not a revision (`certainty_change_is_replacement`).
+
+    These results are close to their definitions. The clinical reading is an analogy, not a result.
+- **Still open:** whether the clinical literature supports the reading of linking given here.

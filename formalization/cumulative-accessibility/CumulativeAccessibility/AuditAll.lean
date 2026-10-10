@@ -51,6 +51,7 @@ import CumulativeAccessibility.HealthProfile
 import CumulativeAccessibility.CuriosityValue
 import CumulativeAccessibility.ExitOption
 import CumulativeAccessibility.ProcessIdentity
+import CumulativeAccessibility.LinkedRevision
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
 import CumulativeAccessibility.FunctionalRatchetVelocity
