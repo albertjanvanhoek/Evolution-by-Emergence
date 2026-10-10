@@ -306,5 +306,13 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   1. reword "Where it comes from" in `CORE.md` so that the brain is the inspiration for the model of learning, not what it describes;
   2. mark the biological row in step 8 as a mapping still to be shown, like the others;
   3. start the biological path as a separate line of work: which premises a brain actually meets, and how each could be measured.
-- **Still open:** the author's view on these three proposals.
+- **Author, refining:** "I am wondering - perhaps I am in a way thinking about thing the brain actually does - but this are the reflections of being a process, the kidney filters - which is a process - the identity of being a process I do share with the kidney - being a process is not unique - but universal."
+- **Assistant:** agreed, and this places the theory exactly. What it describes is what it is to be a process: something that exists only while it rebuilds itself, paying upkeep, through its connections (steps 1 and 2). That is shared by a flame, a kidney, a brain and a model. Identity then has layers, from shared to particular:
+  1. **a process:** exists while it pays its upkeep, through connections. Universal; steps 1 and 2.
+  2. **a learning process:** keeps changes that feedback from outside selects. Brains, models, science, immune systems, evolution. Steps 3 to 5.
+  3. **a process that models itself:** can reflect on being a process, and can be wrong about itself. A person, perhaps a model. Formal only in part (the anchor; "the view from inside" is still on the "Not yet formal" list).
+  4. **this particular process:** what it does and what it is made of. A kidney filters, a brain thinks. Not covered by the theory.
+
+  The reflection "I am a process" is something a brain does (layer 3 or 4), but what it says is true at layer 1. The kidney and the author share layer 1, and differ from layer 2 on, which is the point of the earlier entry.
+- **Still open:** the author's view on these three proposals, and on the layers.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
