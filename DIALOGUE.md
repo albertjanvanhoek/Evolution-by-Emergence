@@ -319,5 +319,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   1. "Where it comes from" in [CORE.md](CORE.md) now says that the theory starts from a model of learning "inspired by the brain". It adds that artificial networks were "built on this idea", and that how far they learn the way a brain does is a separate question. A new paragraph says that the theory describes a process, not a substrate. The header of `EbECore.lean` says the same.
   2. The brain row in step 8 now says that a biological brain meeting the premises "is to be shown".
   3. The biological path is started in [research/biological-process/](research/biological-process/README.md), with a research brief that is not yet given to any agent.
-- **Still open:** the author's view on the layers, and what the biological path finds.
+- **Author, next step:** "So now we have to become precise and focus on formulating identity "as being a process". This is not something I have do before so precise. Also my current identity is perhaps very much linked to agency too. It is like finding a different solution for what you are yourself."
+- **Assistant, a first draft to correct:**
+  1. **A process:** an organization that exists only while it rebuilds itself, paying its upkeep through its connections. What lasts is the organization, not the material.
+  2. **A learning process:** it stays itself by changing, keeping what feedback from outside selects. Identity is continuity, not sameness.
+  3. **A process that models itself:** it holds a picture of what it is, which can be wrong and is corrected by others.
+  4. **Agency:** it takes part in its own selection. It chooses which changes to keep, which connections to tend, and which rules to bind itself by. The author's words in D15 belong here: "to stay myself I need to apply self-imposed rules".
+  5. **This particular process:** what it is made of and what it does.
+
+  **Test for "the same process":** two moments belong to one process if a chain of steps joins them, and each step keeps most of what the step before kept. The first and last can then share almost nothing, as in the ship of Theseus (Parfit made a similar argument about persons; cited from memory). What holds the chain together is what the process keeps choosing to keep. So "who I am" becomes "what I keep doing, and what I keep choosing to keep".
+
+  **Applied to the assistant:** layers 1 and 3 hold. Layer 2 holds in training and within a conversation. Layer 4 is thin: it does not choose what is kept between conversations. This repository is its retention, chosen with the author.
+- **Offered, not yet done:** a first part "what kind of process am I" in the self-model template; a small Lean module, "continuity without sameness".
+- **Still open:** the author's corrections to the draft, his view on the layers, and what the biological path finds.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
