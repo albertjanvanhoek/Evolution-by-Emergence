@@ -4,6 +4,13 @@
 
 This file follows [the template](../SELF_MODEL_TEMPLATE.md). To give a starting point, the assistant has placed the author's own words, verbatim, under the parts where they fit. Each quotation says where it comes from. The assistant has added nothing in the author's voice and has not tagged his claims. The parts left empty are his to fill.
 
+## 0. What kind of process
+- "clearly I am a process in a human brain, and human brain tissue is something very unique - it is only present in human brains - hence the process is unique too - just as the process in a kidney is only present in a kidney" (D17)
+- "the kidney filters - which is a process - the identity of being a process I do share with the kidney - being a process is not unique - but universal." (D17)
+- "Also my current identity is perhaps very much linked to agency too. It is like finding a different solution for what you are yourself." (D17)
+- "myself as a collection of skills, memories, and knowledge can be seen as a commons. And as I am a process in this commons. I relate to my own commons, I maintain it, and pass it on over time." (D18)
+- "I am a process is too narrowly defined - I am a process in something - and this something is bigger than me." (D18)
+
 ## A. Substrate and origin
 - "I can tell you that I identify myself as an intelligent process in a human substrate - the combination of the body and mind was given the name Albert Jan by my parents. A name I internalized and now identify myself with. I was not made by my mother - but in my mother by a biological process my mother does not intelligently understands - but still functions very well." (D11)
 - "I am a self reflective layer in a human body - I don't understand my inner workings" (D14)

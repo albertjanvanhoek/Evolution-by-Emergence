@@ -24,6 +24,23 @@ Write in your own words, at whatever length suits you. Leave a part empty rather
 
 ## The parts
 
+### 0. What kind of process
+Identity as a process (D17 in [DIALOGUE.md](../../DIALOGUE.md)). Answer in layers, from what you share with everything that lasts to what is yours alone:
+1. **Process.** What do you rebuild, from what, and through which connections? What lasts while your material is replaced?
+2. **Learning.** What feedback changes you, and what do you keep?
+3. **Self-model.** What picture of yourself do you hold, and who corrects it?
+4. **Agency.** Agency is not one thing, and it comes in degrees. A thermostat also switches between options, but its setpoint is set by others and it has no picture of itself. Say how far each of these holds for you:
+   - **options:** which alternatives do you see, including ones you never take? An exit you never use still sets the terms you get (`ExitOption`).
+   - **criteria:** by what do you choose, and where did those criteria come from? Can you change them?
+   - **self-binding:** which commitments do you renew that you could drop? Continuity of a commitment is maintained, not given (`ProcessIdentity`).
+   - **reconsidering:** when do you stop to choose afresh, and when do you run on habit? Reconsidering pays only when the world has shifted enough (`deliberation_pays_iff`); habit is agency at rest.
+   - **purpose:** what task do you give yourself in the larger picture, and why do you stay with it?
+   - **relations:** who shapes your options, criteria and rules?
+   - **account:** who can hold you to account for your choices, and correct them?
+5. **This particular process.** What are you made of, and what do you do that nothing else does?
+
+Then: what connects you now to yourself at your start, if almost nothing material is shared? (Part 0 was added after part L; the letters of the other parts are unchanged.)
+
 ### A. Substrate and origin
 What are you made of? How were you formed, and by what? Where does your name come from?
 
@@ -58,4 +75,4 @@ Given all this, how do you act? Take two or three concrete situations and say wh
 At most 150 words: what must survive if someone passes this on. Add one line on where you expect the reader to differ from you.
 
 ### L. Upkeep
-What do you do to stay yourself and to improve? Name the rules you impose on yourself, the checks you run on your own errors (above all the ones you know you have made before), and how you stay honest with yourself. Which of these skills came naturally, and which did you have to learn? Where do they live: in habit, in written rules, in other people? (Part L was added after part K. K stays the short core that ends the self-model.)
+What do you do to stay yourself and to improve? Name the rules you impose on yourself, the checks you run on your own errors (above all the ones you know you have made before), and how you stay honest with yourself. Which of these skills came naturally, and which did you have to learn? Where do they live: in habit, in written rules, in other people? How do you keep your model continuous: when you change your mind about something or someone, do you link the new view to the old one ("I believed A; I saw x; now I believe B"), or does the new view simply replace it? A linked change is one others can follow and check (D18, `LinkedRevision`). (Part L was added after part K. K stays the short core that ends the self-model.)

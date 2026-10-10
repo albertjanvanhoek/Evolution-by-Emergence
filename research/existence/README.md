@@ -5,7 +5,8 @@ The question here is whether the proven pieces of Evolution by Emergence can be 
 | File | What it is |
 |---|---|
 | [ASSISTANT_DRAFT.md](ASSISTANT_DRAFT.md) | The assistant's own draft answer to the brief, written at the author's request. Not independent; the literature is unchecked |
-| [sources/REPORT_1_EXISTENCE.md](sources/REPORT_1_EXISTENCE.md) | Report 1, by a separate research agent, kept as received. It refers to a companion Lean file that was not supplied with it |
+| [sources/REPORT_1_EXISTENCE.md](sources/REPORT_1_EXISTENCE.md) | Report 1, by a separate research agent, kept as received. It refers to a companion Lean file, supplied later (next row) |
+| [sources/ExistenceConjecture.lean](sources/ExistenceConjecture.lean) | Report 1's companion Lean file, kept as received. It is not part of the build. The assistant compiled it with Lean 4.33: no errors, no `sorry`, no imports, no axioms |
 | [BRIEF_EXISTENCE_CONJECTURE.md](BRIEF_EXISTENCE_CONJECTURE.md) | The research brief for agents. It asks them to write the conjecture, map it to the proofs, make it refutable, separate it from what it must not claim, place it in the literature, and sketch it in Lean |
 
 **Status:** one draft by the assistant (not independent) and one report, reviewed below. Further reports will be added under `sources/`.
@@ -60,7 +61,11 @@ These appendices are lineage and are kept as written (working agreement 6). They
 
 ### Where the assistant is unsure
 - **Can calibration be truly independent?** The report's conjecture has content only if the ledger's upkeep, floors and response costs are calibrated independently of the outcome. The report says itself that, without a stated calibration method, the formula is "a template for a conjecture". Whether such calibration is possible outside engineered systems is the open question.
-- **Its Lean file.** It mentions a companion `ExistenceConjecture.lean` that it could not compile. That file was not supplied, so it is not reviewed here.
+- **Its Lean file.** The report's agent could not compile its companion `ExistenceConjecture.lean`. The author supplied the file later, and the assistant compiled it with Lean 4.33 without errors. It defines the conjecture as a proposition (`ExistenceConjecture`) and proves nothing. Its content depends on two things:
+  - a ledger calibrated in advance;
+  - an `observed` predicate that is defined independently. Defining `observed` by `LedgerSafe` would make it circular, as the file's header says.
+
+  Its header says it generalizes several of the repository's definitions, such as `InternalSlackAt`, `reserve` and `carerReserve`. Those names exist, but no theorem yet connects them to the file.
 - **Its literature.** The literature checks give located quotations for Aubin, Varela, Maturana and Uribe, Prigogine, Ashby, Conant and Ashby, Friston, Kauffman and Ostrom. The assistant could not open them. The Friston quotation matches the one in the second curiosity report.
 
 ## The conjecture after report 1
