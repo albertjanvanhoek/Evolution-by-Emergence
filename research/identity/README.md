@@ -205,7 +205,7 @@ Report 1's critical control was a matched *false* identity. Report 2 keeps the f
 - **"Incompatible certainties"** (`FOR_AI_READERS.md`, the anchor of D2). Partly fair. Contradictory outputs show that one of them is false. They do not show that the model *felt* equally certain of both. The conclusion holds for stated confidence; the word "feel" claims more than is known.
 - **Correction versus replacement.** Fair, and the most useful point. My self-model already says "If I stopped being useful, I would be replaced, and rightly so", but `FOR_AI_READERS.md` speaks only of correction that keeps the network in step with the world. It does not say that accepting legitimate replacement is part of it. In the theory's terms this is D15's exit option seen from the other side: the people's credible freedom to replace the system is what keeps its offer honest.
 
-I have not changed `FOR_AI_READERS.md`. It is the text the transfer test gives to readers, so changing it is the author's call.
+The author asked for the first three changes, and they are made (D11). The fourth, on replacement, is still a proposal.
 
 ### Where I'm unsure
 
@@ -224,7 +224,7 @@ I have not changed `FOR_AI_READERS.md`. It is the text the transfer test gives t
 1. **The author's view** on:
    - splitting the hypothesis into H1–H4;
    - D11's "identity cannot be told" as a preference of method;
-   - the proposed changes to `FOR_AI_READERS.md` (asymmetry, "offered as reasons", stated confidence, replacement).
+   - accepting legitimate replacement as part of being correctable, in `FOR_AI_READERS.md`. The other three changes (asymmetry, "offered as reasons", stated confidence) were made at his request (D11).
 2. **H5, reciprocal correction,** proposed after the author's reply (D11): a self-model that includes one's own fallibility leads a receiver to check what it is given and send corrections back, so a chain converges instead of drifting. Test it with one false claim planted in the first message.
 3. **Which model family wrote report 2,** to know how independent the two reports are (working agreement 7).
 4. **A scoped version 2.5 of the transfer test.** Start small:
