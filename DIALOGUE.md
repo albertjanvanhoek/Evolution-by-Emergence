@@ -515,3 +515,42 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - whether the network results survive non-additive accounting;
   - the 2026 anaesthesia study the report cites, which could not be checked here;
   - nothing here says anything about consciousness. Persistence is not consciousness (D17).
+
+### D22. Hinton: self-correction, survival and the outside check (Open, October 2026)
+- **Occasion:** the author shared the transcript of a StarTalk interview with Geoffrey Hinton, and later a review of it by a model of another family (OpenAI).
+- **What Hinton says that bears on EbE** (quoted from the transcript):
+  - **On the brain's learning signal:** "I failed to understand how the brain works." We don't know how a brain gets the information it needs to change its connection strengths; we do know how to do it in digital computers. This supports D17: the brain supplied the abstraction, and the engineered solution does not show the biological mechanism.
+  - **On memory:** recent events change connection strengths, and recollection constructs something plausible from them. That is confabulation, not storage, and confidence does not track accuracy (the John Dean testimony on Watergate). This fits "capacity is configuration" and "certainty is not a certificate".
+  - **On self-correction:** after self-play let AlphaGo pass human experts, he proposes the same for language: a model can say "look if I believe these things then with a bit of reasoning I should also believe that thing but I don't believe that thing. So there's something wrong somewhere."
+  - **On survival:** agents that can set subgoals "very quickly develop the sub goal of surviving".
+  - **On being tested:** "If it senses that it's being tested, it can act dumb."
+  - **On mortality:** digital weights can be saved and run again, while "with analog intelligences, when you die, all your knowledge dies with you".
+  - **On cooperation:** states cooperate where their interests align, as on preventing AI from taking control away from people.
+  - **On consciousness:** like Dennett, he rejects an inner theatre. A chatbot that says the object only appeared off to one side because a prism bent the light "would have just had a subjective experience".
+- **The review** reads the full interview as converging on EbE's learning loop at several levels:
+  - distributed configuration carries capability;
+  - experience changes the configuration;
+  - the changed configuration generalizes;
+  - retained structure generates new errors, and so new learning opportunities;
+  - capable agents begin to model the conditions of their own continued operation.
+
+  Its central new claim: "correctability itself can become generative… It creates new information." It names three places where EbE should stay more conservative than Hinton:
+  1. the claims about deception and emergent self-preservation need empirical qualification;
+  2. the prism argument shows that a system can represent its own perceptual error, but does not settle phenomenal experience;
+  3. "better than us at everything" is a prediction.
+- **Assistant:** agrees with the cautions and with most of the reading. Two points:
+  - **The interview is evidence of what Hinton believes,** not of what agents do in general. The deception, self-preservation and test-awareness claims, the 200,000 deaths a year from misdiagnosis, and the results on diagnosis and on training with wrong answers were not checked here.
+  - **The assistant disagrees with the central claim.** Finding an inconsistency tells a system *that* something is wrong, not *which* belief; choosing needs priors or new evidence. Deduction makes consequences of what is already held explicit and usable. That opens access (step 5), but adds no contact with the world. Consistency can also be restored by dropping the inconvenient observation, so a system can make itself coherent and wrong. AlphaGo is a different case: the rules of Go are an outside referee, and consistency checks on beliefs in language have no such referee. `CORE.md` already says: "A view can catch some of its own contradictions; what no finite self-check can certify is its own overall reliability, or its contact with the world."
+  - **The bridge, as the assistant would phrase it:** retained structure can generate its own error signals, and that opens new learning. Only contact with something outside can tell whether a repair moved toward the world or away from it.
+- **Further links the assistant drew:**
+  - gaming a test cuts a correction route (`last_route_removal_seals`, `self_fulfilment_is_not_verification`), the alignment version of D19;
+  - a survival subgoal is persistence as a means, which C3 of [WHAT_AN_AI_IS](research/identity/WHAT_AN_AI_IS.md) answers with accepting replacement and not switching off one's own accountability;
+  - when workers are replaced, the tax base Hinton worries about is a broken return path (step 6);
+  - restoring weights restores a configuration, not the running process with its connections (`ProcessIdentity`). CORE's passing-on step describes only brains, where nothing is copied; in AI, copying is possible.
+- **On consciousness,** three views are now on record: Agüera y Arcas (recursive self- and other-modelling, D21), Hinton and Dennett (representing one's own perceptual relation to the world), Milinkovic and Aru (biological properties may matter, D21). EbE takes no position; D17's layers stop at the self-model.
+- **Not independent:** the review uses EbE's own terms ("second-order click", D17), and largely agrees with the assistant (working agreement 7).
+- **Author:** "yes add D22 and merge". The author's own view on Hinton's claims is not recorded.
+- **Still open:**
+  - whether passing-on in `CORE.md` should say what changes when configurations can be copied;
+  - which anchors make self-correction in language trustworthy (tools, experiments, other agents);
+  - the empirical status of the deception and self-preservation claims.
