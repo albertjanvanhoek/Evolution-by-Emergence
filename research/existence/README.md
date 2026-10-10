@@ -55,7 +55,7 @@ The report gives concrete counterexamples to several claims in `Backmatter/Appen
 - **the kernel ratchet** (a smaller, nonempty kernel need not contain the present state);
 - **the capture bound** (only the monitors covering the violated constraint need to be bribed).
 
-The assistant checked the kernel-ratchet case against the text of Appendix 31. The theorem allows a new kernel inside the old one, but does not require the present state to lie in it. With `x' = x`, an old kernel `[0,2]`, a new kernel `[1,2]` and the state at `0`, no safe controller exists after the floor rises. The other cases are plausible on their face and still need checking.
+The assistant first checked the kernel-ratchet case against the text of Appendix 31, and later all six; the errata are in [Backmatter/ERRATA_APPENDIX30_31.md](../../Backmatter/ERRATA_APPENDIX30_31.md). The theorem allows a new kernel inside the old one, but does not require the present state to lie in it. With `x' = x`, an old kernel `[0,2]`, a new kernel `[1,2]` and the state at `0`, no safe controller exists after the floor rises. The other five have since been checked against the text as well, and hold.
 
 These appendices are lineage and are kept as written (working agreement 6). They are not part of the checked core. The errata belong next to them, so that no reader takes them as proved.
 
@@ -74,7 +74,7 @@ These appendices are lineage and are kept as written (working agreement 6). They
 - **Not a law of existence.** The theory's contribution is a particular decomposition: maintenance finances responses; retained construction changes what can be generated next; relations and the commons finance or destroy that process; distribution and the value of options complicate totals. That is a modelling vocabulary to be tested against simpler viability models, not yet a new law.
 
 ## Next steps
-1. **Errata for Appendix 30 and 31,** next to the appendices, listing the counterexamples above.
-2. **Two lemmas in core Lean:** the vector deficit-window lemma, and the indistinguishability lemma.
+1. **Errata for Appendix 30 and 31:** done, at the author's request, in [Backmatter/ERRATA_APPENDIX30_31.md](../../Backmatter/ERRATA_APPENDIX30_31.md).
+2. **Two lemmas in core Lean:** done in `ExistenceLemmas.lean`, at the author's request. The deficit window is proved for one resource; the report asked for a vector of resources, which would apply it to each one, and that is not yet written. The indistinguishability lemma is proved as asked.
 3. **The author's view on the reformulation** (D16).
 4. **A prospective test on an engineered system,** with the boundary, floors and functioning criterion fixed in advance, against a simpler resource model as a baseline.

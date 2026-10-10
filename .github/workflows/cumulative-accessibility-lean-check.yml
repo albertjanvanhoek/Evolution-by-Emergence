@@ -71,6 +71,7 @@ jobs:
             CumulativeAccessibility.ExitOption \
             CumulativeAccessibility.ProcessIdentity \
             CumulativeAccessibility.LinkedRevision \
+            CumulativeAccessibility.ExistenceLemmas \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
@@ -128,6 +129,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExitOption.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ProcessIdentity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LinkedRevision.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExistenceLemmas.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean
