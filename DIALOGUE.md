@@ -281,5 +281,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **E2, collective.** A commons that lasts past a stated horizon without subsidy, while takers take above their interest, has detection and a sanction that covers the windfall for every taker.
 
   The largest gap is the step from "some possible future", which is what the proofs say, to "the actual one", which is what the conjecture says.
-- **Author:** his view on E1 and E2 is not yet recorded.
+- **Report 1** ([research/existence/](research/existence/README.md)) proposes a narrower and better-formed conjecture: maintenance and response.
+  - **The claim.** For experiments registered in advance, an organization can keep a specified function going through a declared range of disturbances only if the responses it can deploy in time keep every indispensable resource above its floor. The test of functioning is defined independently of the ledger, and the same causal policy must work for every admissible course of the world.
+  - **What it changes in the draft.** Learning, reciprocity and sanctions become ways of meeting the conjecture, not conditions of existence. The assistant accepts this: the draft's E1 required mechanisms, and its E2 was muddled, since the repository proves that a commons can last without sanctions when takers discount mildly.
+  - **Errors in the lineage.** It also gives counterexamples to several theorems in the "Existence First" appendices (30 and 31), which are lineage, not checked results. The assistant confirmed the kernel-ratchet case against the text.
+- **Author:** his view on the draft, on the report's reformulation and on errata for the appendices is not yet recorded.
 - **What would close it:** reports from other model families, the author's view, and a first test of E1 with artificial agents, with the escape routes ("covered from outside", "moved outside its fit", "independent") defined in advance.

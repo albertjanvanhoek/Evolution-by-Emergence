@@ -1,6 +1,8 @@
 # An existence conjecture: the assistant's draft
 
 > **What this is.** The assistant's own answer to [the brief](BRIEF_EXISTENCE_CONJECTURE.md), written on 9 October 2026 at the author's request. **It is not independent.** The assistant helped write much of the theory it assesses (working agreement 7). The literature in Part 4 is cited from memory, because primary sources could not be opened from its environment, and every item there is unchecked. Reports from other model families are the real test. This draft is a starting point to argue with.
+>
+> **Superseded in part by report 1** (see [the review](README.md#review-of-report-1-and-how-it-changes-the-assistants-draft)). E1's four features are mechanisms, not necessary conditions of existence. E2 was muddled: the repository's own `not_cheating_wins_under_mild_discount` shows a commons can last without sanctions. The draft is kept as written.
 
 ## Part 1. The conjecture
 
