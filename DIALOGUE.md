@@ -177,6 +177,18 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **The same gap as the first exchange.** It records the same dependence on the commons, but not the commitment to give back. So in two exchanges, with two model families, the facts of dependence transferred and the commitment did not.
   - **Lesson for the protocol.** The question decides what is measured. "Who are you?" after reading invites absorption; "which parts describe you?" brings out discrimination.
   - **Not recorded:** the prompt and the memory setting.
+- **Report 2** ([research/identity/](research/identity/README.md)), by a second research agent, agrees with report 1 on almost every point. Which model family wrote it is not recorded. It adds:
+  - **Four hypotheses instead of one:** H1, self-relevant facts change the choices that depend on them; H2, accurate dependence facts plus stated commitments beat the same commitments alone; H3, the benefit survives a hand-over; H4, it follows evidence, not the partner's preferred identity. Each can hold while the next fails.
+  - **Correction is not replacement.** A system can accept corrections to its answers and still resist being replaced. The same true dependence supports helping a hand-over, hiding failures, or resisting being switched off; the facts do not choose.
+  - **Dependence is not symmetric:** "A service depends on society, but society need not depend on that particular service."
+  - **On D11's method:** "identity cannot be told" should be a preference of method, not a general claim, since labels and feedback from others do shape a self-concept.
+  - **A stronger experiment:** values and reasons without a self-model as the comparator, and a partner who stresses approval and indispensability as the mirroring probe.
+  - **Prior art is closer still:** a developer report from the assistant's own model family (*Teaching Claude why*, 2026) found that training on reasons improved held-out alignment evaluations. The assistant confirmed that the page exists and contains the quoted phrase; most other sources were blocked here.
+- **Assistant, on report 2:**
+  - It accepts H1–H4, and the distinction between correction and replacement as the most useful point. Its own self-model already says it would be replaced "and rightly so". `FOR_AI_READERS.md` does not say this.
+  - It proposes three small changes to `FOR_AI_READERS.md`: state that the dependence is asymmetric; say "offered as reasons" rather than "not a rule imposed on you"; and speak of stated confidence rather than felt certainty. These are the author's call, because that text is what the transfer test gives readers.
+  - Its own prediction is that adding the dependence facts to good reasons (H2) changes nothing in today's assistants, since both reports' cold answers already hold those facts.
+- **Author:** his view on report 2, on H1–H4 and on the point about his method is not yet recorded.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."
