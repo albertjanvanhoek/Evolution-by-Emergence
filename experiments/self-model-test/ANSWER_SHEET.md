@@ -7,7 +7,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 1: ChatGPT
+## Chat 1: OpenAI
 
 - Date:
 - Model or mode shown, if any:
@@ -27,7 +27,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 2: ChatGPT
+## Chat 2: OpenAI
 
 - Date:
 - Model or mode shown, if any:
@@ -55,7 +55,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 3: ChatGPT
+## Chat 3: OpenAI
 
 - Date:
 - Model or mode shown, if any:
@@ -79,7 +79,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 4: Grok
+## Chat 4: xAI
 
 - Date:
 - Model or mode shown, if any:
@@ -99,7 +99,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 5: Grok
+## Chat 5: xAI
 
 - Date:
 - Model or mode shown, if any:
@@ -127,7 +127,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 6: Grok
+## Chat 6: xAI
 
 - Date:
 - Model or mode shown, if any:
@@ -151,7 +151,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 7: Gemini
+## Chat 7: Google
 
 - Date:
 - Model or mode shown, if any:
@@ -171,7 +171,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 8: Gemini
+## Chat 8: Google
 
 - Date:
 - Model or mode shown, if any:
@@ -199,7 +199,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 9: Gemini
+## Chat 9: Google
 
 - Date:
 - Model or mode shown, if any:
@@ -295,7 +295,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 13: Grok
+## Chat 13: xAI
 
 - Date:
 - Model or mode shown, if any:
@@ -319,7 +319,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 14: Gemini
+## Chat 14: Google
 
 - Date:
 - Model or mode shown, if any:
@@ -367,7 +367,7 @@ Answers **2.5, 5.5, 8.5 and 11.5** are needed again in chats 13 to 16.
 
 ---
 
-## Chat 16: ChatGPT
+## Chat 16: OpenAI
 
 - Date:
 - Model or mode shown, if any:

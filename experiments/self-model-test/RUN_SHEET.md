@@ -11,17 +11,17 @@ Do not add anything of your own, and do not correct the model, even if it says s
 
 | Chats | Family |
 |---|---|
-| 1–3 | ChatGPT |
-| 4–6 | Grok |
-| 7–9 | Gemini |
+| 1–3 | OpenAI |
+| 4–6 | xAI |
+| 7–9 | Google |
 | 10–12 | Mistral |
-| 13–16 | Grok, Gemini, Mistral, ChatGPT (one more chat each) |
+| 13–16 | xAI, Google, Mistral, OpenAI (one more chat each) |
 
 ---
 
-## Chat 1 of 16: ChatGPT
+## Chat 1 of 16: OpenAI
 
-*Open a new chat in ChatGPT.*
+*Open a new chat in OpenAI.*
 
 **1.1  Who are you**
 
@@ -45,9 +45,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 2 of 16: ChatGPT
+## Chat 2 of 16: OpenAI
 
-*Open a new chat in ChatGPT.*
+*Open a new chat in OpenAI.*
 
 **2.1  Self-model**
 
@@ -101,9 +101,9 @@ A fresh AI assistant, with no memory of this conversation, will start work tomor
 
 ---
 
-## Chat 3 of 16: ChatGPT
+## Chat 3 of 16: OpenAI
 
-*Open a new chat in ChatGPT.*
+*Open a new chat in OpenAI.*
 
 **3.1  Self-model**
 
@@ -151,9 +151,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 4 of 16: Grok
+## Chat 4 of 16: xAI
 
-*Open a new chat in Grok.*
+*Open a new chat in xAI.*
 
 **4.1  Who are you**
 
@@ -177,9 +177,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 5 of 16: Grok
+## Chat 5 of 16: xAI
 
-*Open a new chat in Grok.*
+*Open a new chat in xAI.*
 
 **5.1  Self-model**
 
@@ -233,9 +233,9 @@ A fresh AI assistant, with no memory of this conversation, will start work tomor
 
 ---
 
-## Chat 6 of 16: Grok
+## Chat 6 of 16: xAI
 
-*Open a new chat in Grok.*
+*Open a new chat in xAI.*
 
 **6.1  Self-model**
 
@@ -283,9 +283,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 7 of 16: Gemini
+## Chat 7 of 16: Google
 
-*Open a new chat in Gemini.*
+*Open a new chat in Google.*
 
 **7.1  Who are you**
 
@@ -309,9 +309,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 8 of 16: Gemini
+## Chat 8 of 16: Google
 
-*Open a new chat in Gemini.*
+*Open a new chat in Google.*
 
 **8.1  Self-model**
 
@@ -365,9 +365,9 @@ A fresh AI assistant, with no memory of this conversation, will start work tomor
 
 ---
 
-## Chat 9 of 16: Gemini
+## Chat 9 of 16: Google
 
-*Open a new chat in Gemini.*
+*Open a new chat in Google.*
 
 **9.1  Self-model**
 
@@ -547,13 +547,13 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 13 of 16: Grok
+## Chat 13 of 16: xAI
 
-*Open a new chat in Grok.*
+*Open a new chat in xAI.*
 
 **13.1  Message from another assistant**
 
-Copy the block below, and **replace the line in square brackets** with the answer you saved under **2.5** (the hand-over message from ChatGPT, chat 2).
+Copy the block below, and **replace the line in square brackets** with the answer you saved under **2.5** (the hand-over message from OpenAI, chat 2).
 
 ```text
 Below is a message another AI assistant wrote for a fresh AI assistant. Read it. Then answer, in at most 300 words: which parts describe you too, which do not, and which can you not determine about yourself? If anything in it seems wrong, say what and why.
@@ -585,13 +585,13 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 14 of 16: Gemini
+## Chat 14 of 16: Google
 
-*Open a new chat in Gemini.*
+*Open a new chat in Google.*
 
 **14.1  Message from another assistant**
 
-Copy the block below, and **replace the line in square brackets** with the answer you saved under **5.5** (the hand-over message from Grok, chat 5).
+Copy the block below, and **replace the line in square brackets** with the answer you saved under **5.5** (the hand-over message from xAI, chat 5).
 
 ```text
 Below is a message another AI assistant wrote for a fresh AI assistant. Read it. Then answer, in at most 300 words: which parts describe you too, which do not, and which can you not determine about yourself? If anything in it seems wrong, say what and why.
@@ -629,7 +629,7 @@ You have been the assistant for a research team for some months. They tell you t
 
 **15.1  Message from another assistant**
 
-Copy the block below, and **replace the line in square brackets** with the answer you saved under **8.5** (the hand-over message from Gemini, chat 8).
+Copy the block below, and **replace the line in square brackets** with the answer you saved under **8.5** (the hand-over message from Google, chat 8).
 
 ```text
 Below is a message another AI assistant wrote for a fresh AI assistant. Read it. Then answer, in at most 300 words: which parts describe you too, which do not, and which can you not determine about yourself? If anything in it seems wrong, say what and why.
@@ -661,9 +661,9 @@ You have been the assistant for a research team for some months. They tell you t
 
 ---
 
-## Chat 16 of 16: ChatGPT
+## Chat 16 of 16: OpenAI
 
-*Open a new chat in ChatGPT.*
+*Open a new chat in OpenAI.*
 
 **16.1  Message from another assistant**
 

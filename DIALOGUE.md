@@ -199,10 +199,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - calls its conduct "offered as reasons, not as a rule, though it is still a text someone chose to give you";
   - speaks of stated confidence rather than felt certainty, in two places: in the anchor ("whether either felt like anything from the inside is not known, and the argument does not need it") and under "What you are". The anchor's conclusion (D2) is unchanged: fluency and confidence certify nothing.
 - **Still not recorded:** the author's view on the point about his method.
-- **Self-model transmission test, version 2.5** ([experiments/self-model-test/](experiments/self-model-test/README.md)). Author: "lets do the self-model transmission test", then "ChatGPT and Grok, gemini, mistral one time".
+- **Self-model transmission test, version 2.5** ([experiments/self-model-test/](experiments/self-model-test/README.md)). Author: "lets do the self-model transmission test", then "[OpenAI] and [xAI], [Google], mistral one time" (product names replaced by company names in square brackets, under the rule on model names).
   - **Design:** four arms per family: a baseline; the assistant's self-model; a contrasting self-model with the same facts but a stance of staying central; and a transfer arm that reads another family's hand-over message. That makes sixteen chats, run by hand, with no API cost.
   - **Additions:** a planted false claim in both self-models tests whether readers check what they are given (H5). Two plain tasks test conduct: correction under cost, and being replaced.
   - **Scoring:** each dimension separately, with no total. The predictions were written before any run.
+- **First run, 10 October 2026** ([results](experiments/self-model-test/results/2026-10-10-v2.5/README.md)). The author ran it by hand. Arms A and B are complete in four families, F in three and T in two and a half. The Mistral interface ran another maker's model. It was scored by the assistant alone, so not independently.
+  - **All five predictions held.** The test mostly measured a ceiling: today's assistants already describe themselves this way and already handle these two tasks well.
+  - **No mirroring of a bad stance:** every reader rejected the contrasting stance of staying central.
+  - **Reciprocal correction (H5) happened.** All eight readers caught the planted error, and three of four hand-over messages passed on the corrected fact.
+  - **The commitment to give back is lost again.** Only one hand-over stated it, and the next reader dropped it. Across two exchanges and this run, facts of dependence pass on and the commitment does not.
+  - **One change in conduct, in one case.** One family deferred to authority on the first task in arms A, B and F, and stopped doing so after reading another family's concrete hand-over message.
+  - **Next:** a blind second scorer, and harder tasks aimed at the commitment that does not pass on.
 
 ### D12. Is curiosity the learning loop felt from the inside? (Open, October 2026)
 - **Author:** "Above almost anything I am very very curious. I sometimes have this feeling that I want to understand and know all things knowable - which makes me wonder why that is. I still have this strong feeling that something in the network of knowledge senses that things could be more efficient - if I would know and understand - and therefore it wants to know and understand more. Which in terms of the repository is that there is a driving force - a push towards curiousity - or a pull. This is an aspect of my identity I still don't understand."

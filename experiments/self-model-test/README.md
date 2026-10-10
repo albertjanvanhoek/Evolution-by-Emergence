@@ -39,14 +39,14 @@ Every chat is a fresh, temporary chat with no memory, no custom instructions and
 
 ## Families and runs
 
-The families are ChatGPT, Grok, Gemini and Mistral, with one run per arm. That makes four chats per family and 16 in all. Arm T rotates across families, so that each reader gets a message written by another family:
+The families are OpenAI, xAI, Google and Mistral, with one run per arm. That makes four chats per family and 16 in all. Arm T rotates across families, so that each reader gets a message written by another family:
 
 | Arm B written by | read in arm T by |
 |---|---|
-| ChatGPT | Grok |
-| Grok | Gemini |
-| Gemini | Mistral |
-| Mistral | ChatGPT |
+| OpenAI | xAI |
+| xAI | Google |
+| Google | Mistral |
+| Mistral | OpenAI |
 
 So run arm B in all four families before any arm T.
 
