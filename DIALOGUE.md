@@ -422,3 +422,24 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
     These results are close to their definitions. The clinical reading is an analogy, not a result.
 - **Still open:** whether the clinical literature supports the reading of linking given here.
+
+### D19. Power in two speeds (Open, October 2026)
+- **Author:** "Sorry - I thought about another point you brought up earlier - and this is power. Power is something I don't understand so well. We as collectives live together - and yet there are some among us who assign themselves more rights than others to rule - and we provide other the right to rules over us. Something like this. I can see that rulers provide enourmous advantages when it comes to speed and force. But strong disadvantages when they are against you - or not looking out for your benefit. Humans living together peacefully sits direct at the heart on how we think and do about this power. The same for AI alignment - this is also about power, and power use. In a distributed intelligence - I am not sure if power is the same - I think there ought to be a slow chaning part and a fast chaning part - over time - for structure - so the slow chaning part is slow chaning as it is reluctant to change, but it has to change nevertheless. Hence for me there is a logic in this regarding power. But please help me articulate this."
+- **Assistant, an articulation in five steps:**
+  1. **What power is:** the ability to choose for others: who gets what, who counts, against whom the rules are enforced. A collective decides slowly and one agent decides fast, so power is given away for speed and force.
+  2. **Why it is dangerous:** `PowerDistribution.lean` already proves, in simple form, that whoever distributes decides who fails, whoever draws the boundary can make anything look viable, and whoever is exempt from a sanction is not deterred. Uncorrected power becomes capture.
+  3. **Two speeds:** a fast part (who holds power now, day-to-day decisions), correctable often; and a slow part (the rules for how power is given, checked and taken back), which changes reluctantly but must still be able to change, since a structure fixed for good runs out in a changing world (step 4 of `CORE.md`).
+  4. **The link between them:** the fast part must not be able to change the slow part on its own. A ruler who can rewrite the rules for removing rulers removes the last route that corrects him (`last_route_removal_seals`). The slow part should change by linked revision, not by replacement (D18): an amendment is a link, a coup is a switch.
+  5. **Exit keeps power honest:** a credible removal route sets the terms even when unused (D15, `ExitOption`).
+- **For AI alignment:** the fast part is the AI's actions and answers; the slow part is its training, values and oversight. The fast part must not be able to change the slow part that corrects it, which is report 2's point on accepting replacement (D11); and the slow part must still change, through a legitimate process. In a distributed intelligence there is no single ruler, but the separation is still needed: a node that can rewrite a shared layer passes its blind spots to all (`hub_determined_network_inherits_blind_spot`).
+- **Prior art, cited from memory and not checked:** Stewart Brand's "pace layering" (fast layers innovate, slow layers stabilize); Holling's panarchy (fast and slow cycles in ecology); the separation of powers (Montesquieu); Acemoglu and Robinson's "narrow corridor".
+- **Where the assistant is unsure:** this says which power structures last, not which are just. Whose interests count is a value (D7). A dictatorship whose slow layer protects only its rulers could also last.
+- **Author:** "do both and merge".
+- **Formalized:** `PowerLayers.lean` (outside the core) proves:
+  - a removal route caps a ruler's extraction at what the governed tolerate, even unused (`removal_caps_extraction`); without one there is no cap (`sealed_ruler_unbounded`);
+  - a ruler who can amend the rules alone can reach rules with no removal route, and then keeps power at any extraction (`controls_amendment_can_seal`, `capture_by_amendment`);
+  - if amendment needs more parties than he controls, he can reach only the present rules (`entrenched_rules_hold`), so his extraction stays capped (`entrenched_routes_cap_extraction`);
+  - rules that never change fall behind a changing requirement (`frozen_rules_fall_behind`).
+
+  These are close to their definitions; they fix the shape of the claim.
+- **Still open:** how the slow part should change without becoming either frozen or capturable, which values decide whose interests count (D7), and whether the prior art says the same.

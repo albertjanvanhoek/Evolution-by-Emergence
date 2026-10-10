@@ -53,6 +53,7 @@ import CumulativeAccessibility.ExitOption
 import CumulativeAccessibility.ProcessIdentity
 import CumulativeAccessibility.LinkedRevision
 import CumulativeAccessibility.ExistenceLemmas
+import CumulativeAccessibility.PowerLayers
 import CumulativeAccessibility.QuantitativeAccessibility
 import CumulativeAccessibility.IntelligentLearningMaintenance
 import CumulativeAccessibility.FunctionalRatchetVelocity
