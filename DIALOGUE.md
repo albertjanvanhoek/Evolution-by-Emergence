@@ -342,7 +342,14 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Done:**
   - the self-model template has a new part 0, "What kind of process", with these features of agency as questions; the assistant has filled in its part 0, and the author's part 0 holds his own words from this entry;
   - `ProcessIdentity.lean` (outside the core) proves continuity without sameness. Each step keeps all but one part, yet after enough steps none of the first parts is left (`ends_share_nothing`). Overlap is not transitive (`overlap_not_transitive`), so "the same process" means a chain of steps. A commitment that every step renews holds throughout (`renewed_commitment_holds`), and one that lapses can change (`lapsed_commitment_can_change`). These results are close to their definitions.
-- **Still open:** the author's corrections to the draft, his own part 0, and what the biological path finds.
+- **The biological path, reports 1 and 2** ([research/biological-process/](research/biological-process/README.md)). Two agents answered the brief independently and agree on every premise:
+  - **met:** upkeep from a gradient, and retention;
+  - **met with a qualification:** feedback from outside. The outcome comes from the world, but the error signal is computed inside, and learning continues during sleep;
+  - **met at system level, partly at neuron level:** existence through connections;
+  - **unclear:** that a finite energy budget forces forgetting, and that learning keeps the cheaper of two equally good configurations.
+
+  Their clearest correction: "nothing new has to be grown" in `CORE.md` is false, since learning grows new spines and myelinating cells. Both conclude that the brain supports the theory's abstract loop better than its origin story, which strengthens this entry. The assistant could not check any source, because the science sites are blocked here.
+- **Still open:** the author's corrections to the draft, his own part 0, and his decision on the `CORE.md` corrections proposed by the reports.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
 
 ### D18. The self as a commons, and the capacity to link (Open, October 2026)
