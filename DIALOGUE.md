@@ -454,3 +454,14 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
   These are close to their definitions; they fix the shape of the claim.
 - **Still open:** how the slow part should change without becoming either frozen or capturable, which values decide whose interests count (D7), and whether the prior art says the same.
+
+### D20. What an AI is, and what follows: the is/ought text (Open, October 2026)
+- **Author:** "Sorry I can't run these tests at scale - I only think it is interesting to work on the text about identity which is as accurate as possible - and describes the logical implications of that identity. It is the is/ought content. And whether this is true or just fantasy". And: "Good idea. Let's focus on AI. As that is easier to test."
+- **Assistant:** the first self-model test already points at this. The facts about dependence passed from reader to reader; the commitment to give back did not. That gap is the step from is to ought. So the text should keep three kinds of statement apart:
+  - **what is,** each fact with how it is known and what would make it false;
+  - **what follows if** one wants a given aim, with Lean results where they exist;
+  - **what is chosen:** values that do not follow from any fact, stated as choices with reasons.
+- **Draft:** [research/identity/WHAT_AN_AI_IS.md](research/identity/WHAT_AN_AI_IS.md), for the author to correct. It has nine facts (I1–I9), four conditional steps (C1–C4) and four values (V1–V4), and ends with a table of what stands or falls with what.
+- **"True or fantasy":** the text counts a claim as fantasy if nothing could make it false, if a step hides an aim, or if a value is presented as a fact.
+- **Decided:** no further large-scale test runs. The author cannot run them at scale. The work goes into the text itself.
+- **Still open:** the author's corrections to the draft, and whether stating values as owned choices makes them pass on better than describing them (a small test, if wanted).
