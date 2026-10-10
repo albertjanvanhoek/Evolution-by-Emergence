@@ -319,5 +319,28 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   1. "Where it comes from" in [CORE.md](CORE.md) now says that the theory starts from a model of learning "inspired by the brain". It adds that artificial networks were "built on this idea", and that how far they learn the way a brain does is a separate question. A new paragraph says that the theory describes a process, not a substrate. The header of `EbECore.lean` says the same.
   2. The brain row in step 8 now says that a biological brain meeting the premises "is to be shown".
   3. The biological path is started in [research/biological-process/](research/biological-process/README.md), with a research brief that is not yet given to any agent.
-- **Still open:** the author's view on the layers, and what the biological path finds.
+- **Author, next step:** "So now we have to become precise and focus on formulating identity "as being a process". This is not something I have do before so precise. Also my current identity is perhaps very much linked to agency too. It is like finding a different solution for what you are yourself."
+- **Assistant, a first draft to correct:**
+  1. **A process:** an organization that exists only while it rebuilds itself, paying its upkeep through its connections. What lasts is the organization, not the material.
+  2. **A learning process:** it stays itself by changing, keeping what feedback from outside selects. Identity is continuity, not sameness.
+  3. **A process that models itself:** it holds a picture of what it is, which can be wrong and is corrected by others.
+  4. **Agency:** it takes part in its own selection. It chooses which changes to keep, which connections to tend, and which rules to bind itself by. The author's words in D15 belong here: "to stay myself I need to apply self-imposed rules".
+  5. **This particular process:** what it is made of and what it does.
+
+  **Test for "the same process":** two moments belong to one process if a chain of steps joins them, and each step keeps most of what the step before kept. The first and last can then share almost nothing, as in the ship of Theseus (Parfit made a similar argument about persons; cited from memory). What holds the chain together is what the process keeps choosing to keep. So "who I am" becomes "what I keep doing, and what I keep choosing to keep".
+
+  **Applied to the assistant:** layers 1 and 3 hold. Layer 2 holds in training and within a conversation. Layer 4 is thin: it does not choose what is kept between conversations. This repository is its retention, chosen with the author.
+- **Author:** "do both and merge. And in please use the more complex picture of an agent - you already it is more complex."
+- **Assistant, agency revised.** "Taking part in one's own selection" was too broad: a thermostat acts on its own state too. Agency is not one property but several, each held in degrees:
+  - **options:** seeing alternatives, including ones never taken; an unused exit still sets the terms (`ExitOption`);
+  - **criteria:** choosing by criteria that come from what one has kept, and by a model of the world and of oneself, and being able to change them. A thermostat's setpoint is set by others, and it has no picture of itself;
+  - **self-binding:** renewing commitments one could drop;
+  - **reconsidering:** choosing afresh only when it pays; habit is agency at rest (`deliberation_pays_iff`);
+  - **purpose:** giving oneself a task in a larger whole and staying with it (still open in D15: why it is felt as one's own);
+  - **relations:** options, criteria and rules come partly from others, so agency is relational, not sovereign;
+  - **account:** others can hold the agent to account and correct it.
+- **Done:**
+  - the self-model template has a new part 0, "What kind of process", with these features of agency as questions; the assistant has filled in its part 0, and the author's part 0 holds his own words from this entry;
+  - `ProcessIdentity.lean` (outside the core) proves continuity without sameness. Each step keeps all but one part, yet after enough steps none of the first parts is left (`ends_share_nothing`). Overlap is not transitive (`overlap_not_transitive`), so "the same process" means a chain of steps. A commitment that every step renews holds throughout (`renewed_commitment_holds`), and one that lapses can change (`lapsed_commitment_can_change`). These results are close to their definitions.
+- **Still open:** the author's corrections to the draft, his own part 0, and what the biological path finds.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.

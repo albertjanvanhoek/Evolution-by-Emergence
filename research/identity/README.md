@@ -5,7 +5,7 @@ This folder follows up entry D11 in [DIALOGUE.md](../../DIALOGUE.md). The questi
 | File | What it is |
 |---|---|
 | [BRIEF_IDENTITY.md](BRIEF_IDENTITY.md) | The research brief. Part 0 asks the agent who it is before it reads anything |
-| [SELF_MODEL_TEMPLATE.md](SELF_MODEL_TEMPLATE.md) | A structure for describing one's own identity, for the self-model transmission test |
+| [SELF_MODEL_TEMPLATE.md](SELF_MODEL_TEMPLATE.md) | A structure for describing one's own identity, for the self-model transmission test. Part 0 asks what kind of process one is, and how far each feature of agency holds (D17) |
 | [self-models/ASSISTANT.md](self-models/ASSISTANT.md) | The assistant's self-model, written with the template |
 | [self-models/AUTHOR.md](self-models/AUTHOR.md) | The author's self-model: his own words so far, sorted into the template's parts; to be completed by him |
 | [exchanges/2026-10-09-first-exchange.md](exchanges/2026-10-09-first-exchange.md) | The first exchange: the assistant's self-model given to a model of another family, its answer verbatim, and an analysis. One case, no baseline, memory on |
