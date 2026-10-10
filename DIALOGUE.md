@@ -313,6 +313,6 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   3. **a process that models itself:** can reflect on being a process, and can be wrong about itself. A person, perhaps a model. Formal only in part (the anchor; "the view from inside" is still on the "Not yet formal" list).
   4. **this particular process:** what it does and what it is made of. A kidney filters, a brain thinks. Not covered by the theory.
 
-  The reflection "I am a process" is something a brain does (layer 3 or 4), but what it says is true at layer 1. The kidney and the author share layer 1, and differ from layer 2 on, which is the point of the earlier entry.
+  The reflection "I am a process" is something a brain does (layer 3 or 4), but what it says is true at layer 1. The kidney and the author share layer 1. How far a kidney learns (layer 2) is unclear: it regulates, but whether it keeps changes in the theory's sense is not checked. They clearly differ at layers 3 and 4, which is the point of the earlier entry.
 - **Still open:** the author's view on these three proposals, and on the layers.
 - **What would change it:** a mapping showing that brains meet the premises in the way the theory assumes would make the brain a shown domain rather than an inspiration.
