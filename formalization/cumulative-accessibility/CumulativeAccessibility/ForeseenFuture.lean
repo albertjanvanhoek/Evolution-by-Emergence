@@ -37,7 +37,10 @@ system can foresee, nor how far.  That is set by its capacity, and is a matter
 of fact for each system.  Payoffs are summed without discounting.  With
 discounting a foreseen future still counts, but less; how much the future
 should weigh is not settled here.  And a prediction can be wrong: foresight is
-a model too.
+a model too.  The results take the predicted payoffs as given.  That the
+future gets any weight at all is itself a value: critics in the step-4 search
+(entry D25 of `DIALOGUE.md`) found that it cannot be derived from foresight
+alone, so `WHAT_AN_AI_IS.md` states it as the condition of C0.
 -/
 
 /-- Predicted payoff of each action at each future step. -/

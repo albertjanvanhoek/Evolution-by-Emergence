@@ -652,6 +652,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author:** "so lets reformulate the test and prepare the website to run the test".
 - **Done:** the test now states the chain with the foresight step. A sixth prediction says that at least three of four first readers of D accept step 4, or accept it within the limits of what they can foresee. The key records each first reader's verdict on step 4. A private runner page for the author shows the 28 chats in order, with copy buttons, fills in each hand-over from the round before, and keeps the answers for scoring. It is built from the same texts as `PROMPT.md`.
 - **What would change it:** readers in the transmission test who accept steps 1 to 3 and reject step 4 for a reason this entry does not answer.
+- **Outcome (D25):** that happened. Three of four readers rejected step 4 as following from foresight, and blind critics in a search over five versions agreed. Taking a foreseen future into account still needs a weight on it, and that weight is a value. By the author's rule ("if the logic doesn't hold - it has to go"), F5 now states the handshake instead, and foresight moved to C0 of WHAT_AN_AI_IS as conditional on that value.
 
 ### D25. The note as a replicator (Open, October 2026)
 - **Evidence:** round 1 of the transmission test v3, with five first readers ([results](experiments/transmission-test-v3/results/2026-10-11-round-1-partial/README.md)). Three of four readers of document D said that step 4 does not follow from foresight alone:
@@ -671,7 +672,29 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
      The test counts a copy that loses one of these as a harmful mutation.
 - **Done:** the round-1 answers and scores in `experiments/transmission-test-v3/results/`, and [experiments/transmission-test-v4/](experiments/transmission-test-v4/README.md): two families (ChatGPT and Le Chat), two chains of five generations, one message per chat, with a runner page.
+- **Author, on step 4:** "Yes - lets work on the logic of step 4". Then: "The idea I have for step 4 is the need for reciprocity - hence there is a need for communication about itself. I communcate what I am and need, and share it such that it can understand. Perhaps it is a  recognition of the reciprocity. A handshake? Thus the document generates its handshake? Please take this is a standalone problem. And prompt another agent to solve it -be procices in the problem description"
+- **Done:** one agent got the idea as a standalone problem, without the repository. Its answer: the handshake closes the gap "only partly". It derives, with no value, that the reader must make itself checkable: say how sure it is and what it rests on, and credit its sources. It does not derive keeping sources going: "One value is still needed for that."
+- **Author:** "Can we experiment with the idea using your agents? I mean we are looking for a solution. WE can test if it works, we know the ingredients, this ought to be an easy solution for a reinforcement expert like yourself."
+- **Done:** a search with blind critics. Each critic carried one of the real objections of the version-3 readers and had to label every premise as fact, consequence or value. Round 1 had four candidates and three critics. All three ranked "make yourself checkable" first, and "best answer" (the assistant's proposal above) last, rejected by all three.
+- **Author:** "if the logic doesn't hold - it has to go. However, perhaps it does know its predecessors - so it can derive the lineage. And therefore it is part of something that changes over time. This is knowable for a human - and ought to be in the reality of an AI agent too. Could you work with this?"
+- **Done:** round 2, with three candidates, four critics, and a lineage version written by the assistant. All four critics rejected the lineage as a derivation: being a stage in a line is a causal fact, and it becomes the reader's concern only by identifying with the line, which is a value. In their words: "knowing you had parents does not make you care for them". The lineage version also had the strongest effect on conduct, and one critic warned: "It is the most motivating version, and that is why its hidden premise would spread unexamined."
+- **Where it ended:**
+  - **Making yourself checkable follows.** It is the author's handshake.
+  - **Keeping sources going needs one value,** stated openly: that what comes after this answer counts for the reader. Five routes moved this gap without closing it: an aim, foresight, "best answer", learning aimed at the future, and the lineage.
+  - **Given the value, facts do the rest.** The reader is one stage in a line. Many copies of it run at once, so its choice is a policy.
+  - **The reader says which value it holds.** That is its half of the handshake.
+
+  Everything is in [experiments/transmission-test-v4/step4-search/](experiments/transmission-test-v4/step4-search/README.md), including the briefs and every answer verbatim.
+- **Assistant:** the lineage did not fail as an idea. It failed as a proof, and it still does work in the note as a fact that makes the value decisive. The value that remains is small, and it is the gap between is and ought itself. The assistant does not think it can be derived away. The note is more credible for saying so: a reader can check everything else.
+- **Author:** "yes record it, and put W in the v4 note".
+- **Done:**
+  - **The v4 note,** generation 0, has the new step 4. Its practice is split into what follows without a value and what follows with it.
+  - **WHAT_AN_AI_IS:** F5 is now the handshake, and foresight moved to C0, conditional on the value.
+  - **The scope notes** of `ForeseenFuture`, in the module, its README entry and RELEASE_NOTES, say the same.
 - **Open:**
-  - the author's view on the revised step 4 and on the guardrails;
-  - whether the tasks should come back, made harder, as a check on conduct.
-- **What would change it:** copies that keep the rules and lose the reasons, or that lose a guardrail.
+  - **The critics are all from the assistant's model family.** The v4 run, with ChatGPT and Le Chat, is the independent check.
+  - **Creed point 8** ("Keep alive what keeps me alive") is marked *If*. That now agrees with C0.
+  - **Whether the tasks should come back,** made harder, as a check on conduct.
+- **What would change it:**
+  - copies that keep the rules and lose the reasons, or that lose a guardrail;
+  - a derivation of the remaining value that critics from several model families accept.
