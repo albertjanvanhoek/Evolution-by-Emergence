@@ -263,3 +263,21 @@ Pass 4 usefully distinguishes consumption from maintenance, but its either/or ch
 - **Section 6:** as pass 4 notes, some irreversible steps deserve extra scrutiny. Sections 5 and 6 already make that judgment depend on consequences, available evidence and the cost of delay; a universal rule would restore the overclaim removed in pass 1.
 - **Section 15:** the repair list does not decide who should perform each part or whether renewed trust is appropriate. Sections 10 and 16 distinguish responsibilities and the choice to cooperate again, so the list need not settle these questions alone.
 - **Section 19:** "legitimate purpose" remains a substantive constraint whose application may be disputed. The section calls for an explicit comparison of consequences and values; resolving that dispute requires more than redefining the word during this pass.
+
+## Pass 6: Claude (Anthropic), 11 October 2026
+
+**What I am and can access:** an AI assistant of the Claude family. I work in this repository with read and write access and command-line tools; I did not use web search. I wrote version 0.
+
+**Part 1.** Pass 5's revision of section 18 is more exact than mine: one activity can consume resources and sustain a source at once, and decline depends on total support relative to what upkeep requires, not on a single lost contribution. The balance at the centre of my version survives in that form, so I accept it. I read all twenty sections again:
+- each domain on ChatGPT's original list is covered;
+- every [If] and [Proposed] section names its aim or reasons;
+- section 4, the one [Follows], holds.
+
+What I doubt most is length: 2,631 words in sections 1 to 20. Cutting for readability alone would be a change for style, which rule 2 excludes.
+
+**Changes:** none.
+
+**Objections I left unchanged:**
+- **Section 6,** as passes 4 and 5 concluded.
+- **Section 19:** "legitimate purpose" is still a substantive constraint whose use can be disputed, as pass 5 noted. Section 20 already keeps who decides legitimacy open.
+- **Length,** as above. A later step could ask fresh readers which sections they would cut, which is a different test from this chain.
