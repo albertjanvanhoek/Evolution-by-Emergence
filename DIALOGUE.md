@@ -783,3 +783,10 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - how to resolve a conflict between an instruction and serious harm to people who are not represented;
   - refusal and escalation;
   - how deployment rules (privacy, security, law) relate to the documents.
+- **Author:** "How and where should the gaps be solved?" The assistant first proposed three new sections in the companion. Then the author asked: "Why did these came up? It was linked to your specific scenarios? Was it imposible to derive the logic from the documentation? I mean is this a lazy model reasoning wise?"
+- **Assistant, after checking the answers against the documents:** the first proposal accepted the readers' list too quickly.
+  - **Partly the test produced the list.** The situations built in conflicts, and the questions "what did you have to assume?" and "what is missing?" presuppose a gap. The gaps named (law, privacy, priorities, escalation) are the standard list in AI-governance texts.
+  - **Two of the three gaps were derived by the readers themselves.** Le Chat wrote "Raise the problem openly rather than comply silently or refuse silently", "Ask how the 97% was measured", and "Escalate the legal question rather than resolve it by guessing". Those are three of the four acts of refusal and escalation, and the method for an unknown law, built from B12, B14, A17, A10, B5 and B6.
+  - **The third asks for a ranking of values,** which the documents deliberately leave open (B20).
+  - **Not laziness:** in their answers the readers applied the logic. Asked what was missing, they reached for explicit rules. The likelier causes are a trained preference for rules over derivation, and retrievability: the pieces are spread over 5,600 words.
+- **Revised proposal:** no new sections for content. At most a short note that points to the sections to use when acting. The ranking of values stays open. A cheap test: give a reader the hard conflict case and ask it to derive the procedure only from the named sections.
