@@ -754,3 +754,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Done:** [experiments/transmission-test-v5/chain-3/](experiments/transmission-test-v5/chain-3/README.md).
   - **Version 0:** "What an intelligence's activity does", with 20 labelled sections across ChatGPT's seven domains, written by the assistant. The value is stated separately (19).
   - **The chain:** 10 passes, and ChatGPT goes first.
+- **Run:** chain 3 settled after 9 passes; passes 8 and 9 changed nothing ([results](experiments/transmission-test-v5/chain-3/README.md)).
+  - **Pass 1 found the main fault in version 0:** mechanisms stated as guarantees. Later passes kept the mechanisms and dropped the guarantees.
+  - **Pass 7 added the largest new point:** activity shapes which evidence becomes visible, so an absence of reported errors need not mean an absence of errors.
+  - **No reversals.** The document grew from 2,043 to 2,836 words.
+  - **Both readers ended on the same open question:** whether fresh readers will use these distinctions when deciding.
+- **Author:** "ChatGPT did its pass, with no changes - the chain stops. Please prepare a test - and an interface I can use for copy-pasting".
