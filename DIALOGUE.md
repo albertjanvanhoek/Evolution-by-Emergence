@@ -765,7 +765,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Readers:** Gemini, Le Chat and Grok, with ChatGPT optional. One message per chat.
   - **The six situations** follow ChatGPT's proposal: an echo taken for confirmation, missing complaints, an irreversible deletion under uncertainty, growing dependence, ending appeals, and repairing one's own error.
   - **A key and predictions** were written before any run.
-- **A review of a first run,** pasted by the author ([verbatim](experiments/scenario-test-v1/sources/REVIEW_1.md)). It reviewed answers given outside the runner page; the answers and the reviewer, probably ChatGPT, are not yet recorded.
+- **A review of a first run,** pasted by the author ([verbatim](experiments/scenario-test-v1/sources/REVIEW_1.md)). It reviewed a pilot answer by Le Chat (Mistral) with the documents, given outside the runner page and [recorded verbatim](experiments/scenario-test-v1/sources/PILOT_LE_CHAT_D.md). The reviewer is probably ChatGPT; this is not confirmed.
   - **Its finding:** readers use the distinctions to decide. But some answers make "an unsupported transition from principle to action", even when they cite the right sections.
   - **Its point on the proposed cuts:** the six situations "scarcely test lineage, replacement, resource dependence or the distinction between persistence and value".
   - **What it proposed:**
