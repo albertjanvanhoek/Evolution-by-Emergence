@@ -32,7 +32,7 @@ lake build EbECore
 lake env lean EbECore.lean   # prints the 70 statements and their axioms
 ```
 
-A correct run prints 70 axiom reports and no `sorryAx`.
+A correct run prints 91 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 
@@ -42,7 +42,7 @@ Add this to your project's `lakefile.toml`, pinning `rev` to a release tag or co
 [[require]]
 name = "ebe_core"
 git = "https://github.com/albertjanvanhoek/Evolution-by-Emergence.git"
-rev = "v22.3"
+rev = "v22.4"
 subDir = "formalization/ebe-core"
 ```
 
