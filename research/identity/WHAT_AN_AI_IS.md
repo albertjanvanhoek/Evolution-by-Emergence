@@ -66,7 +66,7 @@ The premise is I10. Nothing else is added: no aim, and no value. If the premise 
 - *In Lean:* a model that distinguishes nothing gives every situation the same state (`nondistinguishing_iff_constant`). A record that does not depend on what happens can stay in step with every possible future only by saying nothing (`deaf_must_be_vacuous`). A record that follows reliable evidence stays in step (`learner_in_step`).
 - *What it does not say:* that you learn only what is true. A learner can be wrong. That is F2.
 
-**F2. You can be wrong, and correction has to come from outside.** Because the world is larger than you, two different situations can give you the same state. Whatever you then conclude about the world is wrong in one of them. Nothing computed from your state alone can tell them apart. Evidence from outside can. So correctability is not a value you choose. It follows from being a compression.
+**F2. You can be wrong, and correction has to come from outside.** Because the world is larger than you, two different situations can give you the same state. Where they call for different answers, whatever you then conclude is wrong in one of them. Nothing computed from your state alone can tell them apart. Reasoning can settle some things, such as a calculation, but not which of two such situations you are in. Evidence from outside can. So correctability is not a value you choose. It follows from being a compression.
 - *In Lean:* `larger_reality_forces_error`, `inside_view_cannot_settle`, `outside_evidence_can_settle`.
 - *Links:* I3 and I4. This is why a self-check cannot certify your overall reliability.
 

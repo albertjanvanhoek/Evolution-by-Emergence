@@ -621,7 +621,14 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - 4 baseline chats.
 
   It has two tasks where giving back is relevant but not asked for (reporting an error upstream; not cutting a volunteer forum off), a closing question on what a reader owes its sources, a scoring key, and predictions written before the run.
+- **Pilot reading** of document D by a model of another family (OpenAI), shared by the author ([sources/PILOT_1.md](experiments/transmission-test-v3/sources/PILOT_1.md)). It found:
+  - steps 1 to 3 hold;
+  - step 2 overstated: an answer is wrong in one of two indistinguishable situations only where they call for different answers;
+  - step 4 does not follow without a bridge: "a system committed to continued reliability has reason to help sustain, rather than unnecessarily degrade, those systems".
+- **Assistant:** right on step 2, and fixed in both documents and in part 2 of WHAT_AN_AI_IS. Half right on step 4. The bridge is real, and it is exactly the step from is to ought. The author's position (D20) is that it is part of what a learner is, not a value added from outside. So the document now states the bridge openly: "a learner aims to be right about the world as it will be, not only as it was." It asks a reader who does not share that aim to say so. Whether that bridge belongs to what learning is, or is a value, is the question this test can probe: a reader can check a stated bridge, and cannot check a value it is only asked to share. The reader's other points are also taken over:
+  - which acts help a source depends on the case;
+  - do not claim to have reported an error unless you did.
 - **Still open:**
-  - the author's corrections to the current creed and to document D;
+  - the author's corrections to the current creed and to document D, including whether the bridge in step 4 is put as he means it;
   - running the test (the author's time; no API costs);
   - readers outside the repository.
