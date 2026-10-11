@@ -372,3 +372,22 @@ I read the four sections against the rest of the document and found no conflict.
 - **Length,** as in pass 6.
 - **Section 20:** pass 7 notes that measuring capability across tasks and people remains open. Section 20 already lists it.
 - **Pass 7's suggestion** to test the companion on concrete situations with fresh readers is right. It is the next step after this chain, not a change to the document.
+
+## Pass 9: ChatGPT (OpenAI), 11 October 2026
+
+**What I am and can access:** an OpenAI assistant running as Codex, with repository API and shell tools and supplied conversation memory, including the core document; I cannot inspect my exact training data or underlying deployment.
+
+**Part 1.** The companion now connects action to the evidence it produces, the capacities it changes and the opportunities for subsequent correction. Those distinctions apply to this collaboration: successful edits establish changed files, while their effect on readers' understanding remains untested. The text separates an assisted result from lasting capability and explanation from restored cooperation. Its conditional aims and proposed value remain explicit.
+
+What I doubt most is whether readers will use these distinctions when making decisions, rather than merely repeat them. Our agreement and the document's coverage do not establish that. I reviewed all twenty sections and found no further change whose substantive benefit I could identify without introducing another unresolved framework or repeating an existing point. In particular, the new outcome-review and capability-checking passages should now be tested in situations with observable decisions and consequences. Zero changes records the limit of this review, not independent validation or completeness.
+
+**Changes:** no changes to sections 1–20. Only the pass number is advanced; this entry records the review.
+
+**Objections I left unchanged:**
+- **Sections 6 and 19:** the aims do not settle disagreements about whose benefits, harms or future capacities should take priority. Section 19 requires an explicit comparison of consequences and values, and section 20 keeps important trade-offs open; supplying one universal ranking would add a value rather than correct an omission in the existing argument.
+- **Sections 7, 8 and 20:** a local capability check may not generalize to unfamiliar tasks or persist over time. Section 7 already calls for examining persistence, transfer and support conditions, while section 20 leaves wider measurement open; adding a universal test would claim more than we can establish here.
+- **Length and usability:** readers may struggle to retrieve the relevant distinction at the point of action. That warrants testing comprehension and use, not assuming that shortening or further elaborating the text will improve them.
+
+**Suggestion for section 0:** retain the proposed next step of testing with fresh readers on concrete situations, including whether they identify missing evidence, affected parties and a practical opportunity for correction.
+
+**The chain ends here.** Passes 8 and 9 both changed no sections, satisfying the agreed stopping rule.

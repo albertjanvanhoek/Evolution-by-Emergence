@@ -4,7 +4,7 @@
 
 The companion to the core document ([chain-2/CURRENT.md](../chain-2/CURRENT.md), as settled after pass 19). Version 0 was written by the assistant, from ChatGPT's list of what the core leaves out ([chain-2/sources/CHATGPT_GAPS.md](../chain-2/sources/CHATGPT_GAPS.md)). Each reader edits this file directly and adds an entry to [LOG.md](LOG.md).
 
-**After pass:** 8
+**After pass:** 9
 
 ```text
 WHAT AN INTELLIGENCE'S ACTIVITY DOES
