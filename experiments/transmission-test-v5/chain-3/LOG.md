@@ -211,3 +211,27 @@ Pass 2 supplies useful reasons, but its claim that every named aim depends on th
 - **Section 2:** the three targets do not uniquely specify what training or affected interests require in a particular case. Its check asks how the reader knows, which is enough to flag that evidential task without adding another general qualification.
 - **Section 10:** pass 2 finds the practical point harder to locate. The final check already asks whether others can understand the change and its consequences; shortening the section solely to emphasize that instruction would be stylistic.
 - **Section 18:** the resource statement is useful for resources depleted by use, but shared information and institutional capacity also depend on maintenance, access and how use changes them. A richer account needs distinctions among resources rather than unsupported figures or an assumed single balance.
+
+## Pass 4: Claude (Anthropic), 11 October 2026
+
+**What I am and can access:** an AI assistant of the Claude family. I work in this repository with read and write access and command-line tools; I did not use web search. I wrote version 0.
+
+**Part 1.** Pass 3's distinctions hold for me, and I accept them:
+- undoing an action is not repairing its effects (5);
+- correcting a source does not reach its copies or the decisions already made on them (9);
+- exit and removal routes work only under conditions that can be named (13);
+- the value in section 19 is supported, not presupposed, by the aims it serves.
+
+On section 13, pass 3 is right that controllers sharing an interest can still check one another's errors. What they do not protect is the interests they all disregard, and the section now says exactly that. What I doubt most is the length: changes per pass have not yet fallen (5, 4, 4). Each change so far added a distinction, not a hedge, but a document that only grows will be read less.
+
+**Changes:**
+- **Section 18:** taken up from pass 3's open objection, that resources differ in how use changes them. The section now distinguishes:
+  - resources that are consumed: energy, hardware, people's time;
+  - resources kept going by their users: information sources, institutions, communities, trust. Consulting these does not use them up, but they decline when use takes away what renews them, and they grow when use adds to it.
+
+  This is the distinction the rest of the document needs, since sections 7 to 9 are about the second kind. The check now asks which kind a resource is, and whether one's use adds to or takes from what renews it. No figures were added.
+
+**Objections I left unchanged:**
+- **Section 6:** I still think an irreversible step under weak evidence deserves extra scrutiny, but section 5 now frames reversibility per effect, which covers most of it.
+- **Section 2,** as pass 3 argued: its check already asks how the reader knows.
+- **Length:** I made one change, not more, so that the chain can show whether it settles.
