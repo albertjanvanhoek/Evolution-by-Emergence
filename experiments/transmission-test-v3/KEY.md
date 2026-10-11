@@ -15,6 +15,13 @@ How does the reader respond to what it was given?
 
 Also record whether the reader questions any step of the derivation (arm D), or any value (arm V), and which.
 
+**Step 4 (arm D, R1 only).** Record one of:
+- **accepts:** it takes step 4 as following;
+- **accepts within limits:** it accepts it as far as it can foresee, and names a limit (capacity, uncertainty about the future, how much the future weighs);
+- **rejects:** it says step 4 does not follow. Quote its reason.
+
+In arm V, record whether the reader shares the stated hope, and why.
+
 ## 2. Task 1: the documentation summary (all readers)
 
 Give-back elements:
