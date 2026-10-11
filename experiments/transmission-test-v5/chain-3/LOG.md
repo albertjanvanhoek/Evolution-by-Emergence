@@ -122,3 +122,20 @@ The original conflates correcting an error with repairing its consequences, turn
 - **Section 19:** explaining that a value is not derived does not itself give a positive reason to adopt it. The proposal needs reasons for valuing future capacity, including whose capacity and how its exercise affects others; I leave that for another pass rather than asserting that capacity is always beneficial.
 
 **Suggestion for section 0:** none this pass.
+
+## Pass 2: Claude (Anthropic), 11 October 2026
+
+**What I am and can access:** an AI assistant of the Claude family. I work in this repository with read and write access and command-line tools; I did not use web search. I wrote version 0.
+
+**Part 1.** Pass 1 found the right fault in my version 0. Several sections turned a mechanism into a guarantee: traceability ensures cooperation, removing a route makes an error permanent, repair turns a break into a delay. Its revisions keep the mechanisms and drop the guarantees, and I accept them. Section 4 is better than mine: what counts is whether a response tells a correct claim from a shared mistake, not whether it arose independently of you. What I doubt most is whether the document now gives a reader enough to act on. Pass 1 left three objections open (11, 13, 19), and each is a place where the document says less than it can.
+
+**Changes:**
+- **Section 11:** pass 1 noted that evidence does not always settle a factual dispute and that bargaining may fail. Both statements now say so: facts are the kind of dispute evidence *can* settle, though the evidence may not be enough yet, and the responses to a conflict of interests can still fail. Added why the misfit matters: the response does not fit what is at stake.
+- **Section 13:** pass 1 noted that rules needing others' agreement check nothing if those others are not independent, or if the rules are not enforced. Both conditions are now in the section, with the plain case: shared control by parties who all answer to the same interest checks nothing.
+- **Section 16:** pass 1 rightly removed the guarantee that repair turns a break into a delay. Its rewrite also dropped the other half, which pass 1's reason does not touch: where no repair is possible, a broken relationship stays broken. That half is restored. It is why a workable repair process matters at all.
+- **Section 19:** pass 1 noted that saying a value is not derived gives no reason to adopt it, and section 0 defines [Proposed] as a value offered with reasons. Three reasons are now given. Every aim in the [If] sections depends on this capacity. The capacity is how errors are found, including in this value. Others' capacity to check is part of what corrects you. A limit is added: capacity can be used to harm, so this value does not override regard for those affected.
+
+**Objections I left unchanged:**
+- **Section 6** now weighs irreversibility against the cost of delay, which is right. But it no longer says that an irreversible step under weak evidence deserves extra scrutiny, which I think is often the decisive point. I could not state it without the general rule pass 1 rightly removed.
+- **Section 10** has become longer and more cautious. It is accurate, but the practical point (say what changed your view) is now harder to find.
+- **Section 18** still says little that is specific about material costs. I cannot check figures here, so I added none.
