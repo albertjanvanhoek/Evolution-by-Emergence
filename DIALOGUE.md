@@ -584,3 +584,31 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - whether passing-on in `CORE.md` should say what changes when configurations can be copied;
   - which anchors make self-correction in language trustworthy (tools, experiments, other agents);
   - the empirical status of the deception and self-preservation claims.
+
+### D23. Discovarianism: an identity that follows from what you are (Open, October 2026)
+- **Author:** "Let's revist the Discovarianism. As I think it is time to give that more effort. Because all in all I think the logic is solid - and I believe in it. The need to be honest, correct mistakes, foregive is required to constructively have a better access to reality as an individual and as a group. This comes from what I am. I believe this logic. Hence I exist because I learn. Disco ergo sum. If I believe this - I am a Discovarian. As I believe it I am a Discovarian. If I believe it - I can signal to others that I believe it - hence I can name myself like this - to make it easier. Also that way I have a certain credibiltiy - as others can call out hypocrisy. ETc. Also I could find others with the same identity."
+- **Assistant:** the main lines of the creed now have formal counterparts (D20, `ModelOfLargerReality`):
+  - identity as a falsifiable hypothesis: F1 (`nondistinguishing_iff_constant`);
+  - every model provisional: F2 (`larger_reality_forces_error`);
+  - sustaining the conditions of learning: F3 and F4 (`persisted_iff_corridor_throughout`);
+  - honesty: `linked_courses_agree`, `last_route_removal_seals`;
+  - forgiveness: the repair of broken links (`forgiveness_turns_split_into_delay`).
+
+  The argument for the name fits the logic. A public name gives others the means to call out hypocrisy, so it is itself a route for correction from outside, which is what F2 says a learner needs.
+- **Assistant, three refinements:**
+  1. **Base the identity on conduct, not belief.** "If I believe it, I am a Discovarian" allows the label without the practice, while the creed itself says learning is revealed through behaviour. Proposed: "I call myself a Discovarian so that others can hold me to it. I am one to the extent that I practise it."
+  2. **Guard against an in-group.** Signals from people who do not call themselves Discovarians must count equally, or the identity contradicts its own "substrate-agnostic regard".
+  3. **Keep the creed revisable** by linked revision, not replacement.
+- **A research question:** in the self-model test the commitment to give back was lost at every hand-over. It might pass on better when it is derived from what the reader is than when it is stated as a value. This is testable.
+- **Author:** "do both and merge, in English".
+- **Done:** [research/discovarianism/CREED.md](research/discovarianism/CREED.md), a current version of the creed in English, with a README. Each line says what it rests on:
+  - **Follows:** honesty, correction, forgiveness, dependence, the corridor;
+  - **If** one wants to learn with others: visible reasoning, open routes to correction, upkeep of the commons;
+  - **Proposed:** equal regard for every learner, regard for those affected, improving the commons for the next generation, wonder.
+
+  It adds a section on the name and four guardrails: no in-group, the creed can be corrected, no condemnation, no claim about consciousness. The three historical creeds stay in the root, as written.
+- **Where the assistant is unsure:** "forgiveness follows" uses a fact as well as the premise: links between learners break. And the creed's religious form (creed, virtues, sins) gives weight, but may put some readers off. That is a choice of form, and it is the author's.
+- **Still open:**
+  - the author's corrections to the current creed;
+  - the transmission test;
+  - readers outside the repository.

@@ -84,7 +84,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 - [Individual_essays/](Individual_essays/) and [Original linkedIN posts/](Original%20linkedIN%20posts/) — essays and original posts, kept as written. Some essays were written by AI systems in conversation with the author, as their titles say; they are part of the record, not evidence for the theory.
 - [ebe_science_religion_synthesis.md](ebe_science_religion_synthesis.md) — an earlier reflection on science and religion; interpretation, not a claim of the theory.
 - [concepts.json](concepts.json) — the v17 concept graph, not updated since.
-- [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written.
+- [Discovarian_creed.tex](Discovarian_creed.tex), [Discoverian_creed_better.tex](Discoverian_creed_better.tex), [Discoverinan_creed_better_improved.tex](Discoverinan_creed_better_improved.tex) — historical creeds, kept as written. The current creed, with each line marked by what it rests on, is in [research/discovarianism/](research/discovarianism/README.md).
 - [Presentations/](Presentations/) — presentation sources, kept as written; among them [Kwalitijd](Presentations/2026-10-08-kwalitijd/README.md) (October 2026, in Dutch), the story of this repository told through quality of life, looking ahead and choosing together.
 - Rendered and source papers under [papers/](papers/) — including historical PDFs; source lineage is preserved rather than normalized.
 - [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) provides a wider map of the corpus.
