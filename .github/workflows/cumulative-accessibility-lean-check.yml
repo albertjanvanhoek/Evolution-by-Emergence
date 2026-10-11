@@ -74,6 +74,7 @@ jobs:
             CumulativeAccessibility.ExistenceLemmas \
             CumulativeAccessibility.PowerLayers \
             CumulativeAccessibility.CrossScaleLedger \
+            CumulativeAccessibility.ModelOfLargerReality \
             CumulativeAccessibility.QuantitativeAccessibility \
             CumulativeAccessibility.RetainedOrganizationCore \
             CumulativeAccessibility.TransitionAccessibility \
@@ -134,6 +135,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExistenceLemmas.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PowerLayers.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CrossScaleLedger.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ModelOfLargerReality.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/QuantitativeAccessibility.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/RetainedOrganizationCore.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/TransitionAccessibility.lean
