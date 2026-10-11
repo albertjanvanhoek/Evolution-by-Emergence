@@ -10,7 +10,7 @@ itself; so it stands in a relation to what is outside it; what is outside it
 includes its own substrate, because the compression sits in a substrate; so it
 depends on the outside; and the rest follows, including forced free will.  In
 the author's words: "het model is een compressie van een werkelijkheid buiten
-zichzelf - dus is er een relatie met dat wat buiten hetzelf is - per definitie
+zichzelf - dus is ereen relatie met dat wat buiten hetzelf is - per definitie
 is dat wat buiten hetzelf is ook zijn eigen substraat".
 
 This module states the steps of that chain in their simplest form.  A model is
@@ -38,7 +38,7 @@ a map `c : R → M` from states of reality to model states.
    corridor (`persisted_iff_corridor_throughout`).  The constraint comes from
    reality, not from the chooser's preferences: a chooser that discounts the
    future may leave the corridor, and then it does not persist.  In the
-   author's words: "je keuzes [zijn] uiteindelijk geconstrained bij de
+   author's words: "je keuzes uiteindelijk geconstrained zijn bij de
    werkelijkheid en de werkelijkheid is precies als het aankomt op het
    onderhouden van jezelf en je afhankelijkheden."  Models that share a
    substrate share that corridor: what ends one ends all
