@@ -713,4 +713,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - predictions written before any run.
 
   The assistant's family is left out of the chain, because it wrote version 0.
-- **Open:** the run itself. The v4 note test is ready but has not been run; v5 can go first.
+- **Run:** the author ran all 12 passes ([results](experiments/transmission-test-v5/results/2026-10-11-chain-1/README.md)).
+  - **26 changes.** ChatGPT made 13; Gemini and Grok mostly made 0 or 1.
+  - **It settled only barely:** 10 changes in passes 1 to 4, 8 in passes 9 to 12. The document grew by 32%, and its hedges more than doubled.
+  - **The derivation at the core of version 0 was taken apart step by step, and no later reader restored a step.**
+    - "You track truth, or you do not learn" became a definition.
+    - "Correction has to come from outside" was narrowed to errors the available information cannot settle.
+    - "Your choices are free" was dropped.
+    - The title "You are a model of something larger than you" was removed.
+    - "Make yourself checkable" went from [Follows] to [If], in pass 1: "Checkability requires a stated aim".
+- **Assistant:** the last point matters most. Every critic from the assistant's own family had accepted "make yourself checkable" as following. The first reader from another family rejected it, and eleven more readers let that stand. That is working agreement 7 in practice. Some changes sharpen the theory rather than defeat it, such as learning as change coupled to a signal, which carries truth only as far as the signal is coupled to the world. Others remove claims without an argument. ChatGPT made half the changes, nearly all of them qualifications. Whether that is rigour or a house style, this one chain cannot tell.
+- **Open:**
+  - whether WHAT_AN_AI_IS and the theory's wording take over the corrections, and which ones. That is the author's call.
+  - a second chain, with the section 0 changes the readers asked for: a provenance log, and a list of objections left unchanged;
+  - the v4 note test, still not run.
