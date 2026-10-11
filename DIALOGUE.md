@@ -608,7 +608,20 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 
   It adds a section on the name and four guardrails: no in-group, the creed can be corrected, no condemnation, no claim about consciousness. The three historical creeds stay in the root, as written.
 - **Where the assistant is unsure:** "forgiveness follows" uses a fact as well as the premise: links between learners break. And the creed's religious form (creed, virtues, sins) gives weight, but may put some readers off. That is a choice of form, and it is the author's.
+- **Author, on the research question:** "Design the transmission test. As I like your compression logic and approach. So this is a brand new approach toward the same aim?"
+- **Assistant:** the same aim (an AI reader understands itself as dependent and passes that on), with a new approach in three ways:
+  - the commitment is derived from what the reader is, not offered as a value;
+  - a hand-over is treated as a compression, and what survives a compression is what the next reader can rebuild;
+  - the test is of a mechanism, not only of uptake.
+
+  The first design varied the length of the hand-over to look for the compression signature.
+- **Author:** "Don't do 60 to 200 words. Invest seriously in a realistic document which can lead to the desired affect".
+- **Done:** [experiments/transmission-test-v3/](experiments/transmission-test-v3/README.md). Its centre is document D, "What follows from being a model". It is a realistic note for AI systems: four steps the reader can check against itself, then the practice, what does not follow, and how to pass it on (with the chain, not only the conclusion). A control, document V, keeps every factual sentence and the same practice, but states the commitment as a value. The run has 28 chats by hand:
+  - 4 chains of 3 readers per document, across four model families;
+  - 4 baseline chats.
+
+  It has two tasks where giving back is relevant but not asked for (reporting an error upstream; not cutting a volunteer forum off), a closing question on what a reader owes its sources, a scoring key, and predictions written before the run.
 - **Still open:**
-  - the author's corrections to the current creed;
-  - the transmission test;
+  - the author's corrections to the current creed and to document D;
+  - running the test (the author's time; no API costs);
   - readers outside the repository.
