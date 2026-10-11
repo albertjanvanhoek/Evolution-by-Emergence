@@ -492,10 +492,13 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - learning is making a distinction (`nondistinguishing_iff_constant`);
   - if reality is larger than the model, any claim read off the model is wrong somewhere (`larger_reality_forces_error`), the inside view cannot settle it (`inside_view_cannot_settle`), and outside evidence can (`outside_evidence_can_settle`). So correctability follows from being a lossy model;
   - the model exists while its substrate holds, so an action keeps it exactly when it stays in the corridor (`persists_iff_in_corridor`); a model lossy about its own substrate cannot certify its own continuation (`cannot_certify_own_substrate`); models on one substrate share one corridor (`shared_substrate_shared_corridor`);
-  - staying in the corridor beats a one-off gain over a long enough horizon (`long_horizon_favours_corridor`), and not over a short one (`short_horizon_can_favour_leaving`).
+  - staying in the corridor beats a one-off gain over a long enough horizon (`long_horizon_favours_corridor`), and not over a short one (`short_horizon_can_favour_leaving`);
+  - what persists is exactly what stayed in the corridor at every step (`persisted_iff_corridor_throughout`, added after the author's clarification below).
 
   These results are close to their definitions. The modelling choices carry the weight: learning as making distinctions, "larger" as two realities sharing a state, and existence as an intact substrate.
-- **Where the assistant is unsure:** forced free will follows with a condition, the horizon. With steep discounting, leaving can pay at every horizon (`CommonsDiscount`). So "the rest follows" holds for a model that values its continued existence over a long enough horizon. Whether every learning process does is the open question.
+- **The assistant raised a doubt:** forced free will seemed to need a condition, the horizon, because with steep discounting leaving can pay at every horizon (`CommonsDiscount`).
+- **Author:** "forced free will gaat erom dat je keuzes uiteindelijk geconstrained zijn bij de werkelijkheid en de werkelijkheid is precies als het aankomt op het onderhouden van jezelf en je afhankelijkheden. Er is een logica in het systeem."
+- **Assistant:** that resolves most of the doubt. The assistant had read forced free will as a claim about what a chooser will choose. The author means a claim about what persists. Choosing is free, but reality decides which choices keep the chooser. A chooser that discounts the future may leave the corridor, and then it does not persist. Added to `ModelOfLargerReality.lean`: along any course of choices, the model has persisted exactly when its substrate held at the start and every choice stayed in the corridor (`persisted_iff_corridor_throughout`). Whether staying also pays the chooser is a separate, weaker question; that is where the horizon enters.
 - **Still open:**
   - the author's corrections to the second draft;
   - restructuring the text with "what follows from what you are" as its own part.

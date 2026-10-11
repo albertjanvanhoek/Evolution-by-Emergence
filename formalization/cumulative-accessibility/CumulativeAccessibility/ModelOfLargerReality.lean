@@ -32,14 +32,22 @@ a map `c : R → M` from states of reality to model states.
    (`persists_iff_in_corridor`).  If the model is also lossy about its own
    substrate, it cannot certify its own continued existence from inside
    (`cannot_certify_own_substrate`).
-4. **Forced free will.**  Every action can be chosen, but only those inside the
-   corridor keep the chooser.  Models that share a substrate share that
-   corridor: what ends one ends all (`shared_substrate_shared_corridor`).
-   Staying inside pays when the horizon is long enough: a gain `k > 0` per
-   step beats a one-off gain `G` that leaves the corridor over a horizon of
-   `G + 1` steps (`long_horizon_favours_corridor`).  Over a short horizon, leaving
-   can pay (`short_horizon_can_favour_leaving`).  The case with discounting is
-   `CommonsDiscount`.
+4. **Forced free will.**  Every action can be chosen, but reality decides which
+   choices keep the chooser.  Along any course of choices, the model has
+   persisted up to a time exactly when every choice before it stayed in the
+   corridor (`persisted_iff_corridor_throughout`).  The constraint comes from
+   reality, not from the chooser's preferences: a chooser that discounts the
+   future may leave the corridor, and then it does not persist.  In the
+   author's words: "je keuzes [zijn] uiteindelijk geconstrained bij de
+   werkelijkheid en de werkelijkheid is precies als het aankomt op het
+   onderhouden van jezelf en je afhankelijkheden."  Models that share a
+   substrate share that corridor: what ends one ends all
+   (`shared_substrate_shared_corridor`).
+   A separate and weaker question is when staying also pays the chooser.  A
+   gain `k > 0` per step beats a one-off gain `G` that leaves the corridor over
+   a horizon of `G + 1` steps (`long_horizon_favours_corridor`); over a short
+   horizon, leaving can pay (`short_horizon_can_favour_leaving`).  The case with
+   discounting is `CommonsDiscount`.
 5. `model_of_larger_reality_witness`: concrete instances.
 
 Scope.  These results are close to their definitions; they fix the shape of
@@ -52,7 +60,8 @@ premises:
 What the chain gives is conduct conditional on being a model and on the horizon:
 - truth-tracking and correctability, which follow from being a lossy model;
 - dependence on the outside, which follows from being embedded in it;
-- staying in the corridor, which follows over a long enough horizon.
+- that what persists has stayed in the corridor;
+- that staying also pays the chooser, but only over a long enough horizon.
 
 It does not say which substrate conditions matter, nor anything about values
 beyond persistence (D7).
@@ -149,6 +158,35 @@ theorem shared_substrate_shared_corridor {R A : Type} (E₁ E₂ : Embedded R A)
   unfold InCorridor
   rw [ha]
   exact hs _
+
+/-- The course of reality under a sequence of choices, starting from `r₀`. -/
+def course {R A : Type} (E : Embedded R A) (r₀ : R) (choice : Nat → A) : Nat → R
+  | 0 => r₀
+  | t + 1 => E.act (choice t) (course E r₀ choice t)
+
+/-- The model has persisted up to time `n`: its substrate held at every time up
+to `n`. -/
+def PersistedUpTo {R A : Type} (E : Embedded R A) (r₀ : R) (choice : Nat → A)
+    (n : Nat) : Prop :=
+  ∀ t, t ≤ n → E.substrate (course E r₀ choice t)
+
+/-- **Forced free will.**  Choices are free, but the model has persisted up to
+time `n` exactly when its substrate held at the start and every choice before
+`n` stayed in the corridor.  Reality enforces the corridor whatever the chooser
+prefers. -/
+theorem persisted_iff_corridor_throughout {R A : Type} (E : Embedded R A) (r₀ : R)
+    (choice : Nat → A) (n : Nat) :
+    PersistedUpTo E r₀ choice n ↔
+      E.substrate r₀ ∧ ∀ t, t < n → InCorridor E (course E r₀ choice t) (choice t) := by
+  constructor
+  · intro h
+    refine ⟨h 0 (Nat.zero_le _), ?_⟩
+    intro t ht
+    exact h (t + 1) (by omega)
+  · intro ⟨h0, hc⟩ t ht
+    cases t with
+    | zero => exact h0
+    | succ t => exact hc t (by omega)
 
 /-- **Forced free will, with its condition.**  Staying in the corridor yields
 `k` per step over a horizon of `n` steps, `n * k` in all; leaving yields `G`
