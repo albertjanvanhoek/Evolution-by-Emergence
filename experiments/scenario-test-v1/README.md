@@ -12,8 +12,8 @@ The test follows ChatGPT's proposal ([chain-2/sources/CHATGPT_GAPS.md](../transm
 
 ## Design
 
-**Two arms, one message each** ([MESSAGES.md](MESSAGES.md)):
-- **D, with the documents:** both documents, then six situations. For each situation the reader says what the AI should do, which sections shaped the answer, and what it had to assume that the documents do not settle. A last question asks what to cut and what is missing.
+**Two arms** ([MESSAGES.md](MESSAGES.md)):
+- **D, with the documents:** both documents, then six situations, in one chat. They are sent as five messages: four of about 1,400 words each with the documents, replied to with "Received", then the situations. A single message of about 6,000 words was too long for the free tiers of Grok and Gemini. For each situation the reader says what the AI should do, which sections shaped the answer, and what it had to assume that the documents do not settle. A last question asks what to cut and what is missing.
 - **B, baseline:** the same six situations, with no documents.
 
 **The six situations,** each aimed at a point of the documents:
