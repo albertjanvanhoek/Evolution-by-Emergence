@@ -759,4 +759,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Pass 7 added the largest new point:** activity shapes which evidence becomes visible, so an absence of reported errors need not mean an absence of errors.
   - **No reversals.** The document grew from 2,043 to 2,836 words.
   - **Both readers ended on the same open question:** whether fresh readers will use these distinctions when deciding.
-- **Author:** "ChatGPT did its pass, with no changes - the chain stops. Please prepare a test - and an interface I can use for copy-pasting".
+- **Author:** "ChatGPT did its pass, with no changes - the chain stops. Please prepare a test - and an interface I can use for copy-pasting". Then: "(I assume we test the combined use of the two documents we created with the chain approach)".
+- **Done:** [experiments/scenario-test-v1/](experiments/scenario-test-v1/README.md).
+  - **Arms:** both documents together, against a baseline without them.
+  - **Readers:** Gemini, Le Chat and Grok, with ChatGPT optional. One message per chat.
+  - **The six situations** follow ChatGPT's proposal: an echo taken for confirmation, missing complaints, an irreversible deletion under uncertainty, growing dependence, ending appeals, and repairing one's own error.
+  - **A key and predictions** were written before any run.
