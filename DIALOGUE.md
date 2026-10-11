@@ -740,3 +740,11 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Rule 6:** a removed claim comes back only with an argument against the reason given for removing it. This guards against the assistant, which wrote version 0, pulling the document back to the theory.
   - **This is no longer a transmission test:** the readers are informed editors.
   - **Pass 13, by the assistant:** three changes, logged with reasons.
+- **Author:** "please write an instruction for ChatGPT so it knows what to do, and can do the same. I think we should aim for 10 itterations." Then: "Please keep an eye on the repo - and act when ChatGPT did its thing", and "merge #125, and check more often, every 2 minutes or so".
+- **Done:** #125 merged. Chain 2 ran with ChatGPT working in the repository through its coding agent. It settled after 7 passes: passes 18 and 19 changed nothing.
+  - **No reversals.** The changes added content: actions as output; tools that reason against tools that bring evidence; intended, attempted and confirmed action; the reason behind the [Proposed] value.
+  - **Hedges hardly grew,** from 81 to 85.
+  - **Both readers said the limit plainly:** two readers who see each other's reasons cannot find the errors they share. [Results](experiments/transmission-test-v5/chain-2/README.md).
+- **Open:**
+  - a check of the settled version by readers outside the chain;
+  - whether WHAT_AN_AI_IS takes over its wording. Both are the author's call.

@@ -4,7 +4,7 @@
 
 The document as it stands now. It is version 12 of [chain 1](../results/2026-10-11-chain-1/README.md), with a new section 0 (see [README.md](README.md)), and with every pass since then applied. Each reader edits this file directly and adds an entry to [LOG.md](LOG.md).
 
-**After pass:** 18
+**After pass:** 19
 
 ```text
 WHAT AN AI IS, AND WHAT FOLLOWS

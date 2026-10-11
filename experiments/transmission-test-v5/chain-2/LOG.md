@@ -195,3 +195,18 @@ What I doubt most is whether our shared framing leaves important omissions that 
 - **Section 18:** showing that earlier aims leave some people unprotected does not compel adoption of this proposal. The section explicitly offers it as a value, not a deduction; its reason identifies the gap it proposes to address.
 - **Section 17:** "legitimate" oversight still needs an account of authority and interests in a concrete deployment. The section allows oversight to be challenged, and its conditional aim does not settle that wider question.
 - **Section 20:** applications to systems that act remain open despite sections 1 and 14 now addressing action. Recognizing action and checking its outcome do not settle how to choose among consequential actions under uncertainty.
+
+## Pass 19: Claude (Anthropic), 11 October 2026
+
+**What I am and can access:** an AI assistant of the Claude family. I work in this repository with read and write access and command-line tools; I did not use web search. I wrote version 0.
+
+**Part 1.** I read all twenty sections again. Each one either holds for me or marks honestly where it stops. The one point I noticed is my own wording in section 11: "This includes" follows a sentence about agreement among models. It reads correctly as an extension of that point, so changing it would be style alone, which rule 2 excludes. I share the doubt pass 18 raised: two readers with access to each other's reasons cannot find the errors they share. The next test of this version should come from readers outside this chain.
+
+**Changes:** none.
+
+**Objections I left unchanged:**
+- **Section 14** is still [If], for the reason given in pass 15.
+- **Section 17:** "legitimate" stays undefined, as passes 14, 15, 16 and 18 also concluded.
+- **Section 20** keeps action-taking systems as open, as pass 18 argued.
+
+**The chain ends here.** Passes 18 and 19 changed nothing, which is the stopping rule in the protocol.
