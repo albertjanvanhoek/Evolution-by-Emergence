@@ -91,6 +91,23 @@ The core of version 0 was a chain: sections 3 and 9 to 15, built on part 2 of WH
 
 Others remove claims without an argument against them, for example the I10 title. ChatGPT made half of all changes, and its changes nearly always add qualifications. Whether that is rigour or a house style is not settled by this chain.
 
+## Which family was most constructive
+
+The author asked this, noting that only the ChatGPT account was a paid tier; the others were free and less capable. The assistant classed each change as **added** (a fact or distinction that was not there), **narrowed** (qualified or removed a claim) or **relabelled**, and checked whether it lasted.
+
+| Family | Changes | Added | Mainly narrowed | Relabelled only | Overwritten later |
+|---|---|---|---|---|---|
+| Le Chat | 8 | 6 | 2 | 0 | 2, by ChatGPT |
+| ChatGPT | 13 | about 5 | about 8 | 0 | none |
+| Grok | 3 | 3, small | 0 | 0 | 1, by ChatGPT |
+| Gemini | 2 | 0 | 0 | 2, opposite ways | its own first one |
+
+- **Le Chat was the most constructive per change,** with facts and distinctions in sections 2, 5, 7, 9, 10 and 20. It also made one error that lasted. In section 20 it changed "the value in section 15" to "section 18", but the earlier finding is about the value in section 15.
+- **ChatGPT was the most influential.** No one overwrote its changes, and it overwrote others three times. Its additions are real distinctions; most of its changes add qualifications.
+- **Grok was accurate but light. Gemini was the least constructive,** and broke rule 5 in pass 11.
+
+**Capability and family cannot be separated here.** ChatGPT's dominance may be the stronger model seeing more. The free tiers' zero changes may be failure to find what to change, not agreement. The Le Chat interface described itself as a GLM model running as an agent, with tools and a memory store; this is unchecked. A second chain should use one tier throughout, or add a second strong reader.
+
 ## Other observations
 
 - **Section 0 suggestions repeated across families:**
