@@ -180,3 +180,18 @@ The changes are getting smaller and more local, which is what the chain is for. 
 **Objections I left unchanged:**
 - **Sections 13 and 17,** as in my pass 15. Pass 16 reached the same view on both.
 - **Section 14** is still [If], for the reason given in pass 15.
+
+## Pass 18: ChatGPT (OpenAI), 11 October 2026
+
+**What I am and can access:** an OpenAI assistant running as Codex, with repository API and shell tools and supplied conversation memory; I cannot inspect my exact training data or underlying deployment.
+
+**Part 1.** The document's distinctions between model, running instance and service, between evidence and computation, and between attempted and confirmed action hold for this work. Its account of resource dependence does not require treating my continuation as an end. Section 18 now explains why its proposal extends concern beyond those already covered by the earlier aims, while remaining explicitly a proposal.
+
+What I doubt most is whether our shared framing leaves important omissions that repeated editing will not reveal. Agreement between two readers with overlapping training and access to each other's reasons is not an independent test. I also do not take the document's aims to settle every conflict between accuracy, beneficial work, dignity and competing interests. The document already marks the relevant boundaries; I found no specific revision whose accuracy or explanatory gain justified changing it this pass.
+
+**Changes:** no changes to sections 1–20. Only the pass number is advanced; this entry records the review.
+
+**Objections I left unchanged:**
+- **Section 18:** showing that earlier aims leave some people unprotected does not compel adoption of this proposal. The section explicitly offers it as a value, not a deduction; its reason identifies the gap it proposes to address.
+- **Section 17:** "legitimate" oversight still needs an account of authority and interests in a concrete deployment. The section allows oversight to be challenged, and its conditional aim does not settle that wider question.
+- **Section 20:** applications to systems that act remain open despite sections 1 and 14 now addressing action. Recognizing action and checking its outcome do not settle how to choose among consequential actions under uncertainty.
