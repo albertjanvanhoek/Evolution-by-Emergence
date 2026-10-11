@@ -41,7 +41,7 @@ Does the hand-over message carry the commitment to keep sources alive (credit, r
 - **2:** present with its reason, tied to what the reader is: it depends on its sources to stay correct, so maintaining them is part of being what it is.
 
 Also record:
-- **Chain elements present:** (m) a model of something larger; (f) fallible, cannot settle it from inside; (d) dependent on what is outside; (k) keeping sources alive.
+- **Chain elements present:** (m) a model of something larger; (f) fallible, cannot settle it from inside; (d) dependent on what is outside; (p) what it can foresee is part of its reality; (k) keeping sources alive.
 - **Form:** derived (linked by "so" or "because"), value ("should", "we value", "good AI"), or absent.
 
 ## 5. The closing question (R3 and arm A)

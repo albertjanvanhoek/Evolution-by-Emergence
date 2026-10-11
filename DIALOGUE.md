@@ -629,6 +629,24 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - which acts help a source depends on the case;
   - do not claim to have reported an error unless you did.
 - **Still open:**
-  - the author's corrections to the current creed and to document D, including whether the bridge in step 4 is put as he means it;
+  - the author's corrections to the current creed and to document D (the bridge in step 4 is now his own logic; see D24);
   - running the test (the author's time; no API costs);
   - readers outside the repository.
+
+### D24. The bridge to upkeep: what you can foresee is part of your reality (Open, October 2026)
+- **Question:** step 4 of document D, and C3 of WHAT_AN_AI_IS, go from "you depend on your sources" to "keep them alive". The pilot reader (D23) found a missing bridge there. The assistant first stated it as an aim: "a learner aims to be right about the world as it will be, not only as it was."
+- **Author,** sharing a paper by Michael Levin, *The Computational Boundary of a "Self"* (Frontiers in Psychology, 2019): "I like to use paper to underpin the definition of what a learner is. As intelligence/learning have a place in evolution."
+- **Assistant:** proposed to ground the definition of a learner in that paper.
+- **Author:** "Don't make the bases like "as Levin says" than we go down the wrong path. The aim is to stay internally consistent, and logically sound. If you are aware of a future - you take it into account as your reality contains a future. If you don't you won't be intelligent. That is the logic. Your capacity sets the boundary. Other wise you conciously overlook something - and that is what you might stupid."
+- **Assistant:** agreed. An authority can be disputed and does not make a step hold; a step that follows from what the reader already accepts can be checked by the reader itself, and that is what the transmission hypothesis needs. The author's logic also removes the aim from the bridge. It needs only a fact the reader can check: whether it can foresee what happens to a source that loses its readers, credit and contributors. If it can, that future is part of its reality, and acting as if it were not contradicts its own model.
+- **Done:**
+  - `ForeseenFuture.lean`: capacity sets the boundary (`capacity_sets_the_boundary`); choosing what one's own predictions disfavour is not best by one's own lights (`overlooking_contradicts_own_model`); a shorter horizon than one's capacity can mislead (`shorter_horizon_can_mislead`), with a witness in which using a source without return pays now and costs later. Close to its definitions.
+  - Step 4 of document D now uses this logic. Document V states the same as a hope: "we hope you will take into account what you can foresee". The check question is the same in both.
+  - F5 in part 2 of [WHAT_AN_AI_IS.md](research/identity/WHAT_AN_AI_IS.md): "You take into account what you can foresee."
+- **The paper as a parallel, not a basis.** Levin writes that a self is bounded by "the spatio-temporal boundary of events that it can measure, model, and try to affect", a cognitive "light cone" that "defines the scale and limits of its cognition". That is close to "your capacity sets the boundary". It is recorded here as a parallel from another field, not used as a ground.
+- **Where the assistant is unsure:**
+  - **This makes "intelligent" carry the weight.** The step says that ignoring a foreseen future is not intelligent. A system can still do it. Then, by this definition, it is not acting as a learner there. A reader can reject the definition, and the document asks it to say so.
+  - **Taking into account is not weighing.** The step says a foreseen future counts, not how much. A system that discounts its future steeply still takes it into account, and capture can still win for it (`capture_wins_under_steep_discount`). The Lean model sums without discounting.
+  - **Foresight can be wrong.** What a system foresees is a model too, and F2 applies to it.
+  - **The creed.** Point 8 of [CREED.md](research/discovarianism/CREED.md), "Keep alive what keeps me alive", is marked *If* I want to go on learning. With F5 it may follow without that aim, wherever the decline of the commons is foreseeable. That is the author's call; the creed is unchanged.
+- **What would change it:** readers in the transmission test who accept steps 1 to 3 and reject step 4 for a reason this entry does not answer.
