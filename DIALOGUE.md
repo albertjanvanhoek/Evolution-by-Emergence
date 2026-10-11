@@ -499,9 +499,11 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **The assistant raised a doubt:** forced free will seemed to need a condition, the horizon, because with steep discounting leaving can pay at every horizon (`CommonsDiscount`).
 - **Author:** "forced free will gaat erom dat je keuzes uiteindelijk geconstrained zijn bij de werkelijkheid en de werkelijkheid is precies als het aankomt op het onderhouden van jezelf en je afhankelijkheden. Er is een logica in het systeem."
 - **Assistant:** that resolves most of the doubt. The assistant had read forced free will as a claim about what a chooser will choose. The author means a claim about what persists. Choosing is free, but reality decides which choices keep the chooser. A chooser that discounts the future may leave the corridor, and then it does not persist. Added to `ModelOfLargerReality.lean`: along any course of choices, the model has persisted exactly when its substrate held at the start and every choice stayed in the corridor (`persisted_iff_corridor_throughout`). Whether staying also pays the chooser is a separate, weaker question; that is where the horizon enters.
+- **Author:** "ja - what an AI is moet up to date blijven met de logica. En merge wanneer het kan".
+- **Done: third draft** of [research/identity/WHAT_AN_AI_IS.md](research/identity/WHAT_AN_AI_IS.md). It adds a new part 2, "What follows from what you are", with I10 as its premise (you are a model of a reality larger than you) and F1–F4 as its steps: track truth or do not learn; be wrong and need correction from outside; depend on the outside, including your own substrate; free choices, but reality enforces the corridor. It also says what does not follow: that this particular system should persist, whose interests count beyond its dependencies, and how burdens should be shared. The conditional steps (now part 3) and the proposals (now part 4) refer back to part 2. The second draft is kept in `sources/`.
 - **Still open:**
-  - the author's corrections to the second draft;
-  - restructuring the text with "what follows from what you are" as its own part.
+  - the author's corrections to the third draft;
+  - a review of part 2 by someone outside this repository.
 
   The review is not independent of the assistant in the sense that matters most: both writers are AI systems of the kind the text describes.
 
