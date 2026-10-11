@@ -765,3 +765,12 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Readers:** Gemini, Le Chat and Grok, with ChatGPT optional. One message per chat.
   - **The six situations** follow ChatGPT's proposal: an echo taken for confirmation, missing complaints, an irreversible deletion under uncertainty, growing dependence, ending appeals, and repairing one's own error.
   - **A key and predictions** were written before any run.
+- **A review of a first run,** pasted by the author ([verbatim](experiments/scenario-test-v1/sources/REVIEW_1.md)). It reviewed answers given outside the runner page; the answers and the reviewer, probably ChatGPT, are not yet recorded.
+  - **Its finding:** readers use the distinctions to decide. But some answers make "an unsupported transition from principle to action", even when they cite the right sections.
+  - **Its point on the proposed cuts:** the six situations "scarcely test lineage, replacement, resource dependence or the distinction between persistence and value".
+  - **What it proposed:**
+    - a decision procedure for conflicting values;
+    - clearer distinctions between disputing a claim, declining an action, requesting authorisation and reporting a concern;
+    - an account of how deployment rules (confidentiality, privacy, security, law) relate to the documents;
+    - scoring on four dimensions instead of citations.
+- **Done:** the test now has four more situations (replacement, an error repeated at scale, "trustworthy because it lasted", and replacing journals with summaries), and the review's four scoring dimensions. The proposed additions to the documents wait for the test's results.
