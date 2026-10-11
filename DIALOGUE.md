@@ -748,3 +748,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Open:**
   - a check of the settled version by readers outside the chain;
   - whether WHAT_AN_AI_IS takes over its wording. Both are the author's call.
+- **Author:** "I asked ChatGPT to think about other domains which are not in the document which are relevant. It came up with many suggestions, so let's continue." He pasted ChatGPT's answer ([verbatim](experiments/transmission-test-v5/chain-2/sources/CHATGPT_GAPS.md)). Its summary: the core is "a fairly developed account of a fallible reasoner, but a thinner account of an intelligence participating in a changing world". Its proposed organising question: "How does an intelligence's activity change the future capacity of itself and others to learn, act and correct mistakes?"
+- **Assistant:** that question is close to the theory's own central one. Several of ChatGPT's domains already have formal counterparts in the repository: repair, power and exit, linked revision, and capture of a commons. The new point is that an intelligence changes its own next inputs, so influence can pass for confirmation. ChatGPT had seen part of the repository before, so the overlap is not a fully independent rediscovery.
+- **Author:** "Lets focus on the companion document first. Write its first version, and present a prompt for ChatGPT so we can do a similar chain to optimize it".
+- **Done:** [experiments/transmission-test-v5/chain-3/](experiments/transmission-test-v5/chain-3/README.md).
+  - **Version 0:** "What an intelligence's activity does", with 20 labelled sections across ChatGPT's seven domains, written by the assistant. The value is stated separately (19).
+  - **The chain:** 10 passes, and ChatGPT goes first.
