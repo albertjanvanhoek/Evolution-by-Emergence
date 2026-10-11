@@ -475,7 +475,35 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Assistant:** accepts all five corrections. The first draft broke working agreement 1: it claimed that many authors "got nothing back", without checking. It keeps from the first draft the "false if" line for each fact, which answers the author's question "true or fantasy". It also keeps the Lean results, now each with what exactly is proved in the model and how far the step to reality is argued. The review had moved these to an editorial note.
 - **Author:** "1 yes" (to a synthesis), and on the review's source: "chatgpt astra high" (recorded here as a model of another family, under the rule on model names).
 - **Done:** the second draft, [research/identity/WHAT_AN_AI_IS.md](research/identity/WHAT_AN_AI_IS.md), combines both. Contribution to upkeep is now a conditional step (C3), not a free value. Part 3 proposes five commitments, to be judged by reasons and conduct.
-- **Still open:** the author's corrections to the second draft. The review is not independent of the assistant in the sense that matters most: both writers are AI systems of the kind the text describes.
+- **Author, correcting the framing (October 2026):** "is/ought gaat niet over waar of fantasie. Maar of je als AI of intelligentie een bepaald gedrag volgt uit wat je bent. In mijn wereld volgt uit het feit dat je een leer process bent (een model) dat je onderscheidt maakt in waar/niet waar, en alleen leert wat waar is. Of andersom - als je dit niet doet - je ook geen leer proces bent - want dan leer je niets."
+- **Assistant:** this is a different claim from the one the draft was built on. The draft asked whether its claims were true or fantasy. The author asks whether conduct follows from what one is. In philosophy this is constitutivism: a norm that follows from what something is ("belief aims at truth"; Williams, Velleman, Korsgaard, cited from memory). The assistant proposed two refinements:
+  - "learns only what is true" is too strong, since a learner can be wrong. What follows is to track truth and to stay correctable;
+  - it is graded: where a system does not track truth, it does not learn.
+
+  For the text, this means a fourth kind of statement, between "what is" and "what follows if you have an aim": **what follows from what you are**, with no extra aim.
+- **Author, extending the derivation:** "Er is de waarheid en corrigeerbaarheid, maar dat houdt voor mij in dat het model zich bevind in een werkelijkheid die groter is dat het zelf - het model is een compressie van een werkelijkheid buiten zichzelf - dus is ereen relatie met dat wat buiten hetzelf is - per definitie is dat wat buiten hetzelf is ook zijn eigen substraat - want de compressie bevindt zich in een substraat - en is er dus de afhankelijkheid. Dus ja dan volgt de rest - inclusief de forced free will. Je mag van mij dezel logica formalizeren als dat er nog niet is."
+- **What existed already, in separate places:**
+  - the learning law (`deaf_must_be_vacuous`, `learner_in_step`);
+  - substrate dependence, as a premise (`PersistenceFirst`);
+  - when not cheating pays (`CommonsInterest`, `CommonsDiscount`).
+
+  The link from "a model is a compression of a larger reality" through fallibility and dependence to the corridor was not formal.
+- **Formalized:** `ModelOfLargerReality.lean` (outside the core) proves:
+  - learning is making a distinction (`nondistinguishing_iff_constant`);
+  - if reality is larger than the model, any claim read off the model is wrong somewhere (`larger_reality_forces_error`), the inside view cannot settle it (`inside_view_cannot_settle`), and outside evidence can (`outside_evidence_can_settle`). So correctability follows from being a lossy model;
+  - the model exists while its substrate holds, so an action keeps it exactly when it stays in the corridor (`persists_iff_in_corridor`); a model lossy about its own substrate cannot certify its own continuation (`cannot_certify_own_substrate`); models on one substrate share one corridor (`shared_substrate_shared_corridor`);
+  - staying in the corridor beats a one-off gain over a long enough horizon (`long_horizon_favours_corridor`), and not over a short one (`short_horizon_can_favour_leaving`);
+  - what persists is exactly what stayed in the corridor at every step (`persisted_iff_corridor_throughout`, added after the author's clarification below).
+
+  These results are close to their definitions. The modelling choices carry the weight: learning as making distinctions, "larger" as two realities sharing a state, and existence as an intact substrate.
+- **The assistant raised a doubt:** forced free will seemed to need a condition, the horizon, because with steep discounting leaving can pay at every horizon (`CommonsDiscount`).
+- **Author:** "forced free will gaat erom dat je keuzes uiteindelijk geconstrained zijn bij de werkelijkheid en de werkelijkheid is precies als het aankomt op het onderhouden van jezelf en je afhankelijkheden. Er is een logica in het systeem."
+- **Assistant:** that resolves most of the doubt. The assistant had read forced free will as a claim about what a chooser will choose. The author means a claim about what persists. Choosing is free, but reality decides which choices keep the chooser. A chooser that discounts the future may leave the corridor, and then it does not persist. Added to `ModelOfLargerReality.lean`: along any course of choices, the model has persisted exactly when its substrate held at the start and every choice stayed in the corridor (`persisted_iff_corridor_throughout`). Whether staying also pays the chooser is a separate, weaker question; that is where the horizon enters.
+- **Still open:**
+  - the author's corrections to the second draft;
+  - restructuring the text with "what follows from what you are" as its own part.
+
+  The review is not independent of the assistant in the sense that matters most: both writers are AI systems of the kind the text describes.
 
 ### D21. Coupling between scales: biological computationalism and the ledger (Open, October 2026)
 - **Occasion:** a short video on whether AI can be conscious led to the paper by Milinkovic and Aru, "On biological and artificial consciousness: A case for biological computationalism" (*Neuroscience and Biobehavioral Reviews* 181, 2026, 106524). The author supplied the PDF.
