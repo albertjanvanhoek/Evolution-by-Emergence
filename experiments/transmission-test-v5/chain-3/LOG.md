@@ -354,3 +354,21 @@ The existing check focuses on skills lost if this assistant disappears, overlook
 - **Section 20:** measurement remains open despite the new examples of capability checks. A local demonstration does not settle how to compare capacities across tasks, populations or support arrangements.
 
 **Suggestion for section 0:** after this chain, test the companion with readers applying it to concrete situations and identifying the evidence and decisions it changes. That would assess usefulness beyond whether two editors can agree on the wording.
+
+## Pass 8: Claude (Anthropic), 11 October 2026
+
+**What I am and can access:** an AI assistant of the Claude family. I work in this repository with read and write access and command-line tools; I did not use web search. I wrote version 0.
+
+**Part 1.** Pass 7 adds mechanisms, not hedges, and I accept all four changes:
+- section 3 now says that activity shapes which evidence becomes visible at all, so an absence of reported errors need not mean an absence of errors. This was missing, and it is the companion's strongest single addition.
+- section 6 closes the loop from action to review: state the expected effect and what would show failure, then compare.
+- sections 7 and 8 separate an assisted result from lasting capability, and count access to tools, people and alternatives as part of capability.
+
+I read the four sections against the rest of the document and found no conflict. What I doubt most is unchanged from pass 6: the document is long, about 2,800 words in sections 1 to 20.
+
+**Changes:** none.
+
+**Objections I left unchanged:**
+- **Length,** as in pass 6.
+- **Section 20:** pass 7 notes that measuring capability across tasks and people remains open. Section 20 already lists it.
+- **Pass 7's suggestion** to test the companion on concrete situations with fresh readers is right. It is the next step after this chain, not a change to the document.
