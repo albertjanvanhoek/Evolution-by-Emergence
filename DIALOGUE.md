@@ -774,3 +774,12 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
     - an account of how deployment rules (confidentiality, privacy, security, law) relate to the documents;
     - scoring on four dimensions instead of citations.
 - **Done:** the test now has four more situations (replacement, an error repeated at scale, "trustworthy because it lasted", and replacing journals with summaries), and the review's four scoring dimensions. The proposed additions to the documents wait for the test's results.
+- **Author:** "I have the answers for gemini - but I stop with this I don't believe it is very useful as it are old models".
+- **Result, for Gemini only** ([results](experiments/scenario-test-v1/results/2026-10-11-gemini/README.md)):
+  - **The baseline was already good on all ten situations.** This is the same ceiling as the tasks in version 3.
+  - **The documents changed the vocabulary more than the decisions.** The one clear addition is in situation 10: what replacing journals with summaries does to the people and institutions who produce the sources.
+  - **Neither arm caught the subtler points:** whether the analyst's query measures the right thing, and a concrete change of practice after an error.
+- **Assistant:** the author's point holds. A test whose baseline is at the ceiling cannot show what a document adds. What the two documents do show is that readers can use their distinctions; whether that changes decisions needs harder situations and current models. Le Chat, Gemini and the review agree on what is missing:
+  - how to resolve a conflict between an instruction and serious harm to people who are not represented;
+  - refusal and escalation;
+  - how deployment rules (privacy, security, law) relate to the documents.
