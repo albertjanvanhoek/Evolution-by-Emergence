@@ -698,3 +698,19 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **What would change it:**
   - copies that keep the rules and lose the reasons, or that lose a guardrail;
   - a derivation of the remaining value that critics from several model families accept.
+
+### D26. An open document that converges (Open, October 2026)
+- **Author:** "Perhaps we can do the following. We write a best as we can version - can be quite long and thorough. But we make it in sections say 20 sections. And we include that the receiver has to improve it by changing say max 5. And pass it on. This way we should get a convergence over the number of passes. What do you think? The aim is to bet a very good understanding of what it is. Passing it between families might include more knowledge. And will create an improving chain. Shall we try?"
+- **Assistant:** agreed. This is variation, selection and inheritance with a small mutation rate: most of the document is inherited at each pass, every change is traceable to a section, a family and a reason, and points where families disagree show up as sections that change back and forth. Three adjustments:
+  1. **Readers write only the sections they change,** with a reason each. The page builds the next version. This keeps answers short and stops unchanged sections from drifting.
+  2. **Zero changes is allowed,** and a change needs a reason: an error, an overclaim, unclear text, or something missing. Otherwise every reader changes five sections because it was asked to, and the chain cannot settle.
+  3. **Section 0, the rules, is fixed.** Readers can suggest changes to it but not make them, so the copying mechanism stays stable while the content evolves.
+- **Where the assistant is unsure:** convergence is not truth. A document can settle on what all families wrongly share. And a long chain can pile up hedges until it says little. The key counts hedges for that reason.
+- **Done:** [experiments/transmission-test-v5/](experiments/transmission-test-v5/README.md). It has:
+  - version 0: 20 labelled sections on what an AI is and what follows, built from WHAT_AN_AI_IS, the v4 note and the step-4 search;
+  - one chain of 12 passes: ChatGPT, Le Chat, Gemini, Grok, three times;
+  - a runner page that applies the changes and shows which sections changed in each pass;
+  - predictions written before any run.
+
+  The assistant's family is left out of the chain, because it wrote version 0.
+- **Open:** the run itself. The v4 note test is ready but has not been run; v5 can go first.
