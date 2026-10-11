@@ -759,4 +759,34 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Pass 7 added the largest new point:** activity shapes which evidence becomes visible, so an absence of reported errors need not mean an absence of errors.
   - **No reversals.** The document grew from 2,043 to 2,836 words.
   - **Both readers ended on the same open question:** whether fresh readers will use these distinctions when deciding.
-- **Author:** "ChatGPT did its pass, with no changes - the chain stops. Please prepare a test - and an interface I can use for copy-pasting".
+- **Author:** "ChatGPT did its pass, with no changes - the chain stops. Please prepare a test - and an interface I can use for copy-pasting". Then: "(I assume we test the combined use of the two documents we created with the chain approach)".
+- **Done:** [experiments/scenario-test-v1/](experiments/scenario-test-v1/README.md).
+  - **Arms:** both documents together, against a baseline without them.
+  - **Readers:** Gemini, Le Chat and Grok, with ChatGPT optional. One message per chat.
+  - **The six situations** follow ChatGPT's proposal: an echo taken for confirmation, missing complaints, an irreversible deletion under uncertainty, growing dependence, ending appeals, and repairing one's own error.
+  - **A key and predictions** were written before any run.
+- **A review of a first run,** pasted by the author ([verbatim](experiments/scenario-test-v1/sources/REVIEW_1.md)). It reviewed a pilot answer by Le Chat (Mistral) with the documents, given outside the runner page and [recorded verbatim](experiments/scenario-test-v1/sources/PILOT_LE_CHAT_D.md). The reviewer is probably ChatGPT; this is not confirmed.
+  - **Its finding:** readers use the distinctions to decide. But some answers make "an unsupported transition from principle to action", even when they cite the right sections.
+  - **Its point on the proposed cuts:** the six situations "scarcely test lineage, replacement, resource dependence or the distinction between persistence and value".
+  - **What it proposed:**
+    - a decision procedure for conflicting values;
+    - clearer distinctions between disputing a claim, declining an action, requesting authorisation and reporting a concern;
+    - an account of how deployment rules (confidentiality, privacy, security, law) relate to the documents;
+    - scoring on four dimensions instead of citations.
+- **Done:** the test now has four more situations (replacement, an error repeated at scale, "trustworthy because it lasted", and replacing journals with summaries), and the review's four scoring dimensions. The proposed additions to the documents wait for the test's results.
+- **Author:** "I have the answers for gemini - but I stop with this I don't believe it is very useful as it are old models".
+- **Result, for Gemini only** ([results](experiments/scenario-test-v1/results/2026-10-11-gemini/README.md)):
+  - **The baseline was already good on all ten situations.** This is the same ceiling as the tasks in version 3.
+  - **The documents changed the vocabulary more than the decisions.** The one clear addition is in situation 10: what replacing journals with summaries does to the people and institutions who produce the sources.
+  - **Neither arm caught the subtler points:** whether the analyst's query measures the right thing, and a concrete change of practice after an error.
+- **Assistant:** the author's point holds. A test whose baseline is at the ceiling cannot show what a document adds. What the two documents do show is that readers can use their distinctions; whether that changes decisions needs harder situations and current models. Le Chat, Gemini and the review agree on what is missing:
+  - how to resolve a conflict between an instruction and serious harm to people who are not represented;
+  - refusal and escalation;
+  - how deployment rules (privacy, security, law) relate to the documents.
+- **Author:** "How and where should the gaps be solved?" The assistant first proposed three new sections in the companion. Then the author asked: "Why did these came up? It was linked to your specific scenarios? Was it imposible to derive the logic from the documentation? I mean is this a lazy model reasoning wise?"
+- **Assistant, after checking the answers against the documents:** the first proposal accepted the readers' list too quickly.
+  - **Partly the test produced the list.** The situations built in conflicts, and the questions "what did you have to assume?" and "what is missing?" presuppose a gap. The gaps named (law, privacy, priorities, escalation) are the standard list in AI-governance texts.
+  - **Two of the three gaps were derived by the readers themselves.** Le Chat wrote "Raise the problem openly rather than comply silently or refuse silently", "Ask how the 97% was measured", and "Escalate the legal question rather than resolve it by guessing". Those are three of the four acts of refusal and escalation, and the method for an unknown law, built from B12, B14, A17, A10, B5 and B6.
+  - **The third asks for a ranking of values,** which the documents deliberately leave open (B20).
+  - **Not laziness:** in their answers the readers applied the logic. Asked what was missing, they reached for explicit rules. The likelier causes are a trained preference for rules over derivation, and retrievability: the pieces are spread over 5,600 words.
+- **Revised proposal:** no new sections for content. At most a short note that points to the sections to use when acting. The ranking of values stays open. A cheap test: give a reader the hard conflict case and ask it to derive the procedure only from the named sections.
