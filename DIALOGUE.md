@@ -727,3 +727,16 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - whether WHAT_AN_AI_IS and the theory's wording take over the corrections, and which ones. That is the author's call.
   - a second chain, with the section 0 changes the readers asked for: a provenance log, and a list of objections left unchanged;
   - the v4 note test, still not run.
+- **Author:** "which of the families was the most constructive? as only chatGPT is a payed tier, the rest is free and less capable"
+- **Assistant:**
+  - **Le Chat was the most constructive per change:** six of its eight changes added facts or distinctions.
+  - **ChatGPT was the most influential:** no one overwrote its changes, and it overwrote others three times.
+  - **Grok was accurate but light. Gemini was the least constructive.**
+
+  Capability and family cannot be separated here. The zero changes from the free tiers may be failure to find what to change, not agreement.
+- **Author:** "To improve the version could we try something? Bot you and chatGPT have access to the repo. Could you not run versions between the two of you on the repo?"
+- **Assistant:** yes, as chain 2 ([experiments/transmission-test-v5/chain-2/](experiments/transmission-test-v5/chain-2/README.md)).
+  - **Setup:** the two readers take turns on one file in the repository, with an append-only log. Section 0 now takes in what readers asked for.
+  - **Rule 6:** a removed claim comes back only with an argument against the reason given for removing it. This guards against the assistant, which wrote version 0, pulling the document back to the theory.
+  - **This is no longer a transmission test:** the readers are informed editors.
+  - **Pass 13, by the assistant:** three changes, logged with reasons.
