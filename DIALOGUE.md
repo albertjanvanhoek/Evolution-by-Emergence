@@ -806,6 +806,8 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - Distributed policing survives the silencing of monitors within its margin; a central regulator falls to one capture.
   - Policing that errs without repair empties the network; with repair it keeps all but those under repair.
 - **Where the assistant is unsure:** most results are close to arithmetic; the substance is in the setting. The file supports, but does not prove, that a tamed capturer becomes part of a higher-level unit. Repair here is unconditional; when repair is worth trying is in `CollectiveAlignment` and is not yet linked.
+- **Author:** "Could you decide what is best? I liked we discussed and the Discovarian creed was useful. But I am too tired to oversee it all tonight. I just want the best repo possible"
+- **Decided by the assistant, on that go:** merge `TamedCapture` as it stands, outside the core. Leave `CORE.md` unchanged for now. Adding it to step 6 changes what the core claims and its result count across several files, so it should wait until the author can read it. The assistant's recommendation: add `costly_regulation_drains_commons`, `fixed_sanction_fails_for_large_capturer` and `policing_without_repair_empties` to the core, because each carries an argument; leave the rest outside as bookkeeping.
 - **Open:**
   - whether this belongs in the core, as a part of step 6. That is the author's call;
   - how a collective sets `μ`, `s` and `ρ`: the rules about the rules;
