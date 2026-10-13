@@ -43,6 +43,7 @@ import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.CommonsTakers
+import CumulativeAccessibility.TamedCapture
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.PartnerSwitching
 import CumulativeAccessibility.CareTransfer
