@@ -135,3 +135,7 @@ Most entries are still open. [`CLAUDE.md`](CLAUDE.md) now says that keeping `DIA
 - **From [`DIALOGUE.md`](DIALOGUE.md):** the entries still open.
 
 The v22.3 release notes remain available at the `v22.3` tag.
+
+## Since this release
+
+- **`TamedCapture` (D27).** The regulator inside the ledger: monitoring and repair are paid from the interest, sanctions must scale with the capturer, distributed policing survives the capture of monitors within its margin, and policing that errs needs repair or it empties the network. Core Lean, outside the core, with a witness. The core count stays at 91.
