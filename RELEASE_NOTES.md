@@ -139,3 +139,4 @@ The v22.3 release notes remain available at the `v22.3` tag.
 ## Since this release
 
 - **`TamedCapture` (D27).** The regulator inside the ledger: monitoring and repair are paid from the interest, sanctions must scale with the capturer, distributed policing survives the capture of monitors within its margin, and policing that errs needs repair or it empties the network. Core Lean, outside the core, with a witness. The core count stays at 91.
+- **Duties to the quality of a relationship (D28).** A concept note, [`research/relational-duties/`](research/relational-duties/README.md): duties of effort, not of result, that keep a relationship able to correct and repair itself, between humans, between humans and AI, and between AI systems. Each duty is marked as following, following given an aim, or proposed.

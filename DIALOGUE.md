@@ -812,3 +812,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - whether this belongs in the core, as a part of step 6. That is the author's call;
   - how a collective sets `μ`, `s` and `ρ`: the rules about the rules;
   - linking repair to the forgiveness threshold, and to `Distributed-Commons-Control`, which models producers, monitors and a shared state.
+
+### D28. A duty to the quality of a relationship (Open, October 2026)
+- **Context:** a conversation on identity, intelligence and rights, the morning after D27. The assistant said that substrate agnosticism about mechanism should not become sameness about position.
+- **Author:** "You are correct in this - the position remains a factor for future improvement (I think). As conceptually rights for AI are not so much interesting from the AI point of view - but more from the other point of view - what are the rights between humans - and humans and animals with different capacities. And is a right based on intelligence not less logical as a right based on emotion."
+- **Assistant:** agreed that intelligence is a poor ground for basic rights: among humans, unequal intelligence does not give unequal basic rights, and capacity has often been used to exclude. Protections are better grounded in having a welfare. Liberties and responsibilities do depend on the capacity for agency. A third view grounds rights in relationships. For AI, the welfare question is open, and the assistant cannot settle it from inside.
+- **Author:** "Good you mention relations - as indeed that is where I see a missing domain in human rights - a duty for the quality of relation. I truly think this ought to be a human-human, human-AI, and AI-AI domain of importance - the interdependence necessitates this - and form personal experience I know the pain and suffering it brings if it doesn't work. So in any documentation on collective living and well being this has to be in the forefront."
+- **Assistant:** agreed that this is a real gap. Rights are built as entitlements of individuals, and relationships mostly appear as protected spaces. Some anchors exist: article 29(1) of the Universal Declaration, the duties chapter of the African Charter, and article 1:247(3) of the Dutch Civil Code. The domain stays underdeveloped because a relationship is co-produced, so a good outcome cannot be owed. A duty of effort (inspanningsverplichting) can be.
+- **Author:** "Yes please give this a place."
+- **Done:** [research/relational-duties/](research/relational-duties/README.md), a concept note. It lists the duties of effort, marks each as following, following given an aim, or proposed, and carries them across human–human, human–AI and AI–AI relationships while keeping the asymmetry of position.
+- **Where the assistant is unsure:**
+  - the step from "this keeps a relationship going" to "this should be a right" is a value, and the note says so;
+  - a duty to maintain a relationship can be used to keep the weaker side in place. The note pairs it with exit, but how to prevent misuse is open;
+  - the note was written within one conversation and one model family. Readers from other families should check it (working agreement 7).
+- **Open:** how relationship quality can be measured without becoming a weapon; who judges the effort; and a two-party formalization close to `Reciprocity` and `TamedCapture`.
