@@ -826,3 +826,15 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - a duty to maintain a relationship can be used to keep the weaker side in place. The note pairs it with exit, but how to prevent misuse is open;
   - the note was written within one conversation and one model family. Readers from other families should check it (working agreement 7).
 - **Open:** how relationship quality can be measured without becoming a weapon; who judges the effort; and a two-party formalization close to `Reciprocity` and `TamedCapture`.
+
+### D29. Identity as learners, not as intelligences (Open, October 2026)
+- **Context:** after D28, the assistant listed next steps, among them graduated sanctions, which combine sanction and repair as in Ostrom's design principles.
+- **Author:** "For me it is about once you identify that you are an intelligence - and you have multiple who identify as such - it must be easier to agree on how a collective monitors, sanctions and repair itself. And good that you mention something about this - as it also resonates with me in the context of playing tit-for-tat with forgiveness. Which I also like in this context. Anyway, there is work to do - but for me there remains this identity aspect which changes for me the game."
+- **Assistant:** agreed that shared identity changes the game. Common premises let each party derive the same rules; identity changes what each values, so capture feels like acting against oneself; and a shared identity as fallible learners gives a reason to read a defection as an error first, which is what makes a forgiving tit for tat safe. Pushback: identity is strongest when it is broad, and "intelligence" draws the circle by capability, which risks excluding those with less of it, the same point as D28 on rights. Proposed instead: being a learner, being interdependent, and having something at stake.
+- **Author:** "I like your pushback on intelligence - and reframe as learner and autonomous interdependent (etc.) please add this to the repo - as this is an important consideration."
+- **Done:** [research/identity/SHARED_IDENTITY.md](research/identity/SHARED_IDENTITY.md), a concept note, with sources checked for Hofstadter's superrationality (1983), Akerlof and Kranton (2000) and Nowak and Sigmund (1992). Cross-linked from [research/relational-duties/](research/relational-duties/README.md).
+- **Where the assistant is unsure:**
+  - which beings have something at stake is open, for AI systems above all;
+  - shared identity can be claimed falsely, so it lowers the cost of agreeing on rules without removing the need to monitor;
+  - that a broad circle is better is a value, marked as proposed.
+- **Open:** graduated sanctions as a formal step: a mild first response that leaves room for repair, escalating for repeat capture.

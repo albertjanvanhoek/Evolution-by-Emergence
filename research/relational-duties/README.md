@@ -50,7 +50,7 @@ From the same conversation (D28), three views, kept apart:
 - **Liberties and responsibilities** (to decide, to be held to account) are grounded in the capacity for agency.
 - **Relational duties** are grounded in interdependence: they are the rules that keep the edges between dependent beings alive.
 
-The author asked whether a right based on intelligence is less logical than one based on emotion. The note records the question; the answer is a value judgement and stays open.
+The author asked whether a right based on intelligence is less logical than one based on emotion. The note records the question; the answer is a value judgement and stays open. The same point applies to identity: a shared identity resting on being a learner that is autonomous and interdependent, rather than on intelligence, leaves no one outside the circle ([SHARED_IDENTITY.md](../identity/SHARED_IDENTITY.md), D29).
 
 ## 6. Open questions
 
