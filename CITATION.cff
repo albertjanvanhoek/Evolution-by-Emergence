@@ -6,8 +6,8 @@ authors:
   - family-names: "van Hoek"
     given-names: "Albert Jan"
     orcid: "https://orcid.org/0000-0002-9244-0489"
-version: "v22.4"
-date-released: 2026-10-11
+version: "v22.5"
+date-released: 2026-10-15
 doi: "10.5281/zenodo.15207807"
 repository-code: "https://github.com/albertjanvanhoek/Evolution-by-Emergence"
 url: "https://albertjanvanhoek.github.io/Evolution-by-Emergence/"
@@ -17,28 +17,25 @@ license:
 abstract: >-
   Evolution by Emergence is an open research corpus and machine-auditable
   candidate architecture for resource-constrained cumulative evolution.
-  Version v22.4 keeps the core of v22.3: CORE.md follows one model of
+  Version v22.5 keeps the core of v22.4: CORE.md follows one model of
   learning, read as a network, in eight steps, and
-  formalization/ebe-core/EbECore.lean audits 91 machine-checked results.
-  CORE.md now says that the theory describes a process, not a substrate. Nine
-  new core-Lean modules outside the core cover the value of curiosity, exit
-  options, identity as a process, linked revision, two existence lemmas, power
-  in two speeds, coupling between scales, what follows from being a model of a
-  reality larger than oneself, and foresight. A new text for AI readers, What
-  an AI is, and what follows, keeps apart what an AI system is, what follows
-  from that, what follows given a stated aim, and what is proposed as a value.
-  Small tests with readers from several AI model families, including two
-  documents that the readers improved pass by pass until they settled, found
-  that readers of other families accepted the facts and took apart several
-  derivations; one step, keeping one's sources going, needs one value, stated
-  openly. New research lines cover curiosity, identity, an existence
-  conjecture and the biological process. DIALOGUE.md records how the author
-  and an AI assistant build the model together, now in 26 entries. The release
-  title uses "simulation of reality" to mean the internal model through which
-  a system experiences and acts in the world, not a claim that reality itself
-  is simulated. Formal verification establishes implications under explicit
-  premises; empirical, causal, political and normative interpretations remain
-  open.
+  formalization/ebe-core/EbECore.lean audits 91 machine-checked results. A new
+  core-Lean module, TamedCapture, puts the regulator inside the ledger:
+  monitoring and repair are paid from the interest, sanctions must scale with
+  the capturer, distributed policing survives the capture of monitors within
+  its margin, and policing that errs needs repair. Two concept notes add duties
+  to the quality of a relationship, stated as duties of effort, and a shared
+  identity resting on being a learner that is autonomous and interdependent
+  rather than on being intelligent. A new, separate section applies the theory
+  to economics: transparent pricing, with access at cost, a separate bounty
+  for solving problems, and a declared home for every job that profit does;
+  its standalone core-Lean package checks 76 results with its own CI.
+  DIALOGUE.md records how the author and an AI assistant build the model
+  together, now in 30 entries. The release title uses "simulation of reality"
+  to mean the internal model through which a system experiences and acts in
+  the world, not a claim that reality itself is simulated. Formal verification
+  establishes implications under explicit premises; empirical, causal,
+  political and normative interpretations remain open.
 keywords:
   - cumulative evolution
   - emergence
