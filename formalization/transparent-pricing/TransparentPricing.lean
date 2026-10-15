@@ -42,6 +42,13 @@ What this file proves, each as a conditional implication:
    bounds every bounty; scarce tokens make demand signals costly; matching
    rewards many backers over one; payment in parts limits what a failed promise
    costs.
+9. **External costs, rewards, reserves and who pays.** External costs charged
+   at the source and passed on once are counted exactly once; charged again at
+   every stage they are overcounted. Competing bids find the smallest reward
+   within a ceiling. Expiring efficiency rewards return the whole saving to
+   users. Pooling cannot remove a systematic deficit. A lower tariff funded by
+   a levy is not a lower bill for everyone. Fixed costs recovered by volume
+   spiral only when demand responds strongly.
 
 Not proved here: that providers adopt the format; that published costs are
 true (only when lying stops paying); that sellers who see each other's prices
@@ -857,7 +864,165 @@ theorem tranches_limit_exposure (M R : Nat) : tranchePaid M R false = M ∧
   simp [tranchePaid]
 
 
-/-! ## 9. Witness: the premises can hold together -/
+/-! ## 9. External costs, rewards, reserves and who pays
+
+Refinements that make the protocol harder to misuse. -/
+
+/-- The physical footprint of a chain of `n + 1` stages: the sum of each stage's
+direct impact `e k`. -/
+def sumTo (e : Nat → Nat) : Nat → Nat
+  | 0 => e 0
+  | k + 1 => sumTo e k + e (k + 1)
+
+/-- Charged once: each stage charges for its own direct impact and passes on
+what it paid upstream, so the final price carries each stage's impact once. -/
+def chargedOnce (e : Nat → Nat) : Nat → Nat := sumTo e
+
+/-- Charged again: each stage passes on what it paid upstream and also charges
+the full footprint embodied in its inputs a second time. -/
+def chargedAgain (e : Nat → Nat) : Nat → Nat
+  | 0 => e 0
+  | k + 1 => chargedAgain e k + sumTo e (k + 1)
+
+/-- **Charged at the source, passed on once, the price carries exactly the
+footprint.** -/
+theorem once_is_footprint (e : Nat → Nat) (n : Nat) : chargedOnce e n = sumTo e n := rfl
+
+/-- **Charging the embodied footprint at every stage counts it again and again.**
+The first stage's impact is charged once more at every later stage, so the
+total charged exceeds the footprint by at least `n * e 0`. -/
+theorem again_overcounts (e : Nat → Nat) : ∀ n, sumTo e n + n * e 0 ≤ chargedAgain e n := by
+  intro n
+  induction n with
+  | zero => simp [sumTo, chargedAgain]
+  | succ k ih =>
+    simp only [chargedAgain, sumTo] at *
+    have h0 : e 0 ≤ sumTo e k := by
+      clear ih
+      induction k with
+      | zero => simp [sumTo]
+      | succ j ihj => simp only [sumTo]; omega
+    rw [Nat.add_mul, Nat.one_mul]
+    omega
+
+/-- The lowest of the bids, with a default `d` when there are none. -/
+def lowest : List Nat → Nat → Nat
+  | [], d => d
+  | b :: bs, d => min b (lowest bs d)
+
+/-- The lowest bid is no higher than any bid. -/
+theorem lowest_le_each (d : Nat) : ∀ (bs : List Nat) (b : Nat), b ∈ bs → lowest bs d ≤ b := by
+  intro bs
+  induction bs with
+  | nil => intro b h; cases h
+  | cons x xs ih =>
+    intro b h
+    simp only [lowest]
+    rcases List.mem_cons.mp h with rfl | h'
+    · exact Nat.min_le_left _ _
+    · exact Nat.le_trans (Nat.min_le_right _ _) (ih b h')
+
+/-- **Discovering the reward by competing bids.** Solvers bid the reward they need
+to deliver a specified solution under open terms. The lowest bid wins if it
+is within the published ceiling; otherwise nothing is awarded. -/
+def award (ceiling : Nat) (bs : List Nat) : Option Nat :=
+  if lowest bs (ceiling + 1) ≤ ceiling then some (lowest bs (ceiling + 1)) else none
+
+/-- **The award never exceeds the ceiling, nor any competing bid.** Competition
+finds the smallest reward someone will accept, instead of paying the whole
+estimated value. -/
+theorem award_within_ceiling {ceiling w : Nat} {bs : List Nat} (h : award ceiling bs = some w) :
+    w ≤ ceiling ∧ ∀ b ∈ bs, w ≤ b := by
+  unfold award at h
+  by_cases hc : lowest bs (ceiling + 1) ≤ ceiling
+  · rw [if_pos hc] at h
+    cases h
+    exact ⟨hc, lowest_le_each _ bs⟩
+  · rw [if_neg hc] at h
+    cases h
+
+/-- **Expiring efficiency rewards.** A provider cuts cost by `s` per period. For
+`T` periods it keeps `σ` percent of the saving; after that, the full saving goes
+into the tariff. Users' gain over a horizon `H ≥ T` (times 100). -/
+def userGain (s σ T H : Nat) : Nat := (100 - σ) * s * T + 100 * s * (H - T)
+/-- The provider's gain over the same horizon (times 100). -/
+def providerGain (s σ T : Nat) : Nat := σ * s * T
+
+/-- **Every unit of the saving is accounted for, and after expiry all of it goes
+to users.** The provider's share is bounded by `σ * s * T`, however long the
+horizon. -/
+theorem expiring_reward_returns_saving {s σ T H : Nat} (hσ : σ ≤ 100) :
+    userGain s σ T H + providerGain s σ T = 100 * s * T + 100 * s * (H - T) := by
+  unfold userGain providerGain
+  have h : (100 - σ) * s * T + σ * s * T = 100 * s * T := by
+    rw [← Nat.add_mul, ← Nat.add_mul, Nat.sub_add_cancel hσ]
+  omega
+
+/-- The balance of a pooled reserve: the sum of the layers' balances. -/
+def poolTotal : List Int → Int
+  | [] => 0
+  | x :: xs => x + poolTotal xs
+
+/-- **Pooling cannot remove a systematic deficit.** If every layer runs a deficit
+of at least `d`, the pooled reserve runs a deficit of at least the number of
+layers times `d`. Pooling helps with deviations that cancel; a shortfall
+built into the tariff has to be funded. -/
+theorem pooling_cannot_remove_systematic_deficit {d : Int} :
+    ∀ xs : List Int, (∀ x ∈ xs, x ≤ -d) → poolTotal xs + (xs.length : Int) * d ≤ 0 := by
+  intro xs h
+  induction xs with
+  | nil => simp [poolTotal]
+  | cons x xs ih =>
+    have hx := h x (List.mem_cons_self ..)
+    have := ih (fun y hy => h y (List.mem_cons_of_mem _ hy))
+    simp only [poolTotal, List.length_cons]
+    push_cast
+    rw [Int.add_mul, Int.one_mul]
+    omega
+
+/-- What a user pays in total: tariff times use, plus its share of any levy that
+funds the common costs. -/
+def bill (tariff use levy : Nat) : Nat := tariff * use + levy
+
+/-- **A lower tariff is not a lower bill for everyone.** Moving common costs
+from the tariff to an equal levy lowers the bill of heavy users and raises it
+for light users. In the witness: tariff 10 with no levy, against tariff 6 with
+a levy of 20; a user of 10 units pays 100 then 80, a user of 1 unit pays 10
+then 26. So the published account must show who pays what, by group. -/
+theorem lower_tariff_not_lower_bill :
+    bill 6 10 20 < bill 10 10 0 ∧ bill 10 1 0 < bill 6 1 20 := by
+  decide
+
+/-- **When fixed costs spiral.** Each period the price is set to recover the
+fixed cost `F` over the demand at the current price; if demand reaches zero,
+the service collapses (`none`). -/
+def nextPriceOpt (D : Nat → Nat) (c F p : Nat) : Option Nat :=
+  if D p = 0 then none else some (c + F / D p)
+
+/-- The price after `t` periods, or `none` once the service has collapsed. -/
+def priceAfter (D : Nat → Nat) (c F p0 : Nat) : Nat → Option Nat
+  | 0 => some p0
+  | t + 1 => (priceAfter D c F p0 t).bind (nextPriceOpt D c F)
+
+/-- Demand that responds little to price. -/
+def demandInelastic (p : Nat) : Nat := 120 - p
+/-- Demand that responds strongly to price. -/
+def demandElastic (p : Nat) : Nat := 120 - 10 * p
+
+/-- **Fixed costs alone do not decide a spiral; how demand responds does.**
+The same fixed cost, recovered over volume, settles at a stable price when
+demand responds little, and collapses within two periods when it responds
+strongly. In continuous models the local condition is that price elasticity
+times the fixed-cost share of the price stays below one. Recovering fixed costs
+by capacity rather than volume (`capacity_rate_independent` in
+`StackedTariffs`) removes the feedback altogether. -/
+theorem fixed_costs_alone_do_not_decide_spiral :
+    priceAfter demandInelastic 0 900 9 3 = some 8 ∧
+      priceAfter demandInelastic 0 900 9 7 = some 8 ∧
+      priceAfter demandElastic 0 900 9 2 = none := by
+  decide
+
+/-! ## 10. Witness: the premises can hold together -/
 
 /-- A concrete case.
 * A platform (cost 3, margin 0) buys hosting (cost 2, margin 1) and a licence

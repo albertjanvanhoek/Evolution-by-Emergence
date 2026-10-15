@@ -71,4 +71,12 @@ CI fails if any depends on `sorryAx`. -/
 #print axioms TransparentPricing.tokens_bound
 #print axioms TransparentPricing.matching_rewards_breadth
 #print axioms TransparentPricing.tranches_limit_exposure
+#print axioms TransparentPricing.once_is_footprint
+#print axioms TransparentPricing.again_overcounts
+#print axioms TransparentPricing.lowest_le_each
+#print axioms TransparentPricing.award_within_ceiling
+#print axioms TransparentPricing.expiring_reward_returns_saving
+#print axioms TransparentPricing.pooling_cannot_remove_systematic_deficit
+#print axioms TransparentPricing.lower_tariff_not_lower_bill
+#print axioms TransparentPricing.fixed_costs_alone_do_not_decide_spiral
 #print axioms TransparentPricing.transparent_pricing_witness

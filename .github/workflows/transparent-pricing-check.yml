@@ -44,4 +44,4 @@ jobs:
           fi
           count=$(grep -c "depends on axioms\|does not depend on any axioms" audit.log)
           echo "Audited results: $count"
-          test "$count" -ge 68
+          test "$count" -ge 76
