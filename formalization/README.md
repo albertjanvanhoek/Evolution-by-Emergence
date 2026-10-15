@@ -22,6 +22,7 @@ Start with:
 | \`collective-alignment\` | recurrent maintenance, correction, protocol inheritance, sufficient alignment | \`CollectiveAlignment.lean\`, \`MaintenanceReproduction.lean\`, \`MaintenanceDynamics.lean\` |
 | \`persistence-drift\` | persistence/function separation, regulation, implementation competition, slack/search drift, return-path effects | \`PersistenceDrift.lean\`, \`FunctionalCompetition.lean\`, \`ReturnPathPrice.lean\` |
 | `cumulative-accessibility` | v20 retained-organization core, transition-induced accessibility, emergence barrier, bounded generative leverage, recursive support layers | `CumulativeAccessibility/RetainedOrganizationCore.lean`, `TransitionAccessibility.lean`, `EmergentAssemblyBarrier.lean`, `TransitionMediatedEmergence.lean`, `GenerativeLeverage.lean` |
+| `transparent-pricing` | application to economics: traceable at-cost prices in supply networks, separate bounty, scarcity, the other jobs of profit; core Lean only, own CI | `TransparentPricing.lean`, `StackedTariffs.lean`, `Audit.lean` |
 | \`../verification/organizational-depth\` | finite-time/fixed-resolution physical boundary and maintenance-debt end-to-end model | \`OrganizationalDepth.lean\`, \`OperationalBridge.lean\`, \`PackingDepth.lean\`, \`MaintenanceDynamicsEndToEnd.lean\` |
 
 ## Evidence hierarchy

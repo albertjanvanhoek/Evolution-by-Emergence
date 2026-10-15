@@ -1,0 +1,7 @@
+name = "transparent_pricing"
+version = "0.1.0"
+defaultTargets = ["TransparentPricing"]
+
+[[lean_lib]]
+name = "TransparentPricing"
+roots = ["TransparentPricing", "StackedTariffs", "Audit"]

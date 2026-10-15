@@ -826,3 +826,23 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - a duty to maintain a relationship can be used to keep the weaker side in place. The note pairs it with exit, but how to prevent misuse is open;
   - the note was written within one conversation and one model family. Readers from other families should check it (working agreement 7).
 - **Open:** how relationship quality can be measured without becoming a weapon; who judges the effort; and a two-party formalization close to `Reciprocity` and `TamedCapture`.
+
+### D30. Transparent pricing: access at cost, a separate bounty (Open, October 2026)
+- **Context:** the author asked whether a seed internal tariff for a digital service, with a capacity-based platform rate and costs passed on by cause, could scale when services are stacked on each other. The question widened to the economy.
+- **Author:** "I am wondering if this structure of pricing could scale - could an infinite services being stacked on each other - and if yes - how should we structure a real life implementation - and if no - why not and what do we need to change. This is an important problem - because if we get this pricing structure correct this could revolutionize the world in many good ways."
+- **Author:** "the economy is currently run as a competition - with Marginal costs - marginal profit kind of thinking - micro-economic optimization for the individual - however as a collective this is suboptimal - and as a collective we don't have a pricing reference how things ought to be costed. [...] It is about an alternative for profit-maxing, and this is scalability maxing - including ethical decision about distribution - which are easier to trace."
+- **Author:** "As profit is a differnce between supply and demand - where that differnence is given to the person who solves the problem - so it is a bounty. But for many products - if we want to move faster as a whole should optimize for low price AND maximum distribution. And in normal pricing models as used in micro-economics reducing the offering is a way to increase the price as the demand might remain the same. Which is suboptimal for us as a whole. That is the problem we try to solve"
+- **Author:** "internal pricing extended outward is fair pricing all along."
+- **Author:** "it should not demand a central planner - this is not about communism - this is about being autonomous interdependent."
+- **Author:** "I don't want to publish a naive pricing model - it has to be a good one. A knowingly good one"
+- **Assistant, where it disagreed or added:**
+  - the closest prior art is Arrow (1962), who separated the reward for invention from the price of using it; Leontief's input-output prices are a recursive at-cost system; the strongest objection is Hayek's, that cost does not say what should exist;
+  - the structure must be a protocol, not a plan: each provider decides, publishes in one format, and buyers respond. Transparency toward buyers is safer than sellers seeing each other's current costs (EU competition guidance);
+  - research report 1 corrected the framing "profit is the bounty": profit does several jobs (reward, risk, renewal, scarcity, cost discipline, entry, surplus), and each needs its own home. The assistant agreed and formalized a home for each;
+  - demand at cost does not reveal value, so the bounty needs its own signals.
+- **Done:** [research/transparent-pricing/](research/transparent-pricing/README.md) and [formalization/transparent-pricing/](formalization/transparent-pricing/README.md): a standalone Lean package (68 results, axiom audit, own CI), the research brief, report 1 and a second agent's synthesis kept as received, and a plan for what else belongs in the section.
+- **Where the assistant is unsure:**
+  - most results are close to arithmetic once the setting is fixed;
+  - the hard parts are empirical: measuring impact without gaming, checking costs, adoption, and whether scarcity revenue really buys capacity;
+  - both readers so far are research agents, not independent human economists (working agreement 7).
+- **Open:** report 2; the one-page protocol; externalities and subsidy fields; a probabilistic reserve; the pilot; governance and legal notes; predictions. Whether the author's seed tariff may be published as the worked example is his call.
