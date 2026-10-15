@@ -838,6 +838,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - shared identity can be claimed falsely, so it lowers the cost of agreeing on rules without removing the need to monitor;
   - that a broad circle is better is a value, marked as proposed.
 - **Open:** graduated sanctions as a formal step: a mild first response that leaves room for repair, escalating for repeat capture.
+
 ### D30. Transparent pricing: access at cost, a separate bounty (Open, October 2026)
 - **Context:** the author asked whether a seed internal tariff for a digital service, with a capacity-based platform rate and costs passed on by cause, could scale when services are stacked on each other. The question widened to the economy.
 - **Author:** "I am wondering if this structure of pricing could scale - could an infinite services being stacked on each other - and if yes - how should we structure a real life implementation - and if no - why not and what do we need to change. This is an important problem - because if we get this pricing structure correct this could revolutionize the world in many good ways."
