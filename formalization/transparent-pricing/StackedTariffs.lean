@@ -138,8 +138,9 @@ theorem infinite_stack_unbounded {own : Nat → Nat} {h : Nat} (hh : 0 < h)
 /-- **Step errors add up with depth, in the worst case.** If each of `n + 1`
 layers can be short by less than one capacity step `s` (one FTE, one server),
 the stack as a whole can be short by up to `(n + 1) * s`. Errors that are
-independent partly cancel, so a pooled reserve can be smaller; that
-probabilistic version is not modelled here. -/
+independent partly cancel, so a pooled reserve can be smaller; but a shortfall
+built into every layer does not cancel
+(`TransparentPricing.pooling_cannot_remove_systematic_deficit`). -/
 theorem step_errors_add {short : Nat → Nat} {s : Nat} (hshort : ∀ k, short k ≤ s) :
     ∀ n, totalOwn short n ≤ (n + 1) * s := by
   intro n
@@ -159,8 +160,9 @@ def capacity (K0 d r : Nat) : Nat → Nat
   | 0 => K0
   | t + 1 => capacity K0 d r t + r - d
 
-/-- **A tariff that funds renewal keeps the service.** If the tariff includes at
-least the yearly wear (`d ≤ r`), capacity never falls. -/
+/-- **Funded renewal keeps the service.** If at least the yearly wear is funded
+(`d ≤ r`), capacity never falls. The renewal `r` can come from the tariff or
+from a capital fund; what matters is that it is funded somewhere. -/
 theorem renewal_keeps_capacity {K0 d r : Nat} (h : d ≤ r) :
     ∀ t, K0 ≤ capacity K0 d r t := by
   intro t

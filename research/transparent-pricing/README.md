@@ -23,7 +23,7 @@ The author's starting point is an internal tariff: "internal pricing extended ou
 
 ## What is proved
 
-The formal layer is in [formalization/transparent-pricing/](../../formalization/transparent-pricing/README.md): core Lean, no Mathlib, 68 results, an axiom audit, and its own CI.
+The formal layer is in [formalization/transparent-pricing/](../../formalization/transparent-pricing/README.md): core Lean, no Mathlib, 76 results, an axiom audit, and its own CI.
 
 | Claim | Result | Status |
 |---|---|---|
@@ -43,6 +43,12 @@ The formal layer is in [formalization/transparent-pricing/](../../formalization/
 | Bounty pool: never overspent; more impact earns more; claims compete | `pool_never_overspent`, `more_impact_more_pay`, `more_claims_less_each` | Proved |
 | Scarce tokens make demand signals costly; matching rewards many backers over one | `tokens_bound`, `matching_rewards_breadth` | Proved, given one identity per participant |
 | Capacity pricing recovers step costs to within one unit; at-cost stacking conserves cost | `StackedTariffs.capacity_rate_within_one_fte`, `StackedTariffs.at_cost_stack_conserves` | Proved |
+| External costs charged at the source and passed on once are counted exactly once; charged again at every stage they are overcounted | `once_is_footprint`, `again_overcounts` | Proved |
+| Competing bids find the smallest reward someone accepts, never above the ceiling | `award_within_ceiling` | Proved |
+| An expiring efficiency reward returns the whole saving to users after it ends | `expiring_reward_returns_saving` | Proved |
+| Pooling reserves cannot remove a deficit built into every layer | `pooling_cannot_remove_systematic_deficit` | Proved |
+| A lower tariff funded by a levy is not a lower bill for everyone | `lower_tariff_not_lower_bill` | Proved (example) |
+| Fixed costs recovered by volume spiral only when demand responds strongly | `fixed_costs_alone_do_not_decide_spiral` | Proved (example) |
 
 How much each says: most results are close to arithmetic once the setting is fixed. The ones that carry an argument are `margin_cost_exact` and `bounty_beats_margin_any_demand` (any demand), `charge_allocates_best` (an exchange argument), and `routed_removes_scarcity` with `kept_scarcity_permanent` (the incentive the author started from).
 
@@ -78,8 +84,9 @@ Both readers are research agents, not independent human reviewers (working agree
 | The one-page protocol: the shared format, the rules, and the theorem behind each | `PROTOCOL.md` | The publishable short version |
 | Review of the reports against the Lean results, including the two readings report 1 weakened | `REVIEW_OF_THE_REPORTS.md` | Keep the formal layer honest |
 | Report 2, when it arrives | `sources/` | Kept as received |
-| An externalities field (a physical ledger plus a separately chosen valuation) and an explicit subsidy field | `formalization/transparent-pricing/` | Raised by both reports; not yet formal |
-| A probabilistic version of pooled reserves | `formalization/transparent-pricing/` | Report 1: independent errors partly cancel |
+| External costs as a field in the published format: physical impact, chosen valuation and actual payment kept apart; explicit subsidies | `formalization/transparent-pricing/` | Passing on once is proved; the three-way split and subsidies are not yet formal |
+| A probabilistic version of pooled reserves | `formalization/transparent-pricing/` | Independent errors partly cancel; systematic deficits do not (proved) |
+| A general stability condition for volume-recovered fixed costs | `formalization/transparent-pricing/` | Only examples are proved so far |
 | A worked example in the published format, starting from the author's seed tariff | `PROTOCOL.md` | Only with the author's consent to publish its figures |
 | Pilot design: open-source software for public institutions, with evaluation criteria | `PILOT.md` | Both reports recommend this as the first test |
 | Governance and legal notes: bounty authority, a trustee for cost data (EU competition law), the state-aid route | `GOVERNANCE.md` | Report 1, questions 8 and 10 |
