@@ -67,6 +67,7 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
 - **Health of intelligence and of the commons:** [research/health-of-intelligence/](research/health-of-intelligence/) — concept notes, not results: a shared measure of the health of intelligence for people, AI systems and institutions, the health of the commons they live in, the research briefs and reports behind them, and their review.
+- **Transparent pricing:** [research/transparent-pricing/](research/transparent-pricing/README.md) — an application to economics: access at cost, a separate bounty for solving problems, every choice visible; with a standalone Lean package in [formalization/transparent-pricing/](formalization/transparent-pricing/README.md).
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
 - **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.
 - **Independent verification material:** [verification/](verification/).

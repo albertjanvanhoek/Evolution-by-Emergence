@@ -1,0 +1,74 @@
+import TransparentPricing
+import StackedTariffs
+
+/-! Axiom audit: every advertised result, with the axioms it depends on.
+CI fails if any depends on `sorryAx`. -/
+
+#print axioms StackedTariffs.capacity_rate_within_one_fte
+#print axioms StackedTariffs.capacity_rate_independent
+#print axioms StackedTariffs.volume_share_rises_when_projects_leave
+#print axioms StackedTariffs.at_cost_stack_conserves
+#print axioms StackedTariffs.margin_compounds
+#print axioms StackedTariffs.overhead_accumulates
+#print axioms StackedTariffs.infinite_stack_unbounded
+#print axioms StackedTariffs.step_errors_add
+#print axioms StackedTariffs.renewal_keeps_capacity
+#print axioms StackedTariffs.no_renewal_runs_down
+#print axioms StackedTariffs.stacked_tariffs_witness
+#print axioms TransparentPricing.price_traceable
+#print axioms TransparentPricing.priceList_traceable
+#print axioms TransparentPricing.above_cost_is_margins
+#print axioms TransparentPricing.all_at_cost
+#print axioms TransparentPricing.absolute_margins_add
+#print axioms TransparentPricing.percent_margins_compound
+#print axioms TransparentPricing.sq_nonneg
+#print axioms TransparentPricing.higher_margin_serves_no_more
+#print axioms TransparentPricing.margin_excludes
+#print axioms TransparentPricing.margin_cost_exact
+#print axioms TransparentPricing.lost_nonneg
+#print axioms TransparentPricing.lost_pos
+#print axioms TransparentPricing.value_is_buyers_plus_take
+#print axioms TransparentPricing.bounty_beats_margin_any_demand
+#print axioms TransparentPricing.at_cost_demand_does_not_reveal_value
+#print axioms TransparentPricing.margin_destroys_value
+#print axioms TransparentPricing.margin_serves_fewer
+#print axioms TransparentPricing.selfish_take_bound
+#print axioms TransparentPricing.selfish_margin_serves_half
+#print axioms TransparentPricing.bounty_beats_margin
+#print axioms TransparentPricing.hiding_deterred_iff
+#print axioms TransparentPricing.no_checking_hiding_pays
+#print axioms TransparentPricing.above_gt
+#print axioms TransparentPricing.served_zero_above
+#print axioms TransparentPricing.clearing_charge_exists
+#print axioms TransparentPricing.routed_grows
+#print axioms TransparentPricing.routed_removes_scarcity
+#print axioms TransparentPricing.queue_can_waste
+#print axioms TransparentPricing.alloc_split
+#print axioms TransparentPricing.count_split
+#print axioms TransparentPricing.value_split
+#print axioms TransparentPricing.served_split
+#print axioms TransparentPricing.sb_bound
+#print axioms TransparentPricing.ua_bound
+#print axioms TransparentPricing.charge_allocates_best
+#print axioms TransparentPricing.kept_scarcity_permanent
+#print axioms TransparentPricing.risk_pool_solvent_iff
+#print axioms TransparentPricing.cost_only_bounty_loses
+#print axioms TransparentPricing.cost_plus_no_incentive
+#print axioms TransparentPricing.shared_rewards_saving
+#print axioms TransparentPricing.shared_lowers_price
+#print axioms TransparentPricing.entry_never_raises
+#print axioms TransparentPricing.cheaper_entrant_lowers
+#print axioms TransparentPricing.renewal_keeps_service
+#print axioms TransparentPricing.no_renewal_runs_down
+#print axioms TransparentPricing.patronage_at_cost_each
+#print axioms TransparentPricing.patronage_at_cost_all
+#print axioms TransparentPricing.every_euro_has_a_field
+#print axioms TransparentPricing.scaled_payouts_le
+#print axioms TransparentPricing.pool_never_overspent
+#print axioms TransparentPricing.more_impact_more_pay
+#print axioms TransparentPricing.more_claims_less_each
+#print axioms TransparentPricing.cap_bounds
+#print axioms TransparentPricing.tokens_bound
+#print axioms TransparentPricing.matching_rewards_breadth
+#print axioms TransparentPricing.tranches_limit_exposure
+#print axioms TransparentPricing.transparent_pricing_witness
