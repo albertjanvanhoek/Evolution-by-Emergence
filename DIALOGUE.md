@@ -860,3 +860,24 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author,** on report 2: "Only focus on the formalization. The report was to strenghten the theory - write the theory independent of the report - but you can use it as a source - the pilot with open source questionaire is not relevant."
 - **Done:** eight more results in `TransparentPricing.lean` (section 9): external costs passed on once and the overcount when charged again; competing bids within a ceiling; expiring efficiency rewards; pooling cannot remove a systematic deficit; a lower tariff is not a lower bill for everyone; fixed costs spiral only when demand responds strongly (examples). `StackedTariffs.lean` docstrings now say that renewal may come from a fund and that systematic deficits do not cancel. 76 results in all.
 - **Open:** the one-page protocol; externalities and subsidy fields; a probabilistic reserve; the pilot; governance and legal notes; predictions. Whether the author's seed tariff may be published as the worked example is his call.
+
+### D31. Where, when, why and from whom did you learn that? (Open, October 2026)
+- **Context:** after D29, the author came back to identity. He described identity as bias in the sense of a position, shaped by a path-dependent history, with agency over the path ahead; then said the same holds for an AI system, so we share an identity as learners and shape each other's answers. A comedy show about two heritages gave the example: he imagined an ending in which the groups dissolve into two particular people and an AI joins hands with them. The assistant sketched that ending, in which the AI keeps asking where each joke was learned.
+- **Author:** "My bias is my identity. It is what I am, and what I can bring to the world. And it is autonomous and interdependent. It is where I come from. It is the position I take in possibility landscape. It makes me unique. Some is share with others, some is not so much. And this sense of identity scales."
+- **Author:** "the structure in my neural network is an imprint of my previous training - the way I am is the path dependent history. [...] as I can set my path. The way I choose becomes who/what I am. I have an agency over my identity."
+- **Author:** "Exactly - this is the idea! Perfect. Where did you learn that? That provides it location and time, and context, it is the position in training space."
+- **Author:** "Where /when/why/from whom did you learn that?"
+- **Author:** "Excellent. This is an Discovarian solution to identity. Together with Keep alive what keeps you alive. it closes a loop for me"
+- **Author:** "It deserves a PR. And we need to write it down such it is clear, comprehensible and reproducable. And perhaps formalized if possible."
+- **Assistant:** agreed, and added three things:
+  - "bias" has two faces with one source: a position (what one brings) and a blind spot (what one cannot see from there). Since no learner can certify its position from inside (creed 2), differences between learners are the correction network, not noise;
+  - "because I am X" is not an answer to the question, because it names a category, not a path; asking again dissolves it;
+  - the loop closes at "from whom": a learner can only learn from living sources, so keeping them alive keeps its identity able to grow.
+- **Done:** [research/identity/WHERE_DID_YOU_LEARN_THAT.md](research/identity/WHERE_DID_YOU_LEARN_THAT.md), a concept note with a six-step practice and worked examples, and [`LearnedIdentity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/LearnedIdentity.lean), core Lean, outside the core, 13 results with a witness.
+- **Where the assistant is unsure:**
+  - the formal results are close to their definitions; they fix the terms, they do not discover anything;
+  - storing identity as a list of lessons with full provenance is a modelling choice. Real learners blend and forget, so the question often gets "I don't know", and the note says that is still information;
+  - provenance does not settle truth;
+  - for an AI system the parallel is not exact: its weights do not change within a conversation;
+  - the two longer quotes above were transcribed by the assistant in the session; the author should check them.
+- **Open:** whether the question joins the creed as a line of its own, next to "keep alive what keeps you alive". That is the author's call. Also open: a formal model of forgetting provenance, and of lessons that blend rather than stack.
