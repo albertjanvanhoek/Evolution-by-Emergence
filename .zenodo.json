@@ -6,13 +6,13 @@
     }
   ],
   "title": "Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence",
-  "version": "v22.5",
-  "publication_date": "2026-10-15",
+  "version": "v22.6",
+  "publication_date": "2026-10-16",
   "upload_type": "software",
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.5 keeps the core of v22.4: CORE.md follows one model of learning, read as a network, in eight steps, and formalization/ebe-core/EbECore.lean audits 91 machine-checked results. A new core-Lean module, TamedCapture, puts the regulator inside the ledger: monitoring and repair are paid from the interest, sanctions must scale with the capturer, distributed policing survives the capture of monitors within its margin, and policing that errs needs repair. Two concept notes add duties to the quality of a relationship, stated as duties of effort, and a shared identity resting on being a learner that is autonomous and interdependent rather than on being intelligent. A new, separate section applies the theory to economics: transparent pricing, with access at cost, a separate bounty for solving problems, and a declared home for every job that profit does; its standalone core-Lean package checks 76 results with its own CI, and the section keeps its research brief, a research report and a second agent's synthesis as sources. DIALOGUE.md records how the author and an AI assistant build the model together, now in 30 entries. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
+  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.6 keeps everything in v22.5: CORE.md follows one model of learning, read as a network, in eight steps, and formalization/ebe-core/EbECore.lean audits 91 machine-checked results. It adds an account of identity as the imprint of a learning path: a position, which is both what a learner brings and what it cannot see from there, and a path it chooses onward. The question 'Where, when, why and from whom did you learn that?' gives a view its context, time, function and source, so that one view can be checked or revised without an attack on the whole person, and a category dissolves into a particular history; its 'from whom' meets 'keep alive what keeps you alive'. A concept note gives a practice anyone can follow, with worked examples. A new core-Lean module, LearnedIdentity, checks 13 results, and the Discovarian creed gains the line 'Ask where it was learned'. Retained from v22.5: TamedCapture, duties to the quality of a relationship, a shared identity as learners, and a separate section on transparent pricing with its own 76-result core-Lean package. DIALOGUE.md records how the author and an AI assistant build the model together, now in 31 entries. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
   "keywords": [
     "cumulative evolution",
     "emergence",
@@ -26,7 +26,8 @@
     "shared intelligence",
     "SCAP",
     "dynamic vortex",
-    "network ledger"
+    "network ledger",
+    "identity"
   ],
   "related_identifiers": [
     {
