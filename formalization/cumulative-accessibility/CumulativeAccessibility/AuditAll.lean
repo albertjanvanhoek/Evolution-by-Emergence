@@ -44,6 +44,7 @@ import CumulativeAccessibility.CommonsInterest
 import CumulativeAccessibility.CommonsDiscount
 import CumulativeAccessibility.CommonsTakers
 import CumulativeAccessibility.TamedCapture
+import CumulativeAccessibility.LearnedIdentity
 import CumulativeAccessibility.Reciprocity
 import CumulativeAccessibility.PartnerSwitching
 import CumulativeAccessibility.CareTransfer

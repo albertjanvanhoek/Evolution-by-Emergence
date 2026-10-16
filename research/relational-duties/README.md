@@ -31,7 +31,7 @@ Read through the theory, a relationship is an edge that both sides draw on and b
 5. **Do not pass your costs to the other unseen.** Capture works by externalizing costs: the one who causes them does not bear them, and the feedback that would stop it does not arrive (D27). *If* the relationship is to last, the costs each side places on the other must become visible to the side that causes them.
 6. **Make room to speak.** Feedback about the other's behaviour is confrontation, and people avoid it. The speaker bears the whole cost; the benefit is shared. A relationship that keeps voice cheap keeps its correction route open. *If* correction is to work (`TamedCapture`, D27).
 7. **Leave when repair is impossible.** A credible exit protects the weaker side even when it is never used (`ExitOption.exit_raises_floor`). Staying in a relationship that cannot be repaired is not what the duty asks.
-8. **Regard the one who carries the consequences, also when they cannot reciprocate.** *Proposed* (creed 10). Dependence protects only the parts a whole depends on, so this has to be stated outright.
+8. **Regard the one who carries the consequences, also when they cannot reciprocate.** *Proposed* (creed 11). Dependence protects only the parts a whole depends on, so this has to be stated outright.
 9. **That the quality of relationships should be a matter of rights at all.** *Proposed.* The theory shows what keeps a relationship going. That relationships ought to be kept going, and that the suffering a failing one causes matters, is a value.
 
 ## 4. Across substrates
