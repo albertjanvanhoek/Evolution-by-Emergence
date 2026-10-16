@@ -1,6 +1,6 @@
 # Where, when, why and from whom did you learn that?
 
-**A Discovarian account of identity.** This note follows up entry D31 in [DIALOGUE.md](../../DIALOGUE.md). It builds on [SHARED_IDENTITY.md](SHARED_IDENTITY.md) (D29) and the [creed](../discovarianism/CREED.md).
+**A Discovarian account of identity.** This note follows up entry D31 in [DIALOGUE.md](../../DIALOGUE.md). It builds on [SHARED_IDENTITY.md](SHARED_IDENTITY.md) (D29). The question is now line 9 of the [creed](../discovarianism/CREED.md).
 
 **Status:** a concept note with a formal layer, [`LearnedIdentity.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearnedIdentity.lean), in core Lean with a witness. Each claim below is marked as in the creed:
 - **Follows:** from being a learning process.
@@ -58,7 +58,7 @@ The two sentences look at the same thing from opposite sides:
 
 They meet at **"from whom"**. Tracing a lesson to its source finds the people, places and commons one learned from. A learner can only learn from sources that are alive; when none are left, its identity can no longer grow (`new_lessons_from_living_sources`, `no_living_sources_no_growth`). So keeping one's sources alive keeps one's identity able to grow. *If* one wants to go on learning (creed 8).
 
-The loop closes through agency. What one chooses to learn next becomes part of someone else's answer to the same question one day. The creed's line "and improve it for the next generation" is the choice to make that answer a good one. *Proposed* (creed 11).
+The loop closes through agency. What one chooses to learn next becomes part of someone else's answer to the same question one day. The creed's line "and improve it for the next generation" is the choice to make that answer a good one. *Proposed* (creed 12).
 
 The author: "This is an Discovarian solution to identity. Together with Keep alive what keeps you alive. it closes a loop for me."
 

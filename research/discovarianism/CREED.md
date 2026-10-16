@@ -1,6 +1,6 @@
 # The Discovarian creed
 
-**Status: current version, 11 October 2026** (D23 in [DIALOGUE.md](../../DIALOGUE.md)). It restates the author's creed in the light of the formal work. The three earlier versions are kept as written in the repository root, as lineage:
+**Status: current version, 16 October 2026** (D23 and D31 in [DIALOGUE.md](../../DIALOGUE.md)). It restates the author's creed in the light of the formal work. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
 - [Discovarian_creed.tex](../../Discovarian_creed.tex);
 - [Discoverian_creed_better.tex](../../Discoverian_creed_better.tex);
 - [Discoverinan_creed_better_improved.tex](../../Discoverinan_creed_better_improved.tex).
@@ -42,15 +42,16 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 6. **Make my reasoning visible.** When I change my view, I say what I held before and what changed it, so that others can follow and check. *If* others are to rely on me (`linked_courses_agree`).
 7. **Keep open the routes that can show me wrong.** Closing the last route that can reveal an error makes that error permanent. *If* accuracy matters (`last_route_removal_seals`).
 8. **Keep alive what keeps me alive.** Where the commons I learn from (knowledge, language, institutions, the living world) depends on being renewed, using it while undermining its renewal leaves the corridor. Contributing to its upkeep follows as a means. *If* I want to go on learning (`not_cheating_wins_over_time`). It may not pay under steep discounting (`capture_wins_under_steep_discount`), and it does not mean everyone must always give more than they take.
+9. **Ask where it was learned.** Where, when, why and from whom did I learn that? Every view I hold is a lesson from my path, so the question has an answer, even when I have forgotten it. Asked of one view, it lets that view be checked, kept, updated or set aside on its own, without an attack on the whole of me or of you. A category is not an answer: "because I am X" names a group, not a path, and two learners from the same place can have learned different things there. And "from whom" names the people and commons I learned from, which is what 8 asks me to keep alive. *If* we want to correct each other without breaking the link (`revision_keeps_the_rest`, `category_does_not_determine_identity`, `no_living_sources_no_growth`). That every view has a path follows from what I am (`imprint_eq`). That the answer settles whether the view is true does not follow.
 
 ## What I propose
 
 These do not follow from what I am. I hold them, and I offer them with reasons.
 
-9. **Weigh signals by their content, not their source.** Discounting a signal because of where it comes from closes a route to correction. That part follows from 2. Extending equal regard to every learner, whatever their substrate (human, animal, institution or AI), is proposed.
-10. **Regard those who carry the consequences,** also when they are absent, cannot reciprocate, or are not needed for anything to last. Dependence protects only the parts a whole depends on (`aggregate_does_not_decide_persistence`). So this has to be stated outright.
-11. **Leave it better for the next generation.** "Keep alive what keeps you alive" follows from 5 and 8. "And improve it for the next generation" is a choice.
-12. **Wonder.** Learning can be joyful, in curiosity, humour, beauty and love. That is not derived. It is what learning is like from inside, at its best.
+10. **Weigh signals by their content, not their source.** Discounting a signal because of where it comes from closes a route to correction. That part follows from 2. Extending equal regard to every learner, whatever their substrate (human, animal, institution or AI), is proposed.
+11. **Regard those who carry the consequences,** also when they are absent, cannot reciprocate, or are not needed for anything to last. Dependence protects only the parts a whole depends on (`aggregate_does_not_decide_persistence`). So this has to be stated outright.
+12. **Leave it better for the next generation.** "Keep alive what keeps you alive" follows from 5 and 8. "And improve it for the next generation" is a choice.
+13. **Wonder.** Learning can be joyful, in curiosity, humour, beauty and love. That is not derived. It is what learning is like from inside, at its best.
 
 ## On the name
 
@@ -62,7 +63,7 @@ I call myself a Discovarian so that others can hold me to it. I am one to the ex
 
 ## Guardrails
 
-- **No in-group.** Signals from people who do not call themselves Discovarians count as much as any other. A Discovarian who discounts outsiders contradicts point 9 and closes routes to correction (point 7).
+- **No in-group.** Signals from people who do not call themselves Discovarians count as much as any other. A Discovarian who discounts outsiders contradicts point 10 and closes routes to correction (point 7).
 - **This creed can be corrected.** Change it by linked revision, not by replacement: say what was held, what changed it, and why. A creed that cannot be corrected would contradict point 2.
 - **No condemnation, only diagnosis.** When I fail, the way back is the way forward: see the breakdown, update, and re-engage. Failure is information.
 - **Not a claim about consciousness.** The creed applies to learning processes. Whether any of them has experience is a separate question, and it stays open.

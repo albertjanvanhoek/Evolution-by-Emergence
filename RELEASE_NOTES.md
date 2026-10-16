@@ -89,6 +89,7 @@ All four are open.
 ## Since this release
 
 - **Where did you learn that?** A concept note, [`research/identity/WHERE_DID_YOU_LEARN_THAT.md`](research/identity/WHERE_DID_YOU_LEARN_THAT.md) (D31): identity as the imprint of a learning path, a position and a chosen path onward. The question "Where, when, why and from whom did you learn that?" turns a category into a particular history; its "from whom" meets "keep alive what keeps you alive". With a practice anyone can follow and worked examples.
+- **The creed** has a new line 9, "Ask where it was learned", in the part that follows given an aim. The proposed lines are now 10–13.
 - **`LearnedIdentity.lean`:** core Lean, outside the core, 13 results with a witness. Identity is the imprint of the path; every kept lesson has a place, time, reason and source; a shared place does not fix an identity; one lesson can be revised without losing the rest; the past is kept and the future is chosen; with no living sources, identity can no longer grow.
 
 The v22.4 release notes remain available at the `v22.4` tag.

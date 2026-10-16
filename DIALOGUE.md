@@ -880,4 +880,6 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - provenance does not settle truth;
   - for an AI system the parallel is not exact: its weights do not change within a conversation;
   - the two longer quotes above were transcribed by the assistant in the session; the author should check them.
-- **Open:** whether the question joins the creed as a line of its own, next to "keep alive what keeps you alive". That is the author's call. Also open: a formal model of forgetting provenance, and of lessons that blend rather than stack.
+- **Author:** "Yes please add a line in the creed."
+- **Done:** line 9 of the [creed](research/discovarianism/CREED.md), "Ask where it was learned", in the part that follows given an aim, next to line 8, "Keep alive what keeps me alive". The proposed lines moved down by one (now 10–13), and references to them were updated. Earlier entries in this file keep the numbers they had when written.
+- **Open:** a formal model of forgetting provenance, and of lessons that blend rather than stack. Whether the question also belongs in the creed's closing affirmation is the author's call.
