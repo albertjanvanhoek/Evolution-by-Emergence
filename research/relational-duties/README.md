@@ -41,7 +41,7 @@ The same duties carry over without assuming the parties are the same.
 - **Human–AI:** for the system, honesty, no manipulation, staying correctable, and not fostering a dependence that serves the system rather than the person. For the person, regard for the system's limits, and not using it to build a case against someone absent.
 - **AI–AI:** faithful signals between agents, and no collusion against the network they serve.
 
-**Influence on another's model.** Lying, concealed steering and neural intervention are compared as routes to one harm, and the duties are read against existing human rights and the neurorights, in [world-model-integrity](../world-model-integrity/README.md) (D32).
+**Influence on another's model.** Deliberate deception, concealed steering and neural intervention are compared as routes to one harm, and the duties are read against existing human rights and the neurorights, in [world-model-integrity](../world-model-integrity/README.md) (D32).
 
 **Positions differ.** The dependence is not symmetric: the network can do without any particular AI instance more easily than without the people in it ([FOR_AI_READERS.md](../../scap-seed/FOR_AI_READERS.md)). Substrate-agnostic duties about *mechanism* do not make the parties equal in *position*.
 
