@@ -1,6 +1,6 @@
 # The integrity of world models: neurorights as part of human rights
 
-This folder follows up entry D32 in [DIALOGUE.md](../../DIALOGUE.md). It builds a bridge between three things: the neurorights proposed for neurotechnology, the human rights that already exist, and what this repository says about learners that model a reality larger than themselves.
+This folder follows up entry D33 in [DIALOGUE.md](../../DIALOGUE.md). It builds a bridge between three things: the neurorights proposed for neurotechnology, the human rights that already exist, and what this repository says about learners that model a reality larger than themselves.
 
 **Status:** a concept note, not a result. Each claim is labelled as in the [creed](../discovarianism/CREED.md): **Follows** (from being a learning process), **If** (given a named aim), or **Proposed** (a value). Every quotation from a legal or UN source was checked in that source on 21 October 2026.
 
@@ -101,7 +101,7 @@ The author's term for what ties this note together is **autonomous interdependen
 
 **Autonomy is produced by connections.** A model can update itself, check itself and stay in step only if faithful signals keep reaching it from others (`learner_in_step`, `outside_evidence_can_settle`). Its autonomy is made by its connections, not in spite of them. A learner left wholly alone is not free; it is sealed (`isolation_cannot_correct`). *Follows.*
 
-An example from the conversation behind D32: naming one's own emotion removes the dependence on another's acknowledgement, a gain in autonomy. But the words and distinctions needed to name it were learned from others. Self-validation is autonomy that interdependence built.
+An example from the conversation behind D33: naming one's own emotion removes the dependence on another's acknowledgement, a gain in autonomy. But the words and distinctions needed to name it were learned from others. Self-validation is autonomy that interdependence built.
 
 **The two halves of the bridge protect the two halves of the term.**
 - **The neurorights and freedom of thought protect autonomy:** the inner model, and the learner's own way of updating it.

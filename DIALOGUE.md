@@ -884,7 +884,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Done:** line 9 of the [creed](research/discovarianism/CREED.md), "Ask where it was learned", in the part that follows given an aim, next to line 8, "Keep alive what keeps me alive". The proposed lines moved down by one (now 10–13), and references to them were updated. Earlier entries in this file keep the numbers they had when written.
 - **Open:** a formal model of forgetting provenance, and of lessons that blend rather than stack. Whether the question also belongs in the creed's closing affirmation is the author's call.
 
-### D32. The integrity of world models: neurorights as part of human rights (Open, October 2026)
+### D33. The integrity of world models: neurorights as part of human rights (Open, October 2026)
 - **Context:** a conversation in Dutch that started from a reader on validation, moved to naming one's own emotions as an internal validation that removes the dependence on another's acknowledgement, and then to the Neurorights Foundation.
 - **Author:** "Het idee wat ik had is om naast jullie neurorechten ook te focussen op de relatie, met mijn stelling dat ALS elk brein de werkelijkheid modelleert in plaats direct toegang heeft tot de werkelijkheid dan moeten we dit in de alledaagse omgang met elkaar als uitgangspunt nemen."
 - **Author:** "dan ontneem ik iets van jou als ik bijvoorbeeld tegen je lieg, dan functioneert je model technisch minder goed, wat eigenlijk hetzelfde is als ik via een apparaat je model zal beïnvloeden. Het verloopt alleen via een andere weg - maar is in uitkomst misschien hetzelfde."
