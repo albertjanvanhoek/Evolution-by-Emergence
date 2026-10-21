@@ -93,6 +93,7 @@ This shapes how the note should be read:
 - **Rights mark the boundary, not every case.** Most influence between people, including most falsehoods, sits well inside the boundary. It belongs to everyday ethics: correction, repair and the duties of effort. Rights name the principle and draw the line where influence becomes excess, such as deliberate manipulation.
 - **The neurorights work the same way as the other human rights.** They give a principle a formal structure and say where it is crossed. That is why they can be read as part of the existing framework rather than beside it.
 - **Rights are made.** They are inventions, kept in force by people who use them, teach them and enforce them. In the repository's terms they are part of the commons: shared rules that every node draws on and did not make alone (step 6), and distributed rules in the sense of D27.
+- **Made, so they can be built on.** Rights are a case of what the essay [Building the future](../building-the-future/BUILDING_THE_FUTURE.md) (D32) calls yesterday's aims becoming today's tools: a principle once fought for becomes the structure the next step stands on.
 - **Made, so correctable.** What is invented can be revised, by linked revision as the creed asks of itself: say what was held, what changed it, and why. Being invented does not make a right arbitrary. *Assistant's reading, proposed:* one test of a right is whether it keeps the network able to correct itself, without forcing it into conformity.
 
 ## 6. Autonomous interdependence: why it hangs together

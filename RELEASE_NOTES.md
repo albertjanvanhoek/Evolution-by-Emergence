@@ -65,4 +65,9 @@ The results are close to their definitions. They fix the terms and show that the
 - **Identity:** a formal model of forgetting provenance, and of lessons that blend rather than stack; whether the question also belongs in the creed's closing affirmation (the author's call).
 - **Carried forward from v22.5:** whether `TamedCapture` enters the core; graduated sanctions; the transparent-pricing protocol, external-cost and subsidy fields, a probabilistic reserve and a general stability condition; the "Not yet formal" list in `CORE.md`; the open entries in [`DIALOGUE.md`](DIALOGUE.md).
 
+## Since this release
+
+- **Building the future** (D32): an essay, [`research/building-the-future/BUILDING_THE_FUTURE.md`](research/building-the-future/BUILDING_THE_FUTURE.md), and a short orientation paragraph in the README. When answers become cheap, the bottleneck moves to uptake; yesterday's aims become today's tools; prediction becomes a tool to change what it predicts. A stance, not a result. No Lean changes.
+- **The integrity of world models** (D33): a concept note, [`research/world-model-integrity/`](research/world-model-integrity/README.md). Deliberate manipulation by words or by devices as two routes to one harm; the five neurorights read against existing human rights and the relational duties, with a row they lack, the integrity of shared world models; rights as human-made principles that set boundaries against excess; and autonomous interdependence as the logic behind it. Legal and UN quotations checked in their sources. No Lean changes.
+
 The v22.5 release notes remain available at the `v22.5` tag.
