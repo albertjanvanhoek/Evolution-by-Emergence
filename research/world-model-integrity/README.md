@@ -95,20 +95,40 @@ This shapes how the note should be read:
 - **Rights are made.** They are inventions, kept in force by people who use them, teach them and enforce them. In the repository's terms they are part of the commons: shared rules that every node draws on and did not make alone (step 6), and distributed rules in the sense of D27.
 - **Made, so correctable.** What is invented can be revised, by linked revision as the creed asks of itself: say what was held, what changed it, and why. Being invented does not make a right arbitrary. *Assistant's reading, proposed:* one test of a right is whether it keeps the network able to correct itself, without forcing it into conformity.
 
-## 6. Why the bridge matters now
+## 6. Autonomous interdependence: why it hangs together
+
+The author's term for what ties this note together is **autonomous interdependence** (see [SHARED_IDENTITY.md](../identity/SHARED_IDENTITY.md)). In his words: "the interdependence is about creating and sustaining autonomy". And: "that is allowing for variation and different perspectives. As that is the idea behind it - that you allow for this by holding up autonomy and interdependence."
+
+**Autonomy is produced by connections.** A model can update itself, check itself and stay in step only if faithful signals keep reaching it from others (`learner_in_step`, `outside_evidence_can_settle`). Its autonomy is made by its connections, not in spite of them. A learner left wholly alone is not free; it is sealed (`isolation_cannot_correct`). *Follows.*
+
+An example from the conversation behind D32: naming one's own emotion removes the dependence on another's acknowledgement, a gain in autonomy. But the words and distinctions needed to name it were learned from others. Self-validation is autonomy that interdependence built.
+
+**The two halves of the bridge protect the two halves of the term.**
+- **The neurorights and freedom of thought protect autonomy:** the inner model, and the learner's own way of updating it.
+- **The relational duties protect the interdependence that produces it:** faithful signals, staying correctable, repair, room to speak.
+
+Without the second, the first has nothing to stand on. Without the first, the second becomes control.
+
+**What both protect is variation.** Autonomy keeps perspectives different; interdependence keeps them in contact. Correction needs both. A shared blind spot is corrected only by a node that is independent of the shared layer and still connected to the rest, and a network corrects only between isolation and full conformity (`hub_determined_network_inherits_blind_spot`, `correcting_levels_form_interval`). So different perspectives are not noise to be removed. They are the network's routes to correction. *Follows,* for correction. That variation should also be valued for its own sake is *proposed*.
+
+**Interdependence does not build autonomy by itself.** It can also wear it down: through capture, through dependence that serves one side, through pressure to conform. Whether it builds autonomy depends on the quality of the relationships. That is why the duty to the quality of relationships (D28) is not an addition to the rights. It is the condition under which interdependence produces autonomy rather than consuming it. *If* autonomy is to last.
+
+This also explains section 3. Deliberate manipulation, by words or by devices, is harmful in a particular way. It uses a connection, which should feed the other's autonomy, to take that autonomy over.
+
+## 7. Why the bridge matters now
 
 The UN debate is about exactly this choice. The Human Rights Council Advisory Committee recorded two views ([A/HRC/57/61](https://documents.un.org/doc/undoc/gen/g24/133/28/pdf/g2413328.pdf), 2024, para. 63): new neurorights for grey areas, or "an extensive interpretation of existing core rights complemented by implementation standards, and not new rights". It found that "human rights provide an adequate and flexible principle-based framework" (para. 78(c)). In April 2025 the Council asked the Committee to draft "recommended guidelines for applying the existing human rights framework" to neurotechnology, for its sixty-fourth session, and to seek the views of all stakeholders ([A/HRC/RES/58/6](https://digitallibrary.un.org/record/4082164/files/A_HRC_RES_58_6-EN.pdf), paras. 2–3). UNESCO adopted its [Recommendation on the Ethics of Neurotechnology](https://unesco.org.uk/site/assets/files/27459/unesco_ethics-neurotechnology_a5_en_digital-double-pages_1.pdf) on 11 November 2025.
 
 This note supports the second view, with a reason the debate does not yet give. Existing rights already cover neural intervention, *if* they are read as protecting the integrity of a world model rather than a particular organ. Under that reading neurotechnology is a new route to an old harm. The same reading covers lies, concealed steering and AI systems, so it does not single out the brain (critics call that singling out "neuro-exceptionalism").
 
-## 7. What this adds, in short
+## 8. What this adds, in short
 
 1. **One criterion across routes.** Harm is judged by what happens to the model's capacity to track and correct, not by the route. *Proposed*, resting on parts that *follow*.
 2. **Duties beside rights.** UDHR art. 29(1) already speaks of duties to the community. The relational duties make them concrete. Deliberate deception is the plainest breach of the first; an honest error is no breach, and is what the duties to stay correctable and to attempt repair are for. *If* relationships are to last (relational-duties note).
 3. **The collective level.** The integrity of shared world models is a commons: trust and the capacity to check are what run down. A deliberate deceiver gains while the commons loses, which is cost externalization, the mechanism of capture (D27). Distributed policing that stays correctable is how a commons tames it (`TamedCapture`). *If* the commons is to last.
 4. **Across substrates.** The same duties hold between people and AI systems in both directions: a system that flatters or misleads degrades a person's model; a person who feeds a system poisoned data degrades its model. *Follows* for the mechanism; the asymmetry of position stays (relational-duties note, section 4).
 
-## 8. Where the assistant is unsure
+## 9. Where the assistant is unsure
 
 - **Thresholds and knowledge.** Human rights law binds states and targets grave cases. Whether something is a lie, and whether it was meant to steer, is often unknown, also to the speaker. Most falsehoods are matters of ethics and of duties of effort, not of courts. The boundary in section 5 is for deliberate manipulation.
 - **The route still matters for remedy.** The outcome may be the same, but deception can often be found out through the person's own routes, while a neural intervention or a hidden shared layer may leave none. By `last_route_removal_seals`, influence that leaves no route to discovery deserves the strongest protection. So the criterion keeps the outcome in view and does not make every route equal.
@@ -117,7 +137,7 @@ This note supports the second view, with a reason the debate does not yet give. 
 - **Value, not theorem.** That the integrity of world models should be a matter of rights at all is *proposed*. Persistence is not goodness (D7).
 - **One conversation, one model family.** Human readers, lawyers and other model families should check it (working agreement 7).
 
-## 9. Open questions
+## 10. Open questions
 
 - **A contribution to the UN guidelines.** Resolution 58/6 asks for stakeholder views. A short submission could propose the functional criterion and the collective row of the table. Whether and how is the author's call.
 - **Measurement.** How the integrity of a shared world model could be measured without the measure becoming a weapon. Domain C of the [health of intelligence](../health-of-intelligence/HEALTH_OF_INTELLIGENCE.md), correction and source independence, is the nearest instrument.
