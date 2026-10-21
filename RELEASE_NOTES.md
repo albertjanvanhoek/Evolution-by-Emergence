@@ -3,71 +3,68 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v22.6**
+**Evolution by Emergence v22.7**
 
-v22.6 keeps everything in v22.5 and adds one idea, about identity:
-- [`CORE.md`](CORE.md) still follows one model of learning in eight steps, and [`EbECore.lean`](formalization/ebe-core/EbECore.lean) still audits **91** results.
-- A concept note: identity as the imprint of a learning path, and the question **"Where, when, why and from whom did you learn that?"**
-- A new core-Lean module, `LearnedIdentity`, with **13** results.
-- The Discovarian creed has a new line 9: **"Ask where it was learned."**
-- [`DIALOGUE.md`](DIALOGUE.md) now runs to D31.
+v22.7 keeps everything in v22.6 and adds two pieces of writing, an orientation and a bridge to human rights:
+- [`CORE.md`](CORE.md) still follows one model of learning in eight steps, and [`EbECore.lean`](formalization/ebe-core/EbECore.lean) still audits **91** results. No Lean changes.
+- An essay, **Building the future**: what changes when answers become cheap.
+- A concept note, **The integrity of world models**: neurorights read as part of existing human rights.
+- [`DIALOGUE.md`](DIALOGUE.md) now runs to D33.
 
-Nothing is removed. The v22.5 work (taming capture, relational duties, shared identity as learners, and transparent pricing with its 76-result Lean package) is unchanged. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
+Nothing is removed. The v22.6 work (identity as a learned path, `LearnedIdentity`, creed line 9) and the v22.5 work (taming capture, relational duties, shared identity as learners, and transparent pricing with its 76-result Lean package) are unchanged. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
 
 ## 1. The core
 
 Unchanged.
 
-## 2. Identity as a learned path
+## 2. Building the future
 
-[`research/identity/WHERE_DID_YOU_LEARN_THAT.md`](research/identity/WHERE_DID_YOU_LEARN_THAT.md) (D31). In the author's words: "My bias is my identity. [...] It is the position I take in possibility landscape." And: "The way I choose becomes who/what I am. I have an agency over my identity."
+[`research/building-the-future/BUILDING_THE_FUTURE.md`](research/building-the-future/BUILDING_THE_FUTURE.md) (D32), with a short orientation paragraph in the README. In the author's words: "It is making the future, not predicting the future."
 
-- **Three tenses.** Identity is the imprint of a learning path (past); a position, which is both what one brings and what one cannot see from there (present); and a path one chooses onward, within limits and with others (future).
-- **The question.** "Where, when, why and from whom did you learn that?" gives a view its context, time, function and source. A view with its coordinates can be checked, kept, updated or set aside on its own, without an attack on the whole person.
-- **Categories dissolve.** "Because I am X" names a group, not a path. Two learners from the same place can have learned different things there.
-- **The loop.** "From whom" names the people and commons one learned from. A learner can only learn from living sources, so the question meets "keep alive what keeps you alive". In the author's words: "it closes a loop for me."
-- **Reproducible.** A six-step practice anyone can follow, with worked examples for a person, an AI system, an institution, and a stage ending with stand-in names.
+- **The bottleneck moves.** When answers become cheap, the hard part is no longer finding solutions but taking them up: adaptation, building, changing how we live.
+- **Yesterday's aims become today's tools.** Surveillance becomes a tool for the health of a nation; solving becomes a tool for building.
+- **Prediction becomes a tool too.** The future is unpredictable not only because of chaos, but because we change it. Its path becomes less predictable, its direction more so, if the steering is shared.
+- **Responsibility shifts toward uptake,** for people, institutions and AI systems alike. We will not run out of work, because we do not want to.
 
-## 3. The formal layer
+A stance, not a result: nothing in the Lean work shows that raising the aim is right (D7). The podcast that occasioned the essay is used as the occasion only; its claims are unchecked.
 
-[`LearnedIdentity.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/LearnedIdentity.lean): core Lean, no Mathlib, outside the core, 13 results with a witness, in CI and the axiom audit.
-- Identity is the imprint of the path: the same path gives the same identity; different paths can give different ones.
-- Every kept lesson carries a place, time, reason and source.
-- A shared place does not fix an identity.
-- One lesson can be revised without losing the rest.
-- The past is kept; the future is chosen.
-- With no living sources, identity can no longer grow.
+## 3. The integrity of world models
 
-The results are close to their definitions. They fix the terms and show that the claims hold together. Storing identity as a list of lessons with full provenance is a modelling choice; real learners blend and forget.
+[`research/world-model-integrity/`](research/world-model-integrity/README.md) (D33). It starts from the author's claim: if every brain models reality rather than accessing it directly, that should be the starting point of how we deal with each other, and deliberate deception degrades another's model just as a neural intervention would, by another route.
 
-## 4. The creed
+- **Not every falsehood is a lie.** The note separates honest error, uncertain claims, known falsehoods and deliberate manipulation. The equivalence with neural manipulation is claimed only for the last.
+- **One criterion across routes** (proposed): an influence is impermissible when it is exercised knowingly and degrades another learner's capacity to stay in step and correct itself, without free and informed consent.
+- **The bridge.** Each of the five neurorights is read against an existing human right (UDHR, ICCPR), the repository and a duty between people. A sixth row is what the neurorights lack: the integrity of shared world models.
+- **What rights are for.** In the author's words: "the human rights are there for naming the principles and setting boundaries towards the excess." They are human-made, so they can be built on and corrected.
+- **Autonomous interdependence.** Autonomy is produced by connections. The rights protect autonomy; the relational duties protect the interdependence that produces it. Both protect variation, which correction needs (`correcting_levels_form_interval`).
+- **Why now.** The UN Human Rights Council asked for guidelines on applying the *existing* framework to neurotechnology (A/HRC/RES/58/6). The note supports that reading, with a reason the debate lacks.
 
-[`CREED.md`](research/discovarianism/CREED.md) has a new line 9, "Ask where it was learned", at the author's request. It sits in the part that follows given an aim, right after "Keep alive what keeps me alive". The proposed lines moved to 10–13. The change is recorded as a linked revision, as the creed's guardrails ask.
+Legal and UN quotations were checked in their primary sources. The note links to the essay of section 2: rights are a case of yesterday's aims becoming today's tools.
 
-## 5. Front door and metadata
+## 4. Front door and metadata
 
-- `RELEASE_VERSION`, `CITATION.cff`, `.zenodo.json`, the README citation, the `ebe_core` dependency example and the integration check are synchronized to v22.6. The public title is unchanged.
-- The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`. Zenodo assigns the exact v22.6 version DOI when this GitHub release is archived.
+- `RELEASE_VERSION`, `CITATION.cff`, `.zenodo.json`, the README citation, the `ebe_core` dependency example and the integration check are synchronized to v22.7. The public title is unchanged.
+- The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`. Zenodo assigns the exact v22.7 version DOI when this GitHub release is archived.
 
-## 6. Status of the claims
+## 5. Status of the claims
 
-- **Proved:** each Lean result is a machine-checked implication under the premises stated in its theorem. Machine checking guarantees that a conclusion follows and that its premises can hold together; it does not make a result deep.
+- **Proved:** each Lean result is a machine-checked implication under the premises stated in its theorem. This release adds none.
 - **Not claimed:**
-  - that real learners can always recall where they learned something;
-  - that the source of a lesson settles whether it is true;
-  - that choosing is free in any stronger sense than coming from the learner's own structure and responding to reasons;
-  - that human and AI identities are the same: an AI system's weights do not change within a conversation;
+  - that raising the aim is right, or that cheap answers make implementation easy; the essay is a stance;
+  - that every false statement is a rights violation; whether something is a lie, and whether it was meant to steer, is often unknown;
+  - that the route of an influence never matters: influence that leaves no route to discovery deserves the strongest protection;
+  - that the integrity of world models should be a right; that is proposed, as a value;
   - empirical universality, or that any particular system satisfies the premises.
   - Persistence is not goodness.
 
-## 7. Open work
+## 6. Open work
 
-- **Identity:** a formal model of forgetting provenance, and of lessons that blend rather than stack; whether the question also belongs in the creed's closing affirmation (the author's call).
-- **Carried forward from v22.5:** whether `TamedCapture` enters the core; graduated sanctions; the transparent-pricing protocol, external-cost and subsidy fields, a probabilistic reserve and a general stability condition; the "Not yet formal" list in `CORE.md`; the open entries in [`DIALOGUE.md`](DIALOGUE.md).
+- **Building the future:** whether the orientation also belongs in `CORE.md` or the creed (the author's call); a Dutch version if wanted.
+- **World-model integrity:** whether to send a stakeholder contribution for the Human Rights Council guidelines; measuring the integrity of a shared world model; deception as a deliberately unfaithful channel, in Lean; the literature on mental integrity and cognitive liberty, still to be read.
+- **Carried forward:** forgetting provenance and blending lessons (v22.6); whether `TamedCapture` enters the core; graduated sanctions; the transparent-pricing protocol and its open fields; the "Not yet formal" list in `CORE.md`; the open entries in [`DIALOGUE.md`](DIALOGUE.md).
 
 ## Since this release
 
-- **Building the future** (D32): an essay, [`research/building-the-future/BUILDING_THE_FUTURE.md`](research/building-the-future/BUILDING_THE_FUTURE.md), and a short orientation paragraph in the README. When answers become cheap, the bottleneck moves to uptake; yesterday's aims become today's tools; prediction becomes a tool to change what it predicts. A stance, not a result. No Lean changes.
-- **The integrity of world models** (D33): a concept note, [`research/world-model-integrity/`](research/world-model-integrity/README.md). Deliberate manipulation by words or by devices as two routes to one harm; the five neurorights read against existing human rights and the relational duties, with a row they lack, the integrity of shared world models; rights as human-made principles that set boundaries against excess; and autonomous interdependence as the logic behind it. Legal and UN quotations checked in their sources. No Lean changes.
+Nothing yet.
 
-The v22.5 release notes remain available at the `v22.5` tag.
+The v22.6 release notes remain available at the `v22.6` tag.

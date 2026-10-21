@@ -6,13 +6,13 @@
     }
   ],
   "title": "Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence",
-  "version": "v22.6",
-  "publication_date": "2026-10-16",
+  "version": "v22.7",
+  "publication_date": "2026-10-21",
   "upload_type": "software",
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.6 keeps everything in v22.5: CORE.md follows one model of learning, read as a network, in eight steps, and formalization/ebe-core/EbECore.lean audits 91 machine-checked results. It adds an account of identity as the imprint of a learning path: a position, which is both what a learner brings and what it cannot see from there, and a path it chooses onward. The question 'Where, when, why and from whom did you learn that?' gives a view its context, time, function and source, so that one view can be checked or revised without an attack on the whole person, and a category dissolves into a particular history; its 'from whom' meets 'keep alive what keeps you alive'. A concept note gives a practice anyone can follow, with worked examples. A new core-Lean module, LearnedIdentity, checks 13 results, and the Discovarian creed gains the line 'Ask where it was learned'. Retained from v22.5: TamedCapture, duties to the quality of a relationship, a shared identity as learners, and a separate section on transparent pricing with its own 76-result core-Lean package. DIALOGUE.md records how the author and an AI assistant build the model together, now in 31 entries. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
+  "description": "Evolution by Emergence is an open research corpus and machine-auditable candidate architecture for resource-constrained cumulative evolution. Version v22.7 keeps everything in v22.6: CORE.md follows one model of learning, read as a network, in eight steps, and formalization/ebe-core/EbECore.lean audits 91 machine-checked results. It adds two pieces of writing and no new Lean. An essay, Building the future, states an orientation for the work: when answers become cheap, the bottleneck moves from finding solutions to taking them up; yesterday's aims become today's tools; and prediction becomes a tool to change what it predicts, so that the future's path grows less predictable and its direction more so. It is marked as a stance, not a result. A concept note, The integrity of world models, starts from the premise that every brain models reality rather than accessing it directly. It separates honest error from deliberate manipulation, treats deliberate deception and neural intervention as two routes to one harm, and proposes one criterion across routes. It reads the five neurorights against existing human rights and the relational duties, adds the integrity of shared world models as a row they lack, describes rights as human-made principles that set boundaries against excess, and grounds the whole in autonomous interdependence: autonomy is produced by connections, and both protect the variation that correction needs. Retained from earlier releases: identity as a learned path with the LearnedIdentity module, TamedCapture, duties to the quality of a relationship, a shared identity as learners, and a separate section on transparent pricing with its own 76-result core-Lean package. DIALOGUE.md records how the author and an AI assistant build the model together, now in 33 entries. The release title uses ‘simulation of reality’ to mean the internal model through which a system experiences and acts in the world, not a claim that reality itself is simulated. Formal verification establishes implications under explicit premises; empirical, causal, political and normative interpretations remain open. The original repository material is dual-licensed under CC BY 4.0 OR Apache-2.0 as documented in DUAL-LICENSING.md; CC BY 4.0 is supplied here as the single Zenodo archival metadata value because the GitHub-Zenodo metadata path accepts one license value.",
   "keywords": [
     "cumulative evolution",
     "emergence",
@@ -27,7 +27,9 @@
     "SCAP",
     "dynamic vortex",
     "network ledger",
-    "identity"
+    "identity",
+    "neurorights",
+    "human rights"
   ],
   "related_identifiers": [
     {
