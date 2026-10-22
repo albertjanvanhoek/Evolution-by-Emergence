@@ -7,10 +7,13 @@ This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It distinguis
 | [WORLD_MODEL.md](WORLD_MODEL.md) | The definition note, second version |
 | [sources/REVIEW_1.md](sources/REVIEW_1.md) | The independent review of the first version, kept as received |
 | [sources/RESPONSE_1.md](sources/RESPONSE_1.md) | The response to it, point by point |
+| [sources/REVIEW_2_PART0.md](sources/REVIEW_2_PART0.md) | Review 2's blind Part 0 answers, recorded before it saw the material |
+| [sources/REVIEW_2.md](sources/REVIEW_2.md) | The second independent review, kept as received |
+| [sources/RESPONSE_2.md](sources/RESPONSE_2.md) | The response to it, point by point, with how much weight it carries |
 | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) | The brief given for review 1 |
 | [briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md) | The brief for a second review, in two messages with a blind start |
 
-**Status:** a definition note, outside the core. Review 1 found the first version not ready to open the core; this version answers it and awaits a second review. Its formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, 28 results and a witness, for evidential fit at the level of possibilities only.
+**Status:** a definition note, outside the core. Review 1 found the first version not ready to open the core; review 2, by a lighter reader, found the second version ready with changes, which are made. Its formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, 28 results and a witness, for evidential fit at the level of possibilities only.
 
 **The definition.**
 

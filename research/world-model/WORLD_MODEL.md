@@ -1,6 +1,6 @@
 # World models, and what makes one functional
 
-**Status: a definition note, second version, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The first version was reviewed by a reader from another model family, who found it not ready to open the core. The review is kept as received in [sources/REVIEW_1.md](sources/REVIEW_1.md), and [sources/RESPONSE_1.md](sources/RESPONSE_1.md) answers it point by point. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 28 machine-checked results and a witness, for one narrow part of what this note says. Practices and a checklist are to be distilled from this note; they are not here yet.
+**Status: a definition note, second version with the changes from review 2, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The first version was reviewed by a reader from another model family, who found it not ready to open the core ([review 1](sources/REVIEW_1.md), [response](sources/RESPONSE_1.md)). The second version was reviewed by a lighter reader from a third family, who found it ready with changes ([review 2](sources/REVIEW_2.md), [response](sources/RESPONSE_2.md)); the changes it asked for are made where they apply to the text. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 28 machine-checked results and a witness, for one narrow part of what this note says. Practices and a checklist are to be distilled from this note; they are not here yet.
 
 > **In one paragraph.** Every intelligence acts through world models: representations that let it infer what it does not observe, what may happen, and what would happen if it acted. Having one is ordinary. Having a **functional** one is not. A functional world model is held with the aim of fitting how things are, tested against evidence it cannot fix in advance, as sharp as that evidence supports and no sharper, and correctable: both its beliefs and its range of possibilities can be revised. It does not arise by itself. It has to be built and maintained, by a person, a team, a society or an AI system, and in a collective it depends both on what each contributor passes on and on how the contributions are combined. Its value is that many mistakes can be found in the model, at low cost, before they are made in the world.
 
@@ -45,6 +45,8 @@ Each part does work.
 - **"As sharp as the evidence supports, subject to calibration."** Section 4.
 - **"Correctable."** Section 5.
 
+**What the definition does not require.** It does not require formal statistics or written records. A tradition of practice can be calibrated by its track record and corrected by experience: traditional navigation, for example, is tested every voyage and revised when it fails, without probability theory. What the definition requires is that testing and revision happen, not that they are formalized. Conversely, a fixed controller that cannot revise anything, such as a thermostat or a hard-coded planning script, may track its target well but is not a functional world model: it fails the clause on correctability.
+
 Not every part of a functional world model can be tested on its own. Definitions and mathematical consequences cannot be shown wrong by observation. What has to be testable is the model's empirical predictions, and what has to be revisable is its empirical assumptions.
 
 ## 4. Sharp, subject to calibration
@@ -57,6 +59,8 @@ The central rule of the first version was "as sharp as the evidence allows, and 
 
 **Fit is not calibration.** Two models can keep exactly the same possibilities open and give them very different weights. Review 1 gives an example: a coin is believed to land heads with probability 0.2 or 0.8; after eight heads and two tails both remain possible, so the support has not changed at all, yet the odds have moved 4096 to 1 toward 0.8. Most learning is of this kind, and the support-level results say nothing about it. Degrees of belief are in [`GradedBelief`](../../formalization/cumulative-accessibility/CumulativeAccessibility/GradedBelief.lean), whose `zero_credence_is_sealed` is the familiar rule that a credence of zero on a still-possible outcome cannot be raised by conditioning. That rule is about discrete possibilities and a particular update operation; over a continuum, single points have probability zero without being ruled out (as `CORE.md` already notes).
 
+**A warning that holds for the whole formal layer.** Every result in `WorldModel.lean` is about which possibilities are kept at all, a yes or no for each world. None of them transfers to degrees of belief by itself. Carrying a result over to graded credences needs a probability measure and a separate argument, as `GradedBelief` gives for its own results. Where this note uses a set-level result, it says no more than that.
+
 **Failures are more varied than "vague" and "sealed".** The first version offered two failures. There are more, and they lie on two different axes:
 - **fit:** a model can keep too much open (partly vague), too little (over-sharp), or both at once, wrongly excluding one possibility while wrongly keeping another;
 - **reliability:** whether the actual world is among the possibilities kept open. A model can be over-sharp and still keep the actual world, by luck; another can fit its evidence exactly and lose the actual world, because the evidence or the background was wrong.
@@ -65,7 +69,7 @@ The danger the first version described, being confidently wrong with no way back
 
 **Fit alone is not enough.** If the evidence is inconsistent, nothing is left possible, and a model that fits it rules out everything. Such a model entails every claim, true or false (`empty_fit_entails_everything`). An empty set of possibilities is not a result to act on but a signal: either the background assumptions or some piece of evidence is wrong about the actual world (`inconsistency_flags_background_or_evidence`). A functional world model treats it as a reason to revise.
 
-**Sharpness and compression.** The author links insight to compression: "Insight brings compression, and compression brings efficiency. I think intelligence has a lot to do with compression, as intelligence aims to model reality" (D32). That link is a hypothesis this note keeps, but it does not follow from the support-level results: ruling out possibilities is not the same as describing them briefly. A precise claim can be long to state, and a vague one short. Connecting sharpness to compression needs a coding scheme and a measure of complexity, which are not here.
+**Sharpness is not compression.** Ruling out possibilities is not the same as describing them briefly: a precise claim can be long to state, and a vague one short. The author's hypothesis that the two are linked is kept as an open hypothesis in section 15, not as part of the definition.
 
 ## 5. Correctable
 
@@ -75,7 +79,7 @@ The first version said that a model which rules out a possibility can never reco
 - **Monotone update** narrows a model's own conclusions with each new piece of evidence. Under it, whatever was once excluded stays excluded (`monotone_update_cannot_recover`), including the actual world (`monotone_update_never_recovers_actual`).
 - **Re-derivation** recomputes what is possible from the background and the evidence that was kept. It restores what monotone update lost (`rederiving_recovers_what_following_cannot`). Revising a background assumption that wrongly excluded the actual world brings it back as well (`revising_background_recovers`).
 
-**What makes re-derivation possible is provenance.** A holder that keeps only its conclusions can only narrow them. A holder that also keeps where they came from (which evidence, which assumptions, learned where and from whom) can go back and recompute when one of them turns out wrong. That is the formal reason for line 9 of the [creed](../discovarianism/CREED.md), "Ask where it was learned": provenance is what turns a model that can only narrow into one that can be corrected.
+**What makes re-derivation possible is keeping what conclusions rest on.** A holder that keeps only its conclusions can only narrow them. A holder that also keeps the evidence and the assumptions they rest on can go back and recompute when one of them turns out wrong; that is what the formal result needs (`rederiving_recovers_what_following_cannot`). Provenance in the fuller sense of line 9 of the [creed](../discovarianism/CREED.md), "Ask where it was learned" (where, when, why and from whom), adds something else: it tells the holder *which* piece to retract, so that revision can be targeted instead of wholesale. A holder with a full archive of its data and assumptions but no record of what supports what can still re-derive, at greater cost. So kept evidence makes correction possible, and provenance makes it practical.
 
 **Three operations, not one.** Correction can mean:
 - **narrowing:** ruling out what the evidence rules out;
@@ -86,7 +90,7 @@ The formal layer covers the first two. The third is the deepest kind of learning
 
 **Openness is about the future, not only the present.** Keeping every live possibility open today (`Covers`) is not the same as being correctable. A frozen holder can cover its evidence today; a revisable one can be wrong today. Correctability is whether a corrected state can be reached, by the update operations the holder actually has, given evidence that can actually reach it.
 
-**A changing world.** The formal layer reads a possible world as a whole course of events. Learning about a changing world is then narrowing down what that course has been and will be. Treating each past observation as a timeless constraint on the present state would be a mistake; reading worlds as histories avoids it.
+**A changing world.** The formal layer reads a possible world as a whole course of events. Learning about a changing world is then narrowing down what that course has been and will be. Treating each past observation as a timeless constraint on the present state would be a mistake; reading worlds as histories avoids it. But this reading has a limit. It treats learning as narrowing hypotheses about one course of events. It does not model a holder acting within an open future, where its own actions change what can happen, nor the generation of possibilities nobody had considered. The formal layer covers retrospective narrowing and re-derivation; acting and inventing are outside it.
 
 ## 6. One model among others
 
@@ -131,6 +135,8 @@ The definition names no substrate. Whether a given holder has a world model, and
 | **An AI system** | Yes in a technical sense (Ha and Schmidhuber 2018); weights, context and tools need not form one consistent model | Depends on where correction happens: in context, memory, tools, retraining, or the maintaining organization | Ungrounded fluency, flattery, inherited blind spots |
 | **People and AI together** | An organized modelling process | Needs source tracking, error-aware aggregation and rights to correct | Section 9 |
 
+The entries in the last two columns are examples and hypotheses about where each kind of holder tends to stand, not consequences of the formal layer.
+
 The first version mapped the definition onto an immune system, with autoimmunity as a sealed model and harmful tolerance as a vague one. That mapping confused a response policy with epistemic content, and self and non-self is not a full account of immune regulation. It is dropped. Each mapping has to be shown, not assumed (step 8 of `CORE.md`).
 
 What carries over from one holder to many is the topic of the next section.
@@ -141,20 +147,22 @@ In the author's words: "with any scalable model- there is also a collective worl
 
 **What it is.** A collective world model is what a family, a team, a science, a society, or people and AI systems together hold about the world. It is distributed across people, records and machines. Nobody made it alone, and everybody draws on it: in the terms of step 6 of [CORE.md](../../CORE.md), it is a commons. It is built from contributions: a measurement, a report, an answer, a paper, a news story, a model's output.
 
+**What is formal here and what is not.** The theorems below bound what set operations and simple pooling rules do. They contain no agents, incentives, communication channels or institutions. Everything this section says about science, public health or human–AI collectives is a design principle supported by those bounds and by experience, not a mathematical consequence of them.
+
 **Two things decide its quality, not one.** The first version said contributor hygiene decides it. Review 1 showed that the conclusion depended on one assumption: that contributions are combined by intersection, so that each acts as a veto. How contributions are combined matters as much as what they contain.
 
 | How contributions are combined | What one contribution that excludes the actual world does |
 |---|---|
-| **Hard pooling** (intersection): a possibility stays only if every contribution keeps it | It excludes the actual world from the collective (`hard_pool_one_excluding_contribution_denies_actual`) |
-| **Linear pooling** (a weighted average of credences) | Lowers the actual world's credence but does not remove it, as long as another positively weighted source keeps it (`linear_pool_keeps_what_one_source_keeps`; compare `GradedBelief.mix_support`). Credences of 0.9, 0.9 and 0 average to 0.6 |
+| **Linear pooling** (a weighted average of credences) | Lowers the actual world's credence but does not remove it, as long as another positively weighted source keeps it (`linear_pool_keeps_what_one_source_keeps`; compare `GradedBelief.mix_support`). Credences of 0.9, 0.9 and 0 average to 0.6. But averaging is not safe by itself: averaging sources that are uncalibrated, or that share one origin, can produce a confident consensus that is wrong |
 | **Product pooling** (multiplying credences) | Removes it: one zero is a veto (`product_pool_zero_is_a_veto`) |
 | **Majority vote** on a single claim | One wrong vote need not defeat a correct majority, but can decide a near tie. Under the Condorcet jury theorem's assumptions (independent voters of equal competence, each right more often than not), larger groups are more reliable |
-| **Robust aggregation** (discounting outliers) | May discount it or bound its influence. It can also suppress a correct minority |
+| **Robust aggregation** (weighting by track record, discounting outliers) | May discount it or bound its influence. It can also suppress a correct minority |
 | **A record with provenance** | Contradictory reports can stand side by side, attributed to their sources, without both being endorsed as fact |
+| **Hard pooling** (intersection): a possibility stays only if every contribution keeps it | Excludes the actual world from the collective (`hard_pool_one_excluding_contribution_denies_actual`). Hard pooling is right for genuine hard constraints, such as logical consistency, established physical limits or verified exclusions. It is the wrong default for noisy empirical reports |
 
 No rule is best for every case. Averaging can dilute strong evidence; voting can bury a correct minority; rejecting outliers can suppress discoveries; multiplying can count shared evidence twice. The right rule depends on how sources err, how they depend on each other, and what decision the collective has to make.
 
-**Hard pooling is fragile even when everyone is honest.** Review 1's example: if each of 100 independent contributors gives a range that contains the truth 95% of the time, the intersection of their ranges contains it only about 0.6% of the time (0.95¹⁰⁰ ≈ 0.006). A 95% range is not a statement of what is impossible, and treating it as one is the error.
+**Why hard pooling is the wrong default for noisy reports.** It is fragile even when everyone is honest. Review 1's example: if each of 100 independent contributors gives a range that contains the truth 95% of the time, the intersection of their ranges contains it only about 0.6% of the time (0.95¹⁰⁰ ≈ 0.006). A 95% range is not a statement of what is impossible, and treating it as one is the error.
 
 **So the rule for a collective has two halves.**
 - **For contributors:** pass on what your evidence supports, with how sure you are and where it came from. Say when you pass on a copy, so that it is not counted as independent evidence; Goldman (2001) argues that a follower who merely repeats a source adds no further grounds for believing it. Keep what you pass on apart from what you want to be true. Say what would show it wrong. Correct what you passed on when you learn better.
@@ -239,11 +247,15 @@ Checked by the assistant in the source: Gneiting, Balabdaoui and Raftery (2007),
 - **Not that the formal layer covers the concept.** It covers evidential fit at the level of possibilities, and the role of update rules and pooling rules in it.
 - **Not that cells, immune systems or every AI system have functional world models.** Section 8 says where the mapping is plausible and where it is not established.
 - **Not that one pooling rule is right.** Section 9 says the choice depends on how sources err.
-- **Unsure:** whether "functional world model" will read as the intended concept or as a technical term from elsewhere; whether sharpness and compression can be linked formally; and how much of the revised note still carries the framing of the first version. That last question is what a second, independent review should test (working agreement 7).
+- **Unsure:** whether "functional world model" will read as the intended concept or as a technical term from elsewhere; whether sharpness and compression can be linked formally; and how much of the revised note still carries the framing of the first version. Review 2 tested that last question but with a lighter reader; a human reader would test it better (working agreement 7).
 
-## 15. Next
+## 15. Next, and an open hypothesis
 
-- **A second review** of this version, by a fresh reader, with a blind start and the first review's five problems as a checklist ([briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md)).
+**Open hypothesis: sharpness and compression.** The author links insight to compression: "Insight brings compression, and compression brings efficiency. I think intelligence has a lot to do with compression, as intelligence aims to model reality" (D32). The link is plausible: a model that predicts much from little is both useful and short. But it does not follow from anything here. Stating it needs a coding scheme, a probability distribution and a measure of complexity, as in minimum description length or predictive coding, and then a test.
+
+**Next.**
+
+- **A human reader,** with a background in statistics or philosophy, before or soon after the definition opens the core. Both reviews so far are by models ([briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md) can be reused).
 - **A practice:** a short sequence a person, team, institution or AI system can follow to keep a world model functional, with worked examples, in the style of [WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md).
 - **Two checklists:** one for holders, one for contributors to a collective world model, with one question per constituent.
 - **A test,** in the spirit of H1 in [PREDICTIONS.md](../../PREDICTIONS.md): whether holders and collectives that score better on the checklists, and are scored by proper scoring rules, make fewer consequential errors and recover from them faster.
