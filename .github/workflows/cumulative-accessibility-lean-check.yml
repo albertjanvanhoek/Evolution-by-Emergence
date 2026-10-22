@@ -59,6 +59,7 @@ jobs:
             CumulativeAccessibility.WorldModel \
             CumulativeAccessibility.CooperativeCorrection \
             CumulativeAccessibility.ActingUnderTime \
+            CumulativeAccessibility.ModelsForActing \
             CumulativeAccessibility.ConnectionIndependence \
             CumulativeAccessibility.CommonsCapture \
             CumulativeAccessibility.CommonsVortex \
@@ -126,6 +127,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/WorldModel.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CooperativeCorrection.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ActingUnderTime.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/ModelsForActing.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ConnectionIndependence.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsCapture.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CommonsVortex.lean

@@ -1,6 +1,6 @@
 # Models for acting in a changing world
 
-**Status: a proposed functional decomposition, October 2026** (D36 in [DIALOGUE.md](../../DIALOGUE.md)). A companion to section 6 of [WORLD_MODEL.md](WORLD_MODEL.md), "One model among others", and to [acting under time](../cooperative-correction/ACTING_UNDER_TIME.md). It lists what an intelligence can build and maintain besides its world model, and how it can use them to persist. **It is an inventory, not a list of parts every intelligence must have, and it says nothing about which architectures implement it.** One reader from another model family has read a first draft ([sources/READING_MODELS_FIRST_DRAFT.md](sources/READING_MODELS_FIRST_DRAFT.md)); this version answers it. No independent review yet. Outside the core; the definition of a world model is unchanged.
+**Status: a proposed functional decomposition, October 2026** (D36 in [DIALOGUE.md](../../DIALOGUE.md)). A companion to section 6 of [WORLD_MODEL.md](WORLD_MODEL.md), "One model among others", and to [acting under time](../cooperative-correction/ACTING_UNDER_TIME.md). It lists what an intelligence can build and maintain besides its world model, and how it can use them to persist. **It is an inventory, not a list of parts every intelligence must have, and it says nothing about which architectures implement it.** One reader from another model family has read a first draft ([sources/READING_MODELS_FIRST_DRAFT.md](sources/READING_MODELS_FIRST_DRAFT.md)); this version answers it. No independent review yet. Its central claims are formalized in [`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean) (section 5). Outside the core; the definition of a world model is unchanged.
 
 ## 1. Where it comes from
 
@@ -113,17 +113,33 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 
 | Claim | Label |
 |---|---|
-| A world model alone does not choose among actions | *Follows* from the definitions |
+| A world model alone does not choose among actions | *Follows:* even exact knowledge of the world is not optimal for every objective once two actions differ in outcome (`knowledge_does_not_choose`) |
+| A representation is needed | *Follows:* conflating two worlds with no common optimal action leaves no optimal policy (`conflating_without_common_optimum_fails`) |
+| An aimless world model serves any purpose | *Follows* in this setting: a representation that separates worlds whenever some action yields a different outcome suffices for every objective (`outcome_tracking_serves_every_objective`); one scoped by a purpose may be coarser and can fail when the purpose changes (`models_for_acting_witness`) |
 | An objective that fixes a representation makes it fall behind when the evidence moves | *Follows* (`fixed_support_fits_only_if_nothing_learned`) |
 | An action can change future states | *If* the system's transitions depend on actions (reader's label) |
 | Deliberation has an opportunity cost | *If* time or resources are limited (reader's label); then waiting pays exactly when information is worth more than delay (`waiting_pays_iff`) |
 | A surplus in one resource does not cover a deficit in another | *If* the resources are not freely substitutable (reader's label); the care results assume this |
 | A self-assessment read off a model that is lossy about its own substrate is wrong in some state | *Follows* (`cannot_certify_own_substrate`) |
-| So the self-model's reliability needs a check from outside it | *If* it is lossy about its substrate. The check can come from **an instrument, the environment's feedback, or another intelligence**. The first draft said "it needs others"; the reader was right that this is too strong |
+| So the self-model's reliability needs a check from outside it | *Follows,* if it is lossy about what is assessed: an assessment can be right in every state exactly when its signal separates the states that differ (`certifiable_iff_separates`, `lossy_self_assessment_fails`), and any outside channel that separates them suffices, **an instrument, the environment's feedback, or another intelligence** (`outside_channel_can_certify`). The first draft said "it needs others"; the reader was right that this is too strong |
 | An intelligence should keep correction routes open | *Proposed* (reader's label), if it aims to stay correctable |
 | Every error must remain discoverable | **Not established; too strong** (reader's label). Undiscovered errors cannot even be counted. The repository's formal statement is narrower: correctability against classes of error fixed in advance (step 8) |
+| A measure is a safe target where it is aligned with the target on every state the actions can reach | *Follows* (`aligned_measure_is_safe_target`); it fails once an action reaches a state where alignment was never checked (`measure_turned_target_witness`) |
+| A belief fixed by an objective is wrong on one of two occasions on which the world differs | *Follows* (`wishful_belief_is_wrong_somewhere`); a weaker form of `fixed_support_fits_only_if_nothing_learned` |
 | Most failures are leaks between kinds | *Proposed;* a pattern, not tested (section 6) |
-| A small set of these is indispensable | **Open** (section 7) |
+| Which distinctions a representation needs | *Follows,* for a given objective and without costs or uncertainty: exactly those that separate worlds with no common optimal action (`suffices_iff`). With costs, time and uncertainty: **open** (section 7) |
+
+### The formal layer
+
+[`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean): core Lean, 9 results and 2 witnesses, outside the core. Worlds, actions and outcomes; an objective scores outcomes and is an input; a representation maps worlds to the holder's states and may lose information; a policy reads only the representation.
+
+- **Which distinctions are needed** (`suffices_iff`): a representation is enough to act optimally exactly when every set of worlds it conflates shares an optimal action. This answers the reader's open question in the simplest setting: the distinctions a decision needs are the ones it depends on, and no others. It is close to the information-losing "model" of the good-regulator result, without its entropy criterion.
+- **Both are needed, neither replaces the other:** without the right distinctions, no objective-processing helps (`conflating_without_common_optimum_fails`); without an objective, exact knowledge does not choose (`knowledge_does_not_choose`).
+- **Why the world model should be aimless** (`outcome_tracking_serves_every_objective` and the witness): a representation scoped by one purpose can be coarser and cheaper, and fails when the purpose changes. A world model that tracks what actions yield, without reference to any purpose, serves them all. This puts the author's correction in formal terms: an aimless world model is not a lack of purpose but what makes it usable for any.
+- **Outside checks** (`certifiable_iff_separates`, `lossy_self_assessment_fails`, `outside_channel_can_certify`): certification is possible exactly when the signals available separate what must be told apart; the source of the separating channel does not matter.
+- **Two collapses** (`aligned_measure_is_safe_target` with its witness, `wishful_belief_is_wrong_somewhere`).
+
+**How much it says.** The results are close to their definitions: `suffices_iff` is a choice-swap, `certifiable_iff_separates` a statement of when a function exists. Their use is to make explicit which conditions do the work. Not modelled: uncertainty within a representation state beyond requiring one action that is optimal in all conflated worlds; the cost of keeping a distinction; time; learning; several holders.
 
 ## 6. When the boundaries collapse
 
@@ -141,7 +157,7 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 
 ## 7. Open questions
 
-- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." This can be formalized and tested. The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is a guess.
+- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." Answered only in the simplest setting (`suffices_iff`: the distinctions the decision depends on). Still open: "sufficiently good" rather than optimal, uncertainty within a state, the cost of each distinction, and the time to acquire it, which would join this module to [`ActingUnderTime.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ActingUnderTime.lean). The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is still a guess.
 - **Does the separation hold in architectures that fold it together?** In predictive-processing accounts, action is often described as making predictions come true, and preferred outcomes can be written as expected observations. If so, objectives and representations share one currency. The thesis would then hold only as a functional distinction, not an architectural one. A lead from Clark (2013), whose claims beyond the abstract's first sentence are not checked here.
 - **Does the policy of acting need a definition of its own,** alongside the definition of a world model? Open in D35.
 - **No independent review yet,** and one model family wrote this note (working agreement 7).
