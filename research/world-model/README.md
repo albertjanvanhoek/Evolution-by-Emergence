@@ -5,6 +5,7 @@ This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It defines a 
 | File | What it is |
 |---|---|
 | [WORLD_MODEL.md](WORLD_MODEL.md) | The definition, its value, how it scales, its constituents, and how it fits the rest of the repository |
+| [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) | A brief for an independent reader from another model family, or a human, before the definition enters the core |
 
 **Status:** a definition. Its formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, 23 results with a witness, outside the core. Practices and a checklist are to be distilled from the definition next.
 
