@@ -131,7 +131,7 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 
 ### The formal layer
 
-[`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean): core Lean, 16 results and 3 witnesses, outside the core. Worlds, actions and outcomes; an objective scores outcomes and is an input; a representation maps worlds to the holder's states and may lose information; a policy reads only the representation.
+[`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean): core Lean, 23 results and 4 witnesses, outside the core. Worlds, actions and outcomes; an objective scores outcomes and is an input; a representation maps worlds to the holder's states and may lose information; a policy reads only the representation.
 
 - **Which distinctions are needed** (`suffices_iff`): a representation is enough to act optimally exactly when every set of worlds it conflates shares an optimal action. This answers the reader's open question in the simplest setting: the distinctions a decision needs are the ones it depends on, and no others. It is close to the information-losing "model" of the good-regulator result, without its entropy criterion.
 - **Both are needed, neither replaces the other:** without the right distinctions, no objective-processing helps (`conflating_without_common_optimum_fails`); without an objective, exact knowledge does not choose (`knowledge_does_not_choose`).
@@ -139,9 +139,10 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 - **Outside checks** (`certifiable_iff_separates`, `lossy_self_assessment_fails`, `outside_channel_can_certify`): certification is possible exactly when the signals available separate what must be told apart; the source of the separating channel does not matter.
 - **Good enough** (`near_suffices_iff`, `optimal_iff_near_zero`, `tolerance_monotone`, `finer_never_worse`): the same condition holds with a tolerance; a larger tolerance never needs more distinctions, and a finer representation is never worse.
 - **The price of a distinction** (`distinction_never_hurts`, `keeping_distinction_pays_iff`, `irrelevant_distinction_worthless`, with a witness), for two worlds and two actions: keeping a distinction pays exactly when the decision it improves is worth more than its upkeep, and a distinction the decision does not depend on is worth nothing. The same arithmetic as waiting in [acting under time](../cooperative-correction/ACTING_UNDER_TIME.md): a distinction is information kept.
+- **Belief within a state, and learning** (two conflated worlds with a belief, updated by likelihoods): where the worlds share an optimal action, belief does not matter (`common_optimum_ignores_belief`); where they do not, belief decides (`belief_decides_without_common_optimum`). Evidence that is equally likely in both, as any signal seen through the holder's own lens, changes neither the odds nor the choice (`same_lens_evidence_keeps_odds`, `same_lens_evidence_keeps_decision`). Evidence that separates them moves the odds (`separating_evidence_moves_odds`), and a copy counted as new evidence moves them again, with no new information (`copy_counted_again_moves_further`). A witness runs it with an umbrella and a forecast.
 - **Two collapses** (`aligned_measure_is_safe_target` with its witness, `wishful_belief_is_wrong_somewhere`).
 
-**How much it says.** The results are close to their definitions: `suffices_iff` is a choice-swap, `certifiable_iff_separates` a statement of when a function exists. Their use is to make explicit which conditions do the work. The cost of a distinction is modelled only for two worlds and two actions. Not modelled: uncertainty within a representation state beyond a worst case over the conflated worlds; changing purposes; time; learning; several holders. The tests below take up the first three.
+**How much it says.** The results are close to their definitions: `suffices_iff` is a choice-swap, `certifiable_iff_separates` a statement of when a function exists. Their use is to make explicit which conditions do the work. The cost of a distinction, and belief and learning, are modelled only for two worlds and two actions. Not modelled: changing purposes, time and several holders. The tests below take those up.
 
 ### Tests (M0–M3)
 
@@ -197,6 +198,45 @@ As expected: fewer distinctions are needed as the tolerance grows, more as the p
 - **As expected:** peers that share the blind spots add nothing, however many. Count origins, not copies.
 - **The instrument and the independent peer both help.** The difference between them is what the formal result predicts. The peer's own blind spots cover 30% of states, which gives 0.7 × 0.85 + 0.3 × 0.5 ≈ 0.745. The kind of source does not matter; whether it separates the states does.
 
+### Learning from noisy evidence (M4, M5)
+
+[simulation/sim_learning.py](simulation/sim_learning.py), seeded; results in [RESULTS_LEARNING.md](simulation/results/RESULTS_LEARNING.md). The representation groups the 6 profiles into 2 classes, so the holder knows the class of the actual world and holds a belief within it. Each reading shows one of 4 symbols and is weak evidence: right half the time. Some worlds in a class share a symbol and cannot be told apart by any number of readings. Expectations were written before the first run. Added after it, and labelled: standard errors for M4, and one rule in M5.
+
+**M4, acting every period while learning** (regret per period; 600 cases):
+
+| Holder | Period 1 | Period 10 | Period 30 | Confident (≥ 0.9) | Wrong when confident |
+|---|---|---|---|---|---|
+| own lens: readings that depend only on its class | 0.85 | 0.86 | 0.86 | 0% | — |
+| one origin: one independent reading per period | 0.73 | 0.50 | 0.39 | 12% | 2% |
+| copies counted: the same reading relayed by 4 copies, counted as 5 | 0.79 | 0.53 | 0.41 | 20% | 19% |
+| two origins: two independent readings per period | 0.69 | 0.45 | 0.41 | 15% | 1% |
+
+(Standard errors about 0.05.)
+
+- **Readings through one's own lens teach nothing** (as proved), however many.
+- **Independent readings do.** Two origins learn faster than one at first. By period 30 both are at the floor set by worlds no reading can tell apart; the difference there is within the noise.
+- **Copies counted as evidence make the holder confident more often, and wrong ten times as often when it is.** Its regret is no better. As expected.
+
+**M5, when to stop learning and act once** (loss = regret of the final choice + c × readings; 1,500 cases per cost; the same readings for every rule):
+
+| Rule | c = 0.01 | c = 0.05 | c = 0.2 | c = 0.5 | c = 1 |
+|---|---|---|---|---|---|
+| act at once | 0.877 | 0.877 | 0.877 | 0.877 | 0.877 |
+| best fixed number of readings | 0.689 (n = 8) | 0.869 (n = 2) | 0.877 (n = 0) | 0.877 (n = 0) | 0.877 (n = 0) |
+| **good enough:** read while the expected regret of acting now exceeds c | 0.668 | 1.286 | 3.143 | 5.054 | 5.291 |
+| **myopic:** read while one more reading is worth more than c | 0.749 | 0.789 | 0.816 | 0.868 | 0.877 |
+| myopic, counting copies | 0.807 | 0.838 | 0.824 | 0.866 | 0.877 |
+| **lookahead:** read while some batch of up to 8 readings is worth more than its cost (added after the first run) | **0.566** | **0.750** | **0.812** | 0.869 | 0.877 |
+
+(Standard errors 0.035 to 0.045, except the good-enough rule at high cost, up to 0.27.)
+
+- **Two expectations failed, and the failures are the most useful results here.**
+  - **Stopping when certain enough fails.** A rule that keeps reading until the remaining expected regret is small never stops where the remaining uncertainty cannot be resolved. At c = 0.5 it loses almost six times as much as acting at once. This is the regress made concrete: it does not end when the holder is certain enough, because it may never be; it ends when more checking is not worth its cost ([acting under time](../cooperative-correction/ACTING_UNDER_TIME.md), section 2).
+  - **Looking one reading ahead is too short-sighted** when single readings are weak: one reading rarely changes the decision, several might. The myopic rule stops too early when waiting is cheap (0.749 against 0.689 for 8 fixed readings).
+- **Looking further ahead fixes it.** The lookahead rule, added after the first run, is best or tied at every cost, without tuning. At c = 0.01 it takes 3.6 readings on average and beats 16 fixed readings. It stops early where more evidence cannot help and continues where it can.
+- **Counting copies makes a holder stop too early,** and lose more when waiting is cheap. As expected.
+- **Leads, not checked:** Wald's sequential analysis, and the known shortfall of myopic value-of-information rules, are the obvious prior art here.
+
 ## 6. When the boundaries collapse
 
 | Collapse | From → to | Example |
@@ -213,7 +253,7 @@ As expected: fewer distinctions are needed as the tolerance grows, more as the p
 
 ## 7. Open questions
 
-- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." Answered in simple settings: formally, the distinctions the decision depends on, to within a tolerance (`near_suffices_iff`), each worth keeping exactly when it is worth more than its upkeep (`keeping_distinction_pays_iff`); in simulation, how many that is for a given tolerance and number of purposes (M2), and when an aimless world model pays as purposes change (M1). Still open: uncertainty within a state, learning from noisy evidence, and real data. The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is still a guess.
+- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." Answered in simple settings: formally, the distinctions the decision depends on, to within a tolerance (`near_suffices_iff`), each worth keeping exactly when it is worth more than its upkeep (`keeping_distinction_pays_iff`); in simulation, how many that is for a given tolerance and number of purposes (M2), and when an aimless world model pays as purposes change (M1). Learning from noisy evidence is taken up in M4 and M5: a holder needs independent evidence, provenance, so as not to count copies, and a stopping rule set by the value of more evidence, not by certainty. Still open: changing worlds within an episode, several holders learning together, and real data. The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is still a guess.
 - **Does the separation hold in architectures that fold it together?** In predictive-processing accounts, action is often described as making predictions come true, and preferred outcomes can be written as expected observations. If so, objectives and representations share one currency. The thesis would then hold only as a functional distinction, not an architectural one. A lead from Clark (2013), whose claims beyond the abstract's first sentence are not checked here.
 - **Does the policy of acting need a definition of its own,** alongside the definition of a world model? Open in D35.
 - **No independent review yet,** and one model family wrote this note (working agreement 7).

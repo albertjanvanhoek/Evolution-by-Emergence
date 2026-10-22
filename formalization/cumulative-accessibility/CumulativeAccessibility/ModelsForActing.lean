@@ -45,7 +45,16 @@ Results.
    upkeep (`keeping_distinction_pays_iff`, the arithmetic of `waiting_pays_iff`);
    and a distinction the decision does not depend on is worth nothing
    (`irrelevant_distinction_worthless`).
-7. Two collapses between kinds.  `aligned_measure_is_safe_target`: a measure
+7. Belief within a state, and learning.  Where conflated worlds share an
+   optimal action, belief does not matter (`common_optimum_ignores_belief`);
+   where they do not, belief decides (`belief_decides_without_common_optimum`).
+   Evidence equally likely in both worlds, as any signal that depends only on
+   the holder's own representation state, changes neither the odds nor the
+   choice (`same_lens_evidence_keeps_odds`, `same_lens_evidence_keeps_decision`);
+   evidence that separates them moves the odds (`separating_evidence_moves_odds`);
+   and a copy counted as new evidence moves them again, with no new information
+   (`copy_counted_again_moves_further`).
+8. Two collapses between kinds.  `aligned_measure_is_safe_target`: a measure
    aligned with a target on every state the actions can reach is a safe target;
    the witness `measure_turned_target_witness` shows it fails once an action
    reaches a state where the alignment was never checked.
@@ -57,8 +66,8 @@ is a choice-swap and `certifiable_iff_separates` a restatement of what it means
 for a function to exist.  Their use is to make explicit which conditions do the
 work.  The cost of a distinction is modelled only for two worlds and two
 actions.  Not modelled: uncertainty within a representation state beyond a
-worst case over the conflated worlds, changing purposes, time, learning, and
-several holders; the simulations in `research/world-model/simulation/` test
+worst case over the conflated worlds, except for two worlds with a belief;
+changing purposes, time, and several holders; the simulations in `research/world-model/simulation/` test
 some of these.  Values enter only through `u`, which is an input (D7).  Core
 Lean only.
 -/
@@ -289,6 +298,77 @@ theorem irrelevant_distinction_worthless (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ 
     ((p₁ : Int) * y₁ + (p₂ : Int) * y₂)
   omega
 
+/-! ## Belief within a state, and learning from evidence
+
+Two worlds the representation conflates, with weights `p₁, p₂` (a belief, as
+counts), and two actions paying `x₁, x₂` and `y₁, y₂`.  Evidence updates the
+weights by likelihoods: `pᵢ ↦ pᵢ * lᵢ`. -/
+
+/-- The weighted payoff of an action under a belief. -/
+def ev2 (p₁ p₂ : Nat) (v₁ v₂ : Int) : Int := (p₁ : Int) * v₁ + (p₂ : Int) * v₂
+
+/-- **Belief does not matter where the worlds share an optimum.**  If one action
+is at least as good in both worlds, it is at least as good under every belief. -/
+theorem common_optimum_ignores_belief (p₁ p₂ : Nat) {x₁ x₂ y₁ y₂ : Int}
+    (h₁ : y₁ ≤ x₁) (h₂ : y₂ ≤ x₂) : ev2 p₁ p₂ y₁ y₂ ≤ ev2 p₁ p₂ x₁ x₂ := by
+  unfold ev2
+  have a := Int.mul_le_mul_of_nonneg_left h₁ (Int.natCast_nonneg p₁)
+  have b := Int.mul_le_mul_of_nonneg_left h₂ (Int.natCast_nonneg p₂)
+  omega
+
+/-- **Belief decides where they do not.**  If each action is strictly better in
+one of the worlds, some belief makes each the strictly better choice. -/
+theorem belief_decides_without_common_optimum {x₁ x₂ y₁ y₂ : Int}
+    (h₁ : y₁ < x₁) (h₂ : x₂ < y₂) :
+    ev2 1 0 y₁ y₂ < ev2 1 0 x₁ x₂ ∧ ev2 0 1 x₁ x₂ < ev2 0 1 y₁ y₂ := by
+  unfold ev2
+  omega
+
+theorem ev2_scale (p₁ p₂ l : Nat) (v₁ v₂ : Int) :
+    ev2 (p₁ * l) (p₂ * l) v₁ v₂ = (l : Int) * ev2 p₁ p₂ v₁ v₂ := by
+  unfold ev2
+  simp only [Int.natCast_mul]
+  grind
+
+/-- **Evidence through the same lens changes nothing.**  Evidence whose likelihood
+is the same in both worlds, as for any signal that depends only on the holder's
+own representation state, leaves the choice between the actions unchanged. -/
+theorem same_lens_evidence_keeps_decision (p₁ p₂ l : Nat) (hl : 0 < l)
+    (x₁ x₂ y₁ y₂ : Int) :
+    ev2 (p₁ * l) (p₂ * l) y₁ y₂ ≤ ev2 (p₁ * l) (p₂ * l) x₁ x₂ ↔
+      ev2 p₁ p₂ y₁ y₂ ≤ ev2 p₁ p₂ x₁ x₂ := by
+  rw [ev2_scale, ev2_scale]
+  have hl' : (0 : Int) < l := by omega
+  constructor
+  · intro h
+    exact Int.le_of_mul_le_mul_left h hl'
+  · intro h
+    exact Int.mul_le_mul_of_nonneg_left h (Int.le_of_lt hl')
+
+/-- The same, for the odds: they are unchanged. -/
+theorem same_lens_evidence_keeps_odds (p₁ p₂ l : Nat) :
+    (p₂ * l) * p₁ = (p₁ * l) * p₂ := by
+  grind
+
+/-- **Evidence that separates the worlds moves the belief.**  If the evidence is
+more likely in world 1, the odds move toward world 1 (cross-multiplied). -/
+theorem separating_evidence_moves_odds (p₁ p₂ l₁ l₂ : Nat) (hp₁ : 0 < p₁)
+    (hp₂ : 0 < p₂) (hl : l₂ < l₁) : (p₂ * l₂) * p₁ < (p₁ * l₁) * p₂ := by
+  have h : (p₁ * p₂) * l₂ < (p₁ * p₂) * l₁ :=
+    Nat.mul_lt_mul_of_pos_left hl (Nat.mul_pos hp₁ hp₂)
+  have e₁ : (p₂ * l₂) * p₁ = (p₁ * p₂) * l₂ := by grind
+  have e₂ : (p₁ * l₁) * p₂ = (p₁ * p₂) * l₁ := by grind
+  omega
+
+/-- **A copy counted as new evidence moves the belief again.**  Updating a second
+time on the same observation moves the odds further, although no new
+information arrived: count origins, not copies. -/
+theorem copy_counted_again_moves_further (p₁ p₂ l₁ l₂ : Nat) (hp₁ : 0 < p₁)
+    (hp₂ : 0 < p₂) (hl₂ : 0 < l₂) (hl : l₂ < l₁) :
+    (p₂ * l₂ * l₂) * (p₁ * l₁) < (p₁ * l₁ * l₁) * (p₂ * l₂) :=
+  separating_evidence_moves_odds (p₁ * l₁) (p₂ * l₂) l₁ l₂
+    (Nat.mul_pos hp₁ (Nat.lt_trans hl₂ hl)) (Nat.mul_pos hp₂ hl₂) hl
+
 /-! ## Witnesses -/
 
 /-- Rain or not; umbrella or not.  The outcome records both. -/
@@ -367,6 +447,20 @@ theorem distinction_price_witness :
     separatedValue 3 7 (-1) (-1) (-10) 0 = -3 ∧
     mergedValue 3 7 (-1) (-1) (-10) 0 < separatedValue 3 7 (-1) (-1) (-10) 0 - 5 ∧
     ¬ (mergedValue 3 7 (-1) (-1) (-10) 0 < separatedValue 3 7 (-1) (-1) (-10) 0 - 8) := by
+  decide
+
+/-- **Witness: belief, a forecast, the same lens, and a copy.**  Rain and dry are
+conflated, with weights 1 and 19; an umbrella costs 1, getting wet 10.  On the
+prior, leave the umbrella (−10 against −20).  A forecast of rain, eight times as
+likely when it will rain, moves the weights to 8 and 19 and the choice to the
+umbrella (−27 against −80).  Evidence equally likely either way (weights 5 and
+95) leaves the choice where it was.  Counting the forecast a second time moves
+the weights to 64 and 19, with no new information. -/
+theorem belief_witness :
+    ev2 1 19 (-1) (-1) < ev2 1 19 (-10) 0 ∧
+    ev2 (1 * 8) (19 * 1) (-10) 0 < ev2 (1 * 8) (19 * 1) (-1) (-1) ∧
+    ev2 (1 * 5) (19 * 5) (-1) (-1) < ev2 (1 * 5) (19 * 5) (-10) 0 ∧
+    (19 * 1 * 1) * (1 * 8) < (1 * 8 * 8) * (19 * 1) := by
   decide
 
 end ModelsForActing
