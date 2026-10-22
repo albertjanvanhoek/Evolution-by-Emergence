@@ -70,7 +70,12 @@ Results.
    contribution rules out the actual world, whether by deceit or by honest
    overconfidence, the collective model entails that the actual world is not
    the case: the mistake is made in reality
-   (`one_oversharp_contribution_makes_pool_deny_actual`).
+   (`one_oversharp_contribution_makes_pool_deny_actual`).  A vague
+   contribution, by contrast, changes nothing: adding one leaves the
+   collective model as it was (`vague_contribution_adds_nothing`).  So in a
+   collective, over-sharpness is the danger, not vagueness.  The theorems
+   carry no variable for why a contribution is over-sharp: deceit and honest
+   overconfidence have the same effect.
 7. `world_model_witness`: three worlds, one piece of evidence, and the vague,
    sharp and over-sharp models side by side.
 
@@ -262,6 +267,21 @@ theorem one_oversharp_contribution_makes_pool_deny_actual {W : Type}
   intro w hw heq
   subst heq
   exact h (hw j hj)
+
+/-- **A vague contribution adds nothing.**  Adding a contribution that keeps
+every world open leaves the collective model exactly as it was: harmless, and
+useless. -/
+theorem vague_contribution_adds_nothing {W : Type} {C : Nat → W → Prop} {m : Nat}
+    (hv : ∀ w, C m w) : ∀ w, poolMany C (m + 1) w ↔ poolMany C m w := by
+  intro w
+  constructor
+  · intro h j hj
+    exact h j (Nat.lt_succ_of_lt hj)
+  · intro h j hj
+    rcases Nat.lt_succ_iff_lt_or_eq.mp hj with hlt | heq
+    · exact h j hlt
+    · subst heq
+      exact hv w
 
 /-- Three worlds, `0`, `1` and `2`; the actual world is `0`.  The background
 allows all three, and one piece of evidence rules out world `1`.  A claim `P`,

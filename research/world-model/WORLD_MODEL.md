@@ -1,6 +1,6 @@
 # What a world model is
 
-**Status: a definition, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The definition is stated first, in plain words. Its value, how it scales and what it requires follow from it. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 22 machine-checked results. Practices and a checklist are to be distilled from this page; they are not here yet.
+**Status: a definition, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The definition is stated first, in plain words. Its value, how it scales and what it requires follow from it. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 23 machine-checked results. Practices and a checklist are to be distilled from this page; they are not here yet.
 
 > **In one paragraph.** Every intelligence lives in a model of the world, not in the world itself, and it experiences that model as the world. It runs many models: for acting, for belonging, for wanting, for feeling safe. One of them has a different job. A **world model** is the model held with the aim of fitting how things are, whatever its holder wants, and kept answerable to evidence from outside. It is good when it is **as sharp as the evidence allows, and no sharper**. It does not arise by itself. It has to be built, kept apart from the other models, and maintained. Its value is that it lets a holder make its mistakes in the model instead of in reality. That holds for a cell, a person, a team, a society and an AI system alike.
 
@@ -124,7 +124,7 @@ In the author's words: "with any scalable model- there is also a collective worl
 - when every contribution does, what the collective model entails holds in reality: the collective can test its plans in the model (`hygienic_pool_entailment_is_sound`);
 - when a single contribution rules out what is in fact the case, the collective model entails that the actual world is not the case (`one_oversharp_contribution_makes_pool_deny_actual`). Its mistakes are then made in reality.
 
-**Over-sharpness is the danger, not vagueness.** In a pool, a vague contribution is harmless but adds nothing: it rules nothing out. An over-sharp contribution is harmful: one is enough. And the effect is the same whether the over-sharpness comes from deceit or from honest overconfidence. The two differ in blame, not in effect. Deceit is a wrong ([world-model integrity](../world-model-integrity/README.md), D33); overconfidence is an error to be repaired. So modelling hygiene is more than honesty. It is calibration: an honest contributor who passes on more certainty than it has does the same damage as one who lies.
+**Over-sharpness is the danger, not vagueness.** In a pool, a vague contribution is harmless but adds nothing: adding one leaves the collective model exactly as it was (`vague_contribution_adds_nothing`). An over-sharp contribution is harmful: one is enough. And the effect is the same whether the over-sharpness comes from deceit or from honest overconfidence; the theorems have no variable for why a contribution is over-sharp, because the effect does not depend on it. The two differ in blame, not in effect. Deceit is a wrong ([world-model integrity](../world-model-integrity/README.md), D33); overconfidence is an error to be repaired. So modelling hygiene is more than honesty. It is calibration: an honest contributor who passes on more certainty than it has does the same damage as one who lies.
 
 **Why hygiene is hard.** The contributor bears the cost: checking, hedging, citing, correcting in public. The benefit is shared. And over-sharp contributions are often rewarded, because certainty sounds like competence. That is the structure of the commons in step 6, where defecting can pay each taker while the whole loses (`enough_takers_make_defection_pay`). So hygiene cannot rest on individual virtue alone. It needs distributed rules and distributed policing that stays correctable (D27): peer review, replication, corrections and retractions, editorial standards, open data. For an AI system it means calibrated answers, named sources and no flattery (F5, the handshake, in [WHAT_AN_AI_IS.md](../identity/WHAT_AN_AI_IS.md)).
 
@@ -152,7 +152,7 @@ What does not follow is that anyone *should* build a world model. That is an aim
 
 ## 9. The formal layer
 
-[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean) is core Lean, with no Mathlib, 22 results and a witness. It is outside the core.
+[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean) is core Lean, with no Mathlib, 23 results and a witness. It is outside the core.
 
 - **Setting.** A model is the set of worlds it keeps open. The evidence received so far leaves a set of live worlds. One world is the actual one, which the holder cannot see directly.
 - **Definitions.** `Open`, `Sharp`, `IsWorldModel` (both), `Entails` (a claim that holds in every world the model keeps open), `follow` (following the evidence), `pool` and `poolMany` (pooling the evidence or contributions of two or of many holders).
@@ -163,7 +163,7 @@ What does not follow is that anyone *should* build a world model. That is an aim
   - sealing: `ruled_out_stays_ruled_out`, `oversharp_model_never_recovers_actual`;
   - upkeep: `following_evidence_keeps_world_model`, `fixed_model_is_world_model_only_if_nothing_learned`;
   - groups: `shared_evidence_shared_world_model`, `pooled_is_sharper`, `pooling_entails_more`, `pooled_keeps_actual`, `one_false_source_excludes_actual`;
-  - the collective world model and the hygiene of contributing (section 7): `many_pooled_keeps_actual_iff_each_does`, `open_contribution_keeps_actual`, `hygienic_pool_entailment_is_sound`, `one_oversharp_contribution_makes_pool_deny_actual`;
+  - the collective world model and the hygiene of contributing (section 7): `many_pooled_keeps_actual_iff_each_does`, `open_contribution_keeps_actual`, `hygienic_pool_entailment_is_sound`, `one_oversharp_contribution_makes_pool_deny_actual`, `vague_contribution_adds_nothing`;
   - `world_model_witness`: three worlds, one piece of evidence, and the vague, sharp and sealed models side by side.
 
 **How much it says.** The results are close to their definitions. They fix the terms and show that the claims of this note hold together; they do not show that any real holder meets the premises. Not modelled: degrees of belief (in `GradedBelief`), unreliable evidence (in `ListeningCost`), adding a possibility the model never had, and what makes an entailment useful to a particular holder.
