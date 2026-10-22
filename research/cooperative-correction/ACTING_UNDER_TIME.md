@@ -26,6 +26,8 @@ The input named three tasks: understanding (what is happening, and why?), predic
 
 **Where the regress ends.** In the action model, not in the world model. The world model stays open to revision. It never reaches a final check, and it does not need to. The action model closes one round of deliberation at each decision, because further checking is worth less than the cost of delay. After the decision, the world model takes in what the action made observable, or failed to.
 
+The other models an intelligence keeps, and how they fit around this loop, are listed in [Models for acting in a changing world](../world-model/MODELS_FOR_ACTING.md) (D36).
+
 **Where the separation leaks.** The world model is aimless in what it claims, but not in what it covers. Purpose chooses which questions it asks, at what detail, and where to look ([WORLD_MODEL.md](../world-model/WORLD_MODEL.md) says the same). And the action model shapes the world model's evidence: a successful prevention removes the observations that would have shown it was needed (sections 4 and 5). That is a fact about reality, so modelling it belongs to the world model.
 
 ## 3. Conjecture 5, with its parts labelled

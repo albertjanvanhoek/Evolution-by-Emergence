@@ -5,6 +5,8 @@ This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It distinguis
 | File | What it is |
 |---|---|
 | [WORLD_MODEL.md](WORLD_MODEL.md) | The definition note, third version |
+| [MODELS_FOR_ACTING.md](MODELS_FOR_ACTING.md) | Models for acting in a changing world: what an intelligence keeps besides its world model, and how it uses them to persist (D36; a proposed decomposition) |
+| [sources/MODELS_FIRST_DRAFT.md](sources/MODELS_FIRST_DRAFT.md), [sources/READING_MODELS_FIRST_DRAFT.md](sources/READING_MODELS_FIRST_DRAFT.md) | Its first draft, and a reading of that draft by another model family |
 | [sources/REVIEW_1.md](sources/REVIEW_1.md) | The independent review of the first version, kept as received |
 | [sources/RESPONSE_1.md](sources/RESPONSE_1.md) | The response to it, point by point |
 | [sources/REVIEW_2_PART0.md](sources/REVIEW_2_PART0.md) | Review 2's blind Part 0 answers, recorded before it saw the material |
