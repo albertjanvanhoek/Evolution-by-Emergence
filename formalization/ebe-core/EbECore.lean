@@ -16,6 +16,7 @@ import CumulativeAccessibility.NetworkVortexLedger
 import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.ListeningCost
 import CumulativeAccessibility.GradedBelief
+import CumulativeAccessibility.WorldModel
 import CumulativeAccessibility.ConnectionIndependence
 import CumulativeAccessibility.CommonsVortex
 import CumulativeAccessibility.CommonsInterest
@@ -72,6 +73,7 @@ its premises is a separate question (D17 in DIALOGUE.md).
 
 ## The story, in the order of the sections below
 
+0. What the theory is about: world models, and what makes one functional.
 1. Existence is a process paid for from a gradient: the ledger.
 2. Things exist through their connections: remove a return path and the node
    declines; a node that defects on those that keep it going, and cannot live
@@ -95,6 +97,23 @@ system satisfies the premises.
 -/
 
 open CumulativeAccessibility
+
+/-! ## 0. What the theory is about: world models
+
+Every intelligence acts through world models; a functional one is held to fit how
+things are, tested against evidence it cannot fix in advance, as sharp as the
+evidence supports, and correctable. The narrow formal part: evidential fit is
+equality of support and live set; an empty live set means a background
+assumption or a piece of evidence is false of the actual world; retracting a
+false piece of evidence recovers what recomputation cannot; and in a collective,
+veto pooling lets one excluding contribution deny the actual world, while a
+weighted average keeps what one positively weighted source keeps. -/
+
+#check @WorldModel.fit_iff_matches_evidence
+#check @WorldModel.inconsistency_flags_background_or_evidence
+#check @WorldModel.retracting_false_evidence_recovers
+#check @WorldModel.hard_pool_one_excluding_contribution_denies_actual
+#check @WorldModel.linear_pool_keeps_what_one_source_keeps
 
 /-! ## 1. Existence is paid for from a gradient
 
@@ -307,6 +326,12 @@ interval between isolation and conformity. -/
 #check @ConnectionIndependence.correcting_levels_form_interval
 
 /-! ## Axiom audit -/
+
+#print axioms WorldModel.fit_iff_matches_evidence
+#print axioms WorldModel.inconsistency_flags_background_or_evidence
+#print axioms WorldModel.retracting_false_evidence_recovers
+#print axioms WorldModel.hard_pool_one_excluding_contribution_denies_actual
+#print axioms WorldModel.linear_pool_keeps_what_one_source_keeps
 
 #print axioms RecursiveAccessibility.internallyViableAt_iff_internalSlack_nonneg
 #print axioms CumulativeReproduction.self_financing_never_binds

@@ -1,7 +1,8 @@
 # EbE Core — the formal backbone in one file
 
-[`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core of Evolution by Emergence, in the order of the eight steps of [`CORE.md`](../../CORE.md):
+[`EbECore.lean`](EbECore.lean) collects the machine-checked results that carry the core of Evolution by Emergence, in the order of [`CORE.md`](../../CORE.md): its opening section and its eight steps.
 
+0. **What the theory is about: world models** — evidential fit, inconsistency as a signal, revision by retracting false evidence, and how veto pooling and weighted averaging differ for a collective.
 1. **Existence is paid for from a gradient** — the ledger: viability, ceilings, unaffordable critical mass, forced forgetting.
 2. **Existence through connections** — a maintenance cycle keeps its members going; delete the return edge and the node declines; a defector that cannot live alone falls after its partner.
 3. **Selection comes free** — under selection on cost, mean cost falls and slack rises.
@@ -11,11 +12,11 @@
 7. **Boundaries** — countermodels showing the vortex can stop.
 8. **One domain worked out: intelligence** — the anchor (across people and across one person's lifetime), the learning law for records and evidence, shared reality, correctable networks.
 
-The file adds **no mathematics**. It imports 91 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
+The file adds **no mathematics**. It imports 96 results from four packages in this repository, prints each statement with `#check`, and prints its axioms with `#print axioms`. CI ([`ebe-core-check.yml`](../../.github/workflows/ebe-core-check.yml)) fails if any result stops compiling or depends on `sorry`.
 
 | Source package | Path | Results used |
 |---|---|---|
-| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | ledger, adaptive persistence, paid opening, second-order clicks, the vortex, its speed, the network ledger, the assembly barrier, boundaries |
+| `cumulative_accessibility_check` | [`formalization/cumulative-accessibility`](../cumulative-accessibility) | world models, ledger, adaptive persistence, paid opening, second-order clicks, the vortex, its speed, the network ledger, the assembly barrier, boundaries |
 | `collective_alignment` | [`formalization/collective-alignment`](../collective-alignment) (through cumulative accessibility) | the maintenance cycle and its return edge, selected versus sufficient effort |
 | `functional_competition_check` | [`formalization/persistence-drift`](../persistence-drift) | selection on cost, competition raising slack, the extraction threshold, return-path feedback |
 | `anchored_evolution` | [`research/anchored-correctability/lean`](../../research/anchored-correctability/lean) | budget ledger and critical mass, the scaffold, and the intelligence domain: anchor, learning law, shared reality, correctable networks |
@@ -29,10 +30,10 @@ cd formalization/ebe-core
 lake update
 lake exe cache get        # prebuilt Mathlib; otherwise Mathlib builds from source
 lake build EbECore
-lake env lean EbECore.lean   # prints the 70 statements and their axioms
+lake env lean EbECore.lean   # prints the 96 statements and their axioms
 ```
 
-A correct run prints 91 axiom reports and no `sorryAx`.
+A correct run prints 96 axiom reports and no `sorryAx`.
 
 ## Use it as a dependency
 
@@ -42,7 +43,7 @@ Add this to your project's `lakefile.toml`, pinning `rev` to a release tag or co
 [[require]]
 name = "ebe_core"
 git = "https://github.com/albertjanvanhoek/Evolution-by-Emergence.git"
-rev = "v22.7"
+rev = "v23.0"
 subDir = "formalization/ebe-core"
 ```
 
