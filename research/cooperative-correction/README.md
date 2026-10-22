@@ -1,14 +1,14 @@
 # Cooperative error identification: can different world models correct each other?
 
-**Status: four conjectures under investigation, second version, October 2026** (D35 in [DIALOGUE.md](../../DIALOGUE.md)). A smallest formal model and a set of simulations, written to find out where the conjectures fail. **Nothing here is established.** The first version was assessed by an independent reader ([review A](sources/REVIEW_A.md)), who found a decisive error in how it read its own simulations; this version answers it ([response](sources/RESPONSE_A.md)). Further independent readers are invited with [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md).
+**Status: four conjectures under investigation, third version, October 2026** (D35 in [DIALOGUE.md](../../DIALOGUE.md)). A smallest formal model and a set of simulations, written to find out where the conjectures fail. **Nothing here is established.** The first version was assessed by an independent reader ([review A](sources/REVIEW_A.md)), who found a decisive error in how it read its own simulations ([response](sources/RESPONSE_A.md)). The same reader then audited the second version ([review B](sources/REVIEW_B.md)), saying itself that this was not an independent review; this version answers it ([response](sources/RESPONSE_B.md)). A reader with no prior exposure has not yet assessed it; [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) is for that.
 
 | Part | Where |
 |---|---|
 | The invitation that started it, verbatim | [sources/INVITATION.md](sources/INVITATION.md) |
-| The formal model | [`CooperativeCorrection.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CooperativeCorrection.lean): core Lean, 12 results and 2 witnesses |
+| The formal model | [`CooperativeCorrection.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CooperativeCorrection.lean): core Lean, 14 results and 2 witnesses |
 | The simulations, version 2 | [simulation/sim.py](simulation/sim.py), seeded; results in [simulation/results/RESULTS.md](simulation/results/RESULTS.md) |
 | Version 1, as reviewed | [simulation/sim_v1.py](simulation/sim_v1.py), [simulation/results_v1/](simulation/results_v1/RESULTS.md) |
-| Review A, its blind start, and the response | [sources/](sources/) |
+| Reviews A and B, review A's blind start, and the responses | [sources/](sources/) |
 | The brief for further readers | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) |
 
 ## 1. The question
@@ -38,6 +38,15 @@ The deeper reason is that in the first version every agent measured **the same q
 - gives each a matched comparator;
 - adds the case the bridge exists for, where agents measure **different** quantities (E6).
 
+### What review B changed
+
+The audit found two further problems and drew the lesson that ties this note together.
+- **A definition did not match its prose.** An "available bridge" did not require both agents to be committed, so an agent with an empty support could still form one. It now does (`available_bridge_has_nonempty_supports`).
+- **The bridge works only if the reference is commutable.** The reference corrects a method only if the method errs on the reference as it does on its real target. Version 2 assumed this exactly. With a reference-specific error as large as the method error, correcting through the bridge makes comparisons *worse* than not correcting. Metrology has a name for the condition: **commutability** of reference materials. New experiment E7 measures how much the results depend on it.
+- **"Who is wrong" was stated too broadly.** Before an operation, the logic does not say which agent will be exposed. After a true record, it does identify the failing model. What it does not identify is the failing component, or anything at all when the record itself is unreliable (`true_record_identifies_failing_model`).
+
+**The lesson.** In the reviewer's words: "an apparently shared evidential bridge is itself a model-dependent object whose validity must be tested." A bridge assumes, for example, that a reference behaves like the real targets, and that assumption can be wrong in exactly the way any model can be. So the shared procedures by which intelligences find each other's errors must stay open to correction themselves. That is the repository's anchor applied once more: the bridge is a model too.
+
 ## 3. The smallest formal model
 
 [`CooperativeCorrection.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/CooperativeCorrection.lean) models two agents over possible worlds. Each has:
@@ -46,15 +55,15 @@ The deeper reason is that in the first version every agent measured **the same q
 
 **What is shared, and what is not.** The two agents may differ in both their supports and their operation models; their models of an operation may disagree at every world. What they share is an **operational compatibility assumption**: the same types of worlds, operations and outcomes, and exact identification of which operation was performed. That is much less than a shared interpretation. But it is not nothing, and how two agents with different vocabularies would reach it is not modelled.
 
-**Discovering a bridge among available operations.** Two things are needed:
+**Discovering a bridge among available operations.** An available bridge is a shared operation with two things:
 - a **shared record:** both agents accept *which outcome occurred*;
 - **commitment:** before the operation, each states which outcomes its model allows, a set that is neither empty nor everything.
 
-An operation whose allowed outcomes do not overlap **discriminates** the two agents. The model shows the consequences of having such an operation available. It does not show how a new operation, or a shared vocabulary for one, is built.
+And the allowed outcomes of the two agents must not overlap: the operation **discriminates** them. Requiring commitment from both excludes the degenerate case of an empty support (`available_bridge_has_nonempty_supports`). The model shows the consequences of having such an operation available. It does not show how a new operation, or a shared vocabulary for one, is built.
 
 **Logical results:**
 - **A discriminating operation exposes at least one agent,** whatever the outcome (`discrimination_exposes_one`).
-- **It does not say which** (`exposure_does_not_say_who`).
+- **Before the outcome, it does not say which** (`exposure_does_not_say_who`). **After a true record, it does:** an agent whose model does not allow the recorded outcome is in error (`true_record_identifies_failing_model`). What stays open is which component failed, and everything when the record itself may be wrong, for example two instruments that disagree with no third reference.
 - **An exposure locates an error in the support or in the operation model,** without saying which (`failure_is_support_or_mechanism`): the Duhem–Quine problem in miniature.
 - **A faithful agent is never exposed by a true record** (`faithful_agent_accommodates`).
 - **Commitment is needed at both ends.** An uncommitted agent is never exposed (`uncommitted_agent_is_never_exposed`). An agent with an empty support discriminates trivially from everyone, so it is excluded by requiring a nonempty allowed set (`empty_support_discriminates_trivially`, `empty_support_is_not_committed`).
@@ -133,6 +142,27 @@ The bridge removes relative method errors, so comparisons improve fourfold. The 
 
 The bridge tells an instrument drift apart from a real change in the world. The ordinary measurements cannot: they miss the drift a quarter of the time and treat a real change as an error four times in ten.
 
+**One assumption carries all of E6:** each method errs on the reference exactly as it errs on its real target, and an instrument drift reaches both alike. E7 relaxes it.
+
+### E7. Commutability: the bridge is only as good as the reference
+
+Added after review B. First, each method gets an extra, persistent error on the reference only, while the method error on the real targets stays at sd 0.5:
+
+| Reference-specific error (sd) | Comparisons, corrected through the bridge | Comparisons, own measurement only |
+|---|---|---|
+| 0 | 0.162 | 0.653 |
+| 0.1 | 0.216 | 0.653 |
+| 0.25 | 0.391 | 0.653 |
+| 0.4 | 0.591 | 0.653 |
+| 0.5 | 0.729 | 0.653 |
+| 1.0 | 1.428 | 0.653 |
+
+Second, only part of an instrument drift reaches the reference. The drift is then detected through the reference, at 0.5% false alarms, in 1.4% of runs when none of it reaches the reference, 13% at 25%, 55% at 50%, 90% at 75%, and 99% when all of it does.
+
+So the bridge helps when the reference is close to commutable, and hurts when the reference's own error is as large as the method error it is meant to remove. The result reproduces review B's own sensitivity analysis. In metrology, commutability is assessed for exactly this reason: a NIST page for "Recommendations for assessing commutability part 1: general experimental design" (*Clinical Chemistry*, 2018) calls it "a property of a reference material that relates to the closeness of agreement between results" for the reference and for real samples across measurement procedures (the last part paraphrased).
+
+E6 and E7 are about **calibrating measurement systems** that share a numerical scale and an additive error structure. They do not yet represent world models whose concepts or causal descriptions are incompatible.
+
 ### E3. Diversity under a budget, and localization
 
 **The budget.** Assume k methods with independent, exchangeable errors of size σ_b, an identical fixed cost F per method, sampling noise σ, an error τ shared by all, a budget B, and mean squared error as the loss. Then
@@ -163,10 +193,10 @@ Two agents with different supports and operation models try 60 operations each r
 | two in three operations outside the agents' models | 0.9 | 1.0 | 1.00 |
 | records shaped by each agent's **own** theory (30%) | 1.3 | 1.4 | 1.00 |
 | records shaped by each agent's **own** theory (60%) | 0.1 | 0.1 | 1.00 |
-| records shaped by a **shared** theory (20% of operations) | 7.2 | 8.5 | 0.95 |
-| records shaped by a **shared** theory (50% of operations) | 8.0 | 9.8 | 0.89 |
+| a **shared** recording bias (20% of operations) | 7.2 | 8.5 | 0.95 |
+| a **shared** recording bias (50% of operations) | 8.0 | 9.8 | 0.89 |
 
-When records are shaped by *different* theories, disagreement prevents a false shared record, so bridges become rarer but stay sound. When records are shaped by a *shared* theory, the false record passes every reproducibility check: there are *more* apparent bridges, and up to 11% of exposures are wrong. Version 1 said that theory-laden perception blocks bridges rather than corrupting them. That holds only when the theories differ.
+When records are shaped by *different* theories, disagreement prevents a false shared record, so bridges become rarer but stay sound. When both agents record through a *shared* bias, here a stand-in for a shared theory rather than a model of one, the false record passes every reproducibility check: there are *more* apparent bridges, and up to 11% of exposures are wrong. Version 1 said that theory-laden perception blocks bridges rather than corrupting them. That holds only when the theories differ. The 100% correct in the baseline is a finite-sample result: records there can still be wrong, rarely.
 
 ### E5. Responsiveness
 
@@ -184,14 +214,14 @@ The correction rule is supplied by the model, not learned by the agents. And wit
 
 | Conjecture | Verdict now | Main reason |
 |---|---|---|
-| 1. Minimal cooperation | **Supported, narrowly** | Exposure follows from a shared record and incompatible commitments; it does not localize the error or produce a correction |
+| 1. Minimal cooperation | **Supported, narrowly** | Exposure follows from a shared record and incompatible commitments; after a true record the failing model is identified, but not its failing component, and nothing is corrected |
 | 2. Bridge construction | **Partly supported** | Discovery of discriminating operations among available ones is shown; construction of a new interface is not |
-| 3. Collective improvement | **Partly supported** | With a common target, gains come from pooling independent methods and provenance, not from the bridge; with distinct targets, the bridge adds a great deal |
+| 3. Collective improvement | **Partly supported** | With a common target, gains come from pooling and provenance, not from the bridge; with distinct targets, the bridge adds a great deal, if the reference is commutable |
 | 4. Preserved diversity | **Partly supported** | Independent methods make errors visible that a monoculture cannot see; the optimum number depends on assumptions, and diversity of conclusions has a role too |
 
 ### 1. Minimal cooperation
 
-The logical result holds. Two agents can establish that an outcome is incompatible with at least one of their models without sharing the rest of their models. The result is narrower than its name suggests, though: it is error *exposure*, not error localization and not correction.
+The logical result holds. Two agents can establish that an outcome is incompatible with at least one of their models without sharing the rest of their models. After a true record, they can also say *which* model failed. The result is narrower than its name suggests, though: it does not say which part of the failing model is wrong, it depends on the record being true, and it corrects nothing.
 
 It fails when:
 - an agent will not commit;
@@ -207,7 +237,8 @@ What is shown is **bridge discovery among available operations**: given shared o
 In history, it has happened in practice: Galison's trading zones describe communities with different languages building local ways to collaborate. Its failure conditions here:
 - irreproducible operations;
 - operations outside the models;
-- shared faults, including a shared theory, which pass reproducibility checks and corrupt the bridge.
+- shared faults, including a shared recording bias, which pass reproducibility checks and corrupt the bridge;
+- a bridge that is itself wrong, such as a non-commutable reference (E7).
 
 ### 3. Collective improvement
 
@@ -217,7 +248,7 @@ In history, it has happened in practice: Galison's trading zones describe commun
 - comparisons between targets become four times more accurate;
 - instrument errors are told apart from real changes in the world.
 
-So the improvement attributable to cooperative error identification, as distinct from good aggregation, appears exactly where the agents' ordinary observations are not directly comparable. The invitation's original situation is one of those.
+So the improvement attributable to cooperative error identification, as distinct from good aggregation, appears where the agents' ordinary observations are not directly comparable, **and the bridge between them is commutable** (E7). Strictly, E6 and E7 show this for measurement systems on a common scale; whether it extends to world models whose concepts are incompatible is untested.
 
 Version 1's slogan correction stands, now on firmer ground: "do not maximize agreement" is too strong. Agreement reached by provenance-aware pooling of independent methods is accurate and well calibrated. What fails is agreement that ignores dependence or overstates certainty.
 
@@ -225,6 +256,7 @@ Failure conditions:
 - dependent sources treated as independent;
 - an error shared by every method;
 - agents that do not act on exposed errors;
+- a non-commutable bridge, which can make the collective worse than no bridge;
 - bridges that cost more to build and maintain than they return, which the simulations do not price.
 
 ### 4. Preserved diversity
@@ -238,13 +270,15 @@ Failure conditions:
 
 The useful line is therefore not between methods and conclusions. It is between **diversity that keeps informative inquiry going**, and **diversity that merely keeps known errors**. The latter is what E5 shows when agents ignore exposed errors.
 
+And justified agreement does not make independent capacity expendable. Review B's point: even where the evidence has settled a question, a collective may need alternative methods to detect a later change in the world, or a shared assumption that later proves false.
+
 A further failure condition: methods that look different but share an unrecognized calibration standard or background assumption give an *illusion* of independence. That is the shared-error floor of E1, and the shared-theory case of E4.
 
 **The conjecture, restated:** a good collective world model lets its conclusions converge as far as the evidence supports, keeps open the alternatives the evidence still leaves open and that would lead to informative inquiry, and keeps enough genuinely independent methods to make errors visible. How many is a matter of cost, error correlation and what is at stake. It keeps provenance, and it stays open to new kinds of method, because no internal diversity can see an error every method shares.
 
 ## 6. Prior art
 
-Review A checked the following and found that they substantially limit claims of originality; the assistant has not yet checked them in their sources, so none is quoted here.
+Reviews A and B checked the following and found that they substantially limit claims of originality. The assistant has checked only the commutability source in E7; the others are not quoted here.
 - **Inter-laboratory comparison in metrology** (for example Guthrie, NIST, 2007): laboratories measuring common artifacts to find systematic differences. This is an existing, operational form of the reference bridge, not merely an analogy. Proficiency-testing data are the natural place to test E6.
 - **Longino** (*Science as Social Knowledge*, 1990): objectivity as a property of social processes of criticism.
 - **Galison:** trading zones, where coordination precedes shared theory. The closest prior work on conjecture 2.
@@ -252,23 +286,26 @@ Review A checked the following and found that they substantially limit claims of
 - **Zollman** (2007; *The Epistemic Benefit of Transient Diversity*, 2010): limited communication can raise collective reliability and slow convergence; permanent diversity can block convergence.
 - **Hong and Page** (2004): conditions under which functionally diverse groups outperform able ones, not an unconditional advantage.
 - **DeGroot** (*Reaching a Consensus*, 1974): formal opinion pooling; convergence is not correctness.
-- **Mayo,** on severe testing: a bridge is worth what its procedure could have revealed, not only whether the parties agree on its result.
+- **Commutability of reference materials** in laboratory metrology (IFCC and NIST work; see E7): when a reference allows valid comparison between methods, and when it adds error. The closest existing account of the condition E7 found.
+- **Mayo,** on severe testing: a bridge is worth what its procedure would reliably reveal if an error were there, a stronger criterion than reproducibility or agreement.
 
 The mechanisms are mostly established. What this work may add is an explicit synthesis: incompatible models, local interfaces, provenance, responsive correction and collective learning, in one checkable frame. The simulations do not establish that synthesis as a new general result.
 
 ## 7. What would falsify these results
 
-- **Conjecture 1:** a pair of committed agents, with a true shared record of a discriminating operation, in which neither model is wrong about the actual world. `failure_is_support_or_mechanism` says this cannot happen; finding it would mean the model of agents is wrong.
-- **Conjecture 2:** agents that share reproducible operations both their models speak about and still never discover a discriminating one; or a documented case in which two communities built a new shared operation, without either adopting the other's theory, that this account cannot describe.
-- **Conjecture 3, as restated:** with distinct targets, real inter-laboratory or multi-site data in which a common reference does *not* improve comparisons, or does not separate instrument drift from real change, beyond what dependence-aware aggregation already achieves. That is the test review A recommends, on proficiency-testing data, with blinded histories and a prespecified false-alarm rate.
-- **Conjecture 4, as restated:** a collective that stops keeping independent methods, or stops exploring open alternatives, and still detects new errors as well as one that keeps them.
+Each test names a population, the conditions and the measure of success, as review B asked.
+
+- **Conjecture 1.** *Population:* pairs of agents, human or AI, that commit in writing to allowed outcomes before an operation and then record its outcome together. *Would count against it:* cases with a true record in which the agent whose commitment excluded that outcome had no error, in its support or its model of the operation. `true_record_identifies_failing_model` says this cannot happen, so such a case would show the model of agents to be wrong.
+- **Conjecture 2.** *Population:* groups with different evidential standards, such as two scientific communities or two AI systems trained on different data, given operations both can perform. *Measure:* the share of operations tried that become shared, reproducible and discriminating, and the share of resulting exposures later confirmed. *Would count against it:* no shared operations emerging where they are available, or exposures that are confirmed no more often than chance. A separate, harder test would concern construction: documented cases in which a new shared operation was built without either side adopting the other's theory.
+- **Conjecture 3, as restated.** *Population:* inter-laboratory or multi-site measurement programmes with distinct targets and shared reference materials of known commutability (high, partial and none), as review B proposes. *Measure:* error of comparisons between sites, interval coverage, and detection of real instrument drift at a prespecified false-alarm rate, with blinded histories. *Would count against it:* references of high commutability that do not improve comparisons or drift detection beyond dependence-aware aggregation without a reference.
+- **Conjecture 4, as restated.** *Population:* collectives facing a later change in the world or a shared assumption that proves false. *Measure:* delay until the error is detected, against the cost of keeping methods. *Would count against it:* a collective that drops independent methods, or stops exploring open alternatives, and still detects such errors as early and as reliably as one that keeps them, at the same cost.
 
 ## 8. Limits
 
-- **The simulated world is simple:** Gaussian errors, a reference that every agent can measure, and correction rules supplied by the model.
+- **The simulated world is simple:** Gaussian errors on a common scale, an additive error model, a reference that every agent can measure, and correction rules supplied by the model. World models with incompatible concepts are not simulated.
 - **Costs are not priced,** neither for keeping methods nor for building bridges.
 - **The formal model** has no noise, no costs, no history of commitments, and no criterion for an improving revision.
-- **Written within one conversation and one model family,** and assessed so far by one independent reader (working agreement 7).
+- **Written within one conversation and one model family,** and assessed so far by one independent reader, twice (working agreement 7).
 
 ## 9. How it connects
 

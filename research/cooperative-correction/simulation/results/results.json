@@ -21,6 +21,8 @@
     "real_change": 0.0,
     "change_agent": 3,
     "t_change": 25,
+    "ref_bias_sd": 0.0,
+    "ref_drift_share": 1.0,
     "window": 40,
     "reps": 4000,
     "seed": 1
@@ -369,6 +371,70 @@
         "drifted_origin_flagged": 0.7715,
         "other_origins_flagged": 0.453875,
         "origin_with_a_real_change_flagged": 0.37775
+      }
+    }
+  },
+  "E7": {
+    "comparisons_vs_reference_specific_bias": {
+      "sd 0": {
+        "with_bridge": 0.16190267412352238,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 0.1": {
+        "with_bridge": 0.21629301119402963,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 0.25": {
+        "with_bridge": 0.39112726119170843,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 0.4": {
+        "with_bridge": 0.5912609407570817,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 0.5": {
+        "with_bridge": 0.7286223517783144,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 0.75": {
+        "with_bridge": 1.0770062521077821,
+        "without_bridge": 0.6526075088915824
+      },
+      "sd 1": {
+        "with_bridge": 1.4283334138611326,
+        "without_bridge": 0.6526075088915824
+      }
+    },
+    "detection_vs_drift_transfer": {
+      "0% of the drift reaches the reference": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.01425,
+        "other_origins_flagged": 0.001375,
+        "origin_with_a_real_change_flagged": 0.001
+      },
+      "25% of the drift reaches the reference": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.13225,
+        "other_origins_flagged": 0.003875,
+        "origin_with_a_real_change_flagged": 0.00225
+      },
+      "50% of the drift reaches the reference": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.55275,
+        "other_origins_flagged": 0.01075,
+        "origin_with_a_real_change_flagged": 0.01
+      },
+      "75% of the drift reaches the reference": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.90175,
+        "other_origins_flagged": 0.02675,
+        "origin_with_a_real_change_flagged": 0.022
+      },
+      "100% of the drift reaches the reference": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.99125,
+        "other_origins_flagged": 0.050125,
+        "origin_with_a_real_change_flagged": 0.04475
       }
     }
   }

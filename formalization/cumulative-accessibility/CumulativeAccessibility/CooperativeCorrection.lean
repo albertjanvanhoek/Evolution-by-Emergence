@@ -69,8 +69,16 @@ Results.  Logical layer:
    different outcomes, a discriminating operation can leave both accommodated,
    each by its own record.  A shared record is needed.
 8. `bridges_grow_with_shared_operations`: for fixed agent models, every
-   operation that discriminates within a set of shared operations still does
-   within a larger set.  After an agent revises, earlier bridges need not remain.
+   available bridge within a set of shared operations remains one within a larger
+   set.  After an agent revises, earlier bridges need not remain.  An available
+   bridge requires both agents to be committed, so it excludes the degenerate
+   empty support (`available_bridge_has_nonempty_supports`).
+8a. `true_record_identifies_failing_model`: *before* the operation, the logic does
+   not say who will be exposed; *after* a true record, an agent whose model does
+   not allow it is identified as being in error.  Not identified: which
+   component failed (support or operation model), and anything at all when the
+   record itself may be wrong, for instance two disagreeing instruments with no
+   further reference.
 
 Behavioural layer, separately:
 9. `Responsive` says only that an agent *changes* its model after an exposure.
@@ -111,10 +119,11 @@ def Committed (A : Agent W Op O) (op : Op) : Prop :=
 def Discriminates (A B : Agent W Op O) (op : Op) : Prop :=
   ∀ o, ¬ (Allows A op o ∧ Allows B op o)
 
-/-- An available bridge: a shared operation that discriminates the two agents.
-Being available is not the same as having been performed or recorded. -/
+/-- An available bridge: a shared operation on which both agents are committed
+and which discriminates them.  Being available is not the same as having been
+performed or recorded. -/
 def AvailableBridge (A B : Agent W Op O) (shared : Op → Prop) (op : Op) : Prop :=
-  shared op ∧ Discriminates A B op
+  shared op ∧ Committed A op ∧ Committed B op ∧ Discriminates A B op
 
 /-- Behavioural: an agent is responsive on `op` if, whenever its model does not
 allow the recorded outcome, its next model differs from its current one. -/
@@ -200,6 +209,26 @@ theorem bridges_grow_with_shared_operations {A B : Agent W Op O}
     {shared shared' : Op → Prop} (hsub : ∀ op, shared op → shared' op) (op : Op)
     (h : AvailableBridge A B shared op) : AvailableBridge A B shared' op :=
   ⟨hsub op h.1, h.2⟩
+
+/-- **An available bridge excludes the degenerate case.**  Neither agent of an
+available bridge has an empty support. -/
+theorem available_bridge_has_nonempty_supports {A B : Agent W Op O}
+    {shared : Op → Prop} {op : Op} (h : AvailableBridge A B shared op) :
+    (∃ w, A.support w) ∧ (∃ w, B.support w) := by
+  obtain ⟨_, ⟨⟨_, wa, hwa, _⟩, _⟩, ⟨⟨_, wb, hwb, _⟩, _⟩, _⟩ := h
+  exact ⟨⟨wa, hwa⟩, ⟨wb, hwb⟩⟩
+
+/-- **After a true record, the failing model is identified.**  Before the
+operation, a discriminating operation does not say which agent will be exposed.
+After it, if the record is what the operation actually yields in the actual
+world and `A` allows it, then `B` is in error: its support excludes the actual
+world or its model of the operation is wrong there.  What is not identified is
+which of those two components failed, nor anything when the record itself may
+be wrong. -/
+theorem true_record_identifies_failing_model {A B : Agent W Op O} {op : Op} {a : W}
+    {out : O} (hd : Discriminates A B op) (hA : Allows A op out) :
+    ¬ B.support a ∨ B.predict op a ≠ out :=
+  failure_is_support_or_mechanism (fun hB => hd out ⟨hA, hB⟩)
 
 /-- **Behavioural: a responsive agent revises after an exposure.**  This
 restates the assumption; it is not derived from the logical layer. -/

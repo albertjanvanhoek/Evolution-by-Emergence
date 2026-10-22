@@ -28,6 +28,9 @@ Experiments
   E5  responsiveness, randomized across error origins
   E6  distinct targets: individual levels, comparisons, and detection of an
       instrument drift when real changes also happen
+  E7  commutability (added after review B): the bridge works only if each method
+      responds to the reference as it does to its real target. A reference-
+      specific bias, and drift that transfers only partly to the reference.
 
 Run:  python3 sim.py     (writes results/ and figures/ next to this file)
 All randomness is seeded. numpy and matplotlib only.
@@ -74,6 +77,8 @@ class World:
     real_change: float = 0.0  # a REAL change from t_change in the target of agent change_agent
     change_agent: int = 3
     t_change: int = 25
+    ref_bias_sd: float = 0.0     # a method's extra, persistent error on the reference only
+    ref_drift_share: float = 1.0 # share of an instrument drift that also affects the reference
     window: int = 40
     reps: int = 4000
     seed: int = 1
@@ -106,7 +111,11 @@ def generate(w: World):
         drift[:, cid == w.drift_origin, w.t_change:] = w.drift
     y = theta_t + beta[:, :, None] + drift + rng.normal(0, w.sigma / np.sqrt(w.n), size=(R, N, T))
     r0 = rng.normal(0, 1.0, size=(R, 1, 1))
-    ref = r0 + beta[:, :, None] + drift + rng.normal(0, w.sigma_r, size=(R, N, T))
+    ref = r0 + beta[:, :, None] + w.ref_drift_share * drift + rng.normal(0, w.sigma_r, size=(R, N, T))
+    if w.ref_bias_sd > 0:
+        # drawn from a separate generator, so that every other draw is unchanged
+        delta = np.random.default_rng(w.seed + 100003).normal(0, w.ref_bias_sd, size=(R, N))
+        ref = ref + delta[:, :, None]
     return dict(theta=theta, theta_t=theta_t, y=y, ref=ref, beta=beta, cid=cid, N=N, K=K)
 
 
@@ -433,6 +442,40 @@ def e6():
 
 
 # ---------------------------------------------------------------------------
+# E7: commutability
+# ---------------------------------------------------------------------------
+
+def e7():
+    out = {"comparisons_vs_reference_specific_bias": {}, "detection_vs_drift_transfer": {}}
+    iu = None
+    for s in [0.0, 0.1, 0.25, 0.4, 0.5, 0.75, 1.0]:
+        w = World(distinct_targets=True, ref_bias_sd=s, seed=61)
+        d = generate(w)
+        ys, rs, _, _ = windows(w)
+        cid, N, K = d["cid"], d["N"], d["K"]
+        m = d["y"][:, :, ys].mean(axis=2)
+        gi = d["ref"][:, :, rs].mean(axis=2)
+        th = d["theta"]
+        G = origin_means(gi, cid, K)
+        corr = m - (gi - G.mean(axis=1)[:, None])
+        iu = np.triu_indices(N, 1)
+
+        def pair(est):
+            de = (est[:, :, None] - est[:, None, :])[:, iu[0], iu[1]]
+            dt = (th[:, :, None] - th[:, None, :])[:, iu[0], iu[1]]
+            return float(np.sqrt(np.mean((de - dt) ** 2)))
+        out["comparisons_vs_reference_specific_bias"][f"sd {s:g}"] = dict(
+            with_bridge=pair(corr), without_bridge=pair(m))
+    base = dict(distinct_targets=True, window=10, t_change=25)
+    for share in [0.0, 0.25, 0.5, 0.75, 1.0]:
+        w_null = World(seed=62, ref_drift_share=share, **base)
+        w_alt = World(seed=63, drift=1.0, real_change=1.0, change_agent=3, ref_drift_share=share, **base)
+        r = matched_detection(w_null, w_alt, flagged_origin=0, real_origin=int(origin_ids(w_alt.clusters)[3]))
+        out["detection_vs_drift_transfer"][f"{int(share * 100)}% of the drift reaches the reference"] = r["reference (bridge)"]
+    return out
+
+
+# ---------------------------------------------------------------------------
 
 def table(rows, keys):
     lines = ["| | " + " | ".join(keys) + " |", "|---|" + "---|" * len(keys)]
@@ -460,6 +503,7 @@ def main():
     res["E4"] = e4()
     res["E5"] = e5()
     res["E6"] = e6()
+    res["E7"] = e7()
     with open(os.path.join(RES, "results.json"), "w") as f:
         json.dump(res, f, indent=2)
 
@@ -498,8 +542,24 @@ def main():
     for label, r in res["E6"].items():
         if label.startswith("detection"):
             md += [f"### {label}", "", table(r, ["drifted_origin_flagged", "origin_with_a_real_change_flagged", "other_origins_flagged", "threshold"]), ""]
+    md += ["## E7. Commutability: does each method respond to the reference as to its real target?\n",
+           "Comparisons between distinct targets (RMSE), as the reference picks up a method-specific bias of its own:", "",
+           table(res["E7"]["comparisons_vs_reference_specific_bias"], ["with_bridge", "without_bridge"]), "",
+           "Detection of the instrument drift by the reference (0.5% false alarms per origin), as less of the drift reaches the reference:", "",
+           table(res["E7"]["detection_vs_drift_transfer"], ["drifted_origin_flagged", "origin_with_a_real_change_flagged", "other_origins_flagged"]), ""]
     with open(os.path.join(RES, "RESULTS.md"), "w") as f:
         f.write("\n".join(md))
+    sds = [0.0, 0.1, 0.25, 0.4, 0.5, 0.75, 1.0]
+    rows7 = res["E7"]["comparisons_vs_reference_specific_bias"]
+    fig, ax = plt.subplots(figsize=(6.4, 4))
+    ax.plot(sds, [rows7[f"sd {s:g}"]["with_bridge"] for s in sds], "o-", label="corrected through the bridge")
+    ax.plot(sds, [rows7[f"sd {s:g}"]["without_bridge"] for s in sds], "s--", label="own measurement only")
+    ax.set_xlabel("sd of a method's bias on the reference only (method error sd = 0.5)")
+    ax.set_ylabel("RMSE of comparisons between targets")
+    ax.set_title("E7. The bridge helps only if the reference is commutable")
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(os.path.join(FIG, "e7_commutability.png"), dpi=150)
 
     fig, ax = plt.subplots(figsize=(6.4, 4))
     for name, vals in curves.items():

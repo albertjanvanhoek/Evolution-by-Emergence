@@ -137,3 +137,27 @@ the bridge removes relative method errors, so comparisons between targets improv
 |---|---|---|---|---|
 | reference (bridge) | 0.991 | 0.045 | 0.050 | 3.251 |
 | ordinary measurements | 0.771 | 0.378 | 0.454 | 3.293 |
+
+## E7. Commutability: does each method respond to the reference as to its real target?
+
+Comparisons between distinct targets (RMSE), as the reference picks up a method-specific bias of its own:
+
+| | with_bridge | without_bridge |
+|---|---|---|
+| sd 0 | 0.162 | 0.653 |
+| sd 0.1 | 0.216 | 0.653 |
+| sd 0.25 | 0.391 | 0.653 |
+| sd 0.4 | 0.591 | 0.653 |
+| sd 0.5 | 0.729 | 0.653 |
+| sd 0.75 | 1.077 | 0.653 |
+| sd 1 | 1.428 | 0.653 |
+
+Detection of the instrument drift by the reference (0.5% false alarms per origin), as less of the drift reaches the reference:
+
+| | drifted_origin_flagged | origin_with_a_real_change_flagged | other_origins_flagged |
+|---|---|---|---|
+| 0% of the drift reaches the reference | 0.014 | 0.001 | 0.001 |
+| 25% of the drift reaches the reference | 0.132 | 0.002 | 0.004 |
+| 50% of the drift reaches the reference | 0.553 | 0.010 | 0.011 |
+| 75% of the drift reaches the reference | 0.902 | 0.022 | 0.027 |
+| 100% of the drift reaches the reference | 0.991 | 0.045 | 0.050 |
