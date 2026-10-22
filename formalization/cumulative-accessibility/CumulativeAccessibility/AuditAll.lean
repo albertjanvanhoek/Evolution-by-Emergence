@@ -38,6 +38,7 @@ import CumulativeAccessibility.AdaptivePersistence
 import CumulativeAccessibility.ListeningCost
 import CumulativeAccessibility.GradedBelief
 import CumulativeAccessibility.WorldModel
+import CumulativeAccessibility.CooperativeCorrection
 import CumulativeAccessibility.ConnectionIndependence
 import CumulativeAccessibility.CommonsCapture
 import CumulativeAccessibility.CommonsVortex

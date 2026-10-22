@@ -69,6 +69,6 @@ The results are close to their definitions, and the note says which restate one.
 
 ## Since this release
 
-Nothing yet.
+- **Cooperative error identification** (D35): conjectures under investigation, awaiting independent review, in [`research/cooperative-correction/`](research/cooperative-correction/README.md). A formal model, [`CooperativeCorrection.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/CooperativeCorrection.lean) (8 results and 2 witnesses, outside the core), separates logical implications from behavioural assumptions; seeded simulations compare independent agents, forced consensus and cooperative error identification on the same data, with explicit dependence between sources.
 
 The v22.7 release notes remain available at the `v22.7` tag.
