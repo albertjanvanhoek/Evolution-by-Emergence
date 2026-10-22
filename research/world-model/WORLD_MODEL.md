@@ -1,6 +1,6 @@
 # What a world model is
 
-**Status: a definition, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The definition is stated first, in plain words. Its value, how it scales and what it requires follow from it. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 18 machine-checked results. Practices and a checklist are to be distilled from this page; they are not here yet.
+**Status: a definition, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The definition is stated first, in plain words. Its value, how it scales and what it requires follow from it. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 22 machine-checked results. Practices and a checklist are to be distilled from this page; they are not here yet.
 
 > **In one paragraph.** Every intelligence lives in a model of the world, not in the world itself, and it experiences that model as the world. It runs many models: for acting, for belonging, for wanting, for feeling safe. One of them has a different job. A **world model** is the model held with the aim of fitting how things are, whatever its holder wants, and kept answerable to evidence from outside. It is good when it is **as sharp as the evidence allows, and no sharper**. It does not arise by itself. It has to be built, kept apart from the other models, and maintained. Its value is that it lets a holder make its mistakes in the model instead of in reality. That holds for a cell, a person, a team, a society and an AI system alike.
 
@@ -88,7 +88,7 @@ Everything below comes from one point: **a world model lets a holder make its mi
 
 ## 6. It scales
 
-The definition mentions no substrate. A world model can be held by anything that keeps some possibilities open, receives evidence and acts. The same rule applies at every scale; only the parts change.
+The definition mentions no substrate. A world model can be held by anything that keeps some possibilities open, receives evidence and acts. The same rule applies at every scale; only the parts change. Section 7 takes up the largest case, the collective world model.
 
 | Holder | What the world model is | Where the evidence comes from | How it typically fails |
 |---|---|---|---|
@@ -104,7 +104,33 @@ Three results carry the step from one holder to many:
 - **One false source is enough to lose the actual world.** If one source rules out what is in fact the case, the pool rules it out too (`one_false_source_excludes_actual`). So the duty not to distort what one passes on is not only a personal duty; the collective world model depends on it.
 - **Contact and independence are both needed.** A shared blind spot is corrected only by a holder that is independent of the shared layer and still connected to the rest (`hub_determined_network_inherits_blind_spot`). Isolated holders cannot correct each other, and fully conforming ones do not (`isolation_cannot_correct`, `full_conformity_cannot_correct`): a network corrects only between the two (`correcting_levels_form_interval`). That is autonomous interdependence, read as a property of the collective world model.
 
-## 7. What a world model requires
+## 7. The collective world model, and the hygiene of contributing
+
+In the author's words: "with any scalable model- there is also a collective worldmodel - and contributing towards that model requires the modelling hygiene and rules. If you want to make your mistakes in the model instead of real life - you have to follow these rules."
+
+**What it is.** A collective world model is what a family, a team, a science, a society, or people and AI systems together hold about the world. Nobody made it alone, and everybody draws on it. In the terms of step 6 of [CORE.md](../../CORE.md), it is a commons. It is built from contributions: a report, a measurement, an answer, a paper, a news story, a model's output, a remark at the kitchen table.
+
+**The rule becomes a rule for contributors.** For a single holder the rule is: as sharp as the evidence allows, and no sharper. For a contributor it becomes: **pass on what your evidence rules out, and no more.** Each constituent in section 8 has a contributor's form:
+- say how sure you are (calibration);
+- say where you learned it (provenance);
+- say when you pass on a copy, so that copies are not counted as independent evidence (independent sources);
+- keep what you pass on apart from what you want to be true (direction of fit);
+- say what would show it wrong (exposure);
+- correct what you passed on when you learn better (upkeep).
+
+**Why the rules are needed: the conditional.** The rules follow given an aim, the one in the author's sentence: *if* a collective wants to make its mistakes in the model instead of in reality. Then, formally:
+- the collective model keeps the actual world exactly when every contribution does (`many_pooled_keeps_actual_iff_each_does`);
+- a contribution that rules out no more than its contributor's own reliable evidence keeps the actual world (`open_contribution_keeps_actual`);
+- when every contribution does, what the collective model entails holds in reality: the collective can test its plans in the model (`hygienic_pool_entailment_is_sound`);
+- when a single contribution rules out what is in fact the case, the collective model entails that the actual world is not the case (`one_oversharp_contribution_makes_pool_deny_actual`). Its mistakes are then made in reality.
+
+**Over-sharpness is the danger, not vagueness.** In a pool, a vague contribution is harmless but adds nothing: it rules nothing out. An over-sharp contribution is harmful: one is enough. And the effect is the same whether the over-sharpness comes from deceit or from honest overconfidence. The two differ in blame, not in effect. Deceit is a wrong ([world-model integrity](../world-model-integrity/README.md), D33); overconfidence is an error to be repaired. So modelling hygiene is more than honesty. It is calibration: an honest contributor who passes on more certainty than it has does the same damage as one who lies.
+
+**Why hygiene is hard.** The contributor bears the cost: checking, hedging, citing, correcting in public. The benefit is shared. And over-sharp contributions are often rewarded, because certainty sounds like competence. That is the structure of the commons in step 6, where defecting can pay each taker while the whole loses (`enough_takers_make_defection_pay`). So hygiene cannot rest on individual virtue alone. It needs distributed rules and distributed policing that stays correctable (D27): peer review, replication, corrections and retractions, editorial standards, open data. For an AI system it means calibrated answers, named sources and no flattery (F5, the handshake, in [WHAT_AN_AI_IS.md](../identity/WHAT_AN_AI_IS.md)).
+
+**Making mistakes in the collective model.** Collectives already do this where hygiene is good. Science runs experiments so that a wrong idea fails in the laboratory, not in the world. Forecasting tests decisions before they are made. Public health does it literally: an epidemic is run in a model so that it does not have to run its course in a population. And when the model works, the predicted harm does not happen, which can make the model look wrong in hindsight: the preparedness paradox of D32. The rules of this section are what keep such collective models worth trusting.
+
+## 8. What a world model requires
 
 These are the constituents. Each follows from the definition, and each will give a practice.
 
@@ -124,12 +150,12 @@ These are the constituents. Each follows from the definition, and each will give
 
 What does not follow is that anyone *should* build a world model. That is an aim. It follows given the aim of acting well in a world one does not control, and it is close to unavoidable for anything that wants to last (section 5). But it is stated, not derived (D7).
 
-## 8. The formal layer
+## 9. The formal layer
 
-[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean) is core Lean, with no Mathlib, 18 results and a witness. It is outside the core.
+[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean) is core Lean, with no Mathlib, 22 results and a witness. It is outside the core.
 
 - **Setting.** A model is the set of worlds it keeps open. The evidence received so far leaves a set of live worlds. One world is the actual one, which the holder cannot see directly.
-- **Definitions.** `Open`, `Sharp`, `IsWorldModel` (both), `Entails` (a claim that holds in every world the model keeps open), `follow` (following the evidence), `pool` (pooling evidence).
+- **Definitions.** `Open`, `Sharp`, `IsWorldModel` (both), `Entails` (a claim that holds in every world the model keeps open), `follow` (following the evidence), `pool` and `poolMany` (pooling the evidence or contributions of two or of many holders).
 - **Results**, grouped as in this note:
   - the central rule: `world_model_iff_matches_evidence`;
   - openness keeps the actual world: `reliable_evidence_keeps_actual`, `open_model_keeps_actual`, `open_entailment_is_sound`;
@@ -137,11 +163,12 @@ What does not follow is that anyone *should* build a world model. That is an aim
   - sealing: `ruled_out_stays_ruled_out`, `oversharp_model_never_recovers_actual`;
   - upkeep: `following_evidence_keeps_world_model`, `fixed_model_is_world_model_only_if_nothing_learned`;
   - groups: `shared_evidence_shared_world_model`, `pooled_is_sharper`, `pooling_entails_more`, `pooled_keeps_actual`, `one_false_source_excludes_actual`;
+  - the collective world model and the hygiene of contributing (section 7): `many_pooled_keeps_actual_iff_each_does`, `open_contribution_keeps_actual`, `hygienic_pool_entailment_is_sound`, `one_oversharp_contribution_makes_pool_deny_actual`;
   - `world_model_witness`: three worlds, one piece of evidence, and the vague, sharp and sealed models side by side.
 
 **How much it says.** The results are close to their definitions. They fix the terms and show that the claims of this note hold together; they do not show that any real holder meets the premises. Not modelled: degrees of belief (in `GradedBelief`), unreliable evidence (in `ListeningCost`), adding a possibility the model never had, and what makes an entailment useful to a particular holder.
 
-## 9. How it fits the rest of the repository
+## 10. How it fits the rest of the repository
 
 - **The anchor** is the entry ticket: knowing that one is a model is constituent 1 ([CORE.md](../../CORE.md), [Anchored Correctability](../anchored-correctability/README.md)).
 - **The integrity of world models** ([world-model-integrity](../world-model-integrity/README.md), D33) is the protection from outside: what others owe a holder's world model. This note is the craft from inside: what a holder must do to have one. Deliberate manipulation is harmful because it attacks the thing this note defines.
@@ -150,7 +177,7 @@ What does not follow is that anyone *should* build a world model. That is an aim
 - **Identity** ([WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md)): the self-model is a separate model from the world model, and the world model includes the holder.
 - **Building the future** ([BUILDING_THE_FUTURE.md](../building-the-future/BUILDING_THE_FUTURE.md), D32): a world model that includes its holder's own steering predicts the direction of the future better than its path.
 
-## 10. What this does not claim, and where the assistant is unsure
+## 11. What this does not claim, and where the assistant is unsure
 
 - **Not that a world model is the only good model.** Plans, values, identity and play are needed too. The claim is only that they must not overwrite it.
 - **Not that any holder reaches the truth.** The definition is about answerability, because truth cannot be checked directly. A world model can be fully answerable and still wrong, as long as it can be corrected.
@@ -160,9 +187,9 @@ What does not follow is that anyone *should* build a world model. That is an aim
 - **"Scales" is a claim of form, not of evidence.** The table in section 6 maps the definition onto other holders. The mapping must be shown, not assumed, in each domain (step 8 of `CORE.md`).
 - **Shared work, not an independent check.** The assistant helped shape the wording, and its sense that the pieces fit is not evidence that they do (working agreement 7). The Anscombe example is taken from a reference work, the *Routledge Encyclopedia of Philosophy*; the Popper idea is given as a paraphrase, not checked in his text.
 
-## 11. Next
+## 12. Next
 
 Distil from the definition:
 - **a practice:** a short sequence a person, team, institution or AI system can follow to build and keep a world model, with worked examples, in the style of [WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md);
-- **a checklist:** one question per constituent in section 7, answerable for any holder;
+- **a checklist:** one question per constituent in section 8, answerable for any holder;
 - **a test:** in the spirit of H1 in [PREDICTIONS.md](../../PREDICTIONS.md), whether holders that score better on the checklist make fewer consequential errors and recover from them faster.

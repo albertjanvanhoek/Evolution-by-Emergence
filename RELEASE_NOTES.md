@@ -65,6 +65,6 @@ Legal and UN quotations were checked in their primary sources. The note links to
 
 ## Since this release
 
-- **What a world model is** (D34): a definition, [`research/world-model/WORLD_MODEL.md`](research/world-model/WORLD_MODEL.md), and a short paragraph in the README. A world model is the model held with the aim of fitting how things are, kept answerable to evidence from outside, and as sharp as the evidence allows and no sharper. The note says why it is valuable, how it scales from a cell to a society and to AI systems, and what it requires, in eleven constituents. New core-Lean module [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean), 18 results with a witness, outside the core.
+- **What a world model is** (D34): a definition, [`research/world-model/WORLD_MODEL.md`](research/world-model/WORLD_MODEL.md), and a short paragraph in the README. A world model is the model held with the aim of fitting how things are, kept answerable to evidence from outside, and as sharp as the evidence allows and no sharper. The note says why it is valuable, how it scales from a cell to a society and to AI systems, what contributing to a collective world model requires (pass on what your evidence rules out, and no more), and what a world model requires, in eleven constituents. New core-Lean module [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean), 22 results with a witness, outside the core.
 
 The v22.6 release notes remain available at the `v22.6` tag.

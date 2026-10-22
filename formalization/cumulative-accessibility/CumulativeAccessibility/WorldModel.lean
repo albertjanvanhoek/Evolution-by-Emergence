@@ -60,7 +60,18 @@ Results.
    (`pooling_entails_more`), and it still keeps the actual world when every
    source is reliable (`pooled_keeps_actual`).  One source that rules out the
    actual world rules it out for the pool (`one_false_source_excludes_actual`).
-6. `world_model_witness`: three worlds, one piece of evidence, and the vague,
+6. **The collective world model needs the hygiene of every contributor.**  A
+   pool of many contributions keeps the actual world exactly when every
+   contribution does (`many_pooled_keeps_actual_iff_each_does`).  A contribution
+   that is open relative to its contributor's own reliable evidence keeps the
+   actual world (`open_contribution_keeps_actual`).  If every contribution does,
+   what the collective model entails holds in reality: the collective makes its
+   mistakes in the model (`hygienic_pool_entailment_is_sound`).  If a single
+   contribution rules out the actual world, whether by deceit or by honest
+   overconfidence, the collective model entails that the actual world is not
+   the case: the mistake is made in reality
+   (`one_oversharp_contribution_makes_pool_deny_actual`).
+7. `world_model_witness`: three worlds, one piece of evidence, and the vague,
    sharp and over-sharp models side by side.
 
 Scope.  The results are close to their definitions; they fix the terms and
@@ -215,6 +226,42 @@ theorem pooled_keeps_actual {W : Type} {L₁ L₂ : W → Prop} {a : W}
 theorem one_false_source_excludes_actual {W : Type} {L₁ L₂ : W → Prop} {a : W}
     (h : ¬ L₂ a) : ¬ pool L₁ L₂ a :=
   fun hp => h hp.2
+
+/-- Pooling the contributions of `m` holders. -/
+def poolMany {W : Type} (C : Nat → W → Prop) (m : Nat) : W → Prop :=
+  fun w => ∀ j, j < m → C j w
+
+/-- **The collective keeps the actual world exactly when every contributor
+does.** -/
+theorem many_pooled_keeps_actual_iff_each_does {W : Type} (C : Nat → W → Prop)
+    (m : Nat) (a : W) : poolMany C m a ↔ ∀ j, j < m → C j a :=
+  Iff.rfl
+
+/-- **An open contribution keeps the actual world.**  A contributor that passes
+on no more than its own reliable evidence rules out keeps the actual world in
+what it passes on. -/
+theorem open_contribution_keeps_actual {W : Type} {C B : W → Prop}
+    {E : Nat → W → Prop} {a : W} {n : Nat} (hO : Open C (Live B E n)) (hB : B a)
+    (hE : ∀ i, E i a) : C a :=
+  open_model_keeps_actual hO hB hE
+
+/-- **With hygienic contributions, the collective makes its mistakes in the
+model.**  If every contribution keeps the actual world, every claim the pooled
+model entails is true of the actual world. -/
+theorem hygienic_pool_entailment_is_sound {W : Type} {C : Nat → W → Prop}
+    {m : Nat} {a : W} {P : W → Prop} (h : ∀ j, j < m → C j a)
+    (hP : Entails (poolMany C m) P) : P a :=
+  hP a h
+
+/-- **One over-sharp contribution makes the collective deny the actual
+world.**  If a single contribution rules out the actual world, the pooled model
+entails that the actual world is not the case. -/
+theorem one_oversharp_contribution_makes_pool_deny_actual {W : Type}
+    {C : Nat → W → Prop} {m j : Nat} {a : W} (hj : j < m) (h : ¬ C j a) :
+    Entails (poolMany C m) (fun w => w ≠ a) := by
+  intro w hw heq
+  subst heq
+  exact h (hw j hj)
 
 /-- Three worlds, `0`, `1` and `2`; the actual world is `0`.  The background
 allows all three, and one piece of evidence rules out world `1`.  A claim `P`,

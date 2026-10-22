@@ -16,7 +16,7 @@
 
 **Orientation.** When answers become cheap, the bottleneck moves from finding solutions to taking them up. Yesterday's aims become today's tools, and prediction becomes a tool to change what it predicts. This repository is written in that spirit: not to predict the future, but to help build it. That is a stance, not a result; see [Building the future](research/building-the-future/BUILDING_THE_FUTURE.md).
 
-**The world model.** If every intelligence lives in a model of the world, then the model held with the aim of fitting how things are has a special place. A **world model** is kept answerable to evidence from outside, and is as sharp as that evidence allows and no sharper. It does not arise by itself; it has to be built and maintained, by a cell, a person, a society or an AI system alike. See [What a world model is](research/world-model/WORLD_MODEL.md), with 18 checked results in [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean).
+**The world model.** If every intelligence lives in a model of the world, then the model held with the aim of fitting how things are has a special place. A **world model** is kept answerable to evidence from outside, and is as sharp as that evidence allows and no sharper. It does not arise by itself; it has to be built and maintained, by a cell, a person, a society or an AI system alike. And every collective has one: contributing to it requires modelling hygiene, if the collective is to make its mistakes in the model instead of in reality. See [What a world model is](research/world-model/WORLD_MODEL.md), with 22 checked results in [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean).
 
 ## Start here
 
