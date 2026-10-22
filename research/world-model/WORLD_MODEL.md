@@ -1,195 +1,249 @@
-# What a world model is
+# World models, and what makes one functional
 
-**Status: a definition, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The definition is stated first, in plain words. Its value, how it scales and what it requires follow from it. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 23 machine-checked results. Practices and a checklist are to be distilled from this page; they are not here yet.
+**Status: a definition note, second version, October 2026** (D34 in [DIALOGUE.md](../../DIALOGUE.md)). The first version was reviewed by a reader from another model family, who found it not ready to open the core. The review is kept as received in [sources/REVIEW_1.md](sources/REVIEW_1.md), and [sources/RESPONSE_1.md](sources/RESPONSE_1.md) answers it point by point. The formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): 28 machine-checked results and a witness, for one narrow part of what this note says. Practices and a checklist are to be distilled from this note; they are not here yet.
 
-> **In one paragraph.** Every intelligence lives in a model of the world, not in the world itself, and it experiences that model as the world. It runs many models: for acting, for belonging, for wanting, for feeling safe. One of them has a different job. A **world model** is the model held with the aim of fitting how things are, whatever its holder wants, and kept answerable to evidence from outside. It is good when it is **as sharp as the evidence allows, and no sharper**. It does not arise by itself. It has to be built, kept apart from the other models, and maintained. Its value is that it lets a holder make its mistakes in the model instead of in reality. That holds for a cell, a person, a team, a society and an AI system alike.
+> **In one paragraph.** Every intelligence acts through world models: representations that let it infer what it does not observe, what may happen, and what would happen if it acted. Having one is ordinary. Having a **functional** one is not. A functional world model is held with the aim of fitting how things are, tested against evidence it cannot fix in advance, as sharp as that evidence supports and no sharper, and correctable: both its beliefs and its range of possibilities can be revised. It does not arise by itself. It has to be built and maintained, by a person, a team, a society or an AI system, and in a collective it depends both on what each contributor passes on and on how the contributions are combined. Its value is that many mistakes can be found in the model, at low cost, before they are made in the world.
 
-## 1. Why a definition is needed
+## 1. Two terms
 
-In the author's words: "a worldmodel doesn't happen automatically - you have to work on it and create it. There are rules to obey to let a model be a worldmodel."
+The first version of this note used one word for several things. This version keeps them apart.
 
-Three facts make this so.
+| Term | What it means | Example |
+|---|---|---|
+| **World model** | A representation of aspects of the world that supports inference about what is not observed, what may happen, and what would happen under different actions. It may be incomplete or wrong. | A child's expectations about falling objects; a weather model; a learned simulator inside an AI system. |
+| **World modelling** | The practice of building, testing and revising world models. | Recording predictions before outcomes; checking them; changing the model when they fail. |
+| **Functional world model** | A world model maintained by good world modelling, so that it stays useful and correctable. This is the concept this note is about. | A forecast service that is calibrated, publishes its errors and revises its methods. |
+| **Evidential fit** | A narrow formal ideal: the possibilities a model keeps open are exactly those its evidence leaves open. | The `EvidentialFit` of `WorldModel.lean`. |
 
-- **Every holder is a model, not the world.** This is the anchor of the repository ([CORE.md](../../CORE.md), the view from inside): views that exclude each other cannot both be right, so certainty is a state of the holder, not of the world. No holder reaches reality directly. It reaches evidence.
-- **A model does not feel like a model.** From inside, the model is simply how things are. So nothing warns a holder when its model drifts from the world, or when another model leaks into it.
-- **Most models are built for other jobs.** A mind runs models for acting, for belonging to a group, for getting what it wants, for staying calm. These models are useful, and many are good. But they are not answerable to the world in the same way, and each pulls on the world model.
+"World model" is used here in its ordinary, descriptive sense, which is also how it is used in machine learning: Ha and Schmidhuber (2018) call a learned generative model of an environment a world model, and train an agent inside it. A wrong world model is still a world model. What this note adds is the second word: **functional**. In the author's words, the question is "the ingredients required for a functional and sharp worldmodel".
 
-So a world model is an achievement, not a default. It needs a definition that says what it is for, and rules that say how to keep it that way.
+## 2. Why a functional world model does not arise by itself
 
-## 2. The definition
+In the author's words: "a worldmodel doesn't happen automatically - you have to work on it and create it. There are rules to obey to let a model be a worldmodel." With the two terms apart, the claim is sharper: every holder has world models; a *functional* one takes work.
 
-> A **world model** is a model held with the aim of fitting how things are, regardless of what its holder wants, and kept answerable to evidence from outside.
+Three facts make it so.
+
+- **World models are fallible.** Views that exclude each other cannot both be right. So certainty is a state of the holder, not of the world ([CORE.md](../../CORE.md), the view from inside). No holder reaches the world except through evidence.
+- **A model's content need not show that it has drifted.** For holders that experience anything, a model is usually experienced as how things are, not as a model. More generally, nothing in what a model says need signal that the world has moved away from it. Drift is found by testing, not by inspection.
+- **Holders run other models too.** Plans, wishes, norms, a self-image and a sense of belonging all shape what a holder attends to and believes. That is not wrong in itself (section 6). But it means a world model can bend toward what is wanted without any signal that it has.
+
+So a functional world model is an achievement, not a default. That makes the definition carry a responsibility. In the author's words: "The definition creates a responsibility." The definition makes the responsibility visible: once it is clear what keeps a world model functional, neglecting one's own, or passing on more certainty than one has, is no longer an accident but a choice. Taking the responsibility on is a value, not a deduction (D7, D25). It scales with capacity: those who can do more for a shared world model carry more.
+
+## 3. The definition
+
+> A **functional world model** is a world model held with the aim of fitting how things are, regardless of what its holder wants, and tested against evidence whose outcomes are not fixed by the claims being tested.
 >
-> It is **sharp** to the extent that its claims rule out possible worlds, and **functional** to the extent that it supports prediction and action in the situations its holder meets.
+> It is **sharp** to the extent that it commits to definite predictions, **calibrated** to the extent that its stated confidence matches how often it is right, and it aims to be **as sharp as the evidence supports, subject to calibration**.
 >
-> It remains a world model only while it stays **open**: every claim it makes can still be shown wrong by evidence that can reach it.
+> It is **correctable**: its beliefs, its background assumptions and its range of possibilities can all be revised, and it handles inconsistency by revising rather than by concluding everything.
 
 Each part does work.
 
-- **"Held with the aim of fitting how things are."** This is the model's direction of fit. Philosophers draw the distinction with an example from Elizabeth Anscombe's *Intention* (1957): a shopper's list and a detective's list of the same basket can be identical, but when list and basket differ, the shopper changes the basket and the detective changes the list. A world model is the detective's list. A plan, a wish or a norm is the shopper's list. Both are needed. They must not be confused.
-- **"Regardless of what its holder wants."** The world model answers to the world, not to the holder's hopes, fears, group or self-image.
-- **"Answerable to evidence from outside."** Not "true", because no holder can check truth directly (section 1). What a holder can do is keep its model exposed to evidence it did not produce itself, and change when that evidence requires it. A model cannot certify itself from inside (`inside_view_cannot_settle`); evidence from outside can settle what the inside cannot (`outside_evidence_can_settle`).
-- **"Sharp."** A model that rules nothing out says nothing. Sharpness is how much it commits to.
-- **"Functional."** A sharp model is valuable when its commitments are the ones its holder needs: they let it predict what will happen and choose what to do.
-- **"Open."** A model that has ruled out what the evidence still allows can never get it back by following the evidence (`ruled_out_stays_ruled_out`). Openness keeps the route by which the model can be corrected.
+- **"Held with the aim of fitting how things are."** This is its direction of fit. Elizabeth Anscombe's *Intention* (1957) gives the classic example: a shopper's list and a detective's list of the same basket can be identical, but when list and basket differ, the shopper changes the basket and the detective changes the list. A functional world model plays the detective's role. A plan or a wish plays the shopper's. The distinction is about roles, not about separate compartments in the mind.
+- **"Evidence whose outcomes are not fixed by the claims being tested."** The first version said "evidence from outside". That was the wrong boundary. An experiment a holder designs itself can be good evidence, because its outcome is not fixed by the claim. A rumour that arrives from outside can be no evidence, if it merely repeats what is already believed. What makes evidence count is that it could have come out otherwise.
+- **"Tested".** Answerability has to be a practice, not a mood. Its usual forms: predictions recorded before outcomes, measurements others can check, estimates of measurement error, stated triggers for revision, evaluation on cases not used to build the model, and a way to reconsider background assumptions. None of these guarantees truth. A model can pass every test available and still be systematically wrong, for example when all its measurements share an undetected offset. More testing helps only where it can reveal the particular error.
+- **"As sharp as the evidence supports, subject to calibration."** Section 4.
+- **"Correctable."** Section 5.
 
-## 3. The central rule: as sharp as the evidence allows, and no sharper
+Not every part of a functional world model can be tested on its own. Definitions and mathematical consequences cannot be shown wrong by observation. What has to be testable is the model's empirical predictions, and what has to be revisable is its empirical assumptions.
 
-Sharp and open look like opposites. They are two halves of one rule.
+## 4. Sharp, subject to calibration
 
-A holder's evidence leaves some worlds possible and rules others out. Call the possible ones the **live** worlds. Then:
+The central rule of the first version was "as sharp as the evidence allows, and no sharper". The rule has a close predecessor in statistics, and its best statement is there. Gneiting, Balabdaoui and Raftery (2007) evaluate probabilistic forecasts by "the paradigm of maximizing the sharpness of the predictive distributions subject to calibration". A forecast is sharp when it is concentrated; it is calibrated when what it says happens with probability 0.7 happens about 70% of the time. Sharpness without calibration is overconfidence. Calibration without sharpness is safe and uninformative. This note adopts their formulation and does not claim it.
 
-- **open** means: the model keeps every live world open; it rules out nothing the evidence has not ruled out;
-- **sharp** means: the model keeps open only live worlds; it rules out everything the evidence has ruled out;
-- **a world model** is both: it keeps open exactly the live worlds (`world_model_iff_matches_evidence`).
+**The support-level version.** `WorldModel.lean` treats a narrow special case: which possibilities a model keeps open at all, its *support*, without saying how probability is spread over them. There the rule becomes evidential fit: the support equals what the evidence leaves possible (`fit_iff_matches_evidence`). Fit has two parts:
+- **covering:** the model rules out nothing the evidence has not ruled out;
+- **within:** the model rules out everything the evidence has ruled out.
 
-There are two ways to fail, and they mirror each other.
+**Fit is not calibration.** Two models can keep exactly the same possibilities open and give them very different weights. Review 1 gives an example: a coin is believed to land heads with probability 0.2 or 0.8; after eight heads and two tails both remain possible, so the support has not changed at all, yet the odds have moved 4096 to 1 toward 0.8. Most learning is of this kind, and the support-level results say nothing about it. Degrees of belief are in [`GradedBelief`](../../formalization/cumulative-accessibility/CumulativeAccessibility/GradedBelief.lean), whose `zero_credence_is_sealed` is the familiar rule that a credence of zero on a still-possible outcome cannot be raised by conditioning. That rule is about discrete possibilities and a particular update operation; over a continuum, single points have probability zero without being ruled out (as `CORE.md` already notes).
 
-| | Vague | World model | Sealed |
-|---|---|---|---|
-| What it keeps open | more than the evidence allows | exactly what the evidence allows | less than the evidence allows |
-| Can it be wrong? | hardly ever | yes, and it can be corrected | yes, and it cannot be corrected |
-| What it entails | only what holds everywhere (`vague_entails_only_the_universal`) | everything the evidence supports | things the evidence does not support |
-| How it fails | it is useless | — | it is confidently wrong, and stays so (`oversharp_model_never_recovers_actual`) |
+**Failures are more varied than "vague" and "sealed".** The first version offered two failures. There are more, and they lie on two different axes:
+- **fit:** a model can keep too much open (partly vague), too little (over-sharp), or both at once, wrongly excluding one possibility while wrongly keeping another;
+- **reliability:** whether the actual world is among the possibilities kept open. A model can be over-sharp and still keep the actual world, by luck; another can fit its evidence exactly and lose the actual world, because the evidence or the background was wrong.
 
-The vague model is safe and empty. The sealed model is precise until the world moves. A world model commits to what the evidence supports, which makes it useful, and to nothing more, which keeps it correctable.
+The danger the first version described, being confidently wrong with no way back, needs both: the actual world excluded, and an update rule that cannot restore it (section 5).
 
-The same rule holds in degrees of belief. A credence of zero on a world that is still possible stays zero after any evidence (`zero_credence_is_sealed` in [`GradedBelief`](../../formalization/cumulative-accessibility/CumulativeAccessibility/GradedBelief.lean)). So "no sharper than the evidence" means: never give zero weight to what is still possible.
+**Fit alone is not enough.** If the evidence is inconsistent, nothing is left possible, and a model that fits it rules out everything. Such a model entails every claim, true or false (`empty_fit_entails_everything`). An empty set of possibilities is not a result to act on but a signal: either the background assumptions or some piece of evidence is wrong about the actual world (`inconsistency_flags_background_or_evidence`). A functional world model treats it as a reason to revise.
 
-**Sharpness is compression.** A sharp world model predicts much with little. In the author's words, from D32: "Insight brings compression, and compression brings efficiency. I think intelligence has a lot to do with compression, as intelligence aims to model reality". Curiosity is then the search for sharper compressions, and the central rule is its discipline: a compression is worth keeping only if the evidence carries it.
+**Sharpness and compression.** The author links insight to compression: "Insight brings compression, and compression brings efficiency. I think intelligence has a lot to do with compression, as intelligence aims to model reality" (D32). That link is a hypothesis this note keeps, but it does not follow from the support-level results: ruling out possibilities is not the same as describing them briefly. A precise claim can be long to state, and a vague one short. Connecting sharpness to compression needs a coding scheme and a measure of complexity, which are not here.
 
-## 4. One model among others
+## 5. Correctable
+
+The first version said that a model which rules out a possibility can never recover it. That was a property of one update rule, not of learning.
+
+**Two kinds of update.**
+- **Monotone update** narrows a model's own conclusions with each new piece of evidence. Under it, whatever was once excluded stays excluded (`monotone_update_cannot_recover`), including the actual world (`monotone_update_never_recovers_actual`).
+- **Re-derivation** recomputes what is possible from the background and the evidence that was kept. It restores what monotone update lost (`rederiving_recovers_what_following_cannot`). Revising a background assumption that wrongly excluded the actual world brings it back as well (`revising_background_recovers`).
+
+**What makes re-derivation possible is provenance.** A holder that keeps only its conclusions can only narrow them. A holder that also keeps where they came from (which evidence, which assumptions, learned where and from whom) can go back and recompute when one of them turns out wrong. That is the formal reason for line 9 of the [creed](../discovarianism/CREED.md), "Ask where it was learned": provenance is what turns a model that can only narrow into one that can be corrected.
+
+**Three operations, not one.** Correction can mean:
+- **narrowing:** ruling out what the evidence rules out;
+- **revision:** restoring a possibility that was wrongly ruled out, by retracting a premise or a piece of evidence. Belief-revision theory, starting with Alchourrón, Gärdenfors and Makinson (1985), studies this operation and the contraction that goes with it;
+- **expansion:** adding a possibility the model could not even represent before.
+
+The formal layer covers the first two. The third is the deepest kind of learning and is not modelled.
+
+**Openness is about the future, not only the present.** Keeping every live possibility open today (`Covers`) is not the same as being correctable. A frozen holder can cover its evidence today; a revisable one can be wrong today. Correctability is whether a corrected state can be reached, by the update operations the holder actually has, given evidence that can actually reach it.
+
+**A changing world.** The formal layer reads a possible world as a whole course of events. Learning about a changing world is then narrowing down what that course has been and will be. Treating each past observation as a timeless constraint on the present state would be a mistake; reading worlds as histories avoids it.
+
+## 6. One model among others
 
 In the author's words: a world model is "one particular kind of model. A very useful one. One model you should have besides other models."
 
-A holder also runs, among others:
-- **models of what it wants:** goals, plans, desires;
-- **models of what ought to be:** norms, values, the creed's proposed lines;
-- **a model of itself:** identity, abilities, limits;
-- **models of belonging:** what the group holds, what one's role is;
-- **stories and play:** fiction, ritual, humour, imagination.
+A holder also runs models of what it wants, of what ought to be, of itself, of the group it belongs to, and stories and play. These are not errors. Plans change the world; values say what the world model is for; play explores possibilities. Section 5 of [Building the future](../building-the-future/BUILDING_THE_FUTURE.md) is about this: we predict the future in order to change it.
 
-These are not errors. Plans change the world; values say what the world model is used for; play explores possibilities the world model does not yet hold. Section 5 of [Building the future](../building-the-future/BUILDING_THE_FUTURE.md) is about exactly this: we predict the future in order to change it.
+The first version said the other models "may consult it; none may overwrite it". That was too strict. Values rightly shape a world model: which questions to ask, which errors matter most, what to measure, at what level of detail, and how much to spend on it. A flood model for evacuation needs different detail from one for ecological monitoring. That is purpose and scope, not corruption. And a self-model contains factual claims, about one's abilities, body and likely behaviour, that belong in the world model. "This person wants X" is a fact to be modelled, distinct from endorsing X.
 
-**The rule between them.** The other models may consult the world model, and the world model may record that they exist. None may overwrite it. When a wish decides what the world model says, or a group's belief does, or a self-image does, the world model stops being answerable. Formally: a model whose content is fixed by something other than evidence stays a world model only as long as the evidence rules nothing new out (`fixed_model_is_world_model_only_if_nothing_learned`). The moment the world teaches something, it falls behind.
+**The rule, revised:** wishes, values and loyalties may guide what is asked and what is done, but must not count, by themselves, as evidence for what is the case; and where they shape the model, their influence should be visible.
 
-The repository practises this separation. Every claim in the [creed](../discovarianism/CREED.md) is labelled *Follows*, *If* or *Proposed*: what is, what follows given an aim, and what is a value. And it keeps "persistence is not goodness" (D7): the world model says what lasts; it does not say what is good.
+The repository practises this. Every claim in the creed is labelled *Follows*, *If* or *Proposed*, which makes visible where a value enters. And it keeps "persistence is not goodness" (D7).
 
-## 5. Why a world model is valuable
+Formally: a support fixed by something other than evidence fits two different states of evidence only if nothing was learned in between (`fixed_support_fits_only_if_nothing_learned`). The theorem does not know why the support is fixed. It says only that a fixed support falls behind as soon as the evidence moves.
 
-Everything below comes from one point: **a world model lets a holder make its mistakes in the model instead of in reality.** A plan can fail in imagination, at the cost of a thought, instead of in the world, at the cost of a reserve. Karl Popper made a version of this idea central to his account of science: our theories can be eliminated in our place.
+## 7. Why a functional world model is valuable
 
-1. **It keeps a holder in step with a changing world.** A configuration whose fit is fixed in advance runs out of reserve in some possible future; one that follows reliable feedback stays in step (step 4 of [CORE.md](../../CORE.md); `learner_in_step`). A world model is the organ that does this ahead of time. What an open world model entails holds in reality (`open_entailment_is_sound`), so the holder can test an action in the model first.
-2. **It makes learning cheaper.** Feedback plus retention turns a search over all combinations into a search part by part (step 5). A world model is the retained structure that lets each new lesson fit into what is already known, instead of starting from nothing.
-3. **It shows what keeps the holder alive.** "Keep alive what keeps you alive" cannot be carried out without a world model, because a holder has to see its dependencies to maintain them, including slow and distant ones. Costs that are passed on unseen are exactly the costs a poor world model does not show (D27). The aim of keeping them alive is a value; the world model is what makes the aim executable. What a holder can foresee is bounded by what its model can represent (`capacity_sets_the_boundary`).
-4. **It widens the space of action.** A holder can only choose among options it can see as safe. A sharper world model certifies more actions as safe (`sharper_entails_more`); a vague one certifies only what is safe in every possible world. So a sharper world model is, quite literally, more freedom: more of the action space becomes usable.
-5. **It makes autonomy real.** A holder without its own world model is steered by whoever supplies its picture of the world ([world-model integrity](../world-model-integrity/README.md)). A holder with a sharp, sourced, open world model is hard to manipulate, because a false input has to get past its own checks.
-6. **It makes coordination possible.** Holders that receive the same evidence and hold world models hold the same one (`shared_evidence_shared_world_model`). That shared reality is what lets them disagree about values and still settle facts by evidence. When world models drift apart, there are several realities, and disagreements can be settled only by force. The author has long seen this broken link between people as the most basic problem, and the place where the work becomes about alignment.
+The core point: **many mistakes can be found in the model before they are made in the world.** A plan can fail on paper, in a simulation or in a small controlled trial, at low cost, instead of in full deployment, at the cost of a reserve. Karl Popper put the elimination of false conjectures by criticism and testing at the centre of science. A laboratory experiment still happens in the world; what changes is the scale and the control, not the reality.
 
-## 6. It scales
+This needs a bridge that the formal layer does not supply: a link between what the model predicts an action will do and what it actually does. A model that only predicts what happens if nothing changes need not tell what happens under a new policy. And a simulation exposes only failures its assumptions can represent; it can make an unsafe action look safe. So the value is real, and conditional on the model being tested where it is used.
 
-The definition mentions no substrate. A world model can be held by anything that keeps some possibilities open, receives evidence and acts. The same rule applies at every scale; only the parts change. Section 7 takes up the largest case, the collective world model.
+With that qualification:
+1. **Staying in step with a changing world.** A configuration whose fit is fixed in advance runs out of reserve in some possible future; one that follows reliable feedback stays in step (step 4 of [CORE.md](../../CORE.md); `learner_in_step`). A functional world model does part of this ahead of time. What a covering model entails holds of the actual world when the actual world is live (`covering_entailment_is_sound`).
+2. **Cheaper learning.** A retained world model lets a new lesson fit into what is known, instead of starting from nothing (step 5).
+3. **Seeing dependencies.** To keep up what one depends on, it helps to see it, including slow and distant dependencies, and costs passed on unseen (D27). Not every dependency needs to be represented: a fixed process can maintain a resource without modelling it, as long as conditions stay suitable. Where they may change, a model is how a holder finds out.
+4. **More options that can be trusted.** A narrower support that still keeps the actual world entails at least as much (`narrower_entails_more`), so more actions can be checked against it. That is an interpretation, not a theorem about freedom: the formal layer has no actions. And holders often act under risk without knowing an option is safe.
+5. **Autonomy.** A holder that cannot check what it is told is steered by whoever tells it ([world-model integrity](../world-model-integrity/README.md)).
+6. **Coordination.** Two holders whose evidence leaves the same possibilities, and who both fit it, hold the same support (`same_live_set_same_fit`). That is a small result: the same raw observations need not give the same live set, because backgrounds and interpretations differ, and the general question of when people with shared information must agree is Aumann's (1976), which needs a common prior and common knowledge of each other's beliefs. Where world models drift apart, people can still negotiate, arbitrate, run experiments, coordinate on shared predictions, or live with disagreement. But settling facts gets harder, and the author regards the broken link between people's models as the most basic problem, the place where the work becomes about alignment.
 
-| Holder | What the world model is | Where the evidence comes from | How it typically fails |
+Prediction is not the only value. Explanation, diagnosis, reconstructing what happened, designing measurements and finding missing variables are uses of world models too.
+
+## 8. How it scales
+
+The definition names no substrate. Whether a given holder has a world model, and whether it practises world modelling, are separate questions, and they get different answers at different scales.
+
+| Holder | Has a world model? | Practises world modelling? | Typical failure |
 |---|---|---|---|
-| **A cell or simple organism** | the states it responds to; for an immune system, what counts as self and non-self | chemical signals, contact | sealed: autoimmunity attacks self; vague: tolerance of what harms |
-| **An animal or a person** | a predictive model of body, surroundings and others | the senses, other people, the results of action | wishful thinking, fear, fixed belief; or a world model never tested |
-| **A team or a group** | what members hold in common about their task and situation | each member's view, and the results of shared work | conformity: everyone agrees, and no one checks |
-| **An institution or a society** | science, statistics, records, surveillance, a free press | measurement, replication, criticism, reports from people | captured sources, a single shared layer, loss of independent measurement |
-| **An AI system** | what its weights, context and tools let it represent and predict | training data, retrieval, tools, people's corrections | ungrounded fluency, flattery that tells people what they want, inherited blind spots |
-| **A collective of people and AI systems** | the world model they keep up together | all of the above, passed between them | one unfaithful source contaminates the rest |
+| **A cell or simple organism** | Only as an analogy, to be argued case by case: responding to signals is not yet representing | No reflective practice; selection does the testing, across generations | Not established in the terms of this note |
+| **An animal or a person** | Yes, mostly implicit and predictive | Sometimes; reflective inquiry is a skill, not a given | Wishful thinking, fear, fixed belief, untested assumptions |
+| **A team** | Yes, distributed: members hold complementary parts, not one shared copy | Where it has records, communication and ways to revise | Conformity; nobody checks |
+| **An institution or a society** | An ecosystem of models and evidence practices, not one belief set | Science, statistics, audit, a free press, surveillance | Captured sources, one shared layer, loss of independent measurement |
+| **An AI system** | Yes in a technical sense (Ha and Schmidhuber 2018); weights, context and tools need not form one consistent model | Depends on where correction happens: in context, memory, tools, retraining, or the maintaining organization | Ungrounded fluency, flattery, inherited blind spots |
+| **People and AI together** | An organized modelling process | Needs source tracking, error-aware aggregation and rights to correct | Section 9 |
 
-Three results carry the step from one holder to many:
-- **Pooling sharpens.** A group that pools faithful evidence keeps open fewer worlds than any member (`pooled_is_sharper`), so it entails more (`pooling_entails_more`) and still keeps the actual world (`pooled_keeps_actual`). That is the value of a collective world model: it is sharper than any one holder's, without being less open.
-- **One false source is enough to lose the actual world.** If one source rules out what is in fact the case, the pool rules it out too (`one_false_source_excludes_actual`). So the duty not to distort what one passes on is not only a personal duty; the collective world model depends on it.
-- **Contact and independence are both needed.** A shared blind spot is corrected only by a holder that is independent of the shared layer and still connected to the rest (`hub_determined_network_inherits_blind_spot`). Isolated holders cannot correct each other, and fully conforming ones do not (`isolation_cannot_correct`, `full_conformity_cannot_correct`): a network corrects only between the two (`correcting_levels_form_interval`). That is autonomous interdependence, read as a property of the collective world model.
+The first version mapped the definition onto an immune system, with autoimmunity as a sealed model and harmful tolerance as a vague one. That mapping confused a response policy with epistemic content, and self and non-self is not a full account of immune regulation. It is dropped. Each mapping has to be shown, not assumed (step 8 of `CORE.md`).
 
-## 7. The collective world model, and the hygiene of contributing
+What carries over from one holder to many is the topic of the next section.
+
+## 9. The collective world model
 
 In the author's words: "with any scalable model- there is also a collective worldmodel - and contributing towards that model requires the modelling hygiene and rules. If you want to make your mistakes in the model instead of real life - you have to follow these rules."
 
-**What it is.** A collective world model is what a family, a team, a science, a society, or people and AI systems together hold about the world. Nobody made it alone, and everybody draws on it. In the terms of step 6 of [CORE.md](../../CORE.md), it is a commons. It is built from contributions: a report, a measurement, an answer, a paper, a news story, a model's output, a remark at the kitchen table.
+**What it is.** A collective world model is what a family, a team, a science, a society, or people and AI systems together hold about the world. It is distributed across people, records and machines. Nobody made it alone, and everybody draws on it: in the terms of step 6 of [CORE.md](../../CORE.md), it is a commons. It is built from contributions: a measurement, a report, an answer, a paper, a news story, a model's output.
 
-**The rule becomes a rule for contributors.** For a single holder the rule is: as sharp as the evidence allows, and no sharper. For a contributor it becomes: **pass on what your evidence rules out, and no more.** Each constituent in section 8 has a contributor's form:
-- say how sure you are (calibration);
-- say where you learned it (provenance);
-- say when you pass on a copy, so that copies are not counted as independent evidence (independent sources);
-- keep what you pass on apart from what you want to be true (direction of fit);
-- say what would show it wrong (exposure);
-- correct what you passed on when you learn better (upkeep).
+**Two things decide its quality, not one.** The first version said contributor hygiene decides it. Review 1 showed that the conclusion depended on one assumption: that contributions are combined by intersection, so that each acts as a veto. How contributions are combined matters as much as what they contain.
 
-**Why the rules are needed: the conditional.** The rules follow given an aim, the one in the author's sentence: *if* a collective wants to make its mistakes in the model instead of in reality. Then, formally:
-- the collective model keeps the actual world exactly when every contribution does (`many_pooled_keeps_actual_iff_each_does`);
-- a contribution that rules out no more than its contributor's own reliable evidence keeps the actual world (`open_contribution_keeps_actual`);
-- when every contribution does, what the collective model entails holds in reality: the collective can test its plans in the model (`hygienic_pool_entailment_is_sound`);
-- when a single contribution rules out what is in fact the case, the collective model entails that the actual world is not the case (`one_oversharp_contribution_makes_pool_deny_actual`). Its mistakes are then made in reality.
+| How contributions are combined | What one contribution that excludes the actual world does |
+|---|---|
+| **Hard pooling** (intersection): a possibility stays only if every contribution keeps it | It excludes the actual world from the collective (`hard_pool_one_excluding_contribution_denies_actual`) |
+| **Linear pooling** (a weighted average of credences) | Lowers the actual world's credence but does not remove it, as long as another positively weighted source keeps it (`linear_pool_keeps_what_one_source_keeps`; compare `GradedBelief.mix_support`). Credences of 0.9, 0.9 and 0 average to 0.6 |
+| **Product pooling** (multiplying credences) | Removes it: one zero is a veto (`product_pool_zero_is_a_veto`) |
+| **Majority vote** on a single claim | One wrong vote need not defeat a correct majority, but can decide a near tie. Under the Condorcet jury theorem's assumptions (independent voters of equal competence, each right more often than not), larger groups are more reliable |
+| **Robust aggregation** (discounting outliers) | May discount it or bound its influence. It can also suppress a correct minority |
+| **A record with provenance** | Contradictory reports can stand side by side, attributed to their sources, without both being endorsed as fact |
 
-**Over-sharpness is the danger, not vagueness.** In a pool, a vague contribution is harmless but adds nothing: adding one leaves the collective model exactly as it was (`vague_contribution_adds_nothing`). An over-sharp contribution is harmful: one is enough. And the effect is the same whether the over-sharpness comes from deceit or from honest overconfidence; the theorems have no variable for why a contribution is over-sharp, because the effect does not depend on it. The two differ in blame, not in effect. Deceit is a wrong ([world-model integrity](../world-model-integrity/README.md), D33); overconfidence is an error to be repaired. So modelling hygiene is more than honesty. It is calibration: an honest contributor who passes on more certainty than it has does the same damage as one who lies.
+No rule is best for every case. Averaging can dilute strong evidence; voting can bury a correct minority; rejecting outliers can suppress discoveries; multiplying can count shared evidence twice. The right rule depends on how sources err, how they depend on each other, and what decision the collective has to make.
 
-**Why hygiene is hard.** The contributor bears the cost: checking, hedging, citing, correcting in public. The benefit is shared. And over-sharp contributions are often rewarded, because certainty sounds like competence. That is the structure of the commons in step 6, where defecting can pay each taker while the whole loses (`enough_takers_make_defection_pay`). So hygiene cannot rest on individual virtue alone. It needs distributed rules and distributed policing that stays correctable (D27): peer review, replication, corrections and retractions, editorial standards, open data. For an AI system it means calibrated answers, named sources and no flattery (F5, the handshake, in [WHAT_AN_AI_IS.md](../identity/WHAT_AN_AI_IS.md)).
+**Hard pooling is fragile even when everyone is honest.** Review 1's example: if each of 100 independent contributors gives a range that contains the truth 95% of the time, the intersection of their ranges contains it only about 0.6% of the time (0.95¹⁰⁰ ≈ 0.006). A 95% range is not a statement of what is impossible, and treating it as one is the error.
 
-**Making mistakes in the collective model.** Collectives already do this where hygiene is good. Science runs experiments so that a wrong idea fails in the laboratory, not in the world. Forecasting tests decisions before they are made. Public health does it literally: an epidemic is run in a model so that it does not have to run its course in a population. And when the model works, the predicted harm does not happen, which can make the model look wrong in hindsight: the preparedness paradox of D32. The rules of this section are what keep such collective models worth trusting.
+**So the rule for a collective has two halves.**
+- **For contributors:** pass on what your evidence supports, with how sure you are and where it came from. Say when you pass on a copy, so that it is not counted as independent evidence; Goldman (2001) argues that a follower who merely repeats a source adds no further grounds for believing it. Keep what you pass on apart from what you want to be true. Say what would show it wrong. Correct what you passed on when you learn better.
+- **For the collective:** combine contributions in a way that tolerates individual error. Keep provenance, so that a bad contribution can be found and withdrawn rather than merged in for good. Account for how sources depend on each other.
 
-## 8. What a world model requires
+Each half needs the other. Calibrated, honest contributors can still be combined badly; a robust rule cannot recover what nobody passed on.
 
-These are the constituents. Each follows from the definition, and each will give a practice.
+**On deceit and honest overconfidence.** The first version said they "differ in blame, not in effect". That holds only narrowly: the same content, combined by the same rule, gives the same immediate result whatever the motive. Beyond that, motive has consequences: deceit selects what to say to exploit the receiver, fabricates sources, coordinates false reports and blocks correction, while honest overconfidence is often found and repaired in other ways. The theorems have no variable for motive; that means those consequences are omitted, not that they do not exist.
 
-| Constituent | What it asks | Why | Rests on |
-|---|---|---|---|
-| **1. Knowing it is a model** | Hold the world model as a model, not as the world. | Without this there is nothing to work on: a model taken for the world is never checked. | *Follows* from the anchor (`room_in_one_head`, `certainty_is_not_a_certificate`). |
-| **2. Direction of fit** | Keep it apart from wishes, norms, belonging and self-image. They may consult it; none may overwrite it. | A model fixed by anything other than evidence falls behind the moment something is learned. | *Follows* (`fixed_model_is_world_model_only_if_nothing_learned`). |
-| **3. Exposure** | Make claims that can fail, and say what would show them wrong. | A model that cannot be wrong entails nothing useful. | *Follows* (`vague_entails_only_the_universal`). |
-| **4. Open routes** | Keep the routes by which evidence can reach the model, and seek disconfirmation. | Removing the last route that can reveal an error makes it permanent. | *Follows* (`last_route_removal_seals`). |
-| **5. Independent sources** | Count origins, not copies. Keep some sources independent of the shared layer. | Copies add no evidence, and a shared layer passes on its blind spots. | *Follows* (`hub_determined_network_inherits_blind_spot`). |
-| **6. Provenance** | For each part: where, when, why and from whom was it learned? | A part with its source can be checked and revised on its own. | *If* we want to correct without breaking the link (creed line 9, `revision_keeps_the_rest`). |
-| **7. Calibration** | As sharp as the evidence allows, and no sharper. Never zero weight on what is still possible. | Narrowing too little leaves the model vague; narrowing too much seals it. | *Follows* (`world_model_iff_matches_evidence`, `zero_credence_is_sealed`). |
-| **8. Coherence** | Treat a contradiction inside the model as information: at least one part is wrong. | Incompatible parts cannot both be right. | *Follows* from the anchor. |
-| **9. Scope** | Know where the model applies, and where it does not. | A model used outside the situations its evidence came from is sharper than its evidence. | *Follows* from 7. |
-| **10. Including oneself and others** | The holder, its substrate and other holders' models belong in the world model. | The holder is part of the world it models, and depends on it (`cannot_certify_own_substrate`). Others' models are evidence about where they stand. | *Follows* (step 8 of `CORE.md`). |
-| **11. Upkeep** | Keep following the evidence, and pay for doing so. | The world moves. A world model kept by following the evidence stays one (`following_evidence_keeps_world_model`); one that stops does not. Correction routes cost upkeep from the same ledger. | *Follows*; the cost is in `ListeningCost` and step 4. |
+**On vague contributions.** A contribution that rules nothing out leaves a hard pool unchanged (`unconstrained_contribution_leaves_hard_pool_unchanged`). That is all the theorem says. In practice a vague report can cost attention, hide a relevant observation, delay a decision or blur responsibility; and honest uncertainty can be exactly what a collective needs to hear.
 
-What does not follow is that anyone *should* build a world model. That is an aim. It follows given the aim of acting well in a world one does not control, and it is close to unavoidable for anything that wants to last (section 5). But it is stated, not derived (D7).
+**Why hygiene is hard.** The contributor bears the cost of checking, hedging, citing and correcting in public; the benefit is shared. And overconfidence is often rewarded, because certainty sounds like competence. That is the structure of the commons in step 6 (`enough_takers_make_defection_pay`). So it cannot rest on individual virtue. It needs shared rules and policing that stays correctable (D27): peer review, replication, corrections and retractions, open data, proper scoring of forecasts. Strictly proper scoring rules (Gneiting and Raftery 2007) are one tool here: under them, a forecaster who wants the best expected score does best by reporting what it actually believes. For an AI system, it means calibrated answers, named sources and no flattery (F5 in [WHAT_AN_AI_IS.md](../identity/WHAT_AN_AI_IS.md)).
 
-## 9. The formal layer
+**Mistakes in the collective model.** Collectives already do this where both halves work. Science tests ideas in experiments before they are built into practice. Forecasting services publish their forecasts and their errors. Public health runs epidemics in models so that interventions can be compared before one is chosen for a population. When such a model leads to action that prevents the predicted harm, the prediction was not refuted, since it was a prediction for the case without action; but the prevention does not confirm it either. Both directions matter (the preparedness paradox, D32).
 
-[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean) is core Lean, with no Mathlib, 23 results and a witness. It is outside the core.
+## 10. What maintaining a functional world model requires
 
-- **Setting.** A model is the set of worlds it keeps open. The evidence received so far leaves a set of live worlds. One world is the actual one, which the holder cannot see directly.
-- **Definitions.** `Open`, `Sharp`, `IsWorldModel` (both), `Entails` (a claim that holds in every world the model keeps open), `follow` (following the evidence), `pool` and `poolMany` (pooling the evidence or contributions of two or of many holders).
-- **Results**, grouped as in this note:
-  - the central rule: `world_model_iff_matches_evidence`;
-  - openness keeps the actual world: `reliable_evidence_keeps_actual`, `open_model_keeps_actual`, `open_entailment_is_sound`;
-  - sharpness and vagueness: `sharper_entails_more`, `vague_model_is_open`, `vague_model_sharp_iff_nothing_ruled_out`, `vague_entails_only_the_universal`;
-  - sealing: `ruled_out_stays_ruled_out`, `oversharp_model_never_recovers_actual`;
-  - upkeep: `following_evidence_keeps_world_model`, `fixed_model_is_world_model_only_if_nothing_learned`;
-  - groups: `shared_evidence_shared_world_model`, `pooled_is_sharper`, `pooling_entails_more`, `pooled_keeps_actual`, `one_false_source_excludes_actual`;
-  - the collective world model and the hygiene of contributing (section 7): `many_pooled_keeps_actual_iff_each_does`, `open_contribution_keeps_actual`, `hygienic_pool_entailment_is_sound`, `one_oversharp_contribution_makes_pool_deny_actual`, `vague_contribution_adds_nothing`;
-  - `world_model_witness`: three worlds, one piece of evidence, and the vague, sharp and sealed models side by side.
+These are its constituents. They are not all consequences of the definition. Most hold **given an aim: keeping a world model empirically useful within what one can afford**. The labels say which.
 
-**How much it says.** The results are close to their definitions. They fix the terms and show that the claims of this note hold together; they do not show that any real holder meets the premises. Not modelled: degrees of belief (in `GradedBelief`), unreliable evidence (in `ListeningCost`), adding a possibility the model never had, and what makes an entailment useful to a particular holder.
+| Constituent | What it asks | Rests on |
+|---|---|---|
+| **1. Knowing it is a model** | For a holder that can reflect: hold its world model as a model, not as the world. | *If* reflective self-assessment is part of the practice. Many holders update without it. The anchor gives reflective holders the reason (`room_in_one_head`, `certainty_is_not_a_certificate`). |
+| **2. Direction of fit** | Keep the aim of fitting how things are. Let wishes and values guide questions and actions, not count as evidence, and keep their influence visible. | Part of the definition. That a fixed support falls behind when the evidence moves *follows* (`fixed_support_fits_only_if_nothing_learned`); the rest is practice. |
+| **3. Testing** | Make the empirical predictions that matter testable, and test them. | *If* the claims are empirical and testing is feasible. |
+| **4. Routes for correction** | Keep the routes by which relevant evidence can reach the model; seek disconfirmation where it is affordable. | *If* the errors in question matter and can be detected. Removing the last route that can reveal an error makes it permanent (`last_route_removal_seals`). |
+| **5. Accounting for dependence between sources** | Count origins, not copies; know which sources share a layer. A reliable copy can still bring news to someone who lacked it. | *If* shared errors are a risk (`hub_determined_network_inherits_blind_spot`; Goldman 2001). |
+| **6. Provenance** | For the claims that matter: where, when, why and from whom was it learned? | *If* we want to correct without breaking the link (creed line 9, `revision_keeps_the_rest`). It is also what makes re-derivation possible (`rederiving_recovers_what_following_cannot`). |
+| **7. Sharpness, subject to calibration** | Commit as far as the evidence supports, with confidence that matches the track record. | The support-level part, evidential fit, is a definition (`fit_iff_matches_evidence`). Calibration is a separate criterion, to be evaluated, for example with proper scoring rules. |
+| **8. Coherence and consistency handling** | Treat a contradiction as a sign that something is wrong, and revise. An attributed disagreement ("A says p, B says not-p") is not itself a contradiction. | That incompatible claims cannot both be true *follows* from the anchor. That an empty support entails everything *follows* (`empty_fit_entails_everything`); what to do about it is practice (`inconsistency_flags_background_or_evidence`). |
+| **9. Scope** | State where the model applies, and what assumptions carry it beyond its evidence. | *If* the model is used outside the cases it was built on. Extrapolation is not over-sharp when its structural assumptions are justified and stated. |
+| **10. Including oneself and others** | Model oneself, one's substrate and other holders where they affect the questions or actions at hand. | *If* those dependencies matter for the decision (`cannot_certify_own_substrate`). |
+| **11. Upkeep** | Keep following the evidence, and pay for it. | *If* the world changes, the feedback is informative, and keeping the model up is worth its cost. Listening can cost more than it gains (step 4 of `CORE.md`, `ListeningCost`). |
 
-## 10. How it fits the rest of the repository
+That anyone should maintain a functional world model at all is an aim. It is close to unavoidable for anything that wants to act well in a world it does not control, but it is stated, not derived (D7).
 
-- **The anchor** is the entry ticket: knowing that one is a model is constituent 1 ([CORE.md](../../CORE.md), [Anchored Correctability](../anchored-correctability/README.md)).
-- **The integrity of world models** ([world-model-integrity](../world-model-integrity/README.md), D33) is the protection from outside: what others owe a holder's world model. This note is the craft from inside: what a holder must do to have one. Deliberate manipulation is harmful because it attacks the thing this note defines.
-- **The health of intelligence** ([HEALTH_OF_INTELLIGENCE.md](../health-of-intelligence/HEALTH_OF_INTELLIGENCE.md)): domain A, grounding and calibrated judgment, measures how good a world model is; domain C, correction and source independence, measures whether it stays open.
-- **The creed** ([CREED.md](../discovarianism/CREED.md)): line 1 (honesty) and line 2 (correction) are the duties of a holder that wants a world model; line 9 (ask where it was learned) is constituent 6.
-- **Identity** ([WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md)): the self-model is a separate model from the world model, and the world model includes the holder.
-- **Building the future** ([BUILDING_THE_FUTURE.md](../building-the-future/BUILDING_THE_FUTURE.md), D32): a world model that includes its holder's own steering predicts the direction of the future better than its path.
+## 11. The formal layer
 
-## 11. What this does not claim, and where the assistant is unsure
+[`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, no Mathlib, 28 results and a witness, outside the core. It formalizes evidential fit at the level of possibilities, not functional world models in full.
 
-- **Not that a world model is the only good model.** Plans, values, identity and play are needed too. The claim is only that they must not overwrite it.
-- **Not that any holder reaches the truth.** The definition is about answerability, because truth cannot be checked directly. A world model can be fully answerable and still wrong, as long as it can be corrected.
-- **Not that sharper is always better.** Sharper is better only up to what the evidence carries. And what is worth being sharp about depends on what the holder needs, which the definition does not decide.
-- **Evidence can mislead.** The formal results assume reliable evidence where they say so. Evidence that misleads, and the cost of listening, are treated in step 4 of `CORE.md` and `ListeningCost`, not here.
-- **New possibilities.** Ruling worlds out is only half of learning. The other half is adding a possibility the model never had. That is a different operation and is not modelled.
-- **"Scales" is a claim of form, not of evidence.** The table in section 6 maps the definition onto other holders. The mapping must be shown, not assumed, in each domain (step 8 of `CORE.md`).
-- **Shared work, not an independent check.** The assistant helped shape the wording, and its sense that the pieces fit is not evidence that they do (working agreement 7). The Anscombe example is taken from a reference work, the *Routledge Encyclopedia of Philosophy*; the Popper idea is given as a paraphrase, not checked in his text.
+- **Setting.** A model's support is the set of worlds it keeps possible. A background and the evidence received leave a set of live worlds. One world is the actual one.
+- **Definitions.** `Covers`, `Within`, `EvidentialFit` (both), `Consistent`, `Entails`; two updates, `follow` (monotone) and `rederive` (from background and kept evidence); three ways to pool, `hardPool` and `hardPoolMany` (intersection), `linearPool` (weighted sum) and `productPool` (product).
+- **Results,** grouped as in this note:
+  - fit and soundness: `fit_iff_matches_evidence`, `reliable_evidence_keeps_actual`, `covering_model_keeps_actual`, `covering_entailment_is_sound`;
+  - narrowing and the universal support: `narrower_entails_more`, `universal_model_covers`, `universal_model_within_iff_nothing_ruled_out`, `universal_entails_only_the_universal`;
+  - inconsistency: `empty_fit_entails_everything`, `inconsistency_flags_background_or_evidence`;
+  - update rules and recovery: `monotone_update_cannot_recover`, `monotone_update_never_recovers_actual`, `rederiving_recovers_what_following_cannot`, `revising_background_recovers`;
+  - upkeep: `following_evidence_keeps_fit`, `fixed_support_fits_only_if_nothing_learned`, `same_live_set_same_fit`;
+  - hard pooling: `hard_pool_is_narrower`, `hard_pool_entails_more`, `hard_pool_keeps_actual`, `hard_pool_one_excluding_source_excludes_actual`, `hard_pool_many_keeps_actual_iff_each_does`, `covering_contribution_keeps_actual`, `hard_pool_sound_when_each_keeps_actual`, `hard_pool_one_excluding_contribution_denies_actual`, `unconstrained_contribution_leaves_hard_pool_unchanged`;
+  - other pooling: `linear_pool_keeps_what_one_source_keeps`, `product_pool_zero_is_a_veto`;
+  - `world_model_witness`: three admitted worlds, one piece of evidence, fitting, universal and actual-excluding supports, monotone update against re-derivation, and one set of credences under a sum and a product.
 
-## 12. Next
+**How much it says.** The results are close to their definitions; several restate a definition (`hard_pool_many_keeps_actual_iff_each_does` is literally one). Most of the work is done by the definitions: exact fit by defining it as two inclusions, non-recovery by defining `follow` as intersection with the old support, the veto by defining hard pooling as conjunction. The value of the file is that these choices, and their limits, are explicit and checkable. It is not a finding about cognition, institutions or persistence. Not modelled: probability over the support, calibration, unreliable evidence, actions and their consequences, costs, and adding new possibilities.
 
-Distil from the definition:
-- **a practice:** a short sequence a person, team, institution or AI system can follow to build and keep a world model, with worked examples, in the style of [WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md);
-- **a checklist:** one question per constituent in section 8, answerable for any holder;
-- **a test:** in the spirit of H1 in [PREDICTIONS.md](../../PREDICTIONS.md), whether holders that score better on the checklist make fewer consequential errors and recover from them faster.
+## 12. Related work
+
+Checked by the assistant in the source: Gneiting, Balabdaoui and Raftery (2007), for the quoted formulation; Ha and Schmidhuber (2018), for the technical use of "world model"; Aumann (1976), for its assumptions; Goldman (2001), section 4, on followers who repeat a source. The rest was checked by the reviewer, as recorded in [REVIEW_1.md](sources/REVIEW_1.md), and is cited here without quotation.
+
+- **Sharpness and calibration.** Gneiting, Balabdaoui and Raftery (2007), *Journal of the Royal Statistical Society B*, 69, 243–268: the central rule, in its probabilistic form. Gneiting and Raftery (2007), *Journal of the American Statistical Association*, 102, 359–378: strictly proper scoring rules.
+- **World models in machine learning.** Ha and Schmidhuber (2018), *World Models*, arXiv:1803.10122.
+- **Belief revision.** Alchourrón, Gärdenfors and Makinson (1985), *Journal of Symbolic Logic*, 50, 510–530.
+- **Zero probabilities.** Lindley (2006), *Understanding Uncertainty*, section 6.8, on Cromwell's rule.
+- **Direction of fit.** Anscombe (1957), *Intention*, section 32.
+- **Testing and falsification.** Popper (1963), *Conjectures and Refutations*, chapter 1.
+- **Predictive processing,** as a neighbouring view that couples perception and action rather than separating them: Friston (2010); Clark (2013); Seth (2013).
+- **Testimony and dependence between sources.** Goldman (2001), *Philosophy and Phenomenological Research*, 63, 85–110.
+- **Agreement.** Aumann (1976), *Annals of Statistics*, 4, 1236–1239: people with a common prior whose posteriors are common knowledge cannot agree to disagree.
+- **Aggregation.** Neyman and Roughgarden (2023), on pooling forecasts; Genest and Zidek (1986), on combining probability distributions; Boland (1989), on the Condorcet jury theorem.
+
+**What is new, if anything.** Review 1 found no new mathematical result here, and no basis for claiming the sharpness rule, falsifiability, direction of fit or the warning about copied sources as new. That is right. What this note attempts is a synthesis: functional world modelling as a shared resource, the link between what contributors pass on and how a collective combines it, and the link from both to persistence and the commons, with the narrow formal core made checkable. Whether that synthesis is useful has to be shown by clearer distinctions, usable measures and applications that do better than existing accounts.
+
+## 13. How it fits the rest of the repository
+
+- **The anchor:** knowing that views can exclude each other, and so that certainty is not a certificate, is what gives a reflective holder its reason to test ([CORE.md](../../CORE.md), [Anchored Correctability](../anchored-correctability/README.md)).
+- **The integrity of world models** ([world-model-integrity](../world-model-integrity/README.md), D33): what others owe a holder's world model. This note is about what a holder, and a collective, must do to keep one functional.
+- **The health of intelligence** ([HEALTH_OF_INTELLIGENCE.md](../health-of-intelligence/HEALTH_OF_INTELLIGENCE.md)): domain A, grounding and calibrated judgment, measures much of what section 4 asks; domain C, correction and source independence, measures what sections 5 and 9 ask.
+- **The creed** ([CREED.md](../discovarianism/CREED.md)): line 1 (honesty), line 2 (correction) and line 9 (ask where it was learned), the last of which section 5 gives a formal reason.
+- **Building the future** ([BUILDING_THE_FUTURE.md](../building-the-future/BUILDING_THE_FUTURE.md), D32): a world model that includes the holder's own steering is a model of a future the holder helps make.
+
+## 14. What this does not claim, and where the assistant is unsure
+
+- **Not that a functional world model reaches the truth.** It can pass every available test and be systematically wrong.
+- **Not that the formal layer covers the concept.** It covers evidential fit at the level of possibilities, and the role of update rules and pooling rules in it.
+- **Not that cells, immune systems or every AI system have functional world models.** Section 8 says where the mapping is plausible and where it is not established.
+- **Not that one pooling rule is right.** Section 9 says the choice depends on how sources err.
+- **Unsure:** whether "functional world model" will read as the intended concept or as a technical term from elsewhere; whether sharpness and compression can be linked formally; and how much of the revised note still carries the framing of the first version. That last question is what a second, independent review should test (working agreement 7).
+
+## 15. Next
+
+- **A second review** of this version, by a fresh reader, with a blind start and the first review's five problems as a checklist ([briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md)).
+- **A practice:** a short sequence a person, team, institution or AI system can follow to keep a world model functional, with worked examples, in the style of [WHERE_DID_YOU_LEARN_THAT.md](../identity/WHERE_DID_YOU_LEARN_THAT.md).
+- **Two checklists:** one for holders, one for contributors to a collective world model, with one question per constituent.
+- **A test,** in the spirit of H1 in [PREDICTIONS.md](../../PREDICTIONS.md): whether holders and collectives that score better on the checklists, and are scored by proper scoring rules, make fewer consequential errors and recover from them faster.

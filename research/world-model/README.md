@@ -1,20 +1,21 @@
-# What a world model is
+# World models, and what makes one functional
 
-This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It defines a world model: what it is, why it is valuable, how it scales from a cell to a society and to AI systems, what contributing to a collective world model requires, and what a world model requires.
+This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It distinguishes a **world model**, any representation that supports inference about what is not observed, from a **functional world model**, one maintained so that it stays useful and correctable; and it asks what keeping one functional takes, for a single holder and for a collective.
 
 | File | What it is |
 |---|---|
-| [WORLD_MODEL.md](WORLD_MODEL.md) | The definition, its value, how it scales, its constituents, and how it fits the rest of the repository |
-| [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) | A brief for an independent reader from another model family, or a human, before the definition enters the core |
+| [WORLD_MODEL.md](WORLD_MODEL.md) | The definition note, second version |
+| [sources/REVIEW_1.md](sources/REVIEW_1.md) | The independent review of the first version, kept as received |
+| [sources/RESPONSE_1.md](sources/RESPONSE_1.md) | The response to it, point by point |
+| [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) | The brief given for review 1 |
+| [briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md) | The brief for a second review, in two messages with a blind start |
 
-**Status:** a definition. Its formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, 23 results with a witness, outside the core. Practices and a checklist are to be distilled from the definition next.
+**Status:** a definition note, outside the core. Review 1 found the first version not ready to open the core; this version answers it and awaits a second review. Its formal layer is [`WorldModel.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean): core Lean, 28 results and a witness, for evidential fit at the level of possibilities only.
 
 **The definition.**
 
-> A **world model** is a model held with the aim of fitting how things are, regardless of what its holder wants, and kept answerable to evidence from outside. It is **sharp** to the extent that its claims rule out possible worlds, and **functional** to the extent that it supports prediction and action in the situations its holder meets. It remains a world model only while it stays **open**: every claim it makes can still be shown wrong by evidence that can reach it.
+> A **functional world model** is a world model held with the aim of fitting how things are, regardless of what its holder wants, and tested against evidence whose outcomes are not fixed by the claims being tested. It aims to be as sharp as the evidence supports, subject to calibration. And it is correctable: its beliefs, its background assumptions and its range of possibilities can all be revised, and it handles inconsistency by revising.
 
-**The rule in one line:** as sharp as the evidence allows, and no sharper.
+**For a collective, two halves:** contributors pass on what their evidence supports, with how sure they are and where it came from; and the collective combines contributions in a way that tolerates individual error and keeps provenance.
 
-**Why it matters in one line:** a world model lets its holder make its mistakes in the model instead of in reality.
-
-**Companion:** [world-model-integrity](../world-model-integrity/README.md) (D33) is about what others owe a holder's world model; this folder is about what a holder must do to have one.
+**Companion:** [world-model-integrity](../world-model-integrity/README.md) (D33), on what others owe a holder's world model.
