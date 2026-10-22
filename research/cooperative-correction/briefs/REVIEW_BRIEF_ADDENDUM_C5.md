@@ -44,6 +44,8 @@ problem. Files:
       the value of information; Russell and Wefald on rational metareasoning;
       Arrow and Fisher, and Henry, on irreversibility and option value; POMDPs;
       Pearl on intervention and counterfactuals.
-  7.6 Should the definition of a world model in the core say that a functional
-      one supports acting under time? Answer yes, no, or not yet, with a reason.
+  7.6 The note separates the world model, which only models reality and its
+      possible futures (including those that depend on the holder's actions),
+      from an action model, which decides what to do. Is the separation sound?
+      Where does it leak, beyond the two leaks the note names?
 ```
