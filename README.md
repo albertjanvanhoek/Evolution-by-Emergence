@@ -3,7 +3,7 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v22.7** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
+**Evolution by Emergence v23.0** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** what a functional world model is, then one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 [![EbE Core](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml)
@@ -14,9 +14,9 @@
 
 **Evolution by Emergence (EbE)** is a theory of persistence. It starts from learning in a neural network, read as a network. A configuration of connections exists only while it pays its way from a gradient, and it exists through its connections. In a world that can change in any direction, it can count on lasting only by changing with it, through feedback that arrives along its connections. Feedback plus retention is a learning loop, and when kept changes also raise the surplus, the loop becomes the **vortex**. What retained organization opens up next, the accessibility around which the earlier cores were built, is how the vortex turns. In a network, the whole's balance is the **commons**, the vortex of the whole: a node can live off its interest, its own creation plus what the commons regenerates, but taking more eats the principal, and not cheating gains more over time. The title's **simulation of reality** means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated. The theory is a candidate architecture, not an established empirical law; [CORE.md](CORE.md) says what is proved, what is assumed and what is open. Its intelligent-system specialization adds one premise-free structural anchor — **claims that exclude each other cannot all be true** — and derives machine-checked constraints on how a learning system can change without making its remaining errors structurally undiscoverable. This is independent work by Albert Jan van Hoek; interpretations and applications are the author's own and are not institutional positions.
 
-**Orientation.** When answers become cheap, the bottleneck moves from finding solutions to taking them up. Yesterday's aims become today's tools, and prediction becomes a tool to change what it predicts. This repository is written in that spirit: not to predict the future, but to help build it. That is a stance, not a result; see [Building the future](research/building-the-future/BUILDING_THE_FUTURE.md).
+**The world model.** Every intelligence acts through world models; having a **functional** one takes work. A functional world model is held, for a stated scope and use, with the aim of fitting how things are, tested against evidence it cannot fix in advance, as sharp as that evidence supports subject to calibration, and correctable. In a collective it depends on two things: what contributors pass on, and how their contributions are combined. This is what the title asks, and since v23.0 it opens [CORE.md](CORE.md). The full account, revised after three independent reviews, is [World models, and what makes one functional](research/world-model/WORLD_MODEL.md); its narrow formal core is [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean), 30 checked results, of which five are in the core.
 
-**The world model.** Every intelligence acts through world models; having a **functional** one takes work. A functional world model is held with the aim of fitting how things are, tested against evidence it cannot fix in advance, as sharp as that evidence supports subject to calibration, and correctable. In a collective it depends on two things: what contributors pass on, and how their contributions are combined. See [World models, and what makes one functional](research/world-model/WORLD_MODEL.md), revised after three independent reviews, with 30 checked results for its narrow formal core in [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean).
+**Orientation.** When answers become cheap, the bottleneck moves from finding solutions to taking them up. Yesterday's aims become today's tools, and prediction becomes a tool to change what it predicts. This repository is written in that spirit: not to predict the future, but to help build it. That is a stance, not a result; see [Building the future](research/building-the-future/BUILDING_THE_FUTURE.md).
 
 ## Start here
 
@@ -38,8 +38,9 @@
 
 ## The core in eight steps
 
-The full statement, with every step's proof, is [CORE.md](CORE.md).
+The full statement, with every step's proof, is [CORE.md](CORE.md). It opens with what the theory is about:
 
+0. **World models, and what makes one functional:** held to fit how things are, tested, as sharp as the evidence supports, and correctable; in a collective, contributors and the way they are combined both matter.
 1. **Existence is paid for from a gradient:** slack is uptake minus upkeep.
 2. **Existence through connections:** delete the return edge and the node it fed declines; a defector that cannot live alone gains at first and then falls with its partner (proved for two nodes without a new partner; with partner switching, until detection and reputation make the next partner cost more than defection saves); the same structure appears at every level, inward and outward.
 3. **Selection comes free:** what pays its way lasts; selection selects persistence, not goodness.
@@ -66,7 +67,7 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 
 ### Current core
 
-- **The core on one page:** [CORE.md](CORE.md) — the eight steps from the ledger to the commons, with every result collected and checked in [formalization/ebe-core/EbECore.lean](formalization/ebe-core/EbECore.lean).
+- **The core on one page:** [CORE.md](CORE.md) — the opening on world models and the eight steps from the ledger to the commons, with every result collected and checked in [formalization/ebe-core/EbECore.lean](formalization/ebe-core/EbECore.lean).
 - **The full v21 statement of the universal theory** (centred on accessibility; read its framing through CORE.md): [THEORY_CORE_V21.md](THEORY_CORE_V21.md), [FORMAL_THEORY_MAP.md](FORMAL_THEORY_MAP.md), [FORMAL_THEORY_ENDPOINT.md](FORMAL_THEORY_ENDPOINT.md), and the specialization seam [UNIVERSAL_TO_INTELLIGENCE.md](UNIVERSAL_TO_INTELLIGENCE.md).
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
@@ -101,7 +102,7 @@ Nothing in this release deletes, moves, renames or rewrites the historical corpu
 
 The current Lean toolchain for the principal formal packages is **`leanprover/lean4:v4.33.0`**.
 
-The core in one file — the 91 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
+The core in one file — the 96 results behind [CORE.md](CORE.md), with every statement and axiom set printed (also usable as a Lean dependency; see [formalization/ebe-core/README.md](formalization/ebe-core/README.md)):
 
 ```bash
 cd formalization/ebe-core
@@ -181,13 +182,13 @@ The website is the historical online book edition; this README is the current re
 
 ## Cite
 
-The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v22.7 version DOI after archival.
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v23.0 version DOI after archival.
 
 ```bibtex
 @software{vanhoek_welcome_real_world_v22_3,
   author  = {van Hoek, Albert Jan},
   title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
-  version = {v22.7},
+  version = {v23.0},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
   url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
@@ -196,7 +197,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v22.7). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v23.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 
