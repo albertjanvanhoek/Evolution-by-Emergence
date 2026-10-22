@@ -1,0 +1,813 @@
+{
+ "M0": {
+  "cases": 3000,
+  "agree": 3000,
+  "sufficient_cases": 1558
+ },
+ "M1": [
+  {
+   "p": 0.0,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.2065416666666666,
+    "regret": 1.2065416666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 2.63
+   },
+   "accumulating": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 2.63
+   }
+  },
+  {
+   "p": 0.0,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.3065416666696241,
+    "regret": 1.2065416666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.2630000000000292,
+    "regret": 0.0,
+    "classes": 2.63
+   },
+   "accumulating": {
+    "cost": 0.2630000000000292,
+    "regret": 0.0,
+    "classes": 2.63
+   }
+  },
+  {
+   "p": 0.0,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.506541666664986,
+    "regret": 1.2065416666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.7889999999997526,
+    "regret": 0.0,
+    "classes": 2.63
+   },
+   "accumulating": {
+    "cost": 0.7889999999997526,
+    "regret": 0.0,
+    "classes": 2.63
+   }
+  },
+  {
+   "p": 0.0,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.206541666666667,
+    "regret": 1.2065416666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 2.63,
+    "regret": 0.0,
+    "classes": 2.63
+   },
+   "accumulating": {
+    "cost": 2.63,
+    "regret": 0.0,
+    "classes": 2.63
+   }
+  },
+  {
+   "p": 0.005,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.299275,
+    "regret": 1.299275,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.05246666666666667,
+    "regret": 0.05246666666666667,
+    "classes": 2.7253333333333334
+   },
+   "accumulating": {
+    "cost": 0.0337,
+    "regret": 0.0337,
+    "classes": 3.7386833333333334
+   }
+  },
+  {
+   "p": 0.005,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.3992750000031455,
+    "regret": 1.299275,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.3250000000001849,
+    "regret": 0.05246666666666667,
+    "classes": 2.7253333333333334
+   },
+   "accumulating": {
+    "cost": 0.4075683333334182,
+    "regret": 0.0337,
+    "classes": 3.7386833333333334
+   }
+  },
+  {
+   "p": 0.005,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.5992749999976663,
+    "regret": 1.299275,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.8700666666663555,
+    "regret": 0.05246666666666667,
+    "classes": 2.7253333333333334
+   },
+   "accumulating": {
+    "cost": 1.1553049999995997,
+    "regret": 0.0337,
+    "classes": 3.7386833333333334
+   }
+  },
+  {
+   "p": 0.005,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.299275,
+    "regret": 1.299275,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 2.7778,
+    "regret": 0.05246666666666667,
+    "classes": 2.7253333333333334
+   },
+   "accumulating": {
+    "cost": 3.7723833333333334,
+    "regret": 0.0337,
+    "classes": 3.7386833333333334
+   }
+  },
+  {
+   "p": 0.02,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.26055,
+    "regret": 1.26055,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.19316666666666665,
+    "regret": 0.19316666666666665,
+    "classes": 2.670425
+   },
+   "accumulating": {
+    "cost": 0.063975,
+    "regret": 0.063975,
+    "classes": 4.695541666666666
+   }
+  },
+  {
+   "p": 0.02,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.36055000000304,
+    "regret": 1.26055,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.4602091666668478,
+    "regret": 0.19316666666666665,
+    "classes": 2.670425
+   },
+   "accumulating": {
+    "cost": 0.5335291666664953,
+    "regret": 0.063975,
+    "classes": 4.695541666666666
+   }
+  },
+  {
+   "p": 0.02,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.56054999999802,
+    "regret": 1.26055,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.9942941666662471,
+    "regret": 0.19316666666666665,
+    "classes": 2.670425
+   },
+   "accumulating": {
+    "cost": 1.4726374999994745,
+    "regret": 0.063975,
+    "classes": 4.695541666666666
+   }
+  },
+  {
+   "p": 0.02,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.26055,
+    "regret": 1.26055,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 2.8635916666666668,
+    "regret": 0.19316666666666665,
+    "classes": 2.670425
+   },
+   "accumulating": {
+    "cost": 4.759516666666666,
+    "regret": 0.063975,
+    "classes": 4.695541666666666
+   }
+  },
+  {
+   "p": 0.05,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.25455,
+    "regret": 1.25455,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.3658166666666667,
+    "regret": 0.3658166666666667,
+    "classes": 2.651
+   },
+   "accumulating": {
+    "cost": 0.09751666666666667,
+    "regret": 0.09751666666666667,
+    "classes": 4.9558333333333335
+   }
+  },
+  {
+   "p": 0.05,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.354550000003028,
+    "regret": 1.25455,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.6309166666668311,
+    "regret": 0.3658166666666667,
+    "classes": 2.651
+   },
+   "accumulating": {
+    "cost": 0.5930999999998082,
+    "regret": 0.09751666666666667,
+    "classes": 4.9558333333333335
+   }
+  },
+  {
+   "p": 0.05,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.554549999998078,
+    "regret": 1.25455,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 1.1611166666662323,
+    "regret": 0.3658166666666667,
+    "classes": 2.651
+   },
+   "accumulating": {
+    "cost": 1.5842666666656915,
+    "regret": 0.09751666666666667,
+    "classes": 4.9558333333333335
+   }
+  },
+  {
+   "p": 0.05,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.25455,
+    "regret": 1.25455,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 3.0168166666666667,
+    "regret": 0.3658166666666667,
+    "classes": 2.651
+   },
+   "accumulating": {
+    "cost": 5.05335,
+    "regret": 0.09751666666666667,
+    "classes": 4.9558333333333335
+   }
+  },
+  {
+   "p": 0.1,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.300225,
+    "regret": 1.300225,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.5245166666666666,
+    "regret": 0.5245166666666666,
+    "classes": 2.6828666666666665
+   },
+   "accumulating": {
+    "cost": 0.18445,
+    "regret": 0.18445,
+    "classes": 4.652375
+   }
+  },
+  {
+   "p": 0.1,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.400225000003116,
+    "regret": 1.300225,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.7928033333336247,
+    "regret": 0.5245166666666666,
+    "classes": 2.6828666666666665
+   },
+   "accumulating": {
+    "cost": 0.6496875000000969,
+    "regret": 0.18445,
+    "classes": 4.652375
+   }
+  },
+  {
+   "p": 0.1,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.6002249999978324,
+    "regret": 1.300225,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 1.3293766666659652,
+    "regret": 0.5245166666666666,
+    "classes": 2.6828666666666665
+   },
+   "accumulating": {
+    "cost": 1.5801624999991786,
+    "regret": 0.18445,
+    "classes": 4.652375
+   }
+  },
+  {
+   "p": 0.1,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.300225,
+    "regret": 1.300225,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 3.2073833333333335,
+    "regret": 0.5245166666666666,
+    "classes": 2.6828666666666665
+   },
+   "accumulating": {
+    "cost": 4.836825,
+    "regret": 0.18445,
+    "classes": 4.652375
+   }
+  },
+  {
+   "p": 0.2,
+   "k": 0.0,
+   "L": 20,
+   "none": {
+    "cost": 1.3043166666666666,
+    "regret": 1.3043166666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.59415,
+    "regret": 0.59415,
+    "classes": 2.6744
+   },
+   "accumulating": {
+    "cost": 0.47680833333333333,
+    "regret": 0.47680833333333333,
+    "classes": 3.2027666666666668
+   }
+  },
+  {
+   "p": 0.2,
+   "k": 0.1,
+   "L": 20,
+   "none": {
+    "cost": 1.4043166666698397,
+    "regret": 1.3043166666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 0.5999999999995875,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 0.8615900000002168,
+    "regret": 0.59415,
+    "classes": 2.6744
+   },
+   "accumulating": {
+    "cost": 0.7970850000001759,
+    "regret": 0.47680833333333333,
+    "classes": 3.2027666666666668
+   }
+  },
+  {
+   "p": 0.2,
+   "k": 0.3,
+   "L": 20,
+   "none": {
+    "cost": 1.604316666664444,
+    "regret": 1.3043166666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 1.7999999999966694,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 1.396469999999636,
+    "regret": 0.59415,
+    "classes": 2.6744
+   },
+   "accumulating": {
+    "cost": 1.4376383333329692,
+    "regret": 0.47680833333333333,
+    "classes": 3.2027666666666668
+   }
+  },
+  {
+   "p": 0.2,
+   "k": 1.0,
+   "L": 20,
+   "none": {
+    "cost": 2.304316666666667,
+    "regret": 1.3043166666666666,
+    "classes": 1.0
+   },
+   "aimless": {
+    "cost": 6.0,
+    "regret": 0.0,
+    "classes": 6.0
+   },
+   "scoped": {
+    "cost": 3.26855,
+    "regret": 0.59415,
+    "classes": 2.6744
+   },
+   "accumulating": {
+    "cost": 3.679575,
+    "regret": 0.47680833333333333,
+    "classes": 3.2027666666666668
+   }
+  }
+ ],
+ "M2": [
+  {
+   "K": 1,
+   "eps": 0,
+   "classes_mean": 2.6766666666666667,
+   "classes_max": 4
+  },
+  {
+   "K": 1,
+   "eps": 1,
+   "classes_mean": 2.26,
+   "classes_max": 4
+  },
+  {
+   "K": 1,
+   "eps": 2,
+   "classes_mean": 2.0033333333333334,
+   "classes_max": 4
+  },
+  {
+   "K": 1,
+   "eps": 3,
+   "classes_mean": 1.77,
+   "classes_max": 4
+  },
+  {
+   "K": 1,
+   "eps": 5,
+   "classes_mean": 1.28,
+   "classes_max": 4
+  },
+  {
+   "K": 2,
+   "eps": 0,
+   "classes_mean": 3.57,
+   "classes_max": 6
+  },
+  {
+   "K": 2,
+   "eps": 1,
+   "classes_mean": 3.0766666666666667,
+   "classes_max": 6
+  },
+  {
+   "K": 2,
+   "eps": 2,
+   "classes_mean": 2.3833333333333333,
+   "classes_max": 5
+  },
+  {
+   "K": 2,
+   "eps": 3,
+   "classes_mean": 2.09,
+   "classes_max": 4
+  },
+  {
+   "K": 2,
+   "eps": 5,
+   "classes_mean": 1.5333333333333334,
+   "classes_max": 3
+  },
+  {
+   "K": 4,
+   "eps": 0,
+   "classes_mean": 4.723333333333334,
+   "classes_max": 6
+  },
+  {
+   "K": 4,
+   "eps": 1,
+   "classes_mean": 3.9166666666666665,
+   "classes_max": 6
+  },
+  {
+   "K": 4,
+   "eps": 2,
+   "classes_mean": 3.3033333333333332,
+   "classes_max": 6
+  },
+  {
+   "K": 4,
+   "eps": 3,
+   "classes_mean": 2.6433333333333335,
+   "classes_max": 5
+  },
+  {
+   "K": 4,
+   "eps": 5,
+   "classes_mean": 1.85,
+   "classes_max": 4
+  },
+  {
+   "K": 8,
+   "eps": 0,
+   "classes_mean": 5.486666666666666,
+   "classes_max": 6
+  },
+  {
+   "K": 8,
+   "eps": 1,
+   "classes_mean": 4.836666666666667,
+   "classes_max": 6
+  },
+  {
+   "K": 8,
+   "eps": 2,
+   "classes_mean": 4.023333333333333,
+   "classes_max": 6
+  },
+  {
+   "K": 8,
+   "eps": 3,
+   "classes_mean": 3.34,
+   "classes_max": 5
+  },
+  {
+   "K": 8,
+   "eps": 5,
+   "classes_mean": 2.2133333333333334,
+   "classes_max": 5
+  },
+  {
+   "K": 16,
+   "eps": 0,
+   "classes_mean": 5.8133333333333335,
+   "classes_max": 6
+  },
+  {
+   "K": 16,
+   "eps": 1,
+   "classes_mean": 5.513333333333334,
+   "classes_max": 6
+  },
+  {
+   "K": 16,
+   "eps": 2,
+   "classes_mean": 4.8,
+   "classes_max": 6
+  },
+  {
+   "K": 16,
+   "eps": 3,
+   "classes_mean": 3.8966666666666665,
+   "classes_max": 6
+  },
+  {
+   "K": 16,
+   "eps": 5,
+   "classes_mean": 2.6366666666666667,
+   "classes_max": 5
+  },
+  {
+   "K": 64,
+   "eps": 0,
+   "classes_mean": 5.84,
+   "classes_max": 6
+  },
+  {
+   "K": 64,
+   "eps": 1,
+   "classes_mean": 5.88,
+   "classes_max": 6
+  },
+  {
+   "K": 64,
+   "eps": 2,
+   "classes_mean": 5.626666666666667,
+   "classes_max": 6
+  },
+  {
+   "K": 64,
+   "eps": 3,
+   "classes_mean": 5.093333333333334,
+   "classes_max": 6
+  },
+  {
+   "K": 64,
+   "eps": 5,
+   "classes_mean": 3.703333333333333,
+   "classes_max": 6
+  }
+ ],
+ "M3": {
+  "none": {
+   "accuracy": 0.8526925000000001,
+   "accuracy_on_blind_states": 0.5006807906252035
+  },
+  "instrument": {
+   "accuracy": 0.9556949999999999,
+   "accuracy_on_blind_states": 0.8500612728502249
+  },
+  "independent peer": {
+   "accuracy": 0.9244450000000001,
+   "accuracy_on_blind_states": 0.743552788875659
+  },
+  "one peer sharing the blind spots": {
+   "accuracy": 0.8523474999999998,
+   "accuracy_on_blind_states": 0.49943938608094995
+  },
+  "five peers sharing the blind spots": {
+   "accuracy": 0.85257,
+   "accuracy_on_blind_states": 0.5006256527524099
+  }
+ }
+}
