@@ -65,6 +65,6 @@ Legal and UN quotations were checked in their primary sources. The note links to
 
 ## Since this release
 
-Nothing yet.
+- **World models, and what makes one functional** (D34): a definition note, [`research/world-model/WORLD_MODEL.md`](research/world-model/WORLD_MODEL.md), revised after three independent reviews: the first found it not ready for the core, the third found the revision ready with changes, which are made (reviews and responses in [`research/world-model/sources/`](research/world-model/sources/)). It separates world model, world modelling, functional world model and evidential fit; states the central rule as sharpness subject to calibration (after Gneiting, Balabdaoui and Raftery 2007); separates monotone update from revision; and treats a collective world model as depending on contributors and on the aggregation rule. New core-Lean module [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean), 30 results and a witness, outside the core.
 
 The v22.6 release notes remain available at the `v22.6` tag.

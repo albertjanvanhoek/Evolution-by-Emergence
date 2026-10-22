@@ -16,6 +16,8 @@
 
 **Orientation.** When answers become cheap, the bottleneck moves from finding solutions to taking them up. Yesterday's aims become today's tools, and prediction becomes a tool to change what it predicts. This repository is written in that spirit: not to predict the future, but to help build it. That is a stance, not a result; see [Building the future](research/building-the-future/BUILDING_THE_FUTURE.md).
 
+**The world model.** Every intelligence acts through world models; having a **functional** one takes work. A functional world model is held with the aim of fitting how things are, tested against evidence it cannot fix in advance, as sharp as that evidence supports subject to calibration, and correctable. In a collective it depends on two things: what contributors pass on, and how their contributions are combined. See [World models, and what makes one functional](research/world-model/WORLD_MODEL.md), revised after three independent reviews, with 30 checked results for its narrow formal core in [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean).
+
 ## Start here
 
 | If you want to… | Go to |
@@ -71,6 +73,7 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 - **Health of intelligence and of the commons:** [research/health-of-intelligence/](research/health-of-intelligence/) — concept notes, not results: a shared measure of the health of intelligence for people, AI systems and institutions, the health of the commons they live in, the research briefs and reports behind them, and their review.
 - **Building the future:** [research/building-the-future/](research/building-the-future/README.md) — an essay, not a result: what changes when answers become cheap, and why responsibility shifts toward uptake.
 - **Transparent pricing:** [research/transparent-pricing/](research/transparent-pricing/README.md) — an application to economics: access at cost, a separate bounty for solving problems, every choice visible; with a standalone Lean package in [formalization/transparent-pricing/](formalization/transparent-pricing/README.md).
+- **World models, and what makes one functional:** [research/world-model/](research/world-model/README.md) — a definition note: world model and functional world model, sharpness subject to calibration, correctability, and what a collective world model needs from its contributors and from how it combines them; with an independent review and the response.
 - **Integrity of world models:** [research/world-model-integrity/](research/world-model-integrity/README.md) — a concept note: deliberate manipulation by words or by devices as two routes to one harm, and the neurorights read as part of existing human rights, which name principles and set boundaries.
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
 - **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.
