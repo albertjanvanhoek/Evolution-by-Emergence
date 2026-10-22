@@ -131,15 +131,71 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 
 ### The formal layer
 
-[`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean): core Lean, 9 results and 2 witnesses, outside the core. Worlds, actions and outcomes; an objective scores outcomes and is an input; a representation maps worlds to the holder's states and may lose information; a policy reads only the representation.
+[`ModelsForActing.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean): core Lean, 16 results and 3 witnesses, outside the core. Worlds, actions and outcomes; an objective scores outcomes and is an input; a representation maps worlds to the holder's states and may lose information; a policy reads only the representation.
 
 - **Which distinctions are needed** (`suffices_iff`): a representation is enough to act optimally exactly when every set of worlds it conflates shares an optimal action. This answers the reader's open question in the simplest setting: the distinctions a decision needs are the ones it depends on, and no others. It is close to the information-losing "model" of the good-regulator result, without its entropy criterion.
 - **Both are needed, neither replaces the other:** without the right distinctions, no objective-processing helps (`conflating_without_common_optimum_fails`); without an objective, exact knowledge does not choose (`knowledge_does_not_choose`).
 - **Why the world model should be aimless** (`outcome_tracking_serves_every_objective` and the witness): a representation scoped by one purpose can be coarser and cheaper, and fails when the purpose changes. A world model that tracks what actions yield, without reference to any purpose, serves them all. This puts the author's correction in formal terms: an aimless world model is not a lack of purpose but what makes it usable for any.
 - **Outside checks** (`certifiable_iff_separates`, `lossy_self_assessment_fails`, `outside_channel_can_certify`): certification is possible exactly when the signals available separate what must be told apart; the source of the separating channel does not matter.
+- **Good enough** (`near_suffices_iff`, `optimal_iff_near_zero`, `tolerance_monotone`, `finer_never_worse`): the same condition holds with a tolerance; a larger tolerance never needs more distinctions, and a finer representation is never worse.
+- **The price of a distinction** (`distinction_never_hurts`, `keeping_distinction_pays_iff`, `irrelevant_distinction_worthless`, with a witness), for two worlds and two actions: keeping a distinction pays exactly when the decision it improves is worth more than its upkeep, and a distinction the decision does not depend on is worth nothing. The same arithmetic as waiting in [acting under time](../cooperative-correction/ACTING_UNDER_TIME.md): a distinction is information kept.
 - **Two collapses** (`aligned_measure_is_safe_target` with its witness, `wishful_belief_is_wrong_somewhere`).
 
-**How much it says.** The results are close to their definitions: `suffices_iff` is a choice-swap, `certifiable_iff_separates` a statement of when a function exists. Their use is to make explicit which conditions do the work. Not modelled: uncertainty within a representation state beyond requiring one action that is optimal in all conflated worlds; the cost of keeping a distinction; time; learning; several holders.
+**How much it says.** The results are close to their definitions: `suffices_iff` is a choice-swap, `certifiable_iff_separates` a statement of when a function exists. Their use is to make explicit which conditions do the work. The cost of a distinction is modelled only for two worlds and two actions. Not modelled: uncertainty within a representation state beyond a worst case over the conflated worlds; changing purposes; time; learning; several holders. The tests below take up the first three.
+
+### Tests (M0–M3)
+
+[simulation/sim_models.py](simulation/sim_models.py), seeded, numpy only; results in [RESULTS_MODELS.md](simulation/results/RESULTS_MODELS.md). Expectations were written into the script before the first run, and nothing was tuned after it. The setting: 12 worlds generated from 6 outcome profiles, so half the differences between worlds make no difference to any outcome; 4 actions; objectives score outcomes from 0 to 9; each period the world is drawn anew.
+
+**M0, a check.** In 3,000 random small cases, a brute-force search for a working policy and the class condition of `near_suffices_iff` agree every time. This checks the code more than the theorem.
+
+**M1, purposes change.** Four holders:
+- **none:** keeps no distinctions;
+- **aimless:** keeps every distinction some action's outcome reflects: 6 classes;
+- **scoped:** keeps only what the current purpose needs: about 2.7 classes;
+- **accumulating:** keeps what it learned for every purpose so far.
+
+When the purpose changes, learning the new distinctions takes 20 periods. Cost per period is regret plus upkeep per class.
+
+| Purpose changes per period | Upkeep 0 | Upkeep 0.1 | Upkeep 0.3 | Upkeep 1 |
+|---|---|---|---|---|
+| 0 | aimless = scoped = accumulating | scoped = accumulating | scoped = accumulating | none |
+| 0.005 | aimless | scoped | scoped | none |
+| 0.02 | aimless | scoped | scoped | none |
+| 0.05 | aimless | accumulating (0.593; aimless 0.600) | scoped | none |
+| 0.1 | aimless | aimless | scoped | none |
+| 0.2 | aimless | aimless | scoped | none |
+
+(The cheapest holder in each case; full numbers in the results file.)
+
+- **The expectation held, with one outcome not expected:** with a stable purpose, scoped is cheapest; as purposes change faster, the aimless world model wins, and it wins sooner the cheaper distinctions are to keep. With dear distinctions (upkeep 1, against an average regret of about 1.25 for knowing nothing), keeping no distinctions at all is cheapest, in every row; the expectations did not foresee that.
+- **The accumulating holder** mostly ends between the scoped and the aimless one, and at moderate change and cheap upkeep it is narrowly the cheapest of all. Keeping what was learned for past purposes moves a holder toward the aimless world model. When purposes change faster than distinctions can be learned (every 5 periods against 20 to learn), it never gets there.
+- **So, in this model:** the aimless world model is not free. It is what pays when purposes change faster than distinctions can be learned, relative to what keeping them costs. That fits the definition, where purpose may set the scope. It qualifies, without contradicting, the formal result that an aimless world model serves every purpose: it serves every purpose, at a price.
+- **Caveats, which favour the aimless holder:** it starts with its distinctions, and their learning is not charged; every holder knows its objective at once and recomputes its policy for free; the scoped holder's grouping is first-fit, so slightly coarser groupings may exist.
+
+**M2, how many distinctions.** Classes needed for K purposes at once, at tolerance ε (first fit, an upper bound on the minimum):
+
+| Purposes K | ε = 0 | ε = 1 | ε = 2 | ε = 3 | ε = 5 |
+|---|---|---|---|---|---|
+| 1 | 2.68 | 2.26 | 2.00 | 1.77 | 1.28 |
+| 4 | 4.72 | 3.92 | 3.30 | 2.64 | 1.85 |
+| 16 | 5.81 | 5.51 | 4.80 | 3.90 | 2.64 |
+| 64 | 5.84 | 5.88 | 5.63 | 5.09 | 3.70 |
+
+As expected: fewer distinctions are needed as the tolerance grows, more as the purposes multiply, approaching the 6 outcome profiles and never above them. Never 12: the differences between worlds that no outcome reflects are never needed, for any purpose. (At K = 64 the grouping gives 5.84 at ε = 0 and 5.88 at ε = 1; the minimum cannot rise with ε, by `tolerance_monotone`; first fit can.)
+
+**M3, outside checks.** A holder assesses whether its state is safe; 30% of its internal states conflate safe and unsafe. Channels have 15% error.
+
+| Channel | Accuracy | On the holder's blind states |
+|---|---|---|
+| none | 0.853 | 0.501 |
+| an instrument | 0.956 | 0.850 |
+| a peer with its own, independent blind spots | 0.924 | 0.744 |
+| one peer sharing the holder's blind spots | 0.852 | 0.499 |
+| five peers sharing the holder's blind spots | 0.853 | 0.501 |
+
+- **As expected:** peers that share the blind spots add nothing, however many. Count origins, not copies.
+- **The instrument and the independent peer both help.** The difference between them is what the formal result predicts. The peer's own blind spots cover 30% of states, which gives 0.7 × 0.85 + 0.3 × 0.5 ≈ 0.745. The kind of source does not matter; whether it separates the states does.
 
 ## 6. When the boundaries collapse
 
@@ -157,7 +213,7 @@ With the labels of the [creed](../discovarianism/CREED.md). Where the reader pro
 
 ## 7. Open questions
 
-- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." Answered only in the simplest setting (`suffices_iff`: the distinctions the decision depends on). Still open: "sufficiently good" rather than optimal, uncertainty within a state, the cost of each distinction, and the time to acquire it, which would join this module to [`ActingUnderTime.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ActingUnderTime.lean). The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is still a guess.
+- **Which capabilities are necessary?** In the reader's words: "which capabilities are necessary for maintaining sufficiently accurate beliefs and making sufficiently good decisions under finite time and resources." Answered in simple settings: formally, the distinctions the decision depends on, to within a tolerance (`near_suffices_iff`), each worth keeping exactly when it is worth more than its upkeep (`keeping_distinction_pays_iff`); in simulation, how many that is for a given tolerance and number of purposes (M2), and when an aimless world model pays as purposes change (M1). Still open: uncertainty within a state, learning from noisy evidence, and real data. The first draft guessed: a world model, a self-model, resources, dependencies, a policy of acting, and correction routes. That is still a guess.
 - **Does the separation hold in architectures that fold it together?** In predictive-processing accounts, action is often described as making predictions come true, and preferred outcomes can be written as expected observations. If so, objectives and representations share one currency. The thesis would then hold only as a functional distinction, not an architectural one. A lead from Clark (2013), whose claims beyond the abstract's first sentence are not checked here.
 - **Does the policy of acting need a definition of its own,** alongside the definition of a world model? Open in D35.
 - **No independent review yet,** and one model family wrote this note (working agreement 7).

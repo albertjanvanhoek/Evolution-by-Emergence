@@ -36,7 +36,16 @@ Results.
    `outside_channel_can_certify` shows that any channel that separates them
    suffices, whatever its source: an instrument, the environment's feedback,
    or another intelligence.
-6. Two collapses between kinds.  `aligned_measure_is_safe_target`: a measure
+6. Good enough, and the price of a distinction.  `near_suffices_iff` is
+   `suffices_iff` with a tolerance `ε` (`optimal_iff_near_zero` at `ε = 0`);
+   a larger tolerance never needs more distinctions (`tolerance_monotone`); a
+   finer representation is never worse (`finer_never_worse`).  For two worlds:
+   a distinction never hurts before its upkeep (`distinction_never_hurts`);
+   keeping it pays exactly when the decision it improves is worth more than its
+   upkeep (`keeping_distinction_pays_iff`, the arithmetic of `waiting_pays_iff`);
+   and a distinction the decision does not depend on is worth nothing
+   (`irrelevant_distinction_worthless`).
+7. Two collapses between kinds.  `aligned_measure_is_safe_target`: a measure
    aligned with a target on every state the actions can reach is a safe target;
    the witness `measure_turned_target_witness` shows it fails once an action
    reaches a state where the alignment was never checked.
@@ -46,10 +55,12 @@ Results.
 How much it says.  The results are close to their definitions; `suffices_iff`
 is a choice-swap and `certifiable_iff_separates` a restatement of what it means
 for a function to exist.  Their use is to make explicit which conditions do the
-work.  Not modelled: uncertainty within a representation state (beyond
-requiring one action to be optimal in all conflated worlds), costs of keeping
-distinctions, time, learning, and several holders.  Values enter only through
-`u`, which is an input (D7).  Core Lean only.
+work.  The cost of a distinction is modelled only for two worlds and two
+actions.  Not modelled: uncertainty within a representation state beyond a
+worst case over the conflated worlds, changing purposes, time, learning, and
+several holders; the simulations in `research/world-model/simulation/` test
+some of these.  Values enter only through `u`, which is an input (D7).  Core
+Lean only.
 -/
 
 /-- What each action yields in each world. -/
@@ -180,6 +191,104 @@ theorem wishful_belief_is_wrong_somewhere {Obj W : Type} (belief : Obj → W) (o
   · left
     exact h₁
 
+/-! ## Good enough, finer, and the price of a distinction -/
+
+/-- Action `a` is within `ε` of the best in world `w`. -/
+def Near {W A O : Type} (E : Env W A O) (u : O → Int) (ε : Int) (w : W) (a : A) : Prop :=
+  ∀ b, u (E.res w b) ≤ u (E.res w a) + ε
+
+/-- A representation is good enough, to within `ε`, for objective `u`. -/
+def NearSuffices {W A O M : Type} (E : Env W A O) (u : O → Int) (ε : Int) (c : W → M) :
+    Prop :=
+  ∃ π : M → A, ∀ w, Near E u ε w (π (c w))
+
+/-- Optimal is near to within zero. -/
+theorem optimal_iff_near_zero {W A O : Type} (E : Env W A O) (u : O → Int) (w : W) (a : A) :
+    Optimal E u w a ↔ Near E u 0 w a := by
+  unfold Optimal Near
+  simp only [Int.add_zero]
+
+/-- **Which distinctions are needed for good enough.**  A representation is good
+enough to within `ε` exactly when every set of worlds it conflates shares an
+action within `ε` of the best in each of them. -/
+theorem near_suffices_iff {W A O M : Type} [Inhabited A] (E : Env W A O) (u : O → Int)
+    (ε : Int) (c : W → M) :
+    NearSuffices E u ε c ↔ ∀ w, ∃ a, ∀ w', c w' = c w → Near E u ε w' a := by
+  constructor
+  · intro ⟨π, hπ⟩ w
+    refine ⟨π (c w), fun w' h => ?_⟩
+    have hw' := hπ w'
+    rw [h] at hw'
+    exact hw'
+  · intro H
+    classical
+    refine ⟨fun m => if h : ∃ w, c w = m then Classical.choose (H (Classical.choose h))
+      else default, ?_⟩
+    intro w
+    have h : ∃ w0, c w0 = c w := ⟨w, rfl⟩
+    simp only [dif_pos h]
+    exact Classical.choose_spec (H (Classical.choose h)) w (Classical.choose_spec h).symm
+
+/-- A larger tolerance never needs more distinctions. -/
+theorem tolerance_monotone {W A O M : Type} (E : Env W A O) (u : O → Int) {ε ε' : Int}
+    (hε : ε ≤ ε') (c : W → M) : NearSuffices E u ε c → NearSuffices E u ε' c := by
+  intro ⟨π, hπ⟩
+  refine ⟨π, fun w b => ?_⟩
+  have := hπ w b
+  omega
+
+/-- **A finer representation is never worse.**  If `c'` can be computed from `c`,
+whatever `c'` makes good enough, `c` does too. -/
+theorem finer_never_worse {W A O M M' : Type} (E : Env W A O) (u : O → Int) (ε : Int)
+    (c : W → M) (g : M → M') :
+    NearSuffices E u ε (fun w => g (c w)) → NearSuffices E u ε c := by
+  intro ⟨π, hπ⟩
+  exact ⟨fun m => π (g m), hπ⟩
+
+/-- Two worlds with weights `p₁, p₂` and two actions `X, Y`, paying `x₁, x₂` and
+`y₁, y₂`.  Merged: one action for both worlds, chosen on the weights. -/
+def mergedValue (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ : Int) : Int :=
+  max ((p₁ : Int) * x₁ + (p₂ : Int) * x₂) ((p₁ : Int) * y₁ + (p₂ : Int) * y₂)
+
+/-- Kept apart: the best action in each world. -/
+def separatedValue (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ : Int) : Int :=
+  (p₁ : Int) * max x₁ y₁ + (p₂ : Int) * max x₂ y₂
+
+/-- **A distinction never hurts, before its upkeep.** -/
+theorem distinction_never_hurts (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ : Int) :
+    mergedValue p₁ p₂ x₁ x₂ y₁ y₂ ≤ separatedValue p₁ p₂ x₁ x₂ y₁ y₂ := by
+  unfold mergedValue separatedValue
+  have h1 : (p₁ : Int) * x₁ ≤ (p₁ : Int) * max x₁ y₁ :=
+    Int.mul_le_mul_of_nonneg_left (Int.le_max_left _ _) (Int.natCast_nonneg _)
+  have h2 : (p₂ : Int) * x₂ ≤ (p₂ : Int) * max x₂ y₂ :=
+    Int.mul_le_mul_of_nonneg_left (Int.le_max_left _ _) (Int.natCast_nonneg _)
+  have h3 : (p₁ : Int) * y₁ ≤ (p₁ : Int) * max x₁ y₁ :=
+    Int.mul_le_mul_of_nonneg_left (Int.le_max_right _ _) (Int.natCast_nonneg _)
+  have h4 : (p₂ : Int) * y₂ ≤ (p₂ : Int) * max x₂ y₂ :=
+    Int.mul_le_mul_of_nonneg_left (Int.le_max_right _ _) (Int.natCast_nonneg _)
+  omega
+
+/-- **The price of a distinction.**  Keeping two worlds apart at upkeep `k` beats
+merging them exactly when the decision it improves is worth more than `k`.  The
+same arithmetic as `waiting_pays_iff` in `ActingUnderTime.lean`: a distinction is
+information kept, and pays as information does. -/
+theorem keeping_distinction_pays_iff (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ k : Int) :
+    mergedValue p₁ p₂ x₁ x₂ y₁ y₂ < separatedValue p₁ p₂ x₁ x₂ y₁ y₂ - k ↔
+      k < separatedValue p₁ p₂ x₁ x₂ y₁ y₂ - mergedValue p₁ p₂ x₁ x₂ y₁ y₂ := by
+  omega
+
+/-- **A distinction the decision does not depend on is worth nothing.**  If the
+same action is at least as good in both worlds, merging them loses nothing, so
+any positive upkeep makes merging strictly better. -/
+theorem irrelevant_distinction_worthless (p₁ p₂ : Nat) (x₁ x₂ y₁ y₂ k : Int)
+    (h₁ : y₁ ≤ x₁) (h₂ : y₂ ≤ x₂) (hk : 0 < k) :
+    separatedValue p₁ p₂ x₁ x₂ y₁ y₂ - k < mergedValue p₁ p₂ x₁ x₂ y₁ y₂ := by
+  unfold separatedValue mergedValue
+  rw [Int.max_eq_left h₁, Int.max_eq_left h₂]
+  have := Int.le_max_left ((p₁ : Int) * x₁ + (p₂ : Int) * x₂)
+    ((p₁ : Int) * y₁ + (p₂ : Int) * y₂)
+  omega
+
 /-! ## Witnesses -/
 
 /-- Rain or not; umbrella or not.  The outcome records both. -/
@@ -248,6 +357,17 @@ theorem measure_turned_target_witness :
   · intro h
     have := h 1
     revert this; decide
+
+/-- **Witness: the price of a distinction.**  Rain with weight 3, dry with weight 7;
+an umbrella costs 1, getting wet 10.  Not knowing the weather, the best is to
+always carry one (−10 in total); knowing it is worth −3, so the distinction is
+worth 7: it pays at an upkeep of 5, not at 8. -/
+theorem distinction_price_witness :
+    mergedValue 3 7 (-1) (-1) (-10) 0 = -10 ∧
+    separatedValue 3 7 (-1) (-1) (-10) 0 = -3 ∧
+    mergedValue 3 7 (-1) (-1) (-10) 0 < separatedValue 3 7 (-1) (-1) (-10) 0 - 5 ∧
+    ¬ (mergedValue 3 7 (-1) (-1) (-10) 0 < separatedValue 3 7 (-1) (-1) (-10) 0 - 8) := by
+  decide
 
 end ModelsForActing
 end CumulativeAccessibility
