@@ -1,0 +1,316 @@
+{
+  "parameters": {
+    "clusters": [
+      3,
+      1,
+      1,
+      1
+    ],
+    "sigma": 1.0,
+    "n": 5,
+    "sigma_r": 0.5,
+    "sigma_b": 0.5,
+    "rho": 0.8,
+    "tau": 0.0,
+    "T": 40,
+    "t_bridge": 10,
+    "drift": 0.0,
+    "t_drift": 25,
+    "drift_cluster": 0,
+    "window": 40,
+    "reps": 4000,
+    "seed": 1
+  },
+  "E1": {
+    "dependent sources: clusters 3+1+1+1": {
+      "independent (per agent)": {
+        "rmse": 0.5027264447537609,
+        "coverage95": 0.22029166666666666,
+        "mean_reported_se": 0.07071067811865472
+      },
+      "lone agent, same total data": {
+        "rmse": 0.501931967993023,
+        "coverage95": 0.08725,
+        "mean_reported_se": 0.028867513459481294
+      },
+      "forced consensus (equal weights)": {
+        "rmse": 0.27540695747796645,
+        "coverage95": 0.15625,
+        "mean_reported_se": 0.028867513459481294
+      },
+      "cooperative, no provenance": {
+        "rmse": 0.2754069574779664,
+        "coverage95": 0.76975,
+        "mean_reported_se": 0.18053733813845113,
+        "coverage95_t": 0.86725
+      },
+      "cooperative, with provenance": {
+        "rmse": 0.24629923319040903,
+        "coverage95": 0.861,
+        "mean_reported_se": 0.2313331695256931,
+        "coverage95_t": 0.9595
+      },
+      "cooperative, provenance + robust": {
+        "rmse": 0.2680838605632922,
+        "coverage95": 0.909,
+        "mean_reported_se": 0.2899298613665512,
+        "coverage95_t": 0.97575
+      }
+    },
+    "independent sources: 6 x 1": {
+      "independent (per agent)": {
+        "rmse": 0.5043117920623124,
+        "coverage95": 0.2185,
+        "mean_reported_se": 0.07071067811865472
+      },
+      "lone agent, same total data": {
+        "rmse": 0.5002294346340327,
+        "coverage95": 0.09025,
+        "mean_reported_se": 0.028867513459481294
+      },
+      "forced consensus (equal weights)": {
+        "rmse": 0.2068727663200962,
+        "coverage95": 0.20825,
+        "mean_reported_se": 0.028867513459481294
+      },
+      "cooperative, no provenance": {
+        "rmse": 0.2068727663200962,
+        "coverage95": 0.90175,
+        "mean_reported_se": 0.19882703237351973,
+        "coverage95_t": 0.95425
+      },
+      "cooperative, with provenance": {
+        "rmse": 0.2068727663200962,
+        "coverage95": 0.90175,
+        "mean_reported_se": 0.19882703237351973,
+        "coverage95_t": 0.95425
+      },
+      "cooperative, provenance + robust": {
+        "rmse": 0.23409654298855517,
+        "coverage95": 0.93375,
+        "mean_reported_se": 0.24918991967373227,
+        "coverage95_t": 0.9735
+      }
+    },
+    "shared error in all methods (tau = 0.4)": {
+      "cooperative, with provenance": {
+        "rmse": 0.4734918335930803,
+        "coverage95": 0.63225,
+        "mean_reported_se": 0.2321376887479552,
+        "coverage95_t": 0.818
+      }
+    }
+  },
+  "E2": {
+    "clusters 3+1+1+1, drift 0.0": {
+      "independent (per agent)": {
+        "rmse": 0.5179012565480271,
+        "coverage95": 0.4066666666666667,
+        "mean_reported_se": 0.14142135623730945
+      },
+      "forced consensus": {
+        "rmse": 0.27573722245587806,
+        "coverage95": 0.33025,
+        "mean_reported_se": 0.05773502691896259
+      },
+      "cooperative, with provenance": {
+        "rmse": 0.25149275023747236,
+        "coverage95": 0.88475,
+        "mean_reported_se": 0.24778083354775357,
+        "coverage95_t": 0.97075
+      },
+      "cooperative, provenance + robust": {
+        "rmse": 0.27915337966080395,
+        "coverage95": 0.9255,
+        "mean_reported_se": 0.31054371868539954,
+        "coverage95_t": 0.98825
+      },
+      "detection": {
+        "drifted_origin_flagged": 0.0,
+        "any_other_origin_flagged": 0.0
+      }
+    },
+    "clusters 3+1+1+1, drift 1.0": {
+      "independent (per agent)": {
+        "rmse": 0.8717403507361124,
+        "coverage95": 0.244375,
+        "mean_reported_se": 0.14142135623730945
+      },
+      "forced consensus": {
+        "rmse": 0.5677853045375711,
+        "coverage95": 0.072,
+        "mean_reported_se": 0.05773502691896259
+      },
+      "cooperative, with provenance": {
+        "rmse": 0.35367085500644374,
+        "coverage95": 0.8725,
+        "mean_reported_se": 0.3422299828069709,
+        "coverage95_t": 0.97075
+      },
+      "cooperative, provenance + robust": {
+        "rmse": 0.35782343675460593,
+        "coverage95": 0.92275,
+        "mean_reported_se": 0.4289168374519767,
+        "coverage95_t": 0.9835
+      },
+      "detection": {
+        "drifted_origin_flagged": 0.82275,
+        "any_other_origin_flagged": 0.00075
+      }
+    },
+    "monoculture: one method, 6 agents, drift 0.0": {
+      "independent (per agent)": {
+        "rmse": 0.5219997996611928,
+        "coverage95": 0.40329166666666666,
+        "mean_reported_se": 0.14142135623730945
+      },
+      "forced consensus": {
+        "rmse": 0.505872617017936,
+        "coverage95": 0.17575,
+        "mean_reported_se": 0.05773502691896259
+      },
+      "detection": {
+        "note": "no relative signal exists: every agent shares the drift; detection is impossible from inside the collective"
+      }
+    },
+    "monoculture: one method, 6 agents, drift 1.0": {
+      "independent (per agent)": {
+        "rmse": 1.1300577998194439,
+        "coverage95": 0.07591666666666666,
+        "mean_reported_se": 0.14142135623730945
+      },
+      "forced consensus": {
+        "rmse": 1.1226994008794213,
+        "coverage95": 0.0245,
+        "mean_reported_se": 0.05773502691896259
+      },
+      "detection": {
+        "note": "no relative signal exists: every agent shares the drift; detection is impossible from inside the collective"
+      }
+    }
+  },
+  "E3": {
+    "analytic": {
+      "cheap methods (F=5), large method error": {
+        "k_star": 42,
+        "rmse_at_k_star": 0.10590344114861326,
+        "rmse_at_k1": 0.5025252685881778,
+        "rmse_floor_tau": 0.0
+      },
+      "costly methods (F=60), large method error": {
+        "k_star": 5,
+        "rmse_at_k_star": 0.24494897427831783,
+        "rmse_at_k1": 0.5029325764658601,
+        "rmse_floor_tau": 0.0
+      },
+      "cheap methods, small method error (sigma_b=0.1)": {
+        "k_star": 15,
+        "rmse_at_k_star": 0.061184881658705066,
+        "rmse_at_k1": 0.11194483270620513,
+        "rmse_floor_tau": 0.0
+      },
+      "cheap methods, shared floor (tau=0.4)": {
+        "k_star": 42,
+        "rmse_at_k_star": 0.4137819943486157,
+        "rmse_at_k1": 0.6422862645033134,
+        "rmse_floor_tau": 0.4
+      }
+    },
+    "simulated_check": {
+      "k=1": {
+        "rmse_sim": 0.5037721240451619,
+        "rmse_formula": 0.5025252685881778
+      },
+      "k=3": {
+        "rmse_sim": 0.2924946314816759,
+        "rmse_formula": 0.2931394479266411
+      },
+      "k=8": {
+        "rmse_sim": 0.18430207867466536,
+        "rmse_formula": 0.18446619684315546
+      },
+      "k=20": {
+        "rmse_sim": 0.1265437472110234,
+        "rmse_formula": 0.12583057392117916
+      },
+      "k=42": {
+        "rmse_sim": 0.10512377594566927,
+        "rmse_formula": 0.10590344114861326
+      },
+      "k=70": {
+        "rmse_sim": 0.15184005599046702,
+        "rmse_formula": 0.1535298947157477
+      }
+    },
+    "localization": {
+      "k=2": {
+        "faulty_method_identified": 0.5
+      },
+      "k=3": {
+        "faulty_method_identified": 1.0
+      },
+      "k=4": {
+        "faulty_method_identified": 1.0
+      },
+      "k=6": {
+        "faulty_method_identified": 1.0
+      }
+    }
+  },
+  "E4": {
+    "baseline: reproducible, committed, faithful records": {
+      "bridges_per_100_ops": 6.4127777777777775,
+      "exposures_per_100_ops": 7.566666666666666,
+      "share_of_exposures_correct": 1.0
+    },
+    "irreproducible operations (p_rep = 0.5)": {
+      "bridges_per_100_ops": 0.3283333333333333,
+      "exposures_per_100_ops": 0.3711111111111111,
+      "share_of_exposures_correct": 1.0
+    },
+    "two in three operations outside the models (commit 0.33)": {
+      "bridges_per_100_ops": 0.8783333333333333,
+      "exposures_per_100_ops": 1.04,
+      "share_of_exposures_correct": 1.0
+    },
+    "theory-laden records (0.3)": {
+      "bridges_per_100_ops": 1.285,
+      "exposures_per_100_ops": 1.4172222222222222,
+      "share_of_exposures_correct": 1.0
+    },
+    "theory-laden records (0.6)": {
+      "bridges_per_100_ops": 0.1461111111111111,
+      "exposures_per_100_ops": 0.14888888888888888,
+      "share_of_exposures_correct": 1.0
+    },
+    "shared recording error (0.2): one faulty channel feeds both": {
+      "bridges_per_100_ops": 3.8333333333333335,
+      "exposures_per_100_ops": 4.455,
+      "share_of_exposures_correct": 1.0
+    },
+    "shared recording error (0.5)": {
+      "bridges_per_100_ops": 1.366111111111111,
+      "exposures_per_100_ops": 1.5927777777777778,
+      "share_of_exposures_correct": 0.9947680502267178
+    },
+    "systematic shared recording error (0.2 of operations)": {
+      "bridges_per_100_ops": 7.18,
+      "exposures_per_100_ops": 8.592777777777778,
+      "share_of_exposures_correct": 0.9411004073188077
+    }
+  },
+  "E5": {
+    "share of agents that act on exposed errors = 1.0": {
+      "rmse_per_agent": 0.2694167560221358,
+      "spread_between_agents": 0.099860795901021
+    },
+    "share of agents that act on exposed errors = 0.5": {
+      "rmse_per_agent": 0.40641847004493037,
+      "spread_between_agents": 0.2825629574670362
+    },
+    "share of agents that act on exposed errors = 0.0": {
+      "rmse_per_agent": 0.5024550973129527,
+      "spread_between_agents": 0.39359596514436795
+    }
+  }
+}

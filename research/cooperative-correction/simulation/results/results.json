@@ -12,208 +12,224 @@
     "sigma_b": 0.5,
     "rho": 0.8,
     "tau": 0.0,
+    "distinct_targets": false,
+    "sd_theta": 1.0,
     "T": 40,
     "t_bridge": 10,
     "drift": 0.0,
-    "t_drift": 25,
-    "drift_cluster": 0,
+    "drift_origin": 0,
+    "real_change": 0.0,
+    "change_agent": 3,
+    "t_change": 25,
     "window": 40,
     "reps": 4000,
     "seed": 1
   },
   "E1": {
-    "dependent sources: clusters 3+1+1+1": {
-      "independent (per agent)": {
-        "rmse": 0.5027264447537609,
-        "coverage95": 0.22029166666666666,
-        "mean_reported_se": 0.07071067811865472
+    "dependent origins (3+1+1+1)": {
+      "collective": {
+        "consensus, sampling-noise SE": {
+          "rmse": 0.27540695747796645,
+          "coverage95": 0.15625,
+          "mean_se": 0.028867513459481294
+        },
+        "consensus, SE from agents' spread": {
+          "rmse": 0.27540695747796645,
+          "coverage95": 0.85625,
+          "mean_se": 0.17605377817310403
+        },
+        "provenance, no bridge": {
+          "rmse": 0.24629923319040903,
+          "coverage95": 0.95225,
+          "mean_se": 0.22705381846831885
+        },
+        "provenance + median, no bridge": {
+          "rmse": 0.2671266868228924,
+          "coverage95": 0.97425,
+          "mean_se": 0.28456655068634407
+        },
+        "provenance + bridge-corrected agents, averaged": {
+          "rmse": 0.24629923319040903,
+          "coverage95": 0.9595,
+          "mean_se": 0.2313331695256931
+        },
+        "lone agent, same total data": {
+          "rmse": 0.501931967993023,
+          "coverage95": 0.08725,
+          "mean_se": 0.028867513459481294
+        }
       },
-      "lone agent, same total data": {
-        "rmse": 0.501931967993023,
-        "coverage95": 0.08725,
-        "mean_reported_se": 0.028867513459481294
-      },
-      "forced consensus (equal weights)": {
-        "rmse": 0.27540695747796645,
-        "coverage95": 0.15625,
-        "mean_reported_se": 0.028867513459481294
-      },
-      "cooperative, no provenance": {
-        "rmse": 0.2754069574779664,
-        "coverage95": 0.76975,
-        "mean_reported_se": 0.18053733813845113,
-        "coverage95_t": 0.86725
-      },
-      "cooperative, with provenance": {
-        "rmse": 0.24629923319040903,
-        "coverage95": 0.861,
-        "mean_reported_se": 0.2313331695256931,
-        "coverage95_t": 0.9595
-      },
-      "cooperative, provenance + robust": {
-        "rmse": 0.2680838605632922,
-        "coverage95": 0.909,
-        "mean_reported_se": 0.2899298613665512,
-        "coverage95_t": 0.97575
+      "identity_gap": 6.661338147750939e-16,
+      "individual_rmse": {
+        "own_estimate": 0.5027264447537609,
+        "corrected_by_bridge": 0.26847519583799156,
+        "adopting_the_provenance_estimate": 0.24629923319040903
       }
     },
-    "independent sources: 6 x 1": {
-      "independent (per agent)": {
-        "rmse": 0.5043117920623124,
-        "coverage95": 0.2185,
-        "mean_reported_se": 0.07071067811865472
+    "independent origins (6 x 1)": {
+      "collective": {
+        "consensus, sampling-noise SE": {
+          "rmse": 0.2068727663200962,
+          "coverage95": 0.20825,
+          "mean_se": 0.028867513459481294
+        },
+        "consensus, SE from agents' spread": {
+          "rmse": 0.2068727663200962,
+          "coverage95": 0.9505,
+          "mean_se": 0.1956617406003093
+        },
+        "provenance, no bridge": {
+          "rmse": 0.2068727663200962,
+          "coverage95": 0.9505,
+          "mean_se": 0.1956617406003093
+        },
+        "provenance + median, no bridge": {
+          "rmse": 0.2323011690608274,
+          "coverage95": 0.97525,
+          "mean_se": 0.2452228594943677
+        },
+        "provenance + bridge-corrected agents, averaged": {
+          "rmse": 0.2068727663200962,
+          "coverage95": 0.95425,
+          "mean_se": 0.19882703237351973
+        },
+        "lone agent, same total data": {
+          "rmse": 0.5002294346340327,
+          "coverage95": 0.09025,
+          "mean_se": 0.028867513459481294
+        }
       },
-      "lone agent, same total data": {
-        "rmse": 0.5002294346340327,
-        "coverage95": 0.09025,
-        "mean_reported_se": 0.028867513459481294
-      },
-      "forced consensus (equal weights)": {
-        "rmse": 0.2068727663200962,
-        "coverage95": 0.20825,
-        "mean_reported_se": 0.028867513459481294
-      },
-      "cooperative, no provenance": {
-        "rmse": 0.2068727663200962,
-        "coverage95": 0.90175,
-        "mean_reported_se": 0.19882703237351973,
-        "coverage95_t": 0.95425
-      },
-      "cooperative, with provenance": {
-        "rmse": 0.2068727663200962,
-        "coverage95": 0.90175,
-        "mean_reported_se": 0.19882703237351973,
-        "coverage95_t": 0.95425
-      },
-      "cooperative, provenance + robust": {
-        "rmse": 0.23409654298855517,
-        "coverage95": 0.93375,
-        "mean_reported_se": 0.24918991967373227,
-        "coverage95_t": 0.9735
+      "identity_gap": 6.661338147750939e-16,
+      "individual_rmse": {
+        "own_estimate": 0.5043117920623124,
+        "corrected_by_bridge": 0.2325980010877503,
+        "adopting_the_provenance_estimate": 0.2068727663200962
       }
     },
-    "shared error in all methods (tau = 0.4)": {
-      "cooperative, with provenance": {
-        "rmse": 0.4734918335930803,
-        "coverage95": 0.63225,
-        "mean_reported_se": 0.2321376887479552,
-        "coverage95_t": 0.818
+    "error shared by all methods (tau = 0.4)": {
+      "collective": {
+        "consensus, sampling-noise SE": {
+          "rmse": 0.4925741036019311,
+          "coverage95": 0.09075,
+          "mean_se": 0.028867513459481294
+        },
+        "consensus, SE from agents' spread": {
+          "rmse": 0.4925741036019311,
+          "coverage95": 0.62425,
+          "mean_se": 0.1766788921695121
+        },
+        "provenance, no bridge": {
+          "rmse": 0.4734918335930802,
+          "coverage95": 0.8015,
+          "mean_se": 0.2280626452519731
+        },
+        "provenance + median, no bridge": {
+          "rmse": 0.4837637904181384,
+          "coverage95": 0.86875,
+          "mean_se": 0.28583091329429794
+        },
+        "provenance + bridge-corrected agents, averaged": {
+          "rmse": 0.4734918335930803,
+          "coverage95": 0.818,
+          "mean_se": 0.2321376887479552
+        }
       }
     }
   },
   "E2": {
-    "clusters 3+1+1+1, drift 0.0": {
-      "independent (per agent)": {
-        "rmse": 0.5179012565480271,
-        "coverage95": 0.4066666666666667,
-        "mean_reported_se": 0.14142135623730945
-      },
-      "forced consensus": {
+    "collective estimate after drift 0.0": {
+      "consensus, sampling-noise SE": {
         "rmse": 0.27573722245587806,
         "coverage95": 0.33025,
-        "mean_reported_se": 0.05773502691896259
+        "mean_se": 0.05773502691896259
       },
-      "cooperative, with provenance": {
+      "consensus, SE from agents' spread": {
+        "rmse": 0.27573722245587806,
+        "coverage95": 0.86425,
+        "mean_se": 0.1837839070099478
+      },
+      "provenance, no bridge": {
         "rmse": 0.25149275023747236,
-        "coverage95": 0.88475,
-        "mean_reported_se": 0.24778083354775357,
-        "coverage95_t": 0.97075
+        "coverage95": 0.95075,
+        "mean_se": 0.23394707101950452
       },
-      "cooperative, provenance + robust": {
-        "rmse": 0.27915337966080395,
-        "coverage95": 0.9255,
-        "mean_reported_se": 0.31054371868539954,
-        "coverage95_t": 0.98825
+      "provenance + median, no bridge": {
+        "rmse": 0.27494466607874823,
+        "coverage95": 0.9705,
+        "mean_se": 0.293205864108745
       },
-      "detection": {
-        "drifted_origin_flagged": 0.0,
-        "any_other_origin_flagged": 0.0
+      "provenance + bridge-corrected agents, averaged": {
+        "rmse": 0.25149275023747236,
+        "coverage95": 0.97075,
+        "mean_se": 0.24778083354775357
       }
     },
-    "clusters 3+1+1+1, drift 1.0": {
-      "independent (per agent)": {
-        "rmse": 0.8717403507361124,
-        "coverage95": 0.244375,
-        "mean_reported_se": 0.14142135623730945
-      },
-      "forced consensus": {
+    "collective estimate after drift 1.0": {
+      "consensus, sampling-noise SE": {
         "rmse": 0.5677853045375711,
         "coverage95": 0.072,
-        "mean_reported_se": 0.05773502691896259
+        "mean_se": 0.05773502691896259
       },
-      "cooperative, with provenance": {
+      "consensus, SE from agents' spread": {
+        "rmse": 0.5677853045375711,
+        "coverage95": 0.751,
+        "mean_se": 0.2772383468058396
+      },
+      "provenance, no bridge": {
         "rmse": 0.35367085500644374,
-        "coverage95": 0.8725,
-        "mean_reported_se": 0.3422299828069709,
-        "coverage95_t": 0.97075
+        "coverage95": 0.959,
+        "mean_se": 0.3327867770525499
       },
-      "cooperative, provenance + robust": {
-        "rmse": 0.35782343675460593,
-        "coverage95": 0.92275,
-        "mean_reported_se": 0.4289168374519767,
-        "coverage95_t": 0.9835
+      "provenance + median, no bridge": {
+        "rmse": 0.35406207221760433,
+        "coverage95": 0.97775,
+        "mean_se": 0.41708166767996085
       },
-      "detection": {
-        "drifted_origin_flagged": 0.82275,
-        "any_other_origin_flagged": 0.00075
+      "provenance + bridge-corrected agents, averaged": {
+        "rmse": 0.35367085500644374,
+        "coverage95": 0.97075,
+        "mean_se": 0.3422299828069709
       }
     },
-    "monoculture: one method, 6 agents, drift 0.0": {
-      "independent (per agent)": {
-        "rmse": 0.5219997996611928,
-        "coverage95": 0.40329166666666666,
-        "mean_reported_se": 0.14142135623730945
+    "detection of the drift at 0.5% false alarms per origin": {
+      "reference (bridge)": {
+        "threshold": 3.3737933776915687,
+        "drifted_origin_flagged": 0.9865,
+        "other_origins_flagged": 0.037083333333333336
       },
-      "forced consensus": {
-        "rmse": 0.505872617017936,
-        "coverage95": 0.17575,
-        "mean_reported_se": 0.05773502691896259
-      },
-      "detection": {
-        "note": "no relative signal exists: every agent shares the drift; detection is impossible from inside the collective"
+      "ordinary measurements": {
+        "threshold": 3.2820220558923743,
+        "drifted_origin_flagged": 0.997,
+        "other_origins_flagged": 0.07008333333333333
       }
     },
-    "monoculture: one method, 6 agents, drift 1.0": {
-      "independent (per agent)": {
-        "rmse": 1.1300577998194439,
-        "coverage95": 0.07591666666666666,
-        "mean_reported_se": 0.14142135623730945
-      },
-      "forced consensus": {
-        "rmse": 1.1226994008794213,
-        "coverage95": 0.0245,
-        "mean_reported_se": 0.05773502691896259
-      },
-      "detection": {
-        "note": "no relative signal exists: every agent shares the drift; detection is impossible from inside the collective"
-      }
+    "monoculture (one method, 6 agents), drift 1.0": {
+      "consensus_rmse": 1.1226994008794213,
+      "note": "no relative signal exists inside the collective, by reference or ordinary data"
     }
   },
   "E3": {
+    "assumptions": "k methods with independent, exchangeable errors of sd sigma_b, identical fixed cost F, sampling noise sigma, an error tau shared by all, a budget B, and mean squared error as the loss",
     "analytic": {
       "cheap methods (F=5), large method error": {
         "k_star": 42,
         "rmse_at_k_star": 0.10590344114861326,
-        "rmse_at_k1": 0.5025252685881778,
-        "rmse_floor_tau": 0.0
+        "rmse_at_k1": 0.5025252685881778
       },
       "costly methods (F=60), large method error": {
         "k_star": 5,
         "rmse_at_k_star": 0.24494897427831783,
-        "rmse_at_k1": 0.5029325764658601,
-        "rmse_floor_tau": 0.0
+        "rmse_at_k1": 0.5029325764658601
       },
       "cheap methods, small method error (sigma_b=0.1)": {
         "k_star": 15,
         "rmse_at_k_star": 0.061184881658705066,
-        "rmse_at_k1": 0.11194483270620513,
-        "rmse_floor_tau": 0.0
+        "rmse_at_k1": 0.11194483270620513
       },
-      "cheap methods, shared floor (tau=0.4)": {
+      "cheap methods, shared error (tau=0.4)": {
         "k_star": 42,
         "rmse_at_k_star": 0.4137819943486157,
-        "rmse_at_k1": 0.6422862645033134,
-        "rmse_floor_tau": 0.4
+        "rmse_at_k1": 0.6422862645033134
       }
     },
     "simulated_check": {
@@ -243,74 +259,117 @@
       }
     },
     "localization": {
-      "k=2": {
-        "faulty_method_identified": 0.5
+      "k=3, faulty=1": {
+        "fault = 1 x noise": 0.41735,
+        "fault = 2 x noise": 0.6059,
+        "fault = 3 x noise": 0.786,
+        "fault = 5 x noise": 0.9566
       },
-      "k=3": {
-        "faulty_method_identified": 1.0
+      "k=3, faulty=2": "not attempted: no majority of sound methods",
+      "k=5, faulty=1": {
+        "fault = 1 x noise": 0.32315,
+        "fault = 2 x noise": 0.5763,
+        "fault = 3 x noise": 0.8078,
+        "fault = 5 x noise": 0.98265
       },
-      "k=4": {
-        "faulty_method_identified": 1.0
+      "k=5, faulty=2": {
+        "fault = 1 x noise": 0.1391,
+        "fault = 2 x noise": 0.27905,
+        "fault = 3 x noise": 0.50715,
+        "fault = 5 x noise": 0.86775
       },
-      "k=6": {
-        "faulty_method_identified": 1.0
-      }
+      "k=7, faulty=1": {
+        "fault = 1 x noise": 0.259,
+        "fault = 2 x noise": 0.5442,
+        "fault = 3 x noise": 0.79935,
+        "fault = 5 x noise": 0.98715
+      },
+      "k=7, faulty=2": {
+        "fault = 1 x noise": 0.09585,
+        "fault = 2 x noise": 0.28625,
+        "fault = 3 x noise": 0.58075,
+        "fault = 5 x noise": 0.94245
+      },
+      "k=2": "not possible: two methods that disagree are symmetric"
     }
   },
   "E4": {
-    "baseline: reproducible, committed, faithful records": {
-      "bridges_per_100_ops": 6.4127777777777775,
-      "exposures_per_100_ops": 7.566666666666666,
+    "reproducible, committed, faithful records": {
+      "bridges_per_100_ops": 6.544444444444444,
+      "exposures_per_100_ops": 7.625,
       "share_of_exposures_correct": 1.0
     },
-    "irreproducible operations (p_rep = 0.5)": {
-      "bridges_per_100_ops": 0.3283333333333333,
-      "exposures_per_100_ops": 0.3711111111111111,
+    "irreproducible operations (half of records noise)": {
+      "bridges_per_100_ops": 0.33111111111111113,
+      "exposures_per_100_ops": 0.3827777777777778,
       "share_of_exposures_correct": 1.0
     },
-    "two in three operations outside the models (commit 0.33)": {
-      "bridges_per_100_ops": 0.8783333333333333,
-      "exposures_per_100_ops": 1.04,
+    "two in three operations outside the models": {
+      "bridges_per_100_ops": 0.8622222222222222,
+      "exposures_per_100_ops": 0.995,
       "share_of_exposures_correct": 1.0
     },
-    "theory-laden records (0.3)": {
-      "bridges_per_100_ops": 1.285,
-      "exposures_per_100_ops": 1.4172222222222222,
+    "records shaped by each agent's OWN theory (0.3)": {
+      "bridges_per_100_ops": 1.2927777777777778,
+      "exposures_per_100_ops": 1.4133333333333333,
       "share_of_exposures_correct": 1.0
     },
-    "theory-laden records (0.6)": {
-      "bridges_per_100_ops": 0.1461111111111111,
-      "exposures_per_100_ops": 0.14888888888888888,
+    "records shaped by each agent's OWN theory (0.6)": {
+      "bridges_per_100_ops": 0.1272222222222222,
+      "exposures_per_100_ops": 0.13055555555555556,
       "share_of_exposures_correct": 1.0
     },
-    "shared recording error (0.2): one faulty channel feeds both": {
-      "bridges_per_100_ops": 3.8333333333333335,
-      "exposures_per_100_ops": 4.455,
-      "share_of_exposures_correct": 1.0
+    "records shaped by a SHARED theory (0.2 of operations)": {
+      "bridges_per_100_ops": 7.167222222222223,
+      "exposures_per_100_ops": 8.472777777777777,
+      "share_of_exposures_correct": 0.946692020195397
     },
-    "shared recording error (0.5)": {
-      "bridges_per_100_ops": 1.366111111111111,
-      "exposures_per_100_ops": 1.5927777777777778,
-      "share_of_exposures_correct": 0.9947680502267178
-    },
-    "systematic shared recording error (0.2 of operations)": {
-      "bridges_per_100_ops": 7.18,
-      "exposures_per_100_ops": 8.592777777777778,
-      "share_of_exposures_correct": 0.9411004073188077
+    "records shaped by a SHARED theory (0.5 of operations)": {
+      "bridges_per_100_ops": 8.024444444444445,
+      "exposures_per_100_ops": 9.834444444444445,
+      "share_of_exposures_correct": 0.8903513727262456
     }
   },
   "E5": {
-    "share of agents that act on exposed errors = 1.0": {
+    "share acting on exposed errors = 1.0 (random agents per run)": {
       "rmse_per_agent": 0.2694167560221358,
       "spread_between_agents": 0.099860795901021
     },
-    "share of agents that act on exposed errors = 0.5": {
-      "rmse_per_agent": 0.40641847004493037,
-      "spread_between_agents": 0.2825629574670362
+    "share acting on exposed errors = 0.5 (random agents per run)": {
+      "rmse_per_agent": 0.402293559572171,
+      "spread_between_agents": 0.27176364288793464
     },
-    "share of agents that act on exposed errors = 0.0": {
+    "share acting on exposed errors = 0.0 (random agents per run)": {
       "rmse_per_agent": 0.5024550973129527,
       "spread_between_agents": 0.39359596514436795
+    },
+    "note": "the correction rule is supplied by the model, not learned by the agents; with a common target, adopting the provenance estimate does as well as the bridge correction (E1)"
+  },
+  "E6": {
+    "estimates": {
+      "own measurement only (no bridge)": {
+        "level_rmse": 0.5005760560020021,
+        "comparison_rmse": 0.6526075088915824
+      },
+      "corrected through the bridge (provenance center)": {
+        "level_rmse": 0.26781308514150637,
+        "comparison_rmse": 0.16190267412352238
+      },
+      "note": "the bridge removes relative method errors, so comparisons between targets improve; the absolute level keeps the average method error, which needs an anchor"
+    },
+    "detection: instrument drift in origin 0 and a REAL change in origin 1, at 0.5% false alarms": {
+      "reference (bridge)": {
+        "threshold": 3.2514293291786394,
+        "drifted_origin_flagged": 0.99125,
+        "other_origins_flagged": 0.050125,
+        "origin_with_a_real_change_flagged": 0.04475
+      },
+      "ordinary measurements": {
+        "threshold": 3.293346648173927,
+        "drifted_origin_flagged": 0.7715,
+        "other_origins_flagged": 0.453875,
+        "origin_with_a_real_change_flagged": 0.37775
+      }
     }
   }
 }

@@ -24,17 +24,25 @@ outcomes.  An agent has
 Two agents may differ in both.  In particular, they need not agree on what an
 outcome *means*: their `predict` maps can disagree at every world.
 
+What is shared is an **operational compatibility assumption**: both agents use
+the same types of worlds, operations and outcomes, and identify exactly which
+operation was performed.  This is much less than a shared interpretation, but it
+is not nothing, and how two agents with different vocabularies would reach it is
+not modelled here.
+
 The key move.  A shared standard of evidence is usually pictured as a shared
 interpretation of observations.  This module uses something thinner:
 * a **shared record**: both agents accept *which outcome occurred* when an
   operation was performed, without agreeing on what it shows;
-* **commitment**: each agent states in advance which outcomes its model allows,
-  and that set excludes something (`Committed`).
+* **commitment**: each agent states in advance which outcomes its model allows;
+  that set is not empty and excludes something (`Committed`).
 
 An operation whose committed outcome sets are disjoint **discriminates** the two
-agents (`Discriminates`).  Such an operation is a **bridge** built from public
-material, committed predictions and a shared record, rather than one assumed
-beforehand.
+agents (`Discriminates`).  An available shared operation that discriminates is
+an `AvailableBridge`.  What the module shows is **bridge discovery among available
+operations**: the consequences of having such an operation, judged by public
+material, committed predictions and a shared record.  It does not model how a
+new operation, or a shared vocabulary for one, is constructed.
 
 Results.  Logical layer:
 1. `discrimination_exposes_one`: whatever outcome a discriminating operation
@@ -49,22 +57,32 @@ Results.  Logical layer:
    and whose operation model is right about it accommodates the outcome.
 5. `uncommitted_agent_is_never_exposed`: an agent that allows every outcome is
    never exposed by any record, and no operation discriminates it from anyone
-   who allows some outcome.
+   who allows some outcome.  At the other extreme, an agent with an empty support
+   allows nothing and so discriminates trivially from everyone
+   (`empty_support_discriminates_trivially`); it is not committed
+   (`empty_support_is_not_committed`), which is why commitment requires a
+   nonempty allowed set.
 6. `bridge_needs_no_shared_interpretation` (in the witness): two agents whose
    operation models disagree at every world can still be discriminated by an
    operation.
 7. `disputed_record_hides_exposure` (in the witness): if the agents record
    different outcomes, a discriminating operation can leave both accommodated,
    each by its own record.  A shared record is needed.
-8. `bridges_grow_with_shared_operations`: every operation that discriminates
-   within a set of shared operations still does within a larger set; bridges
-   accumulate as the shared record grows.
+8. `bridges_grow_with_shared_operations`: for fixed agent models, every
+   operation that discriminates within a set of shared operations still does
+   within a larger set.  After an agent revises, earlier bridges need not remain.
 
 Behavioural layer, separately:
-9. `Responsive` says an agent changes its model after an exposure.
-   `responsive_agent_revises` restates it for one exposure, and the witness
-   gives an agent that is exposed and does not change.  Exposure does not imply
-   revision; revision is an assumption about agents.
+9. `Responsive` says only that an agent *changes* its model after an exposure.
+   `responsive_agent_revises` restates it, and the witness gives an agent that is
+   exposed and does not change: exposure does not imply revision.
+10. `Corrective` is stronger: after an exposure, the new model allows what was
+   recorded.  Even that does not mean improvement: an agent can always meet it
+   by becoming vague, allowing every outcome
+   (`accommodation_can_be_bought_by_vagueness`), and the vague model is then no
+   longer committed (`vague_revision_gives_up_commitment`).  A genuinely
+   improving revision needs a condition on what is kept as well as on what is
+   accommodated, which is not formalized here.
 
 Scope.  The results are close to their definitions.  They show which
 ingredients each conjecture needs, not that real agents have them.  Not
@@ -84,21 +102,29 @@ variable {W Op O : Type}
 def Allows (A : Agent W Op O) (op : Op) (o : O) : Prop :=
   ∃ w, A.support w ∧ A.predict op w = o
 
-/-- The agent has committed on `op`: its model rules out at least one outcome. -/
-def Committed (A : Agent W Op O) (op : Op) : Prop := ∃ o, ¬ Allows A op o
+/-- The agent has committed on `op`: its model allows at least one outcome and
+rules out at least one. -/
+def Committed (A : Agent W Op O) (op : Op) : Prop :=
+  (∃ o, Allows A op o) ∧ ∃ o, ¬ Allows A op o
 
 /-- The operation discriminates the two agents: no outcome is allowed by both. -/
 def Discriminates (A B : Agent W Op O) (op : Op) : Prop :=
   ∀ o, ¬ (Allows A op o ∧ Allows B op o)
 
-/-- The bridges among a list of shared operations: those that discriminate. -/
-def Bridge (A B : Agent W Op O) (shared : Op → Prop) (op : Op) : Prop :=
+/-- An available bridge: a shared operation that discriminates the two agents.
+Being available is not the same as having been performed or recorded. -/
+def AvailableBridge (A B : Agent W Op O) (shared : Op → Prop) (op : Op) : Prop :=
   shared op ∧ Discriminates A B op
 
 /-- Behavioural: an agent is responsive on `op` if, whenever its model does not
 allow the recorded outcome, its next model differs from its current one. -/
 def Responsive (A A' : Agent W Op O) (op : Op) (recorded : O) : Prop :=
   ¬ Allows A op recorded → A' ≠ A
+
+/-- Behavioural, stronger: after an exposure, the next model allows what was
+recorded. -/
+def Corrective (A A' : Agent W Op O) (op : Op) (recorded : O) : Prop :=
+  ¬ Allows A op recorded → Allows A' op recorded
 
 /-- **A discriminating operation exposes at least one agent.**  Whatever the
 recorded outcome, at least one of the two models does not allow it. -/
@@ -151,13 +177,28 @@ allows some outcome. -/
 theorem discrimination_requires_commitment {A B : Agent W Op O} {op : Op} {oA oB : O}
     (h : Discriminates A B op) (hA : Allows A op oA) (hB : Allows B op oB) :
     Committed A op ∧ Committed B op :=
-  ⟨⟨oB, (exposure_does_not_say_who h hA hB).2⟩, ⟨oA, (exposure_does_not_say_who h hA hB).1⟩⟩
+  ⟨⟨⟨oA, hA⟩, oB, (exposure_does_not_say_who h hA hB).2⟩,
+    ⟨⟨oB, hB⟩, oA, (exposure_does_not_say_who h hA hB).1⟩⟩
+
+/-- **The degenerate case.**  An agent with an empty support allows no outcome,
+so every operation discriminates it from every other agent. -/
+theorem empty_support_discriminates_trivially {A B : Agent W Op O} (op : Op)
+    (hA : ∀ w, ¬ A.support w) : Discriminates A B op :=
+  fun _ h => by
+    obtain ⟨w, hw, _⟩ := h.1
+    exact hA w hw
+
+/-- **An agent with an empty support is not committed.** -/
+theorem empty_support_is_not_committed {A : Agent W Op O} (op : Op)
+    (hA : ∀ w, ¬ A.support w) : ¬ Committed A op := by
+  rintro ⟨⟨o, w, hw, _⟩, _⟩
+  exact hA w hw
 
 /-- **Bridges accumulate.**  A bridge within a set of shared operations is still
 a bridge within any larger set. -/
 theorem bridges_grow_with_shared_operations {A B : Agent W Op O}
     {shared shared' : Op → Prop} (hsub : ∀ op, shared op → shared' op) (op : Op)
-    (h : Bridge A B shared op) : Bridge A B shared' op :=
+    (h : AvailableBridge A B shared op) : AvailableBridge A B shared' op :=
   ⟨hsub op h.1, h.2⟩
 
 /-- **Behavioural: a responsive agent revises after an exposure.**  This
@@ -165,6 +206,17 @@ restates the assumption; it is not derived from the logical layer. -/
 theorem responsive_agent_revises {A A' : Agent W Op O} {op : Op} {recorded : O}
     (hr : Responsive A A' op recorded) (hexp : ¬ Allows A op recorded) : A' ≠ A :=
   hr hexp
+
+/-- **Accommodation can be bought by vagueness.**  A next model that allows
+every outcome meets the corrective condition, whatever was recorded. -/
+theorem accommodation_can_be_bought_by_vagueness {A A' : Agent W Op O} {op : Op}
+    (recorded : O) (hall : ∀ o, Allows A' op o) : Corrective A A' op recorded :=
+  fun _ => hall recorded
+
+/-- **A vague revision gives up commitment.** -/
+theorem vague_revision_gives_up_commitment {A' : Agent W Op O} {op : Op}
+    (hall : ∀ o, Allows A' op o) : ¬ Committed A' op :=
+  fun ⟨_, o, ho⟩ => ho (hall o)
 
 /-- Two worlds, `false` and `true`; one operation; outcomes are `Nat`.
 * Agent `A` keeps only world `false`; its model says the operation yields `0` in

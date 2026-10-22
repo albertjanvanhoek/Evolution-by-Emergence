@@ -1,4 +1,4 @@
-> **Review brief, October 2026.** For independent readers from other model families, or human readers, before any assumption in [research/cooperative-correction/](../README.md) is presented as established (D35). Two messages, so that the reader's own answers are written before it sees any of the material. Kept verbatim as the record of what was asked.
+> **Review brief, October 2026.** For independent readers from other model families, or human readers, before any assumption in [research/cooperative-correction/](../README.md) is presented as established (D35). Two messages, so that the reader's own answers are written before it sees any of the material. Kept verbatim as the record of what was asked. Used for review A; for later readers, the material in message 2 is the current version.
 
 ## Message 1. Send this alone, and wait for the answer
 

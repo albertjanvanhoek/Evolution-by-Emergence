@@ -1,33 +1,35 @@
-"""Simulations for research/cooperative-correction (D35).
+"""Simulations for research/cooperative-correction (D35), VERSION 2.
 
-Compares, on the SAME raw data:
-  - independent agents (each uses only its own method),
-  - a lone agent given the same total amount of data as the whole group,
-  - forced consensus (everyone adopts the equal-weight average and treats
-    agents as independent),
-  - cooperative error identification: agents keep their own methods and
-    records, use a shared bridge operation (a common reference measurement)
-    to estimate *relative* errors, and correct their own estimates.
-    Two variants: without provenance (agents counted as independent) and with
-    provenance (agents grouped by the origin of their errors, "count origins,
-    not copies"), plus a robust variant that uses the median across origins.
+Version 2 answers review A (sources/REVIEW_A.md). Version 1 (sim_v1.py) credited
+a gain in the collective estimate to bridge-mediated correction; review A showed
+that the correction cancels exactly when corrected estimates are averaged, so the
+gain came from weighting error origins (provenance). Version 2 therefore
+separates four outcomes and gives every claim a matched comparator:
 
-Dependence between sources is explicit: agents in the same cluster share part
-of their systematic error. A global component shared by every method can be
-switched on: it is the error no amount of cross-checking can see.
+  (a) the collective point estimate,
+  (b) the correction of individual agents,
+  (c) calibration of the stated uncertainty, with matched interval methods,
+  (d) detection of a new error, at a matched false-alarm rate.
+
+It also adds the case the bridge exists for: agents that measure DIFFERENT
+quantities, so that method error cannot be told apart from real differences by
+comparing the ordinary measurements.
 
 Experiments
-  E1  accuracy and calibration, with and without dependence
-  E2  a later drift in one cluster: contamination and detection; a monoculture
-      (all agents one method) for comparison
-  E3  how many independent methods to keep under a fixed budget, and how many
-      are needed to localize a single faulty one
-  E4  bridge construction: committed predictions + shared records, with
-      irreproducible operations, uncommitted agents and theory-laden records
-      as failure modes
-  E5  responsiveness: what happens when some agents do not act on exposed errors
+  E1  common target: collective estimate and calibration, matched comparators;
+      individual correction with and without the bridge
+  E2  common target: a later instrument drift; contamination; detection by the
+      reference versus by the ordinary measurements, at matched false alarms
+  E3  diversity under a budget (formula and check); localization of faulty
+      methods, conditional on fault size, noise and the number of faults
+  E4  bridge discovery among available operations: committed predictions and
+      shared records; irreproducible operations, operations outside the models,
+      theory-laden records by different theories and by a shared theory
+  E5  responsiveness, randomized across error origins
+  E6  distinct targets: individual levels, comparisons, and detection of an
+      instrument drift when real changes also happen
 
-Run:  python3 sim.py            (writes results/ and figures/ next to this file)
+Run:  python3 sim.py     (writes results/ and figures/ next to this file)
 All randomness is seeded. numpy and matplotlib only.
 """
 
@@ -46,8 +48,6 @@ os.makedirs(RES, exist_ok=True)
 os.makedirs(FIG, exist_ok=True)
 
 Z95 = 1.959964
-# two-sided 97.5% Student t quantiles, for intervals whose spread is estimated
-# from few error origins (df = origins - 1)
 T975 = {1: 12.706, 2: 4.303, 3: 3.182, 4: 2.776, 5: 2.571, 6: 2.447, 7: 2.365,
         8: 2.306, 9: 2.262, 10: 2.228}
 
@@ -63,19 +63,23 @@ class World:
     n: int = 5                # observations per agent per round
     sigma_r: float = 0.5      # noise of one reference (bridge) reading
     sigma_b: float = 0.5      # sd of an agent's systematic error
-    rho: float = 0.8          # share of bias variance common within a cluster
-    tau: float = 0.0          # sd of an error shared by ALL methods (invisible)
-    T: int = 40               # rounds
-    t_bridge: int = 10        # round from which the bridge operation exists
-    drift: float = 0.0        # extra error from round t_drift in drift_cluster
-    t_drift: int = 25
-    drift_cluster: int = 0
-    window: int = 40          # rounds used by every estimator (same for all)
+    rho: float = 0.8          # share of bias variance common within an origin
+    tau: float = 0.0          # sd of an error shared by ALL methods
+    distinct_targets: bool = False  # each agent measures its own quantity
+    sd_theta: float = 1.0     # spread of the agents' true quantities, if distinct
+    T: int = 40
+    t_bridge: int = 10
+    drift: float = 0.0        # instrument drift from t_change in drift_origin
+    drift_origin: int = 0
+    real_change: float = 0.0  # a REAL change from t_change in the target of agent change_agent
+    change_agent: int = 3
+    t_change: int = 25
+    window: int = 40
     reps: int = 4000
     seed: int = 1
 
 
-def agent_cluster_ids(clusters):
+def origin_ids(clusters):
     ids = []
     for k, size in enumerate(clusters):
         ids += [k] * size
@@ -83,381 +87,358 @@ def agent_cluster_ids(clusters):
 
 
 def generate(w: World):
-    """Return round means y[r,i,t], reference readings ref[r,i,t], biases."""
     rng = np.random.default_rng(w.seed)
-    cid = agent_cluster_ids(w.clusters)
-    N, C, R, T = len(cid), len(w.clusters), w.reps, w.T
-    theta = 0.0
-    g = rng.normal(0, w.tau, size=(R, 1))                                     # shared by all
-    c = rng.normal(0, np.sqrt(w.rho) * w.sigma_b, size=(R, C))                 # per cluster
-    u = rng.normal(0, np.sqrt(1 - w.rho) * w.sigma_b, size=(R, N))             # per agent
-    beta = g + c[:, cid] + u                                                   # R x N
+    cid = origin_ids(w.clusters)
+    N, K, R, T = len(cid), len(w.clusters), w.reps, w.T
+    g = rng.normal(0, w.tau, size=(R, 1))
+    c = rng.normal(0, np.sqrt(w.rho) * w.sigma_b, size=(R, K))
+    u = rng.normal(0, np.sqrt(1 - w.rho) * w.sigma_b, size=(R, N))
+    beta = g + c[:, cid] + u
+    if w.distinct_targets:
+        theta = rng.normal(0, w.sd_theta, size=(R, N))
+    else:
+        theta = np.zeros((R, N))
+    theta_t = np.repeat(theta[:, :, None], T, axis=2)
+    if w.real_change != 0.0:
+        theta_t[:, w.change_agent, w.t_change:] += w.real_change
     drift = np.zeros((R, N, T))
     if w.drift != 0.0:
-        drift[:, cid == w.drift_cluster, w.t_drift:] = w.drift
-    y = theta + beta[:, :, None] + drift + rng.normal(0, w.sigma / np.sqrt(w.n), size=(R, N, T))
-    r0 = rng.normal(0, 1.0, size=(R, 1, 1))                                    # unknown reference value
+        drift[:, cid == w.drift_origin, w.t_change:] = w.drift
+    y = theta_t + beta[:, :, None] + drift + rng.normal(0, w.sigma / np.sqrt(w.n), size=(R, N, T))
+    r0 = rng.normal(0, 1.0, size=(R, 1, 1))
     ref = r0 + beta[:, :, None] + drift + rng.normal(0, w.sigma_r, size=(R, N, T))
-    return dict(theta=theta, y=y, ref=ref, beta=beta, cid=cid, N=N, C=C)
+    return dict(theta=theta, theta_t=theta_t, y=y, ref=ref, beta=beta, cid=cid, N=N, K=K)
 
 
-# ---------------------------------------------------------------------------
-# Estimators. Every one sees the same window of the same draws.
-# ---------------------------------------------------------------------------
-
-def window_slices(w: World):
+def windows(w):
     t0 = w.T - w.window
-    r0 = max(t0, w.t_bridge)
-    return slice(t0, w.T), slice(r0, w.T), w.window, w.T - r0
+    return slice(t0, w.T), slice(max(t0, w.t_bridge), w.T), w.window, w.T - max(t0, w.t_bridge)
 
 
-def independent(w, d):
-    ys, _, wy, _ = window_slices(w)
-    est = d["y"][:, :, ys].mean(axis=2)
-    se = np.full_like(est, w.sigma / np.sqrt(w.n * wy))
-    return est, se
-
-
-def lone_agent_same_total(w, d, rng):
-    """Agent 0's method, but with N times the data: information controlled."""
-    ys, _, wy, _ = window_slices(w)
-    N = d["N"]
-    sys_err = d["beta"][:, 0]                                       # bias of agent 0
-    drift = 0.0
-    if w.drift != 0.0 and d["cid"][0] == w.drift_cluster:
-        drift = w.drift * max(0, w.T - max(w.t_drift, w.T - w.window)) / wy
-    est = d["theta"] + sys_err + drift + rng.normal(0, w.sigma / np.sqrt(w.n * wy * N), size=sys_err.shape)
-    se = np.full_like(est, w.sigma / np.sqrt(w.n * wy * N))
-    return est, se
-
-
-def consensus(w, d):
-    m, _ = independent(w, d)
-    est = m.mean(axis=1)
-    se = np.full_like(est, w.sigma / np.sqrt(w.n * w.window * d["N"]))
-    return est, se
-
-
-def cooperative(w, d, provenance=True, robust=False, responsive=None):
-    """Error identification through the bridge, then each agent corrects itself.
-
-    Returns the collective estimate (the agents' corrected estimates agree up to
-    noise; we report their average over origins) and its reported SE, plus the
-    per-agent corrected estimates.
-    responsive: boolean array (N,) of agents that act on their exposed error.
-    """
-    ys, rs, wy, wr = window_slices(w)
-    if wr <= 1:
-        est, se = consensus(w, d)
-        return est, se, None
-    cid, C, N = d["cid"], d["C"], d["N"]
-    m = d["y"][:, :, ys].mean(axis=2)               # own estimates
-    gi = d["ref"][:, :, rs].mean(axis=2)            # own reference readings
-    if provenance:
-        groups = [np.where(cid == k)[0] for k in range(C)]
-    else:
-        groups = [np.array([i]) for i in range(N)]  # every agent its own origin
-    G_of = np.stack([gi[:, idx].mean(axis=1) for idx in groups], axis=1)   # R x origins
-    M_of = np.stack([m[:, idx].mean(axis=1) for idx in groups], axis=1)
-    center = np.median(G_of, axis=1) if robust else G_of.mean(axis=1)
-    rel = gi - center[:, None]                      # estimated relative error of each agent
-    if responsive is None:
-        responsive = np.ones(N, dtype=bool)
-    corrected = np.where(responsive[None, :], m - rel, m)
-    # collective estimate: corrected estimates averaged over origins
-    corr_of = np.stack([corrected[:, idx].mean(axis=1) for idx in groups], axis=1)
-    est = np.median(corr_of, axis=1) if robust else corr_of.mean(axis=1)
-    # reported uncertainty: spread of systematic errors between origins, estimated
-    # from the bridge, plus sampling noise
-    K = G_of.shape[1]
-    sizes = np.array([len(idx) for idx in groups])
-    ref_noise_share = np.mean(w.sigma_r ** 2 / (wr * sizes))
-    sb2 = np.clip(G_of.var(axis=1, ddof=1) - ref_noise_share, 0, None)
-    noise_var = np.sum(w.sigma ** 2 / (w.n * wy * sizes)) / K ** 2
-    ref_var = np.sum(w.sigma_r ** 2 / (wr * sizes)) / K ** 2
-    se = np.sqrt(sb2 / K + noise_var + ref_var)
-    if robust:
-        se = se * 1.2533  # efficiency of the median for normal data
-    cooperative.last_df = K - 1
-    return est, se, corrected
-
-
-def summarize(est, se, theta, df=None):
-    err = est - theta
-    out = dict(rmse=float(np.sqrt(np.mean(err ** 2))),
-               coverage95=float(np.mean(np.abs(err) <= Z95 * se)),
-               mean_reported_se=float(np.mean(se)))
-    if df is not None:
-        out["coverage95_t"] = float(np.mean(np.abs(err) <= T975[df] * se))
-    return out
-
-
-def coop_summary(w, d, **kw):
-    e, s, _ = cooperative(w, d, **kw)
-    return summarize(e, s, d["theta"], df=cooperative.last_df)
+def origin_means(x, cid, K):
+    return np.stack([x[:, cid == k].mean(axis=1) for k in range(K)], axis=1)
 
 
 # ---------------------------------------------------------------------------
-# E1: accuracy and calibration, with and without dependence
+# Collective estimators for a common target (E1, E2)
 # ---------------------------------------------------------------------------
+
+def collective_estimates(w, d):
+    """Every estimator sees the same window of the same data. Each returns a
+    point estimate, a standard error and the critical value its interval uses."""
+    ys, rs, wy, wr = windows(w)
+    cid, N, K = d["cid"], d["N"], d["K"]
+    m = d["y"][:, :, ys].mean(axis=2)
+    gi = d["ref"][:, :, rs].mean(axis=2)
+    M = origin_means(m, cid, K)
+    G = origin_means(gi, cid, K)
+    out = {}
+    # consensus, stating only sampling noise (version 1's comparator)
+    out["consensus, sampling-noise SE"] = (m.mean(axis=1), np.full(m.shape[0], w.sigma / np.sqrt(w.n * wy * N)), Z95)
+    # consensus with uncertainty from the spread of the agents (matched method)
+    out["consensus, SE from agents' spread"] = (m.mean(axis=1), m.std(axis=1, ddof=1) / np.sqrt(N), T975[N - 1])
+    # provenance-aware aggregation, no bridge
+    out["provenance, no bridge"] = (M.mean(axis=1), M.std(axis=1, ddof=1) / np.sqrt(K), T975[K - 1])
+    out["provenance + median, no bridge"] = (np.median(M, axis=1), 1.2533 * M.std(axis=1, ddof=1) / np.sqrt(K), T975[K - 1])
+    # bridge-mediated correction, averaged: identical point estimate (shown below)
+    rel = gi - G.mean(axis=1)[:, None]
+    corrected = m - rel
+    est_bridge = origin_means(corrected, cid, K).mean(axis=1)
+    sizes = np.array(w.clusters)
+    sb2 = np.clip(G.var(axis=1, ddof=1) - np.mean(w.sigma_r ** 2 / (wr * sizes)), 0, None)
+    se_bridge = np.sqrt(sb2 / K + np.sum(w.sigma ** 2 / (w.n * wy * sizes)) / K ** 2
+                        + np.sum(w.sigma_r ** 2 / (wr * sizes)) / K ** 2)
+    out["provenance + bridge-corrected agents, averaged"] = (est_bridge, se_bridge, T975[K - 1])
+    identity_gap = float(np.max(np.abs(est_bridge - M.mean(axis=1))))
+    return out, identity_gap, m, corrected
+
+
+def score(est, se, crit, truth=0.0):
+    err = est - truth
+    return dict(rmse=float(np.sqrt(np.mean(err ** 2))),
+                coverage95=float(np.mean(np.abs(err) <= crit * se)),
+                mean_se=float(np.mean(se)))
+
 
 def e1():
     out = {}
-    for label, clusters in [("dependent sources: clusters 3+1+1+1", [3, 1, 1, 1]),
-                            ("independent sources: 6 x 1", [1] * 6)]:
+    for label, clusters in [("dependent origins (3+1+1+1)", [3, 1, 1, 1]), ("independent origins (6 x 1)", [1] * 6)]:
         w = World(clusters=clusters, seed=11)
         d = generate(w)
+        ests, gap, m, corrected = collective_estimates(w, d)
+        rows = {k: score(*v) for k, v in ests.items()}
+        # information control: one method with the whole group's data
         rng = np.random.default_rng(12)
-        rows = {}
-        e, s = independent(w, d); rows["independent (per agent)"] = summarize(e, s, d["theta"])
-        e, s = lone_agent_same_total(w, d, rng); rows["lone agent, same total data"] = summarize(e, s, d["theta"])
-        e, s = consensus(w, d); rows["forced consensus (equal weights)"] = summarize(e, s, d["theta"])
-        rows["cooperative, no provenance"] = coop_summary(w, d, provenance=False)
-        rows["cooperative, with provenance"] = coop_summary(w, d, provenance=True)
-        rows["cooperative, provenance + robust"] = coop_summary(w, d, provenance=True, robust=True)
-        out[label] = rows
-    # the invisible floor: an error shared by every method
+        lone = d["beta"][:, 0] + rng.normal(0, w.sigma / np.sqrt(w.n * w.window * d["N"]), size=d["beta"].shape[0])
+        rows["lone agent, same total data"] = score(lone, np.full_like(lone, w.sigma / np.sqrt(w.n * w.window * d["N"])), Z95)
+        # individual correction
+        M = origin_means(m, d["cid"], d["K"]).mean(axis=1)
+        indiv = dict(
+            own_estimate=float(np.sqrt(np.mean(m ** 2))),
+            corrected_by_bridge=float(np.sqrt(np.mean(corrected ** 2))),
+            adopting_the_provenance_estimate=float(np.sqrt(np.mean(M ** 2))))
+        out[label] = dict(collective=rows, identity_gap=gap, individual_rmse=indiv)
     w = World(tau=0.4, seed=13)
     d = generate(w)
-    out["shared error in all methods (tau = 0.4)"] = {"cooperative, with provenance": coop_summary(w, d, provenance=True)}
+    ests, _, _, _ = collective_estimates(w, d)
+    out["error shared by all methods (tau = 0.4)"] = dict(collective={k: score(*v) for k, v in ests.items()})
     return out
 
 
 # ---------------------------------------------------------------------------
-# E2: a later drift in one cluster
+# Detection at a matched false-alarm rate (E2, E6)
 # ---------------------------------------------------------------------------
 
-def detect_flags(w, d, robust=True):
-    """Flag origins whose relative reference reading moved between the window
-    before the drift and the window after it, beyond 4 standard errors."""
-    cid, C = d["cid"], d["C"]
-    pre = slice(w.t_bridge, w.t_drift)
-    post = slice(w.t_drift, w.T)
-    groups = [np.where(cid == k)[0] for k in range(C)]
+def change_stats(w, d, source):
+    """Per origin: change in its value relative to the median origin, between
+    the window before t_change and the window after, in standard-error units."""
+    cid, K = d["cid"], d["K"]
+    x = d[source]
+    pre, post = slice(w.t_bridge, w.t_change), slice(w.t_change, w.T)
+    sizes = np.array(w.clusters)
 
     def rel(sl):
-        G_of = np.stack([d["ref"][:, idx, sl].mean(axis=(1, 2)) for idx in groups], axis=1)
-        center = np.median(G_of, axis=1) if robust else G_of.mean(axis=1)
-        return G_of - center[:, None]
+        O = np.stack([x[:, cid == k, sl].mean(axis=(1, 2)) for k in range(K)], axis=1)
+        return O - np.median(O, axis=1)[:, None]
 
-    change = rel(post) - rel(pre)
-    sizes = np.array([len(idx) for idx in groups])
-    se = np.sqrt(w.sigma_r ** 2 / sizes * (1 / (w.t_drift - w.t_bridge) + 1 / (w.T - w.t_drift)) * 2)
-    return np.abs(change) > 4 * se[None, :]
+    noise = (w.sigma_r if source == "ref" else w.sigma / np.sqrt(w.n))
+    se = noise * np.sqrt((1 / (w.t_change - w.t_bridge) + 1 / (w.T - w.t_change)) / sizes)
+    return (rel(post) - rel(pre)) / se[None, :]
+
+
+def matched_detection(w_null, w_alt, flagged_origin, real_origin=None, fa=0.005):
+    out = {}
+    d0, d1 = generate(w_null), generate(w_alt)
+    for source, name in [("ref", "reference (bridge)"), ("y", "ordinary measurements")]:
+        z0 = np.abs(change_stats(w_null, d0, source))
+        thr = float(np.quantile(z0, 1 - fa))
+        z1 = np.abs(change_stats(w_alt, d1, source))
+        flags = z1 > thr
+        row = dict(threshold=thr, drifted_origin_flagged=float(flags[:, flagged_origin].mean()))
+        others = [k for k in range(d1["K"]) if k != flagged_origin and k != real_origin]
+        row["other_origins_flagged"] = float(flags[:, others].mean())
+        if real_origin is not None:
+            row["origin_with_a_real_change_flagged"] = float(flags[:, real_origin].mean())
+        out[name] = row
+    return out
 
 
 def e2():
     out = {}
-    base = dict(window=10, seed=21, t_drift=25)
-    for label, clusters in [("clusters 3+1+1+1", [3, 1, 1, 1]), ("monoculture: one method, 6 agents", [6])]:
-        for drift in [0.0, 1.0]:
-            w = World(clusters=clusters, drift=drift, **base)
-            if clusters == [6]:
-                w.rho = 1.0
-            d = generate(w)
-            rows = {}
-            e, s = independent(w, d); rows["independent (per agent)"] = summarize(e, s, d["theta"])
-            e, s = consensus(w, d); rows["forced consensus"] = summarize(e, s, d["theta"])
-            if len(clusters) > 1:
-                rows["cooperative, with provenance"] = coop_summary(w, d, provenance=True)
-                rows["cooperative, provenance + robust"] = coop_summary(w, d, provenance=True, robust=True)
-                flags = detect_flags(w, d)
-                drifted = flags[:, w.drift_cluster]
-                others = np.delete(flags, w.drift_cluster, axis=1)
-                rows["detection"] = dict(drifted_origin_flagged=float(drifted.mean()),
-                                         any_other_origin_flagged=float(others.any(axis=1).mean()))
-            else:
-                rows["detection"] = dict(note="no relative signal exists: every agent shares the drift; "
-                                              "detection is impossible from inside the collective")
-            out[f"{label}, drift {drift}"] = rows
+    base = dict(window=10, seed=21, t_change=25)
+    for drift in [0.0, 1.0]:
+        w = World(drift=drift, **base)
+        d = generate(w)
+        ests, _, _, _ = collective_estimates(w, d)
+        out[f"collective estimate after drift {drift}"] = {k: score(*v) for k, v in ests.items()}
+    w_null, w_alt = World(**base), World(drift=1.0, **base)
+    w_alt.seed = 22
+    out["detection of the drift at 0.5% false alarms per origin"] = matched_detection(w_null, w_alt, flagged_origin=0)
+    mono = World(clusters=[6], rho=1.0, drift=1.0, **base)
+    d = generate(mono)
+    m = d["y"][:, :, windows(mono)[0]].mean(axis=2)
+    out["monoculture (one method, 6 agents), drift 1.0"] = dict(
+        consensus_rmse=float(np.sqrt(np.mean(m.mean(axis=1) ** 2))),
+        note="no relative signal exists inside the collective, by reference or ordinary data")
     return out
 
 
 # ---------------------------------------------------------------------------
-# E3: how many independent methods to keep under a budget
+# E3: diversity under a budget; conditional localization
 # ---------------------------------------------------------------------------
 
 def mse_k(k, B, F, sigma, sigma_b, tau):
     n_total = B - k * F
-    if n_total <= 0:
-        return np.inf
-    return tau ** 2 + sigma_b ** 2 / k + sigma ** 2 / n_total
+    return np.inf if n_total <= 0 else tau ** 2 + sigma_b ** 2 / k + sigma ** 2 / n_total
 
 
 def e3():
-    out = {"analytic": {}, "simulated_check": {}, "localization": {}}
+    out = {"assumptions": "k methods with independent, exchangeable errors of sd sigma_b, identical fixed cost F, "
+                          "sampling noise sigma, an error tau shared by all, a budget B, and mean squared error as the loss",
+           "analytic": {}, "simulated_check": {}, "localization": {}}
     cases = {
         "cheap methods (F=5), large method error": dict(B=400, F=5, sigma=1.0, sigma_b=0.5, tau=0.0),
         "costly methods (F=60), large method error": dict(B=400, F=60, sigma=1.0, sigma_b=0.5, tau=0.0),
         "cheap methods, small method error (sigma_b=0.1)": dict(B=400, F=5, sigma=1.0, sigma_b=0.1, tau=0.0),
-        "cheap methods, shared floor (tau=0.4)": dict(B=400, F=5, sigma=1.0, sigma_b=0.5, tau=0.4),
+        "cheap methods, shared error (tau=0.4)": dict(B=400, F=5, sigma=1.0, sigma_b=0.5, tau=0.4),
     }
     ks = np.arange(1, 200)
     curves = {}
     for name, p in cases.items():
         vals = np.array([mse_k(k, **p) for k in ks])
-        kstar = int(ks[np.argmin(vals)])
-        out["analytic"][name] = dict(k_star=kstar, rmse_at_k_star=float(np.sqrt(vals.min())),
-                                     rmse_at_k1=float(np.sqrt(vals[0])),
-                                     rmse_floor_tau=p["tau"])
         curves[name] = vals
-    # simulated check for one case
+        out["analytic"][name] = dict(k_star=int(ks[np.argmin(vals)]), rmse_at_k_star=float(np.sqrt(vals.min())),
+                                     rmse_at_k1=float(np.sqrt(vals[0])))
     rng = np.random.default_rng(31)
     p = cases["cheap methods (F=5), large method error"]
     for k in [1, 3, 8, 20, 42, 70]:
         R = 20000
         n_per = (p["B"] - k * p["F"]) / k
-        if n_per <= 0:
-            continue
-        bias = rng.normal(0, p["sigma_b"], size=(R, k))
-        noise = rng.normal(0, p["sigma"] / np.sqrt(n_per), size=(R, k))
-        est = (bias + noise).mean(axis=1)
+        est = (rng.normal(0, p["sigma_b"], size=(R, k)) + rng.normal(0, p["sigma"] / np.sqrt(n_per), size=(R, k))).mean(axis=1)
         out["simulated_check"][f"k={k}"] = dict(rmse_sim=float(np.sqrt(np.mean(est ** 2))),
                                                rmse_formula=float(np.sqrt(mse_k(k, **p))))
-    # localization of one faulty method by the median rule
-    for k in [2, 3, 4, 6]:
-        R = 20000
-        good = rng.normal(0, 0.1, size=(R, k))
-        good[:, 0] += 1.0                        # method 0 is faulty by 1.0
-        med = np.median(good, axis=1)
-        dev = np.abs(good - med[:, None])
-        if k == 2:
-            # with two methods both deviate equally from their median: no localization
-            correct = 0.5
-        else:
-            correct = float(np.mean(np.argmax(dev, axis=1) == 0))
-        out["localization"][f"k={k}"] = dict(faulty_method_identified=correct)
+    # localization: k methods, f of them faulty by `size`, all with noise sd 1;
+    # success = the f methods farthest from the median are exactly the faulty ones
+    for k in [3, 5, 7]:
+        for f in [1, 2]:
+            if 2 * f >= k:
+                out["localization"][f"k={k}, faulty={f}"] = "not attempted: no majority of sound methods"
+                continue
+            row = {}
+            for size in [1.0, 2.0, 3.0, 5.0]:
+                R = 20000
+                x = rng.normal(0, 1.0, size=(R, k))
+                x[:, :f] += size
+                dev = np.abs(x - np.median(x, axis=1)[:, None])
+                top = np.argsort(-dev, axis=1)[:, :f]
+                ok = np.all(np.sort(top, axis=1) == np.arange(f)[None, :], axis=1)
+                row[f"fault = {size:g} x noise"] = float(ok.mean())
+            out["localization"][f"k={k}, faulty={f}"] = row
+    out["localization"]["k=2"] = "not possible: two methods that disagree are symmetric"
     return out, ks, curves
 
 
 # ---------------------------------------------------------------------------
-# E4: bridge construction
+# E4: bridge discovery among available operations
 # ---------------------------------------------------------------------------
 
 def e4():
-    """Two agents over M worlds and K outcomes, with different supports and
-    different models of each operation. Each round they try one new operation:
-    each commits to the outcomes its model allows (an operation outside an
-    agent's model gets no commitment: it allows everything); the operation is
-    performed; each records an outcome. A shared record needs `m` consistent
-    joint records. A bridge is an operation with a shared record on which both
-    committed and whose allowed sets are disjoint. It exposes at least one agent.
-    An exposure is CORRECT if the exposed agent's model really is wrong about
-    the actual world (support excludes it, or the operation model is wrong
-    there), FALSE otherwise; false exposures can only come from wrong records.
-    """
     out = {}
     M, K, OPS, m_needed = 12, 6, 60, 3
 
-    def run(p_rep, commit_rate, theory_laden, shared_error=0.0, systematic_shared=0.0, reps=3000, seed=41):
+    def run(p_rep=0.95, commit_rate=0.9, own_theory=0.0, shared_theory=0.0, reps=3000, seed=41):
         rng = np.random.default_rng(seed)
-        stats = dict(bridges=0, exposures=0, correct=0, false=0, ops=0)
+        s = dict(bridges=0, exposures=0, correct=0, ops=0)
         for _ in range(reps):
             a = rng.integers(M)
-            true_out = rng.integers(K, size=OPS)            # what each op yields in the actual world
+            true_out = rng.integers(K, size=OPS)
+            common_theory = rng.integers(K, size=OPS)     # what a background theory both share expects
             agents = []
             for _j in range(2):
                 support = rng.random(M) < 0.35
-                if rng.random() < 0.5:                       # half the agents keep the actual world
-                    support[a] = True
-                else:
-                    support[a] = False
+                support[a] = rng.random() < 0.5
                 if not support.any():
                     support[rng.integers(M)] = True
                 pred = rng.integers(K, size=(OPS, M))
-                # each agent's model is right about the actual world for 60% of ops
                 right = rng.random(OPS) < 0.6
                 pred[right, a] = true_out[right]
-                in_domain = rng.random(OPS) < commit_rate
-                agents.append((support, pred, in_domain))
+                agents.append((support, pred, rng.random(OPS) < commit_rate))
             for op in range(OPS):
-                stats["ops"] += 1
-                allowed = []
-                for (support, pred, in_domain) in agents:
-                    if in_domain[op]:
-                        allowed.append(set(pred[op, support]))
-                    else:
-                        allowed.append(set(range(K)))       # uncommitted
-                # records: each trial, each agent records the true outcome, except
-                # with prob 1-p_rep it records noise; with prob theory_laden it
-                # records an outcome its own model allows instead
-                agree = 0
-                rec = None
-                # a systematic shared fault: for this operation, one channel feeds
-                # both agents the same wrong outcome on every trial
-                sys_bad = rng.random() < systematic_shared
-                sys_val = int((true_out[op] + 1 + rng.integers(K - 1)) % K)
+                s["ops"] += 1
+                allowed = [set(pred[op, sup]) if dom[op] else set(range(K)) for (sup, pred, dom) in agents]
+                shared_bias_here = rng.random() < shared_theory
+                rec, agree = None, 0
                 for _t in range(m_needed):
-                    recs = []
-                    if sys_bad:
-                        recs = [sys_val, sys_val]
-                    elif rng.random() < shared_error:
-                        # both agents' records come from one faulty channel
-                        o = int(rng.integers(K))
-                        recs = [o, o]
-                    for j in range(2 if not recs else 0):
-                        o = true_out[op]
-                        if rng.random() > p_rep:
-                            o = int(rng.integers(K))
-                        if rng.random() < theory_laden:
-                            o = int(rng.choice(sorted(allowed[j])))
-                        recs.append(o)
+                    if shared_bias_here:
+                        recs = [int(common_theory[op])] * 2
+                    else:
+                        recs = []
+                        for j in range(2):
+                            o = int(true_out[op])
+                            if rng.random() > p_rep:
+                                o = int(rng.integers(K))
+                            if rng.random() < own_theory:
+                                o = int(rng.choice(sorted(allowed[j])))
+                            recs.append(o)
                     if recs[0] == recs[1] and (rec is None or recs[0] == rec):
                         rec = recs[0]
                         agree += 1
-                if agree < m_needed:
-                    continue                                 # no shared record
-                if len(allowed[0]) == K or len(allowed[1]) == K:
-                    continue                                 # someone uncommitted
-                if allowed[0] & allowed[1]:
-                    continue                                 # not discriminating
-                stats["bridges"] += 1
-                for j, (support, pred, in_domain) in enumerate(agents):
+                if agree < m_needed or len(allowed[0]) == K or len(allowed[1]) == K or (allowed[0] & allowed[1]):
+                    continue
+                s["bridges"] += 1
+                for j, (sup, pred, dom) in enumerate(agents):
                     if rec not in allowed[j]:
-                        stats["exposures"] += 1
-                        wrong = (not support[a]) or (pred[op, a] != true_out[op])
-                        stats["correct" if wrong else "false"] += 1
-        ops = stats["ops"]
-        return dict(bridges_per_100_ops=100 * stats["bridges"] / ops,
-                    exposures_per_100_ops=100 * stats["exposures"] / ops,
-                    share_of_exposures_correct=(stats["correct"] / stats["exposures"]) if stats["exposures"] else None)
+                        s["exposures"] += 1
+                        if (not sup[a]) or (pred[op, a] != true_out[op]):
+                            s["correct"] += 1
+        return dict(bridges_per_100_ops=100 * s["bridges"] / s["ops"],
+                    exposures_per_100_ops=100 * s["exposures"] / s["ops"],
+                    share_of_exposures_correct=s["correct"] / s["exposures"] if s["exposures"] else None)
 
-    out["baseline: reproducible, committed, faithful records"] = run(0.95, 0.9, 0.0)
-    out["irreproducible operations (p_rep = 0.5)"] = run(0.5, 0.9, 0.0)
-    out["two in three operations outside the models (commit 0.33)"] = run(0.95, 0.33, 0.0)
-    out["theory-laden records (0.3)"] = run(0.95, 0.9, 0.3)
-    out["theory-laden records (0.6)"] = run(0.95, 0.9, 0.6)
-    out["shared recording error (0.2): one faulty channel feeds both"] = run(0.95, 0.9, 0.0, shared_error=0.2)
-    out["shared recording error (0.5)"] = run(0.95, 0.9, 0.0, shared_error=0.5)
-    out["systematic shared recording error (0.2 of operations)"] = run(0.95, 0.9, 0.0, systematic_shared=0.2)
+    out["reproducible, committed, faithful records"] = run()
+    out["irreproducible operations (half of records noise)"] = run(p_rep=0.5)
+    out["two in three operations outside the models"] = run(commit_rate=0.33)
+    out["records shaped by each agent's OWN theory (0.3)"] = run(own_theory=0.3)
+    out["records shaped by each agent's OWN theory (0.6)"] = run(own_theory=0.6)
+    out["records shaped by a SHARED theory (0.2 of operations)"] = run(shared_theory=0.2)
+    out["records shaped by a SHARED theory (0.5 of operations)"] = run(shared_theory=0.5)
     return out
 
 
 # ---------------------------------------------------------------------------
-# E5: responsiveness
+# E5: responsiveness, randomized across origins
 # ---------------------------------------------------------------------------
 
 def e5():
     out = {}
     w = World(seed=51)
     d = generate(w)
+    _, _, m, corrected = collective_estimates(w, d)
+    R, N = m.shape
+    rng = np.random.default_rng(52)
     for frac in [1.0, 0.5, 0.0]:
-        N = d["N"]
-        resp = np.zeros(N, dtype=bool)
-        resp[: int(round(frac * N))] = True
-        _, _, corrected = cooperative(w, d, provenance=True, responsive=resp)
-        err = corrected - d["theta"]
-        out[f"share of agents that act on exposed errors = {frac}"] = dict(
-            rmse_per_agent=float(np.sqrt(np.mean(err ** 2))),
-            spread_between_agents=float(np.mean(corrected.std(axis=1))))
+        k = int(round(frac * N))
+        mask = np.zeros((R, N), dtype=bool)
+        for r in range(R):
+            mask[r, rng.choice(N, size=k, replace=False)] = True
+        est = np.where(mask, corrected, m)
+        out[f"share acting on exposed errors = {frac} (random agents per run)"] = dict(
+            rmse_per_agent=float(np.sqrt(np.mean(est ** 2))),
+            spread_between_agents=float(np.mean(est.std(axis=1))))
+    out["note"] = ("the correction rule is supplied by the model, not learned by the agents; with a common target, "
+                   "adopting the provenance estimate does as well as the bridge correction (E1)")
+    return out
+
+
+# ---------------------------------------------------------------------------
+# E6: distinct targets -- where the bridge adds information
+# ---------------------------------------------------------------------------
+
+def e6():
+    out = {}
+    w = World(distinct_targets=True, seed=61)
+    d = generate(w)
+    ys, rs, _, _ = windows(w)
+    cid, N, K = d["cid"], d["N"], d["K"]
+    m = d["y"][:, :, ys].mean(axis=2)
+    gi = d["ref"][:, :, rs].mean(axis=2)
+    th = d["theta"]
+    G = origin_means(gi, cid, K)
+    corrected_prov = m - (gi - G.mean(axis=1)[:, None])
+    iu = np.triu_indices(N, 1)
+
+    def pair_rmse(est):
+        de = (est[:, :, None] - est[:, None, :])[:, iu[0], iu[1]]
+        dt = (th[:, :, None] - th[:, None, :])[:, iu[0], iu[1]]
+        return float(np.sqrt(np.mean((de - dt) ** 2)))
+
+    def level_rmse(est):
+        return float(np.sqrt(np.mean((est - th) ** 2)))
+
+    # without a bridge, agents could only shrink toward each other, which mixes
+    # real differences with method errors; we report the plain estimate
+    out["estimates"] = {
+        "own measurement only (no bridge)": dict(level_rmse=level_rmse(m), comparison_rmse=pair_rmse(m)),
+        "corrected through the bridge (provenance center)": dict(level_rmse=level_rmse(corrected_prov),
+                                                                 comparison_rmse=pair_rmse(corrected_prov)),
+    }
+    out["estimates"]["note"] = ("the bridge removes relative method errors, so comparisons between targets improve; "
+                                "the absolute level keeps the average method error, which needs an anchor")
+    base = dict(distinct_targets=True, window=10, t_change=25)
+    w_null = World(seed=62, **base)
+    w_alt = World(seed=63, drift=1.0, real_change=1.0, change_agent=3, **base)
+    out["detection: instrument drift in origin 0 and a REAL change in origin 1, at 0.5% false alarms"] = \
+        matched_detection(w_null, w_alt, flagged_origin=0, real_origin=int(origin_ids(w_alt.clusters)[3]))
     return out
 
 
 # ---------------------------------------------------------------------------
 
 def table(rows, keys):
-    lines = ["| regime | " + " | ".join(keys) + " |", "|---|" + "---|" * len(keys)]
+    lines = ["| | " + " | ".join(keys) + " |", "|---|" + "---|" * len(keys)]
     for name, r in rows.items():
+        if not isinstance(r, dict):
+            continue
         cells = []
         for k in keys:
             v = r.get(k, "")
@@ -471,63 +452,79 @@ def main():
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    results = {"parameters": asdict(World())}
-    results["E1"] = e1()
-    results["E2"] = e2()
-    e3res, ks, curves = e3()
-    results["E3"] = e3res
-    results["E4"] = e4()
-    results["E5"] = e5()
+    res = {"parameters": asdict(World())}
+    res["E1"] = e1()
+    res["E2"] = e2()
+    e3r, ks, curves = e3()
+    res["E3"] = e3r
+    res["E4"] = e4()
+    res["E5"] = e5()
+    res["E6"] = e6()
     with open(os.path.join(RES, "results.json"), "w") as f:
-        json.dump(results, f, indent=2)
+        json.dump(res, f, indent=2)
 
-    md = ["# Simulation results", "", "Generated by `sim.py` (seeded). RMSE is the root mean squared error of the estimate of the true value; coverage is the share of 95% intervals that contain it.", ""]
-    md.append("## E1. Accuracy and calibration\n")
-    for label, rows in results["E1"].items():
-        md += [f"### {label}", "", table(rows, ["rmse", "coverage95", "coverage95_t", "mean_reported_se"]), ""]
-    md.append("## E2. A later drift of +1.0 in one cluster (window of the last 10 rounds)\n")
-    for label, rows in results["E2"].items():
-        det = rows.pop("detection", None)
-        md += [f"### {label}", "", table(rows, ["rmse", "coverage95", "coverage95_t"]), ""]
-        if det:
-            md += ["Detection: " + json.dumps(det), ""]
-            rows["detection"] = det
-    md.append("## E3. How many independent methods, under a fixed budget\n")
-    md += [table(results["E3"]["analytic"], ["k_star", "rmse_at_k_star", "rmse_at_k1", "rmse_floor_tau"]), ""]
-    md += ["Simulated check (cheap methods): " + json.dumps(results["E3"]["simulated_check"]), ""]
-    md += ["Localizing one faulty method by the median rule: " + json.dumps(results["E3"]["localization"]), ""]
-    md.append("## E4. Bridge construction\n")
-    md += [table(results["E4"], ["bridges_per_100_ops", "exposures_per_100_ops", "share_of_exposures_correct"]), ""]
-    md.append("## E5. Responsiveness\n")
-    md += [table(results["E5"], ["rmse_per_agent", "spread_between_agents"]), ""]
+    md = ["# Simulation results, version 2", "",
+          "Generated by `sim.py` (seeded). RMSE: root mean squared error. Coverage: share of 95% intervals containing "
+          "the truth; each estimator uses the critical value that fits how its uncertainty is estimated "
+          "(normal for known noise, Student t with origins-minus-one or agents-minus-one degrees of freedom when the "
+          "spread is estimated).", ""]
+    md.append("## E1. Common target: collective estimate, calibration, individual correction\n")
+    for label, r in res["E1"].items():
+        md += [f"### {label}", "", table(r["collective"], ["rmse", "coverage95", "mean_se"]), ""]
+        if "identity_gap" in r:
+            md += [f"Largest difference between the bridge-corrected average and the provenance mean without a bridge: {r['identity_gap']:.1e}.", ""]
+            md += ["Individual agents, RMSE: " + json.dumps({k: round(v, 3) for k, v in r["individual_rmse"].items()}), ""]
+    md.append("## E2. Common target: a later drift of +1.0 in origin 0 (last 10 rounds)\n")
+    for label, r in res["E2"].items():
+        if label.startswith("collective"):
+            md += [f"### {label}", "", table(r, ["rmse", "coverage95"]), ""]
+        elif label.startswith("detection"):
+            md += [f"### {label}", "", table(r, ["drifted_origin_flagged", "other_origins_flagged", "threshold"]), ""]
+        else:
+            md += [f"### {label}", "", json.dumps(r), ""]
+    md.append("## E3. Diversity under a budget, and localization\n")
+    md += ["Assumptions: " + res["E3"]["assumptions"], ""]
+    md += [table(res["E3"]["analytic"], ["k_star", "rmse_at_k_star", "rmse_at_k1"]), ""]
+    md += ["Simulated check: " + json.dumps({k: {kk: round(vv, 4) for kk, vv in v.items()} for k, v in res["E3"]["simulated_check"].items()}), ""]
+    md += ["Localization (share of runs in which the faulty methods are exactly those farthest from the median; noise sd 1):", ""]
+    for k, v in res["E3"]["localization"].items():
+        md.append(f"- {k}: {json.dumps(v)}")
+    md += ["", "## E4. Bridge discovery among available operations\n",
+           table(res["E4"], ["bridges_per_100_ops", "exposures_per_100_ops", "share_of_exposures_correct"]), ""]
+    md += ["## E5. Responsiveness, randomized across origins\n", table(res["E5"], ["rmse_per_agent", "spread_between_agents"]), "",
+           res["E5"]["note"], ""]
+    md += ["## E6. Distinct targets: where the bridge adds information\n",
+           table(res["E6"]["estimates"], ["level_rmse", "comparison_rmse"]), "", res["E6"]["estimates"]["note"], ""]
+    for label, r in res["E6"].items():
+        if label.startswith("detection"):
+            md += [f"### {label}", "", table(r, ["drifted_origin_flagged", "origin_with_a_real_change_flagged", "other_origins_flagged", "threshold"]), ""]
     with open(os.path.join(RES, "RESULTS.md"), "w") as f:
         f.write("\n".join(md))
 
-    # figures
     fig, ax = plt.subplots(figsize=(6.4, 4))
     for name, vals in curves.items():
         ax.plot(ks, np.sqrt(vals), label=name)
+    ax.set_xscale("log")
+    ax.set_ylim(0, 0.8)
     ax.set_xlabel("number of independent methods kept (k)")
     ax.set_ylabel("RMSE of the collective estimate")
-    ax.set_title("E3. Diversity under a fixed budget")
-    ax.set_ylim(0, 0.8)
-    ax.set_xscale('log')
+    ax.set_title("E3. Diversity under a fixed budget (assumptions in RESULTS.md)")
     ax.legend(fontsize=7)
     fig.tight_layout()
     fig.savefig(os.path.join(FIG, "e3_diversity_budget.png"), dpi=150)
 
-    fig, ax = plt.subplots(figsize=(6.4, 4))
-    rows = results["E1"]["dependent sources: clusters 3+1+1+1"]
+    rows = res["E1"]["dependent origins (3+1+1+1)"]["collective"]
     names = list(rows.keys())
+    fig, ax = plt.subplots(figsize=(7.2, 4))
     ax.bar(range(len(names)), [rows[n]["rmse"] for n in names], label="RMSE")
     ax.plot(range(len(names)), [rows[n]["coverage95"] for n in names], "ko-", label="95% coverage")
     ax.axhline(0.95, color="grey", lw=0.8, ls="--")
     ax.set_xticks(range(len(names)))
-    ax.set_xticklabels([n.replace(", ", ",\n").replace(" (", "\n(") for n in names], fontsize=6)
-    ax.set_title("E1. Same data, dependent sources")
+    ax.set_xticklabels([n.replace(", ", ",\n") for n in names], fontsize=6)
+    ax.set_title("E1. Same data, dependent origins: matched comparators")
     ax.legend(fontsize=7)
     fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "e1_regimes.png"), dpi=150)
+    fig.savefig(os.path.join(FIG, "e1_matched.png"), dpi=150)
     print("\n".join(md))
 
 
