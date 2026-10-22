@@ -25,9 +25,10 @@ Definitions.
 * `Covers K L`: the model keeps every live world possible.
 * `Within K L`: the model keeps possible only live worlds.
 * `EvidentialFit K L`: both; the support equals the live set
-  (`fit_iff_matches_evidence`).  This is the support-level special case of
-  "sharp, subject to calibration"; it says nothing about how probability is
-  spread over the support.
+  (`fit_iff_matches_evidence`).  This is a set-theoretic analogue of
+  evidence-relative sharpness, not a case of probabilistic calibration: it
+  involves no probability distribution and no comparison with observed
+  frequencies.
 * `Consistent K`: the support is not empty.
 * `Entails K P`: `P` holds in every world the model keeps possible.
 
@@ -57,9 +58,13 @@ Results.
    evidence recovers the actual world that `follow` lost
    (`rederiving_recovers_what_following_cannot`), and revising a background that
    excluded the actual world recovers it (`revising_background_recovers`).
-   Keeping evidence and provenance, not only conclusions, is what makes the
-   second kind of update possible.  Adding a world that `W` never contained is a
-   further operation, not modelled here.
+   Re-derivation is not revision: recomputing from a false piece of evidence
+   gives the same wrong answer (`rederiving_with_false_evidence_does_not_recover`),
+   while retracting that piece and recomputing recovers the actual world
+   (`retracting_false_evidence_recovers`).  All of these assume that the holder
+   has kept the background and the evidence and can recompute; provenance is not
+   an input to any of them.  Adding a world that `W` never contained
+   (representational extension, not AGM expansion) is not modelled here.
 5. **Upkeep.**  A model that starts in fit and follows the evidence stays in fit
    (`following_evidence_keeps_fit`); reliability is not required for this, so fit
    can be preserved while the actual world is lost.  A support fixed by
@@ -82,15 +87,21 @@ Results.
    (`unconstrained_contribution_leaves_hard_pool_unchanged`); its practical
    effects (attention, delay, dilution) are not modelled.
 7. **Other pooling rules.**  The fragility of point 6 belongs to hard pooling.
-   Under a weighted sum of credences, a world that one positively weighted source
-   keeps possible stays possible whatever another source says
+   The two other rules here act on nonnegative whole-number scores, read as
+   unnormalized credences; they do not enforce the probability axioms, and a
+   product can be zero everywhere, which cannot be normalized.  Under a weighted
+   sum, a world that one positively weighted source scores positively keeps a
+   positive pooled score whatever another source says
    (`linear_pool_keeps_what_one_source_keeps`; compare `GradedBelief.mix_support`).
-   Under a product of credences, one zero is a veto
-   (`product_pool_zero_is_a_veto`).  Which rule is right depends on how sources
+   Under a product, one zero is a veto (`product_pool_zero_is_a_veto`).  Which rule is right depends on how sources
    err and depend on each other; this module does not decide it.
 8. `world_model_witness`: three admitted worlds, one piece of evidence, a fitting,
    a universal and an actual-excluding support, monotone update against
-   re-derivation, and the same three credences under a sum and under a product.
+   re-derivation, a false piece of evidence retracted, and two sources' scores
+   under a sum and under a product.
+
+Evidence premises are stated for the evidence received so far
+(`∀ i, i < n → E i a`), not for the whole stream.
 
 Scope.  The results are close to their definitions, and several are their
 definitions restated.  They make the terms and their limits checkable; they are
@@ -130,6 +141,10 @@ evidence, ignoring earlier conclusions. -/
 def rederive {W : Type} (B : W → Prop) (E : Nat → W → Prop) (n : Nat) : W → Prop :=
   Live B E n
 
+/-- The live worlds after `n` pieces of evidence with piece `j` retracted. -/
+def LiveExcept {W : Type} (B : W → Prop) (E : Nat → W → Prop) (n j : Nat) : W → Prop :=
+  fun w => B w ∧ ∀ i, i < n → i ≠ j → E i w
+
 /-- Hard pooling of two supports: a world stays possible only if both keep it. -/
 def hardPool {W : Type} (L₁ L₂ : W → Prop) : W → Prop := fun w => L₁ w ∧ L₂ w
 
@@ -137,12 +152,12 @@ def hardPool {W : Type} (L₁ L₂ : W → Prop) : W → Prop := fun w => L₁ w
 def hardPoolMany {W : Type} (C : Nat → W → Prop) (m : Nat) : W → Prop :=
   fun w => ∀ j, j < m → C j w
 
-/-- Linear pooling of two credences with weights `α` and `β`
-(unnormalized, in whole numbers). -/
+/-- Linear pooling of two nonnegative scores with weights `α` and `β`: an
+unnormalized weighted sum, in whole numbers. -/
 def linearPool {W : Type} (α β : Nat) (p q : W → Nat) : W → Nat :=
   fun w => α * p w + β * q w
 
-/-- Product pooling of two credences (unnormalized). -/
+/-- Product pooling of two nonnegative scores (unnormalized). -/
 def productPool {W : Type} (p q : W → Nat) : W → Nat := fun w => p w * q w
 
 /-- **Fit is equality of support and live set.** -/
@@ -157,13 +172,14 @@ theorem fit_iff_matches_evidence {W : Type} (K L : W → Prop) :
 /-- **Reliable evidence keeps the actual world live**, given a background that
 admits it. -/
 theorem reliable_evidence_keeps_actual {W : Type} {B : W → Prop} {E : Nat → W → Prop}
-    {a : W} (hB : B a) (hE : ∀ i, E i a) (n : Nat) : Live B E n a :=
-  ⟨hB, fun i _ => hE i⟩
+    {a : W} {n : Nat} (hB : B a) (hE : ∀ i, i < n → E i a) : Live B E n a :=
+  ⟨hB, hE⟩
 
 /-- **A covering model keeps the actual world**, under the same premises. -/
 theorem covering_model_keeps_actual {W : Type} {K B : W → Prop} {E : Nat → W → Prop}
-    {a : W} {n : Nat} (hC : Covers K (Live B E n)) (hB : B a) (hE : ∀ i, E i a) : K a :=
-  hC a (reliable_evidence_keeps_actual hB hE n)
+    {a : W} {n : Nat} (hC : Covers K (Live B E n)) (hB : B a) (hE : ∀ i, i < n → E i a) :
+    K a :=
+  hC a (reliable_evidence_keeps_actual hB hE)
 
 /-- **What a covering model entails holds of the actual world**, when the actual
 world is live. -/
@@ -224,17 +240,34 @@ conclusions excluded the actual world, monotone update keeps it excluded, while
 re-deriving from an adequate background and reliable kept evidence restores
 it. -/
 theorem rederiving_recovers_what_following_cannot {W : Type} {K B : W → Prop}
-    {E : Nat → W → Prop} {a : W} (hK : ¬ K a) (hB : B a) (hE : ∀ i, E i a) (n : Nat) :
-    ¬ follow K E n a ∧ rederive B E n a :=
-  ⟨monotone_update_cannot_recover E hK n, reliable_evidence_keeps_actual hB hE n⟩
+    {E : Nat → W → Prop} {a : W} {n : Nat} (hK : ¬ K a) (hB : B a)
+    (hE : ∀ i, i < n → E i a) : ¬ follow K E n a ∧ rederive B E n a :=
+  ⟨monotone_update_cannot_recover E hK n, reliable_evidence_keeps_actual hB hE⟩
+
+/-- **Re-derivation is not revision.**  Recomputing from a background and
+evidence that include a piece false of the actual world gives the same wrong
+answer: the actual world stays out. -/
+theorem rederiving_with_false_evidence_does_not_recover {W : Type} {B : W → Prop}
+    {E : Nat → W → Prop} {a : W} {n j : Nat} (hj : j < n) (hfalse : ¬ E j a) :
+    ¬ rederive B E n a :=
+  fun h => hfalse (h.2 j hj)
+
+/-- **Retracting false evidence recovers.**  If one piece of evidence is false
+of the actual world and the rest is true, the live set excludes the actual
+world, and retracting that piece and recomputing brings it back. -/
+theorem retracting_false_evidence_recovers {W : Type} {B : W → Prop}
+    {E : Nat → W → Prop} {a : W} {n j : Nat} (hj : j < n) (hfalse : ¬ E j a)
+    (hB : B a) (hrest : ∀ i, i < n → i ≠ j → E i a) :
+    ¬ Live B E n a ∧ LiveExcept B E n j a :=
+  ⟨fun h => hfalse (h.2 j hj), ⟨hB, hrest⟩⟩
 
 /-- **Revising the background recovers.**  A background that excluded the actual
 world keeps it out of the live set; a revised background that admits it, with
 reliable evidence, brings it back. -/
 theorem revising_background_recovers {W : Type} {B B' : W → Prop}
-    {E : Nat → W → Prop} {a : W} (hB : ¬ B a) (hB' : B' a) (hE : ∀ i, E i a) (n : Nat) :
-    ¬ Live B E n a ∧ Live B' E n a :=
-  ⟨fun h => hB h.1, reliable_evidence_keeps_actual hB' hE n⟩
+    {E : Nat → W → Prop} {a : W} {n : Nat} (hB : ¬ B a) (hB' : B' a)
+    (hE : ∀ i, i < n → E i a) : ¬ Live B E n a ∧ Live B' E n a :=
+  ⟨fun h => hB h.1, reliable_evidence_keeps_actual hB' hE⟩
 
 /-- **Following the evidence keeps fit.**  A model that starts in fit and
 follows the evidence stays in fit at every step.  Reliability is not assumed:
@@ -299,7 +332,7 @@ keeps possible every world its contributor's own adequate background and
 reliable evidence leave live keeps the actual world. -/
 theorem covering_contribution_keeps_actual {W : Type} {C B : W → Prop}
     {E : Nat → W → Prop} {a : W} {n : Nat} (hC : Covers C (Live B E n)) (hB : B a)
-    (hE : ∀ i, E i a) : C a :=
+    (hE : ∀ i, i < n → E i a) : C a :=
   covering_model_keeps_actual hC hB hE
 
 /-- **A hard pool is sound when each contribution keeps the actual world.** -/
@@ -332,8 +365,8 @@ theorem unconstrained_contribution_leaves_hard_pool_unchanged {W : Type}
       exact hv w
 
 /-- **Under linear pooling, what one source keeps possible stays possible.**  A
-world that a positively weighted source gives positive credence keeps positive
-pooled credence, whatever the other source gives it, zero included. -/
+world that a positively weighted source scores positively keeps a positive pooled
+score, whatever the other source gives it, zero included. -/
 theorem linear_pool_keeps_what_one_source_keeps {W : Type} {α β : Nat}
     {p q : W → Nat} {a : W} (hα : 0 < α) (hp : 0 < p a) : 0 < linearPool α β p q a := by
   unfold linearPool
@@ -353,8 +386,10 @@ piece of evidence rules out world `1`.
   entail "not world 1".
 * The support `{2}` excludes the actual world; monotone update keeps it out,
   while re-deriving from the background and the evidence brings it back.
-* Two sources give world `0` credence 9, a third gives it 0: the sum of the first
-  and third keeps it possible, their product rules it out. -/
+* A false second piece of evidence, "world 0 is not the case", excludes the
+  actual world from the live set; retracting it brings the actual world back.
+* One source scores world `0` with 9, another with 0: their sum keeps it
+  possible, their product rules it out. -/
 theorem world_model_witness :
     let B : Nat → Prop := fun w => w ≤ 2
     let E : Nat → Nat → Prop := fun _ w => w ≠ 1
@@ -363,6 +398,7 @@ theorem world_model_witness :
     let excluding : Nat → Prop := fun w => w = 2
     let p : Nat → Nat := fun _ => 9
     let q : Nat → Nat := fun w => if w = 0 then 0 else 9
+    let E2 : Nat → Nat → Prop := fun i w => if i = 0 then w ≠ 1 else w ≠ 0
     EvidentialFit fit (Live B E 1) ∧
       Entails fit (fun w => w ≠ 1) ∧
       Covers universal (Live B E 1) ∧
@@ -370,10 +406,12 @@ theorem world_model_witness :
       ¬ Entails universal (fun w => w ≠ 1) ∧
       (∀ n, ¬ follow excluding E n 0) ∧
       (∀ n, rederive B E n 0) ∧
+      ¬ Live B E2 2 0 ∧
+      LiveExcept B E2 2 1 0 ∧
       linearPool 1 1 p q 0 = 9 ∧
       productPool p q 0 = 0 := by
-  intro B E fit universal excluding p q
-  refine ⟨⟨?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  intro B E fit universal excluding p q E2
+  refine ⟨⟨?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro w hw
     exact ⟨hw.1, hw.2 0 (by decide)⟩
   · intro w hw
@@ -393,6 +431,12 @@ theorem world_model_witness :
     exact absurd hf.1 (by decide)
   · intro n
     exact ⟨by decide, fun _ _ => by decide⟩
+  · intro h
+    exact (h.2 1 (by decide)) rfl
+  · refine ⟨by decide, fun i hi hne => ?_⟩
+    have : i = 0 := by omega
+    subst this
+    decide
   · decide
   · decide
 

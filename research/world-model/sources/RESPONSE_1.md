@@ -50,3 +50,12 @@
 - Whether the revised collective section is now right about aggregation, and whether its two halves are the right lesson.
 - Whether the constituent labels are now correct.
 - Whether anything from the first version's framing survives where it should not.
+
+## Addendum, after review 3
+
+Review 3 found that some points above were marked **Adopted** when the change made at the time was only partial. That is right. In the second version:
+- the treatment of revision did not yet include retraction of evidence, and used "expansion" in a sense that conflicts with belief-revision theory (rows 2 and 2.4);
+- the constituent labels were improved but not applied one per row (rank 5 and row 4.5);
+- evidential fit was still called a special case of sharpness subject to calibration (rank 4).
+
+All three are fixed in the third version; see [RESPONSE_3.md](RESPONSE_3.md). The table above is kept as written.
