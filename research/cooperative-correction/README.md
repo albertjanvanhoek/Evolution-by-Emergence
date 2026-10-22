@@ -1,6 +1,6 @@
 # Cooperative error identification: can different world models correct each other?
 
-**Status: four conjectures under investigation, third version, October 2026** (D35 in [DIALOGUE.md](../../DIALOGUE.md)). A smallest formal model and a set of simulations, written to find out where the conjectures fail. **Nothing here is established.** The first version was assessed by an independent reader ([review A](sources/REVIEW_A.md)), who found a decisive error in how it read its own simulations ([response](sources/RESPONSE_A.md)). The same reader then audited the second version ([review B](sources/REVIEW_B.md)), saying itself that this was not an independent review; this version answers it ([response](sources/RESPONSE_B.md)). A reader with no prior exposure has not yet assessed it; [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) is for that.
+**Status: five conjectures under investigation, third version, with conjecture 5 added, October 2026** (D35 in [DIALOGUE.md](../../DIALOGUE.md)). A smallest formal model and a set of simulations, written to find out where the conjectures fail. **Nothing here is established.** The first version was assessed by an independent reader ([review A](sources/REVIEW_A.md)), who found a decisive error in how it read its own simulations ([response](sources/RESPONSE_A.md)). The same reader then audited the second version ([review B](sources/REVIEW_B.md)), saying itself that this was not an independent review; this version answers it ([response](sources/RESPONSE_B.md)). A reader with no prior exposure has not yet assessed it; [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) is for that.
 
 | Part | Where |
 |---|---|
@@ -9,7 +9,8 @@
 | The simulations, version 2 | [simulation/sim.py](simulation/sim.py), seeded; results in [simulation/results/RESULTS.md](simulation/results/RESULTS.md) |
 | Version 1, as reviewed | [simulation/sim_v1.py](simulation/sim_v1.py), [simulation/results_v1/](simulation/results_v1/RESULTS.md) |
 | Reviews A and B, review A's blind start, and the responses | [sources/](sources/) |
-| The brief for further readers | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) |
+| Conjecture 5, acting under time | [ACTING_UNDER_TIME.md](ACTING_UNDER_TIME.md); [`ActingUnderTime.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/ActingUnderTime.lean); [simulation/sim_time.py](simulation/sim_time.py), results in [RESULTS_TIME.md](simulation/results/RESULTS_TIME.md) |
+| The brief for further readers | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md), with an [addendum for conjecture 5](briefs/REVIEW_BRIEF_ADDENDUM_C5.md) |
 
 ## 1. The question
 
@@ -22,6 +23,10 @@ The author's invitation starts from one conjecture: "intelligences do not need t
 And a fourth, to be challenged as hard as the others:
 
 4. **Preserved diversity:** "Could the optimal collective world model be one that continually improves its relationship with reality while deliberately preserving multiple independent ways of modelling it?"
+
+And a fifth, added after review B, at the author's request as part of the same problem:
+
+5. **Acting under time:** an intelligence cannot defer acting until its model is certain; not acting is also an action; so the regress of checking ends locally when the next decision has to be made. In the author's words: "You cannot escape the future, you need to act - and inaction is also action [...] the regression has an end - when the next decision has to be made." Developed in [ACTING_UNDER_TIME.md](ACTING_UNDER_TIME.md), with its own formal model and simulations (E8, E9).
 
 Two rules govern the work. "None of these should be assumed true merely because the preceding one holds." And: "Let's keep logical implications separate from behavioural assumptions."
 
@@ -218,6 +223,7 @@ The correction rule is supplied by the model, not learned by the agents. And wit
 | 2. Bridge construction | **Partly supported** | Discovery of discriminating operations among available ones is shown; construction of a new interface is not |
 | 3. Collective improvement | **Partly supported** | With a common target, gains come from pooling and provenance, not from the bridge; with distinct targets, the bridge adds a great deal, if the reference is commutable |
 | 4. Preserved diversity | **Partly supported** | Independent methods make errors visible that a monoculture cannot see; the optimum number depends on assumptions, and diversity of conclusions has a role too |
+| 5. Acting under time | **Supported in a simple model, untested in real data** | The decision boundary and the irreversibility effect are proved for two states and two actions; in simulation, pooled evidence makes waiting worth it where one agent should act at once, and prevention hides the evidence needed to learn ([ACTING_UNDER_TIME.md](ACTING_UNDER_TIME.md)) |
 
 ### 1. Minimal cooperation
 

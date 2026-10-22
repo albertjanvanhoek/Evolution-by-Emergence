@@ -1,0 +1,135 @@
+{
+  "parameters": {
+    "reps": 20000,
+    "T": 16,
+    "prior": 0.3,
+    "mu1": 0.5,
+    "mu0": -0.5,
+    "sigma": 1.5,
+    "rho": 0.8,
+    "clusters": [
+      3,
+      1,
+      1,
+      1
+    ],
+    "d0": 0.5,
+    "growth": 1.35,
+    "C": 6.0,
+    "k": 0.375,
+    "sigma_s": 2.0
+  },
+  "E8": {
+    "irreversible": {
+      "solo": {
+        "best_threshold": 0.0,
+        "mean_loss": 6.0,
+        "wrong_interventions": 1.0,
+        "missed_threats": 0.0,
+        "mean_period_of_action_when_growing": 0.0
+      },
+      "pooled, provenance": {
+        "best_threshold": 0.55,
+        "mean_loss": 3.2309993272085245,
+        "wrong_interventions": 0.1549225387306347,
+        "missed_threats": 0.0010011680293675956,
+        "mean_period_of_action_when_growing": 2.303854496913065
+      },
+      "pooled, naive": {
+        "best_threshold": 0.65,
+        "mean_loss": 3.616143861916995,
+        "wrong_interventions": 0.20496894409937888,
+        "missed_threats": 0.002002336058735191,
+        "mean_period_of_action_when_growing": 2.3675955281161354
+      },
+      "act now on the prior, always": {
+        "best_threshold": 0.0,
+        "mean_loss": 6.0,
+        "wrong_interventions": 1.0,
+        "missed_threats": 0.0,
+        "mean_period_of_action_when_growing": 0.0
+      },
+      "never act": {
+        "best_threshold": 1.01,
+        "mean_loss": 51.67418571250886,
+        "wrong_interventions": 0.0,
+        "missed_threats": 1.0,
+        "mean_period_of_action_when_growing": 17.0
+      }
+    },
+    "reversible (signals not masked), running cost C/T": {
+      "solo": {
+        "threshold_on": 0.1,
+        "threshold_off": 0.05,
+        "mean_loss": 5.569991117509294,
+        "mean_switches": 1.7389
+      },
+      "pooled, provenance": {
+        "threshold_on": 0.35,
+        "threshold_off": 0.05,
+        "mean_loss": 2.536407963037756,
+        "mean_switches": 0.72395
+      },
+      "pooled, naive": {
+        "threshold_on": 0.35,
+        "threshold_off": 0.05,
+        "mean_loss": 2.939465047312095,
+        "mean_switches": 0.86105
+      }
+    },
+    "reversible (signals not masked), running cost 2C/T": {
+      "solo": {
+        "threshold_on": 0.35,
+        "threshold_off": 0.05,
+        "mean_loss": 8.886642910632913,
+        "mean_switches": 0.8692
+      },
+      "pooled, provenance": {
+        "threshold_on": 0.55,
+        "threshold_off": 0.05,
+        "mean_loss": 4.40677824860352,
+        "mean_switches": 0.51965
+      },
+      "pooled, naive": {
+        "threshold_on": 0.65,
+        "threshold_off": 0.05,
+        "mean_loss": 4.86615242754619,
+        "mean_switches": 0.6084
+      }
+    }
+  },
+  "E9": {
+    "reversible, provenance-pooled evidence": {
+      "unmasked": {
+        "threshold_on": 0.35,
+        "threshold_off": 0.05,
+        "mean_loss": 2.518916267115661,
+        "mean_switches": 0.72845
+      },
+      "masked, naive": {
+        "threshold_on": 0.95,
+        "threshold_off": 0.05,
+        "mean_loss": 26.33621650226812,
+        "mean_switches": 0.58915
+      },
+      "masked, aware": {
+        "threshold_on": 0.6,
+        "threshold_off": 0.05,
+        "mean_loss": 2.8612396675073968,
+        "mean_switches": 0.38645
+      },
+      "masked, aware + sentinel": {
+        "threshold_on": 0.6,
+        "threshold_off": 0.05,
+        "mean_loss": 2.8865907110937252,
+        "mean_switches": 0.39945
+      }
+    },
+    "irreversible: can the decision be checked afterwards?": {
+      "interventions_considered": 8461,
+      "checkable_without_sentinel": 0.0,
+      "checkable_with_sentinel_at_95pct": 0.23224205176693064,
+      "note": "without an unmasked channel the signals after a successful intervention look the same whether it was needed or not, so no run can be checked"
+    }
+  }
+}
