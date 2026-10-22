@@ -16,6 +16,8 @@
 
 **Orientation.** When answers become cheap, the bottleneck moves from finding solutions to taking them up. Yesterday's aims become today's tools, and prediction becomes a tool to change what it predicts. This repository is written in that spirit: not to predict the future, but to help build it. That is a stance, not a result; see [Building the future](research/building-the-future/BUILDING_THE_FUTURE.md).
 
+**The world model.** If every intelligence lives in a model of the world, then the model held with the aim of fitting how things are has a special place. A **world model** is kept answerable to evidence from outside, and is as sharp as that evidence allows and no sharper. It does not arise by itself; it has to be built and maintained, by a cell, a person, a society or an AI system alike. See [What a world model is](research/world-model/WORLD_MODEL.md), with 18 checked results in [`WorldModel.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/WorldModel.lean).
+
 ## Start here
 
 | If you want to… | Go to |
@@ -71,6 +73,7 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 - **Health of intelligence and of the commons:** [research/health-of-intelligence/](research/health-of-intelligence/) — concept notes, not results: a shared measure of the health of intelligence for people, AI systems and institutions, the health of the commons they live in, the research briefs and reports behind them, and their review.
 - **Building the future:** [research/building-the-future/](research/building-the-future/README.md) — an essay, not a result: what changes when answers become cheap, and why responsibility shifts toward uptake.
 - **Transparent pricing:** [research/transparent-pricing/](research/transparent-pricing/README.md) — an application to economics: access at cost, a separate bounty for solving problems, every choice visible; with a standalone Lean package in [formalization/transparent-pricing/](formalization/transparent-pricing/README.md).
+- **What a world model is:** [research/world-model/](research/world-model/README.md) — the definition: a model held to fit how things are and kept answerable to evidence, as sharp as the evidence allows and no sharper; why it is valuable, how it scales from a cell to a society and to AI, and what it requires.
 - **Integrity of world models:** [research/world-model-integrity/](research/world-model-integrity/README.md) — a concept note: deliberate manipulation by words or by devices as two routes to one harm, and the neurorights read as part of existing human rights, which name principles and set boundaries.
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
 - **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.

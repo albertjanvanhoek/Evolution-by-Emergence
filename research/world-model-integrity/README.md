@@ -2,6 +2,8 @@
 
 This folder follows up entry D33 in [DIALOGUE.md](../../DIALOGUE.md). It builds a bridge between three things: the neurorights proposed for neurotechnology, the human rights that already exist, and what this repository says about learners that model a reality larger than themselves.
 
+**Companion:** [What a world model is](../world-model/WORLD_MODEL.md) (D34) defines the thing this note protects. This note is about what others owe a holder's world model; that one is about what a holder must do to have one.
+
 **Status:** a concept note, not a result. Each claim is labelled as in the [creed](../discovarianism/CREED.md): **Follows** (from being a learning process), **If** (given a named aim), or **Proposed** (a value). Every quotation from a legal or UN source was checked in that source on 21 October 2026.
 
 ## 1. The author's claim
