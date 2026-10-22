@@ -10,6 +10,7 @@ This folder follows entry D34 in [DIALOGUE.md](../../DIALOGUE.md). It distinguis
 | [sources/REVIEW_2_PART0.md](sources/REVIEW_2_PART0.md) | Review 2's blind Part 0 answers, recorded before it saw the material |
 | [sources/REVIEW_2.md](sources/REVIEW_2.md) | The second independent review, kept as received |
 | [sources/RESPONSE_2.md](sources/RESPONSE_2.md) | The response to it, point by point, with how much weight it carries |
+| [sources/REVIEW_3_PART0.md](sources/REVIEW_3_PART0.md) | Review 3's blind Part 0 answers, recorded before it saw the material |
 | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) | The brief given for review 1 |
 | [briefs/REVIEW_BRIEF_2.md](briefs/REVIEW_BRIEF_2.md) | The brief for a second review, in two messages with a blind start |
 
