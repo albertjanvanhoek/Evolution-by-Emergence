@@ -135,3 +135,32 @@ The distant sample at b = 2 (coarse distance 4 to 6) is about 0 per neighbour fo
 - **Small coarse lattice and few settings.** b = 8 on L = 64 leaves an 8 × 8 coarse lattice. There is one β per model and one kind of boundary.
 
 **Reading.** The candidate statement survives this round. For O(3), the conditional influence measured here shrinks with each blocking step, by a factor of about 0.7–0.8, and stays local. For O(2) in its gapless phase it does not shrink and spreads out. Turning this into mathematics needs an *upper* bound on the influence of the coarse model, uniform over boundaries.
+
+## Targeted test: structured "bad" boundaries
+
+**Run:** [`adversarial.py`](adversarial.py), files `adversarial_*.json`. L = 64, b = 4, 6 boundaries × 2 sites, 400 burn-in and 500 measurement sweeps, grouped errors. The retained spins are set to a structured pattern: North–South checkerboard, North–South random, all aligned, or (O(3) only) random in a plane. N is z for O(3) and y for O(2). Two probes, both lower bounds on the TV influence of j on i, per neighbour, at coarse distance d:
+- **tilt:** turn s_j 45° toward a sideways axis and measure the sideways response of s_i. This targets the spin-flop mechanism.
+- **flip:** as before.
+
+**Tilt response by distance** (per neighbour):
+
+| model | boundary | d = 1 | d = 2 | d = 4 | d = 6 |
+|---|---|---|---|---|---|
+| O(2), β=1.3 | random | 0.090 ± 0.019 | 0.012 ± 0.007 | −0.010 ± 0.010 | −0.008 ± 0.006 |
+| O(2), β=1.3 | N–S checkerboard | 0.030 ± 0.006 | 0.010 ± 0.006 | −0.000 ± 0.004 | 0.003 ± 0.005 |
+| O(2), β=1.3 | **N–S random** | 0.110 ± 0.040 | 0.079 ± 0.031 | **0.044 ± 0.023** | **0.047 ± 0.019** |
+| O(2), β=1.3 | aligned | 0.044 ± 0.007 | 0.005 ± 0.007 | 0.001 ± 0.008 | 0.001 ± 0.008 |
+| O(3), β=1.5 | random | 0.053 ± 0.008 | −0.005 ± 0.006 | −0.011 ± 0.006 | −0.007 ± 0.007 |
+| O(3), β=1.5 | N–S checkerboard | 0.077 ± 0.010 | 0.015 ± 0.009 | −0.002 ± 0.007 | −0.009 ± 0.008 |
+| O(3), β=1.5 | **N–S random** | 0.087 ± 0.011 | 0.034 ± 0.007 | **0.007 ± 0.009** | **0.002 ± 0.012** |
+| O(3), β=1.5 | aligned | 0.032 ± 0.005 | 0.000 ± 0.004 | −0.003 ± 0.004 | −0.002 ± 0.004 |
+| O(3), β=1.5 | planar | 0.073 ± 0.007 | 0.014 ± 0.004 | −0.003 ± 0.004 | 0.003 ± 0.004 |
+
+Flip responses (d = 1, 2) are similar across boundaries. They are smallest for aligned (O(2) 0.023, O(3) 0.039 at d = 1). Full numbers are in the JSON files.
+
+**Findings**
+- **O(2): North–South random boundaries produce a long tail.** The sideways response stays at about 0.045 per neighbour out to d = 6. That is about 2–2.5 standard errors each at d = 4 and 6, and the two agree. On random, checkerboard and aligned boundaries it is about 0 from d = 4 on. Because the number of neighbours at distance d grows like d, a flat tail makes the influence sum diverge. That fits the spin-flop picture for XY (D'Achille, van Enter and Le Ny 2022), whose paper notes that random North–South configurations work too.
+- **O(3): no long tail on any boundary tried.** That includes North–South random, the one that is bad for O(2), and planar. North–South random raises the response at d = 2 (0.034 against about 0 for random boundaries), but from d = 4 on it is about 0 within errors of about 0.01. This fits the argument in [`../NOTE_O3_INFLUENCE.md`](../NOTE_O3_INFLUENCE.md): the obstruction that defeats XY needs a discrete choice for the hidden spins, and O(3) does not provide one. The test also finds no sign, at this β and b, of the other worry: hidden O(3) spins pushed into a plane acting like a gapless XY model.
+- **An unexpected detail.** For O(2), the North–South *checkerboard* shows no tail at b = 4. The paper says alternating configurations become bad under more dilute decimation, so either b = 4 is not dilute enough at this β, or our probe misses it.
+
+**Limits.** One β per model, b = 4 only, L = 64, a few structured classes, errors of about 0.01–0.02 per neighbour, and lower bounds only. A real worst case could lie outside the classes tried. Equilibrating the hidden spins on structured boundaries may be slow, especially near a spin-flop transition.
