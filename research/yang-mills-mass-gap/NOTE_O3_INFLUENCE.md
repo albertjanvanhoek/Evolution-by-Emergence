@@ -81,7 +81,22 @@ Precisely: the hidden spins stay continuous; what remains is a discrete *global 
 
 **An explicit periodic candidate (from review, checked).** At b = 2, set the retained spins to ((−1)^m e_x + (−1)^n e_y)/√2. At zero temperature, a tangent-line bound shows that the only energy minima are all hidden odd–odd spins equal to +e_z, or all equal to −e_z: an exact two-fold degeneracy. This proves nothing yet about positive temperature, about non-Gibbsianness, or about b = 4.
 
-**Test** (`pilot/symmetry_check.py`, last section of `pilot/RESULTS.md`): random planar boundaries at β = 1.5 and 2.0. **No up/down metastability observed** at either coupling, in these observables and run lengths. A time-averaged magnetisation near 0 cannot by itself tell disorder from switching between sectors. The hidden z-magnetisation stays near 0 from every start (largest 0.004 at β = 1.5, 0.044 at β = 2.0), against ±0.5 for O(2) on North–South boundaries. The conditioned system does show a finite global response to a single tilted coarse spin: +0.0075 ± 0.0012 at β = 1.5 and +0.023 ± 0.007 at β = 2.0, with four boundaries as units. The β = 2.0 value varies a lot between boundaries. This is no sign of global metastability, but it is not a uniform mixing bound, and mixing speed was not measured. Periodic planar patterns, and larger β, are untried.
+**Test** (`pilot/symmetry_check.py`, last section of `pilot/RESULTS.md`): random planar boundaries at β = 1.5 and 2.0. **No up/down metastability observed** at either coupling, in these observables and run lengths. A time-averaged magnetisation near 0 cannot by itself tell disorder from switching between sectors. The hidden z-magnetisation stays near 0 from every start (largest 0.004 at β = 1.5, 0.044 at β = 2.0), against ±0.5 for O(2) on North–South boundaries. The conditioned system does show a finite global response to a single tilted coarse spin: +0.0075 ± 0.0012 at β = 1.5 and +0.023 ± 0.007 at β = 2.0, with four boundaries as units. The β = 2.0 value varies a lot between boundaries. This is no sign of global metastability, but it is not a uniform mixing bound, and mixing speed was not measured. For the periodic pattern and larger β, see the next section.
+
+## The periodic pattern at b = 2: two phases at finite β? (7 November 2026)
+
+**Rigorous lower bound.** Leake and Li (arXiv:2611.05228, read at the source) bound the Glauber spectral gap of O(N) models with arbitrary external fields: gap ≥ (1 − ‖J_abs‖/N)/n (Theorem 5), with exponential decay of covariances (Remark 22). Conditioned on the retained spins, the hidden system at b = 2 is an O(3) model in an external field on a (4,2)-biregular bipartite graph, with adjacency norm √8. So the hidden system has **no phase coexistence for β < 3/√8 ≈ 1.061**, for every retained configuration.
+
+**Numerical test** (`pilot/periodic_b2.py`, last section of `pilot/RESULTS.md`). The Binder cumulant of the hidden z-magnetisation, for L = 16, 32, 64, is near 0 for β ≤ 2.0 and rises toward 2/3 for β ≥ 2.8, where L ≥ 32 chains stay in the sector set by their start. **The curves cross at β ≈ 2.7.** This is the finite-size signature of a transition with two ordered phases, ±z, at β_c ≈ 2.65–2.75. The crossing value, U4 ≈ 0.59, is near the value usually quoted for the 2D Ising model on a periodic square (about 0.61; quoted from memory, not checked at the source). That would fit the z → −z symmetry, but three sizes cannot settle a universality class.
+
+**What this does and does not show.** The argument for non-Gibbsianness has three steps:
+1. two zero-temperature minima: proven;
+2. two infinite-volume phases of the hidden system at finite β: now numerically supported, not proven;
+3. an essential discontinuity of the decimated conditionals: open.
+
+"Coexistence, therefore non-Gibbsian" skips step 3. Step 3 needs a change of retained spins *far away* that selects one phase and moves a retained spin's conditional law by a fixed amount, however far away the change is.
+
+**The question this leaves.** Can this explicit planar conditioning cause a hidden phase transition, and so make the decimated 2D O(3) measure non-Gibbsian at low temperature? That question stands apart from the O(3) mass gap.
 
 ## Status after the 2D O(N) preprints (7 November 2026)
 

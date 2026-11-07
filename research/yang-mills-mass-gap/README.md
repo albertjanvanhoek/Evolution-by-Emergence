@@ -62,6 +62,7 @@ These are bookkeeping. All of the physics sits in their hypotheses. They are sta
 - [x] Measure the coarse model's conditional sensitivity (Dobrushin-type) across block scales in O(2) and O(3): small pilot done.
 - [x] 64² at block sizes 2, 4, 8: O(3) keeps contracting (factor about 0.7–0.8 per doubling), O(2) does not.
 - [ ] Look for an upper bound on the coarse model's influence for O(3), uniform over boundaries: the mathematical step. See [`NOTE_O3_INFLUENCE.md`](NOTE_O3_INFLUENCE.md).
+- [ ] Side question, apart from the O(3) gap: does an explicit periodic planar pattern of retained spins make decimated 2D O(3) non-Gibbsian? Numerics at b = 2 show two hidden phases above β ≈ 2.7 (Binder crossing for L = 16, 32, 64). Proof steps 2 and 3 are open. See [`NOTE_O3_INFLUENCE.md`](NOTE_O3_INFLUENCE.md).
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
 - [ ] Find a human expert in constructive field theory or probability.

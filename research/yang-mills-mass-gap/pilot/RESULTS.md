@@ -210,3 +210,42 @@ The O(3) data fit 1 or 2. The O(2) data point toward 3, but only together with t
 - **Reading.** No sign of O(2)-like global metastability under the planar O(3) boundaries tried. That is not a uniform mixing bound. At these couplings the O(3) data fit possibility 1 or 2, not 3.
 
 **Limits.** Two β values, b = 4, L = 64, four random planar boundaries per β. Periodic planar patterns (for example x, y, −x, −y in a fixed cycle) were not tried; for XY, periodic North–South patterns also work. Single chains.
+
+## Periodic planar pattern at b = 2: a two-phase test (7 November 2026)
+
+**Question.** Retained spins on (2Z)² are fixed to ((−1)^m e_x + (−1)^n e_y)/√2. At zero temperature the hidden odd–odd spins τ have exactly two energy minima, all +e_z or all −e_z. Does this survive at positive temperature as two phases of the hidden system? Leake and Li (arXiv:2611.05228, Theorem 5 and Remark 22, read at the source) exclude coexistence for β < 3/√8 ≈ 1.061: the hidden lattice is (4,2)-biregular with adjacency norm √8.
+
+**Run.** `python periodic_b2.py L` for L = 16, 32, 64 at β = 0.8 (control), 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, and `python periodic_b2.py L fine` at β = 2.6–2.9. Files `periodic_b2_L*.json`. Updates: Metropolis plus overrelaxation (`stage2.sweep2`). Measurement sweeps 40 000 / 20 000 / 8 000 for L = 16 / 32 / 64, plus a quarter of that for thermalisation. Starts near +z, near −z and random, two seeds each: 6 runs per (L, β). Observable: m_z, the mean z-component of the τ spins, and the Binder cumulant U4 = 1 − ⟨m_z⁴⟩/(3⟨m_z²⟩²), pooled over the 6 runs. Errors: jackknife over runs (computed for β ≥ 2.5 only).
+
+| β | L = 16 | L = 32 | L = 64 |
+|---|---|---|---|
+| 0.8 (control) | 0.010 | 0.009 | 0.001 |
+| 1.0 | 0.014 | 0.006 | −0.006 |
+| 1.25 | 0.017 | 0.002 | −0.000 |
+| 1.5 | 0.034 | 0.002 | 0.014 |
+| 2.0 | 0.105 | 0.032 | −0.015 |
+| 2.5 | 0.449 ± 0.003 | 0.250 ± 0.013 | 0.096 ± 0.044 |
+| 2.6 | 0.534 ± 0.002 | 0.446 ± 0.007 | 0.287 ± 0.030 |
+| **2.7** | **0.593 ± 0.001** | **0.593 ± 0.005** | **0.593 ± 0.009** |
+| 2.8 | 0.627 ± 0.001 | 0.646 ± 0.002 | 0.660 ± 0.001 |
+| 2.9 | 0.644 | 0.659 | 0.665 |
+| 3.0 | 0.652 | 0.663 | 0.666 |
+
+U4 = 0 for a Gaussian m_z (one phase) and 2/3 for two sharp peaks at ±m (two phases).
+
+**Findings**
+- **For β ≤ 2.0, including the control, U4 is near 0 and falls with L.** One phase, as expected. Autocorrelation times are short there (τ_mz up to about 7–10 sweeps at L = 64, β = 2.0).
+- **For β ≥ 2.8, U4 rises with L toward 2/3.** Run means of m_z are ±0.57 (β = 2.8) to ±0.67 (β = 3.0). From L = 32 on, the sign stays the one set by the start for the whole run: no tunnelling between the two sectors. At L = 16 the chains still switch (τ_mz from about 300 to 2600 sweeps per run at β = 2.8–2.9).
+- **The curves for the three sizes cross at β ≈ 2.7**, where all three give U4 = 0.593 within the errors. The crossing does not drift between L = 16→32 and L = 32→64 at this resolution. This is the usual finite-size signature of a phase transition with two ordered phases, at β_c ≈ 2.65–2.75. That is consistent with the Leake–Li bound β_c ≥ 1.061.
+- **Autocorrelation near the crossing is long.** At β = 2.7, τ_mz is 200–460 sweeps for L = 16, 500–1600 for L = 32 and 100–640 for L = 64. The energy decorrelates fast (τ_E ≈ 4–50 sweeps in all runs).
+
+**Limits**
+- The jackknife uses 6 runs. Near β = 2.7 each run covers only about 10–40 autocorrelation times of m_z, so the errors there are rough.
+- In the ordered regime, L ≥ 32 chains stay in one sector. U4 does not see the sign, and the two sectors are exact mirror images under z → −z, so this does not bias U4. It does mean the sectors were not sampled against each other.
+- Three sizes, one b, one pattern, one update scheme. No error bars below β = 2.5.
+- **This is numerical evidence for step 2 of the argument below, not a proof.** It says nothing yet about step 3.
+
+**Where this sits in the argument for non-Gibbsianness of the decimated O(3) measure**
+1. Two zero-temperature energy minima for this pattern: proven (review, checked).
+2. Two infinite-volume phases of the hidden system at some finite β: supported by this test (β_c ≈ 2.7), not proven. A proof must control interfaces and thermal fluctuations.
+3. An essential discontinuity of the decimated conditional distributions: not addressed. Two phases alone are not enough. One must show that changing retained spins far away, around the periodic pattern, can switch the hidden system between phases and so move a retained spin's conditional law by a fixed amount, however far away the change is.
