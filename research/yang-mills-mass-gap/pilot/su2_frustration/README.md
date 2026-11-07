@@ -15,3 +15,6 @@ Step 2, Z₂ monopoles forbidden:
 
 Approach 1 of [`../../FIVE_APPROACHES.md`](../../FIVE_APPROACHES.md), gradient flow:
 - `flow.py BETA [L] [NCONF] [SEED]`: Wilson flow, then negative R×R loops and frustrated side-R cubes for R = 1, 2, 3 at flow times 0 to 1. Runs in `out3/`: β = 2.4 and 2.6, `8 8 3` (about 30 seconds each).
+
+Approach 3 of [`../../FIVE_APPROACHES.md`](../../FIVE_APPROACHES.md), colour on P-vortex sheets ([`../../WORLDSHEET.md`](../../WORLDSHEET.md)):
+- `worldsheet.py BETA [L] [NCONF] [SEED] [TFLOW]`: optional Wilson flow, DMCG, then the sign-blind colour overlap (n·n')² of neighbouring P-plaquettes, against all opposite-face pairs. Runs in `out4/`: β = 2.4 at t = 0, 0.2, 0.5 and β = 2.6 at t = 0, all `8 6 5` (about a minute each).
