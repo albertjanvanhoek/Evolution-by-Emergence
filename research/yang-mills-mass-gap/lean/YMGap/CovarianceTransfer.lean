@@ -10,14 +10,23 @@ The bridge in `LGT/Bridge/ScaleTransfer.lean` (Douglas and Rajasekaran) assumes
 
   Cov(f, g) = Cov(E[f|B], E[g|B]) + E[Cov(f, g | B)].
 
-The bridge keeps the first term and drops the second.
+The bridge's hypothesis amounts to controlling the first term alone. The second
+(residual) term need not vanish and can have either sign. Coarse-measurable
+observables are one case where it vanishes.
 
 * `blocked_bound_fails`: a two-point counterexample. With an uninformative
   coarse variable, the blocked covariance is 0 while the fine covariance is 1.
-* `corrected_transfer`: the bridge with the conditional term kept. Fine decay
-  follows from coarse decay (rate divided by the blocking scale) **and**
-  decay of the conditional term.
+* `corrected_transfer`: a transfer theorem that keeps a residual term. Fine
+  decay follows from coarse decay (rate divided by the blocking scale) **and**
+  decay of the residual term.
 * `corrected_transfer_min`: the same, as a single rate: the minimum of the two.
+  This is an upper bound; the rate is positive only when `s`, `m₁` and `m₂`
+  are.
+
+**Assumed, not derived.** `hsplit` is a hypothesis. `covB` and `covC` are
+arbitrary functions here; nothing yet states that they are the two terms of
+the identity above for an actual measure. Formalizing that (conditional
+expectation and total covariance, on finite spaces first) is open.
 
 Nothing here is specific to Yang–Mills. The physics enters through the
 hypotheses.

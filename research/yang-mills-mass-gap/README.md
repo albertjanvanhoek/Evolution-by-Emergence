@@ -7,7 +7,7 @@
 ## Where the problem stands
 
 - **Existence (the other half).** On 26 October 2026, OpenAI announced an AI-produced existence proof for pure Yang–Mills, with a Lean formalization finished on 16 October. A group led by David Gross is reviewing it. It is not public, and it does not claim a mass gap. *Seen only in secondary reports.*
-- **Gap equals decay.** A positive mass gap is equivalent to exponential decay of correlations between distant gauge-invariant observables. The decay rate is the gap.
+- **Gap and decay.** On a lattice, a positive gap corresponds to exponential decay of correlations under suitable boundary conditions. Decay for one kind of observable (say, plaquettes) is not yet a gap for the whole physical Hilbert space. That needs a rich enough family of gauge-invariant observables and a reconstruction (transfer-matrix) argument in the continuum.
 - **Strong coupling on a lattice: solved.** Osterwalder and Seiler (1978); Shen, Zhu and Zhu (2023); a 2025 paper reaches the 't Hooft regime. It is formalized in Lean by Douglas and Rajasekaran ([LGT](https://github.com/mrdouglasny/lgt)): U(n) Wilson theory, β < 1/(32n(d−1)), decay of plaquette–plaquette correlations, uniform in the torus size, no `sorry`.
 - **Small volumes: worked out, then stalled.** Lüscher (1983) and van Baal (Leiden) treated the zero-momentum modes on a small torus. Their quartic potential with flat directions gives a gap that scales as g^(2/3). The method breaks down at intermediate volumes, where instantons and the topology of field space take over.
 - **Weak coupling, which the continuum limit needs: open.** That is the problem.
@@ -27,28 +27,32 @@
 
 The route is renormalization: coarse-grain step by step until the theory reaches strong coupling, where decay is known.
 
-LGT already has the bridge for this (`LGT/Bridge/ScaleTransfer.lean`). If the model after k blocking steps decays with rate m, the original model decays with rate at least m/2^k. Two things are missing.
+LGT already has a bridge for this (`LGT/Bridge/ScaleTransfer.lean`). If the model after k blocking steps decays with rate m, and its explicit hypotheses hold, the original model decays with rate at least m/2^k. Three things are missing.
 
-1. **Reaching strong coupling in time.** After k(β) steps, the coarse model must satisfy the Dobrushin condition, which says the sum of influences on one link is below 1. In epidemic terms, R < 1 for influence. The number of steps k(β) may grow at most linearly in β, at the rate set by asymptotic freedom, so that the physical mass m·2^(−k)/a stays bounded below as the lattice spacing a goes to 0.
-2. **The term the bridge drops.** The bridge assumes |Cov_fine| ≤ |Cov_blocked|. In general:
+1. **Reaching strong coupling in time.** After k blocking steps, the coarse model must satisfy a contraction (Dobrushin-type) condition: the sum of influences on one link is below 1. In epidemic terms, R < 1 for influence. A sufficient condition for a positive physical rate is that the coarse length a·2^k stays below a fixed physical length ℓ, with the contraction constant bounded away from 1. Fix ℓ and the continuum trajectory independently of the gap, or the argument is circular.
+2. **The residual term.** The bridge assumes |Cov_fine| ≤ |Cov_blocked| as an explicit hypothesis. In general:
 
    Cov(f, g) = Cov(E[f|B], E[g|B]) + E[Cov(f, g | B)]
 
-   The bridge keeps the first term and drops the second. That is only valid for observables that are functions of the coarse variables B alone. Otherwise one needs a *conditional* gap: decay of correlations for the fine field once the coarse field is fixed.
+   The second, residual term need not vanish and can have either sign. It vanishes for observables that are functions of the coarse variables B alone, but that is not the only case. In general one needs a *conditional* gap: decay of correlations for the fine field once the coarse field is fixed. It is enough for that decay to happen over one block rather than one lattice spacing (`blockScale_residual_suffices`).
+3. **The effective model after blocking.** A blocked weak-coupling SU(2) measure is in general not another nearest-neighbour Wilson measure. It has extended and multi-loop interactions. The strong-coupling theorem in LGT cannot be applied to it without proving that the actual effective model satisfies a contraction condition.
 
 ## Lean
 
 [`lean/`](lean/) is checked by CI (`.github/workflows/yang-mills-mass-gap-check.yml`):
 - `blocked_bound_fails`: a two-point counterexample to the bridge's assumption.
-- `corrected_transfer`, `corrected_transfer_min`: the bridge with the conditional term kept. The fine rate is the minimum of the coarse rate divided by the blocking scale and the conditional rate.
-- `physical_rate_lower_bound`, `physical_decay`: if the coarse length a·s stays below a fixed physical length ℓ, the physical rate is at least m⋆/ℓ, whatever the lattice spacing. Fixing ℓ in advance keeps step 1 from being circular.
+- `corrected_transfer`, `corrected_transfer_min`: transfer with a residual term kept. The fine rate is the minimum of the coarse rate divided by the blocking scale and the residual rate. The split |covF| ≤ |covB| + |covC| is *assumed*; it is not yet derived from conditional expectations.
+- `physical_rate_lower_bound`, `physical_decay`: if a·s ≤ ℓ and the coarse rate is at least m⋆, the physical rate is at least m⋆/ℓ, whatever the lattice spacing. Sufficient, not necessary.
+- `combined_physical_rate`, `combined_physical_rate_pos`, `physical_decay_combined`: with both terms, if also the residual rate satisfies m₂ ≥ a·μ_R, the physical rate is at least min(m⋆/ℓ, μ_R), which is positive when m⋆, μ_R and ℓ are.
+- `blockScale_residual_suffices`: residual decay at rate c per block gives the residual condition with μ_R = c/ℓ.
 
-These are bookkeeping. All of the physics sits in their hypotheses.
+These are bookkeeping. All of the physics sits in their hypotheses. They are statements about correlation decay, not yet about the spectral gap, and uniformity of the prefactors in volume and cutoff is outside them.
 
 ## Next steps
 
-- [ ] Combine the pieces into one conditional theorem on top of LGT: steps 1 and 2 imply a volume-uniform gap.
-- [x] Prove the corrected bridge in Lean, with the conditional term included.
+- [x] Transfer theorem with a residual term, and the combined physical rate (both terms).
+- [ ] Derive the covariance split from conditional expectations, on finite spaces first.
+- [ ] Only then decide whether depending on LGT adds anything.
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
 - [ ] Find a human expert in constructive field theory or probability.
