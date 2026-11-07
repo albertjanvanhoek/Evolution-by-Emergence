@@ -104,3 +104,32 @@ The vertex weight 1/(q)_{d_x} does not depend on colours. Recolouring an entire 
 **So the layer version now rests on one monotonicity conjecture:** in the CP loop model, the crossing probability between two layers does not decrease when couplings inside a layer increase.
 
 **Limits.** Finite Taylor truncation (K ≤ 2), q = 3, five small graphs. A large b inside a layer is poorly represented at K ≤ 2, so the limit b → ∞ was not checked numerically.
+
+## 7. First test of the monotonicity conjecture, without truncation (pilot/cpn_layer_monotonicity.py)
+
+**Graph:** the smallest case where the star proof no longer applies. A star with I = {i₁, i₂}, O = {o}, centre x, b = 1 on the three star edges, and **an extra coupling t between i₁ and i₂**, inside layer I. CP², q = 3.
+
+**Exact reduction (derived here).**
+- **Crossing given the multiplicities.** Given all multiplicities, P(no crossing) = (q)_a (q)_c / (q)_{a+c}, where a = n(i₁x) + n(i₂x) and c = n(xo). It does **not** depend on the multiplicity m of the i₁–i₂ edge. Summing over the permutations at x gives (q)_{n₁+n₂} for any return map through i₁ and i₂, as in the two-vertex lemma, and the loops that avoid x cancel between numerator and denominator.
+- **Multiplicities given the spins.** Given the spins, each n_e is Poisson(b_e |z̄_u z_v|²), independently across edges.
+- **So the crossing probability is a spin average:** P_t(cross) = E_t[H(b(w₁ + w₂), b w₃)], with w₁ = |z̄_{i₁} z_x|², w₂ = |z̄_{i₂} z_x|², w₃ = |z̄_o z_x|², and H(λ, μ) = Σ_{a,c} Pois(a; λ) Pois(c; μ)(1 − (q)_a(q)_c/(q)_{a+c}). This is exact, with no Taylor truncation.
+
+**Computation.** 4 × 10⁶ uniform spin samples, reweighted to each t. Differences are taken on the same samples.
+
+| t | P_t(cross) |
+|---|---|
+| 0 | 0.057156 ± 0.000033 (exact star value: 0.057206) |
+| 0.5 | 0.057428 |
+| 1 | 0.057712 |
+| 2 | 0.058303 |
+| 4 | 0.059440 |
+| 8 | 0.060946 ± 0.00012 |
+| ∞, fused (exact) | 0.063468 |
+
+Consecutive differences, on the same samples: +0.000272 ± 0.000003, +0.000284 ± 0.000003, +0.000591 ± 0.000007, +0.00114 ± 0.00002, +0.00151 ± 0.00007.
+
+**Monotone in t, in full CP² without truncation, rising steadily toward the fused value.**
+
+**What this reduces the conjecture to.** d/dt P_t(cross) = Cov_t(H(b(w₁ + w₂), b w₃), w₁₂), with w₁₂ = |z̄_{i₁} z_{i₂}|². H increases in its first argument. Monotonicity is therefore a **Griffiths-type correlation inequality for CP spins**: the alignment of i₁ with i₂ is positively correlated with an increasing function of their alignment with x. Such inequalities are known for some O(N) models (Lees, *Griffiths inequalities for the O(N)-spin model*, arXiv:2205.12928, via random paths; not read in detail). We do not know of one for CP^{N−1}.
+
+**Limits.** One graph, q = 3, b = 1, Monte Carlo over the spins (the conditional loop part is exact). Graphs with two or more free centres need a new reduction: there P(NC | n) is no longer a function of two numbers.
