@@ -201,11 +201,12 @@ The O(3) data fit 1 or 2. The O(2) data point toward 3, but only together with t
 | untilted hidden z-magnetisation, long runs: mean (sd) | −0.001 (0.002) | −0.003 (0.016) | ±0.4–0.5, sign set by the start |
 | largest \|hidden z-magnetisation\|, long runs | 0.004 | 0.044 | 0.51 |
 | does the sign follow the start? | no | no | yes, mostly |
-| tilted, mean hidden z-magnetisation (sd), 8 runs | +0.006 (0.002) | +0.020 (0.014) | — |
+| tilted minus untilted, per boundary (mean ± s.e., 4 boundaries) | +0.0075 ± 0.0012 | +0.023 ± 0.007 | — |
 
 **Findings**
 - **No up/down trapping for O(3)** on planar boundaries, at β = 1.5 or β = 2.0. The candidate discrete choice does not produce O(2)-like metastability here.
-- **The conditioned system does respond globally to one tilted coarse spin.** The average z-magnetisation of all about 4000 hidden spins moves by +0.006 at β = 1.5 and +0.020 at β = 2.0, about 4 standard errors each. The same holds on North–South boundaries at β = 1.5 (+0.0055). So the response is a finite susceptibility, and it grows about threefold from β = 1.5 to 2.0. Fluctuations are also larger at β = 2.0, so mixing is slower.
-- **Reading.** At these couplings, the O(3) data fit possibility 1 or 2 (strong mixing, or a unique state with slower mixing), not 3 (coexisting states). The growing response with β points toward possibility 2 becoming more relevant at lower temperature.
+- **The conditioned system responds globally to one tilted coarse spin.** With the four independent boundaries as units, and pairing tilted against untilted runs on the same boundary, the average z-magnetisation of all about 4000 hidden spins moves by **+0.0075 ± 0.0012 at β = 1.5** (per-boundary values 0.005–0.010) and **+0.023 ± 0.007 at β = 2.0** (per-boundary values 0.002–0.034, so heterogeneous). Each uses 3 degrees of freedom. On North–South boundaries at β = 1.5 the unpaired mean is similar (+0.0055). The response is larger at β = 2.0, but it varies a lot between boundaries. *(Corrected after review: an earlier version treated the 8 runs as independent and quoted "about 4 standard errors" for both.)*
+- **A larger response is not slower mixing.** Mixing speed needs its own diagnostics, such as autocorrelation times, which were not measured. A global magnetisation near 0 does not guarantee local mixing either: at β = 2.0 one long untilted run leaves the target spin's z-mean at 0.124, against an exact 0, and without a Monte Carlo error estimate it is unclear whether that is noise or remaining autocorrelation. *(Corrected after review: an earlier version said "so mixing is slower".)*
+- **Reading.** No sign of O(2)-like global metastability under the planar O(3) boundaries tried. That is not a uniform mixing bound. At these couplings the O(3) data fit possibility 1 or 2, not 3.
 
 **Limits.** Two β values, b = 4, L = 64, four random planar boundaries per β. Periodic planar patterns (for example x, y, −x, −y in a fixed cycle) were not tried; for XY, periodic North–South patterns also work. Single chains.
