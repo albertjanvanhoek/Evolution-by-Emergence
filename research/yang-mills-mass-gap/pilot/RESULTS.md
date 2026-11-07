@@ -373,3 +373,45 @@ Does the free energy of this defect grow with the area of the stack? If it does,
 - Metropolis only, cold starts, 9 points in t.
 
 **Reading for ROUTE.md.** The goal carries over: the 't Hooft twist is cheap at these β. The continuous path does not: the natural gauge-invariant interpolation costs area. Unless a different interpolation is found, the OpenAI mechanism does not carry over directly to 4D SU(2).
+
+## Annular twist cost in 2D sigma models: O(3), O(2), CP² (7 November 2026)
+
+**Question (CPN_TWIST.md, protocol from review).** On the annulus N ≤ ‖x‖∞ ≤ 2N (radius ratio fixed at 2), pin the outer layer to s* and rotate the inner layer by t. Measure the free-energy cost f(t) = −log(Z(t)/Z(0)) as N grows.
+- **O(3)** is the positive control: the theorem says f → 0, at most like C/log N.
+- **O(2) at low temperature** is the negative control: spin stiffness should keep the cost finite at a fixed radius ratio.
+- **CP²** is the new case: CPN_TWIST.md claims the same twist estimate as for O(3).
+
+**Method.** `python annulus_twist.py o2|o3|cp2 BETA N [NT NTHERM NMEAS [warm]]`, files `annulus_twist_*.json`.
+- **Updates.** O(n): Metropolis plus overrelaxation. CP²: Metropolis on z ∈ ℂ³ (2 hits).
+- **Measurement.** Thermodynamic integration in t over 9 points, with d/dt log Z(t) the mean of the inner-bond derivative of the energy. CP² uses z(t) = cos(t/2)e₁ + sin(t/2)e₂, so t = π is the orthogonal state.
+- **Run lengths.** 2 000 + 8 000 sweeps per point. CP² at β = 6 was rerun with 4 000 + 12 000 sweeps from a warm start on the classical twisted profile.
+
+**Results**
+
+| | N = 4 | 8 | 16 | 32 |
+|---|---|---|---|---|
+| O(2), β = 2.0: f(π/2) | 22.47 | 22.04 | 21.85 | 21.38 |
+| O(2), β = 2.0: f(3π/4) | 49.47 | 49.40 | 48.70 | 48.48 |
+| O(3), β = 1.5: f(π/2) | 11.45 | 8.72 | 5.86 | 2.56 |
+| O(3), β = 2.0: f(π/2) | 18.30 | 16.19 | 14.30 | 12.29 |
+| O(3), β = 2.0: f(3π/4) | 39.17 | 35.13 | 30.94 | 26.81 |
+| CP², β = 3.0: f(π/2) | 6.58 | 0.99 | −0.03 ± 0.24 | −0.06 ± 0.32 |
+| CP², β = 6.0: f(π/2), cold / warm start | 27.4 | 24.4 / 25.0 | 21.7 / 21.6 | 22.8 / 20.9 |
+| CP², β = 6.0: f(3π/4), cold / warm start | 59.6 | 54.0 / 55.0 | 46.3 / 46.2 | 46.6 / 45.2 |
+
+Errors are 0.03–0.3 for O(n) and 1–2 for CP² at β = 6 and N ≥ 16.
+
+**Findings**
+- **O(2), the negative control:** the cost stays nearly constant, falling by about 5% from N = 4 to 32.
+- **O(3), the positive control:** the cost falls with N.
+  - At β = 1.5 (correlation length of order 10) it falls quickly.
+  - At β = 2.0 (correlation length far above 2N) it falls steadily, by 11–15% per doubling. That fits a coupling that weakens slowly with scale. We did not compare it quantitatively with the running coupling.
+- **CP² at β = 3.0** goes to 0 within the errors by N = 16.
+- **CP² at β = 6.0** falls from N = 4 to N = 16 at about the same rate as O(3) at β = 2.0. These are matched couplings: β divided by the number of complex components, 6/3 against 4/2 for CP¹ = O(3) at 2.0. From N = 16 to 32 the cost does not fall further within the errors. **This step is inconclusive.**
+  - The simple Metropolis sampler mixes slowly here: τ is up to 700 sweeps at the point t = 7π/8, so the errors are probably underestimated.
+  - f(π) depends on the start (cold 71 against warm 81 at N = 16), so f(π) for CP² at β = 6 is not reported.
+  - Cold and warm starts agree for t ≤ 3π/4.
+
+**Reading.** The controls behave as the theorem and the spin-wave picture predict. CP² behaves like O(3) where the sampler is reliable. The largest CP² lattice needs a better update, for example overrelaxation in the gauge-field formulation of CP^{N−1}. This tests the twist mechanism, not the proof: a falling cost is also what a mass gap would give.
+
+**Limits.** One radius ratio, the square annulus, 9 points in t, single chains per point. The half-run differences reach 3 to 6 error bars in some runs, so the quoted errors are optimistic.

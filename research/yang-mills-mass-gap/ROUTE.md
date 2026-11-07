@@ -104,7 +104,7 @@ The measured area cost has a structural explanation.
 - Göpfert and Mack, Commun. Math. Phys. 82 (1982) 545, for the Villain action;
 - a short proof for groups with a central U(1): Chatterjee, arXiv:2602.00436 (abstract checked).
 
-4D SU(2) sits at the borderline for a different reason: its coupling has no dimension. Its gap is not tied to any continuous symmetry. **The symmetry route from 2D O(3) does not lead to 4D Yang–Mills.** This is our conclusion from the sources above, not a theorem.
+4D SU(2) sits at the borderline for a different reason: its coupling has no dimension. Its gap is not tied to any continuous symmetry. **The symmetry route from 2D O(3) does not lead to 4D Yang–Mills.** This is our conclusion from the sources above, not a theorem. More precisely, the fact that higher-form symmetries are abelian rules out a direct translation through non-commuting *topological* defects. It does not prove that no non-abelian, gauge-invariant response could do the job (point from review).
 
 ## A rung that may be within reach: 2D sigma models beyond spheres
 
