@@ -2,6 +2,22 @@
 
 *Working note, 7 November 2026. Written by the author with an AI assistant. Not a result. The decomposition below is elementary and checked numerically; the numbers come from a small pilot (8⁴, 20 configurations per β, one seed).*
 
+## Prior work (found after this note was written)
+
+**The decomposition and the positivity in §1–§4 below are not new.** They are a version of Tomboulis' SO(3) × Z(2) formulation of SU(2) lattice gauge theory. Kovács and Tomboulis, *Vortices and confinement at weak coupling* (arXiv:hep-lat/9711009, read in the text), write the partition function as
+
+  Z = ∫ ∏_b dU_b ∏_p dσ_p ∏_c δ[η_c σ_c] exp(β |tr U_p| σ_p)   (their Eq. 3),
+
+with Z(2) variables σ_p on plaquettes, η_p the sign of the plaquette, and η_c, σ_c the products over the faces of a cube. So:
+- the couplings of the Z(2) variables are |tr U_p| ≥ 0: the positivity of our statement (3);
+- the cube constraint σ_c = η_c ties the Z(2) monopoles to the SO(3) monopoles (cubes with η_c = −1, joined by Dirac sheets that a change of representative moves at no cost): our statement (2);
+- their "MP model" (their Eq. 11, all σ_c constrained to +1) is our monopole-free ensemble of step 2;
+- they argue that thin Z(2) vortices are irrelevant at large β ("a pure Z(2) theory is in a Higgs phase at large β"), and that "the presence of thick or hybrid vortices is the necessary condition for confinement to occur at weak coupling". **Step 2 below reproduces this numerically.**
+
+The same formulation is used by Alexandru and Haymaker (arXiv:hep-lat/0002031, hep-lat/0009010 †), who show that on a periodic lattice allowed configurations must wrap an even number of times around the lattice, and by Haymaker (arXiv:hep-lat/0205002, read through a summary of the text), whose partition function has the same form with |Tr U(∂p)| σ(p) and the cube constraint ∏ η(p)σ(p) = +1.
+
+**What is ours, then,** is narrower: reading this structure as the gauge-theory counterpart of the sign clusters in Section 4 of the 2D O(3) proof, the conclusion that it gives no route there (the positive variables are frozen at weak coupling), and the pilot numbers (monopole density in physical units, frustration at scale 2a, the flow test in [`FIVE_APPROACHES.md`](FIVE_APPROACHES.md)). We use link signs s instead of plaquette variables σ_p; without monopoles the two agree (σ = ds, up to a twist).
+
 ## Why this question
 
 [`ROUTE.md`](ROUTE.md) found that the twist part of the O(3) proof does not carry over to 4D SU(2), and that Part 2, the sign clusters, is the obstacle wherever no unfrustrated Ising embedding exists ([`CPN_TWIST_THEOREM.md`](CPN_TWIST_THEOREM.md) shows a genuinely frustrated plaquette for the natural CP^{N−1} embedding). This note asks the same question for the gauge theory itself, through its centre.
@@ -112,7 +128,7 @@ Wilson at β = 2.2 (not in the table): ⟨½Tr U_p⟩ = 0.5707, χ(2,2) = 0.393,
 
 - [x] Monopole-suppressed ensemble: done above. The thin centre sector is positive but frozen.
 - [ ] Blocked centre variables: for a blocking (e.g. 2⁴ blocks with a centre projection of the block link), measure the frustration of the blocked signs, and whether a choice of blocking makes it dilute.
-- [ ] Check whether the positivity statement in (3) is already in the Mack–Petkova, Kovács–Tomboulis or Haymaker papers.
+- [x] Check whether the positivity statement in (3) is already in the literature: yes, in the Tomboulis SO(3) × Z(2) formulation (see Prior work).
 - [ ] Write (1)–(4) in Lean on a finite lattice (the change of variables and the Bianchi identity are finite statements).
 - [ ] Ask an expert (E. Seiler; A. van Enter for the statistical-mechanics side).
 
