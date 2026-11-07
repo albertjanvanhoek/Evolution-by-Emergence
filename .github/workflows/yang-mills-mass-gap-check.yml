@@ -1,0 +1,55 @@
+name: Yang-Mills Mass Gap Check
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "research/yang-mills-mass-gap/lean/**"
+      - ".github/workflows/yang-mills-mass-gap-check.yml"
+  pull_request:
+    paths:
+      - "research/yang-mills-mass-gap/lean/**"
+      - ".github/workflows/yang-mills-mass-gap-check.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  lean:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: research/yang-mills-mass-gap/lean
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Update dependencies
+        run: |
+          $HOME/.elan/bin/lake update
+
+      - name: Fetch Mathlib cache
+        run: |
+          $HOME/.elan/bin/lake exe cache get
+
+      - name: Build
+        run: |
+          $HOME/.elan/bin/lake build
+
+      - name: Audit axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          $HOME/.elan/bin/lake env lean Audit.lean 2>&1 | tee audit.log
+          if grep -q 'sorryAx' audit.log; then
+            echo 'Unproved axiom detected' >&2
+            exit 1
+          fi
+          count=$(grep -c "depends on axioms\|does not depend on any axioms" audit.log)
+          echo "Audited results: $count"
+          test "$count" -ge 6

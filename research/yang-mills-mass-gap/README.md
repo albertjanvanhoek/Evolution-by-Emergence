@@ -36,10 +36,19 @@ LGT already has the bridge for this (`LGT/Bridge/ScaleTransfer.lean`). If the mo
 
    The bridge keeps the first term and drops the second. That is only valid for observables that are functions of the coarse variables B alone. Otherwise one needs a *conditional* gap: decay of correlations for the fine field once the coarse field is fixed.
 
+## Lean
+
+[`lean/`](lean/) is checked by CI (`.github/workflows/yang-mills-mass-gap-check.yml`):
+- `blocked_bound_fails`: a two-point counterexample to the bridge's assumption.
+- `corrected_transfer`, `corrected_transfer_min`: the bridge with the conditional term kept. The fine rate is the minimum of the coarse rate divided by the blocking scale and the conditional rate.
+- `physical_rate_lower_bound`, `physical_decay`: if the coarse length a·s stays below a fixed physical length ℓ, the physical rate is at least m⋆/ℓ, whatever the lattice spacing. Fixing ℓ in advance keeps step 1 from being circular.
+
+These are bookkeeping. All of the physics sits in their hypotheses.
+
 ## Next steps
 
-- [ ] State steps 1 and 2 as precise Lean hypotheses on top of LGT, and prove the conditional theorem that they imply a volume-uniform gap.
-- [ ] Prove the corrected bridge in Lean, with the conditional term included.
+- [ ] Combine the pieces into one conditional theorem on top of LGT: steps 1 and 2 imply a volume-uniform gap.
+- [x] Prove the corrected bridge in Lean, with the conditional term included.
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
 - [ ] Find a human expert in constructive field theory or probability.
