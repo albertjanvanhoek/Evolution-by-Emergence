@@ -245,6 +245,23 @@ U4 = 0 for a centred Gaussian m_z and 2/3 for an almost constant |m_z|. U4 does 
 - Three sizes, one b, one pattern, one update scheme. No error bars below β = 2.5.
 - **This is numerical evidence for step 2 of the argument below, not a proof.** It says nothing yet about step 3.
 
+**Independent replication (posted on PR #144, code not in this repository).** A second implementation integrates out the connector spins exactly, giving the effective weight Π_e sinh(βr_e)/(βr_e) with r_e = ‖τ_u + τ_v + a_e‖. It samples only the τ spins with Metropolis, without overrelaxation, so its sweep counts differ from ours. Its ground-state energy matches the exact −2M²√6. Its Binder values, against ours (ours first):
+
+| β | L = 32 | L = 64 |
+|---|---|---|
+| 2.5 | 0.250 / 0.345 | 0.096 / −0.060 |
+| 2.6 | 0.446 / 0.456 | 0.287 / 0.267 |
+| 2.7 | 0.593 / 0.593 | 0.593 / 0.612 |
+| 2.8 | 0.646 / 0.641 | 0.660 / 0.654 |
+| 2.9 | 0.659 / 0.655 | 0.665 / 0.664 |
+| 3.0 | 0.663 / 0.660 | 0.666 / 0.648 |
+
+The two agree from β = 2.6 to 2.9. They differ in two places:
+- **β = 3.0, L = 64:** the replication has ⟨|m_z|⟩ = 0.640 and a long τ. A chain held by a straight domain wall around the torus would explain this; not checked.
+- **β = 2.5, L = 32:** 0.345 against 0.250, about 2 to 3 standard errors.
+
+Its long trajectories at L = 64, β = 2.7 also show no sector switching in 18 000 sweeps. Both codes were written by AI assistants, so this is not yet an independent human check.
+
 **Where this sits in the argument for non-Gibbsianness of the decimated O(3) measure**
 1. Two zero-temperature energy minima for this pattern: proven (review, checked).
 2. Two infinite-volume phases of the hidden system at some finite β: this test is compatible with a disordered regime below β ≈ 2.7 and an ordered one above. Not proven. A proof must control interfaces and thermal fluctuations.
@@ -280,3 +297,28 @@ U4 = 0 for a centred Gaussian m_z and 2/3 for an almost constant |m_z|. U4 does 
 - Finite R (up to 32), finite tori, one β in the ordered regime, one pattern, one b.
 - **This is not yet an essential discontinuity.** Both conditionings are single, exactly fixed configurations, which have probability zero. The argument must show that the separation survives on sets of positive measure, for example small neighbourhoods of these configurations (as in the framework of D'Achille, van Enter and Le Ny). Not tested.
 - A negative result would not have excluded non-Gibbsianness. A positive one does not prove it.
+
+## Ring test with noisy retained spins (7 November 2026)
+
+**Question.** The ring test compares two exact configurations, and those have probability zero. Does Δ_R survive if every fixed retained spin is perturbed a little? This is a proxy for conditioning on small neighbourhoods of the two configurations.
+
+**Run.** `python ring_noise_b2.py BETA R DELTA [NSAMP]`, files `ring_noise_b2_*.json`. As in the ring test, but each fixed retained spin is set to normalise(η_x + δ g_x), with g_x i.i.d. standard Gaussian vectors; in the annulus the tilt is applied as well. For each noise sample, the + ring and the − ring use the same g, so they differ only in the annulus. Each ring runs from starts near +z and near −z. β = 3.0, L = 4R, 4 000 + 6 000 sweeps, 4 noise samples per row. Errors: standard error over the noise samples.
+
+| δ | R = 8 | R = 16 | R = 32 |
+|---|---|---|---|
+| 0 (ring test above) | 0.730 ± 0.003 | 0.714 ± 0.003 | 0.715 ± 0.003 |
+| 0.03 | — | 0.685 ± 0.025 | 0.677 ± 0.018 |
+| 0.1 | 0.544 ± 0.047 | 0.177 ± 0.079 | 0.015 ± 0.009 |
+| 0.3 | 0.052 ± 0.027 | 0.011 ± 0.005 | 0.002 ± 0.003 |
+
+**Findings**
+- **At a fixed noise level, Δ_R dies out as R grows.** At δ = 0.3 it is gone by R = 8. At δ = 0.1 it falls from 0.54 to 0.18 to 0.015.
+- **At smaller noise it survives:** δ = 0.03 gives about 0.68 at both R = 16 and R = 32.
+- **Starts agree** within 0.06 in every sample, so this is not trapping.
+- **The noise also breaks the inner region into ±z patches.** At δ = 0.1, R = 32, the inner magnetisation still differs between the two rings (for example +0.37 against −0.08), while σ_0 no longer feels the difference: it follows the local patch.
+
+**Reading.** This is what one expects from a random field. The noise gives the retained spins small random z-components, a random field on the hidden ±z order. In two dimensions, an i.i.d. random field coupled to a two-valued order parameter destroys long-range order (Imry–Ma; proven by Aizenman and Wehr; not checked at the source here). The patches are then large but finite, and smaller when the noise is stronger.
+
+This does **not** rule out an essential discontinuity. In that definition, the neighbourhoods may be chosen anew for every distance, with a tolerance that shrinks as R grows. The data fit that picture: δ = 0.03 keeps Δ_R ≈ 0.68 up to R = 32, where δ = 0.1 no longer does. The open mathematical step is now sharper: show that for every R a small enough tolerance δ(R) > 0 keeps the separation, while the conditional law outside the annulus is averaged over the decimated measure. Also untested here: unconstrained retained spins outside the annulus.
+
+**Limits.** Four noise samples per row, one β, one ε, L = 4R, Gaussian noise on every retained spin. The decay at δ = 0.1 is not yet resolved in R.

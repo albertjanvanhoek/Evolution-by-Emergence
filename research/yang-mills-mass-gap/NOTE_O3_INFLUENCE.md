@@ -98,6 +98,8 @@ Precisely: the hidden spins stay continuous; what remains is a discrete *global 
 
 **Ring test for step 3** (`pilot/ring_b2.py`, last section of `pilot/RESULTS.md`). Free one retained spin σ_0. Keep the pattern within distance R and tilt the retained spins in the annulus R < d ≤ 2R slightly toward +z or −z. At β = 3.0, the difference in ⟨σ_0^z⟩ between the two tilts levels off at about 0.71 for R = 8, 16, 32 and does not depend on the start of the chain. At β = 0.8 it is 0 within the errors. So a change of retained spins far away moves the conditional law of a retained spin by a fixed amount, at least up to R = 32. This is the mechanism step 3 needs. It is not yet an essential discontinuity: that requires the separation to survive on neighbourhoods of positive measure, not only on two fixed configurations.
 
+**With noisy retained spins** (`pilot/ring_noise_b2.py`): perturb every fixed retained spin by i.i.d. noise of size δ. At fixed δ, Δ_R dies out with R (δ = 0.1: 0.54, 0.18, 0.015 at R = 8, 16, 32). At δ = 0.03 it stays at about 0.68 up to R = 32. This fits a random-field picture: small random z-components break the hidden order into large but finite patches (Imry–Ma, Aizenman–Wehr). It does not rule out an essential discontinuity, since the tolerance may shrink with R. The step to prove is: for every R, some δ(R) > 0 keeps the separation.
+
 **The question this leaves.** Can this explicit planar conditioning cause a hidden phase transition, and so make the decimated 2D O(3) measure non-Gibbsian at low temperature? That question stands apart from the O(3) mass gap.
 
 ## Status after the 2D O(N) preprints (7 November 2026)
