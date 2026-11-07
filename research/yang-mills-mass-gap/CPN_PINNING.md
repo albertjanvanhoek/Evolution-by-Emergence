@@ -208,3 +208,31 @@ Using the split from §8, d/dt P_t(E) = Cov^{spin}(Φ_E, w_e) + E[w_e(P(E | n + 
 - **q = 5:** a few apparent negatives appeared, down to −5σ with 8 batches. A targeted check with 20 independent chunks and 2 × 10⁷ samples (`pilot/cpn_overlap_association_recheck.py`) puts them all at **+1.7σ, −0.3σ, +2.4σ, +8.1σ and +1.6σ**. So they were noise; the error estimate with 8 batches was too small for rare events.
 
 **Status.** No counterexample to A or B. A remains a combinatorial conjecture that needs an averaging argument. B is a Griffiths-II-type statement for the overlaps |z̄z|². For q = 2 it is a statement about σ_x·σ_y in the O(3) model. **That case appears to be an old open problem.** Orland (arXiv:hep-lat/0205028, text excerpt seen) writes that no one had proved the second Griffiths inequality for O(n) models of this form with n ≥ 3, and that Sylvester showed Ginibre's method fails for the classical Heisenberg magnet. A later CMP paper (doi 10.1007/BF01608730; abstract only) proves a second Griffiths inequality for 3- and 4-component models, but by its stated applications it concerns parallel and transverse spin-component correlations, not products of dot products. So B is probably at least as hard as an open question about the O(3) model. Our numerics support it, but a proof should not be expected soon. **A, the combinatorial conjecture, is the more promising target.**
+
+## 11. Conjecture B is false in general; the needed special case survives (7 November 2026)
+
+**Counterexample from the other assistant, checked.** Take three independent projectors (β = 0), with X = tr(P₁P₂), Y = tr(P₂P₃) and Z = tr(P₁P₃). Then F = X + Y − XY is increasing in X and in Y, yet Cov(F, Z) = −(q − 1)/(q³(q + 1)²), which is −1/216 at q = 3. Monte Carlo with 2 × 10⁷ samples gives −0.00463 ± 0.00001. **So B, stated for all increasing functions, is false.**
+
+**What the route actually needs** is only the specific spin term Cov^{spin}(Φ_E, w_e), not B in general. On the star with an edge inside the layer (§7), the direct term is zero. The whole derivative at t = 0 is then Cov₀(H(b(w₁ + w₂), b w₃), w₁₂).
+
+**Computation** (`pilot/cpn_star_edge_derivative.py`). The tree measure is sampled exactly: the overlap of each leaf with the centre has density ∝ e^{bw}(1 − w)^{q−2}, and the direction is otherwise uniform. Strand counts are Poisson draws, and h uses log-gamma. 2 × 10⁷ samples per row.
+
+| q | b | P₀(cross) | dP/dt at t = 0 |
+|---|---|---|---|
+| 2 | 0.5 / 2 / 6 / 12 | 0.039 / 0.419 / 0.967 / 1.000 | +3.3e-4 / +6.0e-3 / +8.7e-4 / +1.3e-6 |
+| 3 | 1 / 4 / 8 / 16 / 32 | 0.057 / 0.637 / 0.975 / 1.000 / 1.000 | +5.4e-4 / +7.3e-3 / +8.2e-4 / +2.4e-7 / 0 (±5e-14) |
+| 5 | 0.5 / 2 / 6 / 12 | 0.004 / 0.067 / 0.603 / 0.986 | +6.7e-6 / +5.2e-4 / +6.6e-3 / +4.6e-4 |
+| 10 | 0.5 / 2 / 6 / 12 | 0.0005 / 0.009 / 0.133 / 0.674 | +4.1e-7 / +1.6e-5 / +7.8e-4 / +4.7e-3 |
+
+**The derivative is positive everywhere it is not zero by saturation** (P₀ = 1). An earlier run gave a negative value at b = 32. That was an artefact: the Poisson sum had been cut off at 60, below λ ≈ 64. The corrected computation gives 0.
+
+**Why the counterexample does not apply here, at least in this case.** At t = 0 the star is a tree, so w₁ and w₂ are independent. By symmetry, E[w₁₂ | w₁, w₂] = w₁w₂ + (1 − w₁)(1 − w₂)/(q − 1). So
+
+  dP/dt|₀ = (q/(q − 1)) Cov(H(s), w₁w₂) − Cov(H(s), s)/(q − 1), with s = w₁ + w₂ (taking b = 1 in H's first argument for brevity).
+
+This is an inequality in two independent variables with explicit densities. It might be provable directly. The counterexample uses a function, X + Y − XY, that is not a function of the sum alone. H depends on w₁ and w₂ only through their sum.
+
+**Revised plan.**
+- **Drop B as a general association statement.** Prove instead the specific inequality for Φ_E, which is a Poisson mixture of the excursion probability.
+- **First target:** the two-variable inequality above for the star with an edge inside the layer, at t = 0, then at t > 0.
+- **A** (combinatorial) still stands; no counterexample so far.
