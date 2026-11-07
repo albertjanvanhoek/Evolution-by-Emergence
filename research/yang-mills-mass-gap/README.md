@@ -49,11 +49,16 @@ LGT already has a bridge for this (`LGT/Bridge/ScaleTransfer.lean`). If the mode
 
 These are bookkeeping. All of the physics sits in their hypotheses. They are statements about correlation decay, not yet about the spectral gap, and uniformity of the prefactors in volume and cutoff is outside them.
 
+## Pilot
+
+[`pilot/`](pilot/RESULTS.md): Monte Carlo for 2D O(2) and O(3). The residual (conditional) part of the correlations is short-range in all cases, including gapless O(2). The gap lives entirely in the coarse part. So the residual condition is not where the difficulty is.
+
 ## Next steps
 
 - [x] Transfer theorem with a residual term, and the combined physical rate (both terms).
 - [x] Derive the covariance split from conditional expectations, on finite spaces.
 - [ ] Only then decide whether depending on LGT adds anything.
+- [ ] Measure the coarse model's conditional sensitivity (Dobrushin-type) across block scales in O(2) and O(3).
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
 - [ ] Find a human expert in constructive field theory or probability.
