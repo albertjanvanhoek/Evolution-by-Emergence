@@ -158,9 +158,29 @@ The distant sample at b = 2 (coarse distance 4 to 6) is about 0 per neighbour fo
 
 Flip responses (d = 1, 2) are similar across boundaries. They are smallest for aligned (O(2) 0.023, O(3) 0.039 at d = 1). Full numbers are in the JSON files.
 
-**Findings**
+**Findings** *(the O(2) part is superseded by the symmetry check below)*
 - **O(2): North–South random boundaries produce a long tail.** The sideways response stays at about 0.045 per neighbour out to d = 6. That is about 2–2.5 standard errors each at d = 4 and 6, and the two agree. On random, checkerboard and aligned boundaries it is about 0 from d = 4 on. Because the number of neighbours at distance d grows like d, a flat tail makes the influence sum diverge. That fits the spin-flop picture for XY (D'Achille, van Enter and Le Ny 2022), whose paper notes that random North–South configurations work too.
 - **O(3): no long tail on any boundary tried.** That includes North–South random, the one that is bad for O(2), and planar. North–South random raises the response at d = 2 (0.034 against about 0 for random boundaries), but from d = 4 on it is about 0 within errors of about 0.01. This fits the argument in [`../NOTE_O3_INFLUENCE.md`](../NOTE_O3_INFLUENCE.md): the obstruction that defeats XY needs a discrete choice for the hidden spins, and O(3) does not provide one. The test also finds no sign, at this β and b, of the other worry: hidden O(3) spins pushed into a plane acting like a gapless XY model.
 - **An unexpected detail.** For O(2), the North–South *checkerboard* shows no tail at b = 4. The paper says alternating configurations become bad under more dilute decimation, so either b = 4 is not dilute enough at this β, or our probe misses it.
 
 **Limits.** One β per model, b = 4 only, L = 64, a few structured classes, errors of about 0.01–0.02 per neighbour, and lower bounds only. A real worst case could lie outside the classes tried. Equilibrating the hidden spins on structured boundaries may be slow, especially near a spin-flop transition.
+
+## Symmetry null control and mixing check (review on PR #144)
+
+**Run:** [`symmetry_check.py`](symmetry_check.py), files `symmetry_*.json`. L = 64, b = 4, four fixed North–South random boundaries per model. With every retained spin along ±N, the conditional law is mirror-symmetric in the sideways axis e, so the **exact** sideways mean of every hidden spin is 0. Hidden spins start East, West or random. Short runs use 400 + 500 sweeps, as in `adversarial.py`. Long runs use 4000 + 4000 sweeps.
+
+**O(2), β = 1.3: the chains are trapped in a sideways sector.**
+- Untilted, the sideways magnetisation of all hidden spins stays at about ±0.4–0.5, with the sign set by the start. Random starts land in either sector. This persists in the long runs (|magnetisation| up to 0.51, target spin up to 0.75), whereas the exact value is 0.
+- Tilted at distance 4, an East start gives +0.52 to +0.72 and a West start −0.47 to −0.74 on the same boundary and tilt. The answer depends on the start, not on the tilt.
+
+**So the O(2) "tail" in the previous section is not a valid measurement of influence.** It reflects which sector each chain happened to fall into. What the check does show is that the hidden O(2) spins *order* sideways on North–South boundaries: a large, stable sideways magnetisation in a 64 × 64 system. That is the spin-flop phenomenon, a discrete East/West choice. In infinite volume, a small tilt far away could then select the sector, which means very large long-range influence. The chain cannot measure that influence, but the ordering itself is the obstruction.
+
+**O(3), β = 1.5: the chains mix, and the symmetry null holds.**
+- Untilted, the sideways magnetisation of the hidden spins is |m| ≤ 0.016 from every start. In the long runs, the target's sideways mean is |·| ≤ 0.04, consistent with 0 within single-chain noise.
+- Tilted at distance 4, East and West starts agree within noise in the long runs (for example −0.015 against +0.014, and 0.003 against −0.035).
+- So the O(3) null result of the previous section stands as a measurement: no detectable long-range response, and **no sideways ordering of the hidden spins**. That is the specific difference from O(2).
+
+**Consequences**
+- **O(2) checkerboard:** the earlier no-tail result is also untrustworthy until checked for trapping.
+- **The random-boundary experiments (stages 1–3) were not checked for trapping.** With uniformly random retained spins there is no exact mirror symmetry to test against, so trapping there is unknown. It is less likely, since the conditioning leaves no discrete symmetry, but not excluded.
+- **Limits:** one β per model, b = 4, four boundaries, single chains.
