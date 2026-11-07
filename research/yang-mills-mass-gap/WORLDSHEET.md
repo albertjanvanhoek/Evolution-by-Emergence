@@ -1,8 +1,8 @@
 # Approach 3: a thick vortex as a 2D field on its own world-sheet (7 November 2026)
 
-*Working note, the next step after [`FIVE_APPROACHES.md`](FIVE_APPROACHES.md). Pen and paper plus one cheap measurement. Not a result. † = seen only in search excerpts.*
+*Working note, the next step after [`FIVE_APPROACHES.md`](FIVE_APPROACHES.md). Pen and paper plus two cheap measurements. Not a result. † = seen only in search excerpts.*
 
-**In short.** The colour field on a centre-vortex sheet is an RP² field, not an S² field. The 2D RP² model is exactly the case where an all-coupling gap is *disputed*, because of Z₂ point vortices. A heuristic argument says these point vortices are absent on vortex sheets, which would bring the sheet back to the O(3) case of the new theorem. But the hypotheses of that theorem (planar graph, nearest-neighbour nonnegative couplings, fixed geometry) do not hold on vortex sheets as they stand. A first measurement finds no coherent colour field at the lattice scale, and only a partly coherent one after smoothing. Approach 3 is therefore a conditional question about an infrared model, not yet a route for Yang–Mills.
+**In short.** The colour field on a centre-vortex sheet is an RP² field, not an S² field. The 2D RP² model is exactly the case where an all-coupling gap is *disputed*, because of Z₂ point vortices. A heuristic argument says these point vortices are absent on vortex sheets, which would bring the sheet back to the O(3) case of the new theorem. But the hypotheses of that theorem (planar graph, nearest-neighbour nonnegative couplings, fixed geometry) do not hold on vortex sheets as they stand. A first measurement finds no coherent colour field at the lattice scale, and only a partly coherent one after smoothing. Approach 3 is therefore a conditional question about an infrared model, not yet a route for Yang–Mills. A closer reading of the O(3) proof (§6) shows that its twist estimate does not need planarity as such, only the two edge directions of the square lattice; a test on non-planar graphs with short extra edges is consistent with the estimate surviving, while long extra edges destroy it.
 
 ## 1. The world-sheet field is RP², not S²
 
@@ -52,7 +52,41 @@ At β = 2.6 without flow, only 24 neighbouring P-pairs occur (0.387 against 0.33
 
 **Limits.** Six configurations, one β with flow; DMCG local maxima; only flat neighbours (opposite faces) are compared, so bends of the sheet are left out; the error on the t = 0.5 value is a few hundredths.
 
-## 6. What approach 3 is now
+## 6. What the twist estimate needs from the graph (reading of the proof, and a test)
+
+**The projector form, linking to the CP track.** Even if §3 holds and n can be given a sign everywhere, the natural interaction on a vortex sheet is the sign-blind (n·n')², the projector form, not n·n'. Lifting n to S² does not make the interaction linear. So what the sheet needs is not the O(3) theorem itself but the twist estimate for the real-projector (RP) interaction, restricted to configurations without point vortices. [`CPN_TWIST.md`](CPN_TWIST.md) records that for RP^{N−1} the rotation generators have operator norm 2, so the constants of Section 2 must be recomputed. That computation is shared by the CP track and this one.
+
+**Where the square lattice is used.** Reading Sections 2 and 3 of the OpenAI preprint line by line:
+- **Proposition 2.2 holds on every finite graph.** The paper says so: its constants do not depend on the graph, the family size or the fixed spins.
+- **The gauge identity (3.4) also holds on every graph**, for any vertex function Θ equal to one on the inner pinned layer and zero on the outer one. Its gradient h = dΘ then has ‖h‖₂² equal to the Dirichlet energy of Θ, which is at least the effective conductance between the two layers.
+- **Only Lemma 3.2 uses the square annulus.** It builds the multiscale family of plane waves, with r^{-3/2} weights summed over all scales r ≤ N, whose summed commutator current equals λ_N h̃ with λ_N ≳ log N, at a total cost of order log N. That ratio, (log N)² against log N, is the whole gain.
+- **What the lemma really uses is not planarity but the two edge directions.** The identity Σ_i S(f_i, f̄_i) = −iλ_N h̃ is exact because each group of frequencies is symmetric under the reflection that fixes one axis, so the sines along the other axis cancel. The transfer from h̃ to h in (3.17)–(3.19) then needs ‖h − h̃‖₁ ≤ C/N, that is a per-edge accuracy of order N⁻³ on O(N²) edges.
+- **For an extra edge in another direction v, the identity holds only approximately.** The cosine factor of the transverse component deviates by a relative amount of roughly ℓ²/log N, summed over the top scales (our rough estimate). Over a positive density of such edges, ‖h − h̃‖₁ grows like N/log N, and the ℓ¹ transfer fails. **This is the only obstruction we found.** It is technical: the transfer step bounds X(dc) by β‖d‖₁, and a sharper bound, or a frequency family adapted to each edge direction, might remove it. *Our reading, not checked by anyone else.*
+
+**A test: non-planar but local graphs** (`pilot/twist_graph.py`, `pilot/twist_graph_out/`). O(3) on the annulus N ≤ ‖x‖∞ ≤ 2N with the same measurement as `pilot/annulus_twist.py` (thermodynamic integration of d/dt log Z, 2000 + 8000 sweeps per twist angle, 9 angles). Extra edges join free vertices only: "short" edges have sup-length 2 to 4 (local wormholes; the graph is no longer planar), "long" edges join random pairs anywhere (the negative control). ρ is the number of extra edges per free vertex. The planar runs reproduce the earlier values (18.36 against 18.31 at N = 4). Twist cost f(π/2) = −log Z(π/2)/Z(0), errors 0.03–0.23:
+
+| graph | β | N = 4 | 8 | 16 | 32 | change 16 → 32 |
+|---|---|---|---|---|---|---|
+| planar | 2.0 | 18.36 | 16.01 | 14.18 | 12.45 | −12% |
+| planar | 2.3 | 22.29 | 20.29 | 17.89 | 15.57 | −13% |
+| planar | 2.6 | 26.20 | 24.25 | 22.12 | 21.03 | −5% |
+| short, ρ = 0.1 | 2.0 | 20.84 | 22.59 | 21.46 | 19.59 | −9% |
+| short, ρ = 0.3 | 2.0 | 24.48 | 31.66 | 34.44 | 35.59 | +3% |
+| long, ρ = 0.01 | 2.0 | 18.37 | 16.80 | 17.81 | 25.46 | +43% |
+| long, ρ = 0.1 | 2.0 | 20.51 | 24.70 | 43.08 | 81.11 | +88% |
+
+**Reading.**
+- **Long edges destroy the effect,** as they should: they make the graph effectively higher-dimensional, and the cost grows with the number of long edges.
+- **Short edges act like a stronger coupling.** A bond of length ℓ adds stiffness of order ℓ², so short wormholes raise the effective coupling more than their number suggests. At ρ = 0.1 the cost first rises (a boundary-layer effect at small N: no extra edges can reach the pinned layers) and then falls, by 9% from N = 16 to 32, between the planar rates at β = 2.3 and 2.6. At ρ = 0.3 the rise is flattening (+9%, then +3%); the fall would start beyond N = 32.
+- **So the numerics are consistent with the twist estimate surviving local non-planarity,** with a larger effective coupling. They do not show it: N ≤ 32, one graph per setting, and a falling cost is also what any gapped model gives.
+
+**The lemma this suggests** (a conjecture):
+
+> Proposition 3.1 holds, with a constant depending on β, ℓ, D and ρ, for O(3) on the square annulus plus extra edges of sup-length at most ℓ, with every vertex of degree at most D.
+
+If true, the planarity hypothesis can be dropped for vortex sheets whose handles are small (of bounded size, at bounded density), which is the relevant case if sheets are smooth on scales above their thickness. Handles at all scales would still be excluded, as the long-edge control suggests.
+
+## 7. What approach 3 is now
 
 A conditional question about an infrared model, not a route for Yang–Mills yet:
 
@@ -65,6 +99,8 @@ What a positive answer would give: colour coherence on sheets is short-ranged, s
 ## Next steps
 
 - [ ] Literature: how Engelhardt's models treat colour on the sheets, and the lattice data on monopoles on vortices (fractions, intersections).
-- [ ] Mathematics: what Proposition 3.1 of the OpenAI proof (the annular twist) needs from the graph. Does it hold on finite planar graphs of bounded degree, and on random planar maps?
+- [x] Mathematics, first pass: Proposition 3.1 needs the two edge directions of the square lattice (through the exact identity (3.8) and the ℓ¹ transfer), not planarity as such. See §6.
+- [ ] Prove or refute the lemma of §6: a sharper transfer than β‖d‖₁, or a frequency family adapted to each edge direction.
+- [ ] Recompute the constants of Section 2 for the real-projector interaction (norm-2 generators), together with the CP track.
 - [ ] Numerics at 16⁴ or 24⁴ for colour coherence at the thick-vortex scale: ask the author first (cost).
 - [ ] Check §3 directly: count end points of sign-flip lines on P-vortex sheets after smoothing.
