@@ -15,7 +15,13 @@ For each model and a few fixed North-South random boundaries (L = 64, b = 4):
           and West, short and long. If the response depends on the start, the
           chain is not mixing and the earlier tilt numbers are unreliable.
 
+Planar variant (O(3) only): retained spins in random directions within the
+xy-plane. Only the reflection z -> -z survives, a discrete choice for the
+hidden spins (up or down), so e = z. Suggested in review as the O(3) analogue
+of the XY East/West choice.
+
 Usage: python symmetry_check.py O2 1.3 | python symmetry_check.py O3 1.5
+       python symmetry_check.py O3 1.5 planar
 """
 
 import json
@@ -81,11 +87,14 @@ def polarise(s, frozen, e):
 
 def main():
     model, beta = sys.argv[1], float(sys.argv[2])
+    kind = sys.argv[3] if len(sys.argv) > 3 else "ns"
     n = 3 if model == "O3" else 2
     north = np.zeros(n)
     north[2 if n == 3 else 1] = 1.0
     e = np.zeros(n)
     e[0] = 1.0
+    if kind == "planar":
+        e = np.array([0.0, 0.0, 1.0])
     seed(12345)
     rng = np.random.default_rng(12345)
     s = init(L, n)
@@ -102,7 +111,12 @@ def main():
         base = s.copy()
         for ci in range(NC):
             for cj in range(NC):
-                base[ci * B, cj * B] = north if rng.random() < 0.5 else -north
+                if kind == "planar":
+                    v = rng.normal(size=n)
+                    v[2] = 0.0
+                    base[ci * B, cj * B] = v / np.linalg.norm(v)
+                else:
+                    base[ci * B, cj * B] = north if rng.random() < 0.5 else -north
         ci, cj = rng.integers(NC), rng.integers(NC)
         ii, jj = ci * B, cj * B
         frozen = coarse.copy()
@@ -129,13 +143,14 @@ def main():
                 tgt, mag = run_chain(w, beta, frozen, ii, jj, e, nburn, nmeas)
                 rows.append({"boundary": nb, "probe": "tilt_d4", "run": label, "start": start,
                              "target_sideways": tgt, "hidden_sideways_mag": mag})
-    print(f"{model} beta={beta}  ({time.time() - t0:.0f}s)")
+    print(f"{model} beta={beta} boundary={kind}  ({time.time() - t0:.0f}s)")
     print(" bnd probe    run    start   target_sideways  hidden_sideways_mag")
     for r in rows:
         print(f"  {r['boundary']}  {r['probe']:7s} {r['run']:6s} {r['start']:7s} "
               f"{r['target_sideways']: .4f}          {r['hidden_sideways_mag']: .4f}")
-    with open(f"symmetry_{model}_b{beta}.json", "w") as f:
-        json.dump({"model": model, "beta": beta, "L": L, "block": B, "runs": runs,
+    suffix = "" if kind == "ns" else f"_{kind}"
+    with open(f"symmetry_{model}_b{beta}{suffix}.json", "w") as f:
+        json.dump({"model": model, "beta": beta, "boundary": kind, "L": L, "block": B, "runs": runs,
                    "rows": rows}, f, indent=1)
 
 

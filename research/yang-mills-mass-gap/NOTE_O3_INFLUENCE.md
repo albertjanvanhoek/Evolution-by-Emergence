@@ -52,21 +52,29 @@ At b = 8, the complete sum over all 63 neighbours is 0.80–0.89 for O(3) and ab
 | c(β), O(3) | 0.100 | 0.245 | 0.380 | 0.501 | 0.604 |
 | c(β), O(2) | 0.127 | 0.308 | 0.468 | 0.603 | 0.709 |
 
-Dobrushin's condition for the original model, 4 c(β) < 1, holds up to β ≈ 0.51 for O(3) and β ≈ 0.40 for O(2).
+Dobrushin's condition for the original model, 4 c(β) < 1, holds up to β ≈ 0.51 for O(3) and β ≈ 0.40 for O(2). These are numerical estimates of the threshold.
 
-**Step 2: what decimation can add with these tools.** Keep the coarse spins on (bZ)² and integrate out the rest. Dobrushin's comparison theorem bounds how much a change at a coarse spin j moves the target i: the change spreads through the hidden spins with worst-case influence c per link. The resulting bound on the decimated model's row sum is
+**Analytic check (review on PR #144).** Take three neighbours at 120° to each other, so their sum is 0, and flip the fourth from +e to −e. The two conditionals then differ in total variation by exactly (cosh β − 1)/sinh β = tanh(β/2). So c_O(3)(β) ≥ tanh(β/2), and the single-site method **cannot** certify contraction for β ≥ ln(5/3) ≈ 0.5108. This is rigorous. Our numerical search agrees with tanh(β/2) to within 1.2 × 10⁻⁶ at every β computed, so this configuration is very probably the true worst case, giving c_O(3)(β) = tanh(β/2) exactly. That last step is numerical evidence for the upper bound, not a proof.
+
+**Step 2: what decimation can add with these tools.** Keep the coarse spins on (bZ)² and integrate out the rest. Dobrushin's comparison theorem bounds how much a change at a coarse spin j moves the target i: the change spreads through the hidden spins with worst-case influence c per link. The resulting bound on the decimated model's row sum is (a random-walk reading of Dobrushin's conditions goes back at least to Possolo and Rukhin, "Random walk approach to uniqueness and mixing conditions in Markov random fields", listed by NIST; publication details not verified here)
 
   **S(b, c) = E[(4c)^T]**, where T is the number of steps a simple random walk from i needs to first hit another coarse spin.
 
 The reason: each path through the hidden spins contributes c per step, and a site has 4 neighbours, so the path sum is the expectation of (4c)^T over random-walk paths. This was checked against a direct matrix computation, for example b = 2, c = 0.2: 0.343 from the matrix and 0.343 from a random-walk Monte Carlo; b = 4: 0.036 and 0.036.
 
-**Consequence (elementary, and checked numerically for b = 1, 2, 3, 4, 8).** Since T is finite with probability 1, **S(b, c) < 1 exactly when 4c < 1, for every block size b.**
+**Consequence (elementary; checked numerically for b = 1, 2, 3, 4, 8 and verified independently in review).** Since T ≥ 1 and T is finite with probability 1, **S(b, c) < 1 exactly when 4c < 1, for every block size b.** This is a limitation of *this* comparison bound with homogeneous worst-case influences. It is not an impossibility result for decimation, nor for every method that uses local influences.
 - Below the original threshold, decimation makes the certified bound much smaller. At c = 0.2, S falls from 0.8 (b = 1) to 0.34 (b = 2) and 0.036 (b = 4).
-- But decimation **never extends** the range where the bound can be certified. Above 4c = 1 the bound blows up: at c = 0.26, S is 1.29 for b = 2 and 10.6 for b = 4.
+- But decimation **never extends** the range where this bound can be certified. Above 4c = 1 the bound no longer proves contraction. On a finite torus it stays finite but exceeds 1: at c = 0.26, S is 1.29 for b = 2 and 10.6 for b = 4. In infinite volume the path series can diverge.
 
 **What this means for the route.** With uniform worst-case single-site influences, a certificate for decimated O(3) is reachable only where the original model already satisfies Dobrushin's condition (β below about 0.5). There a mass gap is already known from high-temperature methods. The simulations suggest contraction at β = 1.5. Reaching that would need tools that use more than the worst single-site influence:
-- **Finite-box criteria (Dobrushin–Shlosman):** check contraction on boxes rather than single sites, which takes collective effects into account. For continuous spins, a rigorous computer check is hard.
-- **Configuration-dependent or coupling arguments** (for example disagreement percolation), which can see that bad local configurations are rare.
+- **Finite-box criteria (Dobrushin–Shlosman):** check contraction on boxes rather than single sites, which takes collective effects into account. Rebeschini and van Handel, *Comparison Theorems for Gibbs Measures*, J. Stat. Phys. 157, 234–281 (2014), develop comparison theorems for influences between blocks that substantially extend the classical single-site range. For continuous spins, a rigorous computer check is still hard.
+- **Coupling arguments** (for example disagreement percolation). Note that rarity of bad *retained* configurations does not by itself help with a supremum over them.
 - **Genuine multi-scale analysis** (Bałaban; Goswami's adaptation to sigma models), which controls the flow of the effective coupling from step to step.
 
 That last option is the open problem itself. The finding narrows what a reachable *new* step could look like: it has to beat the uniform single-site bound, and decimation by itself does not.
+
+## Planar retained spins: a discrete choice for O(3)? (7 November 2026)
+
+Suggested in review. If the retained spins point in different directions within one plane, only the reflection perpendicular to that plane survives. The hidden O(3) spins then have a discrete choice, up or down, the analogue of the XY East/West choice. This undercuts the symmetry argument above as a general claim.
+
+**Test** (`pilot/symmetry_check.py`, last section of `pilot/RESULTS.md`): random planar boundaries at β = 1.5 and 2.0. **No up/down metastability** at either coupling. The hidden z-magnetisation stays near 0 from every start (largest 0.004 at β = 1.5, 0.044 at β = 2.0), against ±0.5 for O(2) on North–South boundaries. The conditioned system does show a finite global response to a single tilted coarse spin, which grows about threefold from β = 1.5 to 2.0. Periodic planar patterns, and larger β, are untried.

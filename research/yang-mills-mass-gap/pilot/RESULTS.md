@@ -191,3 +191,21 @@ The O(3) data fit 1 or 2. The O(2) data point toward 3, but only together with t
 - **O(2) checkerboard:** the earlier no-tail result is also untrustworthy until checked for trapping.
 - **The random-boundary experiments (stages 1–3) were not checked for trapping.** With uniformly random retained spins there is no exact mirror symmetry to test against, so trapping there is unknown. It is less likely, since the conditioning leaves no discrete symmetry, but not excluded.
 - **Limits:** one β per model, b = 4, four boundaries, single chains.
+
+## Planar symmetry check for O(3) (suggested in review)
+
+**Run:** `python symmetry_check.py O3 1.5 planar` and `O3 2.0 planar`, files `symmetry_O3_b*_planar.json`. The retained spins point in random directions within the xy-plane. Only the reflection z → −z survives, so the hidden spins have a *discrete* choice, up or down. That is the O(3) analogue of the XY East/West choice. Hidden spins start up, down or random. Short runs use 400 + 500 sweeps, long runs 4000 + 4000. Four fixed boundaries per β. The tilt turns the coarse spin at distance 4 by 45° toward +z.
+
+| | β = 1.5 | β = 2.0 | for comparison: O(2), N–S, β = 1.3 |
+|---|---|---|---|
+| untilted hidden z-magnetisation, long runs: mean (sd) | −0.001 (0.002) | −0.003 (0.016) | ±0.4–0.5, sign set by the start |
+| largest \|hidden z-magnetisation\|, long runs | 0.004 | 0.044 | 0.51 |
+| does the sign follow the start? | no | no | yes, mostly |
+| tilted, mean hidden z-magnetisation (sd), 8 runs | +0.006 (0.002) | +0.020 (0.014) | — |
+
+**Findings**
+- **No up/down trapping for O(3)** on planar boundaries, at β = 1.5 or β = 2.0. The candidate discrete choice does not produce O(2)-like metastability here.
+- **The conditioned system does respond globally to one tilted coarse spin.** The average z-magnetisation of all about 4000 hidden spins moves by +0.006 at β = 1.5 and +0.020 at β = 2.0, about 4 standard errors each. The same holds on North–South boundaries at β = 1.5 (+0.0055). So the response is a finite susceptibility, and it grows about threefold from β = 1.5 to 2.0. Fluctuations are also larger at β = 2.0, so mixing is slower.
+- **Reading.** At these couplings, the O(3) data fit possibility 1 or 2 (strong mixing, or a unique state with slower mixing), not 3 (coexisting states). The growing response with β points toward possibility 2 becoming more relevant at lower temperature.
+
+**Limits.** Two β values, b = 4, L = 64, four random planar boundaries per β. Periodic planar patterns (for example x, y, −x, −y in a fixed cycle) were not tried; for XY, periodic North–South patterns also work. Single chains.
