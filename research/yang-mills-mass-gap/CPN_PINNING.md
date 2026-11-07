@@ -236,3 +236,22 @@ This is an inequality in two independent variables with explicit densities. It m
 - **Drop B as a general association statement.** Prove instead the specific inequality for Φ_E, which is a Poisson mixture of the excursion probability.
 - **First target:** the two-variable inequality above for the star with an edge inside the layer, at t = 0, then at t > 0.
 - **A** (combinatorial) still stands; no counterexample so far.
+
+## 12. Review of the double-star theorem and the fusion limit (7 November 2026)
+
+**Fusion limit (CPN_FUSION_LIMIT_AND_SEPARATOR.md).** The argument is correct as we read it. Integrate the two fusion points last: P_t(E) = ∫ e^{tp} A(p) ρ_q(dp) / ∫ e^{tp} Z(p) ρ_q(dp), with ρ_q = Beta(1, q − 1). The excursion event does not depend on the permutations at the marked points, so its weight is the same whether those points are integrated first or last. As t → ∞, e^{tp} concentrates the measure at p = 1, and A(1)/Z(1) is the event probability with both points pinned to one common, integrated direction, which is the contracted graph. The convergence is O(1/t). This is consistent with the ratio k/(k + q + 1) in §8. **It closes the identification step that §8 left open,** for two fusion points.
+
+**Double star (CPN_DOUBLE_STAR_FUSION_THEOREM.md), checked independently** (`pilot/cpn_double_star_independent_check.py`):
+- **The moment identity (D5).** G(0.3) = 2.05714 by Monte Carlo with 4 × 10⁶ samples, against 2.05694 from the series Σ_d H_d/(q)_d.
+- **Consistency at p = 1.** h_side(1) = 0.063468, equal to the path formula 1 − Z_orth(b_u + b_v, b_a)/(f(b_u + b_v) f(b_a)). It also equals the fused star value of §7, computed by an unrelated method.
+- **The MLR property.** H_d(p₁)/H_d(p₀) increases in d for the pairs (0, 0.3), (0.3, 0.7), (0.7, 0.99) and (0, 1).
+- **Monotonicity.** h_side(p) increases in p, from 0.05389 at p = 0 to 0.06347 at p = 1 (q = 3, all b = 1).
+- **The final step is sound.** Given the middle projectors, the two sides are independent, so the probability that both are crossed is h_L(p) h_R(p). That is increasing in p, so any average over p (the free middle layer) is at most its value at p = 1 (fused).
+
+**Where we stand.** We now have proven pinning and fusion comparisons for:
+- two single points on any graph (§3);
+- stars;
+- two regions sharing one point;
+- the double star with a two-point middle layer.
+
+All of them rely on a reduction to one ordered variable: a sum of strand counts, or a rank-two matrix. The open case is a region with two or more free vertices joined to each other, as in a real annulus.
