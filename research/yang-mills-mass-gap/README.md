@@ -51,14 +51,15 @@ These are bookkeeping. All of the physics sits in their hypotheses. They are sta
 
 ## Pilot
 
-[`pilot/`](pilot/RESULTS.md): Monte Carlo for 2D O(2) and O(3). The residual (conditional) part of the correlations is short-range in all cases, including gapless O(2). The gap lives entirely in the coarse part. So the residual condition is not where the difficulty is.
+[`pilot/`](pilot/RESULTS.md): Monte Carlo for 2D O(2) and O(3). The residual (conditional) part of the correlations is short-range in all cases, including gapless O(2). The gap lives entirely in the coarse part. So the residual condition is not where the difficulty is. A second experiment measures how much coarse spins influence one another (a lower bound on Dobrushin's quantity). With atypical boundaries, that influence shrinks under coarse-graining for O(3) and grows for gapless O(2), from the same starting value.
 
 ## Next steps
 
 - [x] Transfer theorem with a residual term, and the combined physical rate (both terms).
 - [x] Derive the covariance split from conditional expectations, on finite spaces.
 - [ ] Only then decide whether depending on LGT adds anything.
-- [ ] Measure the coarse model's conditional sensitivity (Dobrushin-type) across block scales in O(2) and O(3).
+- [x] Measure the coarse model's conditional sensitivity (Dobrushin-type) across block scales in O(2) and O(3): small pilot done.
+- [ ] Repeat on larger lattices (64², 128²) and more β values: does the O(3) influence keep contracting, and by what factor per step?
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
 - [ ] Find a human expert in constructive field theory or probability.
