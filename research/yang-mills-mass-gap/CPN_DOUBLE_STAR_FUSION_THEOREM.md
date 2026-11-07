@@ -166,7 +166,26 @@ The covariance sign is the elementary one-dimensional Chebyshev inequality. By t
 }
 \tag{D16}
 \]
-This is a **genuine two-region, two-vertex-separator** comparison at every positive temperature and all \(q\ge2\). Applying the two-single-vertex pinning comparison on the **contracted** graph can then supply the appropriate further fused-to-equal-pinned comparison, provided the same marked event is used and the graph-cut hypothesis is respected.
+This is a **genuine two-region, two-vertex-separator** fusion comparison at every positive temperature and all \(q\ge2\).
+
+**Corollary (full three-layer pinning comparison for this double-star graph).** After fusing u and v, the two independent side graphs meet at exactly ONE articulation vertex \(s\). By the exact single-pin invariance and articulation-vertex factorization in [CPN_LAYER_ENUMERATION.md](CPN_LAYER_ENUMERATION.md), the fused two-region crossing probability is a product of the **free** crossing probabilities on the two sides. The general two-single-vertex pinning theorem of [CPN_PINNING.md](CPN_PINNING.md), applied separately to \(a_L,s\) and to \(s,a_R\), bounds each free side crossing by its same-direction pinned counterpart. Fixing the **three** marked vertices \(a_L,s,a_R\) on the same projector also factorizes the two side measures. Thus
+\[
+\boxed{
+\mathbb P_{\mathrm{free}}(E_L\cap E_R)
+\le \mathbb P_{\mathrm{middle\ fused}}(E_L\cap E_R)
+\le \mathbb P_{\mathrm{all\ three\ layers\ pinned\ equal}}(E_L\cap E_R).
+}
+\tag{D17}
+\]
+This is an **all-coupling FULL LAYER PINNING inequality for this specific six-vertex double-star topology**. In the all-positive q=3, b=1 example, the right endpoint is the square of the exactly pinned path-crossing probability:
+\[
+\mathbb P_{\mathrm{all\ pinned}}(E_L\cap E_R)
+=\left[1-\frac{Z_\perp(2,1)}{f_3(3)}\right]^2
+\simeq 0.030285465970,
+\]
+where \(Z_\perp(x,y)=\sum_{m,n\ge0}x^my^n/(q)_{m+n}\). The corresponding free and middle-fused values are approximately 0.003283648058 and 0.004028142683, respectively.
+
+**Caution about the parallel-channel extension below:** if each side has several *distinct* exterior marked leaves, the proof of **free→middle-fused** still holds, but the final **middle-fused→all-exterior-pinned** comparison involves a whole outer layer and is NOT covered by the two-single-site lemma. Do not silently extend (D17) to all such graphs.
 
 **Extension to parallel, disjoint star channels.** On either side one may replace the single free hub by a finite collection of disjoint free hubs, each joined to u,v and its own distinct exterior marked leaf. They share **only** u and v. With the pins fixed, the arm events are independent, and their union has probability \(h_{\rm side}(p)=1-\prod_j[1-h_j(p)]\), still nondecreasing in p. Thus (D15)–(D16) hold for any finite numbers of such independent channels on each side. This is a series-parallel graph class, not a general planar lattice annulus.
 
