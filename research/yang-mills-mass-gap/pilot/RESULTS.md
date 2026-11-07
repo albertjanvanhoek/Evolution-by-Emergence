@@ -59,3 +59,26 @@ Both models start at the same value at b = 1. Under coarse-graining, the summed 
 **Reading.** In this small pilot, the quantity that tells gapped from gapless is how worst-case-like conditional influence changes under coarse-graining. It contracts in O(3) and expands in O(2). A candidate statement, not tested beyond this pilot: for O(3) there is a block scale beyond which one blocking step shrinks the influence sum by a factor λ < 1, which would eventually push it below 1 (Dobrushin). For O(2) in its gapless phase, no such scale exists.
 
 **Limits.** L = 32, so b = 4 leaves an 8 × 8 coarse lattice. One β per model in the confirmation. The proxy is a lower bound averaged over random boundaries, not a supremum. After the coarse spins are randomized, the fine spins get 200 sweeps to re-equilibrate, which may not be enough. Whether the O(3) trend continues to below 1 needs larger lattices; the asymptotic-scaling regime of O(3) is known to be hard to reach.
+
+## Stage 1 validation (review on PR #144)
+
+**Run:** [`validate.py`](validate.py), files `validate_*.json`. L = 32, random boundaries, 12 outer boundaries × 2 sites, 600 measurement sweeps. Uncertainty is now grouped by outer configuration: one summed influence per boundary, which includes correlations between sites and between neighbour classes. Two independent seeds, and a burn-in after each perturbation of 200 versus 800 sweeps. Neighbour offsets are de-duplicated on the coarse lattice (12 distinct neighbours at b = 2 and b = 4).
+
+Summed influence (lower-bound proxy):
+
+| model | b | seed A, burn 200 | seed B, burn 200 | seed A, burn 800 |
+|---|---|---|---|---|
+| O(3), β = 1.5 | 2 | 1.332 ± 0.036 | 1.330 ± 0.027 | 1.326 ± 0.041 |
+| O(3), β = 1.5 | 4 | 1.062 ± 0.040 | 1.064 ± 0.023 | 1.086 ± 0.031 |
+| O(2), β = 1.3 | 2 | 1.664 ± 0.107 | 1.640 ± 0.122 | 1.704 ± 0.080 |
+| O(2), β = 1.3 | 4 | 1.583 ± 0.104 | 1.926 ± 0.134 | 1.622 ± 0.155 |
+
+**What survives**
+- **Equilibration is adequate.** 200 and 800 sweeps agree in every row.
+- **O(3) contracts.** It goes from 1.33 to 1.06–1.09 between b = 2 and b = 4, the same for both seeds and both burn-ins, with errors of about 0.03.
+- **O(2) does not contract.** It stays around 1.6–1.9, well above O(3) at b = 4.
+
+**What does not survive**
+- **The earlier claim that O(2) *grows* from b = 2 to b = 4.** With grouped errors and a second seed, b = 2 and b = 4 are consistent for O(2). The two seeds at b = 4 differ by about 2 standard errors (1.58 and 1.93), so the variability between boundaries is larger than the earlier per-site errors suggested. The robust statement is: O(2) increases from b = 1 (1.30) to b = 2, then stays flat.
+
+**Revised reading.** Between b = 2 and b = 4, the influence proxy contracts by a factor of about 0.8 for O(3) and does not contract for gapless O(2). This still concerns a lower bound, 12 neighbours, one β per model, and L = 32. It says nothing yet about the full worst-case sum or about larger scales.
