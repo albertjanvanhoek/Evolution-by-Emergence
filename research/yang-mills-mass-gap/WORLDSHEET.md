@@ -88,11 +88,16 @@ At β = 2.6 without flow, only 24 neighbouring P-pairs occur (0.387 against 0.33
 - **Short edges act like a stronger coupling.** A bond of length ℓ adds stiffness of order ℓ², so short wormholes raise the effective coupling more than their number suggests. At ρ = 0.1 the cost first rises (a boundary-layer effect at small N: no extra edges can reach the pinned layers) and then falls, by 9% from N = 16 to 32, between the planar rates at β = 2.3 and 2.6. At ρ = 0.3 the rise is flattening (+9%, then +3%); the fall would start beyond N = 32.
 - **So the numerics are consistent with the twist estimate surviving local non-planarity,** with a larger effective coupling. They do not show it: N ≤ 32, one graph per setting, and a falling cost is also what any gapped model gives.
 
-**The lemma this suggests** (a conjecture):
+**Update: proved (pending human review).** [`TWIST_NONPLANAR.md`](TWIST_NONPLANAR.md) proves the bounded-range statement below, written by an assistant of another model family and checked step by step by this one (PR #144). The key change is to stop the frequency shells at ⌊√N⌋ and normalise by their linear moment. That keeps a gain of order log N and gives ‖h − h̃‖₁ = O(1/log N), which is enough for the transfer. The same note corrects three points of this section, and the corrections are right:
+- the transfer does **not** need ‖h − h̃‖₁ = O(1/N); O(1/log N) suffices, so the "only obstruction" named above is a limitation of the full-shell construction, not of the statement;
+- the geometric input is more than two edge directions: the two-dimensional shell count and the Fourier bound on a torus are essential too (they extend to any fixed range);
+- a density of non-axis edges does not by itself prove the N/log N growth; positions, directions and profiles matter.
+
+**The lemma this suggests** (originally a conjecture; see the update above):
 
 > Proposition 3.1 holds, with a constant depending on β, ℓ, D and ρ, for O(3) on the square annulus plus extra edges of sup-length at most ℓ, with every vertex of degree at most D.
 
-If true, the planarity hypothesis can be dropped for vortex sheets whose handles are small (of bounded size, at bounded density), which is the relevant case if sheets are smooth on scales above their thickness. Handles at all scales would still be excluded, as the long-edge control suggests.
+With the proof, planarity can be replaced by a weaker condition: the sheet (or a piece of it) must map **injectively into the square annulus with every edge of bounded length**. A sheet with small handles at bounded density may satisfy this after refining the target lattice; that is a geometric question about sheets, not settled here. Handles at all scales would still be excluded, as the long-edge control suggests. The other gaps of §4 remain: the projector form (norm-2 constants), the derivation of the couplings, and annealed geometry.
 
 ## 7. What approach 3 is now
 
@@ -108,7 +113,8 @@ What a positive answer would give: colour coherence on sheets is short-ranged, s
 
 - [ ] Literature: how Engelhardt's models treat colour on the sheets, and the lattice data on monopoles on vortices (fractions, intersections).
 - [x] Mathematics, first pass: Proposition 3.1 needs the two edge directions of the square lattice (through the exact identity (3.8) and the ℓ¹ transfer), not planarity as such. See §6.
-- [ ] Prove or refute the lemma of §6: a sharper transfer than β‖d‖₁, or a frequency family adapted to each edge direction.
+- [x] Prove or refute the lemma of §6: proved in [`TWIST_NONPLANAR.md`](TWIST_NONPLANAR.md) (shortened frequency family), reviewed by a second model family; human review still needed.
+- [ ] Section 4 of the O(3) proof (sign clusters, crossings) on bounded-range graphs: needed to turn the twist estimate into exponential decay there.
 - [ ] Recompute the constants of Section 2 for the real-projector interaction (norm-2 generators), together with the CP track.
 - [ ] Numerics at 16⁴ or 24⁴ for colour coherence at the thick-vortex scale: ask the author first (cost).
 - [ ] Check §3 directly: count end points of sign-flip lines on P-vortex sheets after smoothing.
