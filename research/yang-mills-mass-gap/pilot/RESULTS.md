@@ -231,21 +231,52 @@ The O(3) data fit 1 or 2. The O(2) data point toward 3, but only together with t
 | 2.9 | 0.644 | 0.659 | 0.665 |
 | 3.0 | 0.652 | 0.663 | 0.666 |
 
-U4 = 0 for a Gaussian m_z (one phase) and 2/3 for two sharp peaks at ±m (two phases).
+U4 = 0 for a centred Gaussian m_z and 2/3 for an almost constant |m_z|. U4 does not count phases: a chain that stays near one nonzero magnetisation also gives about 2/3. The reading below rests on the combination of the exact z → −z symmetry, the trend with L, and the two sectors seen from different starts. *(Wording corrected after review.)*
 
 **Findings**
-- **For β ≤ 2.0, including the control, U4 is near 0 and falls with L.** One phase, as expected. Autocorrelation times are short there (τ_mz up to about 7–10 sweeps at L = 64, β = 2.0).
-- **For β ≥ 2.8, U4 rises with L toward 2/3.** Run means of m_z are ±0.57 (β = 2.8) to ±0.67 (β = 3.0). From L = 32 on, the sign stays the one set by the start for the whole run: no tunnelling between the two sectors. At L = 16 the chains still switch (τ_mz from about 300 to 2600 sweeps per run at β = 2.8–2.9).
-- **The curves for the three sizes cross at β ≈ 2.7**, where all three give U4 = 0.593 within the errors. The crossing does not drift between L = 16→32 and L = 32→64 at this resolution. This is the usual finite-size signature of a phase transition with two ordered phases, at β_c ≈ 2.65–2.75. That is consistent with the Leake–Li bound β_c ≥ 1.061.
-- **Autocorrelation near the crossing is long.** At β = 2.7, τ_mz is 200–460 sweeps for L = 16, 500–1600 for L = 32 and 100–640 for L = 64. The energy decorrelates fast (τ_E ≈ 4–50 sweeps in all runs).
+- **For β ≤ 2.0, including the control, U4 is near 0 and falls with L.** Compatible with a disordered regime. Autocorrelation times are short there (τ_mz up to about 7–10 sweeps at L = 64, β = 2.0).
+- **For β ≥ 2.8, U4 rises with L toward 2/3.** Compatible with an ordered regime with two sectors. Run means of m_z are ±0.57 (β = 2.8) to ±0.67 (β = 3.0). From L = 32 on, the sign stays the one set by the start for the whole run: no tunnelling between the two sectors. At L = 16 the chains still switch (τ_mz from about 300 to 2600 sweeps per run at β = 2.8–2.9).
+- **The curves for the three sizes cross at β ≈ 2.7**, where all three give U4 = 0.593 within the errors. The crossing does not drift between L = 16→32 and L = 32→64 at this resolution. This is the usual finite-size signature of a transition into a two-sector ordered regime, at β_c ≈ 2.65–2.75. The 2D Ising value on a periodic square is U4* = 0.61069… (Kamieniarz and Blöte, as quoted by Selke, arXiv:cond-mat/0701515). U4* depends on geometry and boundary conditions, and 0.593 from three sizes does not establish the Ising class. That is consistent with the Leake–Li bound β_c ≥ 1.061.
+- **Autocorrelation near the crossing is long.** At β = 2.7, τ_mz is 200–460 sweeps for L = 16, 500–1600 for L = 32 and 100–640 for L = 64. The energy decorrelates faster: τ_E is 4–50 sweeps in all runs but one (L = 64, β = 2.7, start down, seed 9412: τ_E ≈ 115). τ of m_z² is at most 258 sweeps (same L and β). τ of m_z⁴ was not measured. *(Corrected after review: an earlier version said τ_E ≤ 50 everywhere.)*
 
 **Limits**
 - The jackknife uses 6 runs. Near β = 2.7 each run covers only about 10–40 autocorrelation times of m_z, so the errors there are rough.
-- In the ordered regime, L ≥ 32 chains stay in one sector. U4 does not see the sign, and the two sectors are exact mirror images under z → −z, so this does not bias U4. It does mean the sectors were not sampled against each other.
+- In the ordered regime, L ≥ 32 chains stay in one sector. The sectors are exact mirror images under z → −z, so the missing tunnelling does not bias the even moments, **provided each sector is equilibrated, including fluctuations of |m_z|**. τ of m_z² supports that (at most 258 sweeps, against 8 000–40 000 measurement sweeps); τ of m_z⁴ was not measured.
 - Three sizes, one b, one pattern, one update scheme. No error bars below β = 2.5.
 - **This is numerical evidence for step 2 of the argument below, not a proof.** It says nothing yet about step 3.
 
 **Where this sits in the argument for non-Gibbsianness of the decimated O(3) measure**
 1. Two zero-temperature energy minima for this pattern: proven (review, checked).
-2. Two infinite-volume phases of the hidden system at some finite β: supported by this test (β_c ≈ 2.7), not proven. A proof must control interfaces and thermal fluctuations.
+2. Two infinite-volume phases of the hidden system at some finite β: this test is compatible with a disordered regime below β ≈ 2.7 and an ordered one above. Not proven. A proof must control interfaces and thermal fluctuations.
 3. An essential discontinuity of the decimated conditional distributions: not addressed. Two phases alone are not enough. One must show that changing retained spins far away, around the periodic pattern, can switch the hidden system between phases and so move a retained spin's conditional law by a fixed amount, however far away the change is.
+
+## Ring test at b = 2: does a far-away tilt move a freed retained spin? (7 November 2026)
+
+**Question (step 3 of the argument above, protocol from review).** Free the retained spin at the centre, σ_0. Fix the other retained spins within distance R (sup-norm) to the periodic pattern η. In the annulus R < d ≤ 2R, set them to cos ε η ± sin ε e_z. Every hidden spin is free. Measure Δ_R = ⟨σ_0^z⟩₊ − ⟨σ_0^z⟩₋. This is the decimated conditional law of one retained spin, given all other retained spins. If Δ_R stays away from 0 as R grows, a change arbitrarily far away moves it.
+
+**Run.** `python ring_b2.py BETA R [L [EPS]]`, files `ring_b2_*.json` (summaries, autocorrelation times) and `ring_b2_*.npz` (time series of σ_0^z and the inner hidden magnetisation, as means over blocks of 10 sweeps). Torus of side L = 4R, so the annulus fills everything outside the inner box. One check uses L = 8R, with the untilted pattern beyond 2R. ε = 0.3, with one check at ε = 0.1. Each ring is run from hidden starts near +z, near −z and random, two seeds each: 12 runs per row. Updates: Metropolis plus overrelaxation, plus once per sweep a global flip of the z-component of every free spin, accepted with the true energy change. 4 000 thermalisation and 16 000 measurement sweeps. Errors: standard error over the 6 runs of each ring.
+
+| β | R | L | Δ_R | ⟨σ_0^z⟩₊ over the 6 starts | ⟨σ_0^z⟩₋ over the 6 starts |
+|---|---|---|---|---|---|
+| 3.0 | 4 | 16 | 0.792 ± 0.004 | +0.386 to +0.408 | −0.393 to −0.404 |
+| 3.0 | 8 | 32 | 0.730 ± 0.003 | +0.357 to +0.372 | −0.358 to −0.373 |
+| 3.0 | 8 | 64 | 0.725 ± 0.001 | +0.360 to +0.367 | −0.359 to −0.363 |
+| 3.0 | 16 | 64 | 0.714 ± 0.003 | +0.352 to +0.360 | −0.352 to −0.367 |
+| 3.0 (ε = 0.1) | 16 | 64 | 0.717 ± 0.003 | +0.353 to +0.369 | −0.353 to −0.362 |
+| 3.0 | 32 | 128 | 0.715 ± 0.003 | +0.355 to +0.363 | −0.351 to −0.364 |
+| 0.8 | 4 | 16 | 0.003 ± 0.002 | −0.004 to +0.005 | −0.008 to +0.002 |
+| 0.8 | 8 | 32 | 0.001 ± 0.002 | −0.004 to +0.002 | −0.008 to +0.003 |
+| 0.8 | 16 | 64 | 0.001 ± 0.003 | −0.007 to +0.006 | −0.007 to +0.004 |
+| 0.8 | 32 | 128 | −0.003 ± 0.002 | −0.007 to +0.004 | −0.008 to +0.004 |
+
+**Findings**
+- **At β = 3.0, Δ_R levels off at about 0.71 for R = 8, 16, 32.** It does not decay. The inner hidden magnetisation follows the ring (+0.67 or −0.67 at R ≥ 16).
+- **The result does not depend on the start.** For each ring, the six starts agree within about 0.02. A plus ring with a start near −z ends at the same value as with a start near +z. The first and second halves of each run differ by at most 0.023. So this is not the sector trapping of the Binder test.
+- **The tilt angle does not matter here:** ε = 0.1 gives the same Δ_R as ε = 0.3 at R = 16. A larger outer box (L = 8R at R = 8) gives the same result.
+- **At β = 0.8 (control), Δ_R is 0 within the errors at every R**, as the Leake–Li bound requires.
+- Autocorrelation times are short in all runs: τ of the inner m, m², m⁴ and of the energy are at most 9 sweeps. The global flip was almost never accepted (at most 0.9%, at β = 0.8, R = 4); the starts converge through ordinary updates during thermalisation.
+
+**Limits**
+- Finite R (up to 32), finite tori, one β in the ordered regime, one pattern, one b.
+- **This is not yet an essential discontinuity.** Both conditionings are single, exactly fixed configurations, which have probability zero. The argument must show that the separation survives on sets of positive measure, for example small neighbourhoods of these configurations (as in the framework of D'Achille, van Enter and Le Ny). Not tested.
+- A negative result would not have excluded non-Gibbsianness. A positive one does not prove it.

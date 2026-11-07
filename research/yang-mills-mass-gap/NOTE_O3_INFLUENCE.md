@@ -87,14 +87,16 @@ Precisely: the hidden spins stay continuous; what remains is a discrete *global 
 
 **Rigorous lower bound.** Leake and Li (arXiv:2611.05228, read at the source) bound the Glauber spectral gap of O(N) models with arbitrary external fields: gap ≥ (1 − ‖J_abs‖/N)/n (Theorem 5), with exponential decay of covariances (Remark 22). Conditioned on the retained spins, the hidden system at b = 2 is an O(3) model in an external field on a (4,2)-biregular bipartite graph, with adjacency norm √8. So the hidden system has **no phase coexistence for β < 3/√8 ≈ 1.061**, for every retained configuration.
 
-**Numerical test** (`pilot/periodic_b2.py`, last section of `pilot/RESULTS.md`). The Binder cumulant of the hidden z-magnetisation, for L = 16, 32, 64, is near 0 for β ≤ 2.0 and rises toward 2/3 for β ≥ 2.8, where L ≥ 32 chains stay in the sector set by their start. **The curves cross at β ≈ 2.7.** This is the finite-size signature of a transition with two ordered phases, ±z, at β_c ≈ 2.65–2.75. The crossing value, U4 ≈ 0.59, is near the value usually quoted for the 2D Ising model on a periodic square (about 0.61; quoted from memory, not checked at the source). That would fit the z → −z symmetry, but three sizes cannot settle a universality class.
+**Numerical test** (`pilot/periodic_b2.py`, last section of `pilot/RESULTS.md`). The Binder cumulant of the hidden z-magnetisation, for L = 16, 32, 64, is near 0 for β ≤ 2.0 and rises toward 2/3 for β ≥ 2.8, where L ≥ 32 chains stay in the sector set by their start. **The curves cross at β ≈ 2.7.** This is the finite-size signature of a transition into an ordered regime with two sectors, ±z, at β_c ≈ 2.65–2.75. The crossing value, U4 ≈ 0.59, is near the 2D Ising value on a periodic square, 0.61069… (Kamieniarz and Blöte, as quoted by Selke, arXiv:cond-mat/0701515). That would fit the z → −z symmetry, but U4* depends on geometry and boundary conditions, and three sizes cannot settle a universality class. U4 does not count phases by itself; the reading rests on symmetry, the trend with L, and the two sectors together.
 
 **What this does and does not show.** The argument for non-Gibbsianness has three steps:
 1. two zero-temperature minima: proven;
-2. two infinite-volume phases of the hidden system at finite β: now numerically supported, not proven;
+2. two infinite-volume phases of the hidden system at finite β: the numerics are compatible with a disordered regime below β ≈ 2.7 and an ordered one above; not proven;
 3. an essential discontinuity of the decimated conditionals: open.
 
 "Coexistence, therefore non-Gibbsian" skips step 3. Step 3 needs a change of retained spins *far away* that selects one phase and moves a retained spin's conditional law by a fixed amount, however far away the change is.
+
+**Ring test for step 3** (`pilot/ring_b2.py`, last section of `pilot/RESULTS.md`). Free one retained spin σ_0. Keep the pattern within distance R and tilt the retained spins in the annulus R < d ≤ 2R slightly toward +z or −z. At β = 3.0, the difference in ⟨σ_0^z⟩ between the two tilts levels off at about 0.71 for R = 8, 16, 32 and does not depend on the start of the chain. At β = 0.8 it is 0 within the errors. So a change of retained spins far away moves the conditional law of a retained spin by a fixed amount, at least up to R = 32. This is the mechanism step 3 needs. It is not yet an essential discontinuity: that requires the separation to survive on neighbourhoods of positive measure, not only on two fixed configurations.
 
 **The question this leaves.** Can this explicit planar conditioning cause a hidden phase transition, and so make the decimated 2D O(3) measure non-Gibbsian at low temperature? That question stands apart from the O(3) mass gap.
 
