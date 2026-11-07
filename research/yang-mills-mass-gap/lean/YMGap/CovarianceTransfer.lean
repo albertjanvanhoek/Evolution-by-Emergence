@@ -90,7 +90,7 @@ theorem corrected_transfer (block : I → J) (dF : I → I → ℝ) (dC : J → 
     _ ≤ C₁ * exp (-m₁ * dC (block p) (block q)) + C₂ * exp (-m₂ * dF p q) :=
         add_le_add (hB p q) (hC p q)
     _ ≤ C₁ * (exp (m₁ * o) * exp (-(m₁ / s) * dF p q)) + C₂ * exp (-m₂ * dF p q) :=
-        add_le_add_right (mul_le_mul_of_nonneg_left h2 hC₁) _
+        add_le_add (mul_le_mul_of_nonneg_left h2 hC₁) le_rfl
     _ = C₁ * exp (m₁ * o) * exp (-(m₁ / s) * dF p q) + C₂ * exp (-m₂ * dF p q) := by
         ring
 
