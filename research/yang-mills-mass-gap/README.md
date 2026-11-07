@@ -41,17 +41,18 @@ LGT already has a bridge for this (`LGT/Bridge/ScaleTransfer.lean`). If the mode
 
 [`lean/`](lean/) is checked by CI (`.github/workflows/yang-mills-mass-gap-check.yml`):
 - `blocked_bound_fails`: a two-point counterexample to the bridge's assumption.
-- `corrected_transfer`, `corrected_transfer_min`: transfer with a residual term kept. The fine rate is the minimum of the coarse rate divided by the blocking scale and the residual rate. The split |covF| ≤ |covB| + |covC| is *assumed*; it is not yet derived from conditional expectations.
+- `corrected_transfer`, `corrected_transfer_min`: transfer with a residual term kept. The fine rate is the minimum of the coarse rate divided by the blocking scale and the residual rate. Here the split |covF| ≤ |covB| + |covC| is a hypothesis.
 - `physical_rate_lower_bound`, `physical_decay`: if a·s ≤ ℓ and the coarse rate is at least m⋆, the physical rate is at least m⋆/ℓ, whatever the lattice spacing. Sufficient, not necessary.
 - `combined_physical_rate`, `combined_physical_rate_pos`, `physical_decay_combined`: with both terms, if also the residual rate satisfies m₂ ≥ a·μ_R, the physical rate is at least min(m⋆/ℓ, μ_R), which is positive when m⋆, μ_R and ℓ are.
 - `blockScale_residual_suffices`: residual decay at rate c per block gives the residual condition with μ_R = c/ℓ.
+- `expect_condExp`, `total_covariance`, `split_bound`, `transfer_of_blocking`: on a finite configuration space with nonnegative weights, the tower property and the law of total covariance for actual conditional expectations given a coarse variable. The split is then a theorem, and the transfer runs on real blocked covariances and real residual terms. Continuous gauge groups (Haar measure) need the measure-theoretic version.
 
 These are bookkeeping. All of the physics sits in their hypotheses. They are statements about correlation decay, not yet about the spectral gap, and uniformity of the prefactors in volume and cutoff is outside them.
 
 ## Next steps
 
 - [x] Transfer theorem with a residual term, and the combined physical rate (both terms).
-- [ ] Derive the covariance split from conditional expectations, on finite spaces first.
+- [x] Derive the covariance split from conditional expectations, on finite spaces.
 - [ ] Only then decide whether depending on LGT adds anything.
 - [ ] Add an SU(n) instance to LGT, which currently covers U(n) only. Open an issue on LGT first to coordinate; the author does this.
 - [ ] Read the existence proof when it is released, and see where its control over scales stops.
