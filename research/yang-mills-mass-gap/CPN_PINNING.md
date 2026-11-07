@@ -133,3 +133,28 @@ Consecutive differences, on the same samples: +0.000272 ± 0.000003, +0.000284 �
 **What this reduces the conjecture to.** d/dt P_t(cross) = Cov_t(H(b(w₁ + w₂), b w₃), w₁₂), with w₁₂ = |z̄_{i₁} z_{i₂}|². H increases in its first argument. Monotonicity is therefore a **Griffiths-type correlation inequality for CP spins**: the alignment of i₁ with i₂ is positively correlated with an increasing function of their alignment with x. Such inequalities are known for some O(N) models (Lees, *Griffiths inequalities for the O(N)-spin model*, arXiv:2205.12928, via random paths; not read in detail). We do not know of one for CP^{N−1}.
 
 **Limits.** One graph, q = 3, b = 1, Monte Carlo over the spins (the conditional loop part is exact). Graphs with two or more free centres need a new reduction: there P(NC | n) is no longer a function of two numbers.
+
+## 8. Review of CPN_FUSION_TEST.md, and the t → ∞ limit (7 November 2026)
+
+**Covariance identity.** dP_t(E)/dt = Cov_t(1_E, k_e)/t is correct. The weight carries t^{k_e}/k_e!, so d/dt log(weight) = k_e/t.
+
+**How it relates to §7.**
+- **The conditional loop law does not depend on the couplings.** Given the multiplicities n, the law of the permutations is ∝ ∏_v (q)_{d_v}^{−1} q^{#loops}. Given the spins, each n_e is Poisson(b_e w_e).
+- **So on every graph P_t(E) is a spin average.** P_t(E) = E_t^{spin}[Φ_E], with Φ_E = Σ_n ∏_e Pois(n_e; b_e w_e) · P(E | n).
+- **The derivative therefore splits into two parts.** d/dt P_t(E) = Cov_t^{spin}(Φ_E, w_e) + E_t^{spin}[∂_t Φ_E]:
+  - a spin-alignment (Griffiths-type) term;
+  - a direct term, ∂_t Φ_E = w_e · E[P(E | n + 1_e) − P(E | n)], the effect of one more strand inside the layer.
+- **On the star of §7 the direct term is zero**, because P(E | n) does not depend on k_e there. On the two-hub graph it is not zero, since the cluster's return map depends on k_e (see below).
+
+**The q = 3 fractions, checked with independent code** (`pilot/cpn_twohub_independent.py`; z- and z̄-slots with explicit index following, not your enumerator): Z₀ = 256/81, A₀ = 19/3240, Z₁ = 86/81, A₁ = 13/6480, so P₀ = 19/10240 and P′₀ = 3/262144. **They match exactly.**
+
+**The t → ∞ limit: a first exact computation** (`pilot/cpn_cluster_return_map.py`). Take two layer vertices joined by k internal units, each with one external unit. The external return map is either "id" or "swap". The ratio of their weights (including internal closed loops and vertex factors) is
+
+| k | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| q = 3 | 0 | 1/5 | 1/3 | 3/7 | 1/2 | 5/9 |
+| q = 2 | 0 | 1/4 | 2/5 | 1/2 | 4/7 | — |
+
+**That fits swap/id = k/(k + q + 1)** (checked for k ≤ 5 and q = 2, 3; not proven). It tends to 1, the value for a single fused vertex, where every return map has equal weight. Since k ~ Poisson(t w₁₂) and w₁₂ → 1, the cluster's routing approaches the fused routing **like 1/t**. This supports identifying the excursion event with that of the contracted graph in the limit. It is not a proof for general port numbers.
+
+**Where we disagree, mildly.** The truncated searches (550 graphs) are useful as a falsification screen. They are not evidence about the sign of the untruncated derivative. The untruncated star computation in §7, and an untruncated version of the two-hub case using the spin-average formula above, are the stronger tests.
