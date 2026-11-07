@@ -65,6 +65,31 @@ So **this candidate path is closed:** there is a barrier proportional to the are
 2. a mechanism that works with the discrete Z₂ twist directly, which is the setting of Tomboulis–Yaffe;
 3. the loop-soup route of Ding–Huang–Yang, whose gauge-theory analogue would involve random surfaces. Not yet read.
 
+## The second proof: loop soups (Ding–Huang–Yang)
+
+**Their mechanism** (introduction and outline, read in the text):
+1. **A loop-soup representation of the O(N) model.** By Lupu's isomorphism, the squared spin components are the local times of independent loop soups, conditioned on their total. This works for real N, so N can be varied continuously.
+2. **Split off one component.** Condition on the z-copy. What remains is an XY model with random, nonnegative couplings β r_u r_v, where r is the length of the projection onto the xy-plane. This step uses the fact that the interaction σ_u · σ_v is a **sum over components**.
+3. **"Many loops" in the z-copy leave little local time for the x- and y-copies** at each scale with fixed probability. The good region becomes a fractal percolation with small volume.
+4. **An improved spin-wave argument then makes crossings unlikely**, and a coarse-graining step gives exponential decay. Spin waves are the 2D argument of Mermin and Wagner, and they need the logarithmic softness of the 2D XY model.
+
+The authors sum it up as "a slight perturbation of the XY model from the loop soup perspective produces exponential decay" (Remark 1.5). Non-commutativity is not used as such: what matters is the extra component.
+
+**Where it does not carry over to 4D SU(2)** (our reading):
+- **Step 2 needs an interaction that splits by component.** For a gauge theory, tr(U₁U₂U₃†U₄†) multiplies group elements, which mixes their components. Restricting SU(2) to a U(1) subgroup is not closed under products (for U = [[α, −β̄], [β, ᾱ]], the α of a product is α₁α₂ − β̄₁β₂). Conditioning therefore does not leave a U(1) gauge theory with random couplings, unless one fixes a gauge (abelian projection).
+- **Step 1 has an analogue, but not a positive one.** Cao, Park and Sheffield (arXiv:2307.06790, abstract checked) write Wilson-loop expectations as sums over embedded planar maps, for any β and any dimension. The weights involve Weingarten functions. As we understand it these take both signs, so the result is not a probability measure as Lupu's loop soup is. Not checked in the text.
+- **Step 4 needs the abelian part to be only just ordered.** In 2D the XY model has only quasi-long-range order, and a slight perturbation can destroy it. The 4D analogue, U(1) gauge theory, has a genuine Coulomb phase at weak coupling, proven by Guth (Phys. Rev. D 21 (1980) 2291, as cited by Ito and Seiler; not read), and our own U(1) control shows its finite twist cost. It is not marginal in the same way.
+
+## What the two proofs point to
+
+Each of the two 2D proofs maps onto one of the classic physical pictures of confinement in 4D:
+- **OpenAI, twist and sign clusters → centre vortices.** A goal that carries over (cheap 't Hooft twist; Tomboulis–Yaffe), but no continuous path. Tested above: the natural path costs area.
+- **Ding–Huang–Yang, an abelian part destabilised by an extra component → abelian projection.** A U(1) part plus charged components, the "dual superconductor" picture. In 4D this needs the charged components to destroy a robust Coulomb phase, which is itself a long-standing open problem.
+
+Both pictures are decades old and unproven in 4D. So the new 2D proofs do not shorten the way to Yang–Mills directly. They do give each picture a 2D model in which it is now a theorem.
+
+**This is our reading, not established.** It is the question to put to an expert.
+
 ## Not started
 
 - **A Lean statement** of the gauge-invariance claim for w_t, and of the triviality of a constant gluing twist.
@@ -73,7 +98,8 @@ So **this candidate path is closed:** there is a barrier proportional to the are
 ## Sources
 
 - OpenAI, *Exponential decay in two-dimensional classical O(n) models* (September 2026), github.com/openai/math, `preprints/`. Propositions 2.2 and 3.1 checked in the text.
-- J. Ding, F. Huang, H. Yang, arXiv:2611.04908.
+- J. Ding, F. Huang, H. Yang, arXiv:2611.04908 (introduction and outline read; Remark 1.5 quoted).
+- S. Cao, M. Park, S. Sheffield, *Random surfaces and lattice Yang–Mills*, arXiv:2307.06790 (abstract checked).
 - E. T. Tomboulis, L. G. Yaffe, Commun. Math. Phys. 100 (1985) 313 (as cited by Kanazawa; not read here).
 - T. Kanazawa, *Generalizing the Tomboulis–Yaffe inequality to SU(N) lattice gauge theories and general classical spin systems*, arXiv:0808.3442 (abstract checked).
 - E. T. Tomboulis, arXiv:0707.2179 (as cited by Ito and Seiler; not read), and reply, arXiv:0712.2620 (abstract checked).
