@@ -2,6 +2,8 @@
 
 **7 November 2026 — requested follow-up to CPN_PINNING.md §6 and CPN_STAR_LAYER_THEOREM.md.** Finite-graph numerical and exact-rational results, explicitly separated from conjectures about the untruncated Gibbs ensemble. The relevant observable is the **oriented-index-strand excursion** through an unmarked region, as in CPN_LAYER_ENUMERATION.md, not a physical spin observable.
 
+**Subsequent progress (same date):** the graphical t→∞ limit and its identification with the contracted-graph *direct-excursion* event are now proved for arbitrary fixed finite graphs, provided the event uses only base-edge multiplicities and vertex permutations away from the fused marked sites. See [CPN_FUSION_LIMIT_AND_SEPARATOR.md](CPN_FUSION_LIMIT_AND_SEPARATOR.md), Section 1. Thus item 3 of the open list below is RESOLVED under that exact measurability condition. The full monotonicity conjecture is still OPEN. The stronger all-increasing-overlaps association hypothesis is refuted in [CPN_ASSOCIATION_COUNTEREXAMPLE.md](CPN_ASSOCIATION_COUNTEREXAMPLE.md). This document otherwise records the earlier falsification test at the time of writing.
+
 ## 1. Question and exact derivative identity
 
 Choose disjoint marked layers \(\mathcal B_0,\ldots,\mathcal B_m\), and an additional ferromagnetic coupling \(t\operatorname{tr}(P_uP_v)\), \(t\ge0\), between two vertices \(u,v\) in **the same** marked layer. Let \(E=\bigcap_{j=0}^{m-1}E_j\), where \(E_j\) is the event that at least one **excursion through unmarked vertices** directly connects \(\mathcal B_j\) to \(\mathcal B_{j+1}\). This event is measurable after cutting the marked sites and is well-defined even with intra-layer edges.
