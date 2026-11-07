@@ -53,9 +53,20 @@ Neither has been peer reviewed. The question here is which *mechanism* can be ca
 
 **Control:** U(1), with a continuous central twist, in both its confined and its Coulomb phase.
 
+**Result** (`pilot/gauge_twist.py`, last section of `pilot/RESULTS.md`). For 4D SU(2) at β = 1.8, 2.2 and 2.5 on L = 4, 6, 8:
+- **The intermediate defect costs area.** f(π/2) = −(1/L²) log(Z(π/2)/Z(0)) stays at about 0.045 (β = 1.8) and 0.19 (β = 2.2) as L grows.
+- **The 't Hooft end point costs nothing within the errors** (L ≥ 6).
+- **The U(1) control behaves as expected:** no cost when confined, and a finite total cost in the Coulomb phase.
+
+So **this candidate path is closed:** there is a barrier proportional to the area between two cheap end points. The cost is not classical. Every element of SU(2) is a commutator, so a configuration with zero action away from the stack exists for every t. The cost comes from fluctuations.
+
+**What this leaves.** The O(3) mechanism needs a family of twists whose cost vanishes uniformly. In 4D SU(2) the cheap twists found so far are only the discrete centre twists. Options:
+1. a different gauge-invariant interpolation (none known to us);
+2. a mechanism that works with the discrete Z₂ twist directly, which is the setting of Tomboulis–Yaffe;
+3. the loop-soup route of Ding–Huang–Yang, whose gauge-theory analogue would involve random surfaces. Not yet read.
+
 ## Not started
 
-- **The numerical test above.** It needs a 4D SU(2) code with the defect weight, which is new code; ask before running.
 - **A Lean statement** of the gauge-invariance claim for w_t, and of the triviality of a constant gluing twist.
 - **Experts:** Erhard Seiler (Max Planck Institute for Physics, Munich; co-author of the critique of Tomboulis). For the decimation side question, Aernout van Enter (Groningen).
 

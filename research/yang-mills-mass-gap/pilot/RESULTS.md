@@ -322,3 +322,54 @@ Its long trajectories at L = 64, β = 2.7 also show no sector switching in 18 00
 This does **not** rule out an essential discontinuity. In that definition, the neighbourhoods may be chosen anew for every distance, with a tolerance that shrinks as R grows. The data fit that picture: δ = 0.03 keeps Δ_R ≈ 0.68 up to R = 32, where δ = 0.1 no longer does. The open mathematical step is now sharper: show that for every R a small enough tolerance δ(R) > 0 keeps the separation, while the conditional law outside the annulus is averaged over the decimated measure. Also untested here: unconstrained retained spins outside the annulus.
 
 **Limits.** Four noise samples per row, one β, one ε, L = 4R, Gaussian noise on every retained spin. The decay at δ = 0.1 is not yet resolved in R.
+
+## 4D gauge theory: does a continuous twist cost area? (7 November 2026, ROUTE.md first test)
+
+**Question.** ROUTE.md proposes a gauge-invariant continuous family of defects in 4D SU(2) that becomes the 't Hooft twist at t = π. On the stack S of plaquettes P_01(y) with y_0 = y_1 = 0 (L² plaquettes), the Wilson weight is replaced by the average over the conjugacy class of D_t = exp(itσ_3). In closed form, with tr U_p = 2 cos θ:
+
+  w_t(U_p) = exp(β cos θ cos t) · sinh(β sin θ sin t) / (β sin θ sin t).
+
+Does the free energy of this defect grow with the area of the stack? If it does, Z(t)/Z(0) falls like exp(−f(t) L²) between the two cheap end points, and the continuous path that the O(3) argument needs is closed.
+
+**Method.** `python gauge_twist.py su2|u1 BETA L [NT [NTHERM NMEAS]]`, files `gauge_twist_*.json`.
+- Lattice L⁴, periodic. Metropolis with 3 hits per link, cold start. 500 thermalisation and 4 000 measurement sweeps at each of 9 values of t in [0, π].
+- Measured: g(t) = (1/L²) d/dt log Z(t), the mean over S of ∂_t log w_t.
+- Then f(t) = −(1/L²) log(Z(t)/Z(0)), by the trapezoid rule (Simpson's rule for f(π)).
+- Errors use the integrated autocorrelation time of g (at most 17 sweeps; differences between the first and second half of each run are at most 0.05).
+- **Control:** U(1), whose twist exp(β cos(φ_p + t)) on S is central and so always gauge invariant. β = 0.8 is confined and β = 1.3 is in the Coulomb phase.
+
+**Expectation at strong coupling** (character expansion, derived here, not checked against a source). The ∫dU w_t(U) is independent of t, so a single plaquette feels nothing. The leading cost comes from the 2L² elementary cubes with two faces on S. Each picks up a factor (χ_{1/2}(D_t)/2)² = cos² t, which gives f(t) ≈ 8u⁶ sin² t with u = I₂(β)/I₁(β). For U(1) the two faces give e^{int} e^{−int} = 1, so no such term.
+
+**Results** (cost per unit area f; at t = π the defect is the 't Hooft twist)
+
+| | L | f(π/4) | f(π/2) | f(π) |
+|---|---|---|---|---|
+| SU(2), β = 1.8 | 4 | 0.024 ± 0.001 | 0.045 ± 0.003 | −0.003 ± 0.005 |
+| | 6 | 0.024 ± 0.001 | 0.051 ± 0.002 | 0.004 ± 0.003 |
+| | 8 | 0.023 ± 0.001 | 0.043 ± 0.001 | −0.007 ± 0.003 |
+| SU(2), β = 2.2 | 4 | 0.098 ± 0.002 | 0.215 ± 0.004 | 0.025 ± 0.009 |
+| | 6 | 0.084 ± 0.001 | 0.181 ± 0.003 | −0.012 ± 0.006 |
+| | 8 | 0.088 ± 0.001 | 0.188 ± 0.002 | −0.005 ± 0.005 |
+| SU(2), β = 2.5 | 4 | 0.168 ± 0.001 | 0.455 ± 0.006 | 0.102 ± 0.012 |
+| | 6 | 0.166 ± 0.001 | 0.415 ± 0.006 | 0.016 ± 0.010 |
+| U(1), β = 0.8 | 4 / 6 / 8 | ≤ 0.001 | 0.001 / 0.002 / 0.001 (± 0.001–0.002) | ≈ 0 |
+| U(1), β = 1.3 | 4 | 0.018 | 0.081 ± 0.004 | 0.251 ± 0.008 |
+| | 6 | 0.009 | 0.034 ± 0.003 | 0.138 ± 0.006 |
+| | 8 | 0.003 | 0.019 ± 0.002 | 0.078 ± 0.004 |
+
+**Findings**
+- **SU(2): the intermediate defect costs area.** f(π/2) does not shrink from L = 4 to L = 8. It is about 0.045 at β = 1.8 and 0.19 at β = 2.2, and it grows with β. At L = 8 and β = 2.2 this means Z(π/2)/Z(0) ≈ e^{−12}.
+- **SU(2): the end point is cheap.** f(π), the 't Hooft twist, is 0 within the errors from L = 6 on at β = 1.8 and 2.2, and falls with L at β = 2.5. This is what confinement and the Tomboulis–Yaffe picture lead one to expect.
+- **So this path has a barrier proportional to the area between two cheap end points.** The O(3) argument needs min_t Z(t) / max_t Z(t) → 1, and that fails here.
+- **Shape and size.** The shape fits the strong-coupling form: f(π/4)/f(π/2) is about 0.5 at β = 1.8, as sin² predicts. The size is larger than the leading term 8u⁶ (0.032 at β = 1.8, 0.080 at β = 2.2). Higher orders are not small here.
+- **U(1) control.**
+  - Confined (β = 0.8): no cost at any t.
+  - Coulomb phase (β = 1.3): the cost per area falls like 1/L². L² f(π/2) ≈ 1.29, 1.23, 1.22 and L² f(π) ≈ 4.0, 5.0, 5.0. So the total cost is finite and independent of L, as expected for the energy of a magnetic flux with a massless photon.
+- **Not a classical effect.** Every element of SU(2) is a commutator, so there is a configuration with zero action away from S in which every plaquette of S lies in the class of D_t. Take links in the 0- and 1-directions equal to fixed matrices a and b on one slice, with [a, b] in that class; the other links are 1. The area cost must therefore come from fluctuations. A rough heuristic: each plaquette of S loses the freedom to point its class in its own direction, which gives about log(β sin² t) per plaquette at weak coupling. Not derived.
+
+**Limits**
+- Small lattices (L ≤ 8) and β ≤ 2.5, which is the confined and crossover region, not the weak-coupling continuum.
+- One candidate family of defects, on one stack.
+- Metropolis only, cold starts, 9 points in t.
+
+**Reading for ROUTE.md.** The goal carries over: the 't Hooft twist is cheap at these β. The continuous path does not: the natural gauge-invariant interpolation costs area. Unless a different interpolation is found, the OpenAI mechanism does not carry over directly to 4D SU(2).
