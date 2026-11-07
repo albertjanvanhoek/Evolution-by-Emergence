@@ -158,3 +158,31 @@ Consecutive differences, on the same samples: +0.000272 ± 0.000003, +0.000284 �
 **That fits swap/id = k/(k + q + 1)** (checked for k ≤ 5 and q = 2, 3; not proven). It tends to 1, the value for a single fused vertex, where every return map has equal weight. Since k ~ Poisson(t w₁₂) and w₁₂ → 1, the cluster's routing approaches the fused routing **like 1/t**. This supports identifying the excursion event with that of the contracted graph in the limit. It is not a proof for general port numbers.
 
 **Where we disagree, mildly.** The truncated searches (550 graphs) are useful as a falsification screen. They are not evidence about the sign of the untruncated derivative. The untruncated star computation in §7, and an untruncated version of the two-hub case using the spin-average formula above, are the stronger tests.
+
+## 9. Two conjectures that together imply fusion monotonicity (7 November 2026)
+
+Using the split from §8, d/dt P_t(E) = Cov^{spin}(Φ_E, w_e) + E[w_e(P(E | n + 1_e) − P(E | n))], it is enough to show:
+
+> **Conjecture A (combinatorial).** At fixed multiplicities, the permutation law ∝ ∏_v (q)_{d_v}^{−1} q^{#loops} makes P(E | n) **non-decreasing in every edge multiplicity n_e**.
+
+> **Conjecture B (spin).** Under the CP^{q−1} Gibbs measure with non-negative couplings, increasing functions of the overlaps w_e = |z̄_u z_v|² are **positively correlated**, at least Cov(F(w), w_e) ≥ 0 for F increasing in every w_f.
+
+**Why A and B suffice.**
+- **Direct term.** It is ≥ 0 by A.
+- **Spin term.** By A, and because Poisson(λ) increases stochastically in λ, Φ_E = Σ_n ∏ Pois(n_e; b_e w_e) P(E | n) is increasing in every w_f. By B, Cov^{spin}(Φ_E, w_e) ≥ 0.
+- **Conclusion.** So P_t(E) is non-decreasing in every coupling inside a layer, and in the limit P_free ≤ P_fused. That also needs the t → ∞ identification of §8. Together with §6 this gives **P_free ≤ P_fused ≤ P_pinned**.
+
+**Tests**
+
+| | test | result |
+|---|---|---|
+| A, inside a layer | `pilot/cpn_direct_term.py`: three graphs with two hubs, base multiplicities 0/1, k_t = 0 → 3, q = 2, 3, 5 | 336 comparisons per q, **0 decreases** (exact) |
+| A, every edge | `pilot/cpn_monotone_in_edges.py`: three graphs, including two O-vertices, one strand added on each edge, q = 3 | 928 additions, **0 decreases** (exact) |
+| A on stars | P(E \| n) = 1 − (q)_a(q)_c/(q)_{a+c} | **proven** (increases in a and c) |
+| B, pairwise linear | `pilot/cpn_overlap_covariances.py`: square and K₄, q = 2, 3, 5, b = 1, 3; Cov(w₀₁, w₁₂), Cov(w₀₁, w₂₃), Cov(w₀₂, w₁₃) | **all ≥ 0** (Monte Carlo, 2 × 10⁶ samples). On trees they are exactly 0, since overlaps on different tree edges are independent |
+| B, in a full application | §7: the star with an edge inside the layer | the derivative is positive at every t |
+
+**Status and limits.**
+- **A** has been checked only exhaustively, at small multiplicities, on a few small graphs. A proof would need a coupling of loop configurations with and without the extra strand.
+- **B** is a Griffiths-type (second Griffiths inequality) statement for a quartic, tensor-valued observable. Known Griffiths inequalities for O(N) (Lees, arXiv:2205.12928; abstract only) concern components of spins, not overlaps like |z̄z|². We have tested only pairwise linear covariances, which is much weaker than association of all increasing functions.
+- **If either fails, the route can still survive.** The two terms could compensate each other. The direct comparison P_free ≤ P_fused would then need its own proof.
