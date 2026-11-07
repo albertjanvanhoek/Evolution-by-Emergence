@@ -186,3 +186,25 @@ Using the split from §8, d/dt P_t(E) = Cov^{spin}(Φ_E, w_e) + E[w_e(P(E | n + 
 - **A** has been checked only exhaustively, at small multiplicities, on a few small graphs. A proof would need a coupling of loop configurations with and without the extra strand.
 - **B** is a Griffiths-type (second Griffiths inequality) statement for a quartic, tensor-valued observable. Known Griffiths inequalities for O(N) (Lees, arXiv:2205.12928; abstract only) concern components of spins, not overlaps like |z̄z|². We have tested only pairwise linear covariances, which is much weaker than association of all increasing functions.
 - **If either fails, the route can still survive.** The two terms could compensate each other. The direct comparison P_free ≤ P_fused would then need its own proof.
+
+## 10. More tests of A and B, and why A is not trivial (7 November 2026)
+
+**A at large q and on an adversarial edge** (`pilot/cpn_monotone_in_edges.py` with q = 10, 50; `pilot/cpn_direct_term_adversarial.py`).
+- **Large q.** The 928 additions on every edge show **0 decreases at q = 10 and q = 50** as well.
+- **Adversarial edge.** Two I-leaves and two O-leaves are attached to two hubs u and v in three arrangements (parallel, crossed, one-sided). Units are then added to the u–v edge, 0 → 3, at q = 3, 10 and 50: 144 additions per q, **0 decreases**.
+
+**Why A does not follow from a simple map.**
+- **The insertion map.** Insert the extra unit on e = (u, v). At u, either the unit closes on itself, or it splits one of the d_u transitions. The same holds at v. This gives (d_u + 1)(d_v + 1) insertions.
+- **How the loop count changes:**
+  - +1 if the unit closes on itself at both ends;
+  - 0 if it closes on itself at one end;
+  - −1 if it splits transitions on two different loops (they merge);
+  - +1 if it splits two transitions on the same loop (it splits).
+- **The normaliser is not constant.** The total weight of the insertions, q + d_u + d_v + q·#(same-loop pairs) + q⁻¹·#(different-loop pairs), **depends on the configuration**. So P_{n+1_e} is not simply P_n pushed through a fixed kernel.
+- **One insertion can destroy E.** An I→O and an O→I excursion can be rerouted into I→I and O→O. When that splits a loop, it even gains a factor q. So A holds, if it holds, only after averaging. This is why we have no proof.
+
+**B with general increasing functions** (`pilot/cpn_overlap_association.py`). We used w_e, w_e³ and 1{w_e > 0.7} on pairs of edges, on the square, K₄ and the 2×3 grid, at q = 2, 3, 5 and b = 1, 3: 1134 covariances in total.
+- **q = 2 and q = 3:** all are ≥ 0 within the errors.
+- **q = 5:** a few apparent negatives appeared, down to −5σ with 8 batches. A targeted check with 20 independent chunks and 2 × 10⁷ samples (`pilot/cpn_overlap_association_recheck.py`) puts them all at **+1.7σ, −0.3σ, +2.4σ, +8.1σ and +1.6σ**. So they were noise; the error estimate with 8 batches was too small for rare events.
+
+**Status.** No counterexample to A or B. A remains a combinatorial conjecture that needs an averaging argument. B is a Griffiths-II-type statement for the overlaps |z̄z|². For q = 2 it is a statement about σ_x·σ_y in the O(3) model; whether Griffiths II for such dot products is known for O(3) we have not checked.
