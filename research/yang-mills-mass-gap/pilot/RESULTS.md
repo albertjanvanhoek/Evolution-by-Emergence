@@ -415,3 +415,24 @@ Errors are 0.03–0.3 for O(n) and 1–2 for CP² at β = 6 and N ≥ 16.
 **Reading.** The controls behave as the theorem and the spin-wave picture predict. CP² behaves like O(3) where the sampler is reliable. The largest CP² lattice needs a better update, for example overrelaxation in the gauge-field formulation of CP^{N−1}. This tests the twist mechanism, not the proof: a falling cost is also what a mass gap would give.
 
 **Limits.** One radius ratio, the square annulus, 9 points in t, single chains per point. The half-run differences reach 3 to 6 error bars in some runs, so the quoted errors are optimistic.
+
+## Independent check of the CP² loop identities (7 November 2026)
+
+`python -I cpn_path_independent_mc.py`. Direct Monte Carlo of the spin model (4 × 10⁶ samples), with no loop expansion, on the path A–x–B with q = 3 and b₁ = b₂ = 1. It is compared with the exact values in `CPN_BOUNDARY_COMPARISON.md`:
+
+| | Monte Carlo | claimed exact |
+|---|---|---|
+| Z with equal pins | 2.1951 | (e² − 3)/2 = 2.1945 |
+| Z with orthogonal pins | 2.0004 | 2 |
+| 1 − Z_orth/Z_pin (crossing probability) | 0.0887 | 0.08864 |
+| C_AB = E[tr(P_A P_B)] − 1/q, all three spins free | 0.00509 ± 0.00013 | 0.00520 |
+| f_q(1) = E[e^S], S ~ Beta(1, 2) | 1.4368 | 1.4366 |
+| tr(P_u P_v P_w), three-pin example | −0.1000 | −0.1 |
+
+All agree within the Monte Carlo error. We also checked the structure of the loop expansion by hand:
+- for free spins the moment formula gives weight 1/(q)_d per permutation;
+- loops that visit only one pinned rank-one projector contribute |u|² = 1;
+- a loop that alternates r times between pins u and v contributes (⟨u, v⟩⟨v, u⟩)^r = p^r;
+- so Z(p) = Z(1) E_pin[p^K] with non-negative weights, as long as **only two distinct pinned directions** occur.
+
+The two-point formula (B3) then follows by integrating p against Beta(1, q − 1), and the bound by k·k!/(q)_{k+1} ≤ 1/(q(q+1)). We did not check the restricted-permutation count (P4) term by term.
