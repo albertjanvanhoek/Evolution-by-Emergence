@@ -1,0 +1,40 @@
+# Note: a worst-case influence bound for decimated 2D O(3)?
+
+*Working note, 7 November 2026. Written for discussion with an expert in constructive field theory or rigorous statistical mechanics. Not a result.*
+
+## The question
+
+Does decimation of the 2D O(3) model admit a **volume-uniform, worst-case** conditional-influence bound at a large enough block scale? Or are there exceptional retained-spin configurations that prevent such a bound?
+
+The question was formulated by one of the two assistants in review on PR #144.
+
+If such a bound holds, so that Dobrushin's condition is met by the decimated specification at some block scale b, then a structure like `LGT/Bridge/O3MassGap.lean` (Douglas and Rajasekaran) turns it into a mass gap. There, the coarse-graining certificate is a hypothesis. If exceptional configurations prevent the bound, this route is too strong, even though O(3) is expected to have a gap.
+
+## What we measured (lower bounds only)
+
+From [`pilot/RESULTS.md`](pilot/RESULTS.md), on L = 64 with random boundaries. The quantity is the signed mean response of a coarse spin when one other coarse spin is flipped. It is a lower bound on the average total-variation influence. Dobrushin's condition needs an upper bound on the worst case.
+
+| | b = 2 | b = 4 | b = 8 |
+|---|---|---|---|
+| O(3), β = 1.5, rings 1 + 2 | about 1.44 | about 1.2 | about 0.83 |
+| O(2), β = 1.3, rings 1 + 2 | about 1.9 | 2.0–2.6 | 2.1–2.4 |
+
+At b = 8, the complete sum over all 63 neighbours is 0.80–0.89 for O(3) and about 3.1 for O(2). O(3) influence stays in the nearest ring; O(2) has a long tail. Random boundaries are not worst-case boundaries.
+
+## What the literature says (checked at the source)
+
+- **Kushnir and Rosenstein (1995)**, [cond-mat/9505144](https://arxiv.org/abs/cond-mat/9505144) and [cond-mat/9506060](https://arxiv.org/abs/cond-mat/9506060). Decimation of the 2D O(N) σ-models, N ≥ 3, with scale factor 2, by low-temperature perturbation theory. The decimated action generally contains interactions of any range. Perturbative, so no uniform bound.
+- **Haller and Kennedy (1996)**, J. Stat. Phys. 85, 607–637 ([mp_arc 95-505](https://web.ma.utexas.edu/mp_arc-bin/mpa?yn=95-505)). A sufficient condition for a well-defined renormalized Hamiltonian: the hidden-spin measures are in the high-temperature phase *uniformly in the block-spin configuration*. Proved for Ising-type examples, such as decimation with b = 2 at β < 1.36 β_c. This is the kind of uniform control our question asks for.
+- **van Enter, Fernández and Sokal (1993)**, [hep-lat/9210032](https://arxiv.org/abs/hep-lat/9210032). Non-Gibbsianness after real-space renormalization seems to be the normal situation at low temperature or near first-order transitions. The authors report no evidence of pathologies at or above the critical temperature below the upper critical dimension.
+- **D'Achille, van Enter and Le Ny (2022)**, [arXiv:2206.06990](https://arxiv.org/abs/2206.06990), J. Math. Phys. Decimated 2D XY measures become non-Gibbsian at low temperature through a spin-flop mechanism. With the visible spins pointing only North or South, the hidden system acquires a *discrete* symmetry, which can break. The mechanism is robust: periodic and random North–South configurations work. With more dilute decimation, even the alternating configuration becomes bad. This fits our O(2) measurement.
+- **Goswami (2024)**, Ann. Henri Poincaré, [arXiv:2204.08252](https://arxiv.org/abs/2204.08252). Balaban's variational problem and background field, adapted to 2D nonlinear sigma models, specifically the chiral models (SU(n); SU(2) gives O(4)). Aimed at the ultraviolet problem, not at a gap.
+
+## One point the literature does not settle: does spin-flop carry over to O(3)?
+
+*The assistants' reasoning, untested.* In XY, North–South visible spins leave the hidden spins two choices, East or West. That is a discrete Z₂, which can break in 2D. In O(3), take visible spins along ±z. Hidden spins that flop away from the z-axis can point anywhere in the equatorial plane. That is a continuous O(2) choice, which by the Mermin–Wagner theorem cannot break in 2D. So the mechanism that defeats XY may be absent for O(3). Other bad configurations may still exist: for example, visible spins confined to a plane, or arrangements that leave the hidden system a discrete choice.
+
+## Suggested next steps
+
+1. **A targeted adversarial test (cheap, about 5 minutes).** Measure influence for O(2) and O(3) at b = 4 and 8 on structured boundaries: North–South checkerboard, North–South random, all aligned, and visible spins confined to a plane. Expectation from the reasoning above: O(2) shows strongly enhanced influence on North–South boundaries, and O(3) does not. If O(3) does, the reasoning is wrong.
+2. **Read the uniform-mixing criteria in detail.** Haller and Kennedy (1996); Bertini, Cirillo and Olivieri, "Renormalization group transformations under strong mixing conditions" (mp_arc 99-197). Then ask whether a uniform high-temperature criterion could be checked by computer for O(3) at one fixed β and b. A computer-assisted bound at a single scale is a much smaller target than the mass gap.
+3. **Ask an expert.** A. C. D. van Enter (Bernoulli Institute, Groningen) has worked on exactly this question, decimation of rotator models, and is in the Netherlands.
