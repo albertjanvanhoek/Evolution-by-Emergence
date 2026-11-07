@@ -125,6 +125,8 @@ For **CP^{N−1}**, our own short calculation gives an indefinite sign:
 
 > Does the twist estimate (Part 1) hold for the 2D CP^{N−1} model, N ≥ 3, or the SU(N) principal chiral model, N ≥ 3? And what can replace sign clusters (Part 2) when no unfrustrated Ising embedding exists?
 
+**First answer (reading, not proof):** [`CPN_TWIST.md`](CPN_TWIST.md). Sections 2 and 3 of the O(3) proof use only five properties: an orthogonal group action, an invariant measure, an interaction linear in each spin, an su(2) of symmetries, and a planar annulus. CP^{N−1} (through projectors P = zz†), the SU(N) principal chiral model, RP^{N−1} and Grassmannians all have them. Part 2, the sign clusters, remains the obstacle.
+
 Remarks:
 - The SU(2) principal chiral model is the O(4) model (SU(2) ≅ S³), so it is already covered by the O(n) proof. The suggestion from review to use it as an intermediate step is therefore already settled.
 - CP^{N−1} is closer to Yang–Mills than O(3): it has a U(1) gauge field, instantons and a θ angle.
