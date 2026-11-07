@@ -82,3 +82,24 @@ Summed influence (lower-bound proxy):
 - **The earlier claim that O(2) *grows* from b = 2 to b = 4.** With grouped errors and a second seed, b = 2 and b = 4 are consistent for O(2). The two seeds at b = 4 differ by about 2 standard errors (1.58 and 1.93), so the variability between boundaries is larger than the earlier per-site errors suggested. The robust statement is: O(2) increases from b = 1 (1.30) to b = 2, then stays flat.
 
 **Revised reading.** Between b = 2 and b = 4, the influence proxy contracts by a factor of about 0.8 for O(3) and does not contract for gapless O(2). This still concerns a lower bound, 12 neighbours, one β per model, and L = 32. It says nothing yet about the full worst-case sum or about larger scales.
+
+## Stage 2: L = 64, block size 4, 28 neighbours
+
+**Run:** [`stage2.py`](stage2.py), files `stage2_*.json`. L = 64, b = 4, random boundaries, 8 outer boundaries × 2 sites, 600 measurement sweeps. Influence summed over 28 coarse neighbours: ring 1 (Chebyshev distance 1, 8 neighbours), ring 2 (Chebyshev distance 2, 16), and axis 3 (the 4 at axis distance 3). The kernel was rewritten for speed (3.3×) and re-checked against the exact single-site conditional at b = 1: mean deviation 0.008 (O(3)) and 0.006 (O(2)), consistent with sampling noise. "Fresh chains": every conditional chain starts from independently drawn random fine spins, with 800 burn-in sweeps.
+
+| model | setting | total | ring 1 | ring 2 | axis 3 |
+|---|---|---|---|---|---|
+| O(3), β=1.5 | seed A | 1.25 ± 0.05 | 1.01 ± 0.04 | 0.25 ± 0.03 | −0.01 ± 0.01 |
+| O(3), β=1.5 | seed B | 1.18 ± 0.04 | 0.97 ± 0.03 | 0.20 ± 0.02 | 0.00 ± 0.01 |
+| O(3), β=1.5 | seed A, fresh chains | 1.25 ± 0.06 | 0.98 ± 0.03 | 0.23 ± 0.03 | 0.04 ± 0.02 |
+| O(2), β=1.3 | seed A | 2.51 ± 0.28 | 1.70 ± 0.17 | 0.73 ± 0.13 | 0.09 ± 0.04 |
+| O(2), β=1.3 | seed B | 2.39 ± 0.28 | 1.60 ± 0.15 | 0.74 ± 0.15 | 0.05 ± 0.03 |
+| O(2), β=1.3 | seed A, fresh chains | 2.80 ± 0.23 | 1.88 ± 0.11 | 0.77 ± 0.11 | 0.16 ± 0.04 |
+
+**Findings**
+- **No sign of a bias shared by chains with the same start.** Fresh chains agree with the standard ones within errors (O(3): 1.25 and 1.25; O(2): 2.80 and 2.51 ± 0.28).
+- **O(3): influence falls off quickly with distance and is stable in lattice size.** Ring 2 adds about 0.2 and axis 3 about 0. Ring 1 alone (0.97–1.01) is close to the 12-neighbour value at L = 32 (1.06–1.09), which also includes the 4 axis-2 neighbours.
+- **O(2): influence has a long tail and grows with lattice size.** Ring 2 adds about 0.75 and axis 3 is still nonzero. Ring 1 alone (1.6–1.9) already matches the whole 12-neighbour sum at L = 32. This fits a gapless model, whose influence decays slowly.
+- **Correction to the earlier reading.** With longer range included, O(3) at b = 4 sums to about 1.2, not 1.06. The 12-neighbour sum understated it. The contraction from b = 2 to b = 4 was measured on 12 neighbours only. It still needs checking on the full 28-neighbour sum.
+
+**Next, if agreed:** at L = 64, b = 2 and b = 8 with the same 28 neighbours and two seeds, for both models (about 15 minutes). This checks whether the full sum contracts with scale for O(3).
