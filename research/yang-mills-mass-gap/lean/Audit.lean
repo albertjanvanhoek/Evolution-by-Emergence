@@ -10,3 +10,7 @@ import YMGap
 #print axioms YMGap.combined_physical_rate_pos
 #print axioms YMGap.physical_decay_combined
 #print axioms YMGap.blockScale_residual_suffices
+#print axioms YMGap.expect_condExp
+#print axioms YMGap.total_covariance
+#print axioms YMGap.split_bound
+#print axioms YMGap.transfer_of_blocking
