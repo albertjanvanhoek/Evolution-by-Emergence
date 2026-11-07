@@ -66,3 +66,41 @@ The vertex weight 1/(q)_{d_x} does not depend on colours. Recolouring an entire 
 - **The other assistant:**
   - exact enumeration on tiny graphs of the layer version, P_free(loop visits I and O) against P_pinned, with |I| = 2 and |O| = 1 or 2, and with and without edges inside a layer. A counterexample would rule out the direct layer version;
   - continue the Lees–Taggi-type switching for the multi-annulus case.
+
+## 6. Route 1(a), fusion: a reduction, with checks (pilot/cpn_fusion_check.py)
+
+**Review of the other assistant's layer enumeration (CPN_LAYER_ENUMERATION.md).**
+- **The no-cross counterexample is correct.** Take A₁ and A₂ in one layer, joined to a free x, with one strand on each edge. Free gives 1/q². Pinned gives 2/(q(q+1)). The difference is (q − 1)/(q²(q + 1)) = 1/18 at q = 3. This is the I → I effect of §5: §3 does not carry over to layers as it stands.
+- **The articulation-vertex result is consistent with §3.** It rests on the identity (1/(q)_d) Σ_π q^{#cycles(πρ)} = 1, which is our step (i).
+
+**Fusion.** Force all spins of a layer to be equal, with the common direction uniform. Call this "fused". It is the CP model on the graph with each layer contracted to a single vertex (edges inside a layer become constants). It sits between free and pinned:
+1. **Fused ≤ pinned: proven.** Apply §3 to the contracted graph. Pinning the contracted vertices is the same as pinning the layers.
+2. **Free ≤ fused: open.** Fusing is the limit of free with infinite couplings inside each layer. So it would follow if **the crossing probability does not decrease when a coupling inside a layer is increased**. That is a monotonicity statement of Griffiths type, and we have no proof.
+
+**How fused is computed without enumerating the fused vertex.**
+- By SU(q) invariance, Z_fused = E_{p∼Beta(1,q−1)}[Z_pin(p)] = Σ_k c_k k!/(q)_k, where c_k is the equal-pinned weight with K = k strands from I to O.
+- By §3 on the contracted graph, Z_fused,NC = c₀.
+- So P_fused = 1 − c₀ / Σ_k c_k k!/(q)_k. For the star and the bipartite 4-cycle (K = 1) this matches a direct enumeration of the contracted graph.
+
+**Exact finite-truncation results** (CP², β = 1 unless stated; edge multiplicity ≤ K; enumerator from the other assistant):
+
+| graph (layers I, O) | K | P_free | P_fused | P_pinned |
+|---|---|---|---|---|
+| star, I = 2, O = 1 | 1 | 0.02969 | 0.03182 | 0.08974 |
+| star, I = 2, O = 1 | 2 | 0.05031 | 0.05528 | 0.15189 |
+| bipartite 4-cycle, I = 2, O = 2 | 1 | 0.68363 | 0.73684 | 0.93750 |
+| bipartite 4-cycle, I = 2, O = 2 | 2 | 0.75182 | 0.82008 | 0.97440 |
+| 4-cycle with an edge inside I | 1 | 0.26181 | 0.26316 | 0.52273 |
+| 4-cycle with an edge inside I | 2 | 0.31342 | 0.31623 | 0.63097 |
+| I = 2, O = 2 through two free middles | 1 | 0.03259 | 0.03333 | 0.09469 |
+| I = 2, O = 2 through two free middles | 2 | 0.05657 | 0.05874 | 0.16184 |
+| star plus an edge inside I with b = 3 | 2 | 0.05134 | 0.05528 | 0.15189 |
+
+**Findings**
+- **P_free ≤ P_fused ≤ P_pinned in every case.**
+- **The step from free to fused is small** (1–10%). The large step, from fused to pinned, is the one that is proven.
+- **Monotonicity in the inside coupling shows in the star:** 0.05031 (no inside edge) < 0.05134 (b = 3) < 0.05528 (fused).
+
+**So the layer version now rests on one monotonicity conjecture:** in the CP loop model, the crossing probability between two layers does not decrease when couplings inside a layer increase.
+
+**Limits.** Finite Taylor truncation (K ≤ 2), q = 3, five small graphs. A large b inside a layer is poorly represented at K ≤ 2, so the limit b → ∞ was not checked numerically.
