@@ -1035,4 +1035,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author:** "Doe de volgende stap"
 - **Done:** step 2 of the note: the same ensemble with Z₂ monopoles forbidden. The positive centre sector exists but is frozen; the disorder that confines sits in the coset and at scale 2a, where the signs are as frustrated as for the Wilson action.
 - **Assistant:** in the terms of the heuristic, a bond that must be kept up by both sides can be positive and still carry nothing; what moves is elsewhere. That is a reading, not part of the result.
-- **Open:** whether the author wants the social model itself written up, and where; a review by an expert or a model of another family; the author's view of the step-2 result.
+- **Author:** "Ok hoe gaan we wat nieuws bedenken? Het beste lijkt me om het een beetje systematisch te verkennen - dus 5 nieuwe benaderingen bedenken die nog niet bestaan en dan wat proberen"
+- **Done:** [FIVE_APPROACHES.md](research/yang-mills-mass-gap/FIVE_APPROACHES.md): five approaches, one per axis, each with a first literature check and a cheapest test. The first (gradient flow) was tried: no window on 8⁴.
+- **Assistant:** what has been done so far is not new mathematics but the step before it: locating where existing tools stop (sign excitations become surfaces). "Not found" in a first search is weak evidence of novelty.
+- **Open:** whether the author wants the social model itself written up, and where; a review by an expert or a model of another family; the author's view of the step-2 result; which of approaches 2–5 to pursue.

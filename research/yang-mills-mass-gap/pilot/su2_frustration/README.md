@@ -12,3 +12,6 @@ Runs used in the note: `python frustration.py BETA 8 20 1` for BETA in 2.0 2.2 2
 Step 2, Z₂ monopoles forbidden:
 - `nomono.py BETA MODE [L] [NCONF] [SEED]`, MODE = `nomono` or `wilson`: same measurements for both actions (Wilson loops up to 3×3, Creutz ratios, negative plaquettes and their clusters, Z₂ flux per plane, centre-sector frustration after DMCG). Writes `{MODE}_b{BETA}_L{L}_s{SEED}.json`.
 - Runs used in the note (`out2/`): `nomono` at β = 1.6, 2.0, 2.3 and `wilson` at β = 2.2, 2.4, 2.6, 2.8, all `8 12 2` (about 6 minutes per `nomono` run on one core).
+
+Approach 1 of [`../../FIVE_APPROACHES.md`](../../FIVE_APPROACHES.md), gradient flow:
+- `flow.py BETA [L] [NCONF] [SEED]`: Wilson flow, then negative R×R loops and frustrated side-R cubes for R = 1, 2, 3 at flow times 0 to 1. Runs in `out3/`: β = 2.4 and 2.6, `8 8 3` (about 30 seconds each).
