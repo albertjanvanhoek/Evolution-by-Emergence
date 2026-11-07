@@ -103,3 +103,35 @@ Summed influence (lower-bound proxy):
 - **Correction to the earlier reading.** With longer range included, O(3) at b = 4 sums to about 1.2, not 1.06. The 12-neighbour sum understated it. The contraction from b = 2 to b = 4 was measured on 12 neighbours only. It still needs checking on the full 28-neighbour sum.
 
 **Next, if agreed:** at L = 64, b = 2 and b = 8 with the same 28 neighbours and two seeds, for both models (about 15 minutes). This checks whether the full sum contracts with scale for O(3).
+
+**Correction (review on PR #144).** The stage 2 claim that O(2) influence "grows with lattice size" is withdrawn. Comparing the same nearest eight neighbours, O(2) at b = 4 gives about 1.73 at L = 32 and 1.60–1.88 at L = 64, which are compatible. What stage 2 shows is that O(2) has a larger contribution from more distant neighbours at this coupling and block size.
+
+## Stage 3: block sizes 2, 4 and 8 on L = 64
+
+**Run:** [`stage3.py`](stage3.py), files `stage3_*.json`. L = 64, random boundaries, 8 outer boundaries × 2 sites, 150 burn-in and 500 measurement sweeps. At b = 2 and 4: the 28-neighbour stencil of stage 2. At b = 8: **all 63** other coarse spins (8 × 8 coarse lattice), so the sum is complete. Rings by Chebyshev distance. Also recorded: the sum of |δ| (no cancellation, but biased upward by noise), and a noise floor from a second, independent base chain.
+
+**Like for like: rings 1 + 2 (the 24 neighbours within Chebyshev distance 2), signed sum**
+
+| model | b = 2 | b = 4 | b = 8 |
+|---|---|---|---|
+| O(3), β = 1.5 | 1.46, 1.42 | 1.16 (stage 2: 1.26, 1.17, 1.21) | 0.75, 0.91 |
+| O(2), β = 1.3 | 1.89, 1.89 | 2.03 (stage 2: 2.43, 2.34, 2.64) | 2.13, 2.42 |
+
+**Complete sum over all 63 neighbours at b = 8:** O(3) 0.80 ± 0.09 and 0.89 ± 0.10 (two seeds); O(2) 3.09 ± 0.50 and 3.06 ± 0.23.
+
+**Rings at b = 8** (seed A, seed B):
+- O(3): ring 1 0.63, 0.64; ring 2 0.13, 0.27; rings 3 and 4 consistent with 0.
+- O(2): ring 1 1.21, 1.40; ring 2 0.92, 1.01; ring 3 0.64, 0.45; ring 4 0.32, 0.20. That is a long tail.
+
+The distant sample at b = 2 (coarse distance 4 to 6) is about 0 per neighbour for both models.
+
+**Findings**
+- **O(3) contracts on the like-for-like measure.** Rings 1 + 2 go from about 1.44 (b = 2) to about 1.2 (b = 4) to about 0.83 (b = 8). That is a factor of about 0.8 and then about 0.7 per doubling. The complete sum at b = 8 is 0.80–0.89, below 1. Influence stays concentrated in ring 1.
+- **O(2) does not contract.** Rings 1 + 2 stay at about 1.9–2.4. The complete sum at b = 8 is about 3.1, with large contributions out to ring 4.
+
+**What this does not show**
+- **It is a lower bound on the influence, averaged over random boundaries.** Dobrushin's condition needs an upper bound on the worst case. A lower bound below 1 proves nothing about contraction.
+- **Cancellation at large distance cannot be excluded.** At b = 2 and 4 the absolute sum exceeds the signed sum by about the noise level, so there is no sign of cancellation there. At b = 8 the absolute sum is dominated by noise (noise floor 1.7–1.8 for O(3), 4.6–5.9 for O(2)), so it cannot settle the question.
+- **Small coarse lattice and few settings.** b = 8 on L = 64 leaves an 8 × 8 coarse lattice. There is one β per model and one kind of boundary.
+
+**Reading.** The candidate statement survives this round. For O(3), the conditional influence measured here shrinks with each blocking step, by a factor of about 0.7–0.8, and stays local. For O(2) in its gapless phase it does not shrink and spreads out. Turning this into mathematics needs an *upper* bound on the influence of the coarse model, uniform over boundaries.
