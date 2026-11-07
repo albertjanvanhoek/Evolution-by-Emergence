@@ -25,8 +25,11 @@ Nothing in Sections 2 and 3 uses that M is a sphere: no coordinates of s and no 
   - G = SU(N) acts by conjugation, which is orthogonal (P1);
   - the uniform measure on CP^{N−1} is invariant (P2);
   - an su(2) acting on two coordinates gives P4. In the adjoint, its generators (normalised so that [a, b] = c) have eigenvalues 0, ±i/2 and ±i, so the operator norm is ≤ 1.
-- **The SU(N) principal chiral model,** Re tr(U_x† U_y) on SU(N) ⊂ ℝ^{2N²}, with G = SU(N) × SU(N) acting by left and right multiplication.
-- **RP^{N−1} and Grassmannians,** through the projector embedding in the same way.
+- **The SU(N) principal chiral model,** Re tr(U_x† U_y) on SU(N) ⊂ ℝ^{2N²}, with G = SU(N) × SU(N) acting by left and right multiplication. It needs an explicit normalisation, s = U/√N, which rescales β.
+- **Grassmannians,** through Hermitian projectors. Rank-r projectors need normalisation, with an effective factor r in the coupling.
+- **Not RP^{N−1} as stated** (correction from review). On real symmetric projectors the rotation generators have operator norm 2 (a spin-2 component). Rescaling them changes [a, b] = c, so the constants must be recomputed.
+
+(Corrected after review: an earlier version listed RP^{N−1} and Grassmannians without these conditions.)
 - **O(n), n ≥ 4, directly,** with SO(3) ⊂ SO(n) acting on three coordinates. This does not need the reduction to three components.
 
 **Reading (if the claim holds):** for all of these 2D models, rotating the inner boundary of an annulus within an SU(2)-orbit costs at most C_β / log N in the partition function, uniformly over subgraphs and couplings. For CP^{N−1} we have not found this statement in the literature.
