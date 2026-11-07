@@ -70,15 +70,48 @@ Fractions are per 3-cube (σ_c) or per plaquette (all others). The "side 2a" col
 
 **Limits.** One lattice size (8⁴), one seed, 20 configurations per β, Wilson action only. DMCG finds local maxima (the Gribov-copy problem is documented for this gauge); only the representation-dependent columns are affected. At β ≳ 2.5 an 8⁴ lattice is small compared to the confinement scale. Blocking was tested only through 2×2 loops.
 
-## The question this leaves
+## The question step 1 left
 
 > In SU(2) lattice gauge theory with Z₂ monopoles suppressed, the centre sector given V is a ferromagnetic Z₂ gauge theory with random couplings (β/2)|Tr U_p| in a twist sector. Is there a crossing or association argument for it, analogous to §4 of the OpenAI O(3) proof or to Ding–Huang–Yang, that gives decay of the right observables? And is the monopole-suppressed action in the same universality class as the Wilson action?
 
 The second half has numerical support (monopole and vortex suppression in mixed actions restores the expected deconfinement behaviour; Datta and Gavai, Datta), but no proof. For the Clay problem any regularisation is allowed, as long as its continuum limit is the right theory.
 
+## Step 2: the same ensemble with Z₂ monopoles forbidden (7 November 2026)
+
+**Algorithm** (`pilot/su2_frustration/nomono.py`). Links are updated one direction and one of the 16 sublattices (x mod 2) at a time, so no two updated links share a plaquette or a 3-cube. The proposal is the exact Wilson heatbath, or an overrelaxation reflection; it is accepted only if it creates no monopole. That is a Metropolis step for the target "Wilson weight × no monopoles", so detailed balance holds. Acceptance: 0.75 (β = 1.6), 0.85 (2.0), 0.90 (2.3). Local updates cannot change the Z₂ flux through a plane, so a cold start stays in the trivial twist sector. Checks: the monopole density is 0 in every configuration, the flux is the same on every slice of every plane (it varies freely for the Wilson action), and flipping one link gives exactly one closed vortex of 6 negative plaquettes.
+
+**Runs.** 8⁴, 200 thermalisation sweeps from a cold start, 12 configurations 5 sweeps apart (heatbath plus one overrelaxation per sweep), seed 2. The Wilson runs use the same measurements. Different actions at the same β are different theories, so the comparison is at a similar plaquette value.
+
+| action | β | ⟨½Tr U_p⟩ | Tr U_p < 0 | monopoles | weak couplings, β·½\|Tr U_p\| < 0.44 | 2×2 loops < 0 | frustrated cubes, side 2a | Creutz χ(2,2) | Creutz χ(3,3) | P-plaquettes after DMCG |
+|---|---|---|---|---|---|---|---|---|---|---|
+| no monopoles | 1.6 | 0.6125 | 0.0004 | 0 | 0.122 | 0.324 | 0.483 | 0.256 ± 0.004 | 0.130 ± 0.020 | 0.044 |
+| Wilson | 2.4 | 0.6279 | 0.039 | 0.178 | 0.065 | 0.316 | 0.483 | 0.265 ± 0.004 | 0.129 ± 0.020 | 0.064 |
+| no monopoles | 2.0 | 0.6549 | 0.00002 | 0 | 0.062 | 0.273 | 0.479 | 0.198 ± 0.003 | 0.081 ± 0.006 | 0.010 |
+| Wilson | 2.6 | 0.6701 | 0.023 | 0.114 | 0.041 | 0.256 | 0.474 | 0.187 ± 0.002 | 0.100 ± 0.011 | 0.008 |
+| no monopoles | 2.3 | 0.6836 | 0 | 0 | 0.037 | 0.236 | 0.469 | 0.167 ± 0.004 | 0.071 ± 0.006 | 0.002 |
+| Wilson | 2.8 | 0.6997 | 0.015 | 0.076 | 0.027 | 0.216 | 0.459 | 0.152 ± 0.002 | 0.063 ± 0.005 | 0.003 |
+
+Wilson at β = 2.2 (not in the table): ⟨½Tr U_p⟩ = 0.5707, χ(2,2) = 0.393, χ(3,3) = 0.24 ± 0.05. JSON files in `pilot/su2_frustration/out2/`.
+
+**Findings**
+
+1. **Forbidding monopoles also removes almost all negative plaquettes.** At β = 1.6 there are 6 to 18 per configuration (0.04%), always a multiple of six; at β = 2.0 one six-plaquette vortex in 12 configurations; at β = 2.3 none. The Wilson action has 2–4% at similar plaquette values. In a monopole-free configuration negative plaquettes can only occur as closed surfaces (thin vortices), and the smallest one, around a single flipped link, has six plaquettes. A sign excitation of the centre sector is a *surface*, not a point. At these couplings it is almost never paid for.
+2. **So the positive centre sector is there, but it is frozen.** Given V it is a ferromagnetic Z₂ gauge theory with couplings (β/2)|Tr U_p|, and its excitations are exactly the negative plaquettes (up to the twist). It carries essentially no disorder at the cutoff. In O(3) the sign clusters do carry the disorder, because a single spin can flip wherever its few bonds are weak. Here the bonds must be weak on a whole closed surface. This is the codimension point of [`ROUTE.md`](ROUTE.md) again, now seen in the sign variables.
+3. **Confinement does not go away.** At similar plaquette values the Creutz ratios of the two actions are close (0.256 against 0.265 for χ(2,2) near ⟨½Tr U_p⟩ ≈ 0.62; χ(3,3) 0.130 against 0.129). On 8⁴ these are short-distance proxies, not string tensions. This fits the reports that the positive-plaquette model, which has neither monopoles nor thin vortices, still confines (Stack †).
+4. **The disorder lives in the coset and at larger scales.** After maximal centre gauge, P-plaquettes still appear (4.4% at β = 1.6) although no plaquette is negative. They come from V, not from the thin centre sector; the centre-vortex literature reads them as markers of thick vortices (†, below). At scale 2a the sign pattern is as frustrated as for the Wilson action: 47–48% of the side-2a cubes, close to the 50% of random signs.
+
+**Reading.** The positivity that the O(3) proofs use exists for SU(2) at the cutoff once monopoles are forbidden, but the variables it governs do not carry the decorrelation. The variables that do (thick vortices, the centre structure at scale 2a and above) have no positive structure that we have found. So the route through the *thin* centre sector closes. What remains is the question already named in [`ROUTE.md`](ROUTE.md): a positive or controllable description of *thick* centre vortices, that is, of the 't Hooft twist free energy at large scales.
+
+**Limits.** 8⁴, one seed, 12 configurations; trivial twist sector only; matching by plaquette value is a rough guide, not a matching of physical scales; DMCG finds local maxima; the counts of negative plaquettes at β ≥ 2.0 come from 12 × 24 576 plaquettes, too few to resolve the rate.
+
+## The question this leaves now
+
+> Is there a description of the centre structure at scale ≥ 2a, after blocking, in which the effective signs are again unfrustrated (or frustrated only in a controlled, dilute way)? Without it, the sign-cluster step of the O(3) proof has no SU(2) counterpart.
+
 ## Next steps
 
-- [ ] Monopole-suppressed heatbath (constraint σ_c = +1 or a large λ) and repeat the pilot: are the weak couplings then clustered, and how does the twist-sector free energy behave with L?
+- [x] Monopole-suppressed ensemble: done above. The thin centre sector is positive but frozen.
+- [ ] Blocked centre variables: for a blocking (e.g. 2⁴ blocks with a centre projection of the block link), measure the frustration of the blocked signs, and whether a choice of blocking makes it dilute.
 - [ ] Check whether the positivity statement in (3) is already in the Mack–Petkova, Kovács–Tomboulis or Haymaker papers.
 - [ ] Write (1)–(4) in Lean on a finite lattice (the change of variables and the Bianchi identity are finite statements).
 - [ ] Ask an expert (E. Seiler; A. van Enter for the statistical-mechanics side).
@@ -89,6 +122,7 @@ Marked † : seen only in search excerpts (abstract, a table or a few paragraphs
 
 - OpenAI, [Exponential decay in two-dimensional classical O(n) models](https://github.com/openai/math/blob/main/preprints/Exponential-decay-in-two-dimensional-classical-On-models-September-23-2026/paper.pdf) (2026), §4 (read in full).
 - Ding, Huang, Yang, [Exponential decay for the two-dimensional Heisenberg model](https://arxiv.org/html/2611.04908), arXiv:2611.04908 (structure read; K_uv = β r_u r_v as in ROUTE.md).
+- † Golubich, Faber (authors as on the related Acta Phys. Pol. proceedings), [The road to solving the Gribov problem of the center vortex model](https://arxiv.org/pdf/2106.08102) ("thick vortices are presently localized by P-vortices").
 - † Bertle, Faber, Greensite, Olejník (authors from memory), [The structure of projected center vortices in lattice gauge theory](https://ar5iv.arxiv.org/html/hep-lat/9903023) (DMCG and centre projection).
 - † Bornyakov et al. (authors from memory), [P-vortices and drama of Gribov copies](https://ar5iv.labs.arxiv.org/html/hep-lat/0009035).
 - † Haymaker, [Connections between thin, thick and projection vortices](https://web3.arxiv.org/pdf/hep-lat/0205002) (SO(3) × Z₂ bookkeeping, Kovács–Tomboulis counters).
