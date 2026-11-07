@@ -269,6 +269,32 @@ which is (A2), with the constant enlarged. **No assertion about the sign of the 
 - **Model distinctions:** This is the standard projector interaction at \(\theta=0\), with no independent dynamical U(1) link fields. Other CP lattice actions require separate checks. Real projectors \(RP^{q-1}\) do not satisfy (A1) with the same normalization: the natural \(\mathfrak{so}(3)\) action on real symmetric matrices has generator norm 2, so constant-preserving extension to that model should **not** be claimed.
 - **Novelty not established:** a prior twist estimate may exist under other terminology. Do not claim a new theorem for publication until a substantive literature search and expert review.
 
+
+## A stronger obstruction to the naive CP sign embedding: a frustrated plaquette
+
+A **single negative** Ising coupling need not invalidate a ferromagnetic reinterpretation: on a bipartite graph some signs can be removed by vertex sign flips. Here is a fully explicit **gauge-invariant frustrated cycle** showing that this rescue fails for the natural coordinate reflection embedding.
+
+For each of the four vertices \(x_0,x_1,x_2,x_3\) in cyclic order around a square plaquette of the original lattice, choose the CP² representatives
+\[
+z_{x_j}=\frac1{\sqrt2}(1,e^{i\theta_j},0)^T,\qquad
+(\theta_0,\theta_1,\theta_2,\theta_3)
+=(0,2\pi/5,4\pi/5,6\pi/5).
+\tag{C1}
+\]
+Temporarily expose Ising signs \(s_x=\pm1\) by replacing only the first coordinate \(1/\sqrt2\) with \(s_x/\sqrt2\). For the interaction \(\beta |z_x^\dagger z_y|^2\), the embedded Ising coupling on an edge is
+\[
+K_{xy}=\frac{\beta}{2}\cos(\theta_y-\theta_x).
+\tag{C2}
+\]
+On the cyclic edges \(01,12,23,30\), these have signs \((+,+,+,-)\), because \(\cos(2\pi/5)>0\) and \(\cos(6\pi/5)<0\). Thus
+\[
+\boxed{\ \prod_{\langle x,y\rangle\text{ around the square}}\operatorname{sgn}K_{xy}=-1.\ }
+\tag{C3}
+\]
+The sign of this product is invariant under arbitrary local Ising relabelings \(s_x\mapsto\epsilon_xs_x\), since each vertex factor \(\epsilon_x\) appears twice. The embedding therefore has **genuine sign frustration on an ordinary square-lattice plaquette**, not merely a removable negative edge.
+
+This proves only that **this natural coordinate-reflection / Ising-sign construction cannot yield globally ferromagnetic couplings for all CP configurations**. It does not rule out a different positive representation, an embedded CP¹ submanifold with extra conditioning, or another non-Ising argument.
+
 ## Suggested next proof obligation
 
 **Find a positive mechanism replacing sign clusters.** One candidate target is a uniform finite-scale criterion of the form:
