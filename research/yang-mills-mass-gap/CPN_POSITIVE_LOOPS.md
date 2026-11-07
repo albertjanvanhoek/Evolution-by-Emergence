@@ -2,6 +2,8 @@
 
 **7 November 2026 — independent mathematical derivation, for critical review.**
 
+**Prior-work correction (important).** Ulli Wolff, *Simulating the All-Order Strong Coupling Expansion IV: CP(N−1) as a loop model*, Nucl. Phys. B 832 (2010) 520–537, arXiv:1001.2231, Section 2.2, **already derived an exact positive oriented-loop representation for this same quartic CP action** (his Eq. (17), with our edge coupling (b_e=2\beta_q)); his Eqs. (21)–(23) also give loop/worm representations of adjoint two-point correlations. Neither the general loop expansion nor the existence of a graphical correlator representation is new here. What needs independent comparison is the **specific two-pinned-projector boundary-crossing identity** (L8)–(L11) and whether it supports the boundary-comparison estimates needed for decay.
+
 **Scope.** This note concerns the *finite-volume* nearest-neighbour \(CP^{q-1}\) **projector** model at \(\theta=0\), integer \(q\ge2\), nonnegative couplings, and two kinds of rank-one pinned boundary projectors. It uses a standard symmetric-tensor (high-temperature) expansion; any novelty claim requires a literature search. The exact loop identity below is an **alternative to a sign-cluster identity for this restricted boundary setup**; it does **not** supply the missing boundary comparison or an all-temperature CP mass-gap theorem. It should be read together with [CPN_TWIST_THEOREM.md](CPN_TWIST_THEOREM.md).
 
 ## 1. Finite graph and positive expansion
@@ -157,9 +159,7 @@ For CP projectors, (L8)–(L12) provide the positive **two-boundary** loop repre
 
 1. **Boundary comparison.** Is the probability of an index loop crossing an annulus under the relevant free/exterior CP Gibbs measure bounded above by the equal-pinned crossing probability (or by some usable multiple of it)? The loop fugacity \(q\) for unpinned loops changes to weight \(1\) upon touching pinned projectors. No stochastic ordering follows from positivity alone.
 2. **Several annuli.** Do useful conditional or multiplicative crossing estimates follow when annular boundaries are pinned simultaneously? Positive weight at two projector values need not survive arbitrary additional pinned orientations.
-3. **Observable-connectivity identity.** Can a suitable positive or absolute bound for the **connected gauge-invariant** projector correlation, e.g.
-   \(\langle\operatorname{tr}(P_xP_y)\rangle-1/q\),
-   be expressed in terms of marked-loop connectivity with coefficients controlled uniformly over volumes? An unmarked loop-crossing estimate alone does not imply this.
+3. **Adapt Wolff's existing observable-to-loop representation to this boundary problem.** Wolff (2010), Eqs. (21)–(23), *already* represents adjoint two-point correlations with two active loops/worm defects. The open work is to compare that **marked** loop ensemble (with appropriate free/exterior conditions) to the **unmarked equal-pinned** annular crossing law in (L12), with uniform constants. An unmarked crossing estimate alone does not imply an exponentially decaying two-point correlation.
 4. **Lattice-model dependence.** The argument is for the exact nearest-neighbour \(e^{\beta\operatorname{tr}(P_xP_y)}\) projector model. Do not silently import it to a version with explicit independent dynamical \(U(1)\) links or \(\theta\ne0\).
 
 These are sharp proof obligations, not evidence that the full CP mass gap is settled. A successful comparison/observable bridge would be substantive new mathematics and must be independently checked before being used to claim exponential decay.
@@ -168,7 +168,8 @@ These are sharp proof obligations, not evidence that the full CP mass gap is set
 
 - OpenAI (2026), *Exponential decay in two-dimensional classical O(n) models*, especially Sections 2–4 and the sign-cluster boundary comparison: https://github.com/openai/math/tree/main/preprints/Exponential-decay-in-two-dimensional-classical-On-models-September-23-2026
 - This PR: [CPN_TWIST.md](CPN_TWIST.md), [CPN_TWIST_THEOREM.md](CPN_TWIST_THEOREM.md), [ROUTE.md](ROUTE.md).
-- Related *but different* CP/loop literature: Nahum, Chalker, Serna, Ortuño and Somoza, *3D Loop Models and the CP^{n−1} Sigma Model*, Phys. Rev. Lett. 107, 110601 (2011), https://arxiv.org/abs/1104.4096. Its three-dimensional loop-model correspondence is not claimed to establish the particular 2D projector-model comparison here.
+- **Direct prior work:** Ulli Wolff, *Simulating the All-Order Strong Coupling Expansion IV: CP(N−1) as a loop model*, Nucl. Phys. B 832 (2010) 520–537, arXiv:1001.2231, https://arxiv.org/abs/1001.2231. Section 2.2, Eq. (17) is the **same quartic action** up to the coupling normalization; Eqs. (18)–(19) provide its loop weights; Eqs. (21)–(23) relate adjoint correlations to active-loop observables. Read at source on 7 November 2026. The note's (L3)–(L11) is an independent transparent derivation of a *particular pinned-boundary specialization*, not a claim to have originated CP loop representations.
+- Related but different CP/loop literature: Nahum, Chalker, Serna, Ortuño and Somoza, *3D Loop Models and the CP^{n−1} Sigma Model*, Phys. Rev. Lett. 107, 110601 (2011), https://arxiv.org/abs/1104.4096.
 - The tensor moment (L3) is standard symmetric-power/Haar integration. Search for earlier random-loop or graphical expansions before claiming novelty.
 
-**Research priority:** verify (L3)–(L11) independently, then try to prove or disprove item 1 (boundary comparison) using a small explicit graph as a test. That is now the single most promising missing piece of Part 2.
+**Research priority:** compare the two-pinned-boundary specialization (L8)–(L11) directly against Wolff's 2010 graphical formalism, then try to prove or disprove item 1 (boundary comparison) using a small explicit graph. Next bridge from Wolff's marked-loop correlator to our unmarked annular crossing law; do not claim the all-β CP gap until both steps are proved.
