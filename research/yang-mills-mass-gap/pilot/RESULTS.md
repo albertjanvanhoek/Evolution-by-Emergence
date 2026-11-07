@@ -173,12 +173,19 @@ Flip responses (d = 1, 2) are similar across boundaries. They are smallest for a
 - Untilted, the sideways magnetisation of all hidden spins stays at about ±0.4–0.5, with the sign set by the start. Random starts land in either sector. This persists in the long runs (|magnetisation| up to 0.51, target spin up to 0.75), whereas the exact value is 0.
 - Tilted at distance 4, an East start gives +0.52 to +0.72 and a West start −0.47 to −0.74 on the same boundary and tilt. The answer depends on the start, not on the tilt.
 
-**So the O(2) "tail" in the previous section is not a valid measurement of influence.** It reflects which sector each chain happened to fall into. What the check does show is that the hidden O(2) spins *order* sideways on North–South boundaries: a large, stable sideways magnetisation in a 64 × 64 system. That is the spin-flop phenomenon, a discrete East/West choice. In infinite volume, a small tilt far away could then select the sector, which means very large long-range influence. The chain cannot measure that influence, but the ordering itself is the obstruction.
+**So the O(2) "tail" in the previous section is not a valid measurement of influence.** It reflects which sector each chain happened to fall into. What the check shows is **pronounced metastability and slow equilibration** between two sideways sectors (East and West) on North–South boundaries. The chains also switch sector now and then: on boundary 0 the long East-started run ended at −0.40 and the West-started one at +0.12. This is consistent with the spin-flop mechanism in the literature, but it is not by itself a proof of a phase transition. At finite volume the exact sideways mean is 0. Showing spontaneous ordering would need the two-sector structure to persist as the system grows. (Correction after review on PR #144; an earlier version said the spins "order".)
 
 **O(3), β = 1.5: the chains mix, and the symmetry null holds.**
 - Untilted, the sideways magnetisation of the hidden spins is |m| ≤ 0.016 from every start. In the long runs, the target's sideways mean is |·| ≤ 0.04, consistent with 0 within single-chain noise.
 - Tilted at distance 4, East and West starts agree within noise in the long runs (for example −0.015 against +0.014, and 0.003 against −0.035).
-- So the O(3) null result of the previous section stands as a measurement: no detectable long-range response, and **no sideways ordering of the hidden spins**. That is the specific difference from O(2).
+- So the O(3) null result of the previous section stands as a measurement: no detectable long-range response, and **no sideways metastability** of the hidden spins. That is the specific difference from O(2).
+
+**Three possibilities for the conditioned hidden system** (from review on PR #144):
+1. uniform strong mixing, which would support a Dobrushin certificate;
+2. a unique state without fast mixing, with possibly slowly decaying conditional correlations;
+3. several infinite-volume conditioned states: phase coexistence, which can make the decimated measure non-Gibbsian.
+
+The O(3) data fit 1 or 2. The O(2) data point toward 3, but only together with the existing literature.
 
 **Consequences**
 - **O(2) checkerboard:** the earlier no-tail result is also untrustworthy until checked for trapping.
