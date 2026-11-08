@@ -26,8 +26,21 @@ jobs:
 
       - name: Install elan
         run: |
-          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          curl --retry 5 --retry-delay 10 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      # The toolchain download has failed transiently (runs on 8 November 2026),
+      # so retry it before the build instead of failing the check.
+      - name: Install Lean toolchain
+        shell: bash
+        run: |
+          tc="$(cat lean-toolchain)"
+          for i in 1 2 3 4 5; do
+            if $HOME/.elan/bin/elan toolchain install "$tc"; then break; fi
+            if [ "$i" = 5 ]; then echo "toolchain download failed 5 times" >&2; exit 1; fi
+            sleep $((i * 20))
+          done
+          $HOME/.elan/bin/lean --version
 
       - name: Update dependencies
         run: |
