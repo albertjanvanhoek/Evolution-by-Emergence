@@ -2,6 +2,8 @@
 
 **7 November 2026 — further step after the independent review in [CPN_PINNING.md §12](CPN_PINNING.md).** The positive CP index-loop expansion is prior work (Wolff 2010). The analytic arguments here are finite-volume, \(\theta=0\), integer \(q\ge2\), and use the complete exponential action. The computer checks have separately stated finite-multiplicity scopes. This note does **not** prove monotonicity for arbitrary two-hub coupling \(J\), general annuli, exponential CP decay, or Yang–Mills.
 
+**Later result (8 November 2026):** the restriction to sufficiently small bridge coupling J has now been **removed for the serial two-hub graph and a much larger single-gateway/two-terminal class**. The event-resolved positive-kernel contraction and the dimension-shift formula are developed in [CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md). The present note retains the transfer-operator and first-order arguments as independent checks, not as the strongest current theorem. The new tangle-contraction step has been submitted for an independent review; it is still limited to one gateway x and one outer mark a, not an arbitrary multi-site annulus.
+
 ## 1. A genuinely interacting two-hub one-sided graph
 
 Fix rank-one projectors \(P_u,P_v\) at overlap
