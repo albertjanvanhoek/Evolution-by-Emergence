@@ -40,7 +40,7 @@ abstract: >-
   separate 14-result Lean package of renormalisation bookkeeping. It
   contains no mass-gap result, and no human expert has reviewed it.
   DIALOGUE.md records how the author and an AI assistant build the model
-  together, now in 37 entries. The release title uses ‘simulation of
+  together, now in 38 entries. The release title uses ‘simulation of
   reality’ to mean the internal model through which a system experiences and
   acts in the world, not a claim that reality itself is simulated. Formal
   verification establishes implications under explicit premises; empirical,

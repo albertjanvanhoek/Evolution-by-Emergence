@@ -118,6 +118,6 @@ Earlier notes are kept as written. Where a later note corrects one, the earlier 
 
 ## Publication, attribution and versions
 
-The wider repository currently identifies its own theory release as **v23.0**; this folder should be released as a **separate dated research snapshot** rather than incrementing the theory's version or modifying its `CITATION.cff` by implication. See [RELEASE_CANDIDATE.md](RELEASE_CANDIDATE.md) for proposed release copy and a manual publication checklist. Cite the **exact snapshot tag or commit**, and preserve contributor provenance. Licensing is [CC BY 4.0 **OR** Apache-2.0](../../DUAL-LICENSING.md), subject to any file-specific or third-party rights notices.
+The author chose to release this folder as part of **Evolution by Emergence v23.1** (DIALOGUE.md D38), not as a separate pre-release. Cite the v23.1 tag, or the exact commit, and preserve contributor provenance. Corrections go into later releases; the archived claims are not silently replaced. Licensing is [CC BY 4.0 **OR** Apache-2.0](../../DUAL-LICENSING.md), subject to any file-specific or third-party rights notices.
 
 **Merge decision and release publication are reserved to the repository owner.** Before any public claims about mathematical priority or completeness, seek review from a human specialist in constructive field theory, lattice gauge theory, or mathematical probability.

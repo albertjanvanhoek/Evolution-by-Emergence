@@ -9,8 +9,8 @@ v23.1 keeps everything in v23.0 and adds three pieces of research, none of them 
 - [`CORE.md`](CORE.md) still opens with what a functional world model is, and [`EbECore.lean`](formalization/ebe-core/EbECore.lean) still audits **96** results.
 - **Cooperative error identification** and **acting under time** (D35), with formal models and seeded simulations.
 - **Models for acting in a changing world** (D36), with a formal model and simulations.
-- **A working space on the Yang–Mills mass gap** (D37), now handed over to others, with a separate 14-result Lean package. It contains no mass-gap result and claims none.
-- [`DIALOGUE.md`](DIALOGUE.md) now runs to D37.
+- **A working space on the Yang–Mills mass gap** (D37, D38), now handed over to others, with a separate 14-result Lean package. It contains no mass-gap result and claims none.
+- [`DIALOGUE.md`](DIALOGUE.md) now runs to D38.
 
 Nothing is removed. The v23.0 world-model work, and everything it retained from earlier releases, is unchanged. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
 
@@ -28,7 +28,7 @@ Conjectures under investigation, in [`research/cooperative-correction/`](researc
 
 [research/world-model/MODELS_FOR_ACTING.md](research/world-model/MODELS_FOR_ACTING.md), a proposed functional decomposition of what an intelligence keeps besides its world model (representations, objectives, policies, records) and how it uses them to persist, organized around the loop of acting under time; claims labelled one by one, failure cases where the boundaries collapse, sources checked. Formalized in [`ModelsForActing.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean) (23 results and 4 witnesses, outside the core), and tested in seeded simulations ([sim_models.py](research/world-model/simulation/sim_models.py), [sim_learning.py](research/world-model/simulation/sim_learning.py)): stopping to learn when certain enough fails where uncertainty cannot be resolved, and a rule set by the value of several more readings does best at every cost; copies counted as evidence make a holder confidently wrong ten times as often; an aimless world model pays when purposes change faster than distinctions can be learned, relative to their upkeep, and otherwise a representation scoped to the purpose is cheaper; peers sharing one's blind spots add nothing, however many. Formally: a representation suffices exactly when the worlds it conflates share an optimal action; an aimless world model that tracks outcomes serves every objective; exact knowledge does not choose without an objective; and a self-assessment can be certified exactly when some channel, from whatever source, separates the states it must tell apart.
 
-## 4. The Yang–Mills mass gap: a working space, handed over (D37)
+## 4. The Yang–Mills mass gap: a working space, handed over (D37, D38)
 
 [`research/yang-mills-mass-gap/`](research/yang-mills-mass-gap/README.md), built on 7–8 November 2026 by the author with two AI assistants from different model families, each checking the other. Active work has stopped. [`HANDOFF.md`](research/yang-mills-mass-gap/HANDOFF.md) is written for whoever takes it further, with open issues [#145](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/145)–[#147](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/147). In the author's words: "I think we tried enough - please prepare the PR for a merge and a release - such that others can do the rest."
 

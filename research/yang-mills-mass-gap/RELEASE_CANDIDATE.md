@@ -1,5 +1,7 @@
 # Release candidate — dated research snapshot
 
+**Superseded (8 November 2026):** the author chose to release this folder as part of the repository release **v23.1**, not as a separate pre-release (DIALOGUE.md D38). This file is kept as written, as the alternative that was considered.
+
 **Prepared:** 8 November 2026  
 **Status:** copy-ready notes and a publication checklist. **No release or tag has been published by creating this file.**  
 **Proposed GitHub release title:** *Research snapshot: Yang–Mills routes and CP loop pinning — 2026-11-08*  
