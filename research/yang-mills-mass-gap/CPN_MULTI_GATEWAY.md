@@ -123,7 +123,7 @@ These are numerical estimates with error bars, not proofs.
 
 ## Where I'm unsure
 
-- The identity in §1 is short, and I checked it numerically against an independent formula. But the step "free-a no-cross weight equals pinned no-cross weight" uses the argument of CPN_PINNING.md §3 for one vertex, and I have not seen it written for a vertex with strands from several networks. I believe it holds as stated, because the argument is local to a.
+- The identity in §1 is now written out in full, for a vertex shared by any number of networks, as step 1 of [`CPN_TWO_TERMINAL_GLUING_PROOF.md`](CPN_TWO_TERMINAL_GLUING_PROOF.md). The argument is local to a. It still needs a second reader.
 - The theorem in §2 is elementary. That makes me suspect it, or something stronger, is already known in the literature on positive loop representations (Wolff 2010; Lees–Taggi). I did not search for it.
 - The two-region step reuses the fusion limit and the articulation comparison. They were checked by the two assistants only.
 - The numerical screen is small (about 120 graphs and one local search). It supports the conjecture; it does not prove it.
