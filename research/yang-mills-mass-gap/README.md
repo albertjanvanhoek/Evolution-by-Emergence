@@ -2,7 +2,9 @@
 
 **Aim:** contribute to the mass-gap half of the Clay problem: prove that four-dimensional quantum Yang–Mills theory has a strictly positive mass gap. This folder is a working space. It is not part of the EbE theory, and nothing here is a result until a human expert has checked it.
 
-**Started:** 7 November 2026, by the author with two assistants from different model families.
+**Started:** 7 November 2026, as an exploratory research workspace.
+
+**For independent readers and contributors (8 November 2026):** start with the [research handoff and claim ledger](HANDOFF.md), then the [reproduction guide](REPRODUCE.md). A dated, **unpublished** [research release candidate and merge checklist](RELEASE_CANDIDATE.md) is ready. The open tasks are [independent mathematical review](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/145), [full-strength multi-gateway monotonicity](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/146), and [multi-site annular boundaries](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/147). Existing proofs and numerical results are **not human-peer-reviewed**; no CP or Yang–Mills mass gap is claimed.
 
 ## What is here so far (8 November 2026)
 
