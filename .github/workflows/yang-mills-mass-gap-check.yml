@@ -24,13 +24,19 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # Downloads from GitHub (elan, the Lean toolchain, Mathlib and its cache)
+      # failed transiently in several runs on 8 November 2026 (HTTP 503).
+      # Each network step is therefore retried with a growing pause.
       - name: Install elan
+        shell: bash
         run: |
-          curl --retry 5 --retry-delay 10 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          for i in 1 2 3 4 5; do
+            if curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none; then break; fi
+            if [ "$i" = 5 ]; then echo "elan install failed 5 times" >&2; exit 1; fi
+            sleep $((i * 30))
+          done
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
-      # The toolchain download has failed transiently (runs on 8 November 2026),
-      # so retry it before the build instead of failing the check.
       - name: Install Lean toolchain
         shell: bash
         run: |
@@ -38,17 +44,27 @@ jobs:
           for i in 1 2 3 4 5; do
             if $HOME/.elan/bin/elan toolchain install "$tc"; then break; fi
             if [ "$i" = 5 ]; then echo "toolchain download failed 5 times" >&2; exit 1; fi
-            sleep $((i * 20))
+            sleep $((i * 30))
           done
           $HOME/.elan/bin/lean --version
 
       - name: Update dependencies
+        shell: bash
         run: |
-          $HOME/.elan/bin/lake update
+          for i in 1 2 3 4 5; do
+            if $HOME/.elan/bin/lake update; then break; fi
+            if [ "$i" = 5 ]; then echo "lake update failed 5 times" >&2; exit 1; fi
+            sleep $((i * 30))
+          done
 
       - name: Fetch Mathlib cache
+        shell: bash
         run: |
-          $HOME/.elan/bin/lake exe cache get
+          for i in 1 2 3 4 5; do
+            if $HOME/.elan/bin/lake exe cache get; then break; fi
+            if [ "$i" = 5 ]; then echo "Mathlib cache download failed 5 times" >&2; exit 1; fi
+            sleep $((i * 30))
+          done
 
       - name: Build
         run: |
