@@ -255,3 +255,15 @@ This is an inequality in two independent variables with explicit densities. It m
 - the double star with a two-point middle layer.
 
 All of them rely on a reduction to one ordered variable: a sum of strand counts, or a rank-two matrix. The open case is a region with two or more free vertices joined to each other, as in a real annulus.
+
+## 13. Review of the multi-gateway results (8 November 2026)
+
+**The finite-model counterexample to ordering by alternation count, checked with independent code** (`pilot/cpn_multi_gateway_independent.py`: own slot-following enumerator, pinned strands traced through all free vertices including a). With the couplings (G3), (1/8, 8, 8, 1/8, 8, 8, 1/4), it gives:
+- r₀ = 0.254557, r₁ = 0.535841 and r₂ = 0.507772;
+- Z²h′ coefficients (818.5254, 10.95804, −0.04037).
+
+**All of these match CPN_MULTI_GATEWAY_COEFFICIENT_CERTIFICATE.md exactly.** So the alternation-by-alternation ordering fails, while the normalised h(p) still increases on [0, 1] (from 0.254557 to 0.272198). With all couplings equal to 1, the same graph gives r₀ < r₁ < r₂ (0.0598, 0.1411, 0.1976).
+
+**Stability theorem (CPN_MULTI_GATEWAY_STABILITY.md).** The argument is the standard one: strict positivity of h₀′ on the compact interval [0, 1], plus continuity in the added couplings, gives some ε* > 0. It is correct as we read it, provided strict positivity at both ends, p = 0 and p = 1, is established; we did not check that part. **One limit matters for the route:** ε* depends on the network and on all existing couplings, so it is not uniform. The annulus argument needs bounds that hold uniformly over subgraphs and scales, as in Prop. 3.1. This result therefore gives local stability, not a step towards the uniform statement.
+
+**Not checked:** the claim that h′ ≥ 0 for all non-negative couplings at q = 2, 3, 5, 8 (the coefficient-sign certificate). The p² coefficient of Z²h′ is negative here, so that certificate must rest on a more refined positivity argument, and that argument deserves its own review.
