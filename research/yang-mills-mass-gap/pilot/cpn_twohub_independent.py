@@ -1,4 +1,4 @@
-# Independent enumerator (own code) for ChatGPT's two-hub check:
+# Independent enumerator (own code) for the other assistant's two-hub check:
 # I={0,1}, O={2}, hubs 3,4; edges (0,3),(1,3),(3,4),(4,2) weight 1 (k<=1), t-edge (0,1) (k_t<=1). q=3.
 # Unit of multiplicity on edge (u,v) = factor (zbar_u.z_v)(zbar_v.z_u): one z-slot and one zbar-slot at u and at v.
 # Vertex weight 1/(q)_d * sum over bijections pi: z-slots -> zbar-slots; index loops get weight q.

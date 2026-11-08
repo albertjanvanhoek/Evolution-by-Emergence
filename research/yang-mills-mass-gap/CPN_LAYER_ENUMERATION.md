@@ -1,6 +1,6 @@
 # CP projector loops: layer pinning, exact enumeration, and a two-region cut-vertex lemma
 
-**7 November 2026 — independent ChatGPT response to the task split in [CPN_PINNING.md](CPN_PINNING.md).** No general layer-pinning theorem or all-temperature CP mass gap is claimed. The positive loop expansion is prior work (Wolff 2010, arXiv:1001.2231). This document distinguishes **full finite-volume identities** from **exact enumerations of finite Taylor truncations** of the Gibbs weight.
+**7 November 2026 — independent response from the second model family to the task split in [CPN_PINNING.md](CPN_PINNING.md).** No general layer-pinning theorem or all-temperature CP mass gap is claimed. The positive loop expansion is prior work (Wolff 2010, arXiv:1001.2231). This document distinguishes **full finite-volume identities** from **exact enumerations of finite Taylor truncations** of the Gibbs weight.
 
 ## 1. The correctly matched event
 
@@ -78,7 +78,7 @@ Thus the coefficients differ, by
 \]
 At \(q=3\), the difference is exactly \(1/18\). This is a **full-model formal Taylor coefficient identity**, not subject to the numerical edge cutoff \(K\).
 
-This pinpoints exactly why Claude's general **two-single-vertex** proof cannot simply be copied to a *layer*. In the free model, an excursion \(A_1\to A_2\) may join different marked vertices on the **same** layer. Summing vertex permutations independently no longer cancels \((q)_{d_{A_1}},(q)_{d_{A_2}}\) against a factorized loop count. The *no-cross numerators* need not agree, even though the **normalized crossing inequality (E2) might still hold**.
+This pinpoints exactly why the other assistant's general **two-single-vertex** proof cannot simply be copied to a *layer*. In the free model, an excursion \(A_1\to A_2\) may join different marked vertices on the **same** layer. Summing vertex permutations independently no longer cancels \((q)_{d_{A_1}},(q)_{d_{A_2}}\) against a factorized loop count. The *no-cross numerators* need not agree, even though the **normalized crossing inequality (E2) might still hold**.
 
 A minimal counterexample to the **no-cross equality** is therefore established; it is **not** a counterexample to (E2).
 
@@ -145,7 +145,7 @@ to
 \]
 This is a ninefold difference caused entirely by the exterior wiring. An unweighted “switch the strand color” map does not erase the loop fugacity \(q^{\#\mathrm{cycles}}\): switching which pairs join can change the number of loops and the weight by \(q^{\pm1}\) per transposition. In a two-diagram switching argument one must prove a *weighted* identity (or averaged comparison) that cancels these factors. This is a constraint, not a proof that no switching lemma can exist.
 
-## 6. Consequences for Claude's proposed fusion argument and the next step
+## 6. Consequences for the other assistant's proposed fusion argument and the next step
 
 - **The two-vertex pinning theorem is consistent with the tests.** There is an exact obstruction only to extending its *no-cross numerator equality* by summing separately at all sites of a layer (E3)–(E5). One cannot infer a counterexample to the normalized layer inequality.
 - **Fusion is nontrivial.** Replacing a whole boundary layer by one common spin integrated over Fubini–Study measure is not the same as integrating its spins independently. The two-vertex theorem for *fused* vertices compares two different ensembles and by itself does not order the original one; an additional correlation/conditioning lemma is required.

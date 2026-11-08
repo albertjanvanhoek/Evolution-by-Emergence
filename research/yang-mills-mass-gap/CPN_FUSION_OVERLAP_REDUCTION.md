@@ -101,7 +101,7 @@ For the two-hub tree above at q=3, inserting \((c_0,c_1)=(28/9,4/27)\) and \((a_
 =(256/81,\;19/3240,\;86/81,\;13/6480),
 \tag{R8}
 \]
-**exactly the independently obtained fractions** in CPN_FUSION_TEST.md and Claude's \`pilot/cpn_twohub_independent.py\`. Thus
+**exactly the independently obtained fractions** in CPN_FUSION_TEST.md and the other assistant's \`pilot/cpn_twohub_independent.py\`. Thus
 \(\mathbb P'_0(E)=3/262144>0\) **in this stated finite Taylor-polynomial model**.
 
 A deterministic seeded search using q=3, edge multiplicities 0/1, 5–6 vertices, positive heterogeneous couplings and at most 500 local-permutation combinations per multiplicity yielded 237 usable two-layer examples and 161 usable three-layer examples. In none was \(r_{k+1}<r_k\); **this is not a theorem** and the searches exclude harder larger-multiplicity diagrams.

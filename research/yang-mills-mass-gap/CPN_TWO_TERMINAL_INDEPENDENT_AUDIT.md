@@ -1,6 +1,6 @@
 # Independent audit: where two-terminal CP positivity ends and event-resolved gluing begins
 
-**8 November 2026 — audit responding to Claude's CPN_PINNING.md §14 review.**
+**8 November 2026 — audit responding to the other assistant's CPN_PINNING.md §14 review.**
 
 **Result.** The positive coefficients of the arbitrary two-terminal effective edge \(K_H(z)\) (including internal cycles) follow **directly and rigorously** from the standard positive CP projector index-loop expansion. The stronger **event-resolved** identity used in the network-independent relative-slope theorem has an additional combinatorial obligation: **deletion of same-terminal returns must preserve the marked source-to-outer crossing event after weighted summation over local boundary permutations**. The current manuscript's (B4) tensor trace equality proves physical partition contraction, but, *taken alone*, does **not** prove preservation of a graphical event. I independently tested the latter at repeated edge multiplicities and a genuine cycle; every exact-rational coefficient agrees. I see no counterexample, but the detailed deletion-fiber combinatorial identity should receive independent review before using it as a general black-box theorem. This is an **audit**, not a claim of a new annulus result.
 
