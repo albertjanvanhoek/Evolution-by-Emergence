@@ -3,7 +3,7 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v23.0** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** what a functional world model is, then one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
+**Evolution by Emergence v23.1** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** what a functional world model is, then one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 [![EbE Core](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml)
@@ -72,6 +72,7 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 - **Universal Lean formalization:** [formalization/](formalization/) and especially [formalization/cumulative-accessibility/](formalization/cumulative-accessibility/).
 - **Cumulative Reproduction Model:** [research/cumulative-reproduction/](research/cumulative-reproduction/) — production, loss, resource dynamics and numerical experiments.
 - **Health of intelligence and of the commons:** [research/health-of-intelligence/](research/health-of-intelligence/) — concept notes, not results: a shared measure of the health of intelligence for people, AI systems and institutions, the health of the commons they live in, the research briefs and reports behind them, and their review.
+- **Yang–Mills routes and CP loop pinning (unreviewed research archive):** [research handoff](research/yang-mills-mass-gap/HANDOFF.md) — conditional Lean bookkeeping, exploratory pilots, candidate finite-graph arguments and open questions; **no mass-gap result**.
 - **Building the future:** [research/building-the-future/](research/building-the-future/README.md) — an essay, not a result: what changes when answers become cheap, and why responsibility shifts toward uptake.
 - **Transparent pricing:** [research/transparent-pricing/](research/transparent-pricing/README.md) — an application to economics: access at cost, a separate bounty for solving problems, every choice visible; with a standalone Lean package in [formalization/transparent-pricing/](formalization/transparent-pricing/README.md).
 - **World models, and what makes one functional:** [research/world-model/](research/world-model/README.md) — a definition note: world model and functional world model, sharpness subject to calibration, correctability, and what a collective world model needs from its contributors and from how it combines them; with independent reviews and the responses; and a companion on the other models an intelligence keeps in order to act and persist.
@@ -183,13 +184,13 @@ The website is the historical online book edition; this README is the current re
 
 ## Cite
 
-The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v23.0 version DOI after archival.
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v23.1 version DOI after archival.
 
 ```bibtex
 @software{vanhoek_welcome_real_world_v22_3,
   author  = {van Hoek, Albert Jan},
   title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
-  version = {v23.0},
+  version = {v23.1},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
   url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
@@ -198,7 +199,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v23.0). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v23.1). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 

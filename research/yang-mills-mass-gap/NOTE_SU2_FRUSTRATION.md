@@ -1,0 +1,148 @@
+# Note: frustration of the centre (Z₂) sector in 4D SU(2)
+
+*Working note, 7 November 2026. Written by the author with an AI assistant. Not a result. The decomposition below is elementary and checked numerically; the numbers come from a small pilot (8⁴, 20 configurations per β, one seed).*
+
+## Prior work (found after this note was written)
+
+**The decomposition and the positivity in §1–§4 below are not new.** They are a version of Tomboulis' SO(3) × Z(2) formulation of SU(2) lattice gauge theory. Kovács and Tomboulis, *Vortices and confinement at weak coupling* (arXiv:hep-lat/9711009, read in the text), write the partition function as
+
+  Z = ∫ ∏_b dU_b ∏_p dσ_p ∏_c δ[η_c σ_c] exp(β |tr U_p| σ_p)   (their Eq. 3),
+
+with Z(2) variables σ_p on plaquettes, η_p the sign of the plaquette, and η_c, σ_c the products over the faces of a cube. So:
+- the couplings of the Z(2) variables are |tr U_p| ≥ 0: the positivity of our statement (3);
+- the cube constraint σ_c = η_c ties the Z(2) monopoles to the SO(3) monopoles (cubes with η_c = −1, joined by Dirac sheets that a change of representative moves at no cost): our statement (2);
+- their "MP model" (their Eq. 11, all σ_c constrained to +1) is our monopole-free ensemble of step 2;
+- they argue that thin Z(2) vortices are irrelevant at large β ("a pure Z(2) theory is in a Higgs phase at large β"), and that "the presence of thick or hybrid vortices is the necessary condition for confinement to occur at weak coupling". **Step 2 below reproduces this numerically.**
+
+The same formulation is used by Alexandru and Haymaker (arXiv:hep-lat/0002031, hep-lat/0009010 †), who show that on a periodic lattice allowed configurations must wrap an even number of times around the lattice, and by Haymaker (arXiv:hep-lat/0205002, read through a summary of the text), whose partition function has the same form with |Tr U(∂p)| σ(p) and the cube constraint ∏ η(p)σ(p) = +1.
+
+**What is ours, then,** is narrower: reading this structure as the gauge-theory counterpart of the sign clusters in Section 4 of the 2D O(3) proof, the conclusion that it gives no route there (the positive variables are frozen at weak coupling), and the pilot numbers (monopole density in physical units, frustration at scale 2a, the flow test in [`FIVE_APPROACHES.md`](FIVE_APPROACHES.md)). We use link signs s instead of plaquette variables σ_p; without monopoles the two agree (σ = ds, up to a twist).
+
+## Why this question
+
+[`ROUTE.md`](ROUTE.md) found that the twist part of the O(3) proof does not carry over to 4D SU(2), and that Part 2, the sign clusters, is the obstacle wherever no unfrustrated Ising embedding exists ([`CPN_TWIST_THEOREM.md`](CPN_TWIST_THEOREM.md) shows a genuinely frustrated plaquette for the natural CP^{N−1} embedding). This note asks the same question for the gauge theory itself, through its centre.
+
+Both recent proofs of exponential decay in the 2D O(3) model fix the length of one spin component and work with what is left:
+
+- OpenAI (2026), Section 4: the signs of one component form a ferromagnetic Ising system once the absolute values are fixed, and the proof uses positive association of these signs and their bonds (Campbell–Chayes). Since σ·σ' splits into an in-plane part plus |σ^z||σ'^z| s s', the Ising coupling is b_xy |σ_x^z| |σ_y^z| (our one-line derivation).
+- Ding, Huang and Yang (arXiv:2611.04908): conditioning gives an XY model with random couplings K_uv = β r_u r_v.
+
+In both, an effective coupling is a **product over both ends** and therefore **never negative**. That is what makes the FKG / random-cluster step work.
+
+[`ROUTE.md`](ROUTE.md) notes that conditioning SU(2) on components does not leave a U(1) gauge theory, because group products mix components. The centre is different: it factors out of every product exactly, so conditioning on the coset does leave a Z₂ gauge theory, without fixing a gauge. That is the decomposition below.
+
+*Heuristic origin, for the record:* this came out of a model of mutual dependence in which a bond grows as α·x₁·x₂ (it exists only if both sides invest) and the bond in turn makes investing cheaper. In O(3) that product structure is literal. The question here is what happens to it in a gauge theory, where the "bond" lives on a loop rather than on an edge.
+
+## The exact decomposition
+
+Write every SU(2) link as U = s·V with s = ±1 and V the representative with Tr V ≥ 0. Haar measure factorises (uniform s, Haar on the half-sphere for V), so for the Wilson action:
+
+1. **Conditional law.** Given all V, the signs s form a Z₂ lattice gauge theory with plaquette couplings
+
+   J_p = (β/2) Tr V_p,  since Tr U_p = s_p Tr V_p, with s_p the product of the four signs round p.
+
+   The *size* |J_p| = (β/2)|Tr U_p| is gauge invariant. Only the *sign* of J_p depends on the gauge and on the choice of representatives.
+
+2. **Irreducible frustration = Z₂ monopoles.** J_p can be negative (frustrated). Round the six faces of any 3-cube c, every link appears twice, so ∏ s_p = 1 and
+
+   ∏_{p∈∂c} sign J_p = ∏_{p∈∂c} sign Tr U_p =: σ_c.
+
+   σ_c is gauge invariant and independent of every choice. A cube with σ_c = −1 carries frustration that no gauge transformation and no choice of representatives can remove. These are the Z₂ monopoles of the mixed-action literature: cubes whose faces carry an odd number of negative plaquettes (Stack †; Datta and Gavai † write σ_c = ∏_{p∈∂c} σ_p). Frustrated plaquettes must form sheets bounded by the monopole loops.
+
+3. **Without monopoles, the Z₂ sector is a ferromagnet in a twist sector.** If σ_c = +1 on every cube, sign J is a closed Z₂ 2-cochain. On the torus T⁴ it is then dη times a representative of a class k ∈ H²(T⁴; Z₂) ≅ Z₂⁶. Substituting s → η·s turns the conditional law into a Z₂ gauge theory with **non-negative** couplings |J_p|, in the topological sector k. Those sectors are 't Hooft's twisted (centre-flux) sectors, whose free energy is the target quantity in [`ROUTE.md`](ROUTE.md) (Tomboulis–Yaffe). *Elementary cohomology; not machine-checked.*
+
+4. **Suppressing monopoles does not disturb the conditional law.** By (2), the constraint σ_c = +1 depends on V only. Imposing it, for example with a chemical potential λ Σ_c (1 − σ_c) as in the mixed-action studies, restricts V and leaves the conditional law of s given V exactly as in (1). The positive-plaquette model is too strong for this purpose: Tr U_p ≥ 0 forces s_p = sign Tr V_p, so the Z₂ sector is frozen given V.
+
+So, in a monopole-free regularisation, the centre sector given V is a ferromagnetic Z₂ gauge theory with random couplings (β/2)|Tr U_p| in a fixed twist sector. That is the gauge analogue of the conditioned Ising / XY systems in the O(3) proofs. With the Wilson action it is not, because of (2).
+
+## Pilot: how much frustration does the Wilson action have?
+
+Code: [`pilot/su2_frustration/`](pilot/su2_frustration/). Heatbath (Kennedy–Pendleton) plus three overrelaxation steps per sweep; 300 thermalisation sweeps from a cold start, then 20 configurations 10 sweeps apart; direct maximal centre gauge (DMCG) by site-wise exact maximisation of Σ (Tr U)², with overrelaxation and then plain polishing. Validation: ⟨½ Tr U_p⟩ = 0.125 at β = 0.5 (strong coupling: β/4), 0.6304 at β = 2.4 and 0.6531 at β = 2.5 (0.6300 and 0.6522 in table I of hep-lat/9704006 †); plaquettes and Wilson loops are unchanged by random gauge transformations and by gauge fixing to 10⁻¹³; the identity in (2) holds configuration by configuration.
+
+![Frustration in 4D SU(2), Wilson action, 8⁴](pilot/su2_frustration/frustration_su2.png)
+
+| β | ⟨½Tr U_p⟩ | Tr U_p < 0 | σ_c = −1, side a | σ_c = −1, side 2a | largest monopole cluster | mean cluster (links) | J_p < 0, no fixing | J_p < 0, DMCG | lower bound ρ/6 | ½\|Tr U_p\| < 0.1 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2.0 | 0.5008 | 0.108 | 0.349 | 0.488 | 1.00 | 2603 | 0.464 | 0.189 | 0.058 | 0.065 |
+| 2.2 | 0.5693 | 0.068 | 0.264 | 0.488 | 0.98 | 254 | 0.461 | 0.141 | 0.044 | 0.050 |
+| 2.3 | 0.6027 | 0.051 | 0.215 | 0.485 | 0.94 | 91 | 0.460 | 0.109 | 0.036 | 0.040 |
+| 2.4 | 0.6304 | 0.038 | 0.173 | 0.480 | 0.79 | 35.5 | 0.457 | 0.076 | 0.029 | 0.033 |
+| 2.5 | 0.6531 | 0.029 | 0.139 | 0.478 | 0.40 | 17.5 | 0.456 | 0.043 | 0.023 | 0.028 |
+| 2.6 | 0.6697 | 0.023 | 0.116 | 0.473 | 0.13 | 11.6 | 0.456 | 0.030 | 0.019 | 0.024 |
+| 2.8 | 0.6989 | 0.015 | 0.077 | 0.461 | 0.04 | 7.3 | 0.455 | 0.019 | 0.013 | 0.017 |
+| 3.0 | 0.7228 | 0.010 | 0.052 | 0.442 | 0.04 | 6.0 | 0.453 | 0.012 | 0.009 | 0.012 |
+| 3.5 | 0.7681 | 0.003 | 0.018 | 0.380 | 0.04 | 4.5 | 0.450 | 0.0032 | 0.0030 | 0.005 |
+
+Fractions are per 3-cube (σ_c) or per plaquette (all others). The "side 2a" column uses the signs of 2×2 Wilson loops on the faces of cubes of side 2. Monopole clusters are connected components of the frustrated cubes on the dual lattice. "No fixing" means the links as the Monte Carlo leaves them. Statistical errors are below 1% of the values, except the cluster columns (see the JSON files).
+
+**Findings**
+
+1. **Irreducible frustration is dense at the cutoff.** 17% of 3-cubes at β = 2.4, 14% at β = 2.5. Each plaquette lies on 4 cubes and there are 4 cubes and 6 plaquettes per site, so at least a fraction ρ/6 of plaquettes must be frustrated in *any* representation.
+2. **It grows in physical units as a → 0.** With a√σ from Teper's compilation (0.467, 0.3687, 0.2673, 0.186 at β = 2.2, 2.3, 2.4, 2.5), the monopole line density in physical units (length per 4-volume, in units of σ^{3/2}, up to a constant factor 4), ρ/(a√σ)³, is 2.6, 4.3, 9.1 and 21.7. The density falls with β much more slowly than a³. These are ultraviolet objects, as expected for lattice artefacts. For a proof route this matters: with the Wilson action the O(3)-type conditioning at the cutoff meets frustration everywhere.
+3. **Coarser is worse.** For cubes of side 2a built from 2×2 loops, the frustrated fraction is 0.47–0.49 for β ≤ 2.6, close to the 0.5 of random signs. Conditioning on a naive coarse centre sign after one blocking step is maximally frustrated. If this route works at all, it works at the cutoff and in a monopole-free action.
+4. **Monopole loops percolate at strong coupling and are small at weak coupling** (on 8⁴): the largest cluster holds ≥ 79% of the monopole links for β ≤ 2.4, and 13% or less for β ≥ 2.6. Finite-size effects not studied.
+5. **DMCG removes most of the removable frustration.** Without fixing, about 46% of the J_p are negative. In DMCG it is 2.6 times the lower bound at β = 2.4, 1.5 times at 2.8 and practically at the bound at 3.5.
+6. **Most couplings are strong.** The 4D Z₂ gauge theory with a uniform coupling is self-dual at J = ½ ln(1 + √2) ≈ 0.44 *(from memory)*. At β = 2.4 that corresponds to ½|Tr U_p| ≈ 0.18, and only a few per cent of plaquettes lie below it (3.3% below 0.1, 9.3% below 0.25). A uniform-coupling intuition would put the conditional Z₂ sector deep in its ordered phase. Whatever disorders it must come from *correlated* weak regions, the analogue of the "defective" regions of Ding–Huang–Yang. This says which mechanism to look for. It is not a result.
+
+**Limits.** One lattice size (8⁴), one seed, 20 configurations per β, Wilson action only. DMCG finds local maxima (the Gribov-copy problem is documented for this gauge); only the representation-dependent columns are affected. At β ≳ 2.5 an 8⁴ lattice is small compared to the confinement scale. Blocking was tested only through 2×2 loops.
+
+## The question step 1 left
+
+> In SU(2) lattice gauge theory with Z₂ monopoles suppressed, the centre sector given V is a ferromagnetic Z₂ gauge theory with random couplings (β/2)|Tr U_p| in a twist sector. Is there a crossing or association argument for it, analogous to §4 of the OpenAI O(3) proof or to Ding–Huang–Yang, that gives decay of the right observables? And is the monopole-suppressed action in the same universality class as the Wilson action?
+
+The second half has numerical support (monopole and vortex suppression in mixed actions restores the expected deconfinement behaviour; Datta and Gavai, Datta), but no proof. For the Clay problem any regularisation is allowed, as long as its continuum limit is the right theory.
+
+## Step 2: the same ensemble with Z₂ monopoles forbidden (7 November 2026)
+
+**Algorithm** (`pilot/su2_frustration/nomono.py`). Links are updated one direction and one of the 16 sublattices (x mod 2) at a time, so no two updated links share a plaquette or a 3-cube. The proposal is the exact Wilson heatbath, or an overrelaxation reflection; it is accepted only if it creates no monopole. That is a Metropolis step for the target "Wilson weight × no monopoles", so detailed balance holds. Acceptance: 0.75 (β = 1.6), 0.85 (2.0), 0.90 (2.3). Local updates cannot change the Z₂ flux through a plane, so a cold start stays in the trivial twist sector. Checks: the monopole density is 0 in every configuration, the flux is the same on every slice of every plane (it varies freely for the Wilson action), and flipping one link gives exactly one closed vortex of 6 negative plaquettes.
+
+**Runs.** 8⁴, 200 thermalisation sweeps from a cold start, 12 configurations 5 sweeps apart (heatbath plus one overrelaxation per sweep), seed 2. The Wilson runs use the same measurements. Different actions at the same β are different theories, so the comparison is at a similar plaquette value.
+
+| action | β | ⟨½Tr U_p⟩ | Tr U_p < 0 | monopoles | weak couplings, β·½\|Tr U_p\| < 0.44 | 2×2 loops < 0 | frustrated cubes, side 2a | Creutz χ(2,2) | Creutz χ(3,3) | P-plaquettes after DMCG |
+|---|---|---|---|---|---|---|---|---|---|---|
+| no monopoles | 1.6 | 0.6125 | 0.0004 | 0 | 0.122 | 0.324 | 0.483 | 0.256 ± 0.004 | 0.130 ± 0.020 | 0.044 |
+| Wilson | 2.4 | 0.6279 | 0.039 | 0.178 | 0.065 | 0.316 | 0.483 | 0.265 ± 0.004 | 0.129 ± 0.020 | 0.064 |
+| no monopoles | 2.0 | 0.6549 | 0.00002 | 0 | 0.062 | 0.273 | 0.479 | 0.198 ± 0.003 | 0.081 ± 0.006 | 0.010 |
+| Wilson | 2.6 | 0.6701 | 0.023 | 0.114 | 0.041 | 0.256 | 0.474 | 0.187 ± 0.002 | 0.100 ± 0.011 | 0.008 |
+| no monopoles | 2.3 | 0.6836 | 0 | 0 | 0.037 | 0.236 | 0.469 | 0.167 ± 0.004 | 0.071 ± 0.006 | 0.002 |
+| Wilson | 2.8 | 0.6997 | 0.015 | 0.076 | 0.027 | 0.216 | 0.459 | 0.152 ± 0.002 | 0.063 ± 0.005 | 0.003 |
+
+Wilson at β = 2.2 (not in the table): ⟨½Tr U_p⟩ = 0.5707, χ(2,2) = 0.393, χ(3,3) = 0.24 ± 0.05. JSON files in `pilot/su2_frustration/out2/`.
+
+**Findings**
+
+1. **Forbidding monopoles also removes almost all negative plaquettes.** At β = 1.6 there are 6 to 18 per configuration (0.04%), always a multiple of six; at β = 2.0 one six-plaquette vortex in 12 configurations; at β = 2.3 none. The Wilson action has 2–4% at similar plaquette values. In a monopole-free configuration negative plaquettes can only occur as closed surfaces (thin vortices), and the smallest one, around a single flipped link, has six plaquettes. A sign excitation of the centre sector is a *surface*, not a point. At these couplings it is almost never paid for.
+2. **So the positive centre sector is there, but it is frozen.** Given V it is a ferromagnetic Z₂ gauge theory with couplings (β/2)|Tr U_p|, and its excitations are exactly the negative plaquettes (up to the twist). It carries essentially no disorder at the cutoff. In O(3) the sign clusters do carry the disorder, because a single spin can flip wherever its few bonds are weak. Here the bonds must be weak on a whole closed surface. This is the codimension point of [`ROUTE.md`](ROUTE.md) again, now seen in the sign variables.
+3. **Confinement does not go away.** At similar plaquette values the Creutz ratios of the two actions are close (0.256 against 0.265 for χ(2,2) near ⟨½Tr U_p⟩ ≈ 0.62; χ(3,3) 0.130 against 0.129). On 8⁴ these are short-distance proxies, not string tensions. This fits the reports that the positive-plaquette model, which has neither monopoles nor thin vortices, still confines (Stack †).
+4. **The disorder lives in the coset and at larger scales.** After maximal centre gauge, P-plaquettes still appear (4.4% at β = 1.6) although no plaquette is negative. They come from V, not from the thin centre sector; the centre-vortex literature reads them as markers of thick vortices (†, below). At scale 2a the sign pattern is as frustrated as for the Wilson action: 47–48% of the side-2a cubes, close to the 50% of random signs.
+
+**Reading.** The positivity that the O(3) proofs use exists for SU(2) at the cutoff once monopoles are forbidden, but the variables it governs do not carry the decorrelation. The variables that do (thick vortices, the centre structure at scale 2a and above) have no positive structure that we have found. So the route through the *thin* centre sector closes. What remains is the question already named in [`ROUTE.md`](ROUTE.md): a positive or controllable description of *thick* centre vortices, that is, of the 't Hooft twist free energy at large scales.
+
+**Limits.** 8⁴, one seed, 12 configurations; trivial twist sector only; matching by plaquette value is a rough guide, not a matching of physical scales; DMCG finds local maxima; the counts of negative plaquettes at β ≥ 2.0 come from 12 × 24 576 plaquettes, too few to resolve the rate.
+
+## The question this leaves now
+
+> Is there a description of the centre structure at scale ≥ 2a, after blocking, in which the effective signs are again unfrustrated (or frustrated only in a controlled, dilute way)? Without it, the sign-cluster step of the O(3) proof has no SU(2) counterpart.
+
+## Next steps
+
+- [x] Monopole-suppressed ensemble: done above. The thin centre sector is positive but frozen.
+- [ ] Blocked centre variables: for a blocking (e.g. 2⁴ blocks with a centre projection of the block link), measure the frustration of the blocked signs, and whether a choice of blocking makes it dilute.
+- [x] Check whether the positivity statement in (3) is already in the literature: yes, in the Tomboulis SO(3) × Z(2) formulation (see Prior work).
+- [ ] Write (1)–(4) in Lean on a finite lattice (the change of variables and the Bianchi identity are finite statements).
+- [ ] Ask an expert (E. Seiler; A. van Enter for the statistical-mechanics side).
+
+## Sources
+
+Marked † : seen only in search excerpts (abstract, a table or a few paragraphs), not read in full. The claims taken from them are the ones quoted in those excerpts.
+
+- OpenAI, [Exponential decay in two-dimensional classical O(n) models](https://github.com/openai/math/blob/main/preprints/Exponential-decay-in-two-dimensional-classical-On-models-September-23-2026/paper.pdf) (2026), §4 (read in full).
+- Ding, Huang, Yang, [Exponential decay for the two-dimensional Heisenberg model](https://arxiv.org/html/2611.04908), arXiv:2611.04908 (structure read; K_uv = β r_u r_v as in ROUTE.md).
+- † Golubich, Faber (authors as on the related Acta Phys. Pol. proceedings), [The road to solving the Gribov problem of the center vortex model](https://arxiv.org/pdf/2106.08102) ("thick vortices are presently localized by P-vortices").
+- † Bertle, Faber, Greensite, Olejník (authors from memory), [The structure of projected center vortices in lattice gauge theory](https://ar5iv.arxiv.org/html/hep-lat/9903023) (DMCG and centre projection).
+- † Bornyakov et al. (authors from memory), [P-vortices and drama of Gribov copies](https://ar5iv.labs.arxiv.org/html/hep-lat/0009035).
+- † Haymaker, [Connections between thin, thick and projection vortices](https://web3.arxiv.org/pdf/hep-lat/0205002) (SO(3) × Z₂ bookkeeping, Kovács–Tomboulis counters).
+- † Datta and Gavai, [Impact of Z₂ monopoles and vortices on the deconfinement transition](https://arxiv.org/pdf/hep-lat/9908040); Datta, [hep-lat/9909139](https://arxiv.org/pdf/hep-lat/9909139).
+- † Stack, [Confinement by monopoles in the positive plaquette model](https://pdf.arxiv.org/pdf/hep-lat/9601019).
+- † [Scaling and confinement aspects of tadpole improved SU(2) lattice gauge theory and its abelian projection](https://arxiv.org/pdf/hep-lat/9704006), arXiv:hep-lat/9704006, table I (plaquette values; authors not checked).
+- † Teper (author from memory), [Glueball masses and other physical properties of SU(N) gauge theories](https://arxiv.org/pdf/hep-th/9812187), table 10 (a√σ).

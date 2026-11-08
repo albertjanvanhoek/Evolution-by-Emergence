@@ -1,0 +1,103 @@
+{
+ "beta": 2.4,
+ "tflow": 0.0,
+ "L": 8,
+ "nconf": 6,
+ "seed": 5,
+ "configs": [
+  {
+   "P_density": 0.034912109375,
+   "n_pairs_P": 1836,
+   "overlap_P": 0.35509906860899654,
+   "overlap_all": 0.33712294394054465,
+   "n_par_P": 310,
+   "overlap_parallel_P": 0.34369874048820864,
+   "overlap_parallel_all": 0.335535286969312,
+   "n_far": 20,
+   "overlap_far": 0.42797147935532137
+  },
+  {
+   "P_density": 0.0546875,
+   "n_pairs_P": 2916,
+   "overlap_P": 0.34577452457421154,
+   "overlap_all": 0.3368133116829724,
+   "n_par_P": 453,
+   "overlap_parallel_P": 0.34699820609567944,
+   "overlap_parallel_all": 0.33423790020364025,
+   "n_far": 56,
+   "overlap_far": 0.39951044928903545
+  },
+  {
+   "P_density": 0.049072265625,
+   "n_pairs_P": 2680,
+   "overlap_P": 0.3465633456441167,
+   "overlap_all": 0.33699190157519676,
+   "n_par_P": 418,
+   "overlap_parallel_P": 0.33139406523162335,
+   "overlap_parallel_all": 0.33601615634590265,
+   "n_far": 40,
+   "overlap_far": 0.34100273475891874
+  },
+  {
+   "P_density": 0.040690104166666664,
+   "n_pairs_P": 2172,
+   "overlap_P": 0.33575743990862345,
+   "overlap_all": 0.3367091839796395,
+   "n_par_P": 367,
+   "overlap_parallel_P": 0.31773276483169327,
+   "overlap_parallel_all": 0.336108811826351,
+   "n_far": 42,
+   "overlap_far": 0.40852309060739395
+  },
+  {
+   "P_density": 0.058919270833333336,
+   "n_pairs_P": 3120,
+   "overlap_P": 0.3622279446094525,
+   "overlap_all": 0.3361252293034331,
+   "n_par_P": 548,
+   "overlap_parallel_P": 0.35991533860140695,
+   "overlap_parallel_all": 0.3338158350047209,
+   "n_far": 110,
+   "overlap_far": 0.3217984665269637
+  },
+  {
+   "P_density": 0.054850260416666664,
+   "n_pairs_P": 2984,
+   "overlap_P": 0.34823715031565866,
+   "overlap_all": 0.33631123721991274,
+   "n_par_P": 532,
+   "overlap_parallel_P": 0.33585136502553636,
+   "overlap_parallel_all": 0.3340050712949661,
+   "n_far": 76,
+   "overlap_far": 0.31054824240732687
+  }
+ ],
+ "summary": {
+  "P_density": [
+   0.04885525173611111,
+   0.00379634770993478
+  ],
+  "overlap_P": [
+   0.3489432456101766,
+   0.0036717214115018506
+  ],
+  "overlap_all": [
+   0.33667896795028324,
+   0.00015872993411738683
+  ],
+  "overlap_parallel_P": [
+   0.33926508004569134,
+   0.005896718535930345
+  ],
+  "overlap_parallel_all": [
+   0.33495317694081544,
+   0.00042849897299049593
+  ],
+  "overlap_far": [
+   0.36822574382416007,
+   0.020326862634977603
+  ],
+  "n_pairs_P_total": 15708,
+  "n_par_P_total": 2628
+ }
+}

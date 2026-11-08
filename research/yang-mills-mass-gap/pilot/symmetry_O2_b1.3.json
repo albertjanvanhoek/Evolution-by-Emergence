@@ -1,0 +1,338 @@
+{
+ "model": "O2",
+ "beta": 1.3,
+ "L": 64,
+ "block": 4,
+ "runs": {
+  "short": [
+   400,
+   500
+  ],
+  "long": [
+   4000,
+   4000
+  ]
+ },
+ "rows": [
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.29736685438392507,
+   "hidden_sideways_mag": 0.21171607464046646
+  },
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.6990404265147329,
+   "hidden_sideways_mag": -0.2554718968918324
+  },
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "short",
+   "start": "random",
+   "target_sideways": 0.6190703721582043,
+   "hidden_sideways_mag": 0.14953946638915552
+  },
+  {
+   "boundary": 0,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.6708592754709923,
+   "hidden_sideways_mag": 0.4358705456996056
+  },
+  {
+   "boundary": 0,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.691817168910734,
+   "hidden_sideways_mag": -0.014261319596042956
+  },
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "long",
+   "start": "east",
+   "target_sideways": -0.5586120389223175,
+   "hidden_sideways_mag": -0.4023351402396878
+  },
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "long",
+   "start": "west",
+   "target_sideways": 0.21211402504129376,
+   "hidden_sideways_mag": 0.11614286519787519
+  },
+  {
+   "boundary": 0,
+   "probe": "base",
+   "run": "long",
+   "start": "random",
+   "target_sideways": 0.07432461758439267,
+   "hidden_sideways_mag": -0.07635922074696698
+  },
+  {
+   "boundary": 0,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.5161101473835435,
+   "hidden_sideways_mag": 0.4026048414103063
+  },
+  {
+   "boundary": 0,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.47269168385514926,
+   "hidden_sideways_mag": -0.1707962667231581
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.6402212289548992,
+   "hidden_sideways_mag": 0.5102489419914631
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.476149834394728,
+   "hidden_sideways_mag": -0.4463226483026733
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "short",
+   "start": "random",
+   "target_sideways": -0.6704836226644236,
+   "hidden_sideways_mag": -0.2727292729683863
+  },
+  {
+   "boundary": 1,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.6738134243612927,
+   "hidden_sideways_mag": 0.5025014949201717
+  },
+  {
+   "boundary": 1,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.3577128189620206,
+   "hidden_sideways_mag": -0.42754607501521213
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.6268919510012397,
+   "hidden_sideways_mag": 0.4977068674134885
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.482396370488331,
+   "hidden_sideways_mag": -0.4625227045168813
+  },
+  {
+   "boundary": 1,
+   "probe": "base",
+   "run": "long",
+   "start": "random",
+   "target_sideways": 0.666477097510541,
+   "hidden_sideways_mag": 0.5023312941968395
+  },
+  {
+   "boundary": 1,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.6494098983196587,
+   "hidden_sideways_mag": 0.5028464667468685
+  },
+  {
+   "boundary": 1,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.6196117093927267,
+   "hidden_sideways_mag": -0.4662472562192349
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.7781422543214661,
+   "hidden_sideways_mag": 0.4742204790514671
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.7367171824119043,
+   "hidden_sideways_mag": -0.4622617839542416
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "short",
+   "start": "random",
+   "target_sideways": 0.7545196832103278,
+   "hidden_sideways_mag": 0.3139090889912662
+  },
+  {
+   "boundary": 2,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.38543494163377234,
+   "hidden_sideways_mag": 0.4258602771191994
+  },
+  {
+   "boundary": 2,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.6139723247871934,
+   "hidden_sideways_mag": -0.3008189195775991
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.7342439874039504,
+   "hidden_sideways_mag": 0.46133627849449305
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.7249320699006244,
+   "hidden_sideways_mag": -0.44146442781650547
+  },
+  {
+   "boundary": 2,
+   "probe": "base",
+   "run": "long",
+   "start": "random",
+   "target_sideways": -0.7453933064018115,
+   "hidden_sideways_mag": -0.4804143556341616
+  },
+  {
+   "boundary": 2,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.7166002878209345,
+   "hidden_sideways_mag": 0.47481434271249245
+  },
+  {
+   "boundary": 2,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.735321116807632,
+   "hidden_sideways_mag": -0.43431173936037165
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.5967214540807428,
+   "hidden_sideways_mag": 0.5181656225160346
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.6465380518995246,
+   "hidden_sideways_mag": -0.4903477474125208
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "short",
+   "start": "random",
+   "target_sideways": -0.6255182253373859,
+   "hidden_sideways_mag": -0.5119517381266093
+  },
+  {
+   "boundary": 3,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "east",
+   "target_sideways": 0.5791500588761658,
+   "hidden_sideways_mag": 0.514225373766581
+  },
+  {
+   "boundary": 3,
+   "probe": "tilt_d4",
+   "run": "short",
+   "start": "west",
+   "target_sideways": -0.5465427473786152,
+   "hidden_sideways_mag": -0.5030215167161662
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.6122490740925651,
+   "hidden_sideways_mag": 0.5141477385203317
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.559610979717538,
+   "hidden_sideways_mag": -0.510877852992902
+  },
+  {
+   "boundary": 3,
+   "probe": "base",
+   "run": "long",
+   "start": "random",
+   "target_sideways": 0.6063715175513301,
+   "hidden_sideways_mag": 0.5006955607177964
+  },
+  {
+   "boundary": 3,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "east",
+   "target_sideways": 0.6086898522786045,
+   "hidden_sideways_mag": 0.5123478471490454
+  },
+  {
+   "boundary": 3,
+   "probe": "tilt_d4",
+   "run": "long",
+   "start": "west",
+   "target_sideways": -0.6149610031519682,
+   "hidden_sideways_mag": -0.5143634274143338
+  }
+ ]
+}

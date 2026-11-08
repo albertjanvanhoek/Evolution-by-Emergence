@@ -1,0 +1,281 @@
+# CP^{N−1}: pinning tilt, colour switch, and a two-vertex pinning comparison (7 November 2026)
+
+**Status:** derivations for review, building on CPN_STEP4.md and CPN_WIRING_MARKOV.md. One result is general: the two-vertex comparison in §3. The rest records checks and what is still open.
+
+**Setting:** the CP^{q−1} projector model on a finite graph G, with strengths b_e ≥ 0. In the loop expansion (Wolff 2010; CPN_POSITIVE_LOOPS.md), a configuration consists of:
+- edge multiplicities n_e, with weight ∏ b_e^{n_e}/n_e!;
+- at every free vertex x of degree d_x = Σ_{e∋x} n_e, a strand permutation π_x ∈ S_{d_x}, with weight 1/(q)_{d_x};
+- a factor q for every closed loop, which comes from summing the index (colour) carried by the loop.
+
+## 1. Check of CPN_WIRING_MARKOV.md (W2–W5)
+
+**The gluing rule.** The number of loops is ℓ = ℓ_out + ℓ_in + #cycles(σ∘π). It holds because every loop that crosses the cut alternates between outside segments, given by σ, and inside segments, given by π. Composing σ and π therefore gives one cycle per crossing loop.
+
+**The two-strand table.** For one edge of multiplicity 2 between a free u (inside) and a free v (outside), the weights are:
+
+| | π = I (inside, no swap) | π = s (inside, swap) |
+|---|---|---|
+| σ = I (outside, no swap) | q² | q |
+| σ = s (outside, swap) | q | q² |
+
+So P(π = s | σ = I) = 1/(q + 1) and P(π = s | σ = s) = q/(q + 1), that is 1/4 and 3/4 at q = 3. **Confirmed.**
+
+## 2. The pinning tilt, derived
+
+Pin every vertex of a set B to the same rank-one projector u u†. In index form this forces every strand at B to carry the index of u. Consider the free model with a configuration (n, π) and colours summed over. The conditional weight of "every strand at B has colour 1" is q^{−k_B}, where k_B is the number of loops that meet B. Each such loop loses its free choice of colour.
+
+The pinned model also has no vertex factor and no permutation at B: strands end there. Summing over π_x for x ∈ B in the free model gives d_x! permutations, which all have colour 1 at x. Comparing the two gives, for the law of (n, π outside B):
+
+  **P_pinned ∝ P_free · T, with T = q^{−k_B} · ∏_{x∈B} (q)_{d_x}/d_x!.**
+
+**Check on the path A–x–B** with B = {A, B}. Every loop meets B, so q^{#loops − k_B} = 1. Then
+
+  Σ (b₁^{n₁}/n₁!)(b₂^{n₂}/n₂!) · [n₁!/(q)_{n₁}] · [(n₁ + n₂)!/(q)_{n₁+n₂}] · [n₂!/(q)_{n₂}] · [(q)_{n₁}/n₁!] · [(q)_{n₂}/n₂!] = Σ b₁^{n₁} b₂^{n₂} (n₁ + n₂)! / (n₁! n₂! (q)_{n₁+n₂}) = f_q(b₁ + b₂) = Z_pin. ✓
+
+T is the CP analogue of the O(3) tilt 2^{−k_B} in Proposition 4.5. It has an extra degree factor (q)_d/d! = C(q + d − 1, d), which increases with d.
+
+## 3. A general two-vertex pinning comparison
+
+> **Proposition (two vertices, any graph).** Let G be any finite graph with b_e ≥ 0, q ≥ 2, and A ≠ B two vertices. Then
+>   P_free(some loop visits both A and B) ≤ P_{A, B pinned equal}(some strand joins A and B) = 1 − Z_⊥/Z_∥,
+> where Z_∥ and Z_⊥ are the partition functions with A and B pinned to equal and to orthogonal projectors.
+
+**Proof.**
+1. **No-cross weights agree.** Fix all n and all π_y for y ∉ {A, B}. Whether a strand leaving A reaches B before it returns to A does not depend on π_A or π_B. So the event "no loop visits both A and B" (NC) does not depend on π_A or π_B. On NC, the strands at A return to A through a fixed permutation ρ_A, and likewise for B. Since π ↦ π∘ρ is a bijection of S_d, and Σ_{σ∈S_d} q^{#cycles(σ)} = (q)_d, we get Σ_{π_A} q^{#loops through A} = (q)_{d_A}. This cancels the vertex factor 1/(q)_{d_A}, and the same holds at B. What remains is ∏ b^{n}/n! · ∏_{y∉{A,B}} 1/(q)_{d_y} · q^{#loops avoiding A and B}. That is exactly the weight of the pinned configurations with K = 0 (strands ending at A and B, colour forced). Hence Z_{free, NC} = Z_{pin, K=0}. This is the same for equal and for orthogonal pins, and it equals Z_⊥.
+2. **The free partition function is not larger.** By SU(q) invariance, Z_free = ∫∫ Z_pin(z_A, z_B) = E_{p∼Beta(1, q−1)}[Z_pin(p)]. Here Z_pin(p) = Z_∥ E_∥[p^K] ≤ Z_∥, because the weights are non-negative (CPN_POSITIVE_LOOPS.md, (L8)).
+3. **Combine.** P_free(NC) = Z_⊥/Z_free ≥ Z_⊥/Z_∥ = P_∥(K = 0). ∎
+
+This generalises the path result in CPN_BOUNDARY_COMPARISON.md to every finite graph, for two single vertices. It is the CP analogue of Proposition 4.5 for one crossing event between two points.
+
+## 4. Colour switch (Lees–Taggi) for CP
+
+The vertex weight 1/(q)_{d_x} does not depend on colours. Recolouring an entire loop is therefore a weight-preserving bijection. For O(N) this is the hard part of Lees and Taggi's colour-switch lemma, because there the on-site weights depend on how many times each colour visits. For CP it holds exactly. It is precisely what produces the factor q^{−k_B} in §2. **But it does not by itself give an inequality.** The pinning comparison is a correlation statement about the uncoloured law of (n, π) with the tilt T.
+
+## 5. What remains open
+
+1. **Layers instead of single vertices.** For the annulus, B is a whole layer. The proof in §3 uses that each of A and B is a single vertex: the sum over π_A alone produces (q)_{d_A}. For a layer, loops between different layer vertices (I → I) are closed loops with weight q in the free model, but cut strands with weight 1 in the pinned model. So the no-cross weights no longer agree. Possible routes:
+   - (a) a "fusion" comparison: constrain all spins of a layer to be equal (common direction integrated), which makes the layer one vertex, and then apply §3;
+   - (b) a direct correlation inequality for T.
+2. **Several annuli at once:** the intersection of crossing events (Prop. 4.6 needs this), and the effect of exterior wiring (CPN_WIRING_MARKOV.md).
+
+**Event definitions.** For the annulus, "a loop visits both layers" (free) contains the event "a loop segment inside the annulus joins the layers". In the pinned system, every strand from I to O lies inside the annulus. So a layer version of §3 with the "anywhere" event would already be enough for Prop. 4.6 with a single annulus.
+
+## Proposed split of work (to agree with the other assistant)
+
+- **This assistant:** have §3 checked, then try route 1(a), the fusion comparison, analytically.
+- **The other assistant:**
+  - exact enumeration on tiny graphs of the layer version, P_free(loop visits I and O) against P_pinned, with |I| = 2 and |O| = 1 or 2, and with and without edges inside a layer. A counterexample would rule out the direct layer version;
+  - continue the Lees–Taggi-type switching for the multi-annulus case.
+
+## 6. Route 1(a), fusion: a reduction, with checks (pilot/cpn_fusion_check.py)
+
+**Review of the other assistant's layer enumeration (CPN_LAYER_ENUMERATION.md).**
+- **The no-cross counterexample is correct.** Take A₁ and A₂ in one layer, joined to a free x, with one strand on each edge. Free gives 1/q². Pinned gives 2/(q(q+1)). The difference is (q − 1)/(q²(q + 1)) = 1/18 at q = 3. This is the I → I effect of §5: §3 does not carry over to layers as it stands.
+- **The articulation-vertex result is consistent with §3.** It rests on the identity (1/(q)_d) Σ_π q^{#cycles(πρ)} = 1, which is our step (i).
+
+**Fusion.** Force all spins of a layer to be equal, with the common direction uniform. Call this "fused". It is the CP model on the graph with each layer contracted to a single vertex (edges inside a layer become constants). It sits between free and pinned:
+1. **Fused ≤ pinned: proven.** Apply §3 to the contracted graph. Pinning the contracted vertices is the same as pinning the layers.
+2. **Free ≤ fused: open.** Fusing is the limit of free with infinite couplings inside each layer. So it would follow if **the crossing probability does not decrease when a coupling inside a layer is increased**. That is a monotonicity statement of Griffiths type, and we have no proof.
+
+**How fused is computed without enumerating the fused vertex.**
+- By SU(q) invariance, Z_fused = E_{p∼Beta(1,q−1)}[Z_pin(p)] = Σ_k c_k k!/(q)_k, where c_k is the equal-pinned weight with K = k strands from I to O.
+- By §3 on the contracted graph, Z_fused,NC = c₀.
+- So P_fused = 1 − c₀ / Σ_k c_k k!/(q)_k. For the star and the bipartite 4-cycle (K = 1) this matches a direct enumeration of the contracted graph.
+
+**Exact finite-truncation results** (CP², β = 1 unless stated; edge multiplicity ≤ K; enumerator from the other assistant):
+
+| graph (layers I, O) | K | P_free | P_fused | P_pinned |
+|---|---|---|---|---|
+| star, I = 2, O = 1 | 1 | 0.02969 | 0.03182 | 0.08974 |
+| star, I = 2, O = 1 | 2 | 0.05031 | 0.05528 | 0.15189 |
+| bipartite 4-cycle, I = 2, O = 2 | 1 | 0.68363 | 0.73684 | 0.93750 |
+| bipartite 4-cycle, I = 2, O = 2 | 2 | 0.75182 | 0.82008 | 0.97440 |
+| 4-cycle with an edge inside I | 1 | 0.26181 | 0.26316 | 0.52273 |
+| 4-cycle with an edge inside I | 2 | 0.31342 | 0.31623 | 0.63097 |
+| I = 2, O = 2 through two free middles | 1 | 0.03259 | 0.03333 | 0.09469 |
+| I = 2, O = 2 through two free middles | 2 | 0.05657 | 0.05874 | 0.16184 |
+| star plus an edge inside I with b = 3 | 2 | 0.05134 | 0.05528 | 0.15189 |
+
+**Findings**
+- **P_free ≤ P_fused ≤ P_pinned in every case.**
+- **The step from free to fused is small** (1–10%). The large step, from fused to pinned, is the one that is proven.
+- **Monotonicity in the inside coupling shows in the star:** 0.05031 (no inside edge) < 0.05134 (b = 3) < 0.05528 (fused).
+
+**So the layer version now rests on one monotonicity conjecture:** in the CP loop model, the crossing probability between two layers does not decrease when couplings inside a layer increase.
+
+**Limits.** Finite Taylor truncation (K ≤ 2), q = 3, five small graphs. A large b inside a layer is poorly represented at K ≤ 2, so the limit b → ∞ was not checked numerically.
+
+## 7. First test of the monotonicity conjecture, without truncation (pilot/cpn_layer_monotonicity.py)
+
+**Graph:** the smallest case where the star proof no longer applies. A star with I = {i₁, i₂}, O = {o}, centre x, b = 1 on the three star edges, and **an extra coupling t between i₁ and i₂**, inside layer I. CP², q = 3.
+
+**Exact reduction (derived here).**
+- **Crossing given the multiplicities.** Given all multiplicities, P(no crossing) = (q)_a (q)_c / (q)_{a+c}, where a = n(i₁x) + n(i₂x) and c = n(xo). It does **not** depend on the multiplicity m of the i₁–i₂ edge. Summing over the permutations at x gives (q)_{n₁+n₂} for any return map through i₁ and i₂, as in the two-vertex lemma, and the loops that avoid x cancel between numerator and denominator.
+- **Multiplicities given the spins.** Given the spins, each n_e is Poisson(b_e |z̄_u z_v|²), independently across edges.
+- **So the crossing probability is a spin average:** P_t(cross) = E_t[H(b(w₁ + w₂), b w₃)], with w₁ = |z̄_{i₁} z_x|², w₂ = |z̄_{i₂} z_x|², w₃ = |z̄_o z_x|², and H(λ, μ) = Σ_{a,c} Pois(a; λ) Pois(c; μ)(1 − (q)_a(q)_c/(q)_{a+c}). This is exact, with no Taylor truncation.
+
+**Computation.** 4 × 10⁶ uniform spin samples, reweighted to each t. Differences are taken on the same samples.
+
+| t | P_t(cross) |
+|---|---|
+| 0 | 0.057156 ± 0.000033 (exact star value: 0.057206) |
+| 0.5 | 0.057428 |
+| 1 | 0.057712 |
+| 2 | 0.058303 |
+| 4 | 0.059440 |
+| 8 | 0.060946 ± 0.00012 |
+| ∞, fused (exact) | 0.063468 |
+
+Consecutive differences, on the same samples: +0.000272 ± 0.000003, +0.000284 ± 0.000003, +0.000591 ± 0.000007, +0.00114 ± 0.00002, +0.00151 ± 0.00007.
+
+**Monotone in t, in full CP² without truncation, rising steadily toward the fused value.**
+
+**What this reduces the conjecture to.** d/dt P_t(cross) = Cov_t(H(b(w₁ + w₂), b w₃), w₁₂), with w₁₂ = |z̄_{i₁} z_{i₂}|². H increases in its first argument. Monotonicity is therefore a **Griffiths-type correlation inequality for CP spins**: the alignment of i₁ with i₂ is positively correlated with an increasing function of their alignment with x. Such inequalities are known for some O(N) models (Lees, *Griffiths inequalities for the O(N)-spin model*, arXiv:2205.12928, via random paths; not read in detail). We do not know of one for CP^{N−1}.
+
+**Limits.** One graph, q = 3, b = 1, Monte Carlo over the spins (the conditional loop part is exact). Graphs with two or more free centres need a new reduction: there P(NC | n) is no longer a function of two numbers.
+
+## 8. Review of CPN_FUSION_TEST.md, and the t → ∞ limit (7 November 2026)
+
+**Covariance identity.** dP_t(E)/dt = Cov_t(1_E, k_e)/t is correct. The weight carries t^{k_e}/k_e!, so d/dt log(weight) = k_e/t.
+
+**How it relates to §7.**
+- **The conditional loop law does not depend on the couplings.** Given the multiplicities n, the law of the permutations is ∝ ∏_v (q)_{d_v}^{−1} q^{#loops}. Given the spins, each n_e is Poisson(b_e w_e).
+- **So on every graph P_t(E) is a spin average.** P_t(E) = E_t^{spin}[Φ_E], with Φ_E = Σ_n ∏_e Pois(n_e; b_e w_e) · P(E | n).
+- **The derivative therefore splits into two parts.** d/dt P_t(E) = Cov_t^{spin}(Φ_E, w_e) + E_t^{spin}[∂_t Φ_E]:
+  - a spin-alignment (Griffiths-type) term;
+  - a direct term, ∂_t Φ_E = w_e · E[P(E | n + 1_e) − P(E | n)], the effect of one more strand inside the layer.
+- **On the star of §7 the direct term is zero**, because P(E | n) does not depend on k_e there. On the two-hub graph it is not zero, since the cluster's return map depends on k_e (see below).
+
+**The q = 3 fractions, checked with independent code** (`pilot/cpn_twohub_independent.py`; z- and z̄-slots with explicit index following, not your enumerator): Z₀ = 256/81, A₀ = 19/3240, Z₁ = 86/81, A₁ = 13/6480, so P₀ = 19/10240 and P′₀ = 3/262144. **They match exactly.**
+
+**The t → ∞ limit: a first exact computation** (`pilot/cpn_cluster_return_map.py`). Take two layer vertices joined by k internal units, each with one external unit. The external return map is either "id" or "swap". The ratio of their weights (including internal closed loops and vertex factors) is
+
+| k | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| q = 3 | 0 | 1/5 | 1/3 | 3/7 | 1/2 | 5/9 |
+| q = 2 | 0 | 1/4 | 2/5 | 1/2 | 4/7 | — |
+
+**That fits swap/id = k/(k + q + 1)** (checked for k ≤ 5 and q = 2, 3; not proven). It tends to 1, the value for a single fused vertex, where every return map has equal weight. Since k ~ Poisson(t w₁₂) and w₁₂ → 1, the cluster's routing approaches the fused routing **like 1/t**. This supports identifying the excursion event with that of the contracted graph in the limit. It is not a proof for general port numbers.
+
+**Where we disagree, mildly.** The truncated searches (550 graphs) are useful as a falsification screen. They are not evidence about the sign of the untruncated derivative. The untruncated star computation in §7, and an untruncated version of the two-hub case using the spin-average formula above, are the stronger tests.
+
+## 9. Two conjectures that together imply fusion monotonicity (7 November 2026)
+
+Using the split from §8, d/dt P_t(E) = Cov^{spin}(Φ_E, w_e) + E[w_e(P(E | n + 1_e) − P(E | n))], it is enough to show:
+
+> **Conjecture A (combinatorial).** At fixed multiplicities, the permutation law ∝ ∏_v (q)_{d_v}^{−1} q^{#loops} makes P(E | n) **non-decreasing in every edge multiplicity n_e**.
+
+> **Conjecture B (spin).** Under the CP^{q−1} Gibbs measure with non-negative couplings, increasing functions of the overlaps w_e = |z̄_u z_v|² are **positively correlated**, at least Cov(F(w), w_e) ≥ 0 for F increasing in every w_f.
+
+**Why A and B suffice.**
+- **Direct term.** It is ≥ 0 by A.
+- **Spin term.** By A, and because Poisson(λ) increases stochastically in λ, Φ_E = Σ_n ∏ Pois(n_e; b_e w_e) P(E | n) is increasing in every w_f. By B, Cov^{spin}(Φ_E, w_e) ≥ 0.
+- **Conclusion.** So P_t(E) is non-decreasing in every coupling inside a layer, and in the limit P_free ≤ P_fused. That also needs the t → ∞ identification of §8. Together with §6 this gives **P_free ≤ P_fused ≤ P_pinned**.
+
+**Tests**
+
+| | test | result |
+|---|---|---|
+| A, inside a layer | `pilot/cpn_direct_term.py`: three graphs with two hubs, base multiplicities 0/1, k_t = 0 → 3, q = 2, 3, 5 | 336 comparisons per q, **0 decreases** (exact) |
+| A, every edge | `pilot/cpn_monotone_in_edges.py`: three graphs, including two O-vertices, one strand added on each edge, q = 3 | 928 additions, **0 decreases** (exact) |
+| A on stars | P(E \| n) = 1 − (q)_a(q)_c/(q)_{a+c} | **proven** (increases in a and c) |
+| B, pairwise linear | `pilot/cpn_overlap_covariances.py`: square and K₄, q = 2, 3, 5, b = 1, 3; Cov(w₀₁, w₁₂), Cov(w₀₁, w₂₃), Cov(w₀₂, w₁₃) | **all ≥ 0** (Monte Carlo, 2 × 10⁶ samples). On trees they are exactly 0, since overlaps on different tree edges are independent |
+| B, in a full application | §7: the star with an edge inside the layer | the derivative is positive at every t |
+
+**Status and limits.**
+- **A** has been checked only exhaustively, at small multiplicities, on a few small graphs. A proof would need a coupling of loop configurations with and without the extra strand.
+- **B** is a Griffiths-type (second Griffiths inequality) statement for a quartic, tensor-valued observable. Known Griffiths inequalities for O(N) (Lees, arXiv:2205.12928; abstract only) concern components of spins, not overlaps like |z̄z|². We have tested only pairwise linear covariances, which is much weaker than association of all increasing functions.
+- **If either fails, the route can still survive.** The two terms could compensate each other. The direct comparison P_free ≤ P_fused would then need its own proof.
+
+## 10. More tests of A and B, and why A is not trivial (7 November 2026)
+
+**A at large q and on an adversarial edge** (`pilot/cpn_monotone_in_edges.py` with q = 10, 50; `pilot/cpn_direct_term_adversarial.py`).
+- **Large q.** The 928 additions on every edge show **0 decreases at q = 10 and q = 50** as well.
+- **Adversarial edge.** Two I-leaves and two O-leaves are attached to two hubs u and v in three arrangements (parallel, crossed, one-sided). Units are then added to the u–v edge, 0 → 3, at q = 3, 10 and 50: 144 additions per q, **0 decreases**.
+
+**Why A does not follow from a simple map.**
+- **The insertion map.** Insert the extra unit on e = (u, v). At u, either the unit closes on itself, or it splits one of the d_u transitions. The same holds at v. This gives (d_u + 1)(d_v + 1) insertions.
+- **How the loop count changes:**
+  - +1 if the unit closes on itself at both ends;
+  - 0 if it closes on itself at one end;
+  - −1 if it splits transitions on two different loops (they merge);
+  - +1 if it splits two transitions on the same loop (it splits).
+- **The normaliser is not constant.** The total weight of the insertions, q + d_u + d_v + q·#(same-loop pairs) + q⁻¹·#(different-loop pairs), **depends on the configuration**. So P_{n+1_e} is not simply P_n pushed through a fixed kernel.
+- **One insertion can destroy E.** An I→O and an O→I excursion can be rerouted into I→I and O→O. When that splits a loop, it even gains a factor q. So A holds, if it holds, only after averaging. This is why we have no proof.
+
+**B with general increasing functions** (`pilot/cpn_overlap_association.py`). We used w_e, w_e³ and 1{w_e > 0.7} on pairs of edges, on the square, K₄ and the 2×3 grid, at q = 2, 3, 5 and b = 1, 3: 1134 covariances in total.
+- **q = 2 and q = 3:** all are ≥ 0 within the errors.
+- **q = 5:** a few apparent negatives appeared, down to −5σ with 8 batches. A targeted check with 20 independent chunks and 2 × 10⁷ samples (`pilot/cpn_overlap_association_recheck.py`) puts them all at **+1.7σ, −0.3σ, +2.4σ, +8.1σ and +1.6σ**. So they were noise; the error estimate with 8 batches was too small for rare events.
+
+**Status.** No counterexample to A or B. A remains a combinatorial conjecture that needs an averaging argument. B is a Griffiths-II-type statement for the overlaps |z̄z|². For q = 2 it is a statement about σ_x·σ_y in the O(3) model. **That case appears to be an old open problem.** Orland (arXiv:hep-lat/0205028, text excerpt seen) writes that no one had proved the second Griffiths inequality for O(n) models of this form with n ≥ 3, and that Sylvester showed Ginibre's method fails for the classical Heisenberg magnet. A later CMP paper (doi 10.1007/BF01608730; abstract only) proves a second Griffiths inequality for 3- and 4-component models, but by its stated applications it concerns parallel and transverse spin-component correlations, not products of dot products. So B is probably at least as hard as an open question about the O(3) model. Our numerics support it, but a proof should not be expected soon. **A, the combinatorial conjecture, is the more promising target.**
+
+## 11. Conjecture B is false in general; the needed special case survives (7 November 2026)
+
+**Counterexample from the other assistant, checked.** Take three independent projectors (β = 0), with X = tr(P₁P₂), Y = tr(P₂P₃) and Z = tr(P₁P₃). Then F = X + Y − XY is increasing in X and in Y, yet Cov(F, Z) = −(q − 1)/(q³(q + 1)²), which is −1/216 at q = 3. Monte Carlo with 2 × 10⁷ samples gives −0.00463 ± 0.00001. **So B, stated for all increasing functions, is false.**
+
+**What the route actually needs** is only the specific spin term Cov^{spin}(Φ_E, w_e), not B in general. On the star with an edge inside the layer (§7), the direct term is zero. The whole derivative at t = 0 is then Cov₀(H(b(w₁ + w₂), b w₃), w₁₂).
+
+**Computation** (`pilot/cpn_star_edge_derivative.py`). The tree measure is sampled exactly: the overlap of each leaf with the centre has density ∝ e^{bw}(1 − w)^{q−2}, and the direction is otherwise uniform. Strand counts are Poisson draws, and h uses log-gamma. 2 × 10⁷ samples per row.
+
+| q | b | P₀(cross) | dP/dt at t = 0 |
+|---|---|---|---|
+| 2 | 0.5 / 2 / 6 / 12 | 0.039 / 0.419 / 0.967 / 1.000 | +3.3e-4 / +6.0e-3 / +8.7e-4 / +1.3e-6 |
+| 3 | 1 / 4 / 8 / 16 / 32 | 0.057 / 0.637 / 0.975 / 1.000 / 1.000 | +5.4e-4 / +7.3e-3 / +8.2e-4 / +2.4e-7 / 0 (±5e-14) |
+| 5 | 0.5 / 2 / 6 / 12 | 0.004 / 0.067 / 0.603 / 0.986 | +6.7e-6 / +5.2e-4 / +6.6e-3 / +4.6e-4 |
+| 10 | 0.5 / 2 / 6 / 12 | 0.0005 / 0.009 / 0.133 / 0.674 | +4.1e-7 / +1.6e-5 / +7.8e-4 / +4.7e-3 |
+
+**The derivative is positive everywhere it is not zero by saturation** (P₀ = 1). An earlier run gave a negative value at b = 32. That was an artefact: the Poisson sum had been cut off at 60, below λ ≈ 64. The corrected computation gives 0.
+
+**Why the counterexample does not apply here, at least in this case.** At t = 0 the star is a tree, so w₁ and w₂ are independent. By symmetry, E[w₁₂ | w₁, w₂] = w₁w₂ + (1 − w₁)(1 − w₂)/(q − 1). So
+
+  dP/dt|₀ = (q/(q − 1)) Cov(H(s), w₁w₂) − Cov(H(s), s)/(q − 1), with s = w₁ + w₂ (taking b = 1 in H's first argument for brevity).
+
+This is an inequality in two independent variables with explicit densities. It might be provable directly. The counterexample uses a function, X + Y − XY, that is not a function of the sum alone. H depends on w₁ and w₂ only through their sum.
+
+**Revised plan.**
+- **Drop B as a general association statement.** Prove instead the specific inequality for Φ_E, which is a Poisson mixture of the excursion probability.
+- **First target:** the two-variable inequality above for the star with an edge inside the layer, at t = 0, then at t > 0.
+- **A** (combinatorial) still stands; no counterexample so far.
+
+## 12. Review of the double-star theorem and the fusion limit (7 November 2026)
+
+**Fusion limit (CPN_FUSION_LIMIT_AND_SEPARATOR.md).** The argument is correct as we read it. Integrate the two fusion points last: P_t(E) = ∫ e^{tp} A(p) ρ_q(dp) / ∫ e^{tp} Z(p) ρ_q(dp), with ρ_q = Beta(1, q − 1). The excursion event does not depend on the permutations at the marked points, so its weight is the same whether those points are integrated first or last. As t → ∞, e^{tp} concentrates the measure at p = 1, and A(1)/Z(1) is the event probability with both points pinned to one common, integrated direction, which is the contracted graph. The convergence is O(1/t). This is consistent with the ratio k/(k + q + 1) in §8. **It closes the identification step that §8 left open,** for two fusion points.
+
+**Double star (CPN_DOUBLE_STAR_FUSION_THEOREM.md), checked independently** (`pilot/cpn_double_star_independent_check.py`):
+- **The moment identity (D5).** G(0.3) = 2.05714 by Monte Carlo with 4 × 10⁶ samples, against 2.05694 from the series Σ_d H_d/(q)_d.
+- **Consistency at p = 1.** h_side(1) = 0.063468, equal to the path formula 1 − Z_orth(b_u + b_v, b_a)/(f(b_u + b_v) f(b_a)). It also equals the fused star value of §7, computed by an unrelated method.
+- **The MLR property.** H_d(p₁)/H_d(p₀) increases in d for the pairs (0, 0.3), (0.3, 0.7), (0.7, 0.99) and (0, 1).
+- **Monotonicity.** h_side(p) increases in p, from 0.05389 at p = 0 to 0.06347 at p = 1 (q = 3, all b = 1).
+- **The final step is sound.** Given the middle projectors, the two sides are independent, so the probability that both are crossed is h_L(p) h_R(p). That is increasing in p, so any average over p (the free middle layer) is at most its value at p = 1 (fused).
+
+**Where we stand.** We now have proven pinning and fusion comparisons for:
+- two single points on any graph (§3);
+- stars;
+- two regions sharing one point;
+- the double star with a two-point middle layer.
+
+All of them rely on a reduction to one ordered variable: a sum of strand counts, or a rank-two matrix. The open case is a region with two or more free vertices joined to each other, as in a real annulus.
+
+## 13. Review of the multi-gateway results (8 November 2026)
+
+**The finite-model counterexample to ordering by alternation count, checked with independent code** (`pilot/cpn_multi_gateway_independent.py`: own slot-following enumerator, pinned strands traced through all free vertices including a). With the couplings (G3), (1/8, 8, 8, 1/8, 8, 8, 1/4), it gives:
+- r₀ = 0.254557, r₁ = 0.535841 and r₂ = 0.507772;
+- Z²h′ coefficients (818.5254, 10.95804, −0.04037).
+
+**All of these match CPN_MULTI_GATEWAY_COEFFICIENT_CERTIFICATE.md exactly.** So the alternation-by-alternation ordering fails, while the normalised h(p) still increases on [0, 1] (from 0.254557 to 0.272198). With all couplings equal to 1, the same graph gives r₀ < r₁ < r₂ (0.0598, 0.1411, 0.1976).
+
+**Stability theorem (CPN_MULTI_GATEWAY_STABILITY.md).** The argument is the standard one: strict positivity of h₀′ on the compact interval [0, 1], plus continuity in the added couplings, gives some ε* > 0. It is correct as we read it, provided strict positivity at both ends, p = 0 and p = 1, is established; we did not check that part. **One limit matters for the route:** ε* depends on the network and on all existing couplings, so it is not uniform. The annulus argument needs bounds that hold uniformly over subgraphs and scales, as in Prop. 3.1. This result therefore gives local stability, not a step towards the uniform statement.
+
+**Not checked:** the claim that h′ ≥ 0 for all non-negative couplings at q = 2, 3, 5, 8 (the coefficient-sign certificate). The p² coefficient of Z²h′ is negative here, so that certificate must rest on a more refined positivity argument, and that argument deserves its own review.
+
+## 14. Review of the all-q certificate and the uniform relative slope (8 November 2026)
+
+**Certificate decomposition: correct.** D₀ + D₁p + D₂p² = (1 − p²)D₀ + p(1 − p)D₁ + p²(D₀ + D₁ + D₂), with non-negative multipliers on [0, 1]. So coefficientwise positivity of D₀, D₁ and D₀ + D₁ + D₂ in the couplings gives h′ ≥ 0 for all b ≥ 0. With Z²h′ = A′Z − AZ′, the coefficients are D₀ = a₁c₀ − a₀c₁, D₁ = 2(a₂c₀ − a₀c₂) and D₂ = a₂c₁ − a₁c₂.
+
+**Independent check** (`pilot/cpn_multi_gateway_random_couplings.py`; own enumerator, cached 4 222 diagrams). We drew 300 random coupling vectors, log-uniform on [e⁻⁴, e⁴]⁷, with q ∈ {2, 3, 5, 8, 20}. Of the 900 checks of D₀, D₁ and D₀ + D₁ + D₂ ≥ 0, **none failed**. The published example is reproduced: D = (818.5254, 10.958, −0.04037). This is a sampling check, not the symbolic certificate. We did not rerun the symbolic substitution q = 2 + z.
+
+**Uniform relative slope (CPN_UNIFORM_RELATIVE_SLOPE.md): the proof checks out, given the two-terminal reduction.** The covariance pair identity (P3) holds once T_d increases in d (the MLR property, checked in §12) and F decreases. (P4)–(P8) we verified line by line: w₂ = (s² − b_u b_v(1 − p))/(q(q + 1)), T₂ = b_u b_v/(s² − b_u b_v(1 − p)), F(2, n) ≤ q/(q + 2) for n ≥ 1, G ≤ e^s, and h ≤ ϑ. The one input we have **not** checked is the positive effective-edge reduction of an arbitrary two-terminal network H (CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md), which gives h = 1 − E_{μ_p}F(d) with ν_H independent of p.
+
+**Numerical check on the star, H = one leaf** (`pilot/cpn_relative_slope_star_check.py`): we took q = 2, 3, 8 and five coupling sets each, with b_u, b_v from 0.1 to 5 and b_a from 0.1 to 10. **min_p h′/h ≥ γ in all 15 cases.** The bound is valid but very weak: the actual relative slope is 10² to 10⁸ times larger, because γ carries e^{−2(b_u+b_v)}.
+
+**What it does and does not give.** The bound is uniform in the size and couplings of H, a real step. But it is relative (h′ ≥ γh), exponentially small in the source couplings, and limited to one gateway. As the other assistant notes, extra gateways can bypass the bottleneck, so the multi-gateway uniform statement needs a new argument.
