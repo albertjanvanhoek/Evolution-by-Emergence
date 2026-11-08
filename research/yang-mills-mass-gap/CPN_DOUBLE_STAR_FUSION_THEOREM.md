@@ -2,6 +2,8 @@
 
 **7 November 2026 — exact finite-graph theorem following [CPN_FUSION_LIMIT_AND_SEPARATOR.md](CPN_FUSION_LIMIT_AND_SEPARATOR.md).** The proof works for **all integer q≥2 and all finite nonnegative couplings**, with the complete exponential CP projector action and **without FKG on CP overlaps or a Taylor cutoff**. It proves the two-region fusion inequality for a specific series-parallel separator geometry; it is NOT a planar annulus theorem, a CP mass gap, or Yang–Mills.
 
+**Subsequent extension (8 November 2026):** the first 'two interconnected free hubs' obstacle listed below has now been resolved **when all source legs enter through ONE free gateway x, and the exterior is ONE marked site a**. [CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md) proves all-coupling overlap monotonicity for an arbitrary two-terminal internal CP network, including cycles, via an event-resolved kernel contraction. This does NOT solve a full annulus with many separate boundary gateways; the dimension of the boundary wiring state is the remaining obstacle.
+
 ## 1. One-sided three-leaf star and an exact conditional crossing probability
 
 Let \(q\ge2\), \(u,v\) be **two marked sites fixed to rank-one projectors** \(P_u,P_v\), with
