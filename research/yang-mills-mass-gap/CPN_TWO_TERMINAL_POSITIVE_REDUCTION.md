@@ -118,7 +118,7 @@ p\longmapsto h_H(p)\ \text{is nondecreasing on }[0,1]
 \quad}
 \tag{C3}
 \]
-If \(b_u,b_v>0\) and H has at least one positive-strength path from x to a, the inequality is strict for \(p'<p\) read with the correct orientation: **\(h_H(p')>h_H(p)\) when \(p'>p\)**. If either root strength is zero or x,a are disconnected at positive strength, the probability may be p-independent.
+If \(b_u,b_v>0\) and H has at least one positive-strength path from x to a, the inequality is **strict whenever \(p'>p\)**: \(h_H(p')>h_H(p)\). If either root strength is zero or x,a are disconnected at positive strength, the probability may be p-independent.
 
 This **removes the 'small J' hypothesis** of \`CPN_TWO_HUB_TRANSFER.md\` on its serial two-hub example, and covers arbitrary finite interacting interior networks behind the **single x gateway**.
 
