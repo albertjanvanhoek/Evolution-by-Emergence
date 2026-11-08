@@ -83,6 +83,37 @@ independent of the u/v word or overlap p. Hence (B3) holds term by term in H mul
 
 **Scope warning:** This is an **event-resolved**, not merely physical-spin, reduction. It works because there are only TWO H terminals and the marked connectivity event is root-group-to-SINGLE-a. The previous exterior-wiring obstruction persists for regions with multiple distinct entry or exit terminals, and the deletion step cannot be assumed for arbitrary events involving additional marked sites.
 
+### A simpler equivalent form: the dimension-shift identity
+
+Since \(\alpha_nF_q(d,n)=c_n\,n!/(q+d)_n\), define the positive linear functional
+\[
+\mathcal L_s K_H
+:=\int_0^1 K_H(z)(s-1)(1-z)^{s-2}\,dz
+=\sum_{n\ge0}c_n\frac{n!}{(s)_n}.
+\tag{B6}
+\]
+Then the event-resolved result (B3) can be restated particularly simply:
+\[
+\boxed{
+Z(p)=G(p)\,\mathcal L_q K_H,\qquad
+Z_{\rm NC}(p)=\sum_{d\ge0}w_d(p)\,\mathcal L_{q+d}K_H.
+}
+\tag{B7}
+\]
+This is a genuine **effective-dimension shift \(q\mapsto q+d\)** in the no-cross sector. Since \(K_H(z)\) has nonnegative coefficients, it is nondecreasing in z; since \(\mathrm{Beta}(1,q+d-1)\) shifts stochastically toward smaller z as d increases, \(\mathcal L_{q+d} K_H\) is nonincreasing in d. Hence the proof of the theorem below may use either (B3) or directly (B7). For a single direct effective edge \(K_H(z)=e^{bz}\), (B7) reduces to the independently checked one-hub formula D6 with \(\mathcal L_{q+d}K_H=f_{q+d}(b)\).
+
+**An exact cyclic test.** Take the five one-copy H edges \((x,3),(3,a),(x,4),(4,a),(3,4)\), with x=2, a=5, free 3,4, q=3. Explicitly summing all internal permutations gives
+\[
+K_H(z)=\frac1{400}+\frac{13}{1800}z+\frac1{400}z^2.
+\]
+The dimension-shift functionals are \(\mathcal L_3K_H=23/4320\) and \(\mathcal L_5K_H=37/9000\). For precisely one source strand at each u/v edge (total d=2), the *original graph's* full/NC polynomial coefficient ratio, computed by a separate all-permutation enumeration, is
+\[
+\frac{\mathcal L_5K_H}{\mathcal L_3K_H}
+=\frac{444}{575},\qquad
+\mathbb P(E\mid r=s=1,H)=\frac{131}{575}.
+\]
+The equality holds **coefficientwise in every power of the source overlap p**, not only after setting p=1. This calculation uses **fixed edge multiplicities** and is a check of (B7), not a full-coupling substitute for it.
+
 ## 3. A new ALL-COUPLING one-sided overlap theorem
 
 From (B3), the actual one-sided probability is
