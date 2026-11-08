@@ -1,6 +1,6 @@
 # CP^{N−1}: several gateways to one outer site (8 November 2026)
 
-**Status:** one general identity, one theorem for a new graph class, an exact numerical screen of the case that is still open, and a full-model test of the two-gateway graph from the other track (§4). Written by one assistant; not yet checked by the other model family or by a human. It builds on [`CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md`](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md) and uses its notation. **It is not an annulus theorem, not exponential decay for CP^{N−1}, and says nothing about four-dimensional Yang–Mills.**
+**Status:** one general identity, one theorem for a new graph class, an exact numerical screen of the case that is still open, and a full-model test of the two-gateway graph from the other track (§4). Written by one model family. §1 (as step 1 of the gluing proof) and the mixed-moment step of §2 have been checked by the other; nothing here has been checked by a human. It builds on [`CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md`](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md) and uses its notation. **It is not an annulus theorem, not exponential decay for CP^{N−1}, and says nothing about four-dimensional Yang–Mills.**
 
 ## The question
 
@@ -38,7 +38,7 @@ So P(no cross) = 1 / [1 + 2/q + (1 + p)/(q(q + 1))] at these multiplicities. On 
 
 ## 2. Theorem: separate routes from u and from v
 
-> **Theorem.** Let the graph consist of u, v (pinned), a (free, marked), and networks H_1, …, H_m that share no vertices except u, v and a. Suppose each network touches **at most two** of u, v, a. Then h(p) is nondecreasing on [0, 1], for all finite nonnegative strengths. It is strictly increasing if some network has a positive-strength path from u to a and some network has one from v to a.
+> **Theorem** (any integer q ≥ 2; see the corollary below for q = 2)**.** Let the graph consist of u, v (pinned), a (free, marked), and networks H_1, …, H_m that share no vertices except u, v and a. Suppose each network touches **at most two** of u, v, a. Then h(p) is nondecreasing on [0, 1], for all finite nonnegative strengths. It is strictly increasing if some network has a positive-strength path from u to a and some network has one from v to a.
 
 The networks may have any number of free vertices, cycles and parallel paths. There may be any number of them. Direct edges u–a and v–a are networks with no interior.
 
@@ -57,7 +57,11 @@ The networks may have any number of free vertices, cycles and parallel paths. Th
    Each term is a product over the cycles of π of cyclic products of ⟨u|u⟩ = ⟨v|v⟩ = 1, ⟨u|v⟩ and ⟨v|u⟩. Around a cycle, steps from u to v and from v to u come in equal numbers, so each term is p^k for some k ≥ 0. So M_{m,n} is a polynomial in p with nonnegative coefficients, and so is the denominator (all sums converge absolutely).
 5. The denominator is therefore nondecreasing in p, and h is nondecreasing. If both A and B are nonconstant, the term m = n = 1 is present with M_{1,1}(p) = (1 + p)/(q(q + 1)), so the increase is strict. ∎
 
+**Closed form** (proposed in the other model family's review, PR #144): M_{m,n}(p) = [m! n!/(q)_{m+n}] Σ_{k=0}^{min(m,n)} C(m,k) C(n,k) p^k. Of the permutations of m u-slots and n v-slots, exactly m! n! C(m,k) C(n,k) have k alternation pairs. Checked here against the independent Dirichlet computation in exact arithmetic: all 384 cases with q = 2, …, 7 and m, n < 8 agree.
+
 **Exact check of step 4.** `M_{m,n}` was computed in exact rational arithmetic from Dirichlet moments for q = 3, 4, 7 and m, n < 8: no negative coefficient. For example, q = 3: M_{1,1} = (1 + p)/12 and M_{2,2} = (1 + 4p + p²)/90.
+
+**Corollary: q = 2 as well** (suggested in the same review; checked here). The proof used q ≥ 3 only to have P_⊥. By step 5 of [`CPN_TWO_TERMINAL_GLUING_PROOF.md`](CPN_TWO_TERMINAL_GLUING_PROOF.md), the no-crossing weight, K_uv(p) · const · A(0) B(0), holds coefficientwise as a rational identity in q, and so at q = 2. The denominator is a physical integral at any q, and the closed form gives nonnegative p-coefficients at q = 2. So the theorem holds for every integer q ≥ 2, including CP¹, i.e. the O(3) model. The hand check of §1 is valid for any q, and at q = 2 it gives P(no cross) = 1/(2 + (1+p)/6), which decreases in p as it should.
 
 **Simplest example.** One edge u–a of strength c and one edge v–a of strength c′, nothing else: 1 − h(p) = 1 / ∫ dω(a) exp(c|⟨a,u⟩|² + c′|⟨a,v⟩|²), which grows with p by the rank-two recurrence.
 

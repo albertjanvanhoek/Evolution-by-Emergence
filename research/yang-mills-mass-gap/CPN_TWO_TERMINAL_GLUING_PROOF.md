@@ -1,6 +1,6 @@
 # A proof of the event-resolved gluing identity (B3) without deletion or reinsertion (8 November 2026)
 
-**Status:** a proof for review, answering the question in [`CPN_TWO_TERMINAL_INDEPENDENT_AUDIT.md`](CPN_TWO_TERMINAL_INDEPENDENT_AUDIT.md). Written by one assistant; it needs a check by the other model family and by a human. Nothing here goes beyond the two-terminal setting of [`CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md`](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md). **It is not an annulus theorem and says nothing about Yang–Mills.**
+**Status:** a proof answering the question in [`CPN_TWO_TERMINAL_INDEPENDENT_AUDIT.md`](CPN_TWO_TERMINAL_INDEPENDENT_AUDIT.md). Written by one model family. **Checked step by step by the other** (PR #144, comment of 8 November 2026, 11:14 UTC): it agrees with steps 1–5, including several paths meeting at the outer vertex. A human check is still needed before citation. Nothing here goes beyond the two-terminal setting of [`CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md`](CPN_TWO_TERMINAL_POSITIVE_REDUCTION.md). **It is not an annulus theorem and says nothing about Yang–Mills.**
 
 ## The claim
 
@@ -41,7 +41,9 @@ because (q)_{d+n} = (q)_d (q+d)_n. That is (B3). ∎
 
 **Step 4. Z(p).** Average over P_a instead: ∫ dω(a) K_H(|⟨x, a⟩|²) = Σ c_n n!/(q)_n does not depend on x, so Z = G(p) C_H. This part was never in doubt.
 
-**Step 5. q = 2.** Steps 1–3 need e₃, so q ≥ 3. Both sides of (B3) are power series in the couplings, convergent for all values. Their coefficients are rational functions of q: on the left, finite sums over permutations of powers of q divided by rising factorials; on the right, the same for c_n, times H_d and n!/(q+d)_n. Equality for all nonnegative couplings gives equality of every coefficient, for every integer q ≥ 3. Rational functions that agree at infinitely many points are equal, and none has a pole at q = 2. So (B3) holds at q = 2 as well. ∎
+**At p = 1** span(z_u, z_v) is a line. Take any 2-plane containing it and e₃ orthogonal to that plane; steps 1–3 are unchanged.
+
+**Step 5. q = 2.** Steps 1–3 need e₃, so q ≥ 3. At q = 2 there is no physical orthogonal direction in C², so what is continued is not that construction. It is the identity between two combinatorial expressions in the positive loop representation, at fixed edge multiplicities. Both sides of (B3) are power series in the couplings, convergent for all values. Their coefficients are rational functions of q: on the left, finite sums over permutations of powers of q divided by rising factorials; on the right, the same for c_n, times H_d and n!/(q+d)_n. Equality for all nonnegative couplings gives equality of every coefficient, for every integer q ≥ 3. Rational functions that agree at infinitely many points are equal, and none has a pole at q = 2. So (B3) holds at q = 2 as well. ∎
 
 ## The audit's question, answered
 
@@ -65,6 +67,6 @@ The audit's 18 exact enumerations at fixed multiplicity (q = 2, 3, 5) are consis
 
 ## Where I'm unsure
 
-- Step 1 is the identity of my own earlier note, now written out in full. It is short, and a short proof by one model family is exactly what needs a second reader.
+- Step 1 is the identity of my own earlier note, now written out in full. The other model family has checked it; a human has not.
 - Step 3 uses the standard Dirichlet law of |x_i|² for a uniform vector, grouped into blocks, and the independence of the direction within a block. I checked the result exactly but did not cite a source for the grouping property.
 - Step 5 assumes that the loop representation's coefficients are the same rational expression of q for every integer q. That is how the representation is built, but I have not seen it stated in Wolff (2010).
