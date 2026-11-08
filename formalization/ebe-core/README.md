@@ -43,7 +43,7 @@ Add this to your project's `lakefile.toml`, pinning `rev` to a release tag or co
 [[require]]
 name = "ebe_core"
 git = "https://github.com/albertjanvanhoek/Evolution-by-Emergence.git"
-rev = "v23.0"
+rev = "v23.1"
 subDir = "formalization/ebe-core"
 ```
 
