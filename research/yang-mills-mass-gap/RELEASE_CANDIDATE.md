@@ -28,11 +28,13 @@
 > - [#146 — Strong multi-gateway CP inequality](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/146): prove or refute normalized crossing monotonicity for strongly coupled multiple gateways in the **full** model, preferably with size-uniform bounds.
 > - [#147 — Multiple outer boundary sites](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/147): construct or falsify the necessary boundary-wiring comparison for annular layers. This remains necessary for any proposed CP decay theorem.
 >
-> **Start here:** [Research handoff](research/yang-mills-mass-gap/HANDOFF.md) · [Reproduction guide](research/yang-mills-mass-gap/REPRODUCE.md) · [Full folder README](research/yang-mills-mass-gap/README.md) · [Open CP annulus lemma](research/yang-mills-mass-gap/CPN_STEP4.md).
+> **Start here:** [Research handoff](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/ymgap-research-2026-11-08/research/yang-mills-mass-gap/HANDOFF.md) · [Reproduction guide](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/ymgap-research-2026-11-08/research/yang-mills-mass-gap/REPRODUCE.md) · [Full folder README](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/ymgap-research-2026-11-08/research/yang-mills-mass-gap/README.md) · [Open CP annulus lemma](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/ymgap-research-2026-11-08/research/yang-mills-mass-gap/CPN_STEP4.md).
 >
 > **Verification limits:** A green Lean build is not a physics proof; exact arithmetic in a Taylor-truncated model is not an untruncated theorem; finite-size or Monte Carlo results do not establish continuum behavior. No result should be cited as a new verified theorem before suitable independent mathematical and literature review.
 >
-> **License:** Subject to file-specific and third-party notices, repository-originated material is available under **CC BY 4.0 OR Apache-2.0**, as described in [DUAL-LICENSING.md](DUAL-LICENSING.md). Please cite this **specific research snapshot tag or commit**, not only the separately versioned EbE core.
+> **License:** Subject to file-specific and third-party notices, repository-originated material is available under **CC BY 4.0 OR Apache-2.0**, as described in [DUAL-LICENSING.md](https://github.com/albertjanvanhoek/Evolution-by-Emergence/blob/ymgap-research-2026-11-08/DUAL-LICENSING.md). Please cite this **specific research snapshot tag or commit**, not only the separately versioned EbE core.
+
+**Link caution:** the copy-ready public text above uses the *proposed* snapshot tag. If the owner selects another tag, replace it in every URL before publishing; these tag URLs are not live until the tag is created.
 
 ## Owner's merge-and-release checklist
 
