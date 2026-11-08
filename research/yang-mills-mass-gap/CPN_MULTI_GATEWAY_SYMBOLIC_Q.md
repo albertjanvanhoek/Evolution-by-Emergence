@@ -100,6 +100,25 @@ Since \(0\le p\le1\) and all three coefficient-polynomials on the right evaluate
 
 This proves the normalized crossing inequality **without** requiring every conditional alternation ratio \(r_k=a_k/c_k\) to increase. Indeed the previously independently confirmed asymmetric-coupling witness has \(r_2<r_1\).
 
+### A concrete negative term that is compensated
+
+For q=3, consider the monomial in edge-strength order (ux,vx,uy,vy,xa,ya,xy)
+\[
+b_{ux}\,b_{vx}^{\,2}\,b_{uy}^{\,2}\,b_{vy}\,b_{xa}\,b_{ya}
+\qquad\text{(no }b_{xy}\text{ factor)}.
+\]
+In the **unscaled** derivative numerator \(Z^2h'\), its three coefficient values are **exactly**
+\[
+D_0:\frac{269}{2073600},\qquad
+D_1:\frac{287}{3110400},\qquad
+D_2:-\frac1{248832},
+\]
+but
+\[
+(D_0+D_1+D_2):\frac{113}{518400}>0.
+\]
+This illustrates concretely why the negative \(D_2\) entries cannot invalidate (Q8), and supplies a small exact-rational target for a reviewer without requiring inspection of all thousands of symbolic terms. The symbolic \(q-2\) certificate controls the same monomial and all others for every q≥2.
+
 ## 3. Reproducibility and independent cross-checks
 
 Run from \`research/yang-mills-mass-gap/pilot/\`:
