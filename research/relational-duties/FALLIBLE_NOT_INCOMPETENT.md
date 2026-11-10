@@ -8,6 +8,8 @@ This note follows up entry D39 in [DIALOGUE.md](../../DIALOGUE.md) and extends [
 
 Rights law protects a person who is presumed to know their own mind. The proposal is to protect, in addition, the conditions under which a mind can find out that it is wrong.
 
+**What it is for.** Not to end conflict or difference. The author: "it won't solve all - and that is not the point. But i ought to make the concept clear of how treating each other is bad." The aim is to name a wrong so that it can be recognised: cutting someone off from what could correct them.
+
 ## 2. Two pictures of the person
 
 **The sovereign will.** The Universal Declaration describes human beings as "endowed with reason and conscience" (article 1). The legal person built on that picture has a will, and rights are fences around it. What happens inside the fence is the person's own affair, and so, largely, is what happens between two such persons who consent.

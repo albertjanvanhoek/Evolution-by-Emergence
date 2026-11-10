@@ -1101,5 +1101,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - section 7 of the note, on what the new protected interest covers, is the least worked out, and is where a lawyer would push;
   - only one legal source was read in its primary form. The note lists the rest as to be confirmed (working agreement 1);
   - the note was written within one conversation and one model family (working agreement 7). It needs a lawyer and a clinician.
+- **Author, on reading this entry:** "it won't solve all - and that is not the point. But i ought to make the concept clear of how treating each other is bad."
+- **Assistant:** this answers the first point above in part. The claim is not that a floor under relationships ends conflict or difference. It is that the law should name what counts as treating each other badly, so that it can be recognised and spoken about. That matches his view in D33 that rights name principles and set boundaries. Naming a wrong is a smaller and more defensible aim than removing differences, and law has done it before: coercive control was a harm before it had a name. Whether "remove the differences" is withdrawn or only narrowed is not recorded. The note now states this aim in its first section.
 - **Open:** a human legal reading; references for the historical claims; adjudication, thresholds and the limit case listed in the note; whether the identity description of this entry should appear in CORE's "The view from inside".
 
