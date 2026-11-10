@@ -40,6 +40,9 @@ Results, between learners:
   `not_retained_blocks`: the failure of one leaves the blind spot uncorrected.
 * `other_untested_possible` … `not_retained_possible`: each failure can occur
   with the other six in place.
+* `same_view_cannot_correct`: if the other's operation does not tell the two
+  worlds apart either, all seven verbs leave the wrong world in place.  The two
+  learners have to differ.
 * `error_survives_iff_never_linked`: over any number of turns, with the other
   verbs in place, the error is still there at the end exactly when the link
   held in no turn.  A break is a delay if it is repaired, permanent if not.
@@ -404,6 +407,17 @@ theorem seven_verbs_correct (e : Exchange World Outcome) (hs : Setting e)
   · intro hc
     exact hs.2.1 ((((h5 _).mp ((h7 _).mp hc)).2 h3).trans htaken)
   · exact (h7 _).mpr ((h5 _).mpr ⟨h6, fun _ => htaken.symm⟩)
+
+/-- Two learners with the same view cannot correct each other: if the other's
+operation does not tell the wrong world from the actual one either, the wrong
+world is still kept possible after all seven verbs. -/
+theorem same_view_cannot_correct (e : Exchange World Outcome)
+    (hblind : e.before e.blind) (hsame : e.oth e.blind = e.oth e.actual)
+    (hcarries : e.link → e.received = e.sent)
+    (h1 : OtherTests e) (h2 : PassesOn e) (h4 : TakesIn e)
+    (h5 : Accepts e) (h7 : Keeps e) : e.carried e.blind :=
+  (h7 _).mpr ((h5 _).mpr ⟨hblind, fun hl =>
+    hsame.trans (h1.symm.trans (h2.symm.trans ((hcarries hl).symm.trans h4.symm)))⟩)
 
 theorem other_untested_blocks (e : Exchange World Outcome) (hs : Setting e)
     (hno : e.theirObservation ≠ e.oth e.actual) (h2 : PassesOn e) (h3 : KeepsLink e)

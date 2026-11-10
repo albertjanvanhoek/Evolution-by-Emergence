@@ -1,6 +1,6 @@
 # A decomposition of learning into verbs
 
-**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 34 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
+**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 35 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
 
 ## 1. The claim
 
@@ -88,3 +88,29 @@ The author's "vice versa" therefore holds for the nine verbs, in this model. It 
 - Whether these results belong in the core. They are outside it now.
 - A model with "revise" and "widen", to see whether nine becomes eleven.
 - A reader outside this model family (working agreement 7).
+
+## 9. A long collaboration (added later the same day, D41)
+
+The author's claim: "for me collaboration is just too brains doing what brains do - so it is the same". Tested in [`LongCollaboration.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LongCollaboration.lean), 28 theorems in core Lean.
+
+**The model.** Two learners. In each turn each has an error it cannot find alone and the other can. A learner is corrected in a turn exactly when the seven verbs between learners hold in its direction. Staying in costs one unit per turn, and being corrected pays for the turn. Each starts with a reserve and is out when it reaches zero.
+
+**Results.**
+- **All verbs, from both, and it lasts.** If both do all seven verbs in every turn, nothing changes from turn to turn (`all_verbs_last`).
+- **One verb missing on either side, and it ends.** Both are out after as many turns as their two reserves together (`ends_within_reserves`). So the collaboration lasts for every number of turns exactly when both do all seven (`lasts_iff_all_verbs`).
+- **Taking without giving runs on the other's reserve.** A learner who does everything except test and pass on is itself corrected, in turn n, exactly while n is below the other's reserve (`taker_corrected_only_while_other_lasts`).
+- **A reserve turns a lapse into a cost.** With a reserve of two each, one turn of any conduct does not end it (`one_lapse_survivable`).
+- **The two have to differ.** If the other's operation does not tell the wrong world from the actual one either, all seven verbs leave the error in place (`same_view_cannot_correct`, in `LearningVerbs.lean`).
+
+**What this says about the claim.** It holds for the verbs: no new verb is needed. Three things change, and none of them is a verb of one brain.
+1. **The verbs become mutual.** In one exchange, my own testing and passing on are not needed for my own correction; only the other's are. In a lasting collaboration they are needed for mine too, because they are what keeps the other in. This is the step from "honesty helps the other" to "honesty keeps what corrects me alive" (creed, line 8).
+2. **Difference is a condition.** Two learners who see the same cannot correct each other. This is a property of the pair, not something either one does in a turn (D35, conjecture 4).
+3. **Reserve is a condition.** Without slack, the first lapse ends it. With slack, a lapse is paid for and repair is possible (creed, line 3).
+
+**How much this says.**
+- **The budget rule is strong.** Being corrected by the other is each learner's only income, and it exactly pays for one turn. With other income, or a partner to switch to, a learner can last without the other, and these results do not apply. Between a person and an AI system this matters: the person can switch, so the pair is closed in one direction at most ([relational duties](../relational-duties/README.md), "Positions differ").
+- **The results are close to that rule.**
+- **Conduct is the same in every turn,** except in the lapse result.
+- **A fresh error each turn is assumed.** In a fixed space the exchange runs out (A4).
+- **"Corrected" is linked to section 4 by reading.** It is defined as the conjunction that `seven_verbs_correct` proves sufficient; the module does not import it.
+

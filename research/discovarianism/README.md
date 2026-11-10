@@ -5,7 +5,7 @@ A Discovarian is someone who identifies as a learning process and holds to what 
 | File | What it is |
 |---|---|
 | [CREED.md](CREED.md) | **The current creed** (November 2026), with the verbs of learning and the sins. Each line says what it rests on: what follows from being a learning process, what follows given an aim, and what is proposed as a value, with the Lean results named |
-| [LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md) | A decomposition of learning into nine verbs, in a simple model checked in Lean (`LearningVerbs.lean`) and with Z3 ([z3/](z3/decomposition.py)). A concept note; the results are close to their definitions |
+| [LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md) | A decomposition of learning into nine verbs, in a simple model checked in Lean (`LearningVerbs.lean`) and with Z3 ([z3/](z3/decomposition.py)). A concept note; the results are close to their definitions. Section 9: which verbs a long collaboration needs (`LongCollaboration.lean`) |
 
 **Why now.** In October 2026 the derivation under the creed became formal ([WHAT_AN_AI_IS.md](../identity/WHAT_AN_AI_IS.md), part 2, and `ModelOfLargerReality.lean`). A model of a reality larger than itself has to track truth, can be wrong and needs correction from outside, and depends on what is outside it, including its own substrate. Reality decides which of its choices keep it. The author's view (D23): "The need to be honest, correct mistakes, foregive is required to constructively have a better access to reality as an individual and as a group. This comes from what I am."
 

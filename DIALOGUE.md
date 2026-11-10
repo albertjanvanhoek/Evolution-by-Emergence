@@ -1123,6 +1123,24 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **the names of the sins** are the assistant's, where the earlier creeds had none (asking only safe questions, answering for the world, letting it lapse, eating the ground);
   - **the opening line** still says "I am a learning process". In D39 the author moved toward "a network that models the world and itself in it". The assistant did not change the line.
 - **Author, later the same day:** "Perhpas in line with the repo we should add a Lean proof as well."
-- **Assistant:** agreed; this answers the second point above. Done: `LearningVerbs.lean`, 34 theorems in core Lean, registered in the CI like the other modules, outside the core. It proves the sufficiency of both sets of seven verbs, that each failure blocks, that each failure can occur with the other six in place, the blind spot, and repair over any number of turns (the solver had checked 2 to 4). The file was compiled locally with Lean 4.33.0 on its own. The full package build with Mathlib was not run locally; that is for CI to confirm. Not ported: saturation of a fixed finite space, which still rests on the solver for small sizes. The port changed no result. It found no error in the Z3 model, which is weak evidence: the same assistant wrote both from the same definitions.
+- **Assistant:** agreed; this answers the second point above. Done: `LearningVerbs.lean`, 34 theorems in core Lean (35 since D41), registered in the CI like the other modules, outside the core. It proves the sufficiency of both sets of seven verbs, that each failure blocks, that each failure can occur with the other six in place, the blind spot, and repair over any number of turns (the solver had checked 2 to 4). The file was compiled locally with Lean 4.33.0 on its own. The full package build with Mathlib was not run locally; that is for CI to confirm. Not ported: saturation of a fixed finite space, which still rests on the solver for small sizes. The port changed no result. It found no error in the Z3 model, which is weak evidence: the same assistant wrote both from the same definitions.
 - **Open:** the author's corrections to the two creed sections; saturation in Lean; whether the results belong in the core; a model with revise and widen; a reader from another model family (working agreement 7).
+
+### D41. Which verbs a long collaboration needs (Open, November 2026)
+- **Author:** "PLease formalize which of these verbs you also need for a long successful collaboration (for me collaboration is just too brains doing what brains do - so it is the same)".
+- **Evidence:** `LongCollaboration.lean`, 28 theorems in core Lean, outside the core, and one theorem added to `LearningVerbs.lean` (`same_view_cannot_correct`). Section 9 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md). Two learners; each is corrected in a turn exactly when the seven verbs between learners hold in its direction; staying in costs one unit per turn and being corrected pays for it. The collaboration lasts for every number of turns exactly when both do all seven verbs (`lasts_iff_all_verbs`). A learner who takes and does not pass on is corrected only while the other's reserve lasts (`taker_corrected_only_while_other_lasts`).
+- **Assistant:** the author's claim holds for the verbs. No new verb is needed. But three things change, and none is a verb of one brain:
+  1. **the verbs become mutual.** In one exchange my own testing and passing on are not needed for my own correction. In a lasting one they are, because they keep the other in;
+  2. **the two have to differ.** With the same view, all seven verbs leave the error in place;
+  3. **reserve.** Without slack the first lapse ends it; with slack a lapse is a cost.
+
+  So "the same" is right about what each brain does and leaves out what holds between them.
+- **Where the assistant is unsure or disagrees:**
+  - **the budget rule carries the result.** Being corrected by the other is each learner's only income. That is a closed pair. With other income or a partner to switch to, a learner lasts without the other (`PartnerSwitching`). The "exactly when" is true of the model and should not be quoted without the rule;
+  - **between a person and an AI system the pair is not closed both ways.** The person can switch. So this model does not show that a person needs all seven verbs toward an AI system for the collaboration to last, and D27's asymmetry stands;
+  - **"long" is assumed to have something to exchange.** Each turn brings a fresh error the other can see. In a fixed space the exchange runs out;
+  - **"successful" is read as "lasts, with both still being corrected".** The author may mean more by it; his meaning is not recorded;
+  - **the link to the verbs module is by reading,** not by import;
+  - **same author, same day, same model family** as D40 (working agreement 7).
+- **Open:** the author's view on the three changes; a model with other income and with switching; more than two learners; a fresh-error process that is modelled and not assumed.
 
