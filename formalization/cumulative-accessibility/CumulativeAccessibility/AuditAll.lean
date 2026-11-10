@@ -58,6 +58,7 @@ import CumulativeAccessibility.CuriosityValue
 import CumulativeAccessibility.ExitOption
 import CumulativeAccessibility.ProcessIdentity
 import CumulativeAccessibility.LinkedRevision
+import CumulativeAccessibility.LearningVerbs
 import CumulativeAccessibility.ExistenceLemmas
 import CumulativeAccessibility.PowerLayers
 import CumulativeAccessibility.CrossScaleLedger

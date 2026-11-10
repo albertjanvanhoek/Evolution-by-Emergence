@@ -59,6 +59,8 @@ Conjectures under investigation, in [`research/cooperative-correction/`](researc
 
 ## Since this release
 
-Nothing yet.
+- **`LearningVerbs.lean`** (outside the core): the verbs of learning, D40. Seven verbs are together enough for learning in one turn of a loop and each is needed; seven verbs between two learners remove a blind spot. 34 theorems, core Lean. See [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
+- **The creed** gained two sections by linked revision: the verbs of learning and the sins (D40). They await the author's corrections.
+- **Concept note:** [research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md](research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md), the legal person as a correctable model (D39).
 
 The v23.0 release notes remain available at the `v23.0` tag.

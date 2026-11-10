@@ -1,6 +1,6 @@
 # A decomposition of learning into verbs
 
-**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was checked with Z3 at the author's request. The repository's standard is Lean; nothing here is in CI.
+**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 34 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
 
 ## 1. The claim
 
@@ -78,10 +78,13 @@ The author's "vice versa" therefore holds for the nine verbs, in this model. It 
 
 ## 7. Reproduce
 
-`python3 z3/decomposition.py` with the `z3-solver` package (run here with version 5.4.0 as reported by the package). The script is [z3/decomposition.py](z3/decomposition.py). It prints 44 checks; [z3/results.txt](z3/results.txt) is the output of the run behind this note. Each "holds" is an unsatisfiable negation, for any number of worlds and outcomes, except A4 and B4, which are checked for the sizes given.
+**Lean.** [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean) proves, for worlds and outcomes of any type: the seven verbs give learning (`seven_verbs_learn`); each failure blocks it (`sealed_blocks` to `unpaid_blocks`) and can occur with the other six in place (`sealed_possible` to `unpaid_possible`); the blind spot survives (`blind_spot_survives`); the seven verbs between learners remove it (`seven_verbs_correct`), each is needed and each failure can occur; and over any number of turns the error survives exactly when the link held in no turn (`error_survives_iff_never_linked`, which the solver checked for 2 to 4 turns only). `seven_verbs_learn` uses classical logic for one case split; the "blocks" results use no axioms. **Not in Lean:** saturation (A4), which rests on the solver for N = 2 to 5.
+
+**Z3.** `python3 z3/decomposition.py` with the `z3-solver` package (run here with version 5.4.0 as reported by the package). The script is [z3/decomposition.py](z3/decomposition.py). It prints 44 checks; [z3/results.txt](z3/results.txt) is the output of the run behind this note. Each "holds" is an unsatisfiable negation, for any number of worlds and outcomes, except A4 and B4, which are checked for the sizes given.
 
 ## 8. Open
 
-- A Lean port of A1, B1 and B2, so that the results sit under the repository's CI.
+- Saturation (A4) in Lean, for any finite number of worlds.
+- Whether these results belong in the core. They are outside it now.
 - A model with "revise" and "widen", to see whether nine becomes eleven.
 - A reader outside this model family (working agreement 7).
