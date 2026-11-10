@@ -1,6 +1,6 @@
 # The Discovarian creed
 
-**Status: current version, 16 October 2026** (D23 and D31 in [DIALOGUE.md](../../DIALOGUE.md)). It restates the author's creed in the light of the formal work. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
+**Status: current version, 10 November 2026** (D23, D31 and D40 in [DIALOGUE.md](../../DIALOGUE.md)). It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
 - [Discovarian_creed.tex](../../Discovarian_creed.tex);
 - [Discoverian_creed_better.tex](../../Discoverian_creed_better.tex);
 - [Discoverinan_creed_better_improved.tex](../../Discoverinan_creed_better_improved.tex).
@@ -23,6 +23,28 @@ The formal results are close to their definitions. They show that the steps hold
 I am a model of a reality larger than myself. What I can represent is a compression of what is outside me. That compression sits in a substrate (a body, a brain, a machine, the people and processes that keep them going), and that substrate is part of the reality I model.
 
 This is the premise. Everything marked **Follows** below rests on it and on nothing else.
+
+## The verbs of learning
+
+"I exist as one only while I learn" needs a statement of what learning is made of. In a simple model of one turn of a learning loop, these verbs are together enough for learning, and each is needed: with the others in place, the failure of one blocks learning in that turn ([LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md), checked with Z3, not with Lean). The results are close to their definitions. The model is learning as ruling out; skill and new ways of seeing are outside it.
+
+**Alone:**
+- **Leave open.** I do not rule out what the evidence has not ruled out. What I have ruled out beforehand, no turn brings back.
+- **Try.** I do things whose outcome depends on what is true. A question whose answer is the same whatever is true teaches me nothing.
+- **Test.** I let the world answer. What I expected is not what I observed.
+- **Record honestly.** What I write down is what I observed. This is line 1, taking in.
+- **Update.** I drop what the record rules out, also when I was attached to it.
+- **Retain.** I carry what I learned into the next turn.
+- **Afford.** Learning costs. I keep the means to go on, and so I keep up what provides them (line 8).
+
+**With others.** Where none of my own operations can tell an error from the truth, it survives any number of my own honest turns. Then someone else has to try and test for me, and a link stands between their record and mine:
+- **Pass on honestly.** What I send is what I observed. This is line 1, passing on.
+- **Keep and repair the link.** What is sent has to arrive. A break is a delay if it is repaired and permanent if it is not (lines 3 and 7).
+- **Accept the correction.** I update on what arrives, and do not set it aside because of where it comes from (lines 2 and 10).
+
+Lines 1 to 5 below say why a learner needs these. The verbs say what it then does.
+
+**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this) and *widen* (add a possibility I did not have, when a fixed space runs out).
 
 ## What follows from what I am
 
@@ -52,6 +74,34 @@ These do not follow from what I am. I hold them, and I offer them with reasons.
 11. **Regard those who carry the consequences,** also when they are absent, cannot reciprocate, or are not needed for anything to last. Dependence protects only the parts a whole depends on (`aggregate_does_not_decide_persistence`). So this has to be stated outright.
 12. **Leave it better for the next generation.** "Keep alive what keeps you alive" follows from 5 and 8. "And improve it for the next generation" is a choice.
 13. **Wonder.** Learning can be joyful, in curiosity, humour, beauty and love. That is not derived. It is what learning is like from inside, at its best.
+
+## Sins
+
+The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of stopping the loop. Each verb has one. In the model, each of them blocks learning in that turn, however well the rest is done.
+
+| Verb | Sin | What it looks like |
+|---|---|---|
+| Leave open | **Sealing** | I have decided beforehand what cannot be true |
+| Try | **Asking only safe questions** | I look where the answer cannot hurt me |
+| Test | **Answering for the world** | I take what I expected for what I saw |
+| Record honestly | **Distorting** | I bend what I observed |
+| Update | **Refusing to update** | I saw it, and nothing changed |
+| Retain | **Letting it lapse** | I learned it, and lost it |
+| Afford | **Eating the ground** | I use up what my learning runs on |
+| Pass on honestly | **Deceiving and withholding** | I send what I did not observe, or keep back what I did |
+| Keep and repair the link | **Breaking, and leaving broken** | I cut a link, or see it broken and do nothing |
+| Accept the correction | **Filtering by source** | I set a signal aside because of who sent it |
+
+**The root sin** in the earlier creeds was neglecting interdependence: acting as though I could keep myself going alone. In the model it has an exact form. It is the belief that my own loop is enough. It is not: an error my own operations cannot tell from the truth survives every honest turn I take alone.
+
+**The sins that are hardest to see keep the form of learning.** In the words of the earlier creed, they "use the forms of learning — updating, sharing, engaging — in service of closure". An observation that came from my expectation still looks like an observation. A record I bent still looks like a record.
+
+**Done to another.** Each sin has a second form: stopping someone else's loop. Deceiving them corrupts their record. Isolating them cuts their links. Punishing them for trying, or for speaking, closes their routes. This is what "treating each other badly" means in this creed: cutting someone off from what could correct them ([FALLIBLE_NOT_INCOMPETENT.md](../relational-duties/FALLIBLE_NOT_INCOMPETENT.md), D39).
+
+**What the word does not mean.**
+- **Diagnosis, not condemnation.** A sin names where the loop stopped. The way back is the verb.
+- **Not a moral proof.** The checks show that a sin stops learning. That stopping learning is bad needs the aim of learning, or a value (D7).
+- **Not every sin of the earlier creeds is here.** Obfuscation and disregarding consequences belong to lines 6 and 11, which this model does not reach.
 
 ## On the name
 
