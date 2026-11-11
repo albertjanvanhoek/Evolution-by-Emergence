@@ -1163,5 +1163,27 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **points 3, 4 and 5 of the review are about CORE's wording** and are not acted on. The assistant did not rewrite CORE;
   - **the results are outside the core.** Whether a statement of the learning loop belongs between steps 4 and 5 is the author's decision;
   - **same model family, same two days** (working agreement 7). The review of one's own work found overlap only on the second day.
+- **Later (D43):** the module was renamed `LearningRatchet.lean`, and the two overstatements about the false record were corrected.
 - **Open:** widening on the same ledger; whether CORE should state the loop, separate the two senses of "outside", and name the hinge; the author's view on points 3 to 5; an outside reader.
+
+### D43. An outside review of the work of D39 to D42 (Open, November 2026)
+- **Context:** the author supplied a written review of pull request 149 by an assistant from another model family, without a comment of his own. His view of it is not recorded. This is the third view that working agreement 7 asks for. The review found no failed proof. It recommended revisions before merging, mainly where the prose said more than the proofs.
+- **The review's findings, and the assistant's response:**
+  1. **Creed line 10, "Weigh signals by their content, not their source", is too strong and sits badly with line 9.** Provenance, independence and reliability are evidence. The reviewer's replacement: "Evaluate signals by their evidence, content and provenance, not by the status or identity of their source alone." *Agreed.* Line 10 is the author's and is not changed. The assistant adds a reason from the model: for a blind spot the receiver cannot evaluate a correction from its own evidence at all (`own_evidence_cannot_evaluate_blind_correction`), so there provenance is all it has. The assistant's own verb "accept the correction" and its sin were reworded.
+  2. **The correction result assumes accurate observation and faithful passing on; it does not show that accepting a correction is beneficial.** *Agreed, and it is the most important point.* Added: `accepting_false_signal_loses_truth`, and a statement of the assumptions in the note. Receiving, weighing and updating are three operations; the model has the first and the last.
+  3. **`LearningVortex` is not a vortex.** *Agreed;* the assistant had said so and kept the name. Renamed `LearningRatchet`.
+  4. **Learning is not the same as eliminating possibilities; the creed speaks more universally than the note.** *Agreed.* The creed section and the note now say "learning as ruling out".
+  5. **The false-record result was overstated in the note.** After a false record the learner no longer leaves the truth open, so it is not doing all seven verbs; and running out of reserve needs the stated inequality. *Agreed on both.* These were errors in the assistant's prose and in a docstring, not in the proofs. Corrected.
+  6. **Revision restores the truth by assumption.** *Agreed.* Now described as recovery given a successful retraction.
+  7. **Afford is partly built into the definition.** *Agreed.* Now marked as a condition that holds by construction. The Lean was not restructured.
+  8. **The legal note:** a person should not be reduced to a model; "duties run both ways or not at all" is too absolute; the Mental Capacity Act's section 1(3) and the Dutch declaration on article 12 are missing; the opening description of rights law is too sweeping, given article 29 of the Universal Declaration. *Agreed on all four.* The note was revised. The first point matches what the assistant argued in D39, that the I is more than a learning process, and then did not carry into its own draft.
+  9. **Editorial:** the pull request title and description were out of date; ten sin rows for nine verbs; "long" should not be equated with "successful"; exit does not end legal responsibilities. *Corrected.*
+  10. **The opening line, "I exist as one only while I learn":** a dormant learner is a counterexample. *Agreed,* and close to the amnesia objection of D39. The line is the author's and is not changed.
+- **Where the assistant still differs from the review, or adds to it:**
+  - on line 10 the review treats provenance as allowed. The model suggests more: for exactly the corrections one most needs, provenance is the only evidence the receiver has;
+  - the review asks to preserve the author's verbatim quotations. They were preserved from the start;
+  - the review is from another model family, which is better than the same one and still not a human reader. The legal note has still not been read by a lawyer.
+- **What the assistant takes from it about its own work:** in D40 to D42 it wrote the summaries last and in a hurry, and each summary said a little more than the theorem. The author's working agreement 6 exists for this. A reader from outside caught in one pass what the assistant's own review in D42 did not.
+- **The question the review puts back:** "When does receiving information from another intelligence improve our access to reality, and when does it instead make our world model worse?"
+- **Open:** the author's decision on line 10 and on the opening line; a model in which corrections can be wrong, cost something and are checked against independent sources; a lawyer's reading; whether the review itself should be added to the repository (the assistant did not add it).
 

@@ -1,8 +1,13 @@
 namespace CumulativeAccessibility
-namespace LearningVortex
+namespace LearningRatchet
 
 /-!
-# The learning loop on the vortex ledger
+# The learning loop on the vortex ledger: a ratchet
+
+This module was first named `LearningVortex`.  An outside review (entry D43 of
+`DIALOGUE.md`) pointed out that the name claimed more than is shown: the space
+of possibilities is fixed, so what is shown is a ratchet toward fit.  "Vortex"
+is kept for the extension that models widening.
 
 Entry D42 of `DIALOGUE.md`.  The core has two lines.  One is a ledger: slack,
 selection, the vortex (steps 1 to 7).  The other is the Room: a learner is a
@@ -25,8 +30,12 @@ turn's gain lowers the cost of every later turn.
 **2. The speed has a sign.**  A turn whose record is false (untested, or
 distorted) and is retained looks the same from inside as a learning turn: one
 fewer world is kept possible.  But the world it removed is the actual one.
-Slack falls, and no later honest turn learns anything until the record is
-taken back.
+Slack falls.  The learner no longer leaves the truth open, so it no longer
+does all seven verbs, whatever else it does; in this model no later try learns
+anything until the record is taken back.  Whether it then runs out of reserve
+depends on the ledger: with enough uptake a wrong model lasts.  How a false
+record is recognised is not modelled: `revise` restores the truth by
+definition.
 
 **3. The speed has two terms.**  Alone, a learner removes only what its own
 operations can tell apart, and then stops, with the blind errors still costing
@@ -41,7 +50,7 @@ Results:
   `retaining_false_is_worse_than_discarding`, `revision_restores_learning`.
 * `solo_keeps_blind`, `solo_fails_on_blind_spot`, `same_view_is_solo`,
   `errors_removed_two_terms`, `linked_lasts`, `link_decides`.
-* `learning_vortex_witness`: concrete numbers.
+* `learning_ratchet_witness`: concrete numbers.
 
 How much this says.  The results are close to arithmetic once the setting is
 fixed, and the setting carries them.  The strong assumptions: every wrong
@@ -56,7 +65,9 @@ the verbs is by reading `LearningVerbs` (`seven_verbs_learn`,
 Not covered: widening.  The space is fixed, so the loop closes and then stops
 (`learner_clears_own_errors`): this is a ratchet toward fit, and it becomes a
 vortex only when kept changes also widen what can be tried, which is the
-second-order click of step 5 and is not modelled here.  Also not covered: a
+second-order click of step 5 and is not modelled here.  Also not covered: recognising a
+false record, a link that delivers a false signal
+(`LearningVerbs.accepting_false_signal_loses_truth`), a
 world that changes, errors of unequal cost, learning several things per turn,
 a link that costs upkeep or can break (`LongCollaboration`, `Reciprocity`),
 and choosing what to try.
@@ -285,8 +296,10 @@ theorem after_false_turn_no_learning (p : Terms) (s : State)
   have : ¬ (s.lost = 0) := by omega
   simp [learnOwn, hown, this]
 
-/-- A retained false record ends it: the learner goes on doing every verb, and
-runs out of reserve. -/
+/-- If the misfit that a retained false record leaves exceeds the uptake, the
+learner runs out of reserve, although it goes on trying.  The condition is
+needed: with enough uptake a wrong model lasts.  And the learner is no longer
+doing all seven verbs, since it has not left the truth open. -/
 theorem retained_false_record_fails (p : Terms) (s : State)
     (hlost : 0 < s.lost) (hmis : p.u < misfit s) :
     ∃ n, (run (learnOwn p) n s).reserve < 0 := by
@@ -313,8 +326,10 @@ theorem retaining_false_is_worse_than_discarding (p : Terms) (s : State)
   · simp [falseTurn, futile, slack, misfit]; omega
   · simp [falseTurn, futile]
 
-/-- Taking the record back restores slack by what the lost world cost, and
-the next honest try learns again. -/
+/-- Recovery, given that the retraction succeeds.  `revise` sets the cost of
+the lost world to zero by definition; then slack is restored by what the lost
+world cost, and the next honest try learns again.  How a false record is
+recognised and taken back is not modelled here. -/
 theorem revision_restores_learning (p : Terms) (s : State) (hown : 0 < s.own) :
     slack p (revise p s) = slack p s + s.lost ∧
     (learnOwn p (revise p s)).own = s.own - 1 := by
@@ -436,7 +451,7 @@ two blind ones: after 12 turns its reserve is negative.  With a link to a
 different view, after 4 turns all errors are gone and after 12 its reserve
 has grown.  One retained false record, and after 5 further honest turns the
 reserve is negative. -/
-theorem learning_vortex_witness :
+theorem learning_ratchet_witness :
     (run (learnOwn terms) 2 start).own = 0 ∧
     (run (learnOwn terms) 12 start).blind = 2 ∧
     (run (learnOwn terms) 12 start).reserve < 0 ∧
@@ -445,5 +460,5 @@ theorem learning_vortex_witness :
     (run (learnOwn terms) 5 (falseTurn terms start)).reserve < 0 := by
   decide
 
-end LearningVortex
+end LearningRatchet
 end CumulativeAccessibility

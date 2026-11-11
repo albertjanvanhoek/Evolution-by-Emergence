@@ -60,7 +60,7 @@ import CumulativeAccessibility.ProcessIdentity
 import CumulativeAccessibility.LinkedRevision
 import CumulativeAccessibility.LearningVerbs
 import CumulativeAccessibility.LongCollaboration
-import CumulativeAccessibility.LearningVortex
+import CumulativeAccessibility.LearningRatchet
 import CumulativeAccessibility.ExistenceLemmas
 import CumulativeAccessibility.PowerLayers
 import CumulativeAccessibility.CrossScaleLedger

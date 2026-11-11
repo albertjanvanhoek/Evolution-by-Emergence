@@ -1,6 +1,6 @@
 # The Discovarian creed
 
-**Status: current version, 10 November 2026** (D23, D31 and D40 in [DIALOGUE.md](../../DIALOGUE.md)). It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
+**Status: current version, 11 November 2026** (D23, D31, D40 and D43 in [DIALOGUE.md](../../DIALOGUE.md)). On 11 November the two new sections were corrected after an outside review (D43); lines 1 to 13 were not touched, and the review's remarks on lines 10 and on the opening line are recorded in D43 for the author. It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
 - [Discovarian_creed.tex](../../Discovarian_creed.tex);
 - [Discoverian_creed_better.tex](../../Discoverian_creed_better.tex);
 - [Discoverinan_creed_better_improved.tex](../../Discoverinan_creed_better_improved.tex).
@@ -26,7 +26,7 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 
 ## The verbs of learning
 
-"I exist as one only while I learn" needs a statement of what learning is made of. In a simple model of one turn of a learning loop, these verbs are together enough for learning, and each is needed: with the others in place, the failure of one blocks learning in that turn ([LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md); `seven_verbs_learn`, `seven_verbs_correct` and the results beside them in `LearningVerbs.lean`). The results are close to their definitions. The model is learning as ruling out; skill and new ways of seeing are outside it.
+"I exist as one only while I learn" needs a statement of what learning is made of. In a simple model of one turn of a learning loop, these verbs are together enough for learning as ruling out, and each is needed: with the others in place, the failure of one blocks learning in that turn ([LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md); `seven_verbs_learn`, `seven_verbs_correct` and the results beside them in `LearningVerbs.lean`). The results are close to their definitions. The model is learning as ruling out; skill and new ways of seeing are outside it, so this is not a decomposition of learning in general. Two of the seven, leave open and afford, are conditions more than operations, and afford is needed by how the model is built.
 
 **Alone:**
 - **Leave open.** I do not rule out what the evidence has not ruled out. What I have ruled out beforehand, no turn brings back.
@@ -40,11 +40,11 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 **With others.** Where none of my own operations can tell an error from the truth, it survives any number of my own honest turns. Then someone else has to try and test for me, and a link stands between their record and mine:
 - **Pass on honestly.** What I send is what I observed. This is line 1, passing on.
 - **Keep and repair the link.** What is sent has to arrive. A break is a delay if it is repaired and permanent if it is not (lines 3 and 7).
-- **Accept the correction.** I update on what arrives, and do not set it aside because of where it comes from (lines 2 and 10).
+- **Accept the correction.** I weigh what arrives and update on it, and do not set it aside because of who sent it (lines 2 and 10). This is *update*, applied to what another sends; it is listed apart because it fails in its own ways. Weighing is not believing. A false signal that I accept rules out the truth (`accepting_false_signal_loses_truth`). And for an error I cannot find myself, my own evidence cannot tell a true correction from a false one (`own_evidence_cannot_evaluate_blind_correction`). So how reliable and how independent the source is, is part of the evidence (line 9); who the sender is, is not a reason to ignore it.
 
 Lines 1 to 5 below say why a learner needs these. The verbs say what it then does.
 
-**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; a first form on the ledger is `revision_restores_learning` in `LearningVortex.lean`) and *widen* (add a possibility I did not have, when a fixed space runs out).
+**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; what follows once a retraction succeeds is `revision_restores_learning` in `LearningRatchet.lean`; how a false record is recognised is not modelled) and *widen* (add a possibility I did not have, when a fixed space runs out).
 
 ## What follows from what I am
 
@@ -77,7 +77,7 @@ These do not follow from what I am. I hold them, and I offer them with reasons.
 
 ## Sins
 
-The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of stopping the loop. Each verb has one. In the model, each of them blocks learning in that turn, however well the rest is done.
+The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of stopping the loop. Each verb has one. In the model, each of them blocks learning in that turn, however well the rest is done. The table has ten rows for nine verbs because accepting a correction is updating on what another sends, and is listed apart.
 
 | Verb | Sin | What it looks like |
 |---|---|---|
@@ -90,7 +90,7 @@ The earlier creeds named sins, and the author asked for them back (D40). A sin, 
 | Afford | **Eating the ground** | I use up what my learning runs on |
 | Pass on honestly | **Deceiving and withholding** | I send what I did not observe, or keep back what I did |
 | Keep and repair the link | **Breaking, and leaving broken** | I cut a link, or see it broken and do nothing |
-| Accept the correction | **Filtering by source** | I set a signal aside because of who sent it |
+| Accept the correction | **Filtering by source**, or **swallowing whole** | I set a signal aside because of who sent it; or I take it in without weighing it |
 
 **The root sin** in the earlier creeds was neglecting interdependence: acting as though I could keep myself going alone. In the model it has an exact form. It is the belief that my own loop is enough. It is not: an error my own operations cannot tell from the truth survives every honest turn I take alone.
 

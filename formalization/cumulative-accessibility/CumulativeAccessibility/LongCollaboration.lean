@@ -46,7 +46,9 @@ this module adds is which verbs the exchange consists of, and the "exactly
 when" over all seven on both sides.  This was noticed in the review of D42,
 after the module was written.
 
-How much this says.  The results are close to the budget rule.  The rule is
+How much this says.  Lasting is not the same as succeeding.  "Long" here means
+that mutual correction goes on; a collaboration can last and achieve little,
+or end having done what it was for.  The results are close to the budget rule.  The rule is
 strong: being corrected by the other is each learner's only income, and it
 exactly pays for one turn.  With other income, or a partner to switch to, a
 learner can last without the other, and these results do not apply (compare

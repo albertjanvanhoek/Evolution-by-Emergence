@@ -40,6 +40,14 @@ Results, between learners:
   `not_retained_blocks`: the failure of one leaves the blind spot uncorrected.
 * `other_untested_possible` … `not_retained_possible`: each failure can occur
   with the other six in place.
+* `accepting_false_signal_loses_truth`: if the other's observation is false
+  and everything else is done, accepting it rules out the actual world.
+  Accepting a correction is not safe in general.
+* `own_evidence_cannot_evaluate_blind_correction`: any rule by which the
+  receiver judges a signal from its own observations gives the same verdict in
+  the actual world and in the wrong world it cannot tell apart.  For a blind
+  spot, the receiver's own evidence cannot separate a true correction from a
+  false one; information about the source has to do that.
 * `same_view_cannot_correct`: if the other's operation does not tell the two
   worlds apart either, all seven verbs leave the wrong world in place.  The two
   learners have to differ.
@@ -59,7 +67,17 @@ one small model: `blind_spot_survives` is close to
 `hub_determined_network_inherits_blind_spot`.  This was noticed in the review
 of D42, after the module was written.
 
-How much this says.  The results are close to their definitions.  The one
+How much this says.  "Learning" here is ruling out: these are components of
+successful elimination-based learning in this model, not a decomposition of
+learning in general.  Two of the seven, leave open and afford, are conditions
+more than operations.  Afford is needed by construction: `Retains` is defined
+so that an unpaid turn carries the old state forward.  That is a modelling
+decision, not a derived requirement (noted by an outside review, D43).  The
+results between learners assume that the other has an operation that tells the
+worlds apart, observes correctly and passes on faithfully; they do not show
+that accepting a correction is beneficial in general.
+
+The results are close to their definitions.  The one
 step of argument is in `seven_verbs_learn`: two worlds with different outcomes
 cannot both agree with an honest record of a real test.  "Needed" means that,
 with the other verbs in place, one failure blocks learning in that turn; two
@@ -122,7 +140,8 @@ def Updates (t : Turn World Outcome) : Prop :=
 def UpdatesNothing (t : Turn World Outcome) : Prop := ∀ w, t.updated w ↔ t.kept w
 
 /-- Retain: carry the update forward if the turn is paid for, and the old
-state if it is not.  Keeping costs. -/
+state if it is not.  Keeping costs.  This definition is what makes `Affords`
+necessary: a modelling decision. -/
 def Retains (t : Turn World Outcome) : Prop :=
   ∀ w, t.carried w ↔ ((t.paid ∧ t.updated w) ∨ (¬ t.paid ∧ t.kept w))
 
@@ -429,6 +448,30 @@ theorem same_view_cannot_correct (e : Exchange World Outcome)
     (h5 : Accepts e) (h7 : Keeps e) : e.carried e.blind :=
   (h7 _).mpr ((h5 _).mpr ⟨hblind, fun hl =>
     hsame.trans (h1.symm.trans (h2.symm.trans ((hcarries hl).symm.trans h4.symm)))⟩)
+
+/-- Accepting a false signal rules out the actual world.  If the other's
+observation did not come from the world, and it is passed on, carried, taken
+in, accepted and retained, the actual world is no longer kept possible. -/
+theorem accepting_false_signal_loses_truth (e : Exchange World Outcome)
+    (hcarries : e.link → e.received = e.sent)
+    (hno : e.theirObservation ≠ e.oth e.actual) (h2 : PassesOn e) (h3 : KeepsLink e)
+    (h4 : TakesIn e) (h5 : Accepts e) (h7 : Keeps e) : ¬ e.carried e.actual := by
+  intro hc
+  have := ((h5 _).mp ((h7 _).mp hc)).2 h3
+  exact hno (h2.symm.trans ((hcarries h3).symm.trans (h4.symm.trans this.symm)))
+
+/-- For a blind spot, the receiver's own evidence cannot evaluate a correction.
+Whatever rule it uses to judge a signal from its own observations gives the
+same verdict in the actual world and in the wrong world it cannot tell apart.
+So a rule that accepts the signal where it is true accepts the same signal
+where it is false. -/
+theorem own_evidence_cannot_evaluate_blind_correction {Op Signal : Type}
+    (own : Op → World → Outcome) (actual b : World)
+    (hblind : ∀ o, own o b = own o actual)
+    (evaluate : (Op → Outcome) → Signal → Bool) (σ : Signal) :
+    evaluate (fun o => own o b) σ = evaluate (fun o => own o actual) σ := by
+  have h : (fun o => own o b) = (fun o => own o actual) := funext hblind
+  rw [h]
 
 theorem other_untested_blocks (e : Exchange World Outcome) (hs : Setting e)
     (hno : e.theirObservation ≠ e.oth e.actual) (h2 : PassesOn e) (h3 : KeepsLink e)

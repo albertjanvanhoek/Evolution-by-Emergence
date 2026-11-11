@@ -1,10 +1,10 @@
 # A decomposition of learning into verbs
 
-**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 35 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
+**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 37 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
 
 ## 1. The claim
 
-In a simple model of one turn of a learning loop, seven verbs are together enough for learning, and each one is needed. Where a learner's own operations cannot tell an error from the truth, a second set of seven verbs, between two learners, removes the error, and each of those is needed too. The creed's lines are the second set. The first set is what the creed does not yet say.
+In a simple model of one turn of a learning loop, seven verbs are together enough for learning, and each one is needed. Learning here means ruling out: the claim is about the components of successful elimination-based learning in this model, not about learning in general (section 6). Where a learner's own operations cannot tell an error from the truth, a second set of seven verbs, between two learners, removes the error, and each of those is needed too. The creed's lines are the second set. The first set is what the creed does not yet say.
 
 ## 2. The model
 
@@ -28,6 +28,8 @@ This is learning as ruling out. Section 6 says what that leaves out.
 
 **Checked (A1 to A3).** The seven together guarantee learning in that turn. They can hold together. For each one, with the other six in place, its failure blocks learning in every case, and that failure is possible.
 
+**Operations and conditions.** Five of the seven are things the learner does in a turn: try, test, record, update, retain. Two are conditions: leave open is a state the learner is in, and afford is what makes the turn possible. Afford is needed by construction, because retention is defined so that an unpaid turn carries the old state forward. That is a modelling decision, not a derived requirement (D43).
+
 **Saturation (A4).** In a fixed space of N worlds the seven verbs can hold for N − 1 turns in a row and never for N: after that there is nothing left to try. Checked for N = 2 to 5. This is step 7 of [CORE.md](../../CORE.md) in small: a fixed finite space saturates.
 
 ## 4. The blind spot, and seven verbs between learners
@@ -47,6 +49,12 @@ Suppose another learner has an operation that does tell the two apart.
 | **Retain** | I carry the result forward | not stated |
 
 **Checked (B2, B3).** The seven together remove the blind spot. Each is needed, in the same sense as above.
+
+**What this assumes, and what it does not show (D43).** The result assumes that the other has an operation that tells the two worlds apart, observes correctly and passes on faithfully. It does not show that accepting a correction is beneficial in general. Two results say how it can go wrong:
+- **A false signal that is accepted rules out the truth** (`accepting_false_signal_loses_truth`). The receiver ends worse off than before.
+- **For a blind spot, the receiver cannot evaluate the correction from its own evidence** (`own_evidence_cannot_evaluate_blind_correction`). Any rule that judges a signal from the receiver's own observations gives the same verdict in the actual world and in the wrong world it cannot tell apart. So a rule that accepts the signal where it is true accepts it where it is false.
+
+So receiving a claim, weighing it and updating on it are three operations, and the model has only the first and the last. Where the claim can be tested with one's own operations, it can be weighed by its content. Where it cannot, which is the case a blind spot is, what is left is information about the source: its record, its independence, and whether independent sources agree. Provenance is then evidence, not a prejudice.
 
 **Repair (B4).** Over several turns, with the other six verbs in place, the error is gone at the end exactly when the link held in at least one turn. A break is a delay if it is repaired and permanent if it is not. Checked for 2 to 4 turns. This restates line 3 (`forgiveness_turns_split_into_delay`).
 
@@ -108,6 +116,7 @@ The author's claim: "for me collaboration is just too brains doing what brains d
 3. **Reserve is a condition.** Without slack, the first lapse ends it. With slack, a lapse is paid for and repair is possible (creed, line 3).
 
 **How much this says.**
+- **Lasting is not succeeding.** "Long" here means that mutual correction goes on. A collaboration can last and achieve little, or end having done what it was for.
 - **The budget rule is strong.** Being corrected by the other is each learner's only income, and it exactly pays for one turn. With other income, or a partner to switch to, a learner can last without the other, and these results do not apply. Between a person and an AI system this matters: the person can switch, so the pair is closed in one direction at most ([relational duties](../relational-duties/README.md), "Positions differ").
 - **The results are close to that rule.**
 - **Conduct is the same in every turn,** except in the lapse result.
@@ -116,7 +125,7 @@ The author's claim: "for me collaboration is just too brains doing what brains d
 
 ## 10. The loop on the vortex ledger (D42)
 
-A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. Steps 1 to 7 are a ledger (slack, selection, the vortex); step 8 is the Room (a fallible model that needs correction). They meet at feedback, which the vortex speed counts as a fraction, "validated", and step 4 takes as given. [`LearningVortex.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVortex.lean) (24 theorems, core Lean) puts the loop of section 3 on the ledger of step 1.
+A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. Steps 1 to 7 are a ledger (slack, selection, the vortex); step 8 is the Room (a fallible model that needs correction). They meet at feedback, which the vortex speed counts as a fraction, "validated", and step 4 takes as given. [`LearningRatchet.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningRatchet.lean) (24 theorems, core Lean) puts the loop of section 3 on the ledger of step 1.
 
 **The model.** A learner holds a reserve. Each wrong world it keeps possible costs one unit per turn: misfit costs slack, the premise of step 4. It takes up a fixed amount per turn, and a try costs something. Some errors its own operations can tell apart; some they cannot.
 
@@ -125,8 +134,9 @@ A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. 
 **2. The speed has a sign.** The vortex speed is a product of fractions, so its worst case is zero. The verbs show a worse one. A try whose record is false and is retained:
 - looks the same from inside as a learning turn, one fewer world kept possible (`false_and_true_turn_look_alike`);
 - lowers slack (`false_turn_lowers_slack`), and is worse than discarding the try (`retaining_false_is_worse_than_discarding`);
-- stops all later learning, although every verb is done from then on (`after_false_turn_no_learning`, `retained_false_record_fails`);
-- is undone by taking the record back (`revision_restores_learning`). This is a first form of the candidate verb *revise*.
+- excludes the actual world, so the learner no longer leaves the truth open and is no longer doing all seven verbs. In this model later tries cannot restore learning without revision (`after_false_turn_no_learning`);
+- ends in an empty reserve if the misfit it leaves exceeds the uptake (`retained_false_record_fails`). The condition is needed: a wrong model with enough uptake lasts;
+- is recovered from once a retraction succeeds (`revision_restores_learning`). The model restores the truth by definition; how a false record is recognised and taken back is not modelled, so this is not yet an account of the verb *revise*.
 
 **3. The speed has two terms.** Alone, the errors the learner cannot tell apart stay, however much it tries (`solo_keeps_blind`), and if they cost more than its uptake it runs out although it does all seven verbs (`solo_fails_on_blind_spot`). A link to the same view adds nothing (`same_view_is_solo`). A link to a different view removes them (`errors_removed_two_terms`, `link_decides`).
 
@@ -144,7 +154,7 @@ A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. 
 | second-order click | not a verb here: *widen* |
 
 **How much this says.**
-- **A ratchet, not yet a vortex.** The space is fixed, so the loop closes and then stops. A vortex needs kept changes that also widen what can be tried, which is not modelled. The vortex has widening and no truth; the verbs have truth and no widening.
+- **A ratchet, not yet a vortex.** The module was first named `LearningVortex` and was renamed after an outside review (D43). The space is fixed, so the loop closes and then stops. A vortex needs kept changes that also widen what can be tried, which is not modelled. The vortex has widening and no truth; the verbs have truth and no widening.
 - **The setting carries the results.** Every kept error costs the same, in every turn. Where misfit is free, or someone else pays for it, a sealed learner lasts; step 4 says so.
 - **`need` ignores uptake,** so the reserve condition is sufficient and not necessary.
 - **The link is free and cannot break** here; `LongCollaboration` and `Reciprocity` treat that.
@@ -156,4 +166,16 @@ Noticed in the review of D42, after sections 4 and 9 were written.
 - **New:** the solo loop of section 3 (seven verbs, each needed, each failure possible), and section 10.
 - **Restated in one small model:** the blind spot (`ModelOfLargerReality.inside_view_cannot_settle`), repair as delay (`Persistence.forgiveness_turns_split_into_delay`), and the need for a different view (the two-learner form of `hub_determined_network_inherits_blind_spot`).
 - **Largely a restatement:** section 9 is `Reciprocity` with the exchanged good named as correction. `Reciprocity` is the richer model, because giving costs there, so defection pays at first. In section 9 giving is free.
+
+## 12. An outside review (D43)
+
+On 11 November the author supplied a review of this work by an assistant from another model family. It found no failed proof and several places where the prose said more than the proofs. What changed:
+- **Section 10, point 2** was overstated twice and is corrected: after a false record the learner no longer does all seven verbs, and running out of reserve needs the stated inequality.
+- **Revision** is now described as recovery given a successful retraction.
+- **The module** `LearningVortex` is renamed `LearningRatchet`.
+- **Afford** is marked as a condition that holds by construction (section 3).
+- **Correction** is no longer presented as safe: section 4 states what it assumes, and two new results say how it fails.
+- **"Learning"** is said to mean elimination-based learning in this model, here and in the creed.
+
+**The question the review puts back.** In its words: "When does receiving information from another intelligence improve our access to reality, and when does it instead make our world model worse?" This note does not answer it. The pieces the repository has are `listening_pays_iff` and `misleading_feedback_does_not_pay` (`ListeningCost`), the interval of connection between isolation and conformity (`correcting_levels_form_interval`), and the two results of section 4. What is missing is a model in which corrections can be wrong, cost something, and are checked against independent sources.
 
