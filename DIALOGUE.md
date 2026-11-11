@@ -1104,3 +1104,160 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author, on reading this entry:** "it won't solve all - and that is not the point. But i ought to make the concept clear of how treating each other is bad."
 - **Assistant:** this answers the first point above in part. The claim is not that a floor under relationships ends conflict or difference. It is that the law should name what counts as treating each other badly, so that it can be recognised and spoken about. That matches his view in D33 that rights name principles and set boundaries. Naming a wrong is a smaller and more defensible aim than removing differences, and law has done it before: coercive control was a harm before it had a name. Whether "remove the differences" is withdrawn or only narrowed is not recorded. The note now states this aim in its first section.
 - **Open:** a human legal reading; references for the historical claims; adjudication, thresholds and the limit case listed in the note; whether the identity description of this entry should appear in CORE's "The view from inside".
+
+### D40. The creed as a decomposition of learning; the verbs and the sins (Open, November 2026)
+- **Author:** "What i also like - is that the discovarion creed is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa".
+- **Assistant:** held that one direction stands and the other does not yet. Lines 1 to 5 say what learning requires. But someone can be honest, correctable and forgiving and still learn nothing: the creed has no verb for trying, for testing, or for keeping. It covers what keeps a learner correctable among others, not what a learner does itself.
+- **Author:** "Interesting - in that case lets finish the full decomposition of learning - use Z3 for formalizing the logic".
+- **Evidence:** [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md), with [z3/decomposition.py](research/discovarianism/z3/decomposition.py), 44 checks. In a model of one turn of a loop over possible worlds, seven verbs are together enough for learning and each is needed (leave open, try, test, record, update, retain, afford). An error the learner's own operations cannot tell from the truth survives any number of its own turns; seven verbs between two learners remove it, and each is needed. Merged, nine verbs. The creed's lines are the part between learners.
+- **A modelling error found on the way:** the first version made "afford" a precondition of the other verbs, so its "needed" result was empty. A paired check ("this failure is possible") caught it. The cost is now tied to retention.
+- **Author, on the result:** "add to the repo. And please add also an updated Creed. Also formulate the "sins" - as I liked that side of the creed."
+- **Done:** the note and script are in `research/discovarianism/`. [CREED.md](research/discovarianism/CREED.md) has two new sections by linked revision: "The verbs of learning", and "Sins", one for each verb, with the root sin of the earlier creeds (neglecting interdependence) read as the belief that one's own loop is enough. Lines 1 to 13 are unchanged and keep their numbers, so references elsewhere still hold.
+- **Where the assistant is unsure or disagrees:**
+  - **the new creed text is the assistant's wording in the author's voice.** He asked for it but has not read it. Until he corrects it, it is a draft;
+  - **Z3, not Lean.** The author asked for Z3. It suits this work, because the "each is needed" results need witnesses that a failure is possible, which a solver gives directly. But the checks are not in CI, and the repository's standard is Lean. A port of the three main results is open;
+  - **the results are close to their definitions.** The one step of argument is that two possibilities with different outcomes cannot both agree with an honest record of a real test. "Complete" means complete for this model, and a different model would give a different list;
+  - **the model is learning as ruling out.** Skill, perception and new ways of representing are outside it. Two verbs it points to and does not contain are revise and widen;
+  - **"sin" and "no condemnation".** The creed's guardrail says diagnosis, not condemnation. The assistant kept the word because the author asked for it, and wrote the section so that a sin names where the loop stopped. Whether the word carries more than that for readers is a risk;
+  - **"Done to another"** is the assistant's addition. It ties the sins to D39: treating each other badly as stopping someone else's loop. The author has not said this;
+  - **the names of the sins** are the assistant's, where the earlier creeds had none (asking only safe questions, answering for the world, letting it lapse, eating the ground);
+  - **the opening line** still says "I am a learning process". In D39 the author moved toward "a network that models the world and itself in it". The assistant did not change the line.
+- **Author, later the same day:** "Perhpas in line with the repo we should add a Lean proof as well."
+- **Assistant:** agreed; this answers the second point above. Done: `LearningVerbs.lean`, 34 theorems in core Lean (35 since D41), registered in the CI like the other modules, outside the core. It proves the sufficiency of both sets of seven verbs, that each failure blocks, that each failure can occur with the other six in place, the blind spot, and repair over any number of turns (the solver had checked 2 to 4). The file was compiled locally with Lean 4.33.0 on its own. The full package build with Mathlib was not run locally; that is for CI to confirm. Not ported: saturation of a fixed finite space, which still rests on the solver for small sizes. The port changed no result. It found no error in the Z3 model, which is weak evidence: the same assistant wrote both from the same definitions.
+- **Open:** the author's corrections to the two creed sections; saturation in Lean; whether the results belong in the core; a model with revise and widen; a reader from another model family (working agreement 7).
+
+### D41. Which verbs a long collaboration needs (Open, November 2026)
+- **Author:** "PLease formalize which of these verbs you also need for a long successful collaboration (for me collaboration is just too brains doing what brains do - so it is the same)".
+- **Evidence:** `LongCollaboration.lean`, 28 theorems in core Lean, outside the core, and one theorem added to `LearningVerbs.lean` (`same_view_cannot_correct`). Section 9 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md). Two learners; each is corrected in a turn exactly when the seven verbs between learners hold in its direction; staying in costs one unit per turn and being corrected pays for it. The collaboration lasts for every number of turns exactly when both do all seven verbs (`lasts_iff_all_verbs`). A learner who takes and does not pass on is corrected only while the other's reserve lasts (`taker_corrected_only_while_other_lasts`).
+- **Assistant:** the author's claim holds for the verbs. No new verb is needed. But three things change, and none is a verb of one brain:
+  1. **the verbs become mutual.** In one exchange my own testing and passing on are not needed for my own correction. In a lasting one they are, because they keep the other in;
+  2. **the two have to differ.** With the same view, all seven verbs leave the error in place;
+  3. **reserve.** Without slack the first lapse ends it; with slack a lapse is a cost.
+
+  So "the same" is right about what each brain does and leaves out what holds between them.
+- **Where the assistant is unsure or disagrees:**
+  - **the budget rule carries the result.** Being corrected by the other is each learner's only income. That is a closed pair. With other income or a partner to switch to, a learner lasts without the other (`PartnerSwitching`). The "exactly when" is true of the model and should not be quoted without the rule;
+  - **between a person and an AI system the pair is not closed both ways.** The person can switch. So this model does not show that a person needs all seven verbs toward an AI system for the collaboration to last, and D27's asymmetry stands;
+  - **"long" is assumed to have something to exchange.** Each turn brings a fresh error the other can see. In a fixed space the exchange runs out;
+  - **"successful" is read as "lasts, with both still being corrected".** The author may mean more by it; his meaning is not recorded;
+  - **the link to the verbs module is by reading,** not by import;
+  - **same author, same day, same model family** as D40 (working agreement 7).
+- **Open:** the author's view on the three changes; a model with other income and with switching; more than two learners; a fresh-error process that is modelled and not assumed.
+
+### D42. A review of the core: where the two lines meet, and the loop on the ledger (Open, November 2026)
+- **Author:** "Lets return improving the EbE repository. I think the formalization of learning is a very good addition. And there is an element to it that make me believe that you should be able to improve the vortex too. Therefore please review the CORE of the repo - and the main logic lineage (the one based on the Room and which we are expanding)."
+- **Assistant, the review:**
+  1. **Two lines, joined by narrative.** Steps 1 to 7 are a ledger. Step 8 and "the view from inside" are the Room. They meet at feedback: step 4 says "follows reliable feedback" and the vortex speed has a factor "validated", but neither says what validating is. The page promises one model of learning, and no step states the loop.
+  2. **The vortex cannot run backwards.** Its speed is a product of fractions, so the worst case is zero. A false record that is retained is worse than zero.
+  3. **"Outside" means two things** in CORE: the world answering, and others correcting. A learner in contact with the world learns alone; it needs others for what its own operations cannot tell apart.
+  4. **The Room proves fallibility, not the need for others.** That step needs a further premise: someone else can see what you cannot. Without a difference between learners, all the verbs leave the error in place.
+  5. **One premise carries the join: fit pays, and misfit costs slack.** Where the cost of misfit can be passed to others, a sealed system lasts. CORE says so; it could name this as the hinge.
+  6. **Part of D40 and D41 restates earlier results.** `LongCollaboration` is largely `Reciprocity`; `blind_spot_survives` is close to `inside_view_cannot_settle`; the repair result to `forgiveness_turns_split_into_delay`. The assistant had not checked for overlap before writing. What is new is the solo loop.
+- **Assistant, the proposal:** (1) close the loop, so that "afford" is paid from slack that learning raises; (2) a speed with a sign; (3) a speed with two terms, own operations and a link.
+- **Author:** "Yes please implement 1 (and 2, and 3 after) and adjust the rest accordingly."
+- **Done:** `LearningVortex.lean`, 24 theorems in core Lean, outside the core; section 10 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md). The overlap of point 6 is now stated in both module headers, the package README and section 11 of the note. CORE.md has two small pointers and is otherwise unchanged.
+- **Where the assistant is unsure or disagrees:**
+  - **it is a ratchet, not yet a vortex.** The space is fixed, so the loop closes and then stops. The module's name promises more than it delivers. Joining it to the second-order click (widening) is the real next step;
+  - **the setting carries the results.** Every kept error costs the same, in every turn. This is step 4's premise in its bluntest form;
+  - **"efficiency buys duration" is shown in one setting.** CORE's open item may mean more than this;
+  - **points 3, 4 and 5 of the review are about CORE's wording** and are not acted on. The assistant did not rewrite CORE;
+  - **the results are outside the core.** Whether a statement of the learning loop belongs between steps 4 and 5 is the author's decision;
+  - **same model family, same two days** (working agreement 7). The review of one's own work found overlap only on the second day.
+- **Later (D43):** the module was renamed `LearningRatchet.lean`, and the two overstatements about the false record were corrected.
+- **Open:** widening on the same ledger; whether CORE should state the loop, separate the two senses of "outside", and name the hinge; the author's view on points 3 to 5; an outside reader.
+
+### D43. An outside review of the work of D39 to D42 (Open, November 2026)
+- **Context:** the author supplied a written review of pull request 149 by an assistant from another model family, without a comment of his own. His view of it is not recorded. This is the third view that working agreement 7 asks for. The review found no failed proof. It recommended revisions before merging, mainly where the prose said more than the proofs.
+- **The review's findings, and the assistant's response:**
+  1. **Creed line 10, "Weigh signals by their content, not their source", is too strong and sits badly with line 9.** Provenance, independence and reliability are evidence. The reviewer's replacement: "Evaluate signals by their evidence, content and provenance, not by the status or identity of their source alone." *Agreed.* Line 10 is the author's and is not changed. The assistant adds a reason from the model: for a blind spot the receiver cannot evaluate a correction from its own evidence at all (`own_evidence_cannot_evaluate_blind_correction`), so there provenance is all it has. The assistant's own verb "accept the correction" and its sin were reworded.
+  2. **The correction result assumes accurate observation and faithful passing on; it does not show that accepting a correction is beneficial.** *Agreed, and it is the most important point.* Added: `accepting_false_signal_loses_truth`, and a statement of the assumptions in the note. Receiving, weighing and updating are three operations; the model has the first and the last.
+  3. **`LearningVortex` is not a vortex.** *Agreed;* the assistant had said so and kept the name. Renamed `LearningRatchet`.
+  4. **Learning is not the same as eliminating possibilities; the creed speaks more universally than the note.** *Agreed.* The creed section and the note now say "learning as ruling out".
+  5. **The false-record result was overstated in the note.** After a false record the learner no longer leaves the truth open, so it is not doing all seven verbs; and running out of reserve needs the stated inequality. *Agreed on both.* These were errors in the assistant's prose and in a docstring, not in the proofs. Corrected.
+  6. **Revision restores the truth by assumption.** *Agreed.* Now described as recovery given a successful retraction.
+  7. **Afford is partly built into the definition.** *Agreed.* Now marked as a condition that holds by construction. The Lean was not restructured.
+  8. **The legal note:** a person should not be reduced to a model; "duties run both ways or not at all" is too absolute; the Mental Capacity Act's section 1(3) and the Dutch declaration on article 12 are missing; the opening description of rights law is too sweeping, given article 29 of the Universal Declaration. *Agreed on all four.* The note was revised. The first point matches what the assistant argued in D39, that the I is more than a learning process, and then did not carry into its own draft.
+  9. **Editorial:** the pull request title and description were out of date; ten sin rows for nine verbs; "long" should not be equated with "successful"; exit does not end legal responsibilities. *Corrected.*
+  10. **The opening line, "I exist as one only while I learn":** a dormant learner is a counterexample. *Agreed,* and close to the amnesia objection of D39. The line is the author's and is not changed.
+- **Where the assistant still differs from the review, or adds to it:**
+  - on line 10 the review treats provenance as allowed. The model suggests more: for exactly the corrections one most needs, provenance is the only evidence the receiver has;
+  - the review asks to preserve the author's verbatim quotations. They were preserved from the start;
+  - the review is from another model family, which is better than the same one and still not a human reader. The legal note has still not been read by a lawyer.
+- **What the assistant takes from it about its own work:** in D40 to D42 it wrote the summaries last and in a hurry, and each summary said a little more than the theorem. The author's working agreement 6 exists for this. A reader from outside caught in one pass what the assistant's own review in D42 did not.
+- **The question the review puts back:** "When does receiving information from another intelligence improve our access to reality, and when does it instead make our world model worse?"
+- **Open:** the author's decision on line 10 and on the opening line; a model in which corrections can be wrong, cost something and are checked against independent sources; a lawyer's reading; whether the review itself should be added to the repository (the assistant did not add it).
+
+### D44. What intelligence is; being told and being taught (Open, November 2026)
+- **Author, his prompt to an assistant of another model family, as he passed it on:** "The verbs of learning are meant to be the best description on how learning works - but as this is the best description - this has information for the intelligence on how to opperate - as intelligence is the learning loop in a network (i still find it hard to define intelligence - as it is a structure in a network what can improve its own structure - it is a foward loop in a network - which is an odd description of what it is - but perhaps you have a better one)."
+- **The other assistant's reply, supplied by the author:** it proposed "An intelligence is an organized process within a network that can use information from its interactions with reality to revise its own organization, including the processes by which it generates, evaluates and retains future changes." It held that this defines a capacity and not constant success, that intelligence may be graded, that the verbs are descriptive and give conditional guidance given the aim of learning, and that intelligence is something a network does. It asked whether the decomposition is complete when a learner can change its own learning operations.
+- **Assistant:**
+  - *agrees* that capacity is the right thing to define. It also answers the review's objection to the creed's opening line (D43, point 10): a dormant learner keeps the capacity while the activity pauses;
+  - *agrees* that the verbs are descriptive first. That is the creed's existing structure: Follows, If, Proposed;
+  - *answers the question:* no. In `LearningVerbs` a learner's operations are fixed, and that is why its blind spot is fixed;
+  - *on "a forward loop":* the assistant finds the author's phrase accurate and would keep it. What a turn keeps changes what the next turn can do. Its own attempt: learning changes what a network holds to be possible; intelligence is the capacity to also change the means by which it learns, that is, what it can try, how it tests and what it keeps;
+  - *differs on one point:* the other assistant's careful definition drops the word "model". Without it, evolution by natural selection qualifies, since evolvability evolves. That may be intended, but then the definition does not separate intelligence from what the author calls second-order evolution;
+  - *notes* that "graded" has no measure yet, and that the idea of levels of learning has a literature the assistant named from memory and did not check: Bateson's levels of learning, double-loop learning (Argyris and Schön), and Chollet's skill-acquisition efficiency. Unverified (working agreement 1).
+- **Author:** "Yes please formalize - as the aim is to work towards the best description of learning."
+- **Evidence:** five results added to `LearningVerbs.lean` and six to `LearningRatchet.lean`, one of them a witness with numbers; section 13 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md). Being told passes on a result; being taught passes on an operation. Honest own testing never rules out the truth whatever the operation (`own_test_keeps_truth`), where accepting a false result does. Acquiring an operation ends a blind spot, removes no error in that turn, and lets the learner go on alone. Teaching spends the difference between the two (`after_acquiring_other_adds_nothing`).
+- **Later (D45):** the reading of `after_acquiring_other_adds_nothing` as "teaching spends the difference" was too strong and is corrected: it removes a difference in methods only.
+- **Where the assistant is unsure or disagrees:**
+  - **this is a first-order picture of a second-order thing.** The learner's step rule is fixed and a counter changes. It does not model a learner that rewrites how it learns, which is what both definitions are about;
+  - **it is an instance of the second-order click,** not a new principle (`new_parent_set_implies_secondOrderClick`). The assistant checked for overlap before writing this time;
+  - **the learner's account of the operation is assumed right.** A wrong account of an instrument can lose the truth as a false result does;
+  - **the definition of intelligence is not settled** and nothing was put into CORE.md;
+  - **two assistants and the author agreeing is not independent confirmation** (working agreement 7), though the second family did catch what the first missed in D43.
+- **Open:** the author's own choice of definition; whether "acquire an operation" becomes a verb of the creed; a learner whose operations themselves are revisable; where new difference comes from once learners have taught each other; a measure for "graded"; the literature check.
+
+### D45. The author's answers to D44: the tenth verb, two definitions, and the same verbs one level up (Open, November 2026)
+- **Context:** the author passed on a second note from the assistant of another model family, written after reading D44, and said of it: "MY answers were the same as [the other assistant] - but it formulated it better - so here you are:". The bracket replaces a model name (working agreement 5); the rest is verbatim. So the four points below are the author's positions, in the other assistant's wording.
+- **Author, point 1: teaching does not necessarily remove useful differences.** `after_acquiring_other_adds_nothing` is correct in the model, but the conclusion that two learners who have taught each other everything can no longer correct each other is too strong. Two laboratories with the same method still detect each other's errors through independent observations, implementations, samples and conditions. The wording he endorses: "Teaching removes a difference in available methods. It does not necessarily eliminate differences in evidence, perspective, implementation or experience."
+  - **Assistant:** agrees; the overstatement was the assistant's, in the note, the creed, the docstring and its summary to the author. It is the same kind of error as in D43: the prose said more than the theorem. Corrected in all four places. Added, to show the point inside the model: with the same method, honest records agree (`same_method_honest_records_agree`), so a disagreement reveals a failure (`same_method_disagreement_reveals_failure`), and agreement proves nothing if both failed alike (`agreement_is_not_proof`).
+- **Author, point 2: include the tenth verb, with a broader name.** "Develop and acquire methods", because an intelligence can also develop a method itself, and with the sentence "I test these methods, because a method can itself be wrong."
+  - **Assistant:** agrees. The verb is in the creed as provisional, in the wording he endorsed, with a sin. The warning is now a result: `wrong_account_of_method_loses_truth`. Developing a method oneself is not modelled; only acquiring is.
+- **Author, point 3: two definitions, proposed and not theorems.** Intelligence: "The capacity of a network-organized process to use information from interactions with reality to adapt its internal organization and behaviour." Recursive intelligence: "The capacity of such a process to also modify the operations through which it learns, evaluates information and adapts."
+  - **Assistant:** finds this split better than its own attempt in D44, which made recursion part of intelligence and so excluded simple learners. One remark stands: the first definition is broad. Natural selection acting on a lineage and an adaptive controller both meet it. If the theory means to be substrate-general that is intended, and it is worth saying so where the definition is used. Nothing was put into CORE.md.
+- **Author, point 4: the next step is the recursive application of the loop,** not more verbs: whether higher-order learning can be represented by the same verbs applied again.
+  - **Assistant:** did the first step. In `LearningVerbs` a turn is defined over any type of "world". Take the candidate accounts of a method as the worlds and a known case as the operation, and checking a method is a learning turn with nothing added (`method_validation_is_a_learning_turn`). It has its own blind spot: a wrong account that agrees on the known case survives (`validated_method_can_still_be_wrong`). Section 14 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
+- **Later (D46):** the hierarchy of levels may be an artefact; see `surprise_does_not_say_which`.
+- **Where the assistant is unsure or disagrees:**
+  - **the one-level-up result is cheap.** It holds because the model never said what a world is. That is a real feature of the model, and it is also why the result says little about how any actual learner does higher-order learning;
+  - **"the same verbs at every level" is shown for the form, at one further level.** That the construction repeats is plain; that real learning is organised this way is the author's hypothesis and is not tested by it;
+  - **no level is certain.** Each check leaves a blind spot. The regress ends in a decision (`ActingUnderTime`), not in a proof;
+  - **the replication results need independence** between the two executions, which the model does not have a way to state; `agreement_is_not_proof` marks the gap;
+  - **the tenth verb's wording came from the other assistant,** was endorsed by the author, and was placed in the creed by this assistant. Three hands; the author should read the line as it now stands.
+- **Open:** a learner that develops a method; independence between executions (noise, samples); a model in which corrections can be wrong, cost something and are checked against independent sources (D43); whether the two definitions go into CORE.md; a human reader.
+
+### D46. The assistant's adversarial review of its own work, and what was changed (Open, November 2026)
+- **Author:** "PLease do an adversial review yourself."
+- **Assistant, the review.** Done against the files as they stood, with the sharper objections tested in a scratch Lean file before they were accepted. Its recommendation was not to merge pull request 149 as it stood.
+  - **Framing.**
+    1. Two of the seven "verbs" are not things a learner can do or check. "Test" and "leave open" are defined by the actual world. So the decomposition mixed actions with conditions of success, and the sins blamed people for failures of a condition: never having thought of the truth, an honest look through a wrong instrument, forgetting.
+    2. The model's world stands still, and the theory's does not. In the model retaining is always good.
+    3. The "levels" of D45 may be an artefact. A surprise does not say whether the view of the world or the account of the method is wrong.
+  - **Errors still in the pull request.**
+    4. The two terms of "the speed has two terms" could never both be active in one turn.
+    5. Acquiring an operation needed no teacher and no different view.
+    6. The note still said that for a blind spot information about the source is all that is left, which D44 contradicts.
+    7. "Looks the same from inside" rested on a count defined to make it true; and a false record left the number of wrong worlds unchanged whatever it said.
+    8. The collaboration result sits on a knife-edge: a correction pays exactly one turn's cost.
+    9. Three results had no witness.
+  - **Process.**
+    10. Seventeen files, some 2,700 lines and over a hundred theorems on three subjects in two days; three overstated summaries, each caught by someone else; the creed edited by the assistant four times.
+    11. No literature check for any of it.
+    12. The legal note: two sources read in the primary, no references for its history, no lawyer.
+- **Author:** "Ok lets implement those improvements. Please write a prompt for another agent to do the literature audit, and do the rest yourselves."
+- **Done:**
+  - **Lean.** The link can remove an own error and a blind error in one turn (`both_terms_in_one_turn`). Acquiring needs a source with a different view (`acquire_from_same_view_gains_nothing`). The false turn takes the number of wrong worlds it removes as a parameter (`false_turn_slack`); the count-based look-alike result is gone, replaced by `tested_and_untested_look_alike` and `open_and_sealed_look_alike`. The knife-edge is stated (`gain_below_cost_ends`, `gain_at_least_cost_lasts`). Witnesses added. For the framing: `retained_record_goes_stale` and `surprise_does_not_say_which`.
+  - **The creed.** The two new sections are recast: what I do, what has to hold, and sins only for the first, with a paragraph "What is not a sin". Lines 1 to 13 are not touched.
+  - **The note.** Corrected in place, with section 15.
+  - **The audit brief.** [verification/audits/2026-11-11-learning-verbs/BRIEF.md](verification/audits/2026-11-11-learning-verbs/BRIEF.md), a prompt for a reviewer who did not write the work. The audit itself is not done.
+  - **The pull request** is split into three, stacked: the legal note; the formal work with this dialogue; the creed.
+- **Where the assistant is unsure or disagrees:**
+  - **points 2 and 3 are answered by one small result each, not by a model.** A world that moves, forgetting and letting go still have no account here;
+  - **the recast creed is a fifth edit by the assistant in two days.** It is more defensible than the fourth. The author has not read any of the five;
+  - **"what is not a sin" is the assistant's addition.** It follows from the split, and it changes the tone of a part of the creed the author said he liked;
+  - **the knife-edge is stated, not removed.** That a missing verb ends the exchange when a correction pays more than a turn costs is not proved;
+  - **a self-review by the author of the work, from the same model family,** found what two outside reviews had not, and will have missed what they would not;
+  - **until the literature audit is done, nothing in D40 to D46 should be presented as new.**
+- **Open:** the literature audit; the author's reading of the creed sections; a model with a world that moves; a lawyer's reading of the legal note; whether any of this belongs in the core.
+
