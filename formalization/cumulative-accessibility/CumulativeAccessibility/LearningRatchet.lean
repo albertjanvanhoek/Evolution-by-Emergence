@@ -22,10 +22,12 @@ cannot.  Each wrong world kept costs one unit per turn: misfit costs slack
 (the premise of step 4).  If it has ruled out the actual world, that costs
 `lost` per turn as well.  It takes up `u` per turn, and a try costs `t`.
 
-**1. The loop pays for its own next turn.**  A learning turn removes one wrong
-world, so it raises slack by one, for good.  In `LearningVerbs` the verb
-"afford" was given from outside; here it is paid from the reserve, and each
-turn's gain lowers the cost of every later turn.
+**1. A learning turn lowers the cost of every later turn.**  It removes one
+wrong world, so it raises slack by one, for good.  In `LearningVerbs` the verb
+"afford" was given from outside; here it is paid from the reserve.  Raising
+later slack is not the same as paying for the present try: a starting reserve
+is needed (`loop_closes`), and a sealed learner fails only if its misfit
+exceeds its uptake.
 
 **2. The speed has a sign.**  A turn whose record is false (untested, or
 distorted) and is retained cannot be told from a learning turn from inside
@@ -48,7 +50,8 @@ the same view the link adds nothing.
 Results:
 * `learning_turn_raises_slack`, `learner_clears_own_errors`, `loop_closes`,
   `sealed_fails`, `futile_fails`, `efficiency_buys_duration`.
-* `false_turn_slack`, `false_turn_lowers_slack`,
+* `false_turn_slack`, `false_turn_lowers_slack`, `false_turn_excludes_truth`,
+  `false_turn_blocks_later_learning`,
   `after_false_turn_no_learning`, `retained_false_record_fails`,
   `retaining_false_is_worse_than_discarding`, `revision_restores_learning`.
 * `solo_keeps_blind`, `solo_fails_on_blind_spot`, `same_view_is_solo`,
@@ -67,6 +70,15 @@ clears them alone, and a lost link no longer matters.  This is the smallest
 case of a kept change that widens what can be tried, the second-order click
 of step 5 (`new_parent_set_implies_secondOrderClick` states it in general);
 here it is an instance, not a new principle.
+
+An independent literature audit (D47) found no exact antecedent for this
+ledger and judged its conclusions to follow largely from its stipulated prices
+and transitions.  Two of its points belong here.  The count sets the bill:
+splitting one wrong possibility into several raises the cost, and nothing
+invariant (a probability, a loss, a value of information) stands behind the
+count.  And the two terms of section 3 are two counters decremented
+separately by definition; that is counting, not a general result about how
+information from two sources combines.
 
 How much this says.  The results are close to arithmetic once the setting is
 fixed, and the setting carries them.  The strong assumptions: every wrong
@@ -95,8 +107,11 @@ and choosing what to try.
 -/
 
 /-- The world's side of the ledger: uptake per turn, the cost of a try, the
-cost per turn of having ruled out the actual world, and the cost of taking a
-record back. -/
+cost per turn of having ruled out the actual world beyond one unit, and the
+cost of taking a record back.  Having ruled out the actual world costs
+`lostCost + 1` per turn: at least as much as one wrong world kept.  With a
+cost that could be zero, a false record would leave no trace in the state and
+would not block later learning; an independent audit found that (D47). -/
 structure Terms where
   u : Nat
   t : Nat
@@ -148,7 +163,7 @@ some wrong worlds, `r` of them here.  How many depends on what the record
 happened to say; the model does not fix it. -/
 def falseTurn (p : Terms) (r : Nat) (s : State) : State :=
   { s with reserve := s.reserve + p.u - misfit s - p.t, own := s.own - r,
-           lost := s.lost + p.lostCost }
+           lost := s.lost + p.lostCost + 1 }
 
 /-- Taking the false record back. -/
 def revise (p : Terms) (s : State) : State :=
@@ -220,7 +235,7 @@ theorem drained_fails (f : State → State) (Inv : State → Prop)
   have := run_drains f Inv hkeep hcost (s.reserve.toNat + 1) s hs
   omega
 
-/-! ## 1. The loop pays for its own next turn -/
+/-! ## 1. A learning turn lowers the cost of every later turn -/
 
 /-- A learning turn raises slack by one, for good. -/
 theorem learning_turn_raises_slack (p : Terms) (s : State)
@@ -313,14 +328,30 @@ is actual (`LearningVerbs.tested_and_untested_look_alike`). -/
 /-- What a retained false record does to slack: it gains what the wrong worlds
 it happened to remove were costing, and loses what the lost world costs. -/
 theorem false_turn_slack (p : Terms) (r : Nat) (s : State) (hr : r ≤ s.own) :
-    slack p (falseTurn p r s) = slack p s + r - p.lostCost := by
+    slack p (falseTurn p r s) = slack p s + r - p.lostCost - 1 := by
   simp [falseTurn, slack, misfit]
   omega
+
+/-- A false turn always leaves its mark: the actual world is ruled out,
+whatever the costs. -/
+theorem false_turn_excludes_truth (p : Terms) (r : Nat) (s : State) :
+    0 < (falseTurn p r s).lost := by
+  simp [falseTurn]
+
+/-- So after any false turn, an honest try learns nothing until the record is
+taken back.  This holds by the rule of `learnOwn`; it is not derived from
+`LearningVerbs`. -/
+theorem false_turn_blocks_later_learning (p : Terms) (r : Nat) (s : State)
+    (hown : 0 < (falseTurn p r s).own) :
+    learnOwn p (falseTurn p r s) = futile p (falseTurn p r s) := by
+  have h := false_turn_excludes_truth p r s
+  have hne : ¬ ((falseTurn p r s).lost = 0) := by omega
+  simp [learnOwn, hown, hne]
 
 /-- It lowers slack whenever the lost world costs more than the wrong worlds
 it removed were costing.  The condition is needed. -/
 theorem false_turn_lowers_slack (p : Terms) (r : Nat) (s : State)
-    (hr : r ≤ s.own) (h : r < p.lostCost) :
+    (hr : r ≤ s.own) (h : r ≤ p.lostCost) :
     slack p (falseTurn p r s) < slack p s := by
   rw [false_turn_slack p r s hr]
   omega
@@ -355,7 +386,7 @@ theorem retained_false_record_fails (p : Terms) (s : State)
 /-- Retaining a false record is worse than discarding the try, under the same
 condition. -/
 theorem retaining_false_is_worse_than_discarding (p : Terms) (r : Nat) (s : State)
-    (hr : r ≤ s.own) (h : r < p.lostCost) :
+    (hr : r ≤ s.own) (h : r ≤ p.lostCost) :
     slack p (falseTurn p r s) < slack p (futile p s) ∧
     (falseTurn p r s).reserve = (futile p s).reserve := by
   constructor

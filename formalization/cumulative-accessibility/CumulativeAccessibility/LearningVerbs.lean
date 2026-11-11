@@ -5,7 +5,9 @@ namespace LearningVerbs
 # The verbs of learning
 
 What is learning made of?  This module states, for one turn of a learning
-loop, a set of verbs that are together enough for learning and each needed
+loop, a set of verbs that are together enough for learning.  For five of them
+the failure blocks learning; for update and retain one named way of failing
+does, and other departures need not
 (entry D40 of `DIALOGUE.md`; `research/discovarianism/LEARNING_DECOMPOSITION.md`).
 
 **The loop, alone.**  A learner keeps a set of worlds possible; one of them is
@@ -25,7 +27,15 @@ Results, alone:
   afford together give learning in that turn.
 * `sealed_blocks`, `no_try_blocks`, `untested_blocks`, `distorted_blocks`,
   `no_update_blocks`, `no_retain_blocks`, `unpaid_blocks`: with the other
-  verbs in place, the failure of one blocks learning in that turn.
+  verbs in place, a failure blocks learning in that turn.  For leave open,
+  try, test, record and afford the failure is the exact negation of the verb.
+  For update and retain it is one named way of failing (nothing changes; the
+  gain is dropped), not the negation.
+* `update_not_necessary_in_general`, `retain_not_necessary_in_general`: a turn
+  can depart from `Updates`, or from `Retains`, with the other six in place,
+  and still learn.  So the seven are jointly sufficient, and not each
+  individually necessary.  The counterexample for update is from an
+  independent audit (D47).
 * `sealed_possible` … `unpaid_possible`: each of those failures can occur
   with the other six verbs in place, so the results above are not empty.
 
@@ -47,7 +57,8 @@ Results, between learners:
   receiver judges a signal from its own observations gives the same verdict in
   the actual world and in the wrong world it cannot tell apart.  For a blind
   spot, the receiver's own evidence cannot separate a true correction from a
-  false one; information about the source has to do that.
+  false one.  Further evidence can: about the source, or an additional direct
+  test.  Neither is guaranteed to.
 * Being told and being taught (D44).  A correction is a result; an operation
   is a means.  With an operation of its own the learner tests for itself:
   honest own testing never rules out the actual world, whatever the operation
@@ -68,9 +79,12 @@ Results, between learners:
   truth (`wrong_account_of_method_loses_truth`).  Checking a method on a known
   case is a learning turn whose "worlds" are the candidate accounts of the
   method: accounts that mispredict the known case are ruled out and the true
-  one is kept (`method_validation_is_a_learning_turn`), and a wrong account
-  that agrees on the known case survives (`validated_method_can_still_be_wrong`),
-  which is the blind spot again, one level up.
+  one is kept (`method_check_filters_accounts`), and a wrong account
+  that agrees on the known case survives (`validated_method_can_still_be_wrong`).
+  A check can leave such an account standing; it need not, if the cases tested
+  separate all the candidates.  The filtering result does not by itself say
+  that anything was learned: that needs the candidate accounts to differ on
+  the case (`method_check_learns_when_accounts_differ`).
 * What cannot be checked from inside (D46).  "Test" and "leave open" are
   defined by the actual world, which the learner does not know.  Two turns can
   agree in everything the learner has and differ only in which world is
@@ -79,8 +93,9 @@ Results, between learners:
   (`open_and_sealed_look_alike`).  So these two are conditions of success and
   not things a learner can know it is doing.
 * A world that moves (D46).  What an honest test rightly ruled out can be the
-  actual world after a change (`retained_record_goes_stale`).  Retaining is
-  good only while the world stands still.
+  actual world after a change (`retained_record_goes_stale`).  A result that is
+  kept cannot be treated as an unchanged constraint on the present once the
+  world has changed.  A record tied to its own time can stay true and useful.
 * One joint space (D46).  A surprising outcome does not say whether the view of
   the world or the account of the method is wrong: both repairs survive
   (`surprise_does_not_say_which`).  The "levels" of D45 are a factoring that
@@ -269,6 +284,61 @@ theorem unpaid_blocks (t : Turn World Outcome) (hret : Retains t) (hno : ¬ Affo
   obtain ⟨w, hw, hnc⟩ := hl.2.2
   exact hnc ((hret w).mpr (Or.inr ⟨hno, hw⟩))
 
+/-! ### What "needed" means
+
+The blocking results above use the exact negation of the verb for leave open,
+try, test, record and afford.  For update and retain they use one way of
+failing.  Other departures from those two can still learn, by luck: the
+definition of learning asks that the truth is kept and something is ruled
+out, not that what was ruled out was ruled out for a reason. -/
+
+/-- A turn in which the other six verbs hold, `Updates` fails, and the learner
+still learns.  Worlds 0, 1 and 2 are kept possible; the operation tells 2 from
+the others; the record is right; and the update drops world 1 as well, which
+the record did not rule out.  Counterexample from an independent audit (D47). -/
+theorem update_not_necessary_in_general : ∃ t : Turn Nat Nat,
+    LeavesOpen t ∧ Tries t ∧ Tests t ∧ Records t ∧ ¬ Updates t ∧ Retains t ∧
+    Affords t ∧ Learns t := by
+  let t : Turn Nat Nat :=
+    { actual := 0, kept := fun w => w = 0 ∨ w = 1 ∨ w = 2,
+      out := fun w => if w = 2 then 1 else 0, observed := 0, recorded := 0,
+      updated := fun w => w = 0, carried := fun w => w = 0, paid := True }
+  refine ⟨t, Or.inl rfl, ⟨0, 2, Or.inl rfl, Or.inr (Or.inr rfl), by decide⟩, rfl, rfl,
+    ?_, ?_, trivial, ?_⟩
+  · intro h
+    have := (h 1).mpr ⟨Or.inr (Or.inl rfl), rfl⟩
+    exact absurd this (by decide)
+  · intro w
+    show w = 0 ↔ ((True ∧ w = 0) ∨ (¬ True ∧ (w = 0 ∨ w = 1 ∨ w = 2)))
+    simp
+  · exact ⟨fun w h => Or.inl h, rfl, 1, Or.inr (Or.inl rfl), by decide⟩
+
+/-- The same for `Retains`: the update is exactly what the record licenses,
+and what is carried forward drops one more world. -/
+theorem retain_not_necessary_in_general : ∃ t : Turn Nat Nat,
+    LeavesOpen t ∧ Tries t ∧ Tests t ∧ Records t ∧ Updates t ∧ ¬ Retains t ∧
+    Affords t ∧ Learns t := by
+  let t : Turn Nat Nat :=
+    { actual := 0, kept := fun w => w = 0 ∨ w = 1 ∨ w = 2,
+      out := fun w => if w = 2 then 1 else 0, observed := 0, recorded := 0,
+      updated := fun w => w = 0 ∨ w = 1, carried := fun w => w = 0, paid := True }
+  refine ⟨t, Or.inl rfl, ⟨0, 2, Or.inl rfl, Or.inr (Or.inr rfl), by decide⟩, rfl, rfl,
+    ?_, ?_, trivial, ?_⟩
+  · intro w
+    show (w = 0 ∨ w = 1) ↔ ((w = 0 ∨ w = 1 ∨ w = 2) ∧ (if w = 2 then 1 else 0) = 0)
+    constructor
+    · intro h
+      rcases h with h | h <;> subst h <;> simp
+    · intro ⟨h1, h2⟩
+      rcases h1 with h | h | h
+      · exact Or.inl h
+      · exact Or.inr h
+      · subst h; simp at h2
+  · intro h
+    have := (h 1).mpr (Or.inl ⟨trivial, Or.inr rfl⟩)
+    exact absurd this (by decide)
+  · exact ⟨fun w h => Or.inl h, rfl, 1, Or.inr (Or.inl rfl), by decide⟩
+
 /-! ### Each failure is possible with the other six verbs in place
 
 Worlds and outcomes are natural numbers, and the operation yields the number
@@ -393,8 +463,10 @@ theorem unpaid_possible : ∃ t : Turn Nat Nat,
 
 /-! ## The blind spot, and the verbs between learners -/
 
-/-- A wrong world that none of the learner's own operations tells from the
-actual one survives any set of its own honest turns, and so does the truth. -/
+/-- A world that none of the learner's own operations tells from the actual one
+survives any set of its own honest turns, and so does the truth.  The
+statement does not ask that `b` differs from the actual world; reading it as
+an error adds that. -/
 theorem blind_spot_survives {Op : Type} (own : Op → World → Outcome) (used : Op → Prop)
     (kept after : World → Prop) (actual b : World)
     (hactual : kept actual) (hb : kept b)
@@ -784,7 +856,7 @@ the candidate accounts of the method, the actual one is the true account, and
 the operation is to apply an account to the known case.  With the verbs in
 place the true account is kept and every account that mispredicts the known
 case is ruled out. -/
-theorem method_validation_is_a_learning_turn {W O : Type} (t : Turn (W → O) O) (known : W)
+theorem method_check_filters_accounts {W O : Type} (t : Turn (W → O) O) (known : W)
     (hop : t.out = fun account => account known)
     (hopen : LeavesOpen t) (htest : Tests t) (hrec : Records t)
     (hupd : Updates t) (hret : Retains t) (hpay : Affords t) :
@@ -800,12 +872,22 @@ the check.  This is the blind spot one level up: a method validated on the
 cases one knows can still be wrong on the others. -/
 theorem validated_method_can_still_be_wrong {W O : Type} (t : Turn (W → O) O) (known : W)
     (hop : t.out = fun account => account known) (account : W → O)
+    (hwrong : account ≠ t.actual)
     (hkept : t.kept account) (hagree : account known = t.actual known)
     (htest : Tests t) (hrec : Records t)
-    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : t.carried account := by
-  refine (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hkept, ?_⟩⟩)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) :
+    account ≠ t.actual ∧ t.carried account := by
+  refine ⟨hwrong, (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hkept, ?_⟩⟩)⟩
   have h : t.out account = t.out t.actual := by rw [hop]; exact hagree
   exact h.trans (hrec.trans htest).symm
+
+/-- If the candidate accounts differ on the known case, the check is a
+learning turn in the full sense: at least one account is ruled out.  Without
+that, the check filters and may remove nothing. -/
+theorem method_check_learns_when_accounts_differ {W O : Type} (t : Turn (W → O) O)
+    (hopen : LeavesOpen t) (htry : Tries t) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : Learns t :=
+  seven_verbs_learn t hopen htry htest hrec hupd hret hpay
 
 /-! ### Witnesses for the three results above -/
 
@@ -875,8 +957,10 @@ theorem agreeing_world_is_carried (t : Turn World Outcome) (x : World)
 
 /-- What an honest test rightly ruled out can be the actual world after a
 change.  If the world moves to one that the old operation told apart from the
-old world, the retained result excludes it.  Retaining is good only while the
-world stands still; this module has no verb for letting a record go. -/
+old world, the retained result excludes it.  What fails is treating the old
+result as an unchanged constraint on the present; a record tied to its own
+time can stay true.  The theorem changes which world is called actual; it
+does not model time, or a way of noticing the change. -/
 theorem retained_record_goes_stale (t : Turn World Outcome) (newActual : World)
     (hmoved : t.out newActual ≠ t.out t.actual) (htest : Tests t) (hrec : Records t)
     (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : ¬ t.carried newActual :=

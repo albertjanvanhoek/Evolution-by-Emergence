@@ -1,6 +1,6 @@
 # The Discovarian creed
 
-**Status: current version, 11 November 2026** (D23, D31, D40, D43, D45 and D46 in [DIALOGUE.md](../../DIALOGUE.md)). After the assistant's own adversarial review (D46) the two new sections were recast: what a learner does is separated from what has to hold, and only the first has sins. A tenth verb, *develop and acquire methods*, was added as provisional at the author's wish (D45). On 11 November the two new sections were corrected after an outside review (D43); lines 1 to 13 were not touched, and the review's remarks on lines 10 and on the opening line are recorded in D43 for the author. It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
+**Status: current version, 11 November 2026** (D23, D31, D40, D43, D45, D46 and D47 in [DIALOGUE.md](../../DIALOGUE.md)). After an independent audit (D47) two claims of the new sections were withdrawn: that each item is needed, and that every sin blocks learning in the model. After the assistant's own adversarial review (D46) the two new sections were recast: what a learner does is separated from what has to hold, and only the first has sins. A tenth verb, *develop and acquire methods*, was added as provisional at the author's wish (D45). On 11 November the two new sections were corrected after an outside review (D43); lines 1 to 13 were not touched, and the review's remarks on lines 10 and on the opening line are recorded in D43 for the author. It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
 - [Discovarian_creed.tex](../../Discovarian_creed.tex);
 - [Discoverian_creed_better.tex](../../Discoverian_creed_better.tex);
 - [Discoverinan_creed_better_improved.tex](../../Discoverinan_creed_better_improved.tex).
@@ -26,7 +26,7 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 
 ## The verbs of learning
 
-"I exist as one only while I learn" needs a statement of what learning is made of. In a simple model of one turn of a learning loop, the items below are together enough for learning as ruling out, and each is needed ([LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md); `LearningVerbs.lean`). The results are close to their definitions. The model is learning as ruling out, in a world that stands still. Skill, new ways of seeing and a world that moves are outside it, so this is not a decomposition of learning in general.
+"I exist as one only while I learn" needs a statement of what learning is made of. In a simple model of one turn of a learning loop, the items below are together enough for learning as ruling out ([LEARNING_DECOMPOSITION.md](LEARNING_DECOMPOSITION.md); `LearningVerbs.lean`). They are not each necessary: one can depart from updating or from retaining and still learn, by luck (`update_not_necessary_in_general`). An independent audit found these to be known ideas in a small model, candidate elimination above all ([audit](../../verification/audits/2026-11-11-learning-verbs/AUDIT.md)); what the creed adds is the vocabulary. The results are close to their definitions. The model is learning as ruling out, in a world that stands still. Skill, new ways of seeing and a world that moves are outside it, so this is not a decomposition of learning in general.
 
 The items are of two kinds (D46). Some are **things I do**, and can know that I am doing. Others are **conditions**: they have to hold for learning to happen, and I cannot check them from inside. Two situations can agree in everything I have and differ only in what is actual (`tested_and_untested_look_alike`, `open_and_sealed_look_alike`). Only what I do can be done badly.
 
@@ -52,7 +52,7 @@ The items are of two kinds (D46). Some are **things I do**, and can know that I 
 With others there are conditions too: that the other looked and their instrument is right, and that the other sees something I do not (`same_view_cannot_correct`).
 
 **Across turns (provisional, D45):**
-- **Develop and acquire methods.** I learn not only from the answers I receive, but also by developing and acquiring new ways of questioning reality. I test these methods, because a method can itself be wrong. Testing a method is the same loop applied to my accounts of the method (`method_validation_is_a_learning_turn`), and it leaves its own blind spot (`validated_method_can_still_be_wrong`). Acquiring needs someone who has what I lack; developing a method oneself is not modelled.
+- **Develop and acquire methods.** I learn not only from the answers I receive, but also by developing and acquiring new ways of questioning reality. I test these methods, because a method can itself be wrong. Testing a method is the same loop applied to my accounts of the method (`method_check_filters_accounts`), and it can leave a blind spot of its own (`validated_method_can_still_be_wrong`). Acquiring needs someone who has what I lack; developing a method oneself is not modelled.
 
 In the Lean file the seven items of the solo loop are named leave open, try, test, record, update, retain and afford. Here "leave open" and "test" are each split into what I do and what has to hold, and "afford" likewise.
 
@@ -91,7 +91,9 @@ These do not follow from what I am. I hold them, and I offer them with reasons.
 
 ## Sins
 
-The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of doing one of the verbs badly, so that the loop stops. Only what I do has one. In the model each of them blocks learning in that turn, however well the rest is done.
+The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of doing one of the verbs badly. Only what I do has one.
+
+How far the model carries this (D47). For most rows the model has a result that one plain form of the failure blocks learning, or correction, in that turn: the question tells nothing apart; the observation or the record is false; nothing is updated; the gain is dropped; the truth was ruled out; the turn is unpaid; nothing true is passed on; the link is broken; the signal is set aside; a false signal is accepted. For clinging, and for both sins about methods, there is no such result: these rows are proposed. And the names are wider than the results. A question that is safe for me can still tell two worlds apart; setting aside a source that has shown itself unreliable can protect inquiry; an unchecked method can happen to be right. The table names what to watch for. It is not a list of theorems.
 
 | What I do | Sin | What it looks like |
 |---|---|---|
@@ -107,13 +109,13 @@ The earlier creeds named sins, and the author asked for them back (D40). A sin, 
 | Weigh and accept a correction | **Filtering by source**, or **swallowing whole** | I set a signal aside because of who sent it; or I take it in without weighing it |
 | Develop and acquire methods (provisional) | **Collecting answers**, or **trusting an untested method** | I take results and never learn how they were reached; or I rely on a method I have not checked |
 
-**What is not a sin.** The loop also stops when a condition fails, and then nobody has done anything wrong:
+**What is not, in itself, a sin.** The loop also stops when a condition fails, and that failure is not by itself anyone's fault:
 - not having thought of the truth;
 - an honest look through an instrument that turns out to be wrong;
 - lacking the means;
 - forgetting, which a finite budget forces (step 1 of [CORE.md](../../CORE.md)).
 
-For these the answer is not blame. It is other people, wider possibilities, a checked instrument, and support. An earlier version of this table gave each of them a sin; the assistant's own review found that this blamed people for what they cannot know or help (D46).
+For these the first answer is not blame. It is other people, wider possibilities, a checked instrument, and support. A fault can still lie somewhere: with someone who spoiled the instrument or withheld the means, or with me if I skipped a check I knew of. Whether it does is a question about intention, care and what could be known, and the models say nothing about those (D47). An earlier version of this table gave each of them a sin; the assistant's own review found that this blamed people for what they cannot know or help (D46).
 
 **The root sin** in the earlier creeds was neglecting interdependence: acting as though I could keep myself going alone. In the model it has an exact form. It is the belief that my own loop is enough. It is not: an error my own operations cannot tell from the truth survives every honest turn I take alone.
 
