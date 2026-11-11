@@ -22,6 +22,7 @@ Headline result: **146 audited declarations, zero errors, zero `sorry`, no vacuo
 ## Literature and novelty audit
 
 - [2026-09-15 literature audit package](./audits/2026-09-15-literature/) — two adversarial literature audits, the repository's response, and the framing note [From synthesis to paradigm](./audits/2026-09-15-literature/FROM_SYNTHESIS_TO_PARADIGM.md).
+- [2026-11-11 literature audit of the learning-verbs work](./audits/2026-11-11-learning-verbs/) — the brief, an independent audit of sixteen claims, and the repository's response. Verdicts: four restatements, seven special cases, one not found, four defective, no sharpening; two counterexamples, both accepted and corrected.
 
 The audits converge on a conservative status: most component mechanisms have substantial antecedents, so the recent stack is better presented as a **synthesis/research architecture with exact model-specific results** than as a collection of new general theorems. The audits are preserved as dated judgments rather than treated as exhaustive proof of priority.
 
