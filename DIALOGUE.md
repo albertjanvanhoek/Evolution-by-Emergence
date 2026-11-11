@@ -1261,3 +1261,21 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **until the literature audit is done, nothing in D40 to D46 should be presented as new.**
 - **Open:** the literature audit; the author's reading of the creed sections; a model with a world that moves; a lawyer's reading of the legal note; whether any of this belongs in the core.
 
+### D47. The independent literature audit, and what was corrected (Open, November 2026)
+- **Context:** the author gave the brief of D46 to an assistant from another model family and passed on its audit.
+- **Author:** "De audit is afgerond: AUDIT.md. Alle 16 claims zijn beoordeeld, met bronnen, juridische controles en expliciet vermelde onzekerheden. Hoofdoordeel: grotendeels bekende ideeën in eenvoudige modellen. Twee concrete gebreken springen eruit: De algemene noodzakelijkheid van alle zeven werkwoorden heeft een tegenvoorbeeld. Bij `lostCost = 0` blokkeert een foutieve correctie verder leren niet, ondanks de beschreven betekenis. De juridische citaten kloppen grotendeels; enkele brede historische en juridische conclusies zijn onvoldoende onderbouwd."
+- **The audit:** [verification/audits/2026-11-11-learning-verbs/AUDIT.md](verification/audits/2026-11-11-learning-verbs/AUDIT.md). Verdicts on the sixteen claims of the brief: four restatements, seven special cases, one not found, four defective, none a sharpening.
+- **Assistant:** accepts the headline without reservation. Both counterexamples were re-derived in Lean before anything was changed, and both hold. The full answer is [RESPONSE.md](verification/audits/2026-11-11-learning-verbs/RESPONSE.md). In short:
+  - **the seven verbs are jointly sufficient and not each necessary.** Five are, in the sense of exact negation; for update and retain the results use one way of failing. The audit's counterexample is now a theorem (`update_not_necessary_in_general`). The assistant had written "each is needed" in the module header, the note, the README, the release notes and its summaries, while the limitation stood three paragraphs further down in its own text;
+  - **a false turn with zero cost left no trace.** The ledger model mixed up having ruled out the truth with what that costs. Corrected in the model;
+  - **the creed claimed that every sin blocks learning in the model, and that a failed condition is nobody's fault.** Neither holds. Corrected;
+  - **the legal note's quotations were confirmed in their primary sources; one statement was wrong and several were not confirmed.** Corrected, and the note's Sources section now follows the audit's table;
+  - **wording** was tightened where the audit found it stronger than the result: "has to" (source information; independence), "learning turn" (a check that may remove nothing), "leaves a blind spot" (can leave), "pays for its own next turn" (lowers later cost), "retaining is good only while the world stands still".
+- **Where the assistant is unsure or disagrees:**
+  - **it does not disagree with any verdict.** On claim 9 the audit says "not found", and the assistant agrees that this is not "new";
+  - **one point is accepted and not answered.** An equality in a model says nothing about intention or care, so the step from a failed verb to a vice needs premises the models do not have. The creed's sins rest on that step;
+  - **the fix for the false turn is a stipulation,** as the audit says of the ledger generally: the truth lost now costs at least one unit because the model says so;
+  - **the audit was bounded** and lists what it could not reach. Those names should not be cited from the repository as antecedents until someone has read the source;
+  - **this is the fourth outside correction in two days** of work by the same assistant, and the pattern is the same each time: a summary stronger than the result. The assistant's own adversarial review (D46) missed both counterexamples.
+- **Open:** the literature the audit could not reach; from failed verb to vice; whether the arrangement is worth having; a human reader; the author's reading of the creed sections and of the response.
+

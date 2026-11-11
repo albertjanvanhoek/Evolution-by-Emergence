@@ -40,7 +40,8 @@ Results:
   a knife-edge.  They take being corrected to pay exactly one turn's cost.
   With a gain `g` and a cost `c`: if `g < c` the collaboration ends whatever
   the two do, even with all seven verbs; if `c ≤ g` it lasts with all seven.
-  That a missing verb still ends it when `c < g` is not proved here.
+  That a missing verb still ends it when `c < g` is not proved here.  A cost of
+  zero is allowed, and then both last without any correction.
 
 Relation to earlier results in this repository.  This module is largely
 `Reciprocity` with the exchanged good named as correction and split into
