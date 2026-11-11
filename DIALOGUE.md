@@ -1279,3 +1279,10 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **this is the fourth outside correction in two days** of work by the same assistant, and the pattern is the same each time: a summary stronger than the result. The assistant's own adversarial review (D46) missed both counterexamples.
 - **Open:** the literature the audit could not reach; from failed verb to vice; whether the arrangement is worth having; a human reader; the author's reading of the creed sections and of the response.
 
+### D48. Merging the work of D39 to D47 (Decided, November 2026)
+- **Author:** asked whether the three pull requests were mature and could be merged.
+- **Assistant:** all three were mergeable with CI green. It advised merging the legal note (as a concept note, no lawyer has read it) and the formal work (as a working note, outside the core), and waiting with the creed: the two new sections are the assistant's wording in the author's voice, in their sixth version, and the author had not read them; and the audit's objection that a failed step in a model says nothing about intention, so that "sin" needs an argument the models do not supply, is not answered in the text.
+- **Author:** "Merge all - it is fine - but don't merge stuff that is outdated and by passed by the other PRs (is this 149? please delete when this is the case)."
+- **Decision:** all three are merged, in order, as merge commits. Pull request 149, the earlier combined version without the audit corrections, is closed without merging and its branch deleted.
+- **Still open after the merge:** the author's reading of the creed's two new sections, which remain marked in the creed as a draft awaiting his corrections; from failed verb to vice (D47); a lawyer's reading of the legal note; a human reader for any of it.
+
