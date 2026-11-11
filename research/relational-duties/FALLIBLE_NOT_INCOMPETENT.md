@@ -2,7 +2,7 @@
 
 This note follows up entry D39 in [DIALOGUE.md](../../DIALOGUE.md) and extends [relational duties](README.md). It states the change of perspective the author wants written into law, and the safeguard that has to be written with it.
 
-**Status:** a concept note, not a result. Statements are labelled as in the [creed](../discovarianism/CREED.md): *Follows* (from the theory), *If* (given an aim), *Proposed* (a value). Revised on 11 November after an outside review (D43) and again after an independent audit of its sources and claims (D47; [AUDIT.md](../../verification/audits/2026-11-11-learning-verbs/AUDIT.md), claims 15 and 16). It is a proposal and is to be kept apart from established law. The assistant that drafted it is not a lawyer, and no lawyer has read it. How far each source was checked is stated under Sources.
+**Status:** a concept note, not a result. Statements are labelled as in the [creed](../discovarianism/CREED.md): *Follows* (from the theory), *If* (given an aim), *Proposed* (a value). Revised on 11 November after an outside review (D43) and again after an independent audit of its sources and claims (D47; `verification/audits/2026-11-11-learning-verbs/AUDIT.md`, claims 15 and 16). It is a proposal and is to be kept apart from established law. The assistant that drafted it is not a lawyer, and no lawyer has read it. How far each source was checked is stated under Sources.
 
 ## 1. The change in one sentence
 
@@ -34,7 +34,7 @@ So fallibility is a working assumption for courts, states and sciences. Between 
 ## 4. Where it went wrong before
 
 Declaring someone unable to judge, and appointing another to judge for them, has a history. Three cases, with what the sources support and no more:
-- **Colonial tutelage.** Article 22 of the Covenant of the League of Nations (1919) placed peoples "not yet able to stand by themselves" under the tutelage of others. Confirmed in the primary text by the audit.
+- **Colonial tutelage.** Article 22 of the Covenant of the League of Nations (1919) placed certain peoples under the tutelage of others, on the stated ground that they could not yet govern themselves. Confirmed in the primary text by the audit.
 - **The legal subordination of women.** Described at the time by Mill in *The Subjection of Women* (1869). That is evidence that it existed, not a legal history of guardianship.
 - **Persons with psychosocial disabilities.** The UN Committee's General Comment No. 1 (2014, paragraphs 7 and 8) reports a history of denied legal capacity and substituted decisions. That is the Committee's account, a secondary source for the events.
 
@@ -81,7 +81,7 @@ The author proposes that it apply across substrates on the same terms as the [re
 
 ## Sources
 
-How far each statement is supported, after the independent audit of 11 November 2026 ([AUDIT.md](../../verification/audits/2026-11-11-learning-verbs/AUDIT.md), claim 16, which gives the references). The audit was done by an assistant from another model family; it is a dated judgment.
+How far each statement is supported, after the independent audit of 11 November 2026 (`verification/audits/2026-11-11-learning-verbs/AUDIT.md`, claim 16, which gives the references). The audit was done by an assistant from another model family; it is a dated judgment.
 
 - **Confirmed in the primary source by the audit:**
   - Universal Declaration of Human Rights, articles 1 and 29(1); also articles 10, 19 and 26, added here.
