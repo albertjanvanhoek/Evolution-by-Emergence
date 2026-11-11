@@ -1286,3 +1286,21 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Decision:** all three are merged, in order, as merge commits. Pull request 149, the earlier combined version without the audit corrections, is closed without merging and its branch deleted.
 - **Still open after the merge:** the author's reading of the creed's two new sections, which remain marked in the creed as a draft awaiting his corrections; from failed verb to vice (D47); a lawyer's reading of the legal note; a human reader for any of it.
 
+### D49. Release v23.2 (Decided, November 2026)
+- **Author:** "Thank you - please prepare a new release. Update the readme, core etc. so the repo is upto date".
+- **Assistant, what was prepared:** v23.2. `RELEASE_NOTES.md` is rewritten for it; `README.md`, `CORE.md`, `CLAUDE.md`, the verification index and the citation metadata are brought up to date.
+- **Choices the assistant made, for the author to confirm:**
+  - **the number.** v23.2, a minor release, because nothing entered the core. A reader could argue for more, since the creed changed;
+  - **the tone.** The notes say in their opening lines that this release is not new theory and that no human expert has reviewed the additions. That follows the audit (D47);
+  - **`CORE.md`** gets pointers only: to the working note, and at two items of its "not yet formal" list. The three points about CORE's wording from the review of D42 are still not acted on, except that the two senses of "outside" are now named at the item they concern;
+  - **`CLAUDE.md`** gains one rule drawn from D40 to D47. Working agreements are the author's; this one is proposed through the pull request.
+- **A defect found while preparing it:** `RELEASE_NOTES.md` on `main` contained unresolved merge-conflict markers after the merges of D48. They came from a merge the assistant made on 11 November and were not caught by its checks or by CI, which do not look for them. No other file had any. The rewrite removes them.
+- **Where the assistant is unsure or disagrees:**
+  - **merging this pull request publishes the release.** The publish workflow tags it and Zenodo archives it. It cannot be taken back in the way a commit can;
+  - **the release ships a creed with two sections the author has not read,** marked there as a draft. The assistant advised waiting with those sections in D48 and the author decided to merge. The same question returns here in a more public form;
+  - **the legal note goes into an archived release** under the author's name without a lawyer's reading. It is labelled a proposal throughout.
+- **Assistant, before the merge:** raised once more that the release archives, under the author's name and with a DOI, a creed with two sections he has not read and a legal note no lawyer has read, both labelled where they stand as draft and proposal.
+- **Author:** "Go ahead - merge it".
+- **Decision:** v23.2 is released as prepared. The number, the tone of the notes and the rule added to `CLAUDE.md` stand as the assistant proposed them, by the author's go and without further comment from him.
+- **Still open after the release:** the author's reading of the creed's new sections; a lawyer's reading of the legal note; a human reader for the work of D39 to D47.
+

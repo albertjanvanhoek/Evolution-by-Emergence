@@ -3,71 +3,74 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v23.1**
+**Evolution by Emergence v23.2**
 
-v23.1 keeps everything in v23.0 and adds three pieces of research, none of them in the core:
+v23.2 keeps everything in v23.1 and adds work done on 10 and 11 November 2026, none of it in the core:
 - [`CORE.md`](CORE.md) still opens with what a functional world model is, and [`EbECore.lean`](formalization/ebe-core/EbECore.lean) still audits **96** results.
-- **Cooperative error identification** and **acting under time** (D35), with formal models and seeded simulations.
-- **Models for acting in a changing world** (D36), with a formal model and simulations.
-- **A working space on the Yang–Mills mass gap** (D37, D38), now handed over to others, with a separate 14-result Lean package. It contains no mass-gap result and claims none.
-- [`DIALOGUE.md`](DIALOGUE.md) now runs to D38.
+- **A working note on what one turn of learning consists of**, with three core-Lean modules (D40 to D47), and an **independent literature audit** of it with the repository's response.
+- **Two new sections in the creed**, in draft (D40, D43, D45, D46).
+- **A legal concept note**, a proposal and not law (D39).
+- [`DIALOGUE.md`](DIALOGUE.md) now runs to D49.
 
-Nothing is removed. The v23.0 world-model work, and everything it retained from earlier releases, is unchanged. The title's "simulation of reality" means the internal model through which a system experiences and acts in the world; it is not a claim that reality itself is simulated.
+Nothing is removed. **This release should not be read as new theory.** The audit judged the formal work to be mainly a small reconstruction of known ideas, and the repository accepts that judgment. **No human expert has reviewed any of the additions.**
 
 ## 1. The core
 
-Unchanged.
+Unchanged in its results and its table. Three pointers were added to [`CORE.md`](CORE.md): to the working note of section 2, and at two items of the "not yet formal" list, where the note has a first form outside the core. One of them records that "outside" has two senses the page does not yet separate: the world answering a test, and another learner correcting what one's own tests cannot tell apart.
 
-## 2. Cooperative error identification and acting under time (D35)
+## 2. Learning as a loop, in small models (D40 to D47)
 
-Conjectures under investigation, in [`research/cooperative-correction/`](research/cooperative-correction/README.md), revised after an independent review that found the first version credited a gain to the bridge that came from provenance. A formal model, [`CooperativeCorrection.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/CooperativeCorrection.lean) (14 results and 2 witnesses, outside the core), separates logical implications from behavioural assumptions; seeded simulations with matched comparators show that a shared reference adds nothing when agents measure the same quantity, a great deal when they measure different ones, and harm when the reference is not commutable: the bridge is itself a model that must be tested.
+[`research/discovarianism/LEARNING_DECOMPOSITION.md`](research/discovarianism/LEARNING_DECOMPOSITION.md), a working note in fifteen sections, with a Z3 model beside it and three modules in [`formalization/cumulative-accessibility/`](formalization/cumulative-accessibility/README.md): `LearningVerbs.lean` (58 theorems), `LongCollaboration.lean` (31) and `LearningRatchet.lean` (34). Core Lean, no Mathlib, in CI.
 
-**Acting under time** (conjecture 5, at the author's request): an intelligence cannot defer acting until its model is certain, and not acting is also an action, so the regress of checking ends locally at the next decision ([ACTING_UNDER_TIME.md](research/cooperative-correction/ACTING_UNDER_TIME.md)). [`ActingUnderTime.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ActingUnderTime.lean) (11 results and a witness, outside the core) proves the decision boundary between investigating and acting, the irreversibility effect and that prevention hides the counterfactual; seeded simulations (E8, E9) show that pooled evidence with provenance makes waiting worth it where one agent should act at once, that reversibility makes earlier action right, and that reading suppressed signals as an all-clear multiplies the loss tenfold.
+The model is learning as ruling out possible worlds, in a world that stands still. Within it:
+- **One turn.** Trying, testing, recording, updating and retaining, with the truth left open and the turn paid for, are together enough for a learning turn (`seven_verbs_learn`). They are not each individually necessary: five are, in the sense of exact negation; for update and retain the blocking results use one plain way of failing, and a counterexample to more is itself a theorem (`update_not_necessary_in_general`).
+- **What cannot be certified from inside.** Two situations can agree in everything the learner has and differ in which world is actual (`tested_and_untested_look_alike`). So "test" and "leave open" are conditions and not things a learner can know it is doing.
+- **The blind spot.** An error that none of a learner's operations tells from the truth survives its own honest turns; another learner with a different operation can remove it (`blind_spot_survives`, `seven_verbs_correct`).
+- **Corrections can be false.** Accepting a false signal rules out the truth, and for a blind spot the receiver's own observations give the same verdict on a true and a false correction (`accepting_false_signal_loses_truth`, `own_evidence_cannot_evaluate_blind_correction`).
+- **Being told and being taught.** Receiving a result is different from acquiring an operation; honest own testing with a correctly understood operation does not rule out the truth (`own_test_keeps_truth`); a method can itself be wrong, and checking it is the same loop applied to accounts of the method.
+- **On the ledger of step 1.** A learning turn raises later slack; a retained false record changes it by what it removed minus what the lost truth costs, and blocks later learning until it is taken back; progress has one term from one's own operations and one that arrives only through a link to a different view (`LearningRatchet.lean`). The space is fixed, so this is a ratchet toward fit and not a vortex.
+- **A lasting exchange of correction** (`LongCollaboration.lean`) is largely the repository's earlier `Reciprocity` result, and sits on a knife-edge where a correction pays exactly one turn's cost.
 
-## 3. Models for acting in a changing world (D36)
+## 3. How it was checked, and what the checks found (D43, D45, D46, D47)
 
-[research/world-model/MODELS_FOR_ACTING.md](research/world-model/MODELS_FOR_ACTING.md), a proposed functional decomposition of what an intelligence keeps besides its world model (representations, objectives, policies, records) and how it uses them to persist, organized around the loop of acting under time; claims labelled one by one, failure cases where the boundaries collapse, sources checked. Formalized in [`ModelsForActing.lean`](formalization/cumulative-accessibility/CumulativeAccessibility/ModelsForActing.lean) (23 results and 4 witnesses, outside the core), and tested in seeded simulations ([sim_models.py](research/world-model/simulation/sim_models.py), [sim_learning.py](research/world-model/simulation/sim_learning.py)): stopping to learn when certain enough fails where uncertainty cannot be resolved, and a rule set by the value of several more readings does best at every cost; copies counted as evidence make a holder confidently wrong ten times as often; an aimless world model pays when purposes change faster than distinctions can be learned, relative to their upkeep, and otherwise a representation scoped to the purpose is cheaper; peers sharing one's blind spots add nothing, however many. Formally: a representation suffices exactly when the worlds it conflates share an optimal action; an aimless world model that tracks outcomes serves every objective; exact knowledge does not choose without an objective; and a self-assessment can be certified exactly when some channel, from whatever source, separates the states it must tell apart.
+- **Two outside reviews** by an assistant from another model family, and **the writing assistant's own adversarial review**. Each found places where the prose said more than the theorems. The corrections are recorded entry by entry.
+- **An independent literature audit:** [`verification/audits/2026-11-11-learning-verbs/`](verification/audits/2026-11-11-learning-verbs/AUDIT.md), with the [brief](verification/audits/2026-11-11-learning-verbs/BRIEF.md) it was written on and the [response](verification/audits/2026-11-11-learning-verbs/RESPONSE.md). Sixteen claims: four restatements, seven special cases, one not found, four defective, **no sharpening**. Closest antecedents include candidate elimination (Mitchell 1977), observational equivalence and identification (Rothenberg 1971), knowledge as indistinguishable alternatives (Halpern and Moses 1990), belief revision and update (Alchourrón, Gärdenfors and Makinson 1985; Katsuno and Mendelzon 1992), and relational autonomy (Nedelsky 1989).
+- **Two counterexamples** from the audit were accepted and corrected in the Lean files: general necessity of all seven verbs, and a false turn that left no trace when its cost was zero.
+- **Left open by the audit and the response:** the literature the audit could not reach; and that an equality in a model says nothing about intention, so the step from a failed verb to a vice needs premises the models do not have.
 
-## 4. The Yang–Mills mass gap: a working space, handed over (D37, D38)
+## 4. The creed (D40, D43, D45, D46, D48)
 
-[`research/yang-mills-mass-gap/`](research/yang-mills-mass-gap/README.md), built on 7–8 November 2026 by the author with two AI assistants from different model families, each checking the other. Active work has stopped. [`HANDOFF.md`](research/yang-mills-mass-gap/HANDOFF.md) is written for whoever takes it further, with open issues [#145](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/145)–[#147](https://github.com/albertjanvanhoek/Evolution-by-Emergence/issues/147). In the author's words: "I think we tried enough - please prepare the PR for a merge and a release - such that others can do the rest."
+[`research/discovarianism/CREED.md`](research/discovarianism/CREED.md) has two new sections by linked revision: what a learner does, what has to hold and is not in its hands alone, and a sin for each thing done, with a paragraph on what is not a sin. A tenth verb, *develop and acquire methods*, is provisional. Lines 1 to 13 and the opening line are unchanged. **The new sections are the assistant's wording in the author's voice and are marked in the creed as a draft awaiting his corrections.** Two remarks on the author's own lines are recorded in D43 and not acted on.
 
-- **Routes closed, with reasons.** The residual term of a renormalisation bridge is short-range even in gapless O(2), so it is not where the difficulty is. A continuous gauge-invariant twist in 4D SU(2) costs area, so the mechanism of the new 2D O(3) proofs does not carry over directly; twists in gauge theory come from 1-form symmetries, which are abelian. The thin centre sector is frozen once monopoles are forbidden, which reproduces Kovács and Tomboulis (1997).
-- **A rung below Yang–Mills: 2D CP^{N−1}.** The twist estimate of the O(3) proof seems to carry over. What is missing is one pinning lemma, which a fusion argument reduces to a monotonicity of a loop-crossing probability. That monotonicity is proved, at all couplings, for growing graph classes: stars, a double star, any network behind one gateway, weak extra gateways, and separate routes from each pinned site to one outer site. Also proved: the O(3) twist estimate on bounded-range graphs, and an identity that makes the crossing probability computable on any graph.
-- **The open problem, stated exactly:** gateways that touch both pinned sites and the outer site, outer layers with many sites, and bounds uniform over the annulus. An exact screen and a full-model test found no counterexample.
-- **The formal layer:** [`research/yang-mills-mass-gap/lean/`](research/yang-mills-mass-gap/lean/), a separate Mathlib project with its own CI and 14 audited results: a counterexample to a covariance-transfer assumption, a corrected transfer with the residual term kept, a physical-scale condition, and the law of total covariance on finite spaces. These are bookkeeping; the physics sits in their hypotheses.
+## 5. A legal concept note (D39)
 
-**Not claimed:** a mass gap, exponential decay for CP^{N−1}, or any result about four-dimensional Yang–Mills. Every proof was written by one model family and, where stated, checked by the other; **no human expert has reviewed any of it.** The two 2D O(N) proofs it builds on are preprints, not yet peer reviewed.
+[`research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md`](research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md): a person as the holder of a correctable model, a proposed protected interest in one's routes of correction, and the safeguard that fallible is not incompetent. **It is a proposal and is to be kept apart from established law. No lawyer has read it.** Its quotations were confirmed in their primary sources by the audit; its wider historical and legal statements are marked with what their sources support. The audit places it beside existing work on relational autonomy and epistemic injustice.
 
-## 5. Front door and metadata
+## 6. Front door and metadata
 
-- [`README.md`](README.md) lists the new folder under research.
-- `RELEASE_VERSION`, `CITATION.cff`, `.zenodo.json` (adds the keywords "Yang–Mills", "lattice gauge theory" and "sigma model"), the README citation, the `ebe_core` dependency example and the integration check are synchronized to v23.1. The public title is unchanged.
-- The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`. Zenodo assigns the exact v23.1 version DOI when this GitHub release is archived.
+- [`README.md`](README.md) lists the working note, the creed and the legal note, and links the audit from "Start here".
+- [`CLAUDE.md`](CLAUDE.md) gains a reading item and one working rule from this episode: write a result's limits in the same sentence as the result, search for overlap before adding a module, give every blocking result a witness, and ask for a literature audit before calling anything new.
+- [`verification/README.md`](verification/README.md) lists the new audit.
+- `RELEASE_VERSION`, `CITATION.cff`, `.zenodo.json` (adds the keywords "learning" and "legal capacity"), the README citation, the `ebe_core` dependency example and the integration check are synchronized to v23.2. The public title is unchanged.
+- **A defect in the previous state of this file is repaired:** after the merges of 11 November `RELEASE_NOTES.md` on `main` contained unresolved merge-conflict markers. No other file did.
+- The stable Zenodo DOI used across the release lineage is `10.5281/zenodo.15207807`. Zenodo assigns the exact v23.2 version DOI when this GitHub release is archived.
 
-## 6. Status of the claims
+## 7. Status of the claims
 
-- **Proved:** each Lean result is a machine-checked implication under the premises stated in its theorem. Machine checking guarantees that a conclusion follows; it does not make a result deep.
-- **Conjectures and working notes** are labelled as such in each folder. The simulations of D35 and D36 are seeded and reproducible; they show what a model does, not what any real system does.
+- **Proved:** each Lean result is a machine-checked implication under the premises stated in its theorem. Machine checking guarantees that a conclusion follows; it does not make a result deep, and most of the results of section 2 are close to their definitions.
+- **Not new:** see section 3.
+- **Drafts and proposals** are labelled as such where they stand: the creed's new sections, the legal note, and the two definitions of intelligence in D45.
 - **Persistence is not goodness.** Values are stated separately (D7).
 
-## 7. Open work
+## 8. Open work
 
-- **Yang–Mills:** problems P1–P6 in [`HANDOFF.md`](research/yang-mills-mass-gap/HANDOFF.md), above all a human review of the proofs.
-- **Cooperative correction and models for acting:** the open items in [`research/cooperative-correction/`](research/cooperative-correction/README.md) and [`research/world-model/`](research/world-model/README.md).
-- **Carried forward:** the open work of v23.0, including a practice and checklists for world models, and the "Not yet formal" list in [`CORE.md`](CORE.md).
+- **A human reader** for all of sections 2 to 5: a lawyer, a philosopher, a clinician.
+- **The author's reading** of the creed's new sections and of the audit response.
+- **A world that moves.** The learning model's world stands still, and the theory's does not; forgetting and letting go have no model here.
+- **Corrections that can be wrong, cost something, and are checked against independent sources** (D43).
+- **Widening,** which would turn the ratchet of section 2 into a vortex.
+- **Carried forward:** the open work of v23.1, including the Yang–Mills handoff problems, and the "Not yet formal" list in [`CORE.md`](CORE.md).
 
 ## Since this release
 
-- **`LearningVerbs.lean`** (outside the core): the verbs of learning, D40. Seven verbs are together enough for learning in one turn of a loop; five are shown necessary, and update and retain for one way of failing; seven verbs between two learners remove a blind spot. 58 theorems, core Lean. See [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
-- **An independent literature audit** of the three modules below and the notes around them: [verification/audits/2026-11-11-learning-verbs/](verification/audits/2026-11-11-learning-verbs/RESPONSE.md). Headline, accepted: mainly a small formal reconstruction of known ideas; no claim is a sharpening; four were defective as stated and are corrected (D47).
-- **`LongCollaboration.lean`** (outside the core): which verbs a long collaboration needs, D41. In a closed pair it lasts exactly when both learners do all seven verbs; a learner who takes and does not pass on is corrected only while the other's reserve lasts. 31 theorems, core Lean.
-<<<<<<< HEAD
-- **`LearningRatchet.lean`** (outside the core; first named `LearningVortex`): the learning loop on the vortex ledger, as a ratchet, D42 and D43. The loop pays for its own next turn; the speed has a sign (a retained false record); the speed has two terms (own operations, and a link to a different view). 32 theorems, core Lean, including being told against being taught (D44). A first formal statement of "efficiency buys duration".
-- **The creed** gained two sections by linked revision: what a learner does and what has to hold, and the sins (D40, D46, D47). They await the author's corrections.
-=======
-- **`LearningRatchet.lean`** (outside the core; first named `LearningVortex`): the learning loop on the vortex ledger, as a ratchet, D42 and D43. A learning turn lowers the cost of every later turn; the speed has a sign (a retained false record); the speed has two terms (own operations, and a link to a different view). 34 theorems, core Lean, including being told against being taught (D44). A first formal statement of "efficiency buys duration".
->>>>>>> split/2-learning-verbs
-- **Concept note:** [research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md](research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md), a person as the holder of a correctable model, and the safeguard that fallible is not incompetent (D39). A proposal, to be kept apart from established law.
-
-The v23.0 release notes remain available at the `v23.0` tag.
+Nothing yet.
