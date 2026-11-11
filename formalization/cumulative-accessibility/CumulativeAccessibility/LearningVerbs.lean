@@ -109,8 +109,10 @@ Results, between learners:
 * `learning_verbs_witness`: a concrete turn in which all seven verbs hold.
 
 Relation to earlier results in this repository.  The solo loop is what this
-module adds: the seven verbs, each shown to be needed, each failure shown to
-be possible.  The part between learners mostly restates earlier results in
+module adds: the seven verbs, jointly sufficient, with a result that a
+failure of each blocks learning (for update and retain, one plain way of
+failing; see `update_not_necessary_in_general`), and each such failure shown
+to be possible.  The part between learners mostly restates earlier results in
 one small model: `blind_spot_survives` is close to
 `ModelOfLargerReality.inside_view_cannot_settle`,
 `error_survives_iff_never_linked` to
