@@ -1,6 +1,6 @@
 # A decomposition of learning into verbs
 
-**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 37 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
+**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 42 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
 
 ## 1. The claim
 
@@ -125,7 +125,7 @@ The author's claim: "for me collaboration is just too brains doing what brains d
 
 ## 10. The loop on the vortex ledger (D42)
 
-A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. Steps 1 to 7 are a ledger (slack, selection, the vortex); step 8 is the Room (a fallible model that needs correction). They meet at feedback, which the vortex speed counts as a fraction, "validated", and step 4 takes as given. [`LearningRatchet.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningRatchet.lean) (24 theorems, core Lean) puts the loop of section 3 on the ledger of step 1.
+A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. Steps 1 to 7 are a ledger (slack, selection, the vortex); step 8 is the Room (a fallible model that needs correction). They meet at feedback, which the vortex speed counts as a fraction, "validated", and step 4 takes as given. [`LearningRatchet.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningRatchet.lean) (30 theorems, core Lean) puts the loop of section 3 on the ledger of step 1.
 
 **The model.** A learner holds a reserve. Each wrong world it keeps possible costs one unit per turn: misfit costs slack, the premise of step 4. It takes up a fixed amount per turn, and a try costs something. Some errors its own operations can tell apart; some they cannot.
 
@@ -178,4 +178,34 @@ On 11 November the author supplied a review of this work by an assistant from an
 - **"Learning"** is said to mean elimination-based learning in this model, here and in the creed.
 
 **The question the review puts back.** In its words: "When does receiving information from another intelligence improve our access to reality, and when does it instead make our world model worse?" This note does not answer it. The pieces the repository has are `listening_pays_iff` and `misleading_feedback_does_not_pay` (`ListeningCost`), the interval of connection between isolation and conformity (`correcting_levels_form_interval`), and the two results of section 4. What is missing is a model in which corrections can be wrong, cost something, and are checked against independent sources.
+
+## 13. Being told and being taught (D44)
+
+The author's aim: "The verbs of learning are meant to be the best description on how learning works". A note he supplied from an assistant of another model family asked whether the decomposition is still complete when a learner can change its own learning operations. In this model it is not: a learner's operations are fixed, which is why its blind spot is fixed. This section adds the smallest step beyond that.
+
+**The distinction.** Through a link a learner can receive two different things.
+- **A result** (being told): "it is not that world". For a blind spot the receiver cannot check it (section 4), and if it is false and accepted the truth is lost.
+- **An operation** (being taught): a way of asking the world that the learner did not have. The learner then tests for itself.
+
+**Checked, in `LearningVerbs.lean`.**
+- **Honest own testing never rules out the truth, whatever the operation** (`own_test_keeps_truth`). A useless operation rules nothing out; it costs the try and no more. Compare `accepting_false_signal_loses_truth`.
+- **If the operation tells the error from the truth, an own test removes it** (`own_test_removes_error`). No one else's honesty is needed.
+- **Acquiring such an operation ends the blindness** (`acquired_operation_opens_blind_spot`), and the learner's own evidence now separates the two worlds (`after_acquiring_observations_differ`).
+- **Teaching spends the difference** (`after_acquiring_other_adds_nothing`). Whatever is still blind to the learner afterwards, the teacher's operation does not tell apart either. Two learners who have taught each other everything see the same, and cannot correct each other.
+
+**Checked, on the ledger, in `LearningRatchet.lean`.**
+- **Acquiring removes no error,** so misfit and slack are unchanged in that turn (`acquire_no_first_order_gain`). What changes is what the learner can find by itself (`acquire_widens`).
+- **After it the learner clears its errors alone** (`taught_clears_all_alone`) and, with enough reserve, lasts without any link (`taught_lasts_alone`).
+- **A learner that was only told, and is then cut off,** keeps the errors it had not yet been told about, and fails if they cost more than its uptake (`cut_off_after_telling_fails`).
+
+**What this adds to the description of learning.** A tenth verb, in a first form: *acquire an operation*. It is the verb *widen* applied to what can be tried, and the smallest case of the second-order click of step 5 of [CORE.md](../../CORE.md): a kept change whose gain is in what later turns can do. It also gives one part of an answer to the question of section 12. A claim about one's blind spot has to be taken on the reliability of its source. A method can be checked by using it.
+
+**How much this says.**
+- **An instance, not a new principle.** `new_parent_set_implies_secondOrderClick` states the second-order click in general.
+- **The account of the operation is assumed right.** The learner is taken to know which outcome each world would give. A wrong account of an instrument is a false record in another form. Checking an instrument on known cases is not modelled.
+- **Acquiring converts all blind errors at once** in the ledger model. One operation for one class of error would be closer.
+- **In this model being taught costs more than being told:** the cost of acquiring, and one more turn of misfit. What it buys is independence from the link and from the teller's honesty.
+- **A first-order picture of a second-order thing.** The learner's step rule is fixed and a counter changes. A learner that rewrites how it tries, tests and keeps is not modelled.
+- **The loop still closes.** The set of errors is fixed, so this is still a ratchet.
+- **The tension is stated, not resolved.** Teaching makes learners alike; correction needs them to differ. Where new difference comes from (specialisation, each one's own contact with the world) is open, and is the interval of `correcting_levels_form_interval` seen from the side of method.
 

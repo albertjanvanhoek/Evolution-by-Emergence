@@ -44,7 +44,7 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 
 Lines 1 to 5 below say why a learner needs these. The verbs say what it then does.
 
-**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; what follows once a retraction succeeds is `revision_restores_learning` in `LearningRatchet.lean`; how a false record is recognised is not modelled) and *widen* (add a possibility I did not have, when a fixed space runs out).
+**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; what follows once a retraction succeeds is `revision_restores_learning` in `LearningRatchet.lean`; how a false record is recognised is not modelled) and *widen* (add a possibility I did not have, when a fixed space runs out). A first form of widening is in the model since D44: *acquire an operation*, being taught a way of asking the world and not only told a result. Honest own testing with it cannot rule out the truth (`own_test_keeps_truth`), and it ends a blind spot (`acquired_operation_opens_blind_spot`); but teaching spends the difference between teacher and learner (`after_acquiring_other_adds_nothing`). Whether it becomes a line of the creed is for the author.
 
 ## What follows from what I am
 

@@ -59,9 +59,9 @@ Conjectures under investigation, in [`research/cooperative-correction/`](researc
 
 ## Since this release
 
-- **`LearningVerbs.lean`** (outside the core): the verbs of learning, D40. Seven verbs are together enough for learning in one turn of a loop and each is needed; seven verbs between two learners remove a blind spot. 37 theorems, core Lean. See [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
+- **`LearningVerbs.lean`** (outside the core): the verbs of learning, D40. Seven verbs are together enough for learning in one turn of a loop and each is needed; seven verbs between two learners remove a blind spot. 42 theorems, core Lean. See [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
 - **`LongCollaboration.lean`** (outside the core): which verbs a long collaboration needs, D41. In a closed pair it lasts exactly when both learners do all seven verbs; a learner who takes and does not pass on is corrected only while the other's reserve lasts. 28 theorems, core Lean.
-- **`LearningRatchet.lean`** (outside the core; first named `LearningVortex`): the learning loop on the vortex ledger, as a ratchet, D42 and D43. The loop pays for its own next turn; the speed has a sign (a retained false record); the speed has two terms (own operations, and a link to a different view). 24 theorems, core Lean. A first formal statement of "efficiency buys duration".
+- **`LearningRatchet.lean`** (outside the core; first named `LearningVortex`): the learning loop on the vortex ledger, as a ratchet, D42 and D43. The loop pays for its own next turn; the speed has a sign (a retained false record); the speed has two terms (own operations, and a link to a different view). 30 theorems, core Lean, including being told against being taught (D44). A first formal statement of "efficiency buys duration".
 - **The creed** gained two sections by linked revision: the verbs of learning and the sins (D40). They await the author's corrections.
 - **Concept note:** [research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md](research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md), the legal person as a correctable model (D39).
 

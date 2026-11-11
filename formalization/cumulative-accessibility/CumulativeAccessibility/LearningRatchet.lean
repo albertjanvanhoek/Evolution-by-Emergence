@@ -50,7 +50,18 @@ Results:
   `retaining_false_is_worse_than_discarding`, `revision_restores_learning`.
 * `solo_keeps_blind`, `solo_fails_on_blind_spot`, `same_view_is_solo`,
   `errors_removed_two_terms`, `linked_lasts`, `link_decides`.
-* `learning_ratchet_witness`: concrete numbers.
+* `acquire_no_first_order_gain`, `acquire_widens`, `taught_clears_all_alone`,
+  `taught_lasts_alone`, `cut_off_after_telling_fails`.
+* `learning_ratchet_witness`, `told_and_taught_witness`: concrete numbers.
+
+**4. Being told and being taught (D44).**  Through a link the learner can be
+told a result, one error per turn, or be taught the operation.  Acquiring the
+operation removes no error and so raises no slack in that turn; what it
+changes is which errors the learner can find by itself.  After it the learner
+clears them alone, and a lost link no longer matters.  This is the smallest
+case of a kept change that widens what can be tried, the second-order click
+of step 5 (`new_parent_set_implies_secondOrderClick` states it in general);
+here it is an instance, not a new principle.
 
 How much this says.  The results are close to arithmetic once the setting is
 fixed, and the setting carries them.  The strong assumptions: every wrong
@@ -62,10 +73,15 @@ the verbs is by reading `LearningVerbs` (`seven_verbs_learn`,
 `untested_blocks`, `distorted_blocks`, `sealed_blocks`, `blind_spot_survives`,
 `seven_verbs_correct`, `same_view_cannot_correct`), not by import.
 
-Not covered: widening.  The space is fixed, so the loop closes and then stops
-(`learner_clears_own_errors`): this is a ratchet toward fit, and it becomes a
-vortex only when kept changes also widen what can be tried, which is the
-second-order click of step 5 and is not modelled here.  Also not covered: recognising a
+Not covered: open-ended widening.  `acquire` widens what the learner can try,
+but the set of errors is fixed, so the loop still closes and then stops
+(`learner_clears_own_errors`): this is a ratchet toward fit.  It becomes a
+vortex only when kept changes keep producing new things to try, which needs
+new possibilities or a world that changes, and is not modelled here.  In this
+model being taught costs more than being told (the cost of acquiring, and one
+more turn of misfit); what it buys is independence from the link and from the
+teller's honesty (`LearningVerbs.own_test_keeps_truth` against
+`LearningVerbs.accepting_false_signal_loses_truth`).  Also not covered: recognising a
 false record, a link that delivers a false signal
 (`LearningVerbs.accepting_false_signal_loses_truth`), a
 world that changes, errors of unequal cost, learning several things per turn,
@@ -81,6 +97,8 @@ structure Terms where
   t : Nat
   lostCost : Nat
   reviseCost : Nat
+  /-- The cost of acquiring an operation from another. -/
+  acquireCost : Nat
 
 /-- The learner's state. -/
 structure State where
@@ -438,10 +456,57 @@ theorem link_decides (p : Terms) (s : State) (hlost : s.lost = 0)
   rw [hfun]
   exact solo_fails_on_blind_spot p s hblind
 
+/-! ## 4. Being told and being taught -/
+
+/-- Acquiring an operation from another: the errors the learner could not tell
+apart become errors it can.  No error is removed in this turn. -/
+def acquire (p : Terms) (s : State) : State :=
+  { s with reserve := s.reserve + p.u - misfit s - p.acquireCost,
+           own := s.own + s.blind, blind := 0 }
+
+/-- Acquiring removes no error: misfit and slack are unchanged. -/
+theorem acquire_no_first_order_gain (p : Terms) (s : State) :
+    misfit (acquire p s) = misfit s ∧ slack p (acquire p s) = slack p s := by
+  simp [acquire, misfit, slack]
+
+/-- What it changes is what the learner can find by itself. -/
+theorem acquire_widens (p : Terms) (s : State) :
+    (acquire p s).own = s.own + s.blind ∧ (acquire p s).blind = 0 := by
+  simp [acquire]
+
+/-- After acquiring, the learner removes all its errors alone, one per turn. -/
+theorem taught_clears_all_alone (p : Terms) (s : State) (hlost : s.lost = 0) (n : Nat) :
+    (run (learnOwn p) n (acquire p s)).own = s.own + s.blind - n ∧
+    (run (learnOwn p) n (acquire p s)).blind = 0 := by
+  constructor
+  · rw [learner_clears_own_errors p n (acquire p s) (by simpa [acquire] using hlost)]
+    simp [acquire]
+  · rw [solo_keeps_blind]
+    simp [acquire]
+
+/-- After acquiring, a learner whose reserve covers the acquiring and the way
+down is viable in every turn without any link. -/
+theorem taught_lasts_alone (p : Terms) (s : State) (hlost : s.lost = 0)
+    (hres : (need p (s.own + s.blind) : Int) + misfit s + p.acquireCost ≤ s.reserve + p.u) :
+    ∀ n, 0 ≤ (run (learnOwn p) n (acquire p s)).reserve := by
+  apply loop_closes
+  · simpa [acquire] using hlost
+  · simp [acquire]
+  · simp only [acquire]
+    omega
+
+/-- A learner that was only told, and is then cut off, keeps the blind errors
+it had not yet been told about; if they cost more than its uptake it fails. -/
+theorem cut_off_after_telling_fails (p : Terms) (s : State) (m : Nat)
+    (h : p.u < (run (linked p true) m s).blind) :
+    ∃ n, (run (learnOwn p) n (run (linked p true) m s)).reserve < 0 :=
+  solo_fails_on_blind_spot p _ h
+
 /-! ## Concrete numbers -/
 
-/-- Uptake 1, a try costs 1, a lost world costs 3 per turn, revising costs 2. -/
-def terms : Terms := ⟨1, 1, 3, 2⟩
+/-- Uptake 1, a try costs 1, a lost world costs 3 per turn, revising costs 2,
+acquiring an operation costs 2. -/
+def terms : Terms := ⟨1, 1, 3, 2, 2⟩
 
 /-- Reserve 10, two errors the learner can find and two it cannot. -/
 def start : State := ⟨10, 2, 2, 0⟩
@@ -458,6 +523,26 @@ theorem learning_ratchet_witness :
     (run (linked terms true) 4 start).own + (run (linked terms true) 4 start).blind = 0 ∧
     0 < (run (linked terms true) 12 start).reserve ∧
     (run (learnOwn terms) 5 (falseTurn terms start)).reserve < 0 := by
+  decide
+
+/-- Reserve 20, no errors the learner can find and four it cannot. -/
+def startBlind : State := ⟨20, 0, 4, 0⟩
+
+/-- Told twice and then cut off: two blind errors stay and after 20 further
+turns alone the reserve is negative.  Taught once and then cut off: after 4
+turns alone no error is left and the reserve grows from then on.  Told four
+times with the link intact is cheaper than being taught: it ends with a
+larger reserve. -/
+theorem told_and_taught_witness :
+    (run (linked terms true) 2 startBlind).blind = 2 ∧
+    (run (learnOwn terms) 20 (run (linked terms true) 2 startBlind)).reserve < 0 ∧
+    (run (learnOwn terms) 4 (acquire terms startBlind)).own = 0 ∧
+    (run (learnOwn terms) 4 (acquire terms startBlind)).blind = 0 ∧
+    0 ≤ (run (learnOwn terms) 4 (acquire terms startBlind)).reserve ∧
+    (run (learnOwn terms) 4 (acquire terms startBlind)).reserve
+      < (run (learnOwn terms) 24 (acquire terms startBlind)).reserve ∧
+    (run (learnOwn terms) 4 (acquire terms startBlind)).reserve
+      < (run (linked terms true) 4 startBlind).reserve := by
   decide
 
 end LearningRatchet

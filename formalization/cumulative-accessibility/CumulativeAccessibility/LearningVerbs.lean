@@ -48,6 +48,16 @@ Results, between learners:
   the actual world and in the wrong world it cannot tell apart.  For a blind
   spot, the receiver's own evidence cannot separate a true correction from a
   false one; information about the source has to do that.
+* Being told and being taught (D44).  A correction is a result; an operation
+  is a means.  With an operation of its own the learner tests for itself:
+  honest own testing never rules out the actual world, whatever the operation
+  (`own_test_keeps_truth`), and removes the error if the operation tells it
+  apart (`own_test_removes_error`).  Acquiring an operation that tells a blind
+  error from the truth ends the blindness (`acquired_operation_opens_blind_spot`)
+  and lets the learner's own evidence separate the two worlds
+  (`after_acquiring_observations_differ`).  It also spends the difference: the
+  teacher's operation can no longer correct what is still blind to the learner
+  (`after_acquiring_other_adds_nothing`).
 * `same_view_cannot_correct`: if the other's operation does not tell the two
   worlds apart either, all seven verbs leave the wrong world in place.  The two
   learners have to differ.
@@ -627,6 +637,66 @@ theorem not_retained_possible : ∃ e : Exchange Nat Nat,
   show w = 0 ↔ ((w = 0 ∨ w = 1) ∧ (True → w = 0))
   simp
   omega
+
+/-! ## Being told and being taught
+
+A correction passes on a result, which the receiver of a blind-spot correction
+cannot check (`own_evidence_cannot_evaluate_blind_correction`) and which rules
+out the truth if it is false (`accepting_false_signal_loses_truth`).  An
+operation passes on a means.  The learner then asks the world itself.
+
+Assumed here: the learner's account of the operation is right, that is, it
+knows which outcome each world would give.  A wrong account of an instrument
+is a false record in another form (`untested_blocks`).  Checking an instrument
+on cases already known is not modelled. -/
+
+/-- Honest own testing never rules out the actual world, whatever the
+operation.  The worst a useless operation does is rule nothing out. -/
+theorem own_test_keeps_truth (t : Turn World Outcome)
+    (hopen : LeavesOpen t) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : t.carried t.actual :=
+  (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hopen, (hrec.trans htest).symm⟩⟩)
+
+/-- If the operation tells a wrong world from the actual one, an honest own
+test rules that world out.  No one else's honesty is needed. -/
+theorem own_test_removes_error (t : Turn World Outcome) (b : World)
+    (hne : t.out b ≠ t.out t.actual) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : ¬ t.carried b := by
+  intro hc
+  cases (hret b).mp hc with
+  | inl h1 => exact hne (((hupd b).mp h1.2).2.trans (hrec.trans htest))
+  | inr h2 => exact h2.1 hpay
+
+/-- The learner's operations with one more, acquired from another. -/
+def withAcquired {Op : Type} (own : Op → World → Outcome) (nu : World → Outcome) :
+    Option Op → World → Outcome
+  | none => nu
+  | some o => own o
+
+/-- Acquiring an operation that tells the wrong world from the actual one
+ends the blindness: not all of the learner's operations agree on them now. -/
+theorem acquired_operation_opens_blind_spot {Op : Type} (own : Op → World → Outcome)
+    (nu : World → Outcome) (actual b : World) (hne : nu b ≠ nu actual) :
+    ¬ ∀ o, withAcquired own nu o b = withAcquired own nu o actual :=
+  fun h => hne (h none)
+
+/-- After acquiring it, the learner's own observations differ between the two
+worlds, so its own evidence can separate them.  Compare
+`own_evidence_cannot_evaluate_blind_correction`. -/
+theorem after_acquiring_observations_differ {Op : Type} (own : Op → World → Outcome)
+    (nu : World → Outcome) (actual b : World) (hne : nu b ≠ nu actual) :
+    (fun o => withAcquired own nu o b) ≠ (fun o => withAcquired own nu o actual) :=
+  fun h => hne (congrFun h none)
+
+/-- Teaching spends the difference.  Whatever is still blind to the learner
+after it has acquired the other's operation is something that operation does
+not tell apart either, so the other can no longer correct it
+(`same_view_cannot_correct`). -/
+theorem after_acquiring_other_adds_nothing {Op : Type} (own : Op → World → Outcome)
+    (nu : World → Outcome) (actual b : World)
+    (hstill : ∀ o, withAcquired own nu o b = withAcquired own nu o actual) :
+    nu b = nu actual :=
+  hstill none
 
 /-! ## Repair over time -/
 
