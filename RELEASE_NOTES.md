@@ -59,6 +59,6 @@ Conjectures under investigation, in [`research/cooperative-correction/`](researc
 
 ## Since this release
 
-Nothing yet.
+- **Concept note:** [research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md](research/relational-duties/FALLIBLE_NOT_INCOMPETENT.md), a person as the holder of a correctable model, and the safeguard that fallible is not incompetent (D39). A proposal, to be kept apart from established law.
 
 The v23.0 release notes remain available at the `v23.0` tag.
