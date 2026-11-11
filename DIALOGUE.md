@@ -1286,7 +1286,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Decision:** all three are merged, in order, as merge commits. Pull request 149, the earlier combined version without the audit corrections, is closed without merging and its branch deleted.
 - **Still open after the merge:** the author's reading of the creed's two new sections, which remain marked in the creed as a draft awaiting his corrections; from failed verb to vice (D47); a lawyer's reading of the legal note; a human reader for any of it.
 
-### D49. Release v23.2 (Open until merged, November 2026)
+### D49. Release v23.2 (Decided, November 2026)
 - **Author:** "Thank you - please prepare a new release. Update the readme, core etc. so the repo is upto date".
 - **Assistant, what was prepared:** v23.2. `RELEASE_NOTES.md` is rewritten for it; `README.md`, `CORE.md`, `CLAUDE.md`, the verification index and the citation metadata are brought up to date.
 - **Choices the assistant made, for the author to confirm:**
@@ -1299,5 +1299,8 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **merging this pull request publishes the release.** The publish workflow tags it and Zenodo archives it. It cannot be taken back in the way a commit can;
   - **the release ships a creed with two sections the author has not read,** marked there as a draft. The assistant advised waiting with those sections in D48 and the author decided to merge. The same question returns here in a more public form;
   - **the legal note goes into an archived release** under the author's name without a lawyer's reading. It is labelled a proposal throughout.
-- **Open:** the author's go, or his changes to the number, the notes or the scope.
+- **Assistant, before the merge:** raised once more that the release archives, under the author's name and with a DOI, a creed with two sections he has not read and a legal note no lawyer has read, both labelled where they stand as draft and proposal.
+- **Author:** "Go ahead - merge it".
+- **Decision:** v23.2 is released as prepared. The number, the tone of the notes and the rule added to `CLAUDE.md` stand as the assistant proposed them, by the author's go and without further comment from him.
+- **Still open after the release:** the author's reading of the creed's new sections; a lawyer's reading of the legal note; a human reader for the work of D39 to D47.
 
