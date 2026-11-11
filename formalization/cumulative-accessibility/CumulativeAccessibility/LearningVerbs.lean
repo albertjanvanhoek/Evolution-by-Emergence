@@ -55,9 +55,22 @@ Results, between learners:
   apart (`own_test_removes_error`).  Acquiring an operation that tells a blind
   error from the truth ends the blindness (`acquired_operation_opens_blind_spot`)
   and lets the learner's own evidence separate the two worlds
-  (`after_acquiring_observations_differ`).  It also spends the difference: the
-  teacher's operation can no longer correct what is still blind to the learner
-  (`after_acquiring_other_adds_nothing`).
+  (`after_acquiring_observations_differ`).  It removes a difference in methods:
+  the teacher's operation can no longer tell apart what is still blind to the
+  learner (`after_acquiring_other_adds_nothing`).  It does not remove the value
+  of a second, independent execution: two learners using the same method who
+  both test and record honestly get the same record
+  (`same_method_honest_records_agree`), so a disagreement shows that one of
+  them failed (`same_method_disagreement_reveals_failure`); agreement proves
+  nothing if both failed alike (`agreement_is_not_proof`).
+* The same verbs one level up (D45).  A method can itself be wrong: with a
+  wrong account of what the operation yields, an honest record rules out the
+  truth (`wrong_account_of_method_loses_truth`).  Checking a method on a known
+  case is a learning turn whose "worlds" are the candidate accounts of the
+  method: accounts that mispredict the known case are ruled out and the true
+  one is kept (`method_validation_is_a_learning_turn`), and a wrong account
+  that agrees on the known case survives (`validated_method_can_still_be_wrong`),
+  which is the blind spot again, one level up.
 * `same_view_cannot_correct`: if the other's operation does not tell the two
   worlds apart either, all seven verbs leave the wrong world in place.  The two
   learners have to differ.
@@ -688,15 +701,97 @@ theorem after_acquiring_observations_differ {Op : Type} (own : Op → World → 
     (fun o => withAcquired own nu o b) ≠ (fun o => withAcquired own nu o actual) :=
   fun h => hne (congrFun h none)
 
-/-- Teaching spends the difference.  Whatever is still blind to the learner
-after it has acquired the other's operation is something that operation does
-not tell apart either, so the other can no longer correct it
-(`same_view_cannot_correct`). -/
+/-- Teaching removes a difference in available methods.  Whatever is still
+blind to the learner after it has acquired the other's operation is something
+that operation does not tell apart either.  This is about methods only.  It
+does not say the two can no longer correct each other: differences in
+evidence, implementation and experience remain, and an independent execution
+of the same method still catches failures
+(`same_method_disagreement_reveals_failure`).  An earlier wording of this note
+claimed more; an outside reader and the author corrected it (D45). -/
 theorem after_acquiring_other_adds_nothing {Op : Type} (own : Op → World → Outcome)
     (nu : World → Outcome) (actual b : World)
     (hstill : ∀ o, withAcquired own nu o b = withAcquired own nu o actual) :
     nu b = nu actual :=
   hstill none
+
+/-! ## The same method, run twice -/
+
+/-- Two learners who run the same operation in the same world, and both test
+and record honestly, get the same record. -/
+theorem same_method_honest_records_agree (t1 t2 : Turn World Outcome)
+    (hact : t1.actual = t2.actual) (hout : t1.out = t2.out)
+    (h1 : Tests t1) (h2 : Records t1) (h3 : Tests t2) (h4 : Records t2) :
+    t1.recorded = t2.recorded := by
+  have e1 : t1.recorded = t1.out t1.actual := h2.trans h1
+  have e2 : t2.recorded = t2.out t2.actual := h4.trans h3
+  rw [e1, e2, hout, hact]
+
+/-- So if their records disagree, at least one of them did not test or did not
+record honestly.  Sharing a method does not remove the value of a second,
+independent execution. -/
+theorem same_method_disagreement_reveals_failure (t1 t2 : Turn World Outcome)
+    (hact : t1.actual = t2.actual) (hout : t1.out = t2.out)
+    (hdis : t1.recorded ≠ t2.recorded) :
+    ¬ (Tests t1 ∧ Records t1 ∧ Tests t2 ∧ Records t2) :=
+  fun h => hdis (same_method_honest_records_agree t1 t2 hact hout h.1 h.2.1 h.2.2.1 h.2.2.2)
+
+/-- Agreement proves nothing if both failed alike: two records can agree and
+both be false. -/
+theorem agreement_is_not_proof : ∃ t1 t2 : Turn Nat Nat,
+    t1.actual = t2.actual ∧ t1.out = t2.out ∧ t1.recorded = t2.recorded ∧
+    t1.recorded ≠ t1.out t1.actual := by
+  let t : Turn Nat Nat :=
+    { actual := 0, kept := fun _ => True, out := fun w => w, observed := 0, recorded := 1,
+      updated := fun _ => True, carried := fun _ => True, paid := True }
+  exact ⟨t, t, rfl, rfl, rfl, by decide⟩
+
+/-! ## The same verbs, one level up
+
+A method can itself be wrong.  The learner works with an account of the
+operation: which outcome each world would give.  Checking that account is a
+learning problem of the same form, in which the candidate accounts take the
+place of the worlds and a known case takes the place of the operation. -/
+
+/-- With a wrong account of the operation, an honest record rules out the
+actual world.  `real` is what the operation in fact yields; the learner
+updates with `t.out`, its account of it. -/
+theorem wrong_account_of_method_loses_truth (t : Turn World Outcome)
+    (real : World → Outcome) (hobs : t.observed = real t.actual)
+    (hwrong : real t.actual ≠ t.out t.actual) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : ¬ t.carried t.actual := by
+  intro hc
+  cases (hret _).mp hc with
+  | inl h1 => exact hwrong ((((hupd _).mp h1.2).2.trans (hrec.trans hobs)).symm)
+  | inr h2 => exact h2.1 hpay
+
+/-- Checking a method on a known case is a learning turn.  The "worlds" are
+the candidate accounts of the method, the actual one is the true account, and
+the operation is to apply an account to the known case.  With the verbs in
+place the true account is kept and every account that mispredicts the known
+case is ruled out. -/
+theorem method_validation_is_a_learning_turn {W O : Type} (t : Turn (W → O) O) (known : W)
+    (hop : t.out = fun account => account known)
+    (hopen : LeavesOpen t) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) :
+    t.carried t.actual ∧ ∀ account, account known ≠ t.actual known → ¬ t.carried account := by
+  refine ⟨own_test_keeps_truth t hopen htest hrec hupd hret hpay, ?_⟩
+  intro account hne
+  apply own_test_removes_error t account _ htest hrec hupd hret hpay
+  rw [hop]
+  exact hne
+
+/-- A wrong account that agrees with the true one on the known case survives
+the check.  This is the blind spot one level up: a method validated on the
+cases one knows can still be wrong on the others. -/
+theorem validated_method_can_still_be_wrong {W O : Type} (t : Turn (W → O) O) (known : W)
+    (hop : t.out = fun account => account known) (account : W → O)
+    (hkept : t.kept account) (hagree : account known = t.actual known)
+    (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : t.carried account := by
+  refine (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hkept, ?_⟩⟩)
+  have h : t.out account = t.out t.actual := by rw [hop]; exact hagree
+  exact h.trans (hrec.trans htest).symm
 
 /-! ## Repair over time -/
 

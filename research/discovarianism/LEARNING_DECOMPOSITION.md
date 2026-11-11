@@ -1,6 +1,6 @@
 # A decomposition of learning into verbs
 
-**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 42 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
+**Status:** a concept note with a small formal model, 10 November 2026 (D40 in [DIALOGUE.md](../../DIALOGUE.md)). It follows the author's remark that the [creed](CREED.md) "is like a decomposition of learning. Learning happens when you obey these verbs - and vice versa", and the assistant's reply that the creed covers one direction only. The model was first checked with Z3 at the author's request, and then ported to Lean, also at his request: [`LearningVerbs.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVerbs.lean), 48 theorems in core Lean, in the repository's CI. Section 7 says which checks are in which.
 
 ## 1. The claim
 
@@ -191,21 +191,39 @@ The author's aim: "The verbs of learning are meant to be the best description on
 - **Honest own testing never rules out the truth, whatever the operation** (`own_test_keeps_truth`). A useless operation rules nothing out; it costs the try and no more. Compare `accepting_false_signal_loses_truth`.
 - **If the operation tells the error from the truth, an own test removes it** (`own_test_removes_error`). No one else's honesty is needed.
 - **Acquiring such an operation ends the blindness** (`acquired_operation_opens_blind_spot`), and the learner's own evidence now separates the two worlds (`after_acquiring_observations_differ`).
-- **Teaching spends the difference** (`after_acquiring_other_adds_nothing`). Whatever is still blind to the learner afterwards, the teacher's operation does not tell apart either. Two learners who have taught each other everything see the same, and cannot correct each other.
+- **Teaching removes a difference in methods** (`after_acquiring_other_adds_nothing`). Whatever is still blind to the learner afterwards, the teacher's operation does not tell apart either. That is all the result says. An earlier wording here went on to claim that two learners who have taught each other everything cannot correct each other. That was too strong, and was corrected by an outside reader and the author (D45): differences in evidence, implementation and experience remain. Two laboratories with the same method still catch each other's errors.
+- **The same method, run twice, still corrects.** If two learners run the same operation in the same world and both test and record honestly, their records agree (`same_method_honest_records_agree`). So a disagreement shows that at least one of them failed (`same_method_disagreement_reveals_failure`). Agreement proves nothing if both failed alike (`agreement_is_not_proof`), which is why the second execution has to be independent.
 
 **Checked, on the ledger, in `LearningRatchet.lean`.**
 - **Acquiring removes no error,** so misfit and slack are unchanged in that turn (`acquire_no_first_order_gain`). What changes is what the learner can find by itself (`acquire_widens`).
 - **After it the learner clears its errors alone** (`taught_clears_all_alone`) and, with enough reserve, lasts without any link (`taught_lasts_alone`).
 - **A learner that was only told, and is then cut off,** keeps the errors it had not yet been told about, and fails if they cost more than its uptake (`cut_off_after_telling_fails`).
 
-**What this adds to the description of learning.** A tenth verb, in a first form: *acquire an operation*. It is the verb *widen* applied to what can be tried, and the smallest case of the second-order click of step 5 of [CORE.md](../../CORE.md): a kept change whose gain is in what later turns can do. It also gives one part of an answer to the question of section 12. A claim about one's blind spot has to be taken on the reliability of its source. A method can be checked by using it.
+**What this adds to the description of learning.** A tenth verb, provisional: *develop and acquire methods* (the name is from D45; a learner can also develop a method itself, which is not modelled). In its first form here it is *acquire an operation*. It is the verb *widen* applied to what can be tried, and the smallest case of the second-order click of step 5 of [CORE.md](../../CORE.md): a kept change whose gain is in what later turns can do. It also gives one part of an answer to the question of section 12. A claim about one's blind spot has to be taken on the reliability of its source. A method can be checked by using it.
 
 **How much this says.**
 - **An instance, not a new principle.** `new_parent_set_implies_secondOrderClick` states the second-order click in general.
-- **The account of the operation is assumed right.** The learner is taken to know which outcome each world would give. A wrong account of an instrument is a false record in another form. Checking an instrument on known cases is not modelled.
+- **The account of the operation is assumed right** in the results above. A method can itself be wrong; section 14 treats that.
 - **Acquiring converts all blind errors at once** in the ledger model. One operation for one class of error would be closer.
 - **In this model being taught costs more than being told:** the cost of acquiring, and one more turn of misfit. What it buys is independence from the link and from the teller's honesty.
 - **A first-order picture of a second-order thing.** The learner's step rule is fixed and a counter changes. A learner that rewrites how it tries, tests and keeps is not modelled.
 - **The loop still closes.** The set of errors is fixed, so this is still a ratchet.
-- **The tension is stated, not resolved.** Teaching makes learners alike; correction needs them to differ. Where new difference comes from (specialisation, each one's own contact with the world) is open, and is the interval of `correcting_levels_form_interval` seen from the side of method.
+- **Shared methods and remaining difference.** Teaching makes two learners alike in method. It does not make them alike in evidence or in execution, so cooperation can raise shared capability without removing what lets them correct each other. What the model does not have is noise, samples or unequal experience; the only remaining difference it can show is in whether each one tests and records honestly.
+
+## 14. The same verbs, one level up (D45)
+
+The question, from the outside reader and endorsed by the author: can learning at a higher level be described by the same verbs applied again, without a new mechanism at each level? For one level up, in this model, yes.
+
+**A method can be wrong.** The learner works with an account of its operation: which outcome each world would give. If the account is wrong for the actual world, an honest record of a real test rules out the truth (`wrong_account_of_method_loses_truth`). So `own_test_keeps_truth` holds only for a method whose account is right.
+
+**Checking a method is a learning turn.** Take the candidate accounts of the method as the "worlds", the true account as the actual one, and "apply the account to a case whose answer is known" as the operation. This is a turn of the loop of section 3, with nothing added: the model never said what a world is. With the verbs in place, the true account is kept and every account that mispredicts the known case is ruled out (`method_validation_is_a_learning_turn`).
+
+**And it has its own blind spot.** A wrong account that agrees with the true one on the known case survives the check (`validated_method_can_still_be_wrong`). A method validated on the cases one knows can still be wrong on the others. This is `blind_spot_survives` one level up, and it is the old problem of induction in small.
+
+**What follows.**
+- **The levels have one form.** First order: change what I hold possible about the world. Second order: change what I hold possible about my methods. The verbs are the same; what changes is what they are applied to. Whether this continues upward is a matter of applying the same construction again, and nothing in it depends on the level.
+- **No level is certain.** Each level's check leaves a blind spot that only a further case, or another learner, can reach. The regress does not end in a proof. The repository's answer to where it ends is in `ActingUnderTime`: when a decision has to be made.
+- **It is a description of form, not of a working learner.** That a real learner's higher-order learning runs on the same operations is a claim about brains and models, which Lean does not check. And the results say nothing about how a learner comes up with candidate accounts in the first place: *develop* is still not modelled.
+
+**Definitions proposed in D45, not theorems.** Intelligence: the capacity of a network-organized process to use information from interactions with reality to adapt its internal organization and behaviour. Recursive intelligence: the capacity of such a process to also modify the operations through which it learns, evaluates information and adapts. In the terms of this note, the learner of sections 3 and 4 has the first; sections 13 and 14 are a first form of the second.
 

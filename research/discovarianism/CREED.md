@@ -1,6 +1,6 @@
 # The Discovarian creed
 
-**Status: current version, 11 November 2026** (D23, D31, D40 and D43 in [DIALOGUE.md](../../DIALOGUE.md)). On 11 November the two new sections were corrected after an outside review (D43); lines 1 to 13 were not touched, and the review's remarks on lines 10 and on the opening line are recorded in D43 for the author. It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
+**Status: current version, 11 November 2026** (D23, D31, D40, D43 and D45 in [DIALOGUE.md](../../DIALOGUE.md)). A tenth verb, *develop and acquire methods*, was added as provisional at the author's wish (D45). On 11 November the two new sections were corrected after an outside review (D43); lines 1 to 13 were not touched, and the review's remarks on lines 10 and on the opening line are recorded in D43 for the author. It restates the author's creed in the light of the formal work. Linked revision of 10 November: the sections "The verbs of learning" and "Sins" are new, at the author's request (D40). They were drafted by the assistant and await the author's corrections. Lines 1 to 13 are unchanged and keep their numbers. What was held before: the creed said why a learner needs honesty, correction and repair, and did not say what learning itself is made of. What changed it: the check, first with Z3 and then in Lean, that the creed's lines are enough for learning only together with try, test, update and retain. Linked revision of 16 October: line 9, "Ask where it was learned", is new, at the author's request (D31); the lines after it moved down by one. The three earlier versions are kept as written in the repository root, as lineage:
 - [Discovarian_creed.tex](../../Discovarian_creed.tex);
 - [Discoverian_creed_better.tex](../../Discoverian_creed_better.tex);
 - [Discoverinan_creed_better_improved.tex](../../Discoverinan_creed_better_improved.tex).
@@ -42,9 +42,12 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 - **Keep and repair the link.** What is sent has to arrive. A break is a delay if it is repaired and permanent if it is not (lines 3 and 7).
 - **Accept the correction.** I weigh what arrives and update on it, and do not set it aside because of who sent it (lines 2 and 10). This is *update*, applied to what another sends; it is listed apart because it fails in its own ways. Weighing is not believing. A false signal that I accept rules out the truth (`accepting_false_signal_loses_truth`). And for an error I cannot find myself, my own evidence cannot tell a true correction from a false one (`own_evidence_cannot_evaluate_blind_correction`). So how reliable and how independent the source is, is part of the evidence (line 9); who the sender is, is not a reason to ignore it.
 
+**Across turns (provisional, D45):**
+- **Develop and acquire methods.** I learn not only from the answers I receive, but also by developing and acquiring new ways of questioning reality. I test these methods, because a method can itself be wrong. With a method of my own I ask the world myself, and an honest test cannot rule out the truth if my account of the method is right (`own_test_keeps_truth`); if it is wrong, it can (`wrong_account_of_method_loses_truth`). Testing a method is the same loop one level up (`method_validation_is_a_learning_turn`), and it leaves its own blind spot (`validated_method_can_still_be_wrong`). Acquiring is modelled; developing a method oneself is not.
+
 Lines 1 to 5 below say why a learner needs these. The verbs say what it then does.
 
-**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; what follows once a retraction succeeds is `revision_restores_learning` in `LearningRatchet.lean`; how a false record is recognised is not modelled) and *widen* (add a possibility I did not have, when a fixed space runs out). A first form of widening is in the model since D44: *acquire an operation*, being taught a way of asking the world and not only told a result. Honest own testing with it cannot rule out the truth (`own_test_keeps_truth`), and it ends a blind spot (`acquired_operation_opens_blind_spot`); but teaching spends the difference between teacher and learner (`after_acquiring_other_adds_nothing`). Whether it becomes a line of the creed is for the author.
+**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; what follows once a retraction succeeds is `revision_restores_learning` in `LearningRatchet.lean`; how a false record is recognised is not modelled) and *widen* (add a possibility I did not have, when a fixed space runs out). Widening what can be tried has a first form in the tenth verb above; adding a possibility is still open.
 
 ## What follows from what I am
 
@@ -77,7 +80,7 @@ These do not follow from what I am. I hold them, and I offer them with reasons.
 
 ## Sins
 
-The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of stopping the loop. Each verb has one. In the model, each of them blocks learning in that turn, however well the rest is done. The table has ten rows for nine verbs because accepting a correction is updating on what another sends, and is listed apart.
+The earlier creeds named sins, and the author asked for them back (D40). A sin, here, is a way of stopping the loop. Each verb has one. In the model, each of them blocks learning in that turn, however well the rest is done. The table has a row for each verb listed above; accepting a correction is updating on what another sends, and is listed apart.
 
 | Verb | Sin | What it looks like |
 |---|---|---|
@@ -91,6 +94,7 @@ The earlier creeds named sins, and the author asked for them back (D40). A sin, 
 | Pass on honestly | **Deceiving and withholding** | I send what I did not observe, or keep back what I did |
 | Keep and repair the link | **Breaking, and leaving broken** | I cut a link, or see it broken and do nothing |
 | Accept the correction | **Filtering by source**, or **swallowing whole** | I set a signal aside because of who sent it; or I take it in without weighing it |
+| Develop and acquire methods (provisional) | **Collecting answers**, or **trusting an untested method** | I take results and never learn how they were reached; or I rely on a method I have not checked |
 
 **The root sin** in the earlier creeds was neglecting interdependence: acting as though I could keep myself going alone. In the model it has an exact form. It is the belief that my own loop is enough. It is not: an error my own operations cannot tell from the truth survives every honest turn I take alone.
 
