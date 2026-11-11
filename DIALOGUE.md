@@ -1144,3 +1144,24 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **same author, same day, same model family** as D40 (working agreement 7).
 - **Open:** the author's view on the three changes; a model with other income and with switching; more than two learners; a fresh-error process that is modelled and not assumed.
 
+### D42. A review of the core: where the two lines meet, and the loop on the ledger (Open, November 2026)
+- **Author:** "Lets return improving the EbE repository. I think the formalization of learning is a very good addition. And there is an element to it that make me believe that you should be able to improve the vortex too. Therefore please review the CORE of the repo - and the main logic lineage (the one based on the Room and which we are expanding)."
+- **Assistant, the review:**
+  1. **Two lines, joined by narrative.** Steps 1 to 7 are a ledger. Step 8 and "the view from inside" are the Room. They meet at feedback: step 4 says "follows reliable feedback" and the vortex speed has a factor "validated", but neither says what validating is. The page promises one model of learning, and no step states the loop.
+  2. **The vortex cannot run backwards.** Its speed is a product of fractions, so the worst case is zero. A false record that is retained is worse than zero.
+  3. **"Outside" means two things** in CORE: the world answering, and others correcting. A learner in contact with the world learns alone; it needs others for what its own operations cannot tell apart.
+  4. **The Room proves fallibility, not the need for others.** That step needs a further premise: someone else can see what you cannot. Without a difference between learners, all the verbs leave the error in place.
+  5. **One premise carries the join: fit pays, and misfit costs slack.** Where the cost of misfit can be passed to others, a sealed system lasts. CORE says so; it could name this as the hinge.
+  6. **Part of D40 and D41 restates earlier results.** `LongCollaboration` is largely `Reciprocity`; `blind_spot_survives` is close to `inside_view_cannot_settle`; the repair result to `forgiveness_turns_split_into_delay`. The assistant had not checked for overlap before writing. What is new is the solo loop.
+- **Assistant, the proposal:** (1) close the loop, so that "afford" is paid from slack that learning raises; (2) a speed with a sign; (3) a speed with two terms, own operations and a link.
+- **Author:** "Yes please implement 1 (and 2, and 3 after) and adjust the rest accordingly."
+- **Done:** `LearningVortex.lean`, 24 theorems in core Lean, outside the core; section 10 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md). The overlap of point 6 is now stated in both module headers, the package README and section 11 of the note. CORE.md has two small pointers and is otherwise unchanged.
+- **Where the assistant is unsure or disagrees:**
+  - **it is a ratchet, not yet a vortex.** The space is fixed, so the loop closes and then stops. The module's name promises more than it delivers. Joining it to the second-order click (widening) is the real next step;
+  - **the setting carries the results.** Every kept error costs the same, in every turn. This is step 4's premise in its bluntest form;
+  - **"efficiency buys duration" is shown in one setting.** CORE's open item may mean more than this;
+  - **points 3, 4 and 5 of the review are about CORE's wording** and are not acted on. The assistant did not rewrite CORE;
+  - **the results are outside the core.** Whether a statement of the learning loop belongs between steps 4 and 5 is the author's decision;
+  - **same model family, same two days** (working agreement 7). The review of one's own work found overlap only on the second day.
+- **Open:** widening on the same ledger; whether CORE should state the loop, separate the two senses of "outside", and name the hinge; the author's view on points 3 to 5; an outside reader.
+

@@ -114,3 +114,46 @@ The author's claim: "for me collaboration is just too brains doing what brains d
 - **A fresh error each turn is assumed.** In a fixed space the exchange runs out (A4).
 - **"Corrected" is linked to section 4 by reading.** It is defined as the conjunction that `seven_verbs_correct` proves sufficient; the module does not import it.
 
+## 10. The loop on the vortex ledger (D42)
+
+A review of [CORE.md](../../CORE.md) found that its two lines meet at one word. Steps 1 to 7 are a ledger (slack, selection, the vortex); step 8 is the Room (a fallible model that needs correction). They meet at feedback, which the vortex speed counts as a fraction, "validated", and step 4 takes as given. [`LearningVortex.lean`](../../formalization/cumulative-accessibility/CumulativeAccessibility/LearningVortex.lean) (24 theorems, core Lean) puts the loop of section 3 on the ledger of step 1.
+
+**The model.** A learner holds a reserve. Each wrong world it keeps possible costs one unit per turn: misfit costs slack, the premise of step 4. It takes up a fixed amount per turn, and a try costs something. Some errors its own operations can tell apart; some they cannot.
+
+**1. The loop pays for its own next turn.** A learning turn removes one wrong world and so raises slack by one, for good (`learning_turn_raises_slack`). A learner whose reserve covers the way down is viable in every turn (`loop_closes`); a sealed one, from the same start with misfit above uptake, runs out (`efficiency_buys_duration`). In section 3 "afford" was given from outside. Here it is paid from the reserve, and each turn's gain lowers the cost of all later turns.
+
+**2. The speed has a sign.** The vortex speed is a product of fractions, so its worst case is zero. The verbs show a worse one. A try whose record is false and is retained:
+- looks the same from inside as a learning turn, one fewer world kept possible (`false_and_true_turn_look_alike`);
+- lowers slack (`false_turn_lowers_slack`), and is worse than discarding the try (`retaining_false_is_worse_than_discarding`);
+- stops all later learning, although every verb is done from then on (`after_false_turn_no_learning`, `retained_false_record_fails`);
+- is undone by taking the record back (`revision_restores_learning`). This is a first form of the candidate verb *revise*.
+
+**3. The speed has two terms.** Alone, the errors the learner cannot tell apart stay, however much it tries (`solo_keeps_blind`), and if they cost more than its uptake it runs out although it does all seven verbs (`solo_fails_on_blind_spot`). A link to the same view adds nothing (`same_view_is_solo`). A link to a different view removes them (`errors_removed_two_terms`, `link_decides`).
+
+**How the verbs map onto the factors of the vortex speed.**
+
+| Factor | Verb |
+|---|---|
+| opportunity | none: the world's side |
+| generate | try |
+| affordable | afford |
+| validated | test and record honestly; between learners, the exchange verbs |
+| retained | retain |
+| gain | update |
+| (not a factor) | leave open |
+| second-order click | not a verb here: *widen* |
+
+**How much this says.**
+- **A ratchet, not yet a vortex.** The space is fixed, so the loop closes and then stops. A vortex needs kept changes that also widen what can be tried, which is not modelled. The vortex has widening and no truth; the verbs have truth and no widening.
+- **The setting carries the results.** Every kept error costs the same, in every turn. Where misfit is free, or someone else pays for it, a sealed learner lasts; step 4 says so.
+- **`need` ignores uptake,** so the reserve condition is sufficient and not necessary.
+- **The link is free and cannot break** here; `LongCollaboration` and `Reciprocity` treat that.
+- **The kinds of turn are linked to the verbs by reading,** not by import.
+
+## 11. What is new here and what restates earlier results
+
+Noticed in the review of D42, after sections 4 and 9 were written.
+- **New:** the solo loop of section 3 (seven verbs, each needed, each failure possible), and section 10.
+- **Restated in one small model:** the blind spot (`ModelOfLargerReality.inside_view_cannot_settle`), repair as delay (`Persistence.forgiveness_turns_split_into_delay`), and the need for a different view (the two-learner form of `hub_determined_network_inherits_blind_spot`).
+- **Largely a restatement:** section 9 is `Reciprocity` with the exchanged good named as correction. `Reciprocity` is the richer model, because giving costs there, so defection pays at first. In section 9 giving is free.
+

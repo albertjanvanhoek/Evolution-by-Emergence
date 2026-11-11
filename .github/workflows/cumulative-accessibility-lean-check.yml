@@ -79,6 +79,7 @@ jobs:
             CumulativeAccessibility.LinkedRevision \
             CumulativeAccessibility.LearningVerbs \
             CumulativeAccessibility.LongCollaboration \
+            CumulativeAccessibility.LearningVortex \
             CumulativeAccessibility.ExistenceLemmas \
             CumulativeAccessibility.PowerLayers \
             CumulativeAccessibility.CrossScaleLedger \
@@ -149,6 +150,7 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LinkedRevision.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningVerbs.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LongCollaboration.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningVortex.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExistenceLemmas.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PowerLayers.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CrossScaleLedger.lean

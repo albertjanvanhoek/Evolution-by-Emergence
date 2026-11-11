@@ -48,6 +48,17 @@ Results, between learners:
   held in no turn.  A break is a delay if it is repaired, permanent if not.
 * `learning_verbs_witness`: a concrete turn in which all seven verbs hold.
 
+Relation to earlier results in this repository.  The solo loop is what this
+module adds: the seven verbs, each shown to be needed, each failure shown to
+be possible.  The part between learners mostly restates earlier results in
+one small model: `blind_spot_survives` is close to
+`ModelOfLargerReality.inside_view_cannot_settle`,
+`error_survives_iff_never_linked` to
+`Persistence.forgiveness_turns_split_into_delay`, and
+`same_view_cannot_correct` is the two-learner form of
+`hub_determined_network_inherits_blind_spot`.  This was noticed in the review
+of D42, after the module was written.
+
 How much this says.  The results are close to their definitions.  The one
 step of argument is in `seven_verbs_learn`: two worlds with different outcomes
 cannot both agree with an honest record of a real test.  "Needed" means that,

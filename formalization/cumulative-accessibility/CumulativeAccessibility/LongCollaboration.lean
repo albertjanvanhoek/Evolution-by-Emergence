@@ -37,6 +37,15 @@ Results:
   one at a time.
 * `long_collaboration_witness`: concrete numbers.
 
+Relation to earlier results in this repository.  This module is largely
+`Reciprocity` with the exchanged good named as correction and split into
+verbs.  `Reciprocity` is the richer model: there giving costs the giver, so
+defection pays at first (`defection_pays_at_first`) and there is a temptation
+to explain.  Here giving is free, so nothing is gained by withholding.  What
+this module adds is which verbs the exchange consists of, and the "exactly
+when" over all seven on both sides.  This was noticed in the review of D42,
+after the module was written.
+
 How much this says.  The results are close to the budget rule.  The rule is
 strong: being corrected by the other is each learner's only income, and it
 exactly pays for one turn.  With other income, or a partner to switch to, a

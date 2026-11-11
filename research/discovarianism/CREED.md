@@ -44,7 +44,7 @@ This is the premise. Everything marked **Follows** below rests on it and on noth
 
 Lines 1 to 5 below say why a learner needs these. The verbs say what it then does.
 
-**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this) and *widen* (add a possibility I did not have, when a fixed space runs out).
+**Not yet in the model:** *revise* (take back a record that proved false, which needs its grounds to have been kept; lines 6 and 9 serve this; a first form on the ledger is `revision_restores_learning` in `LearningVortex.lean`) and *widen* (add a possibility I did not have, when a fixed space runs out).
 
 ## What follows from what I am
 
