@@ -28,9 +28,11 @@ world, so it raises slack by one, for good.  In `LearningVerbs` the verb
 turn's gain lowers the cost of every later turn.
 
 **2. The speed has a sign.**  A turn whose record is false (untested, or
-distorted) and is retained looks the same from inside as a learning turn: one
-fewer world is kept possible.  But the world it removed is the actual one.
-Slack falls.  The learner no longer leaves the truth open, so it no longer
+distorted) and is retained cannot be told from a learning turn from inside
+(`LearningVerbs.tested_and_untested_look_alike`).  But among the worlds it
+removed is the actual one.  Slack changes by what the wrong worlds it happened
+to remove were costing, minus what the lost world costs; it falls whenever the
+second is larger (`false_turn_lowers_slack`).  The learner no longer leaves the truth open, so it no longer
 does all seven verbs, whatever else it does; in this model no later try learns
 anything until the record is taken back.  Whether it then runs out of reserve
 depends on the ledger: with enough uptake a wrong model lasts.  How a false
@@ -40,23 +42,26 @@ definition.
 **3. The speed has two terms.**  Alone, a learner removes only what its own
 operations can tell apart, and then stops, with the blind errors still costing
 it every turn.  Through a link to a learner with a different view it removes
-those too.  With the same view the link adds nothing.
+those too, and in the same turn as its own (`both_terms_in_one_turn`).  With
+the same view the link adds nothing.
 
 Results:
 * `learning_turn_raises_slack`, `learner_clears_own_errors`, `loop_closes`,
   `sealed_fails`, `futile_fails`, `efficiency_buys_duration`.
-* `false_turn_lowers_slack`, `false_and_true_turn_look_alike`,
+* `false_turn_slack`, `false_turn_lowers_slack`,
   `after_false_turn_no_learning`, `retained_false_record_fails`,
   `retaining_false_is_worse_than_discarding`, `revision_restores_learning`.
 * `solo_keeps_blind`, `solo_fails_on_blind_spot`, `same_view_is_solo`,
-  `errors_removed_two_terms`, `linked_lasts`, `link_decides`.
-* `acquire_no_first_order_gain`, `acquire_widens`, `taught_clears_all_alone`,
+  `errors_removed_two_terms`, `both_terms_in_one_turn`, `linked_lasts`,
+  `link_decides`.
+* `acquire_no_first_order_gain`, `acquire_widens`,
+  `acquire_from_same_view_gains_nothing`, `taught_clears_all_alone`,
   `taught_lasts_alone`, `cut_off_after_telling_fails`.
 * `learning_ratchet_witness`, `told_and_taught_witness`: concrete numbers.
 
 **4. Being told and being taught (D44).**  Through a link the learner can be
 told a result, one error per turn, or be taught the operation.  Acquiring the
-operation removes no error and so raises no slack in that turn; what it
+operation needs a source with a different view, and removes no error and so raises no slack in that turn; what it
 changes is which errors the learner can find by itself.  After it the learner
 clears them alone, and a lost link no longer matters.  This is the smallest
 case of a kept change that widens what can be tried, the second-order click
@@ -137,22 +142,36 @@ def learnOwn (p : Terms) (s : State) : State :=
     else futile p s
   else idle p s
 
-/-- A try whose record is false and is retained: the actual world is ruled out. -/
-def falseTurn (p : Terms) (s : State) : State :=
-  { s with reserve := s.reserve + p.u - misfit s - p.t, lost := s.lost + p.lostCost }
+/-- A try whose record is false and is retained: the actual world is ruled out.
+A false record keeps the worlds that agree with it, so it can also rule out
+some wrong worlds, `r` of them here.  How many depends on what the record
+happened to say; the model does not fix it. -/
+def falseTurn (p : Terms) (r : Nat) (s : State) : State :=
+  { s with reserve := s.reserve + p.u - misfit s - p.t, own := s.own - r,
+           lost := s.lost + p.lostCost }
 
 /-- Taking the false record back. -/
 def revise (p : Terms) (s : State) : State :=
   { s with reserve := s.reserve + p.u - misfit s - p.reviseCost, lost := 0 }
 
-/-- A turn of a learner with a link to another.  It first removes what it can
-tell apart itself.  After that, if the other has a different view, a turn
-removes one error it could not tell apart. -/
+/-- A turn of a learner with a link to another.  In the same turn it can
+remove one error it can tell apart itself, by a try of its own, and, if the
+other has a different view, one error it could not tell apart, by a try of
+the other's.  Each try costs `t`.  If it has ruled out the actual world it
+does as it would alone. -/
 def linked (p : Terms) (differs : Bool) (s : State) : State :=
-  if 0 < s.own then learnOwn p s
-  else if differs = true ∧ 0 < s.blind ∧ s.lost = 0 then
-    { s with reserve := s.reserve + p.u - misfit s - p.t, blind := s.blind - 1 }
-  else idle p s
+  if s.lost = 0 then
+    if 0 < s.own then
+      if differs = true ∧ 0 < s.blind then
+        { s with reserve := s.reserve + p.u - misfit s - p.t - p.t,
+                 own := s.own - 1, blind := s.blind - 1 }
+      else
+        { s with reserve := s.reserve + p.u - misfit s - p.t, own := s.own - 1 }
+    else
+      if differs = true ∧ 0 < s.blind then
+        { s with reserve := s.reserve + p.u - misfit s - p.t, blind := s.blind - 1 }
+      else idle p s
+  else learnOwn p s
 
 /-- A run of turns of one kind. -/
 def run (f : State → State) : Nat → State → State
@@ -285,28 +304,26 @@ theorem efficiency_buys_duration (p : Terms) (s : State)
     (∀ n, 0 ≤ (run (learnOwn p) n s).reserve) ∧ (∃ n, (run (idle p) n s).reserve < 0) :=
   ⟨loop_closes p s hlost hblind hres, sealed_fails p s hmis⟩
 
-/-! ## 2. The speed has a sign -/
+/-! ## 2. The speed has a sign
 
-/-- A retained false record lowers slack by what the lost world costs. -/
-theorem false_turn_lowers_slack (p : Terms) (s : State) :
-    slack p (falseTurn p s) = slack p s - p.lostCost := by
+From inside, a turn with a false record cannot be told from a learning turn:
+the learner does the same thing in both, and nothing it has shows which world
+is actual (`LearningVerbs.tested_and_untested_look_alike`). -/
+
+/-- What a retained false record does to slack: it gains what the wrong worlds
+it happened to remove were costing, and loses what the lost world costs. -/
+theorem false_turn_slack (p : Terms) (r : Nat) (s : State) (hr : r ≤ s.own) :
+    slack p (falseTurn p r s) = slack p s + r - p.lostCost := by
   simp [falseTurn, slack, misfit]
   omega
 
-/-- How many worlds the learner keeps possible: the wrong ones, and the actual
-one if it has not been ruled out. -/
-def keptCount (s : State) : Nat := s.own + s.blind + (if s.lost = 0 then 1 else 0)
-
-/-- From inside, the two turns look alike: after either, one fewer world is
-kept possible. -/
-theorem false_and_true_turn_look_alike (p : Terms) (s : State)
-    (hown : 0 < s.own) (hlost : s.lost = 0) (hcost : 0 < p.lostCost) :
-    keptCount (learnOwn p s) = keptCount s - 1 ∧ keptCount (falseTurn p s) = keptCount s - 1 := by
-  constructor
-  · simp [learnOwn, hown, hlost, keptCount]
-    omega
-  · have : ¬ (p.lostCost = 0) := by omega
-    simp [falseTurn, keptCount, hlost, this]
+/-- It lowers slack whenever the lost world costs more than the wrong worlds
+it removed were costing.  The condition is needed. -/
+theorem false_turn_lowers_slack (p : Terms) (r : Nat) (s : State)
+    (hr : r ≤ s.own) (h : r < p.lostCost) :
+    slack p (falseTurn p r s) < slack p s := by
+  rw [false_turn_slack p r s hr]
+  omega
 
 /-- Once the actual world is ruled out, an honest try learns nothing. -/
 theorem after_false_turn_no_learning (p : Terms) (s : State)
@@ -335,11 +352,12 @@ theorem retained_false_record_fails (p : Terms) (s : State)
     · simp [futile]; omega
     · simp [idle]; omega
 
-/-- Retaining a false record is worse than discarding the try. -/
-theorem retaining_false_is_worse_than_discarding (p : Terms) (s : State)
-    (hcost : 0 < p.lostCost) :
-    slack p (falseTurn p s) < slack p (futile p s) ∧
-    (falseTurn p s).reserve = (futile p s).reserve := by
+/-- Retaining a false record is worse than discarding the try, under the same
+condition. -/
+theorem retaining_false_is_worse_than_discarding (p : Terms) (r : Nat) (s : State)
+    (hr : r ≤ s.own) (h : r < p.lostCost) :
+    slack p (falseTurn p r s) < slack p (futile p s) ∧
+    (falseTurn p r s).reserve = (futile p s).reserve := by
   constructor
   · simp [falseTurn, futile, slack, misfit]; omega
   · simp [falseTurn, futile]
@@ -389,29 +407,37 @@ theorem solo_fails_on_blind_spot (p : Terms) (s : State) (h : p.u < s.blind) :
 
 /-- A link to a learner with the same view adds nothing. -/
 theorem same_view_is_solo (p : Terms) (s : State) : linked p false s = learnOwn p s := by
-  unfold linked
-  split
-  · rfl
-  · rename_i h
-    simp [learnOwn, h]
+  unfold linked learnOwn
+  by_cases hl : s.lost = 0 <;> by_cases ho : 0 < s.own <;> simp [hl, ho]
 
 /-- The errors removed in a turn are the sum of two terms: one from the
 learner's own operations, and one that arrives only through a link to a
-different view. -/
+different view.  Both can be active in the same turn. -/
 theorem errors_removed_two_terms (p : Terms) (d : Bool) (s : State) (hlost : s.lost = 0) :
     (linked p d s).own + (linked p d s).blind + (if 0 < s.own then 1 else 0)
-      + (if s.own = 0 ∧ d = true ∧ 0 < s.blind then 1 else 0) = s.own + s.blind := by
+      + (if d = true ∧ 0 < s.blind then 1 else 0) = s.own + s.blind := by
   unfold linked
   by_cases h1 : 0 < s.own
-  · have h2 : ¬ (s.own = 0) := by omega
-    simp [h1, h2, learnOwn, hlost]
-    omega
-  · have h2 : s.own = 0 := by omega
-    by_cases h3 : d = true ∧ 0 < s.blind
-    · simp [h2, h3, hlost]
+  · by_cases h2 : d = true ∧ 0 < s.blind
+    · have := h2.2
+      simp [hlost, h1, h2]
       omega
-    · have h4 : ¬ (d = true ∧ 0 < s.blind ∧ s.lost = 0) := fun h => h3 ⟨h.1, h.2.1⟩
-      simp [h2, h3, h4, idle]
+    · simp [hlost, h1, h2]
+      omega
+  · have h0 : s.own = 0 := by omega
+    by_cases h2 : d = true ∧ 0 < s.blind
+    · have := h2.2
+      simp [hlost, h0, h2]
+      omega
+    · simp [hlost, h0, h2, idle]
+
+/-- With an error of each kind and a link to a different view, one turn
+removes two errors: the two terms add. -/
+theorem both_terms_in_one_turn (p : Terms) (s : State) (hlost : s.lost = 0)
+    (ho : 0 < s.own) (hb : 0 < s.blind) :
+    (linked p true s).own + (linked p true s).blind + 2 = s.own + s.blind := by
+  simp [linked, hlost, ho, hb]
+  omega
 
 /-- With a link to a different view, a learner whose reserve covers the way
 down for all its errors is viable in every turn. -/
@@ -424,19 +450,25 @@ theorem linked_lasts (p : Terms) (s : State) (hlost : s.lost = 0)
     intro s ⟨h1, h3⟩
     unfold linked
     by_cases ho : 0 < s.own
-    · have hk : s.own + s.blind = (s.own - 1 + s.blind) + 1 := by omega
-      rw [hk, need_succ] at h3
-      simp [ho, learnOwn, h1, Inv, misfit]
-      omega
+    · by_cases hb : 0 < s.blind
+      · have hk : s.own + s.blind = ((s.own - 1 + (s.blind - 1)) + 1) + 1 := by omega
+        rw [hk, need_succ, need_succ] at h3
+        simp [h1, ho, hb, Inv, misfit]
+        omega
+      · have hb0 : s.blind = 0 := by omega
+        have hk : s.own + s.blind = (s.own - 1 + s.blind) + 1 := by omega
+        rw [hk, need_succ] at h3
+        simp [h1, ho, hb0, Inv, misfit] at h3 ⊢
+        omega
     · have h0 : s.own = 0 := by omega
       by_cases hb : 0 < s.blind
       · have hk : s.own + s.blind = (s.blind - 1) + 1 := by omega
         rw [hk, need_succ] at h3
-        simp [h0, hb, h1, Inv, misfit]
+        simp [h1, h0, hb, Inv, misfit]
         omega
       · have hb0 : s.blind = 0 := by omega
         simp [h0, hb0, need] at h3
-        simp [h0, hb0, h1, Inv, idle, misfit, need]
+        simp [h1, h0, hb0, Inv, idle, misfit, need]
         omega
   have := run_keeps (linked p true) Inv hkeep n s ⟨hlost, hres⟩
   have hn : (0 : Int) ≤ (need p ((run (linked p true) n s).own + (run (linked p true) n s).blind) : Int) :=
@@ -458,28 +490,41 @@ theorem link_decides (p : Terms) (s : State) (hlost : s.lost = 0)
 
 /-! ## 4. Being told and being taught -/
 
-/-- Acquiring an operation from another: the errors the learner could not tell
-apart become errors it can.  No error is removed in this turn. -/
-def acquire (p : Terms) (s : State) : State :=
-  { s with reserve := s.reserve + p.u - misfit s - p.acquireCost,
-           own := s.own + s.blind, blind := 0 }
+/-- Acquiring an operation from another.  If the other has an operation the
+learner lacks, the errors the learner could not tell apart become errors it
+can; no error is removed in this turn.  If the other has the same view there
+is nothing to acquire, and the cost is paid for nothing.  Developing a method
+without anyone to acquire it from is not modelled: that would need an account
+of where a new operation comes from. -/
+def acquire (p : Terms) (differs : Bool) (s : State) : State :=
+  if differs = true then
+    { s with reserve := s.reserve + p.u - misfit s - p.acquireCost,
+             own := s.own + s.blind, blind := 0 }
+  else
+    { s with reserve := s.reserve + p.u - misfit s - p.acquireCost }
 
 /-- Acquiring removes no error: misfit and slack are unchanged. -/
-theorem acquire_no_first_order_gain (p : Terms) (s : State) :
-    misfit (acquire p s) = misfit s ∧ slack p (acquire p s) = slack p s := by
-  simp [acquire, misfit, slack]
+theorem acquire_no_first_order_gain (p : Terms) (d : Bool) (s : State) :
+    misfit (acquire p d s) = misfit s ∧ slack p (acquire p d s) = slack p s := by
+  cases d <;> simp [acquire, misfit, slack]
 
-/-- What it changes is what the learner can find by itself. -/
+/-- From a different view, what it changes is what the learner can find by
+itself. -/
 theorem acquire_widens (p : Terms) (s : State) :
-    (acquire p s).own = s.own + s.blind ∧ (acquire p s).blind = 0 := by
+    (acquire p true s).own = s.own + s.blind ∧ (acquire p true s).blind = 0 := by
+  simp [acquire]
+
+/-- From the same view there is nothing to acquire. -/
+theorem acquire_from_same_view_gains_nothing (p : Terms) (s : State) :
+    (acquire p false s).own = s.own ∧ (acquire p false s).blind = s.blind := by
   simp [acquire]
 
 /-- After acquiring, the learner removes all its errors alone, one per turn. -/
 theorem taught_clears_all_alone (p : Terms) (s : State) (hlost : s.lost = 0) (n : Nat) :
-    (run (learnOwn p) n (acquire p s)).own = s.own + s.blind - n ∧
-    (run (learnOwn p) n (acquire p s)).blind = 0 := by
+    (run (learnOwn p) n (acquire p true s)).own = s.own + s.blind - n ∧
+    (run (learnOwn p) n (acquire p true s)).blind = 0 := by
   constructor
-  · rw [learner_clears_own_errors p n (acquire p s) (by simpa [acquire] using hlost)]
+  · rw [learner_clears_own_errors p n (acquire p true s) (by simpa [acquire] using hlost)]
     simp [acquire]
   · rw [solo_keeps_blind]
     simp [acquire]
@@ -488,11 +533,12 @@ theorem taught_clears_all_alone (p : Terms) (s : State) (hlost : s.lost = 0) (n 
 down is viable in every turn without any link. -/
 theorem taught_lasts_alone (p : Terms) (s : State) (hlost : s.lost = 0)
     (hres : (need p (s.own + s.blind) : Int) + misfit s + p.acquireCost ≤ s.reserve + p.u) :
-    ∀ n, 0 ≤ (run (learnOwn p) n (acquire p s)).reserve := by
+    ∀ n, 0 ≤ (run (learnOwn p) n (acquire p true s)).reserve := by
   apply loop_closes
   · simpa [acquire] using hlost
   · simp [acquire]
   · simp only [acquire]
+    simp
     omega
 
 /-- A learner that was only told, and is then cut off, keeps the blind errors
@@ -522,7 +568,7 @@ theorem learning_ratchet_witness :
     (run (learnOwn terms) 12 start).reserve < 0 ∧
     (run (linked terms true) 4 start).own + (run (linked terms true) 4 start).blind = 0 ∧
     0 < (run (linked terms true) 12 start).reserve ∧
-    (run (learnOwn terms) 5 (falseTurn terms start)).reserve < 0 := by
+    (run (learnOwn terms) 5 (falseTurn terms 0 start)).reserve < 0 := by
   decide
 
 /-- Reserve 20, no errors the learner can find and four it cannot. -/
@@ -536,12 +582,12 @@ larger reserve. -/
 theorem told_and_taught_witness :
     (run (linked terms true) 2 startBlind).blind = 2 ∧
     (run (learnOwn terms) 20 (run (linked terms true) 2 startBlind)).reserve < 0 ∧
-    (run (learnOwn terms) 4 (acquire terms startBlind)).own = 0 ∧
-    (run (learnOwn terms) 4 (acquire terms startBlind)).blind = 0 ∧
-    0 ≤ (run (learnOwn terms) 4 (acquire terms startBlind)).reserve ∧
-    (run (learnOwn terms) 4 (acquire terms startBlind)).reserve
-      < (run (learnOwn terms) 24 (acquire terms startBlind)).reserve ∧
-    (run (learnOwn terms) 4 (acquire terms startBlind)).reserve
+    (run (learnOwn terms) 4 (acquire terms true startBlind)).own = 0 ∧
+    (run (learnOwn terms) 4 (acquire terms true startBlind)).blind = 0 ∧
+    0 ≤ (run (learnOwn terms) 4 (acquire terms true startBlind)).reserve ∧
+    (run (learnOwn terms) 4 (acquire terms true startBlind)).reserve
+      < (run (learnOwn terms) 24 (acquire terms true startBlind)).reserve ∧
+    (run (learnOwn terms) 4 (acquire terms true startBlind)).reserve
       < (run (linked terms true) 4 startBlind).reserve := by
   decide
 

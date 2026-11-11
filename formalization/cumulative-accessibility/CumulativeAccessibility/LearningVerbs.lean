@@ -71,6 +71,20 @@ Results, between learners:
   one is kept (`method_validation_is_a_learning_turn`), and a wrong account
   that agrees on the known case survives (`validated_method_can_still_be_wrong`),
   which is the blind spot again, one level up.
+* What cannot be checked from inside (D46).  "Test" and "leave open" are
+  defined by the actual world, which the learner does not know.  Two turns can
+  agree in everything the learner has and differ only in which world is
+  actual, one learning and the other losing the truth
+  (`tested_and_untested_look_alike`), one open and the other sealed
+  (`open_and_sealed_look_alike`).  So these two are conditions of success and
+  not things a learner can know it is doing.
+* A world that moves (D46).  What an honest test rightly ruled out can be the
+  actual world after a change (`retained_record_goes_stale`).  Retaining is
+  good only while the world stands still.
+* One joint space (D46).  A surprising outcome does not say whether the view of
+  the world or the account of the method is wrong: both repairs survive
+  (`surprise_does_not_say_which`).  The "levels" of D45 are a factoring that
+  is available only when some cases are known.
 * `same_view_cannot_correct`: if the other's operation does not tell the two
   worlds apart either, all seven verbs leave the wrong world in place.  The two
   learners have to differ.
@@ -792,6 +806,104 @@ theorem validated_method_can_still_be_wrong {W O : Type} (t : Turn (W → O) O) 
   refine (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hkept, ?_⟩⟩)
   have h : t.out account = t.out t.actual := by rw [hop]; exact hagree
   exact h.trans (hrec.trans htest).symm
+
+/-! ### Witnesses for the three results above -/
+
+/-- The hypotheses of the two validation results can hold together: accounts
+are maps on `Bool`, the true one is the identity, the known case is `true`.
+The constant account `true` is wrong and agrees on the known case. -/
+theorem method_validation_witness : ∃ (t : Turn (Bool → Bool) Bool) (known : Bool),
+    t.out = (fun account => account known) ∧ LeavesOpen t ∧ Tests t ∧ Records t ∧
+    Updates t ∧ Retains t ∧ Affords t ∧
+    t.kept (fun _ => true) ∧ (fun _ : Bool => true) known = t.actual known ∧
+    (fun _ : Bool => true) ≠ t.actual := by
+  refine ⟨{ actual := id, kept := fun _ => True, out := fun a => a true, observed := true,
+            recorded := true, updated := fun a => a true = true,
+            carried := fun a => a true = true, paid := True },
+          true, rfl, trivial, rfl, rfl, ?_, ?_, trivial, trivial, rfl, ?_⟩
+  · intro a; show a true = true ↔ (True ∧ a true = true); simp
+  · intro a; show a true = true ↔ ((True ∧ a true = true) ∨ (¬ True ∧ True)); simp
+  · intro h
+    have := congrFun h false
+    simp at this
+
+/-- The hypotheses of `wrong_account_of_method_loses_truth` can hold together. -/
+theorem wrong_account_witness : ∃ (t : Turn Nat Nat) (real : Nat → Nat),
+    t.observed = real t.actual ∧ real t.actual ≠ t.out t.actual ∧ Records t ∧
+    Updates t ∧ Retains t ∧ Affords t := by
+  refine ⟨{ actual := 0, kept := fun _ => True, out := fun w => w, observed := 1,
+            recorded := 1, updated := fun w => w = 1, carried := fun w => w = 1,
+            paid := True }, fun _ => 1, rfl, by decide, rfl, ?_, ?_, trivial⟩
+  · intro w; show w = 1 ↔ (True ∧ w = 1); simp
+  · intro w; show w = 1 ↔ ((True ∧ w = 1) ∨ (¬ True ∧ True)); simp
+
+/-! ## What cannot be checked from inside -/
+
+/-- Two turns that agree in everything the learner has, and differ only in
+which world is actual.  In the first all seven verbs hold and the learner
+learns.  In the second the same record, update and retention rule out the
+actual world.  Nothing the learner has tells them apart. -/
+theorem tested_and_untested_look_alike : ∃ t1 t2 : Turn Nat Nat,
+    t1.kept = t2.kept ∧ t1.out = t2.out ∧ t1.observed = t2.observed ∧
+    t1.recorded = t2.recorded ∧ t1.updated = t2.updated ∧ t1.carried = t2.carried ∧
+    t1.paid = t2.paid ∧ Learns t1 ∧ ¬ t2.carried t2.actual := by
+  refine ⟨goodTurn, { goodTurn with actual := 1 }, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    learning_verbs_witness.2.2.2.2.2.2.2, ?_⟩
+  show ¬ ((1 : Nat) = 0)
+  decide
+
+/-- The same for leaving open: whether the actual world is among those kept
+possible is not something the learner can read off what it has.  Never having
+thought of the truth and having ruled it out look the same. -/
+theorem open_and_sealed_look_alike : ∃ t1 t2 : Turn Nat Nat,
+    t1.kept = t2.kept ∧ t1.out = t2.out ∧ t1.observed = t2.observed ∧
+    t1.recorded = t2.recorded ∧ t1.updated = t2.updated ∧ t1.carried = t2.carried ∧
+    t1.paid = t2.paid ∧ LeavesOpen t1 ∧ ¬ LeavesOpen t2 := by
+  refine ⟨goodTurn, { goodTurn with actual := 2 }, rfl, rfl, rfl, rfl, rfl, rfl, rfl,
+    Or.inl rfl, ?_⟩
+  show ¬ ((2 : Nat) = 0 ∨ (2 : Nat) = 1)
+  decide
+
+/-! ## A world that moves, and one joint space -/
+
+/-- A world that agrees with the actual one on the operation is carried
+forward. -/
+theorem agreeing_world_is_carried (t : Turn World Outcome) (x : World)
+    (hkept : t.kept x) (hagree : t.out x = t.out t.actual) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : t.carried x :=
+  (hret _).mpr (Or.inl ⟨hpay, (hupd _).mpr ⟨hkept, hagree.trans (hrec.trans htest).symm⟩⟩)
+
+/-- What an honest test rightly ruled out can be the actual world after a
+change.  If the world moves to one that the old operation told apart from the
+old world, the retained result excludes it.  Retaining is good only while the
+world stands still; this module has no verb for letting a record go. -/
+theorem retained_record_goes_stale (t : Turn World Outcome) (newActual : World)
+    (hmoved : t.out newActual ≠ t.out t.actual) (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) : ¬ t.carried newActual :=
+  own_test_removes_error t newActual hmoved htest hrec hupd hret hpay
+
+/-- A surprise does not say which part is wrong.  The learner holds a view of
+the world together with an account of its method, and what it expects is what
+the account gives for that world.  When the outcome contradicts the pair it
+held, that pair is ruled out; but a pair that changes only the world, and a
+pair that changes only the account, both survive if they fit the outcome.
+This is the same loop on the joint space, with nothing added. -/
+theorem surprise_does_not_say_which {W O : Type} (t : Turn (W × (W → O)) O)
+    (hop : t.out = fun h => h.2 h.1) (w w' : W) (account account' : W → O)
+    (hmis : account w ≠ t.out t.actual)
+    (hk1 : t.kept (w', account)) (h1 : account w' = t.out t.actual)
+    (hk2 : t.kept (w, account')) (h2 : account' w = t.out t.actual)
+    (htest : Tests t) (hrec : Records t)
+    (hupd : Updates t) (hret : Retains t) (hpay : Affords t) :
+    ¬ t.carried (w, account) ∧ t.carried (w', account) ∧ t.carried (w, account') := by
+  have e0 : t.out (w, account) = account w := by rw [hop]
+  have e1 : t.out (w', account) = account w' := by rw [hop]
+  have e2 : t.out (w, account') = account' w := by rw [hop]
+  refine ⟨?_, ?_, ?_⟩
+  · exact own_test_removes_error t (w, account) (fun h => hmis (e0.symm.trans h))
+      htest hrec hupd hret hpay
+  · exact agreeing_world_is_carried t _ hk1 (e1.trans h1) htest hrec hupd hret hpay
+  · exact agreeing_world_is_carried t _ hk2 (e2.trans h2) htest hrec hupd hret hpay
 
 /-! ## Repair over time -/
 

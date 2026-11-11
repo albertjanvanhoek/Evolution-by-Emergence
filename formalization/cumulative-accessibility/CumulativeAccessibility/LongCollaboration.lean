@@ -36,6 +36,11 @@ Results:
 * `without_testing_it_ends` … `without_retaining_it_ends`: the seven verbs,
   one at a time.
 * `long_collaboration_witness`: concrete numbers.
+* `gain_at_least_cost_lasts`, `gain_below_cost_ends`: the results above sit on
+  a knife-edge.  They take being corrected to pay exactly one turn's cost.
+  With a gain `g` and a cost `c`: if `g < c` the collaboration ends whatever
+  the two do, even with all seven verbs; if `c ≤ g` it lasts with all seven.
+  That a missing verb still ends it when `c < g` is not proved here.
 
 Relation to earlier results in this repository.  This module is largely
 `Reciprocity` with the exchanged good named as correction and split into
@@ -376,6 +381,68 @@ theorem one_lapse_survivable (cA cB dA dB : Conduct) (s : Pair)
   have hin : bothIn (step dA dB s) = true := by simp [bothIn, h1, h2]
   rw [all_verbs_last cA cB _ hA hB hin n]
   exact hin
+
+/-! ## The knife-edge: gain and cost
+
+Everything above takes being corrected to pay exactly for one turn.  Here a
+correction is worth `gain` and a turn costs `cost`. -/
+
+/-- What a correction is worth and what a turn costs. -/
+structure Rates where
+  gain : Nat
+  cost : Nat
+
+/-- One turn with a gain and a cost. -/
+def stepG (r : Rates) (cA cB : Conduct) (s : Pair) : Pair :=
+  ⟨if correctedA cA cB s then s.a + r.gain - r.cost else s.a - r.cost,
+   if correctedB cA cB s then s.b + r.gain - r.cost else s.b - r.cost⟩
+
+/-- The reserves after a number of such turns. -/
+def afterG (r : Rates) (cA cB : Conduct) : Nat → Pair → Pair
+  | 0, s => s
+  | n + 1, s => afterG r cA cB n (stepG r cA cB s)
+
+/-- If a correction is worth at least what a turn costs, and both do all seven
+verbs, the collaboration lasts for any number of turns. -/
+theorem gain_at_least_cost_lasts (r : Rates) (cA cB : Conduct)
+    (hr : r.cost ≤ r.gain) (hA : full cA = true) (hB : full cB = true) :
+    ∀ n s, bothIn s = true → bothIn (afterG r cA cB n s) = true := by
+  intro n
+  induction n with
+  | zero => intro s hs; exact hs
+  | succ n ih =>
+    intro s hin
+    have hA' := hA
+    have hB' := hB
+    simp [full, sends, receives] at hA' hB'
+    have h1 : correctedA cA cB s = true := by simp [correctedA, link, sends, receives, hA', hB', hin]
+    have h2 : correctedB cA cB s = true := by simp [correctedB, link, sends, receives, hA', hB', hin]
+    simp [bothIn] at hin
+    apply ih
+    simp [stepG, h1, h2, bothIn]
+    omega
+
+/-- If a correction is worth less than a turn costs, each learner's reserve
+falls by at least one unit per turn whatever the two do. -/
+theorem below_cost_drains (r : Rates) (cA cB : Conduct) (hr : r.gain < r.cost) :
+    ∀ n s, (afterG r cA cB n s).a ≤ s.a - n := by
+  intro n
+  induction n with
+  | zero => intro s; simp [afterG]
+  | succ n ih =>
+    intro s
+    have hs : (stepG r cA cB s).a ≤ s.a - 1 := by
+      simp only [stepG]; split <;> omega
+    have := ih (stepG r cA cB s)
+    simp only [afterG]
+    omega
+
+/-- So it ends, even with all seven verbs on both sides. -/
+theorem gain_below_cost_ends (r : Rates) (cA cB : Conduct) (hr : r.gain < r.cost) (s : Pair) :
+    bothIn (afterG r cA cB s.a s) = false := by
+  have := below_cost_drains r cA cB hr s.a s
+  have h0 : (afterG r cA cB s.a s).a = 0 := by omega
+  simp [bothIn, h0]
 
 /-! ## Concrete numbers -/
 

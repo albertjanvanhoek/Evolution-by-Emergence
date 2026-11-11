@@ -1218,6 +1218,7 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **Assistant:** finds this split better than its own attempt in D44, which made recursion part of intelligence and so excluded simple learners. One remark stands: the first definition is broad. Natural selection acting on a lineage and an adaptive controller both meet it. If the theory means to be substrate-general that is intended, and it is worth saying so where the definition is used. Nothing was put into CORE.md.
 - **Author, point 4: the next step is the recursive application of the loop,** not more verbs: whether higher-order learning can be represented by the same verbs applied again.
   - **Assistant:** did the first step. In `LearningVerbs` a turn is defined over any type of "world". Take the candidate accounts of a method as the worlds and a known case as the operation, and checking a method is a learning turn with nothing added (`method_validation_is_a_learning_turn`). It has its own blind spot: a wrong account that agrees on the known case survives (`validated_method_can_still_be_wrong`). Section 14 of [research/discovarianism/LEARNING_DECOMPOSITION.md](research/discovarianism/LEARNING_DECOMPOSITION.md).
+- **Later (D46):** the hierarchy of levels may be an artefact; see `surprise_does_not_say_which`.
 - **Where the assistant is unsure or disagrees:**
   - **the one-level-up result is cheap.** It holds because the model never said what a world is. That is a real feature of the model, and it is also why the result says little about how any actual learner does higher-order learning;
   - **"the same verbs at every level" is shown for the form, at one further level.** That the construction repeats is plain; that real learning is organised this way is the author's hypothesis and is not tested by it;
@@ -1225,4 +1226,38 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **the replication results need independence** between the two executions, which the model does not have a way to state; `agreement_is_not_proof` marks the gap;
   - **the tenth verb's wording came from the other assistant,** was endorsed by the author, and was placed in the creed by this assistant. Three hands; the author should read the line as it now stands.
 - **Open:** a learner that develops a method; independence between executions (noise, samples); a model in which corrections can be wrong, cost something and are checked against independent sources (D43); whether the two definitions go into CORE.md; a human reader.
+
+### D46. The assistant's adversarial review of its own work, and what was changed (Open, November 2026)
+- **Author:** "PLease do an adversial review yourself."
+- **Assistant, the review.** Done against the files as they stood, with the sharper objections tested in a scratch Lean file before they were accepted. Its recommendation was not to merge pull request 149 as it stood.
+  - **Framing.**
+    1. Two of the seven "verbs" are not things a learner can do or check. "Test" and "leave open" are defined by the actual world. So the decomposition mixed actions with conditions of success, and the sins blamed people for failures of a condition: never having thought of the truth, an honest look through a wrong instrument, forgetting.
+    2. The model's world stands still, and the theory's does not. In the model retaining is always good.
+    3. The "levels" of D45 may be an artefact. A surprise does not say whether the view of the world or the account of the method is wrong.
+  - **Errors still in the pull request.**
+    4. The two terms of "the speed has two terms" could never both be active in one turn.
+    5. Acquiring an operation needed no teacher and no different view.
+    6. The note still said that for a blind spot information about the source is all that is left, which D44 contradicts.
+    7. "Looks the same from inside" rested on a count defined to make it true; and a false record left the number of wrong worlds unchanged whatever it said.
+    8. The collaboration result sits on a knife-edge: a correction pays exactly one turn's cost.
+    9. Three results had no witness.
+  - **Process.**
+    10. Seventeen files, some 2,700 lines and over a hundred theorems on three subjects in two days; three overstated summaries, each caught by someone else; the creed edited by the assistant four times.
+    11. No literature check for any of it.
+    12. The legal note: two sources read in the primary, no references for its history, no lawyer.
+- **Author:** "Ok lets implement those improvements. Please write a prompt for another agent to do the literature audit, and do the rest yourselves."
+- **Done:**
+  - **Lean.** The link can remove an own error and a blind error in one turn (`both_terms_in_one_turn`). Acquiring needs a source with a different view (`acquire_from_same_view_gains_nothing`). The false turn takes the number of wrong worlds it removes as a parameter (`false_turn_slack`); the count-based look-alike result is gone, replaced by `tested_and_untested_look_alike` and `open_and_sealed_look_alike`. The knife-edge is stated (`gain_below_cost_ends`, `gain_at_least_cost_lasts`). Witnesses added. For the framing: `retained_record_goes_stale` and `surprise_does_not_say_which`.
+  - **The creed.** The two new sections are recast: what I do, what has to hold, and sins only for the first, with a paragraph "What is not a sin". Lines 1 to 13 are not touched.
+  - **The note.** Corrected in place, with section 15.
+  - **The audit brief.** [verification/audits/2026-11-11-learning-verbs/BRIEF.md](verification/audits/2026-11-11-learning-verbs/BRIEF.md), a prompt for a reviewer who did not write the work. The audit itself is not done.
+  - **The pull request** is split into three, stacked: the legal note; the formal work with this dialogue; the creed.
+- **Where the assistant is unsure or disagrees:**
+  - **points 2 and 3 are answered by one small result each, not by a model.** A world that moves, forgetting and letting go still have no account here;
+  - **the recast creed is a fifth edit by the assistant in two days.** It is more defensible than the fourth. The author has not read any of the five;
+  - **"what is not a sin" is the assistant's addition.** It follows from the split, and it changes the tone of a part of the creed the author said he liked;
+  - **the knife-edge is stated, not removed.** That a missing verb ends the exchange when a correction pays more than a turn costs is not proved;
+  - **a self-review by the author of the work, from the same model family,** found what two outside reviews had not, and will have missed what they would not;
+  - **until the literature audit is done, nothing in D40 to D46 should be presented as new.**
+- **Open:** the literature audit; the author's reading of the creed sections; a model with a world that moves; a lawyer's reading of the legal note; whether any of this belongs in the core.
 
