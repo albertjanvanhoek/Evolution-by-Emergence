@@ -18,7 +18,7 @@ Finding: log-loss is invariant to splitting wrong worlds only if the split
 keeps their mass and the score is taken at a declared level. A uniform prior
 over a list of worlds is not split-invariant.
 ------------------------------------------------------------------------
-CASE 2. A retained false record
+CASE 2. A false record, and a misleading observation
 ------------------------------------------------------------------------
 (a) Noiseless operation: A -> 0, B and C -> 1. Actual world A.
   honest record 0: q(A) = 1, log-loss 1.0986 -> 0.0000
@@ -26,9 +26,12 @@ CASE 2. A retained false record
   After the false record no later observation can raise q(A) above 0. The
   honest outcome 0 that world A goes on giving has probability 0 under the learner's
   own model, so Bayes' rule cannot even be applied to it.
-  The count ledger stipulates lostCost + 1 per turn. Under log-loss the
-  cost is infinite and the block on later learning is forced, not chosen.
-  Both follow from giving the truth probability zero (Cromwell's rule).
+  The count ledger stipulates lostCost + 1 per turn. Under log-loss the cost
+  is infinite, and the truth cannot come back under ordinary Bayes updating.
+  That does not block all learning: an operation that told B from C could
+  still update among the wrong worlds. Here none does, by the choice of case.
+  Cromwell's rule is the warning against giving a contingent possibility
+  probability zero; this is what happens when the warning is ignored.
 
 (b) Noisy operation, accuracy a = 0.8: A gives 0 with prob 0.8; B, C give 1 with prob 0.8.
   honest outcome 0 (prob 0.8 in A): q(A) 0.3333 -> 0.6667, change in log-loss -0.6931
@@ -38,23 +41,30 @@ CASE 2. A retained false record
   but one honest turn can make it worse (outcome 1 above).
 
 (c) Noisy model, A versus not-A, a = 0.8, prior q(A) = 1/2.
-  Learner R retained one false record (outcome 1); learner D discarded it.
+  Learner M made one observation and got the misleading outcome 1, which
+  world A gives with probability 0.2. Learner N did not make that turn.
+  This is conditional on an unfavourable outcome. It measures what one
+  misleading datum costs; it is not a comparison of two policies, because a
+  rule that drops such data would need to know which data mislead. A real
+  recording error that turned 0 into 1 leaves M in exactly the same state:
+  from inside the two cannot be told apart (tested_and_untested_look_alike).
   Expected log-loss of A after n further honest observations:
-  q(A) right after the false record: 0.2000
-    n =  0: R 1.6094   D 0.6931   difference 0.9163
-    n =  1: R 1.1212   D 0.5004   difference 0.6208
-    n =  2: R 0.8248   D 0.3739   difference 0.4509
-    n =  3: R 0.6136   D 0.2815   difference 0.3321
-    n =  5: R 0.3513   D 0.1637   difference 0.1876
-    n = 10: R 0.0948   D 0.0451   difference 0.0497
-    n = 20: R 0.0080   D 0.0039   difference 0.0041
-  cumulative over n = 0..20: R 6.1396, D 2.7749, extra 3.3646
-  In log-odds the false record is an offset of -ln(a/(1-a)) = -1.3863:
-  one honest observation the other way cancels it exactly.
-Finding: with noise and a nonzero prior, a retained false record is a finite,
-shrinking debt that later honest observations repay. It does not block later
-learning. LearningRatchet's 'blocks until revised' is a property of hard
-elimination (case a), as the audit suspected for misspecified models.
+  q(A) right after the misleading outcome: 0.2000
+    n =  0: M 1.6094   N 0.6931   difference 0.9163
+    n =  1: M 1.1212   N 0.5004   difference 0.6208
+    n =  2: M 0.8248   N 0.3739   difference 0.4509
+    n =  3: M 0.6136   N 0.2815   difference 0.3321
+    n =  5: M 0.3513   N 0.1637   difference 0.1876
+    n = 10: M 0.0948   N 0.0451   difference 0.0497
+    n = 20: M 0.0080   N 0.0039   difference 0.0041
+  cumulative over n = 0..20: M 6.1396, N 2.7749, extra 3.3646
+  In log-odds the misleading outcome is an offset of -ln(a/(1-a)) = -1.3863:
+  one observation the other way cancels it exactly.
+Finding: in this stationary, identifiable two-hypothesis model with a right
+instrument and a nonzero prior, the cost of one misleading datum shrinks in
+expectation as honest observations come in. That is not shown in general:
+it needs useful later evidence, positive support and a right model.
+The permanent exclusion of case (a) comes from zero support (hard elimination).
 ------------------------------------------------------------------------
 CASE 3. Information from another learner: I(T;X,Y) = I(T;X) + I(T;Y|X)
 ------------------------------------------------------------------------
@@ -65,14 +75,20 @@ T = the question that is scored. Values in bits.
   T = W,       X = a, Y = b      (complementary)    1.000  1.000    1.000    2.000
   T = a,       X = a, Y = a      (redundant)        1.000  1.000    0.000    1.000
   T = a xor b, X = a, Y = b      (synergy)          0.000  0.000    1.000    1.000
+  T = a, X and Y = a seen through the same          0.278  0.278    0.182    0.461
+    instrument (accuracy 0.8), independent noise  
   The chain rule holds exactly in every row (checked).
   The sum of separate terms I(T;X) + I(T;Y) overstates in the redundant row
   (2 against 1) and understates in the synergy row (0 against 1).
-  In the synergy row X rules out 2 of the 4 worlds, so the count ledger books
-  a gain, while nothing about the scored question T has been learned.
-Finding: LearningRatchet's two terms are two counters decremented separately.
-The chain rule replaces them: what the other adds is I(T;Y|X), which is 0 for
-a same view (same_view_is_solo), and can exceed I(T;Y) when views combine.
+  The count ledger scores the full world W. In the synergy row X rightly
+  rules out 2 of the 4 worlds; what the count cannot do is score progress
+  on a narrower declared question T, where world counts and progress on T
+  can come apart.
+Finding: the chain rule is a possible alternative to LearningRatchet's two
+counters, given a declared target and a joint distribution. It is not derived
+from them. I(T;Y|X) = 0 holds for a redundant view; a second run of the same
+noisy instrument with independent noise adds information (last row), so
+'same view' in same_view_is_solo means a redundant view, not the same method.
 This is a standard identity, not a new result.
 ------------------------------------------------------------------------
 CASE 4. A world that moves: retain, and let go
@@ -92,9 +108,13 @@ CASE 4. A world that moves: retain, and let go
   Expected cumulative log-loss of the current world:
     static world     : retain   3.861   let go   6.608
     switch at turn 8 : retain  28.122   let go   9.101
-Finding: retaining wins when the world stands still and letting go wins when
-it moves. 'Retain, and let go' becomes a quantity: the hazard rate the learner
-assumes. This is standard filtering, not a new result.
+Finding: for these settings (accuracy, horizon, one switch at the midpoint,
+hazards 0 and 0.1), assuming a still world does better when the world stands
+still and assuming change does better when it moves. No general ranking is
+shown. The hazard captures one aspect of 'retain, and let go': how fast old
+evidence loses weight. Both learners keep their evidence in a posterior;
+neither drops, retracts or dates a record, so the verb as an action is not
+modelled. This is standard filtering, not a new result.
 ------------------------------------------------------------------------
 CASE 5. A wrong instrument
 ------------------------------------------------------------------------
@@ -107,19 +127,30 @@ Actual world A. Prior q(A) = 1/2.
   At 0.8 (right instrument) the one-turn expectation is KL >= 0.
   At 0.6 the one-turn expectation is negative, yet the drift is positive:
   the guarantee per turn is lost while the learner still converges on A.
-  At 0.3 the drift is negative: honest records drive q(A) toward 0.
-Finding: the expected-improvement guarantee rests exactly on the creed's
-condition 'My instrument is right'. A wrong instrument can cost the guarantee
-without costing convergence, or cost both. Bayesian learning under a wrong
-model converges toward the model closest in KL, not to the truth (known result).
+  At 0.3 the drift is negative: honest records drive q(A) toward 0, and the
+  learner settles on B, whose model (0 with prob 0.2) is closer in KL to how
+  A actually behaves than A's own model is.
+Finding: the expected-improvement guarantee uses a right instrument as a
+sufficient premise. A wrong instrument can cost the guarantee per turn
+without costing convergence (0.6), or cost both (0.3). With independent
+observations a misspecified Bayesian learner settles on the represented
+model closest in KL to the data, which need not carry the true label
+(known result).
 ------------------------------------------------------------------------
 PROPERTY CHECK. Right instrument: E[d ln q(w*)] = KL(p(x|w*) || q(x)) >= 0
 ------------------------------------------------------------------------
   20000 random instances (seed 17): identity holds, largest gap 7.77e-16,
   and the expectation is never negative.
-  Equality (no expected gain) when the outcome distribution in w* equals the
-  learner's predictive distribution, e.g. an operation that gives the same
-  distribution in every world (checked: True). This is the verb 'Try'.
+  Equality (no expected gain) exactly when the outcome distribution in w*
+  equals the learner's predictive distribution, as for an operation that
+  gives the same distribution in every world (checked: True).
+  The converse fails. Prior (0.2, 0.4, 0.4) on A, B, C, actual A, and an
+  operation giving 1 with probability 0.5, 0.2, 0.8. It tells B from C, yet
+  the predictive probability of 1 is 0.50, as in A, so the expected
+  gain for A is 0.0. Averaged over the prior, I(W;X) = 0.1542 nats > 0.
+  So zero expected gain in the actual world is not the same as an operation
+  that tells no worlds apart (the creed's 'Try'). The two match only for
+  I(W;X), averaged over worlds, with a prior of full support.
   The identity is standard (expected log-score gain of a Bayesian update).
 ------------------------------------------------------------------------
 SHAPE OF THE BILL. Count against log-loss, noiseless elimination
@@ -135,9 +166,12 @@ Uniform belief over n kept worlds, one actual. Each turn rules out one wrong wor
        2             1         0.6931                  1 / 0.6931
        1             0         0.0000                  0 / 0.0000
 Finding: the count books every removed world at 1; log-loss books the first
-removal low and the last at ln 2. Which shape is right depends on how
-prediction error turns into lost resources, which neither ledger derives.
-Replacing the count by log-loss removes the split problem and adds one free
-parameter: the exchange rate between nats and units of reserve.
+removal low and the last at ln 2. No constant rate turns ln n into n - 1
+((n-1)/ln n runs from 1.44 at n = 2 to 3.37 at n = 8), so the
+count ledger is not log-loss of uniform elimination in other units.
+Which shape fits depends on how prediction error turns into lost resources,
+which neither ledger derives. A log-loss ledger needs two further choices:
+a rate between nats and reserve, and a reason to charge realized log-loss
+as a drain every turn.
 ------------------------------------------------------------------------
 Done. All assertions passed.
