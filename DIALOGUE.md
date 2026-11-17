@@ -1304,3 +1304,20 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Decision:** v23.2 is released as prepared. The number, the tone of the notes and the rule added to `CLAUDE.md` stand as the assistant proposed them, by the author's go and without further comment from him.
 - **Still open after the release:** the author's reading of the creed's new sections; a lawyer's reading of the legal note; a human reader for the work of D39 to D47.
 
+
+### D50. A probabilistic ledger for learning (Open, November 2026)
+- **How it came up.** Discussing a podcast with Max Welling about his book with Sirui Lu and Lars Holdijk, *Generative AI and Stochastic Thermodynamics* (Cambridge University Press, 2026), the assistant suggested that the book's link between learning and free energy might give the verbs of learning a physical foundation. **Author:** "Deze opmerking is interresant: Die vertaling kan de leerwerkwoorden misschien een fysisch fundament geven".
+- **Narrowed.** After reading the repository the assistant placed the possible foundation not under the verbs, which are logical, but under the ledger of `LearningRatchet`, where the audit of D47 found that "the count sets the bill". An outside note the author supplied (its model family is not recorded) asked to keep apart logical compatibility, the value of information and physical cost, and to start with the second. The assistant agreed, and added four points: the expected-improvement result rests on the creed's condition "my instrument is right"; the level of scoring has to be declared; the chain rule allows synergy, which the count cannot; and splitting a change in KL into model and world depends on the order.
+- **Author**, on doing the numerical work and writing a brief for an outside reader: "Prima 1 & 2".
+- **Done:** [research/probabilistic-ledger/](research/probabilistic-ledger/README.md), a working note with a script, outside the core; and [a brief for an outside review](verification/audits/2026-11-17-probabilistic-ledger/BRIEF.md). Findings, each with its limit:
+  - log-loss does not move when a wrong world is split with its mass kept, if the level of scoring is declared; a prior uniform over a list of worlds is not split-invariant;
+  - with noise, a retained false record is a debt that honest observations repay, not a block; the block of `LearningRatchet` belongs to hard elimination;
+  - the two terms become the chain rule I(T;X,Y) = I(T;X) + I(T;Y|X), with redundancy and synergy;
+  - "retain, and let go" becomes the hazard rate a learner assumes;
+  - with a right instrument the expected gain of an honest turn is a KL divergence and never negative; with a wrong one the guarantee can go while convergence stays, or both can go.
+- **Where the assistant is unsure or disagrees:**
+  - **every identity used is standard.** The note claims only that applying them changes what the ledger can claim;
+  - **the stipulation is moved, not removed.** A ledger in nats needs an exchange rate to units of reserve. That is the premise D12 left open ("That a better model saves upkeep at all stays a premise");
+  - **nothing physical is claimed.** D12 dropped an unsupported thermodynamic claim. The physical leads are named in the brief and not used;
+  - **the same assistant proposed the idea and wrote the note** (working agreement 7).
+- **Open:** the outside review; the author's reading; whether any of this belongs in Lean (it would need Mathlib); the exchange rate.
