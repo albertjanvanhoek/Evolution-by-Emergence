@@ -12,8 +12,17 @@ E2c  Profile likelihood for Change. For 20 agents in the base condition, hold
      five belief verbs, and record how the fit worsens and how far the other
      verbs move to compensate.
 
-Usage: python tradeoffs.py   (a few minutes; writes results/tradeoffs.json and
-                              results/tradeoffs.md)
+E2d  Optimiser check (added after a second outside review). E2c measured each
+     restricted fit against the fit with Change held at its TRUE value; the
+     true value need not maximise the likelihood of a finite noisy dataset,
+     so a higher likelihood away from it does not show optimiser failure.
+     E2d fits the same 20 agents without restriction, once with 3 random
+     starts (as in E1) and once with 20, and compares every restricted fit
+     with the best unrestricted one. A restricted fit that beats the best
+     unrestricted fit is direct evidence that the optimiser missed the maximum.
+
+Usage: python tradeoffs.py                    (a few minutes; writes results/)
+       python tradeoffs.py --optimiser-check  (E2d only; uses tradeoffs.json)
 """
 
 from __future__ import annotations
@@ -103,7 +112,54 @@ def summarise(err, prof):
         fh.write("\n".join(L) + "\n")
 
 
+def optimiser_check():
+    d = json.load(open(os.path.join(RES, "tradeoffs.json")))
+    rng = np.random.default_rng(SEED)
+    pr = draw_params(rng, (20, N))
+    rec = simulate(pr, CONDITIONS["base"], rng)
+    P = test_table(False)
+    out = {}
+    for regime in ["rich", "sparse"]:
+        rows = []
+        for k in range(N_AGENTS):
+            r, n = divmod(k, N)
+            a = agent_record(rec, r, n)
+            _, ll3, _ = fit_joint(a, P, regime, np.random.default_rng(SEED + 900 + k), starts=3)
+            _, ll20, _ = fit_joint(a, P, regime, np.random.default_rng(SEED + 950 + k), starts=20)
+            best_unres = max(ll3, ll20)
+            restricted = [p["ll"] for p in d["profiles"][regime][k]]
+            rows.append({"ll3": float(ll3), "ll20": float(ll20),
+                         "restricted": restricted,
+                         "max_restricted_minus_best": float(max(restricted) - best_unres)})
+        out[regime] = rows
+        print(f"optimiser check {regime} done", flush=True)
+    d["optimiser_check"] = out
+    with open(os.path.join(RES, "tradeoffs.json"), "w") as fh:
+        json.dump(d, fh)
+    L = ["", "## E2d. Optimiser check (20 agents, base condition)", "",
+         "Unrestricted fits with 3 random starts (as in E1) and with 20. 'Shortfall' is how far",
+         "the 3-start fit falls below the better of the two. 'Restricted beats unrestricted'",
+         "counts agents for which some fit with Change held fixed (E2c) reached a higher",
+         "log-likelihood than the best unrestricted fit, by more than 0.01: direct evidence",
+         "that the unrestricted search missed the maximum.", "",
+         "| regime | 3-start shortfall: mean (max) | agents with shortfall > 0.5 | restricted beats unrestricted |",
+         "|---|---|---|---|"]
+    for regime in ["rich", "sparse"]:
+        rows = out[regime]
+        sf = [max(r["ll3"], r["ll20"]) - r["ll3"] for r in rows]
+        beat = sum(r["max_restricted_minus_best"] > 0.01 for r in rows)
+        L.append(f"| {regime} | {np.mean(sf):.2f} ({np.max(sf):.2f}) | "
+                 f"{sum(x > 0.5 for x in sf)} of {len(rows)} | {beat} of {len(rows)} |")
+    with open(os.path.join(RES, "tradeoffs.md"), "a") as fh:
+        fh.write("\n".join(L) + "\n")
+    print("\n".join(L))
+
+
 def main():
+    import sys
+    if "--optimiser-check" in sys.argv:
+        optimiser_check()
+        return
     err = error_correlations()
     prof = profiles()
     with open(os.path.join(RES, "tradeoffs.json"), "w") as fh:

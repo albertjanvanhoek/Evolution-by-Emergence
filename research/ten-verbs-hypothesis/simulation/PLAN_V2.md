@@ -46,6 +46,8 @@ Notes, fixed now:
 
 ## 5. Experiment E7: the Remember / let go crossover, replicated
 
+**Note added after this plan was committed, before anything was run:** a second outside review ([../sources/REVIEW_OF_PR155_2.md](../sources/REVIEW_OF_PR155_2.md)) showed that the crossover is largely built into the model: the learner has no estimate of how often the world changes, so forgetting is its only way out of an outdated belief. E7 can therefore only test the model's consistency. The plan below is left as it was written.
+
 **A replication, not an untouched prediction:** the crossover was seen in E4 at a switching rate of 0.06. Here: new seeds and new switching rates **0, 0.03 and 0.12** (other settings as E4's base condition and intact agents), 400 groups per cell, rounds 20–59, three measures (mean belief in the true state, Brier score, log score). Compared: no letting go (0) and letting go fast (0.3) against the intact setting (0.03).
 
 Predictions, fixed now. "Beyond 3 SE" means the mean difference exceeds three standard errors.

@@ -50,3 +50,16 @@ Change held at the true value times the factor; the other five refitted. Columns
 | 1.15 | 0.2 (-0.0) | +0.052 (+0.000) | +0.008 (+0.000) | +0.107 (+0.000) | +0.013 (+0.000) | +0.004 (+0.004) |
 | 1.3 | -4.2 (-0.1) | +0.000 (+0.000) | +0.004 (+0.000) | +0.079 (+0.000) | +0.012 (+0.000) | +0.001 (+0.007) |
 
+
+## E2d. Optimiser check (20 agents, base condition)
+
+Unrestricted fits with 3 random starts (as in E1) and with 20. 'Shortfall' is how far
+the 3-start fit falls below the better of the two. 'Restricted beats unrestricted'
+counts agents for which some fit with Change held fixed (E2c) reached a higher
+log-likelihood than the best unrestricted fit, by more than 0.01: direct evidence
+that the unrestricted search missed the maximum.
+
+| regime | 3-start shortfall: mean (max) | agents with shortfall > 0.5 | restricted beats unrestricted |
+|---|---|---|---|
+| rich | 1.86 (36.63) | 2 of 20 | 1 of 20 |
+| sparse | 3.22 (61.43) | 3 of 20 | 2 of 20 |

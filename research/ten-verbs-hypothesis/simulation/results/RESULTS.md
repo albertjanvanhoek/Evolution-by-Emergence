@@ -1,6 +1,6 @@
 # Results: can a task tell the ten verbs apart?
 
-Produced by [`run.py`](../run.py) and [`tradeoffs.py`](../tradeoffs.py), seeded, about 35 minutes on two cores. All numbers below are taken from [tables.md](tables.md) and [tradeoffs.md](tradeoffs.md), which those scripts write. Figures are in [../figures/](../figures/).
+Produced by [`run.py`](../run.py) and [`tradeoffs.py`](../tradeoffs.py), seeded, about 45 minutes on two cores. All numbers below are taken from [tables.md](tables.md) and [tradeoffs.md](tradeoffs.md), which those scripts write. Figures are in [../figures/](../figures/).
 
 **What this is.** A check of one model, written by the assistant, in which each verb is a parameter. It asks: if learners worked exactly like this model, which verbs could an experimenter recover from what they record? It does **not** test whether real learners have ten functions. Where the model's structure decides a result, this file says so in the same sentence.
 
@@ -55,7 +55,18 @@ The strongest trade-off, Stay open with Change, comes from how the assistant wro
 
 **E2c. Profile likelihood for Change** (20 agents, base condition). Change was held at its true value times 0.7, 0.85, 1, 1.15 and 1.3, and the other five belief verbs were refitted.
 - **Rich reports:** holding Change 30% too low costs on average 11.8 in log-likelihood (median 10.9). Stay open moves up by 0.12 and Notice by 0.13 (median 0.05) to compensate. So the trade-off is real but partial: the data still pin Change down. The profile is much flatter above the best value: +15% costs only 0.7 (median 0.1). Part of that flatness is an artefact, because for agents whose true Change is near 1 the higher values are clipped back to 1.
-- **Sparse choices:** the profile is flat (median losses between −0.1 and 0.2). For some agents the fit *improved* when Change was held away from its fitted value (mean "loss" −3.4 at 0.7 and −4.2 at 1.3). So the unconstrained fit, with three random starts, did not always find the best solution with sparse data. **Part of the weak sparse recovery in E1 may come from the optimiser, not only from the data.** This has not been separated.
+- **Sparse choices:** the profile is flat (median losses between −0.1 and 0.2), and for some agents a fit with Change held away from its true value had a *higher* likelihood (mean "loss" −3.4 at 0.7 and −4.2 at 1.3).
+
+**A correction to E2c (after a second outside review).** The first version of this note read those negative losses as the optimiser failing. That inference was wrong. E2c measures each restricted fit against the fit with Change held at its **true** value, and the true value need not maximise the likelihood of a finite, noisy dataset. A higher likelihood away from it is possible with a perfect optimiser. The "losses" in E2c are therefore losses against the true value, not against the best fit.
+
+**E2d. The optimiser checked directly** (same 20 agents; table in [tradeoffs.md](tradeoffs.md)). Each agent was fitted without restriction twice: with 3 random starts, as in E1, and with 20. Every restricted fit from E2c was then compared with the best unrestricted fit.
+
+| Regime | 3-start fit short of the best by more than 0.5 | largest shortfall | a restricted fit beat the best unrestricted fit |
+|---|---|---|---|
+| rich | 2 of 20 agents | 36.6 | 1 of 20 |
+| sparse | 3 of 20 agents | 61.4 | 2 of 20 |
+
+So the optimiser does sometimes miss the maximum, in **both** regimes, for a minority of agents, sometimes by a large margin. Even 20 starts were not always enough: a fit with one parameter held fixed beat them for 1 agent (rich) and 2 (sparse). The E1 recovery figures may therefore understate what this design can recover, with rich reports as well as sparse choices. How much was not measured. This is now shown directly, not inferred from the profile.
 
 **What this changes.** The review of v0.4 expected Notice and Change to trade off. With rich reports they do, a little (−0.16), but the larger trade-off is between Stay open and Change, which nobody predicted. Poor recovery is partly noise and partly compensation. Which pairs trade off depends on how the verbs are written as mechanisms, so another model of the same verbs could show different pairs.
 
@@ -105,10 +116,10 @@ So v0.4's main test could fail because of what is measured, without saying anyth
    - On the Brier score the change is −0.2 × 10⁻² (SE 0.6), not distinguishable from zero; on the log score −0.06.
    - Elsewhere it hurts on all three measures (Brier +18.6 to +42.0, × 10⁻²).
    - So the mean-belief measure exaggerated this harm. The outside review's concern, that a verb's apparent effect could depend on how performance is scored, holds here.
-5. **The direction of a retention impairment depends on the environment.**
+5. **The direction of a retention impairment depends on the environment, but this is largely built into the model.**
    - Remembering everything (no letting go) *improves* all three measures in stable conditions (mean belief +4.6 base, +13.6 reality route only).
    - When the world changes it costs −33.3 on mean belief, +80.4 × 10⁻² on Brier, and −14.66 on the log score: beliefs become confidently wrong.
-   - This is v0.4's P5 in this model, and the crossover the review of v0.5 asked to be stated as a prediction.
+   - **Why this is not evidence for a Remember / let go function** (pointed out by the second outside review): when the world changes, the learner in this model has no estimate of how often it changes. Mixing beliefs back toward uniform is its only way out of confidence in an old state. So forgetting must help in a changing world and cost in a stable one; the crossover follows from the architecture. A conventional learner that estimates the rate of change (a transition model) could adapt without forgetting at all. Whether Remember / let go explains anything beyond such a learner is untested.
 6. **Closing off disagreeing testimony did not protect against the misleader here.**
    - Impairing Stay open cost −8.0 on mean belief, +18.4 × 10⁻² on Brier, in the adversarial condition, where v0.4 left the sign open (±).
    - This holds only for the setting tried: one misleader against five honest learners. With more misleaders the sign may change. That was not tested.
@@ -132,11 +143,13 @@ The outside review's deepest point is construct validity: several verbs are mode
 
 ## What the outside review changed
 
-An outside review of this pull request is kept verbatim in [../../sources/REVIEW_OF_PR155.md](../../sources/REVIEW_OF_PR155.md). The assistant checked each point against the code and the stored results.
+Two outside reviews of this pull request are kept verbatim in [../../sources/REVIEW_OF_PR155.md](../../sources/REVIEW_OF_PR155.md) and [../../sources/REVIEW_OF_PR155_2.md](../../sources/REVIEW_OF_PR155_2.md). The assistant checked each point against the code and the stored results.
 
 | Point | Verdict | What was done |
 |---|---|---|
 | E2 cannot show the absence of trade-offs | **Right.** The claim was wrong. | E2b (error correlations) and E2c (profile likelihood) added; E2 rewritten. Stay open and Change trade off (−0.41, rich). |
+| *Second review:* E2c's baseline is the true value, not the best fit, so it cannot show optimiser failure | **Right.** The inference was wrong. | E2d added: unrestricted fits with 3 and 20 starts. The optimiser does miss the maximum for a few agents, in both regimes. |
+| *Second review:* the Remember / let go crossover is built in, because the learner has no transition model | **Right.** | Stated at E4 point 5; not to be read as support for the hypothesis. |
 | The replay test checked only the belief in the true state | **Right.** | The simulation now records the full noiseless belief vector, and the test compares every component in every round, in every condition. It passes. No random draws were added, so all earlier results reproduce exactly. |
 | "Accuracy" is mean belief in the true state, not a proper score | **Right.** | Renamed; Brier and log scores added to E4; two conclusions changed (points 4 and 6 above). |
 | "Experiments must collect rich belief reports" is too strong | **Right.** | Narrowed in E3 to this task; other remedies named as untried. |
@@ -156,7 +169,7 @@ An outside review of this pull request is kept verbatim in [../../sources/REVIEW
   - one Change parameter governs both own and received evidence, and multiplies with Stay open for disagreeing testimony (the source of the strongest trade-off);
   - the misleader is one agent with a fixed wrong state.
 - The model is fitted with the same model that generated the data. Fitting a model back to its own simulated data is a common check in computational modelling (named from general knowledge, not checked against a source). It is a necessary check, not a sufficient one.
-- With sparse choices the optimiser did not always find the best fit (E2c), so sparse recovery figures mix identifiability and optimisation.
+- The optimiser with 3 starts missed the best fit for 2 to 3 agents in 20, in both regimes (E2d), so all recovery figures mix identifiability and optimisation.
 - One outside reader has reviewed the code and results without rerunning them. No human reader has assessed any of it.
 
 ## What would be worth doing next

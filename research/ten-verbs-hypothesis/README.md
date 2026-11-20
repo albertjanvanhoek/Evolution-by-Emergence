@@ -1,12 +1,13 @@
 # The Ten Verbs Hypothesis: can a task tell the verbs apart?
 
-**Status: a first simulation check, November 2026** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation without rerunning it; no human reader has assessed any of it.
+**Status: a first simulation check, November 2026** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation twice without rerunning it; no human reader has assessed any of it.
 
 | Part | Where |
 |---|---|
 | The hypothesis, version 0.4, verbatim | [sources/HYPOTHESIS_V0_4.md](sources/HYPOTHESIS_V0_4.md) |
-| The four rounds of review that led here | [sources/REVIEW_V0_4.md](sources/REVIEW_V0_4.md) |
-| An outside review of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md) |
+| The five rounds of review of the hypothesis | [sources/REVIEW_V0_4.md](sources/REVIEW_V0_4.md) |
+| Two outside reviews of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md), [sources/REVIEW_OF_PR155_2.md](sources/REVIEW_OF_PR155_2.md) |
+| Version 0.5 and the instructions for a next step, verbatim | [sources/HYPOTHESIS_V0_5.md](sources/HYPOTHESIS_V0_5.md), [sources/NEXT_STEP_INSTRUCTIONS.md](sources/NEXT_STEP_INSTRUCTIONS.md); plan in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) |
 | The model, the fitting and the experiments | [simulation/model.py](simulation/model.py), [simulation/fit.py](simulation/fit.py), [simulation/run.py](simulation/run.py) |
 | Results, with their limits | [simulation/results/RESULTS.md](simulation/results/RESULTS.md); generated tables in [tables.md](simulation/results/tables.md) |
 | Trade-offs between verbs (added after the outside review) | [simulation/tradeoffs.py](simulation/tradeoffs.py); [tradeoffs.md](simulation/results/tradeoffs.md) |
@@ -27,7 +28,7 @@ In one model of the verbs, written by the assistant:
 3. **Two verbs are weakly recovered by this design:** Be honest (0.32 to 0.73) and Find new ways (0.12 to 0.50). The cause is measurement, and a task can fix it.
 4. **With only choices recorded, the belief verbs blur** (Stay open 0.37, Notice 0.37 in the base condition). And BIC never picked the full model when it was true (0 of 40). **So v0.4's main test could fail for reasons of measurement alone.** With this task, rich belief reports were the remedy; longer tasks or other measurements were not tried.
 5. **Some verbs trade off.** Errors in recovering Stay open and Change move together (−0.41 with rich reports), because in this model the two multiply for disagreeing testimony. The first version of this note said there were no trade-offs; an outside review showed the check could not support that.
-6. **The knockout matrix of this model** matches v0.4 on the route-specific and condition-specific verbs. **That match was built in and is not evidence.** Not decided by how the model was written: remembering everything helps in stable worlds and makes beliefs confidently wrong in changing ones; closing off disagreeing testimony did not protect against one misleader among five honest learners. How costly letting go too fast is depends on the score used.
+6. **The knockout matrix of this model** matches v0.4 on the route-specific and condition-specific verbs. **That match was built in and is not evidence.** Remembering everything helps in stable worlds and makes beliefs confidently wrong in changing ones, but that crossover is largely built in: the learner has no estimate of how often the world changes, so forgetting is its only way out (pointed out by a second outside review). Closing off disagreeing testimony did not protect against one misleader among five honest learners. How costly letting go too fast is depends on the score used.
 7. **The verbs are modelled narrowly.** Repair is restoring a message link, not restoring trust; Be honest is passing on the observed outcome rather than the expected one. A parameter called Repair can be recovered without relational repair having been modelled.
 
 ## 3. How much this says
