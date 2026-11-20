@@ -1355,4 +1355,11 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - allow agents to refuse cooperation, because "the experiment risks treating continued cooperation as inherently desirable, even when maintaining boundaries would be preferable."
   - **Done:** both were added to the modeller's brief as short notes; nothing else changed.
   - **The reviewer, on independence:** "I would not count our continued exchanges as another independent review. We have influenced each other's reasoning too extensively for that." The assistant agrees. The same holds for its own reviews of the hypothesis (working agreement 7).
+- **The closing assessment** (written by the assistant that wrote the hypothesis versions, passed on by the author; verbatim in [12_closing_assessment.md](research/ten-verbs-hypothesis/sources/messages/12_closing_assessment.md)). It recommends: "Freeze the hypothesis for now. Start the independent experiment." It puts two questions at the centre. H1, commons-mediated correctability: whether the wider commons helps correction and coordination when direct disagreement stays unresolved. H2, functional recurrence: whether the ten verbs explain correction within and between intelligences better than simpler models.
+- **The reviewing assistant** agreed, and found two gaps ([13_reply_two_gaps.md](research/ten-verbs-hypothesis/sources/messages/13_reply_two_gaps.md)): H1 had no stated predictions, and the planned experiment tests H2 only for interaction, not for recurrence.
+- **Author:** asked what the repository held about the hypothesis, then: "Yes make PR155 complete".
+- **Done:**
+  - the full record, verbatim and in order, in [sources/messages/](research/ten-verbs-hypothesis/sources/messages/README.md): every version from 0.1 to 0.5 with the commentary around it, every review and reply by the reviewing assistant, and the closing assessment;
+  - the fourth outside review, verbatim;
+  - in the analysis plan: directional predictions for H1 (H1-a to H1-e), and a test of recurrence for H2 with its limits (R1 to R3). The modeller's brief is unchanged.
 - **Still open:** the author's view of the results themselves; an independent review; the next experiment; merging, which is the author's call.

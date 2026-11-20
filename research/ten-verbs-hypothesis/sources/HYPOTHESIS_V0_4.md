@@ -1,6 +1,6 @@
 # The Ten Verbs Hypothesis, version 0.4 (as passed on by the author)
 
-**Lineage, kept as written.** This is version 0.4 of the hypothesis, written by an assistant in conversation with the author on 20 November 2026, after three rounds of adversarial review by a second assistant (the one that wrote this repository's simulation). The author passed each version to the reviewer. Only the hypothesis itself is reproduced below, verbatim. The surrounding commentary in the same message (on what to test first, the relational experiment, the literature boundary, and a remaining concern about stages versus components) is summarised in [../README.md](../README.md), not reproduced. Citation links in that commentary were not checked.
+**Lineage, kept as written.** This is version 0.4 of the hypothesis, written by an assistant in conversation with the author on 20 November 2026, after three rounds of adversarial review by a second assistant (the one that wrote this repository's simulation). The author passed each version to the reviewer. Only the hypothesis itself is reproduced below, verbatim. The surrounding commentary in the same message (on what to test first, the relational experiment, the literature boundary, and a remaining concern about stages versus components) is in the full message, [messages/04_v0_4_full_message.md](messages/04_v0_4_full_message.md). Citation links in that commentary were not checked.
 
 The review this version answered, and the review of this version that led to the simulation, are in [REVIEW_V0_4.md](REVIEW_V0_4.md).
 

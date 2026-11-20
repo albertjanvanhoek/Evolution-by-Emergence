@@ -1,12 +1,13 @@
 # The Ten Verbs Hypothesis: can a task tell the verbs apart?
 
-**Status: a finished feasibility study, November 2026; not merged, merging is the author's call** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation three times without rerunning it; no human reader has assessed any of it.
+**Status: a finished feasibility study, November 2026; not merged, merging is the author's call** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation four times without rerunning it; no human reader has assessed any of it.
 
 | Part | Where |
 |---|---|
+| **The full record, in order:** every version (0.1 to 0.5), every review and reply, and the closing assessment (H1 and H2), verbatim | [sources/messages/README.md](sources/messages/README.md) |
 | The hypothesis, version 0.4, verbatim | [sources/HYPOTHESIS_V0_4.md](sources/HYPOTHESIS_V0_4.md) |
 | The five rounds of review of the hypothesis | [sources/REVIEW_V0_4.md](sources/REVIEW_V0_4.md) |
-| Three outside reviews of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md), [_2](sources/REVIEW_OF_PR155_2.md), [_3](sources/REVIEW_OF_PR155_3.md) |
+| Four outside reviews of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md), [_2](sources/REVIEW_OF_PR155_2.md), [_3](sources/REVIEW_OF_PR155_3.md), [_4](sources/REVIEW_OF_PR155_4.md) |
 | Version 0.5 and the instructions for a next step, verbatim | [sources/HYPOTHESIS_V0_5.md](sources/HYPOTHESIS_V0_5.md), [sources/NEXT_STEP_INSTRUCTIONS.md](sources/NEXT_STEP_INSTRUCTIONS.md); plan in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) |
 | The model, the fitting and the experiments | [simulation/model.py](simulation/model.py), [simulation/fit.py](simulation/fit.py), [simulation/run.py](simulation/run.py) |
 | Results, with their limits | [simulation/results/RESULTS.md](simulation/results/RESULTS.md); generated tables in [tables.md](simulation/results/tables.md) |
@@ -58,4 +59,5 @@ This study answers a measurement question: in one agent built with ten verb sett
 
 - **Next, and the priority:** an independent model of two intelligences with incompatible accounts of shared events, with a wider commons offering routes to correction, and agents **not** built around the ten verbs. The modeller gets only the phenomenon ([../incompatible-accounts/BRIEF.md](../incompatible-accounts/BRIEF.md)) and freezes the model before anyone looks for the verbs. Only then does a separate analysis ([briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md](briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md)) code the ten verbs from behaviour that comes before the outcomes, and compare them with simpler explanations. It should be built by another modeller or model family.
 - **Kept for later:** the four-model comparison (one general capacity; a conventional learner; three layers; ten verbs), planned in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) and started in [wip/](wip/README.md). Not run.
+- **The hypothesis is frozen** for now ([closing assessment](sources/messages/12_closing_assessment.md)). Two questions are at its centre: H1, whether the wider commons helps correction and coordination when direct disagreement stays unresolved; and H2, whether the ten verbs explain correction within and between intelligences better than simpler models. The analysis plan fixes directional predictions for H1, and says what the next experiment can and cannot test of H2.
 - **Not touched:** reasoning-mediated checking (the L column), and the relational extension of the hypothesis.

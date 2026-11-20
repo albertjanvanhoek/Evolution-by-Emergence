@@ -1,6 +1,6 @@
 # The reviews of versions 0.1 to 0.5
 
-The assistant that wrote this folder reviewed five versions of the hypothesis on 20 November 2026, at the author's request ("please do an adversial review"). The author passed each version on from a conversation with another assistant. This file records the reviews in short form. The literature named in them was named from the reviewer's general knowledge and **has not been checked against primary sources** (working agreement 1). Treat the names as leads.
+The assistant that wrote this folder reviewed five versions of the hypothesis on 20 November 2026, at the author's request ("please do an adversial review"). The author passed each version on from a conversation with another assistant. This file records the reviews in short form; the full texts are in [messages/](messages/README.md). The literature named in them was named from the reviewer's general knowledge and **has not been checked against primary sources** (working agreement 1). Treat the names as leads.
 
 ## Rounds 1 to 3, in one paragraph each
 

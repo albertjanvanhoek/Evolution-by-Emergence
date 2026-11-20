@@ -4,6 +4,8 @@
 
 **History.** A first version of this file was a single brief that gave the modeller the phenomenon and the ten verbs together. An outside reviewer pointed out that naming the verbs, and the first simulation's failures, could shape the new architecture ([../sources/REVIEW_OF_PR155_3.md](../sources/REVIEW_OF_PR155_3.md)). Building the model and testing the hypothesis are now kept apart. See D51 in [DIALOGUE.md](../../../DIALOGUE.md).
 
+**Sections 6 and 7 were added on 21 November 2026, at the author's request to complete the record. They cover H1's predictions and what this experiment tests of H2. Both were written before any model existed.**
+
 ## 1. The question for the analysis
 
 The agents were not built with ten verbs. Do the ten verbs, measured as behaviour in the logs, explain their detection of errors, correction of beliefs, recognition of unresolvable disagreement, mutual understanding and cooperation better than simpler explanations do?
@@ -55,3 +57,32 @@ The ten verbs are: Stay open, Try, Notice, Be honest, Change, Remember / let go,
 ## 5. What would count in their favour
 
 The ten codes predict held-out outcomes better than (a) to (c), in a design where model recovery has been shown. This would hold especially for exchange between the agents: contradictory evidence, unreliable testimony, a broken channel. Even then, this would show their usefulness as a description of these agents' behaviour, not that real intelligences have ten functions.
+
+## 6. H1: commons-mediated correctability, predictions fixed now
+
+The closing assessment ([../sources/messages/12_closing_assessment.md](../sources/messages/12_closing_assessment.md)) puts two questions at the centre. H1 asks whether intelligences can use the wider commons to correct errors and coordinate when their direct disagreement stays unresolved. H2 asks whether the ten verbs explain correction both within and between intelligences better than simpler models. The two can stand or fall separately.
+
+Worded as "can", H1 is close to trivially true: some run will always show the commons helping. It becomes a test only as directional predictions, written here before the model exists. They were proposed by the reviewing assistant ([../sources/messages/13_reply_two_gaps.md](../sources/messages/13_reply_two_gaps.md)) and use the conditions of the modeller's brief. They are compared with the condition in which the commons holds nothing.
+
+- **H1-a. Independent evidence.** Belief correction (proper scores) and calibration are better when the commons holds independent evidence. This includes runs where the channel between the two agents has broken.
+- **H1-b. Copied evidence.** Agents' confidence rises more than their accuracy does, compared with independent evidence of the same amount.
+- **H1-c. Misleading evidence.** Accuracy is lower, unless the agents can see where the evidence came from. The size of this protection is not predicted.
+- **H1-d. Inconclusive cases.** The commons improves calibration, and the quality of the choice to cooperate or refuse, but not agreement.
+- **H1-e. Outcomes come apart.** In some condition, correction improves while cooperation does not, or the reverse. If every outcome always moves together, the five outcomes are not separate.
+
+**What would weaken H1:** H1-a to H1-d failing in a design where the ideal observer shows the evidence was there to be used. Such a failure weakens H1 whatever happens to the verbs.
+
+## 7. What this experiment tests of H2
+
+H2 is about **recurrence**: the same functions at work when an intelligence corrects itself and when intelligences correct each other. Sections 1 to 5 code the verbs mainly from behaviour between the agents. On their own, they test only "ten codes describe interaction".
+
+To test recurrence as well, code each verb **twice** where the logs allow:
+- once from an agent's handling of its **own** evidence: observations, memory, checks of the record;
+- once from its handling of evidence from **others**: the other agent and the commons.
+
+Recurrence predicts three things:
+- **R1.** An agent's code for a verb at one scale predicts its code for the same verb at the other scale, beyond what a single general factor explains.
+- **R2.** The codes at the two scales show the same structure: the same number of dimensions, with the same verbs together.
+- **R3.** Codes from one scale predict outcomes at the other.
+
+**A caution:** if the agents use one mechanism for all evidence, recurrence is built in. A Bayesian agent that updates the same way on every source is an example, and R1 to R3 would then say nothing. The recurrence test is informative only with agents whose own-evidence and others-evidence handling can differ, such as language-model agents or people. Otherwise, report that this experiment tests H2 only for interaction.
