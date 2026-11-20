@@ -1304,3 +1304,18 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Decision:** v23.2 is released as prepared. The number, the tone of the notes and the rule added to `CLAUDE.md` stand as the assistant proposed them, by the author's go and without further comment from him.
 - **Still open after the release:** the author's reading of the creed's new sections; a lawyer's reading of the legal note; a human reader for the work of D39 to D47.
 
+
+### D51. The Ten Verbs Hypothesis: four reviews and a recovery simulation (Open, November 2026)
+- **Author:** asked for an adversarial review of "The Ten Verbs Hypothesis" ("please do an adversial review"), then passed on three further versions written with another assistant, each answering the previous review. After the review of version 0.4: "Please build the simulation in the EbE repo."
+- **Assistant, the reviews** (in short in [research/ten-verbs-hypothesis/sources/REVIEW_V0_4.md](research/ten-verbs-hypothesis/sources/REVIEW_V0_4.md)): versions 0.1 to 0.3 grew more defensible by claiming less. Version 0.4 takes a risk: the ten verbs are separable functions with a predicted impairment matrix. The review's main points: half the matrix does not discriminate; some verbs separate by route and others by condition; most of P1 to P5 hold by how the tasks are built; the simpler alternatives must be named; and before any experiment, check whether the verbs can be recovered at all.
+- **Done:** [research/ten-verbs-hypothesis/](research/ten-verbs-hypothesis/README.md). One model of the ten verbs as parameters, seven conditions, two ways of recording beliefs, 100 agents per cell, fitted back by maximum likelihood; a model-recovery check; and a knockout matrix, labelled as an architecture check only.
+- **What it found, in this model:**
+  - With rich belief reports most verbs are recovered well. Take care and Repair are invisible outside scarcity and disruption.
+  - Be honest and Find new ways are weakly recovered, for reasons of task design.
+  - With only choices recorded the belief verbs blur, and BIC never picked the true full model (0 of 40). So v0.4's main test could fail for reasons of measurement alone.
+  - No trade-offs between verbs appeared, including Notice and Change, which the review expected to trade off.
+- **Where the assistant is unsure or disagrees:**
+  - **The model is the assistant's.** The results hold for learners built like it. The route-specific knockouts were built in. The lack of a Notice–Change trade-off follows from writing Notice as a threshold rather than an update size. A model written by someone else is the obvious next check (working agreement 7).
+  - **Version 0.4 itself was written by an assistant,** and so were all four reviews. No human reader has assessed any of it.
+  - **The simpler alternatives the review proposed** are not yet fitted. E3 compares only models that differ by one verb.
+- **Not recorded:** the author's view of the results. This entry stays open for it.
