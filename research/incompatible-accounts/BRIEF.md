@@ -31,7 +31,7 @@ The choices of mechanism are yours. Please include at least the following.
   - absent.
 - **A communication channel** between the two agents that can break down. Restoring it may or may not be possible, and may cost something.
 - **Incentives:** in some conditions, an agent gains when its own account prevails.
-- **A joint task** after the exchange. The two agents must act together, and the payoff depends on what really happened. This measures cooperation without requiring agreement.
+- **A joint task** after the exchange, whose payoff depends on what really happened. The agents may act together, **or abstain or disengage**, with consequences you specify. When evidence is unreliable or the other acts strategically, refusing to cooperate can be the sensible choice. So the design should not treat continued cooperation as good in itself.
 - **Inconclusive cases.** In some conditions, the evidence available anywhere in the commons cannot establish which account is right. Agents must be able to represent "this cannot be settled yet", and to act on that.
 
 Agents should be general learners and communicators, for example:
@@ -52,12 +52,12 @@ Agents should be general learners and communicators, for example:
 
 Please make these computable from the logs, each separately:
 
-1. **Settleable.** Could the true account have been established from everything available in the commons, or was the case inconclusive? This is a property of the commons, not of the agents.
+1. **Settleable.** Could the true account have been established from everything available in the commons, or was the case inconclusive? This is a property of the commons, not of the agents. Keep three things apart: the true state; what the available evidence supports (for example, the posterior an ideal observer with access to all of it would reach); and what the agents actually infer. Define in advance what counts as inconclusive, for example the ideal observer's posterior on the true account staying below a threshold you fix.
 2. **Conflict detected.** When does each agent register that its account conflicts with something?
 3. **Beliefs corrected.** Does each agent's belief move toward the true account? Use proper scoring rules (log score or Brier score).
-4. **Unresolvability recognised.** In inconclusive cases, does each agent hold calibrated uncertainty instead of false confidence?
+4. **Unresolvability recognised.** In inconclusive cases, does each agent hold calibrated uncertainty instead of false confidence? Judge calibration across many repeated cases, not from a single disagreement.
 5. **Mutual understanding.** Can each agent state the other's account correctly, whether or not it agrees with it?
-6. **Cooperation.** The payoff on the joint task.
+6. **Cooperation, or justified refusal.** The payoff on the joint task, and whether abstaining or disengaging was the better choice given what was knowable.
 
 ## 5. Conditions
 

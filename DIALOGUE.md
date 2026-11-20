@@ -1350,4 +1350,9 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   2. only substantive corrections;
   3. resolve #154 first (D50 before D51);
   4. then merge this study as a bounded contribution.
+- **The same reviewer, after the split** (sent by the author): agreed with it, and advised no further experimental expansion of this pull request. It raised two points for the modeller:
+  - define what makes a case inconclusive, keeping the true state, what the evidence supports and what agents infer apart, and judge calibration over repeated cases;
+  - allow agents to refuse cooperation, because "the experiment risks treating continued cooperation as inherently desirable, even when maintaining boundaries would be preferable."
+  - **Done:** both were added to the modeller's brief as short notes; nothing else changed.
+  - **The reviewer, on independence:** "I would not count our continued exchanges as another independent review. We have influenced each other's reasoning too extensively for that." The assistant agrees. The same holds for its own reviews of the hypothesis (working agreement 7).
 - **Still open:** the author's view of the results themselves; an independent review; the next experiment; merging, which is the author's call.
