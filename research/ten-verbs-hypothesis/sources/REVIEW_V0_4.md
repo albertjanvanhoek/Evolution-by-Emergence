@@ -1,6 +1,6 @@
-# The reviews behind version 0.4, and the review of it
+# The reviews of versions 0.1 to 0.5
 
-The assistant that wrote this folder reviewed four versions of the hypothesis on 20 November 2026, at the author's request ("please do an adversial review"). The author passed each version on from a conversation with another assistant. This file records the reviews in short form. The literature named in them was named from the reviewer's general knowledge and **has not been checked against primary sources** (working agreement 1). Treat the names as leads.
+The assistant that wrote this folder reviewed five versions of the hypothesis on 20 November 2026, at the author's request ("please do an adversial review"). The author passed each version on from a conversation with another assistant. This file records the reviews in short form. The literature named in them was named from the reviewer's general knowledge and **has not been checked against primary sources** (working agreement 1). Treat the names as leads.
 
 ## Rounds 1 to 3, in one paragraph each
 
@@ -21,3 +21,16 @@ Version 0.4 makes the decomposition the claim and states a predicted impairment 
 5. Smaller points: cross-substrate claims need evidence that a measure means the same in each substrate; Be honest may be observable but not manipulable in people; the three-agent relational experiment is the strongest design in v0.4 but needs many pairs.
 
 The author's response: "Please build the simulation in the EbE repo." The simulation is point 4.
+
+## Round 5: the review of version 0.5
+
+Version 0.5 ([HYPOTHESIS_V0_5.md](HYPOTHESIS_V0_5.md)) adopted most of round 4 and made two corrections to it, both accepted: Be honest, Share and Repair have research literatures of their own (the round-4 point was only that standard *learning models* lack parameters for them), and failed recovery in one design does not by itself disprove the theory. It was written before the simulation results existed. The review set it against them:
+
+1. **§8 could reject a true model.** With sparse choices, model selection never picked the full model when it generated the data (0 of 40). A rejection under §8 should count only in designs where model recovery has shown that M4 is picked when true.
+2. **Its illustrative recovery matrix expected the wrong failure** (Notice–Change and Share–Repair confusion). The simulation's main failures were invisibility outside a condition and thin measurement. *(Later corrected in part: an outside review showed the simulation's trade-off check was too weak; with a better check, Stay open and Change do trade off. See [REVIEW_OF_PR155.md](REVIEW_OF_PR155.md).)*
+3. **Several §3 contrasts build in the answer** v0.5 warns against building in: Repair (disrupted vs. intact), Take care (scarce vs. plentiful), Find new ways (methods unable vs. able), Share (private vs. already shared), Change ("detected but not yet incorporated"). The risky rows are those where the condition is a cause: Be honest under incentives, Notice under noise, Stay open under a misleader.
+4. **Remember / let go needs a crossover**, with opposite signs for the two impairments, not one "greater adverse effect" row; the escape clause about reversed order should go.
+5. **M1 must generate behaviour** (all verbs fixed functions of one ability), **M2 must be written down**, and **M4's "context-dependent interactions" must be fixed in advance or dropped.**
+6. **Process:** v0.5 had taken up most of round 4, so further rounds between the two assistants converge rather than test.
+
+The author then passed on a set of instructions for the next step, verbatim in [NEXT_STEP_INSTRUCTIONS.md](NEXT_STEP_INSTRUCTIONS.md).
