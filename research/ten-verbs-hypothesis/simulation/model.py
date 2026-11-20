@@ -194,6 +194,7 @@ def simulate(params, cond, rng, isolate0=False, no_budget0=False,
         ("acc", float)]}
     rec["acq_round"] = np.full((R, N), -1)
     rec["rich"] = np.zeros((R, N, T, H))
+    rec["belief"] = np.zeros((R, N, T, H))      # noiseless, for checks and scores
     # messages received: sender axis N+1 (last = the misleader)
     rec["msg_on"] = np.zeros((R, N, T, N + 1), bool)
     rec["msg_test"] = np.zeros((R, N, T, N + 1), int)
@@ -285,6 +286,7 @@ def simulate(params, cond, rng, isolate0=False, no_budget0=False,
         rec["rich"][:, :, t] = b + rng.normal(0, SIGMA, b.shape)
         cl = KAPPA * np.log(b)
         rec["choice"][:, :, t] = (cl - np.log(-np.log(rng.random(cl.shape)))).argmax(-1)
+        rec["belief"][:, :, t] = b
         rec["acc"][:, :, t] = b[ri, np.arange(N)[None], true[:, None]]
     return rec
 

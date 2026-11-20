@@ -9,13 +9,14 @@ E3  Model recovery. Data from the full model, from a model without Notice
     (notice fixed at 1) and from a model without Stay open (stay_open fixed
     at 1); each fitted with all three; which one BIC picks.
 E4  Knockout matrix. All learners in a group have one verb impaired; change in
-    accuracy (mean belief in the true state, rounds 20-59) against intact
+    mean belief in the true state, Brier score and log score (rounds 20-59) against intact
     groups, per condition and per route. An architecture check only: the
     model was built with these verbs, so this shows what this model does,
     not what learners do.
 
 Usage: python run.py                  (writes results/ and figures/)
        python run.py --figures-only   (redraws figures from results.json)
+       python run.py --e4-only        (reruns E4 only, keeps E1-E3)
 """
 
 from __future__ import annotations
@@ -150,12 +151,23 @@ COLUMNS = [("base", "base", {}), ("volatile", "volatile", {}),
            ("commons route only", "base", {"no_budget0": True})]
 
 
-def _acc(params, cname, kw, seed):
+def _scores(params, cname, kw, seed):
+    """Per replicate, rounds 20-59: mean belief in the true state, Brier score
+    (lower is better) and log score (mean log belief in the true state;
+    higher is better). Route columns use agent 0 only."""
     rng = np.random.default_rng(seed)
     rec = simulate(params, CONDITIONS[cname], rng, **kw)
-    acc = rec["acc"][:, :, 20:].mean(-1)           # (R, N)
-    per_rep = acc[:, 0] if kw else acc.mean(1)      # route columns: agent 0
-    return per_rep
+    b = rec["belief"][:, :, 20:]                          # (R, N, t, H)
+    truth = rec["true"][:, None, 20:].repeat(N, 1)        # (R, N, t)
+    onehot = np.eye(b.shape[-1])[truth]
+    pt = np.take_along_axis(b, truth[..., None], -1)[..., 0]
+    out = {"mean_belief": pt.mean(-1),
+           "brier": ((b - onehot) ** 2).sum(-1).mean(-1),
+           "log": np.log(np.clip(pt, 1e-300, None)).mean(-1)}
+    return {k: (v[:, 0] if kw else v.mean(1)) for k, v in out.items()}
+
+
+SCORES = ["mean_belief", "brier", "log"]
 
 
 def e4_knockouts():
@@ -164,24 +176,29 @@ def e4_knockouts():
         if over:
             p[over[0]][:] = over[1]
         return p
-    out = {"columns": [c[0] for c in COLUMNS], "rows": [k[0] for k in KNOCKOUTS],
-           "intact": [], "diff": [], "se": []}
+    out = {"columns": [c[0] for c in COLUMNS], "rows": [k[0] for k in KNOCKOUTS]}
+    for sc in SCORES:
+        out[sc] = {"intact": [], "diff": [], "se": []}
+    bases = []
     for ci, (col, cname, kw) in enumerate(COLUMNS):
-        seed = SEED + 900 + ci                      # common random numbers per column
-        base = _acc(params(), cname, kw, seed)
-        out["intact"].append(float(base.mean()))
+        bases.append(_scores(params(), cname, kw, SEED + 900 + ci))   # common random numbers
+        for sc in SCORES:
+            out[sc]["intact"].append(float(bases[ci][sc].mean()))
     for label, verb, val in KNOCKOUTS:
-        drow, srow = [], []
+        rows = {sc: ([], []) for sc in SCORES}
         for ci, (col, cname, kw) in enumerate(COLUMNS):
-            seed = SEED + 900 + ci
-            base = _acc(params(), cname, kw, seed)
-            ko = _acc(params((verb, val)), cname, kw, seed)
-            d = ko - base
-            drow.append(float(d.mean()))
-            srow.append(float(d.std(ddof=1) / np.sqrt(len(d))))
-        out["diff"].append(drow)
-        out["se"].append(srow)
+            ko = _scores(params((verb, val)), cname, kw, SEED + 900 + ci)
+            for sc in SCORES:
+                d = ko[sc] - bases[ci][sc]
+                rows[sc][0].append(float(d.mean()))
+                rows[sc][1].append(float(d.std(ddof=1) / np.sqrt(len(d))))
+        for sc in SCORES:
+            out[sc]["diff"].append(rows[sc][0])
+            out[sc]["se"].append(rows[sc][1])
         print(f"E4 {label} done", flush=True)
+    # backwards-compatible keys: the mean-belief measure
+    for k in ["intact", "diff", "se"]:
+        out[k] = out["mean_belief"][k]
     return out
 
 
@@ -219,15 +236,24 @@ def write_tables(table, conf, e3, e4):
         for regime in REGIMES:
             d = e3[g][regime]
             L.append(f"| {g} | {regime} | {d['full']} | {d['no_notice']} | {d['no_open']} |")
-    L += ["", "## E4. Knockouts: change in accuracy (percentage points), with standard error", "",
-          f"{REPS_E4} groups per cell. Accuracy = mean belief in the true state, rounds 20-59.",
-          "Route columns use agent 0 only.", "",
-          "| Impaired | " + " | ".join(e4["columns"]) + " |",
-          "|---|" + "---|" * len(e4["columns"]),
-          "| *(intact accuracy)* | " + " | ".join(f"{100*x:.1f}" for x in e4["intact"]) + " |"]
-    for i, row in enumerate(e4["rows"]):
-        L.append(f"| {row} | " + " | ".join(
-            f"{100*d:+.1f} ({100*s:.1f})" for d, s in zip(e4["diff"][i], e4["se"][i])) + " |")
+    titles = {"mean_belief": ("mean belief in the true state, percentage points; higher is better", 100, "{:+.1f} ({:.1f})", "{:.1f}"),
+              "brier": ("Brier score x 100; LOWER is better, so a positive change is worse", 100, "{:+.1f} ({:.1f})", "{:.1f}"),
+              "log": ("log score (mean log belief in the true state); higher is better", 1, "{:+.2f} ({:.2f})", "{:.2f}")}
+    L += ["", f"## E4. Knockouts: change against intact groups, with standard error", "",
+          f"{REPS_E4} groups per cell, rounds 20-59. Route columns use agent 0 only.",
+          "Earlier versions called the first measure 'accuracy'; it is the mean probability",
+          "given to the true state, which is not classification accuracy and not a proper",
+          "scoring rule. The Brier and log scores are proper scoring rules."]
+    for sc in SCORES:
+        title, mult, fmt, ifmt = titles[sc]
+        e = e4[sc]
+        L += ["", f"### {title}", "",
+              "| Impaired | " + " | ".join(e4["columns"]) + " |",
+              "|---|" + "---|" * len(e4["columns"]),
+              "| *(intact)* | " + " | ".join(ifmt.format(mult * x) for x in e["intact"]) + " |"]
+        for i, row in enumerate(e4["rows"]):
+            L.append(f"| {row} | " + " | ".join(
+                fmt.format(mult * d, mult * s_) for d, s_ in zip(e["diff"][i], e["se"][i])) + " |")
     with open(os.path.join(RES, "tables.md"), "w") as f:
         f.write("\n".join(L) + "\n")
 
@@ -292,31 +318,45 @@ def figures(table, conf, e4):
     fig.savefig(os.path.join(FIG, "e2_confusion.png"), dpi=150)
     plt.close(fig)
 
-    # Figure 3: knockout matrix.
-    D = 100 * np.array(e4["diff"])
-    S = 100 * np.array(e4["se"])
-    lim = np.abs(D).max()
-    fig, ax = plt.subplots(figsize=(12, 6))
-    ax.imshow(D, cmap=div, vmin=-lim, vmax=lim, aspect="auto")
-    for i in range(D.shape[0]):
-        for j in range(D.shape[1]):
-            weak = abs(D[i, j]) <= 3 * S[i, j]
-            txt = "·" if weak else f"{D[i, j]:+.1f}"
-            ax.text(j, i, txt, ha="center", va="center", fontsize=9,
-                    color="white" if abs(D[i, j]) > 0.6 * lim else ink)
-    ax.set_xticks(range(len(e4["columns"])), e4["columns"], rotation=25, ha="right", fontsize=9)
-    ax.set_yticks(range(len(e4["rows"])), e4["rows"], fontsize=9)
-    for s in ax.spines.values():
-        s.set_visible(False)
-    ax.set_title("Knockouts in this model: change in accuracy, percentage points "
-                 "(red = worse, blue = better; · = within 3 SE of zero)",
-                 fontsize=11, color=ink, loc="left")
-    fig.tight_layout()
-    fig.savefig(os.path.join(FIG, "e4_knockouts.png"), dpi=150)
-    plt.close(fig)
+    # Figure 3: knockout matrices, mean belief and Brier score.
+    specs = [("mean_belief", 100, "e4_knockouts.png",
+              "Knockouts in this model: change in mean belief in the true state, percentage points"),
+             ("brier", -100, "e4_knockouts_brier.png",
+              "Knockouts in this model: change in Brier score x 100, sign flipped")]
+    for key, mult, fname, title in specs:
+        e = e4[key] if key in e4 else e4
+        D = mult * np.array(e["diff"])
+        S = abs(mult) * np.array(e["se"])
+        lim = np.abs(D).max()
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.imshow(D, cmap=div, vmin=-lim, vmax=lim, aspect="auto")
+        for i in range(D.shape[0]):
+            for j in range(D.shape[1]):
+                weak = abs(D[i, j]) <= 3 * S[i, j]
+                txt = "·" if weak else f"{D[i, j]:+.1f}"
+                ax.text(j, i, txt, ha="center", va="center", fontsize=9,
+                        color="white" if abs(D[i, j]) > 0.6 * lim else ink)
+        ax.set_xticks(range(len(e4["columns"])), e4["columns"], rotation=25, ha="right", fontsize=9)
+        ax.set_yticks(range(len(e4["rows"])), e4["rows"], fontsize=9)
+        for s_ in ax.spines.values():
+            s_.set_visible(False)
+        ax.set_title(title + "\n(red = worse, blue = better; · = within 3 SE of zero)",
+                     fontsize=11, color=ink, loc="left")
+        fig.tight_layout()
+        fig.savefig(os.path.join(FIG, fname), dpi=150)
+        plt.close(fig)
 
 
 def main():
+    if "--e4-only" in sys.argv:
+        with open(os.path.join(RES, "results.json")) as f:
+            d = json.load(f)
+        d["e4_knockouts"] = e4 = e4_knockouts()
+        with open(os.path.join(RES, "results.json"), "w") as f:
+            json.dump(d, f)
+        write_tables(d["e1_table"], d["e2_confusion"], d["e3_model_recovery"], e4)
+        figures(d["e1_table"], d["e2_confusion"], e4)
+        return
     if "--figures-only" in sys.argv:
         with open(os.path.join(RES, "results.json")) as f:
             d = json.load(f)

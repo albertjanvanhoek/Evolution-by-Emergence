@@ -10,8 +10,9 @@ from model import (CONDITIONS, JOINT, N, T, agent_record, closed_form_fits,
 
 
 def test_replay_reproduces_beliefs():
-    """At the true settings, the replay's belief in the true state equals the
-    simulation's, round by round, in every condition."""
+    """At the true settings, the replay's full belief vector equals the
+    simulation's noiseless belief vector, every component, every round, in
+    every condition."""
     rng = np.random.default_rng(0)
     for name, cond in CONDITIONS.items():
         pr = draw_params(rng, (3, N))
@@ -24,9 +25,8 @@ def test_replay_reproduces_beliefs():
                 tr = []
                 ll = joint_loglik(th, a, P, "rich", trace=tr)
                 assert np.isfinite(ll).all(), name
-                b = np.array([x[0] for x in tr])
-                got = b[np.arange(T), a["true"]]
-                assert np.allclose(got, a["acc"], atol=1e-12), name
+                b = np.array([x[0] for x in tr])          # (T, H)
+                assert np.allclose(b, a["belief"], rtol=0, atol=1e-12), name
 
 
 def test_closed_forms():

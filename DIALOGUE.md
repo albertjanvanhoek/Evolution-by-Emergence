@@ -1313,9 +1313,17 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - With rich belief reports most verbs are recovered well. Take care and Repair are invisible outside scarcity and disruption.
   - Be honest and Find new ways are weakly recovered, for reasons of task design.
   - With only choices recorded the belief verbs blur, and BIC never picked the true full model (0 of 40). So v0.4's main test could fail for reasons of measurement alone.
-  - No trade-offs between verbs appeared, including Notice and Change, which the review expected to trade off.
+  - ~~No trade-offs between verbs appeared~~ (withdrawn after the outside review below: the check could not show it).
 - **Where the assistant is unsure or disagrees:**
   - **The model is the assistant's.** The results hold for learners built like it. The route-specific knockouts were built in. The lack of a Notice–Change trade-off follows from writing Notice as a threshold rather than an update size. A model written by someone else is the obvious next check (working agreement 7).
   - **Version 0.4 itself was written by an assistant,** and so were all four reviews. No human reader has assessed any of it.
   - **The simpler alternatives the review proposed** are not yet fitted. E3 compares only models that differ by one verb.
-- **Not recorded:** the author's view of the results. This entry stays open for it.
+- **An outside review of the pull request** (passed on by the author, verbatim in [research/ten-verbs-hypothesis/sources/REVIEW_OF_PR155.md](research/ten-verbs-hypothesis/sources/REVIEW_OF_PR155.md)). The reviewer inspected the code and results without rerunning them, and supported merging as "a **documented feasibility experiment**, not as validation of the Ten Verbs Hypothesis."
+- **Assistant, on each point** (checked against the code and stored results; details in RESULTS.md, "What the outside review changed"):
+  - **Trade-offs: the reviewer was right.** The check correlated recovered verbs with the true settings of other verbs, which were drawn independently. Errors do move together: Stay open with Change −0.41, Change with Remember / let go +0.25 (rich reports). The first comes from how the assistant wrote the model (the two multiply for disagreeing testimony). A profile likelihood shows the trade-off is partial with rich reports, and that with sparse choices the optimiser did not always find the best fit.
+  - **Replay test: right.** It now compares the full belief vector; it passes.
+  - **"Accuracy": right.** Renamed to mean belief in the true state; Brier and log scores added. Two conclusions changed: letting go too fast costs nothing detectable on the Brier score in a changing world (it cost −18.5 on the old measure), and a small gain from impairing Stay open under broken links disappears.
+  - **"Experiments must collect rich belief reports": too strong, narrowed.**
+  - **Construct validity: right, and the most important point.** Repair here is restoring a link, not restoring trust; Be honest is one narrow form of distortion; Take care is budget pacing. A table now says what each parameter is and is not.
+  - **Next step: agreed.** An independent model built around the phenomenon, with agents not built around ten verbs, ideally designed by someone other than this assistant.
+- **Not recorded:** the author's view of the results or of the review. This entry stays open for it.
