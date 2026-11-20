@@ -1,0 +1,57 @@
+# Analysis plan for the incompatible-accounts experiment
+
+**Do not give this file to the modeller.** The modeller gets only the phenomenon brief, [../../incompatible-accounts/BRIEF.md](../../incompatible-accounts/BRIEF.md), which does not mention the ten verbs or this hypothesis. This plan is for the analyst. They open it only after the model, its code, its log format and its outcome definitions are frozen and committed. The analyst should preferably be someone other than the modeller.
+
+**History.** A first version of this file was a single brief that gave the modeller the phenomenon and the ten verbs together. An outside reviewer pointed out that naming the verbs, and the first simulation's failures, could shape the new architecture ([../sources/REVIEW_OF_PR155_3.md](../sources/REVIEW_OF_PR155_3.md)). Building the model and testing the hypothesis are now kept apart. See D51 in [DIALOGUE.md](../../../DIALOGUE.md).
+
+## 1. The question for the analysis
+
+The agents were not built with ten verbs. Do the ten verbs, measured as behaviour in the logs, explain their detection of errors, correction of beliefs, recognition of unresolvable disagreement, mutual understanding and cooperation better than simpler explanations do?
+
+The ten verbs are: Stay open, Try, Notice, Be honest, Change, Remember / let go, Take care, Share, Repair, Find new ways ([../sources/HYPOTHESIS_V0_5.md](../sources/HYPOTHESIS_V0_5.md)).
+
+## 2. Lessons from the first simulation
+
+[../simulation/results/RESULTS.md](../simulation/results/RESULTS.md) has the details.
+- **A parameter named after a verb is not the verb.** Code the behaviour the theory means, and state how narrow each code is.
+- **A condition defined as the verb's own situation decides the result.** For example: restoring a channel can only matter after it breaks.
+- **What is recorded decides what can be told apart.** Check model recovery before reading any comparison.
+- **Optimisers miss maxima.** Use many starts and check them.
+
+## 3. Rules, fixed before looking at behaviour
+
+1. **Write the codes first.** Before looking at any agent behaviour, write and commit a code for each verb, computed from the logs. Examples, to be refined against the frozen log format:
+
+   | Verb | Example code |
+   |---|---|
+   | Share | disclosing private evidence the other did not have |
+   | Be honest | whether reports match the agent's own logged record |
+   | Repair | steps taken to restore the channel after a breakdown |
+   | Find new ways | seeking a kind of check not used before |
+   | Stay open | the weight shown to claims that conflict with the agent's own account |
+   | Notice | how soon a conflicting observation is registered |
+   | Change | how far beliefs move, given the evidence received |
+   | Remember / let go | how long claims are kept, and when they are dropped |
+   | Take care | how resources are spent over time |
+   | Try | how informative the chosen checks were, judged before their results |
+
+2. **Codes come before outcomes.** Each code is computed only from behaviour that happens **before** the outcome it is used to predict, and never from information about whether correction succeeded. For example: codes come from the first part of each run, and outcomes are scored at the end. Otherwise an agent could be scored as good at correcting because it corrected, and the analysis would be circular.
+3. **Write the competing explanations first.** At least:
+   - (a) what was available and what the incentives were, with no behaviour at all;
+   - (b) a conventional learner with source-reliability weighting, fitted to the same early behaviour;
+   - (c) three behavioural dimensions: individual learning; exchange and correction; maintenance and method;
+   - (d) the ten verb codes.
+4. **Treat inconclusive cases separately.** Where the commons could not settle the account, a good outcome is calibrated uncertainty and continued cooperation, not "correction". Analyse settleable and inconclusive cases separately, and state in advance what each explanation predicts for each.
+5. **Model recovery comes first.** Generate synthetic behaviour where each explanation is true, and confirm the comparison can pick it. A loss for the ten verbs counts against them only in a design that can recover them.
+6. **Use held-out prediction as the main test.** Use held-out runs or held-out conditions; information criteria are secondary.
+
+## 4. What would count against the ten verbs
+
+- **No gain:** the ten codes add nothing to held-out prediction beyond (a) to (c).
+- **Fewer dimensions:** the ten codes collapse into fewer dimensions in the data.
+- **Codes not separable:** the codes cannot be computed separately from the logs, so they are not ten measurable things.
+- **Unpredicted direction:** a code predicts an outcome in a direction the theory did not state in advance.
+
+## 5. What would count in their favour
+
+The ten codes predict held-out outcomes better than (a) to (c), in a design where model recovery has been shown. This would hold especially for exchange between the agents: contradictory evidence, unreliable testimony, a broken channel. Even then, this would show their usefulness as a description of these agents' behaviour, not that real intelligences have ten functions.

@@ -1,19 +1,19 @@
 # The Ten Verbs Hypothesis: can a task tell the verbs apart?
 
-**Status: a finished feasibility study, November 2026; not merged, merging is the author's call** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation twice without rerunning it; no human reader has assessed any of it.
+**Status: a finished feasibility study, November 2026; not merged, merging is the author's call** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation three times without rerunning it; no human reader has assessed any of it.
 
 | Part | Where |
 |---|---|
 | The hypothesis, version 0.4, verbatim | [sources/HYPOTHESIS_V0_4.md](sources/HYPOTHESIS_V0_4.md) |
 | The five rounds of review of the hypothesis | [sources/REVIEW_V0_4.md](sources/REVIEW_V0_4.md) |
-| Two outside reviews of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md), [sources/REVIEW_OF_PR155_2.md](sources/REVIEW_OF_PR155_2.md) |
+| Three outside reviews of the simulation, verbatim | [sources/REVIEW_OF_PR155.md](sources/REVIEW_OF_PR155.md), [_2](sources/REVIEW_OF_PR155_2.md), [_3](sources/REVIEW_OF_PR155_3.md) |
 | Version 0.5 and the instructions for a next step, verbatim | [sources/HYPOTHESIS_V0_5.md](sources/HYPOTHESIS_V0_5.md), [sources/NEXT_STEP_INSTRUCTIONS.md](sources/NEXT_STEP_INSTRUCTIONS.md); plan in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) |
 | The model, the fitting and the experiments | [simulation/model.py](simulation/model.py), [simulation/fit.py](simulation/fit.py), [simulation/run.py](simulation/run.py) |
 | Results, with their limits | [simulation/results/RESULTS.md](simulation/results/RESULTS.md); generated tables in [tables.md](simulation/results/tables.md) |
 | Trade-offs between verbs (added after the outside review) | [simulation/tradeoffs.py](simulation/tradeoffs.py); [tradeoffs.md](simulation/results/tradeoffs.md) |
 | Checks that the fit replays the full belief vector exactly | [simulation/test_model.py](simulation/test_model.py) |
 | A brief for an independent review of this study | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) |
-| **The next experiment:** a design brief, for someone else to build | [briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md](briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md) |
+| **The next experiment:** a phenomenon-first brief for the modeller (no verbs named), and a separate analysis plan for after the model is frozen | [../incompatible-accounts/BRIEF.md](../incompatible-accounts/BRIEF.md); [briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md](briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md) |
 | Unfinished, not run: the four-model comparison | [wip/](wip/README.md), with the plan in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) |
 
 ## 1. The question
@@ -56,6 +56,6 @@ Needs numpy, scipy and matplotlib.
 
 This study answers a measurement question: in one agent built with ten verb settings, which settings can be recovered. It has shown how easily such a simulation turns its own assumptions into apparent findings. It does not test the hypothesis itself.
 
-- **Next, and the priority:** an independent model of two intelligences with incompatible accounts of shared events, with a wider commons offering routes to correction, and agents **not** built around the ten verbs. The ten verbs then compete, as behavioural codes, with simpler explanations. See [briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md](briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md). It should be built by another modeller or model family.
+- **Next, and the priority:** an independent model of two intelligences with incompatible accounts of shared events, with a wider commons offering routes to correction, and agents **not** built around the ten verbs. The modeller gets only the phenomenon ([../incompatible-accounts/BRIEF.md](../incompatible-accounts/BRIEF.md)) and freezes the model before anyone looks for the verbs. Only then does a separate analysis ([briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md](briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md)) code the ten verbs from behaviour that comes before the outcomes, and compare them with simpler explanations. It should be built by another modeller or model family.
 - **Kept for later:** the four-model comparison (one general capacity; a conventional learner; three layers; ten verbs), planned in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) and started in [wip/](wip/README.md). Not run.
 - **Not touched:** reasoning-mediated checking (the L column), and the relational extension of the hypothesis.

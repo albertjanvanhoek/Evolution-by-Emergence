@@ -1336,7 +1336,18 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - the pull request is finished as a feasibility study;
   - the plan for M1 to M4 is marked "not run";
   - the partial code is kept as a patch in [wip/](research/ten-verbs-hypothesis/wip/README.md), which nothing imports, marked unfinished; the patch applies cleanly and the replay checks still pass with it applied;
-  - a design brief for the next experiment, for someone else to build ([INCOMPATIBLE_ACCOUNTS_BRIEF.md](research/ten-verbs-hypothesis/briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md));
+  - a design brief for the next experiment, for someone else to build (later split in two; see below);
   - a brief for an independent review of this study ([REVIEW_BRIEF.md](research/ten-verbs-hypothesis/briefs/REVIEW_BRIEF.md)).
 - **Where the assistant is unsure:** the design brief was written by the assistant that built the first simulation, so it may carry the same blind spots. It asks the builder not to read the simulation first, and to change the design where they see a better way.
+- **A third outside review** (sent by the author, verbatim in [REVIEW_OF_PR155_3.md](research/ten-verbs-hypothesis/sources/REVIEW_OF_PR155_3.md)) found the pull request "ready for an independent scientific review" and advised adding no more experiments to it. Its remaining concern was the independence of the next experiment: the brief named the ten verbs and the first simulation's failures, which could shape the new model. It asked for three changes: give the modeller only the phenomenon; measure the behaviours coded as verbs before the outcomes they predict; and distinguish cases the evidence can settle from cases that stay inconclusive.
+- **Assistant: agreed with all three, and done.**
+  - **The brief is split.** The modeller gets [research/incompatible-accounts/BRIEF.md](research/incompatible-accounts/BRIEF.md), in its own folder. It does not mention the verbs, the hypothesis or the first simulation, and asks the modeller to freeze design, code, log format and outcome definitions before any analysis.
+  - **The analysis plan is kept apart,** for the analyst after the freeze ([ANALYSIS_PLAN_NEXT_EXPERIMENT.md](research/ten-verbs-hypothesis/briefs/ANALYSIS_PLAN_NEXT_EXPERIMENT.md)). It requires codes from behaviour that comes before the outcomes, and never from whether correction succeeded.
+  - **Inconclusive cases:** both documents now include cases the commons cannot settle. There, a good outcome is calibrated uncertainty and continued cooperation, not correction.
+  - **Where the assistant is unsure:** the phenomenon brief still reflects choices made with the hypothesis in mind, for example that the channel can break and incentives can vary. A modeller should feel free to drop them.
+- **The reviewer's recommended order,** for the author to decide:
+  1. an independent review of this pull request with [REVIEW_BRIEF.md](research/ten-verbs-hypothesis/briefs/REVIEW_BRIEF.md);
+  2. only substantive corrections;
+  3. resolve #154 first (D50 before D51);
+  4. then merge this study as a bounded contribution.
 - **Still open:** the author's view of the results themselves; an independent review; the next experiment; merging, which is the author's call.
