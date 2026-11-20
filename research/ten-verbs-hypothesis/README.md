@@ -1,6 +1,6 @@
 # The Ten Verbs Hypothesis: can a task tell the verbs apart?
 
-**Status: a first simulation check, November 2026** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation twice without rerunning it; no human reader has assessed any of it.
+**Status: a finished feasibility study, November 2026; not merged, merging is the author's call** (D51 in [DIALOGUE.md](../../DIALOGUE.md)). **Nothing here is established.** The hypothesis is version 0.4, written in conversation with the author by another assistant. The simulation was written by the assistant that reviewed it. One outside reader has reviewed the simulation twice without rerunning it; no human reader has assessed any of it.
 
 | Part | Where |
 |---|---|
@@ -12,6 +12,9 @@
 | Results, with their limits | [simulation/results/RESULTS.md](simulation/results/RESULTS.md); generated tables in [tables.md](simulation/results/tables.md) |
 | Trade-offs between verbs (added after the outside review) | [simulation/tradeoffs.py](simulation/tradeoffs.py); [tradeoffs.md](simulation/results/tradeoffs.md) |
 | Checks that the fit replays the full belief vector exactly | [simulation/test_model.py](simulation/test_model.py) |
+| A brief for an independent review of this study | [briefs/REVIEW_BRIEF.md](briefs/REVIEW_BRIEF.md) |
+| **The next experiment:** a design brief, for someone else to build | [briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md](briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md) |
+| Unfinished, not run: the four-model comparison | [wip/](wip/README.md), with the plan in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) |
 
 ## 1. The question
 
@@ -44,13 +47,15 @@ python run.py                 # all experiments, about 30 minutes on 2 cores
 python run.py --figures-only  # redraw figures from results/results.json
 python run.py --e4-only       # rerun only the knockouts, seconds
 python tradeoffs.py           # error correlations and profile likelihood, minutes
+python tradeoffs.py --optimiser-check   # optimiser check, about 7 minutes
 ```
 
 Needs numpy, scipy and matplotlib.
 
-## 5. Open
+## 5. Where this ends, and what comes next
 
-- The three simpler models the review proposed (one general factor; a standard learner with a weight on social information; three tiers) are not yet fitted.
-- Reasoning-mediated checking (v0.4's L column) is not modelled.
-- An independent model built around the phenomenon (incompatible accounts of events, claims with provenance, fallible memory, an external record), with agents not built around ten verbs, as the outside review proposes. Ideally designed by someone other than this assistant.
-- The relational extension (H2 of v0.4) is not touched here.
+This study answers a measurement question: in one agent built with ten verb settings, which settings can be recovered. It has shown how easily such a simulation turns its own assumptions into apparent findings. It does not test the hypothesis itself.
+
+- **Next, and the priority:** an independent model of two intelligences with incompatible accounts of shared events, with a wider commons offering routes to correction, and agents **not** built around the ten verbs. The ten verbs then compete, as behavioural codes, with simpler explanations. See [briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md](briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md). It should be built by another modeller or model family.
+- **Kept for later:** the four-model comparison (one general capacity; a conventional learner; three layers; ten verbs), planned in [simulation/PLAN_V2.md](simulation/PLAN_V2.md) and started in [wip/](wip/README.md). Not run.
+- **Not touched:** reasoning-mediated checking (the L column), and the relational extension of the hypothesis.

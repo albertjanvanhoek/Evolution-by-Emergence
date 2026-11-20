@@ -1,6 +1,6 @@
 # Plan for the second set of experiments (written before running them)
 
-**Status: fixed before any of these experiments was run** (committed on its own, ahead of the code). It answers the instructions in [../sources/NEXT_STEP_INSTRUCTIONS.md](../sources/NEXT_STEP_INSTRUCTIONS.md). Anything changed after the runs started will be listed in the results as a deviation.
+**Status: not run.** After this plan was committed, the author decided to close this pull request as a feasibility study and to put the next effort into a separate experiment ([../briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md](../briefs/INCOMPATIBLE_ACCOUNTS_BRIEF.md)); see D51. The plan is kept as it was fixed (committed on its own, ahead of any code), in case the comparison is run later. It answers the instructions in [../sources/NEXT_STEP_INSTRUCTIONS.md](../sources/NEXT_STEP_INSTRUCTIONS.md). Anything changed after the runs started will be listed in the results as a deviation.
 
 All four models share the same agent engine as the first experiments ([model.py](model.py)): the same task, the same observable channels and the same functional forms. They differ only in how the ten verb settings are produced, and in two structural switches. So every model predicts exactly the same data: test decisions, test choices, outcomes passed on, link repairs, method acquisition and belief reports.
 
