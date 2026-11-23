@@ -1,0 +1,145 @@
+--- a/simulation/model.py
++++ b/simulation/model.py
+@@ -163,13 +163,16 @@
+ 
+ 
+ def simulate(params, cond, rng, isolate0=False, no_budget0=False,
+-             notice_on=True):
++             notice_on=True, social_mode="asym"):
+     """Run R replicate groups of N learners at once.
+ 
+     params: dict verb -> array (R, N). Returns a dict of records.
+     isolate0: agent 0 receives nothing (reality route only).
+     no_budget0: agent 0 cannot test (commons route only).
+     notice_on: False switches the notice threshold off (weight 1).
++    social_mode: "asym" (M4: stay_open weights only disagreeing testimony) or
++        "sym" (M2: stay_open is a weight on all testimony).
++    cond may carry "hazard" to override HAZARD in a volatile condition.
+     """
+     R = params["try"].shape[0]
+     P = test_table(cond["blind"])
+@@ -204,7 +207,7 @@
+     beta = BETA_MAX * params["try"]
+     for t in range(T):
+         if cond["volatile"]:
+-            sw = rng.random(R) < HAZARD
++            sw = rng.random(R) < cond.get("hazard", HAZARD)
+             true = np.where(sw, (true + 1 + rng.integers(H - 1, size=R)) % H, true)
+         rec["true"][:, t] = true
+ 
+@@ -272,7 +275,10 @@
+             Ls = np.where(so[:, None, None] == 1, Ls, 1 - Ls)
+             mp = b.argmax(-1)
+             disconf = Ls[ri, np.arange(N)[None], mp] < 0.5
+-            e = params["change"] * np.where(disconf, params["stay_open"], 1.0)
++            if social_mode == "sym":
++                e = params["change"] * params["stay_open"]
++            else:
++                e = params["change"] * np.where(disconf, params["stay_open"], 1.0)
+             b = np.where(arr[..., None], update(b, Ls, e), b)
+             rec["msg_on"][:, :, t, s] = arr
+             rec["msg_test"][:, :, t, s] = sj[:, None]
+@@ -300,15 +306,20 @@
+ 
+ # ---------------------------------------------------------------- likelihood
+ 
+-def joint_loglik(theta, a, P, regime, notice_on=True, trace=None):
++def joint_loglik(theta, a, P, regime, notice_on=True, trace=None,
++                 social_mode="asym", mask=None):
+     """Log-likelihood of one agent's belief-driven behaviour.
+ 
+     theta: (K, 6) in the order of JOINT. Replays the agent's belief trajectory
+     from its recorded inputs for each of the K parameter vectors at once.
+     Uses: test choices (try), passed-on reports (be_honest), and belief
+     reports (rich or sparse). Take care, share, repair and find new ways have
+-    their own likelihood terms (see closed_form_fits), which separate.
++    their own likelihood terms (see channel_loglik), which separate.
++    mask: boolean (T,); only rounds where it is True are scored (the belief
++    trajectory is always replayed through every round).
+     """
++    if mask is None:
++        mask = np.ones(T, bool)
+     K = theta.shape[0]
+     open_, try_, notice, honest, change, letgo = theta.T
+     b = np.full((K, H), 1.0 / H)
+@@ -319,14 +330,15 @@
+             j = a["test"][t]
+             nav = 4 if a["avail_method"][t] else 3
+             lg = BETA_MAX * try_[:, None] * eig(b, P[:, :nav])
+-            ll += lg[:, j] - _logsumexp(lg, 1)
++            if mask[t]:
++                ll += lg[:, j] - _logsumexp(lg, 1)
+             map0 = b.argmax(1)
+             conf = (P[map0, j] >= 0.5).astype(int)
+             o = a["outcome"][t]
+             L = P[:, j] if o == 1 else 1 - P[:, j]
+             w = notice_weight(b, L[None], notice) if notice_on else np.ones(K)
+             b = update(b, np.broadcast_to(L, (K, H)), change * w)
+-            if a["shared"][t]:
++            if a["shared"][t] and mask[t]:
+                 r_ = a["report"][t]
+                 p = np.where(r_ == o, honest + (1 - honest) * (conf == r_),
+                              (1 - honest) * (conf == r_))
+@@ -334,12 +346,16 @@
+         for s in np.flatnonzero(a["msg_on"][t]):
+             j = a["msg_test"][t, s]
+             L = P[:, j] if a["msg_out"][t, s] == 1 else 1 - P[:, j]
+-            disconf = L[b.argmax(1)] < 0.5
+-            b = update(b, np.broadcast_to(L, (K, H)),
+-                       change * np.where(disconf, open_, 1.0))
++            if social_mode == "sym":
++                e = change * open_
++            else:
++                e = change * np.where(L[b.argmax(1)] < 0.5, open_, 1.0)
++            b = update(b, np.broadcast_to(L, (K, H)), e)
+         b = (1 - letgo[:, None]) * b + letgo[:, None] / H
+         if trace is not None:
+             trace.append(b.copy())
++        if not mask[t]:
++            continue
+         if regime == "rich":
+             ll -= ((a["rich"][t][None] - b) ** 2).sum(1) / (2 * SIGMA ** 2)
+         else:
+@@ -371,3 +387,42 @@
+         ll = (np.log(p) * y + np.log(1 - p) * (~y)).sum(1)
+         out["take_care"] = grid[ll.argmax()]
+     return out
++
++
++def channel_loglik(v, a, mask=None):
++    """Log-likelihood of the four behavioural channels, vectorised.
++
++    v: dict with arrays (K,) for take_care, share, repair, find_new_ways.
++    Returns (ll (K,), number of scored terms).
++    """
++    if mask is None:
++        mask = np.ones(T, bool)
++    eps = 1e-9
++    K = len(v["share"])
++    ll = np.zeros(K)
++    n = 0
++    s = np.clip(v["share"], eps, 1 - eps)
++    sel = a["tested"] & mask
++    y = a["shared"][sel]
++    ll += y.sum() * np.log(s) + (~y).sum() * np.log(1 - s)
++    n += int(sel.sum())
++    r = np.clip(v["repair"], eps, 1 - eps)
++    d = a["downs"][mask].sum()
++    at = a["attempts"][mask].sum()
++    ll += at * np.log(r) + (d - at) * np.log(1 - r)
++    n += int(d)
++    m = np.clip(v["find_new_ways"], eps, 1 - eps)
++    k = a["acq_round"]
++    tt = np.arange(T)
++    trials = (tt <= k) if k >= 0 else np.ones(T, bool)
++    succ = (tt == k)
++    ll += (succ & mask).sum() * np.log(m) + ((trials & ~succ) & mask).sum() * np.log(1 - m)
++    n += int((trials & mask).sum())
++    dec = a["decided"] & mask
++    frac = a["budget_frac"][dec]
++    yt = a["tested"][dec]
++    c = np.clip(v["take_care"], 0, 1)
++    p = np.clip(1 - c[:, None] * (1 - frac[None]), eps, 1 - eps)
++    ll += (np.log(p) * yt + np.log(1 - p) * (~yt)).sum(1)
++    n += int(dec.sum())
++    return ll, n
