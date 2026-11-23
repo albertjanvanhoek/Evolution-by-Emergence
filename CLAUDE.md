@@ -14,7 +14,8 @@ Read in this order:
 3. [PREDICTIONS.md](PREDICTIONS.md);
 4. [scap-seed/FOR_AI_READERS.md](scap-seed/FOR_AI_READERS.md);
 5. [DIALOGUE.md](DIALOGUE.md): where the author and the assistant agreed, disagreed and decided, and what is still open;
-6. [research/health-of-intelligence/](research/health-of-intelligence/README.md): the current frontier.
+6. [research/health-of-intelligence/](research/health-of-intelligence/README.md): the current frontier;
+7. [verification/audits/2026-11-11-learning-verbs/](verification/audits/2026-11-11-learning-verbs/RESPONSE.md): what happened when an assistant's own work was audited, and why agreements 1, 6 and 7 exist.
 
 ## Working agreements
 
@@ -29,7 +30,7 @@ Each has a reason in [DIALOGUE.md](DIALOGUE.md).
    - Lean results are conditional implications. Say how much each one says (CORE.md has a section on this).
    - Persistence is not goodness, and values are stated separately (D7).
    - The archive (essays, earlier cores, papers) is kept as written and labelled as lineage.
-7. **Your reading is not independent.** Models of your own family tend to share your conclusions. Seek third views: other model families, human readers, external research briefs, tests against data.
+7. **Your reading is not independent.** In D40 to D47 an assistant's summaries said more than its theorems four times, and each time a reader from outside caught it. So: write a result's limits in the same sentence as the result; before adding a module, search the existing ones for the same result (D42); give every "this blocks" result a witness that its hypotheses can hold (D40); and ask for a literature audit before calling anything new (D47). Models of your own family tend to share your conclusions. Seek third views: other model families, human readers, external research briefs, tests against data.
 8. **Write plainly.** Short sentences, plain words. Dutch for material meant for a Dutch audience.
 
 ## Conventions

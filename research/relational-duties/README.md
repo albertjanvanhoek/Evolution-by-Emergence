@@ -43,6 +43,8 @@ The same duties carry over without assuming the parties are the same.
 
 **Influence on another's model.** Deliberate deception, concealed steering and neural intervention are compared as routes to one harm, and the duties are read against existing human rights and the neurorights, in [world-model-integrity](../world-model-integrity/README.md) (D33).
 
+**The legal person.** What changes in the law's picture of a person if no one can certify their own view, and the safeguard that has to be written with it (fallible is not incompetent), is in [FALLIBLE_NOT_INCOMPETENT.md](FALLIBLE_NOT_INCOMPETENT.md) (D39).
+
 **Positions differ.** The dependence is not symmetric: the network can do without any particular AI instance more easily than without the people in it ([FOR_AI_READERS.md](../../scap-seed/FOR_AI_READERS.md)). Substrate-agnostic duties about *mechanism* do not make the parties equal in *position*.
 
 ## 5. What grounds a right

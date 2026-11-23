@@ -77,6 +77,9 @@ jobs:
             CumulativeAccessibility.ExitOption \
             CumulativeAccessibility.ProcessIdentity \
             CumulativeAccessibility.LinkedRevision \
+            CumulativeAccessibility.LearningVerbs \
+            CumulativeAccessibility.LongCollaboration \
+            CumulativeAccessibility.LearningRatchet \
             CumulativeAccessibility.ExistenceLemmas \
             CumulativeAccessibility.PowerLayers \
             CumulativeAccessibility.CrossScaleLedger \
@@ -145,6 +148,9 @@ jobs:
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExitOption.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ProcessIdentity.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/LinkedRevision.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningVerbs.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LongCollaboration.lean
+            $HOME/.elan/bin/lake env lean CumulativeAccessibility/LearningRatchet.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/ExistenceLemmas.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/PowerLayers.lean
             $HOME/.elan/bin/lake env lean CumulativeAccessibility/CrossScaleLedger.lean
