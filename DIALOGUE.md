@@ -1081,6 +1081,10 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Author**, asked to choose between the two forms and whether to merge now, chose "v23.1 of the repo" and "Yes, merge now".
 - **Done:** release v23.1 prepared (notes, `RELEASE_VERSION`, `CITATION.cff`, `.zenodo.json`, the README citation, the `ebe_core` dependency example and the integration check); HANDOFF.md and RELEASE_CANDIDATE.md updated to say so. PR #144 merged as a merge commit once every check was green; the release workflow publishes v23.1.
 - **Open:** a human review of the proofs (#145); the mathematical questions in #146 and #147.
+- **Author:** "OK Thank. Now do A proof attempt that D(p) never decreases, working on the sphere that describes all directions in the plane of the two source sites. It's mostly pen and paper, so cheap."
+- **Done:** [CPN_D_MONOTONICITY.md](research/yang-mills-mass-gap/CPN_D_MONOTONICITY.md) and `pilot/cpn_d_monotone_checks.py`. No proof. An exact reformulation: D is nondecreasing if each edge energy at the outer site is nondecreasing in the source overlap, equivalently if strengthening an edge there never lowers the expected number of u–v alternations, a Griffiths-II-type statement; it held in every test. Two lemmas with proofs: orthogonal pins give positive series, and each hub factor increases as the outer site turns towards the hub's axis. A proof that the purely geometric route fails: the hub axes spread apart near p = 0 before closing up. An exact reduction of the weak-coupling case, in which positivity alone cannot decide.
+- **Assistant:** the attempt makes the open step sharper, not smaller. It now looks like a correlation inequality of the kind that is hard for O(3), so a quick proof is unlikely. One of the lemmas needed a repair while drafting (interference with the component outside the source plane), which is a reason for a second reader.
+- **Open:** a check by the other model family and by a human; the weak-coupling lemma (two independent hubs) as the first target; the author's view.
 
 ### D39. The I as a model, and the legal person as a correctable model (Open, November 2026)
 - **Context:** a conversation that started from what the repository means for the relation between people and AI. The author said the core, for him, is meta-cognition, self-awareness and behaviour, "where identifying as a learning process makes the important change".
@@ -1402,3 +1406,11 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
   - **the note is in the author's voice but was drafted by the assistant in one pass,** by an assistant built by a lab that is a party to the proposal. The author said "I like the paper"; he has not commented on each section;
   - **the human-metric section is speculation.** The mappings to economic complexity and to the Joint External Evaluation are analogies, not tested measures.
 - **Open:** the author's reading of the whole note; an outside review; a pilot run of Appendix A; whether the predictions belong in `PREDICTIONS.md`.
+
+### D53. Merging the open pull requests (Decided, November 2026)
+- **Author:** "There are many PRs. I lost track - can't we merge them into main somehow?"
+- **Assistant:** four were open: #154 (D50), #155 (D51), #156 (D52) and #148, the attempt in the Yang–Mills entry above D39 to prove that D(p) never decreases. Each is labelled as an open working note or attempt. Two had asked for an outside reader first: #155 an independent review, and #148 a second reader for a repaired lemma. All four add to `DIALOGUE.md`, so they had to be merged one at a time.
+- **Author,** offered "merge all four", "merge 154, 155, 156 only" or "pick per PR", chose: "Merge all four (Recommended)".
+- **Decision:** merged in the order #154, #155, #156, #148, each as a merge commit. Between merges, `main` was merged into the next branch and `DIALOGUE.md` put back in order: D50, D51 and D52 at the end, and #148's lines kept in the Yang–Mills entry they continue. #155 had five checks, all green; #154, #156 and #148 touch no path that has a check, and GitHub reported each as cleanly mergeable.
+- **Where the assistant is unsure:** merging does not answer the requests for outside readers in #155 and #148. Those stay open in D51 and in the Yang–Mills entry.
+- **Still open:** the outside reviews named in D50, D51, D52 and the Yang–Mills entry.
