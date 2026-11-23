@@ -3,7 +3,7 @@
 *How You Live in Your Own Simulation of Reality — and How We Can Still Share a World*  
 **A Theory of Persistence, Emergence, Learning, and Correctable Intelligence**
 
-**Evolution by Emergence v23.2** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** what a functional world model is, then one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
+**Evolution by Emergence v23.3** — a substrate-agnostic candidate theory of persistence and cumulative organization, with a machine-checked specialization for correctable intelligent systems. **New here? Start with [CORE.md](CORE.md):** what a functional world model is, then one model of learning, read as a network, and what follows from it, in eight steps on one page, checked in one Lean file.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15207807.svg)](https://doi.org/10.5281/zenodo.15207807)
 [![EbE Core](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml/badge.svg)](https://github.com/albertjanvanhoek/Evolution-by-Emergence/actions/workflows/ebe-core-check.yml)
@@ -80,7 +80,9 @@ What else a healthy intelligence needs (grounding, learning that keeps what stil
 - **Transparent pricing:** [research/transparent-pricing/](research/transparent-pricing/README.md) — an application to economics: access at cost, a separate bounty for solving problems, every choice visible; with a standalone Lean package in [formalization/transparent-pricing/](formalization/transparent-pricing/README.md).
 - **World models, and what makes one functional:** [research/world-model/](research/world-model/README.md) — a definition note: world model and functional world model, sharpness subject to calibration, correctability, and what a collective world model needs from its contributors and from how it combines them; with independent reviews and the responses; and a companion on the other models an intelligence keeps in order to act and persist.
 - **Cooperative error identification:** [research/cooperative-correction/](research/cooperative-correction/README.md) — conjectures under investigation, revised after an independent review and an audit: whether different world models can expose each other's errors without a shared worldview, build a shared standard of evidence through interaction, and improve together, how much diversity of methods to keep, and when to stop investigating and act; with formal models and seeded simulations.
-- **The Ten Verbs Hypothesis:** [research/ten-verbs-hypothesis/](research/ten-verbs-hypothesis/README.md) — version 0.4 of a hypothesis that learning splits into ten separable functions, and a feasibility study of whether a task can tell them apart (parameter and model recovery, seeded), reviewed twice from outside. Nothing established; one model, written by the assistant. Next: a design brief for an independent experiment.
+- **The Ten Verbs Hypothesis:** [research/ten-verbs-hypothesis/](research/ten-verbs-hypothesis/README.md) — a hypothesis that learning splits into ten separable functions, versions 0.1 to 0.5 kept as lineage, and a feasibility study in one model of whether a task can tell them apart (parameter and model recovery, seeded), with four outside reviews. Nothing established; the model was written by the assistant. Next: an independent experiment, briefed in [research/incompatible-accounts/](research/incompatible-accounts/BRIEF.md).
+- **A probabilistic ledger for learning:** [research/probabilistic-ledger/](research/probabilistic-ledger/README.md) — a working note with a script: counting wrong worlds compared with the log-loss of the actual world. Revised after an [outside review](verification/audits/2026-11-17-probabilistic-ledger/REVIEW.md), which found nothing mathematical added.
+- **Perplexity as the Workbench's Clock:** [papers/perplexity-workbench-clock/](papers/perplexity-workbench-clock/README.md) — a working note: OpenAI's published pretraining curve read as a scale for functional information, five predictions with what would count against each (one already fails a first check), and a study design on open checkpoints that has not been run.
 - **Integrity of world models:** [research/world-model-integrity/](research/world-model-integrity/README.md) — a concept note: deliberate manipulation by words or by devices as two routes to one harm, and the neurorights read as part of existing human rights, which name principles and set boundaries.
 - **Anchored Correctability:** [research/anchored-correctability/](research/anchored-correctability/) — semantics, tracking, networks, persistence, SCAP, alignment, Anchor-Safety, self-model, shared layers and correction-preserving transitions.
 - **Portable seed:** [scap-seed/](scap-seed/) — a smaller self-contained Lean project with its own ledger and simulations.
@@ -188,13 +190,13 @@ The website is the historical online book edition; this README is the current re
 
 ## Cite
 
-The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v23.2 version DOI after archival.
+The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15207807**. Cite the exact tagged release/Zenodo version when reproducibility requires a fixed snapshot; Zenodo assigns the v23.3 version DOI after archival.
 
 ```bibtex
 @software{vanhoek_welcome_real_world_v22_3,
   author  = {van Hoek, Albert Jan},
   title   = {Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence},
-  version = {v23.2},
+  version = {v23.3},
   year    = {2026},
   doi     = {10.5281/zenodo.15207807},
   url     = {https://github.com/albertjanvanhoek/Evolution-by-Emergence}
@@ -203,7 +205,7 @@ The long-lived Zenodo DOI used across the release lineage is **10.5281/zenodo.15
 
 Plain text:
 
-> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v23.2). Zenodo. https://doi.org/10.5281/zenodo.15207807
+> van Hoek, Albert Jan. (2026). *Welcome to the Real World: How You Live in Your Own Simulation of Reality — and How We Can Still Share a World. A Theory of Persistence, Emergence, Learning, and Correctable Intelligence* (v23.3). Zenodo. https://doi.org/10.5281/zenodo.15207807
 
 See [CITATION.cff](CITATION.cff) for machine-readable citation metadata. The project was developed with substantial AI-assisted drafting, critique and formalization support; formal claims are checked by Lean, while authorship and responsibility for the released work remain with the named author.
 

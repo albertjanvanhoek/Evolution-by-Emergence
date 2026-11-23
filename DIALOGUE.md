@@ -1414,3 +1414,18 @@ Status is **Decided** or **Open**. An open entry waits for a view or for evidenc
 - **Decision:** merged in the order #154, #155, #156, #148, each as a merge commit. Between merges, `main` was merged into the next branch and `DIALOGUE.md` put back in order: D50, D51 and D52 at the end, and #148's lines kept in the Yang–Mills entry they continue. #155 had five checks, all green; #154, #156 and #148 touch no path that has a check, and GitHub reported each as cleanly mergeable.
 - **Where the assistant is unsure:** merging does not answer the requests for outside readers in #155 and #148. Those stay open in D51 and in the Yang–Mills entry.
 - **Still open:** the outside reviews named in D50, D51, D52 and the Yang–Mills entry.
+
+### D54. Release v23.3 (Decided, November 2026)
+- **Author:** "Make a new release of the repo please - than this work is backed-up".
+- **Assistant, what was prepared:** v23.3. `RELEASE_NOTES.md` is rewritten for it. `README.md`, `verification/README.md`, the citation metadata, the `ebe_core` dependency example and the integration check are brought up to date. `CORE.md` and the core are unchanged.
+- **Choices the assistant made, for the author to confirm:**
+  - **the number.** v23.3, a minor release, because nothing entered the core and no Lean module was added (as for v23.2 in D49);
+  - **the tone.** The notes open by saying the release is not new theory and that no human expert has reviewed the additions, and they label each addition as a working note, a feasibility study or an attempt;
+  - **the README.** Two lines are added, for the probabilistic ledger (D50) and the perplexity note (D52). The line on the Ten Verbs Hypothesis said "version 0.4" and "reviewed twice from outside"; it now says versions 0.1 to 0.5 and four outside reviews, as D51 records;
+  - **the keywords.** "functional information" and "perplexity" are added to the Zenodo metadata.
+- **Where the assistant is unsure or disagrees:**
+  - **merging this pull request publishes the release.** The publish workflow tags it and Zenodo archives it under the author's name with a DOI. It cannot be taken back in the way a commit can;
+  - **the release archives work the author has not read in full or that has had no human reader:** the perplexity note (the author said "I like the paper" and has not commented on each section), the Ten Verbs feasibility study, the probabilistic ledger note and the D(p) attempt. Each is labelled where it stands;
+  - **the perplexity note's sources are thinly checked** (D52); its README says how each was seen;
+  - **the publish workflow runs only after the site builds and deploys on `main`.** The deploy after the merges of D53 failed on a temporary GitHub error. If that happens again, the release waits until the next successful build.
+- **Status:** prepared on the author's request for a release. The author asked for the release itself, so the pull request is merged once its checks are green.
